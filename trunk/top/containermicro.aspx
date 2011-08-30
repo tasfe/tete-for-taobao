@@ -1,0 +1,3 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="containermicro.aspx.cs" Inherits="top_containermicro" %>
+
+读取淘宝信息中，请您稍等...

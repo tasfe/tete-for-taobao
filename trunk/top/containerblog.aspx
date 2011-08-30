@@ -1,0 +1,3 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="containerblog.aspx.cs" Inherits="top_containerblog" %>
+
+读取淘宝信息中，请您稍等...
