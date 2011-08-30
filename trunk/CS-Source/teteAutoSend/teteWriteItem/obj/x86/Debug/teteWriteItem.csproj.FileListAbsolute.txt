@@ -1,0 +1,13 @@
+D:\testsvnnew\website\CS-Source\teteAutoSend\teteWriteItem\bin\Debug\teteWriteItem.exe
+D:\testsvnnew\website\CS-Source\teteAutoSend\teteWriteItem\bin\Debug\teteWriteItem.pdb
+D:\testsvnnew\website\CS-Source\teteAutoSend\teteWriteItem\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\testsvnnew\website\CS-Source\teteAutoSend\teteWriteItem\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\testsvnnew\website\CS-Source\teteAutoSend\teteWriteItem\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+D:\testsvnnew\website\CS-Source\teteAutoSend\teteWriteItem\bin\Debug\Top4Net.dll
+D:\testsvnnew\website\CS-Source\teteAutoSend\teteWriteItem\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\testsvnnew\website\CS-Source\teteAutoSend\teteWriteItem\obj\x86\Debug\teteWriteItem.Form1.resources
+D:\testsvnnew\website\CS-Source\teteAutoSend\teteWriteItem\obj\x86\Debug\teteWriteItem.Properties.Resources.resources
+D:\testsvnnew\website\CS-Source\teteAutoSend\teteWriteItem\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+D:\testsvnnew\website\CS-Source\teteAutoSend\teteWriteItem\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+D:\testsvnnew\website\CS-Source\teteAutoSend\teteWriteItem\obj\x86\Debug\teteWriteItem.exe
+D:\testsvnnew\website\CS-Source\teteAutoSend\teteWriteItem\obj\x86\Debug\teteWriteItem.pdb
