@@ -1,0 +1,21 @@
+http://container.open.taobao.com/container?appkey=12223169
+http://container.open.taobao.com/container?appkey=12159997
+http://container.open.taobao.com/container?appkey=12166431
+
+<?xml version="1.0" encoding="utf-8" ?><marketing_tag_add_response><user_tag><description>特特测试人群1_描述</description><create_date>2011-04-11 12:30:21</create_date><tag_id>453747</tag_id><tag_name>特特测试人群1</tag_name></user_tag></marketing_tag_add_response><!--top021125.cm3-->
+
+<?xml version="1.0" encoding="utf-8" ?><marketing_promotion_add_response><promotions list="true"><promotion><num_iid>7591980225</num_iid><item_detail_url>http://item.taobao.com/item.htm?id=7591980225&amp;dxyh_channel=*_240</item_detail_url><promotion_id>26740444</promotion_id></promotion></promotions></marketing_promotion_add_response><!--top016084.cm4-->
+
+<?xml version="1.0" encoding="utf-8" ?><marketing_taguser_add_response><is_success>true</is_success></marketing_taguser_add_response><!--top016087.cm4-->
+
+http://item.taobao.com/item.htm?id=7591980225&amp;dxyh_channel=*_240
+
+<?xml version="1.0" encoding="utf-8" ?><marketing_taguser_add_response><is_success>true</is_success></marketing_taguser_add_response><!--top021132.cm3-->
+
+<?xml version="1.0" encoding="utf-8" ?><marketing_promotions_get_response><total_results>1</total_results><promotions list="true"><promotion><discount_type>PRICE</discount_type><discount_value>99.00</discount_value><end_date>2011-04-19 13:00:00</end_date><promotion_title>团购打折</promotion_title><start_date>2011-04-11 15:00:00</start_date><tag_id>453747</tag_id></promotion></promotions></marketing_promotions_get_response><!--top021107.cm3-->
+
+<?xml version="1.0" encoding="utf-8" ?><marketing_promotion_add_response><promotions list="true"><promotion><num_iid>7591417011</num_iid><item_detail_url>http://item.taobao.com/item.htm?id=7591417011&amp;dxyh_channel=*_240</item_detail_url><promotion_id>26745580</promotion_id></promotion></promotions></marketing_promotion_add_response><!--top015090.cm3-->
+
+<?xml version="1.0" encoding="utf-8" ?><trades_sold_increment_get_response><trades list="true"><trade><buyer_nick>美杜莎之心</buyer_nick><status>WAIT_BUYER_PAY</status><tid>71598135085600</tid></trade></trades><total_results>1</total_results></trades_sold_increment_get_response><!--top015091.cm3-->
+
+http://www.7fshop.com/testflash/callback.aspx?decode=utf-8&top_appkey=12154705&top_parameters=aWZyYW1lPTEmdHM9MTMwMjc1OTA0MDcyNyZ2aXNpdG9yX2lkPTIwNDIwMDg1NiZ2aXNpdG9yX25pY2s9w8C2xcmv1q7QxA3D3D&top_session=20856ceae6936aa0495654d7db5e1c65766c&time=2011-04-14+13%3A30%3A11&envMode=prod&shop_id=65114941&viewer_nick=%E7%BE%8E%E6%9D%9C%E8%8E%8E%E4%B9%8B%E5%BF%83&seller_nick=%E5%8F%B6%E5%84%BF%E9%9A%8F%E6%B8%85%E9%A3%8E&top_sign=roaRUKGZYsQhn6rWH1QWXQ%3D%3D
