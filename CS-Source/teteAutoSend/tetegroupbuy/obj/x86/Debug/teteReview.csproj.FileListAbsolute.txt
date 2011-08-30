@@ -1,0 +1,12 @@
+E:\svn\website\CS-Source\teteAutoSend\teteReview\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\svn\website\CS-Source\teteAutoSend\teteReview\obj\x86\Debug\teteReview.Form1.resources
+E:\svn\website\CS-Source\teteAutoSend\teteReview\obj\x86\Debug\teteReview.Properties.Resources.resources
+E:\svn\website\CS-Source\teteAutoSend\teteReview\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\svn\website\CS-Source\teteAutoSend\teteReview\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\svn\website\CS-Source\teteAutoSend\teteReview\bin\Debug\teteReview.exe
+E:\svn\website\CS-Source\teteAutoSend\teteReview\bin\Debug\teteReview.pdb
+E:\svn\website\CS-Source\teteAutoSend\teteReview\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\svn\website\CS-Source\teteAutoSend\teteReview\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\svn\website\CS-Source\teteAutoSend\teteReview\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+E:\svn\website\CS-Source\teteAutoSend\teteReview\obj\x86\Debug\teteReview.exe
+E:\svn\website\CS-Source\teteAutoSend\teteReview\obj\x86\Debug\teteReview.pdb

@@ -1,0 +1,5 @@
+D:\testsvnnew\website\CS-Source\teteAutoSend\TeteRewrite\bin\Debug\TeteRewrite.dll
+D:\testsvnnew\website\CS-Source\teteAutoSend\TeteRewrite\bin\Debug\TeteRewrite.pdb
+D:\testsvnnew\website\CS-Source\teteAutoSend\TeteRewrite\obj\Debug\ResolveAssemblyReference.cache
+D:\testsvnnew\website\CS-Source\teteAutoSend\TeteRewrite\obj\Debug\TeteRewrite.dll
+D:\testsvnnew\website\CS-Source\teteAutoSend\TeteRewrite\obj\Debug\TeteRewrite.pdb
