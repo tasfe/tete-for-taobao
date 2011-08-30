@@ -1,0 +1,3 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="show_index" %>
+
+document.write('<iframe src="http://www.7fshop.com/show/plist.aspx?id=<%=id %>&style=<%=style %>&size=<%=size %>&type=<%=type %>&orderby=<%=orderby %>&query=<%=query %>&shopcat=<%=shopcat %>&items=<%=items %>&title=<%=title %>&width=<%=width %>&height=<%=height %>&num=<%=num %>&url=<%=url %>" width="<%=width %>" height="<%=height %>" frameborder="0" marginheight=0 marginwidth=0 scrolling="no"></iframe>');
