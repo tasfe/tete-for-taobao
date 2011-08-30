@@ -1,0 +1,28 @@
+1、flash调用的时候会传入一个参数seller_nick
+2、ajax请求网址 http://groupbuy.7fshop.com/testflash/data.aspx?a=[seller_nick]&b=Date()防止AJAX缓存，seller_nick为数字，请使用“57734865”这个帐号测试返回数据
+3、返回结果用“|”分割例如“http://img01.taobaocdn.com/bao/uploaded/i1/T1GyicXoJvXXXVoJZ._112008.jpg|100.00|0.4|40.00|fdsfds|http://item.taobao.com/item.htm?id=9362005623|60.00|88|0|-19249”
+数组说明
+{
+	显示图片
+	原价
+	折扣
+	团购价
+	团购名称
+	参团和宝贝图片链接
+	节省
+	团购ID（暂时不用）
+	参团人数
+	剩余时间，单位（秒）
+}
+
+根据秒生成剩余时间多少小时多少分钟多少秒，需要有毫秒如 2小时35分钟20.5秒 这样
+4、复制前面的输入框里为上面数组中的“参团和宝贝图片链接”
+5、小图片淘的链接为http://share.jianghu.taobao.com/share/addShare.htm?url=" + escape(newurl) + "&amp;title=" + escape(itemname); 其中newurl为“参团链接”，itemname为团购名称
+6、小图片开的链接为http://www.kaixin001.com/repaste/bshare.php?rurl=" + escape(newurl) + "&amp;rtitle=" + escape(itemname); 其中newurl为“参团链接”，itemname为团购名称
+7、小图片人的链接为http://share.renren.com/share/buttonshare.do?link=" + escape(newurl); 其中newurl为“参团链接”，itemname为团购名称
+8、小图片蓝色微博的链接为http://v.t.qq.com/share/share.php?title=escape(itemname)&source=1000001&pic=escape(picurl)&url=escape(newurl);其中newurl为“参团链接” picurl为显示图
+9、小图片红色微博的链接为http://v.t.sina.com.cn/share/share.php?url=" + escape(newurl) + "&amp;pic=" + escape(picurl); 其中newurl为“参团链接”，picurl为显示图片
+10、团购文字的文字请尽量使用和ju.taobao.com一样的字体，这个FLASH是我请人帮忙做的，不知道他是否有设置字体
+11、以上如果有没有描述清楚的地方请参考聚划算“ju.taobao.com”
+
+如果有任何问题，请及时联系我，我的电话13816190083 非常感谢

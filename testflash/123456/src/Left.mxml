@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="185" minHeight="200" width="185" height="200">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<s:Button x="130" y="45" label="团购" width="50"/>
+	<s:Label x="7" y="152" text="剩余时间：" fontSize="13" fontFamily="中易宋体" fontWeight="bold"/>
+	<s:Label x="35" y="178" text="小时" fontSize="13" fontFamily="中易宋体"/>
+	<s:Label x="6" y="173" text="16" fontFamily="Arial" fontSize="24"/>
+	<s:Label x="66" y="172" text="35" fontFamily="Arial" fontSize="24"/>
+	<s:Label x="116" y="172" text="60" fontFamily="Arial" fontSize="24" id="second"/>
+	<s:Label x="96" y="179" text="分" fontSize="13" fontFamily="中易宋体"/>
+	<s:Label x="166" y="179" text="秒" fontSize="13" fontFamily="中易宋体"/>
+	<mx:Image x="8" y="39" source="http://img01.taobaocdn.com/bao/uploaded/i1/T1Zr4WXeBLXXbRUi2X_115601.jpg_110x110.jpg"/>
+	<s:Label x="5" y="5" text="今日团购：4折 秒杀 清仓 2011年"/>
+	<s:Label x="11" y="20" text="新 男包 单肩包 男式包 威登保罗"/>
+	<s:Label x="121" y="91" text="￥1548.00" fontSize="12" fontFamily="Arial" textDecoration="none" id="oldPrice"/>
+	<s:Label x="138" y="72" text="原价" fontSize="12"/>
+	<s:Label x="137" y="108" text="折扣" fontSize="12"/>
+	<s:Label x="134" y="129" text="0.7" fontSize="12" fontFamily="Arial" textDecoration="none" color="#FF7200" id="zhekou"/>
+	<s:Label x="153" y="128" text="折" fontSize="12" fontFamily="Arial" textDecoration="none" color="#FF7200"/>
+	
+</s:Application>
