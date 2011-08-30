@@ -1,0 +1,1 @@
+INSERT INTO TopNotify (userId, nick, leaseId, validateDate, invalidateDate, factMoney, subscType, versionNo, oldVersionNo, status, sign, gmtCreateDate, tadgetCode  ) VALUES (  '415855460',  '小小淘妆',  '22762',  '2010-12-09 00:00:00',  '2011-01-09 00:00:00',  '0.00',  '1',  '1',  '0',  '2',  '4D1D1B5F7CD3D8279581CE90C13CA4F5',  '2010-12-09 13:41:27',  'service-0-22762' ) 

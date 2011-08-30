@@ -1,0 +1,485 @@
+﻿body
+{
+    margin: 0px;
+}
+td
+{
+    color: #666666;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+div
+{
+    color: #666666;
+    font-size: 12px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+p
+{
+    color: #666666;
+    font-size: 12px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+td
+{
+    color: #666666;
+    font-size: 12px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+img
+{
+    border: 0;
+}
+A:link
+{
+    text-decoration: none;
+    color: #696969;
+}
+A:visited
+{
+    text-decoration: none;
+    color: #696969;
+}
+A:active
+{
+    text-decoration: none;
+    color: #696969;
+}
+A:hover
+{
+    text-decoration: underline;
+    color: #0000CC;
+}
+.a2 A:link
+{
+    text-decoration: underline;
+    color: #0000cc;
+}
+.a2 A:visited
+{
+    text-decoration: underline;
+    color: #0000cc;
+}
+.a2 A:active
+{
+    text-decoration: underline;
+    color: #0000cc;
+}
+.a2 A:hover
+{
+    text-decoration: none;
+    color: #0000cc;
+}
+.top
+{
+    color: #3F6293;
+}
+.top A:link
+{
+    text-decoration: none;
+    color: #3F6293;
+}
+.top A:visited
+{
+    text-decoration: none;
+    color: #3F6293;
+}
+.top A:active
+{
+    text-decoration: none;
+    color: #3F6293;
+}
+.top A:hover
+{
+    text-decoration: none;
+    color: #4F933F;
+}
+.a3
+{
+    color: #666666;
+    font-size: 12px;
+    text-decoration: underline;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.title
+{
+    color: #006699;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.title A:link
+{
+    text-decoration: none;
+    color: #006699;
+}
+.title A:visited
+{
+    text-decoration: none;
+    color: #006699;
+}
+.title A:active
+{
+    text-decoration: none;
+    color: #006699;
+}
+.title A:hover
+{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+.left
+{
+    color: #014C91;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+.left A:link
+{
+    text-decoration: none;
+    color: #014C91;
+    font-weight: bold;
+}
+.left A:visited
+{
+    text-decoration: none;
+    color: #014C91;
+    font-weight: bold;
+}
+.left A:active
+{
+    text-decoration: none;
+    color: #014C91;
+    font-weight: bold;
+}
+.left A:hover
+{
+    text-decoration: none;
+    color: #990000;
+    font-weight: bold;
+}
+.left2 A:link
+{
+    text-decoration: none;
+    color: #014C91;
+}
+.left2 A:visited
+{
+    text-decoration: none;
+    color: #014C91;
+}
+.left2 A:active
+{
+    text-decoration: none;
+    color: #014C91;
+}
+.left2 A:hover
+{
+    text-decoration: none;
+    color: #06699;
+}
+/* index */
+input
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #3F6293;
+    border: 1px #999999 solid;
+	height:17px;
+    background-image: url(../images/inputback.gif);
+}
+.input1
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #3F6293;
+    border: 1px #999999 solid;
+	height:22px;
+	padding:3px;
+    background-image: url(../images/inputback.gif);
+}
+.input2 tr td input
+{
+    border: 0px #FFFFFF solid;    background:url(../images/null.gif);
+}
+.input3 input 
+{
+    border: 0px #FFFFFF solid;    background:url(../images/null.gif);
+}
+select
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #000000;
+    border: 1px #999999 solid;
+    background-image: url(../images/inputback.gif) no-repeat;
+}
+.button
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #000000;
+    border: 1px #4B565D solid;
+    height: 21px;
+    background-image: url(../images/inputbg.gif);
+}
+#classlist
+{
+    width: 900px;
+    background: #FFFFFF;
+    font-weight: bolder;
+    color: 7D46D8;
+}
+#classlist ul
+{
+    margin-left: 0;
+    padding-left: 0;
+    display: inline;
+}
+#classlist ul li
+{
+    margin: 5x;
+    margin-bottom: 0;
+    padding: 2px 8px 1px 12px;
+    list-style: none;
+    color: #555555;
+    display: inline;
+}
+#classlist ul li.here
+{
+    border-bottom: 1px solid #ffc;
+    list-style: none;
+    display: inline;
+}
+
+.topstyle
+{
+    height: 58px;
+    background: url(images/topbg1.gif);
+    padding-left: 10px;
+}
+.toplogo{
+    float: left;
+    padding-top: 3px;
+}
+.toptitle
+{
+    float: left;
+    padding-top: 5px;
+    padding-left: 10px;
+    color: #3F6293;
+}
+.toptitle2
+{
+    float: right;
+    padding: 2px 5px 2px 10px;
+    margin-right: 5px;
+	margin-top:3px
+    color: #3F6293;
+	background:#e1e1e1;
+}
+.topr1 { padding: 5px; text-align: right}
+.topr1 a:hover {text-decoration: none;color: #4F933F}
+.topr1 a:active {text-decoration: none;color: #3F6293}
+.topr1 a:link {text-decoration: none;color: #3F6293}
+.topr1 a:visited {text-decoration: none;color: #3F6293}
+.topr2
+{
+    float: right;
+    padding: 7px;
+    color: #3F6293;
+}
+.topr3
+{
+    float: right;
+    height: 20px;
+    width: 235px;
+    background: #FFFFFF;
+    margin-top: 4px;
+    border: 1px #999999 solid;
+}
+.topr3 div
+{
+    padding: 2px;
+}
+.topnavi
+{
+    height: 39px;
+    background: url(../images/topbg2.gif);
+    padding-left: 10px;
+}
+#topnavi1
+{
+    float: left;
+    width: 91px;
+    height: 36px;
+    line-height: 36px;
+    background: url(../images/navibg1.gif);
+    font-size: 14px;
+    font-weight: bolder;
+    color: #FFFFFF;
+    text-align: center;
+}
+#topnavi2
+{
+    float: left;
+}
+#topnavi2 ul
+{
+    margin-left: 0;
+    padding-left: 0;
+    display: inline;
+}
+#topnavi2 ul li
+{
+    margin: 0;
+    background: url(../images/navibg2.gif) no-repeat right top;
+    background: url(../images/navibg2.gif) no-repeat right !important;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: bolder;
+    color: #4B6888;
+    text-align: center;
+    height: 36px;
+    line-height: 36px;
+    list-style: none;
+    display: inline;
+}
+#topnavi2 a
+{
+    text-decoration: none;
+    color: #4B6888;
+}
+#topnavi2 a:hover
+{
+    text-decoration: none;
+    color: #000000;
+}
+#leftnavi {height: 34px;
+    border-bottom: 1px #9DB3C5 solid;}
+#leftnavi div
+{
+    float: left;
+    width: 94px !important;
+    width: 95px;
+    border-left: 1px #9DB3C5 solid;
+    padding: 8px 0;
+	height:18px !important;
+	height:34px;
+    color: #000000;
+    font-weight: bolder;
+    background: url(../images/navibg3.gif); text-align:center
+}
+.cate1
+{
+    background: url(../images/catebg.gif);
+    height: 34px;
+    width: 167px;
+}
+.cate1b
+{
+    background: url(../images/catebg2.gif);
+    height: 34px;
+    width: 167px;
+}
+.cate2
+{
+    padding: 13px 0 0 10px;
+    float: left;
+    color: #000000;
+}
+.cate2 a
+{
+    color: #000000;
+    text-decoration: none;
+}
+.cate2 a:link
+{
+    color: #000000;
+    text-decoration: none;
+}
+.cate2 a:visited
+{
+    color: #000000;
+    text-decoration: none;
+}
+.cate2 a:active
+{
+    color: #000000;
+    text-decoration: none;
+}
+.cate2 a:hover
+{
+    color: #000000;
+    text-decoration: none;
+}
+.cate3
+{
+    padding: 18px 10px 0 0;
+    float: right;
+}
+.sort
+{
+    width: 167px;
+}
+.sort ul
+{
+    margin: 0;
+    padding: 0;
+}
+.sort ul li
+{
+    margin: 0 6px;
+    color: #3A4F6B;
+    text-align: left;
+    height: 23px;
+    line-height: 23px;
+    list-style: none;
+}
+.sort A:link
+{
+    text-decoration: none;
+    color: #3A4F6B;
+}
+.sort A:visited
+{
+    text-decoration: none;
+    color: #3A4F6B;
+}
+.sort A:active
+{
+    text-decoration: none;
+    color: #3A4F6B;
+}
+.sort a:hover
+{
+    color: #3A4F6B;
+    text-decoration: none;
+}
+.kuaijie
+{
+    padding: 10px;
+}
+.bottom1
+{
+    height: 8px;
+    background: url(../images/bottombg.gif);
+}
+.bottom2
+{
+    padding: 20px;
+    color: #496985;
+}
+.label
+{
+    text-align:right;
+}
+.sitemaplist_p { margin:0 0 10px; padding:5px 10px; background:#EFFCF0}
+.sitemaplist { height:550px;overflow:scroll }
+	.sitemaplist ol { margin:0; padding:10px; list-style:none}
+	.sitemaplist ol li { margin:0; padding:0; list-style:none; line-height:18px; color:#555555; float:left; width:120px}
+	.sitemaplist ol li A:link { text-decoration: none; color: #999999}
+	.sitemaplist ol li A:visited { text-decoration: none; color: #000000}
+	.sitemaplist ol li A:active { text-decoration: none; color: #999999}
+	.sitemaplist ol li A:hover { text-decoration: none; color: #009900}
+	.sitemaplist ol li strong { color:#009900}

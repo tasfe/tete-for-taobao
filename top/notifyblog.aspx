@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="notifyblog.aspx.cs" Inherits="top_notifyblog" %>

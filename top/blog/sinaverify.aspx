@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="sinaverify.aspx.cs" Inherits="topTest_market_sinaverify" %>

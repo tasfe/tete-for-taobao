@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="js_userinfomicro.aspx.cs" Inherits="top_js_userinfomicro" %>
