@@ -20,6 +20,20 @@ public partial class top_review_itemsend : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
+        //判断VIP版本，只有VIP才能使用此功能
+        string sql = "SELECT * FROM TopTaobaoShop WHERE nick = '" + nick + "'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        if (dt.Rows.Count != 0)
+        {
+            string flag = dt.Rows[0]["versionNoBlog"].ToString();
+            if (flag == "0")
+            {
+                Response.Redirect("xufei.aspx");
+                Response.End();
+                return;
+            }
+        }
+
         BindData();
     }
 
