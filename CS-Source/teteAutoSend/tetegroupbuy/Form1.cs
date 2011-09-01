@@ -166,7 +166,7 @@ namespace tetegroupbuy
                 {
                     sql = "SELECT session FROM TopTaobaoShop WHERE nick = '" + enddt.Rows[y]["nick"].ToString() + "'";
 
-                    WriteLog(sql, "");
+                    WriteLog("清除代码:" + sql, "");
                     DataTable dtnick = db.GetTable(sql);
                     if (dtnick.Rows.Count != 0)
                     {
@@ -177,7 +177,7 @@ namespace tetegroupbuy
                     paramnew.Add("promotion_id", enddt.Rows[y]["promotionid"].ToString());
                     string resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.delete", session, paramnew);
 
-                    WriteLog(resultnew, "");
+                    WriteLog("清除代码:" + resultnew, "");
 
                     //删除该活动关联的用户群
                     paramnew = new Dictionary<string, string>();
@@ -187,7 +187,7 @@ namespace tetegroupbuy
                     }
                     resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.tag.delete", session, paramnew);
 
-                    WriteLog(resultnew, "");
+                    WriteLog("清除代码:" + resultnew, "");
 
                     //将该团购标志为已结束
                     sql = "UPDATE TopGroupBuy SET isdelete = 1 WHERE id = " + enddt.Rows[y]["id"].ToString();
@@ -310,7 +310,7 @@ namespace tetegroupbuy
 
                 WriteLog("**********************************************************", "");
                 //休息后继续循环-默认15分钟一次
-                Thread.Sleep(900000);
+                Thread.Sleep(600000);
 
                 Thread newThread = new Thread(DoMyJob);
                 newThread.Start();
@@ -340,6 +340,7 @@ namespace tetegroupbuy
             DBSql db = DBSql.getInstance();
             //判断该订单是否插入过
             string sql = "SELECT COUNT(*) FROM TopGroupBuyDetailOrder WHERE orderid = '" + orderid + "'";
+
 
             WriteLog(sql, "");
             string count = db.GetTable(sql).Rows[0][0].ToString();
