@@ -149,7 +149,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         param.Add("discount_value", newprice);
         param.Add("start_date", starttime);
         param.Add("end_date", endtime);
-        param.Add("promotion_title", "团购打折");
+        param.Add("promotion_title", "促销");
         param.Add("tag_id", tagid);
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.add", session, param);
 
