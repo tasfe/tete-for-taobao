@@ -23,7 +23,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
     public string todate = string.Empty;
     public string enddate = string.Empty;
     public string nowstr = string.Empty;
-
+    public static string logUrl = "D:/svngroupbuy/website/ErrLog";
     public string nick = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -66,7 +66,6 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
     /// <param name="e"></param>
     protected void btnsubmit_Click(object sender, EventArgs e)
     {
- 
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
         string session = cookie.getCookie("top_sessiongroupbuy");
@@ -136,7 +135,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         param.Add("description", nick + "_团购人群描述_" + guid);
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.tag.add", session, param);
         string tagid = new Regex(@"<tag_id>([^<]*)</tag_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-
+        WriteLog(result, "");
         //如果设置的是不需要参团就能购买
         if (isfromflash == "0")
         {
@@ -155,6 +154,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.add", session, param);
 
         //Response.Write(result + "<br><br>");
+        WriteLog(result,"");
         if (result.IndexOf("error_response") != -1)
         {
             string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
@@ -282,6 +282,43 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         Response.Redirect("success.aspx?id=" + groupid);
     }
 
+
+    /// <summary>
+    /// 写日志
+    /// </summary>
+    /// <param name="value">日志内容</param>
+    /// <param name="type">类型 0(成功日志),1(错误日志) 可传空文本默认为0</param>
+    /// <returns></returns>
+    public static void WriteLog(string message, string type)
+    {
+        string tempStr = logUrl + "/Groupby" + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
+        string tempFile = tempStr + "/Groupbypromotion" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+        if (type == "1")
+        {
+            tempFile = tempStr + "/GroupbypromotionErr" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+        }
+        if (!Directory.Exists(tempStr))
+        {
+            Directory.CreateDirectory(tempStr);
+        }
+
+        if (System.IO.File.Exists(tempFile))
+        {
+            ///如果日志文件已经存在，则直接写入日志文件
+            StreamWriter sr = System.IO.File.AppendText(tempFile);
+            sr.WriteLine("\n");
+            sr.WriteLine(DateTime.Now + "\n" + message);
+            sr.Close();
+        }
+        else
+        {
+            ///创建日志文件
+            StreamWriter sr = System.IO.File.CreateText(tempFile);
+            sr.WriteLine(DateTime.Now + "\n" + message);
+            sr.Close();
+        }
+
+    }
  
  
 
