@@ -265,14 +265,14 @@ namespace teteWriteItem
                 WriteLog("清除代码:" + resultnew, "");
 
                 //删除该活动关联的用户群
-                paramnew = new Dictionary<string, string>();
-                if (enddt.Rows[y]["tagid"].ToString() != "1")
-                {
-                    paramnew.Add("tag_id", enddt.Rows[y]["tagid"].ToString());
-                }
-                resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.tag.delete", session, paramnew);
+                //paramnew = new Dictionary<string, string>();
+                //if (enddt.Rows[y]["tagid"].ToString() != "1")
+                //{
+                //    paramnew.Add("tag_id", enddt.Rows[y]["tagid"].ToString());
+                //}
+                //resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.tag.delete", session, paramnew);
 
-                WriteLog("清除代码:" + resultnew, "");
+                //WriteLog("清除代码:" + resultnew, "");
                    
             }
             #endregion
@@ -321,14 +321,16 @@ namespace teteWriteItem
                         request.Fields = "num_iid,title,price,pic_url";
                         request.PageSize = 200;
                         request.PageNo = j;
+                      
 
                         Cookie cookie = new Cookie();
                         string taobaoNick = dt.Rows[i]["nick"].ToString();
 
                         try
                         {
-                            PageList<Item> product = client.ItemsOnsaleGet(request, session); 
+                            PageList<Item> product = client.ItemsOnsaleGet(request, session);
 
+                            WriteDeleteLog("INGCount：" + product.Content.Count.ToString(), "1");
                             for (int num = 0; num < product.Content.Count; num++)
                             {
                                 RecordMissionDetail(id, missionid, product.Content[num].NumIid.ToString(), html);
