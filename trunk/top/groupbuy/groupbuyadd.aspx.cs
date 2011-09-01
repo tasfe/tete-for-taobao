@@ -131,19 +131,19 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         //创建活动相关人群
         string guid = Guid.NewGuid().ToString().Substring(0, 4);
         IDictionary<string, string> param = new Dictionary<string, string>();
-        param.Add("tag_name", nick + "_团购人群_" + guid);
-        param.Add("description", nick + "_团购人群描述_" + guid);
-        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.tag.add", session, param);
-        string tagid = new Regex(@"<tag_id>([^<]*)</tag_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-        WriteLog("添加代码:" + result, "");
+       // param.Add("tag_name", nick + "_团购人群_" + guid);
+       // param.Add("description", nick + "_团购人群描述_" + guid);
+       // string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.tag.add", session, param);
+        string tagid = "1"; //new Regex(@"<tag_id>([^<]*)</tag_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+       // WriteLog("添加代码:" + result, "");
         //如果设置的是不需要参团就能购买
-        if (isfromflash == "0")
-        {
-            tagid = "1";
-        }
+        //if (isfromflash == "0")
+        //{
+        //    tagid = "1";
+        //}
 
         //创建活动
-        param = new Dictionary<string, string>();
+       // param = new Dictionary<string, string>();
         param.Add("num_iids", productid);
         param.Add("discount_type", "PRICE");
         param.Add("discount_value", newprice);
@@ -151,7 +151,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         param.Add("end_date", endtime);
         param.Add("promotion_title", "团购打折");
         param.Add("tag_id", tagid);
-        result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.add", session, param);
+        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.add", session, param);
 
         //Response.Write(result + "<br><br>");
         WriteLog("添加代码:" + result, "");
