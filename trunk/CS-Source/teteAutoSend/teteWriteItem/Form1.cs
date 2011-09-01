@@ -217,10 +217,10 @@ namespace teteWriteItem
                 missionid = dt.Rows[i]["id"].ToString();
                 html = "";
 
-                sql = "SELECT DISTINCT itemid FROM TopWriteContent WHERE groupbuyid = '" + dt.Rows[i]["groupbuyid"].ToString() + "' AND isok = 1";
-                //sql = "delete from TopWriteContent where groupbuyid =  '" + dt.Rows[i]["groupbuyid"].ToString() + "'";
-                //db.ExecSql(sql);
-                dtWrite = db.GetTable(sql); 
+                //sql = "SELECT DISTINCT itemid FROM TopWriteContent WHERE groupbuyid = '" + dt.Rows[i]["groupbuyid"].ToString() + "' AND isok = 1";
+                sql = "delete from TopWriteContent where groupbuyid =  '" + dt.Rows[i]["groupbuyid"].ToString() + "'";
+                db.ExecSql(sql);
+                //dtWrite = db.GetTable(sql); 
                 if (dtWrite == null || dtWrite.Rows.Count < 1)
                 {
                      
