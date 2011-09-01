@@ -60,15 +60,16 @@
                 </td>
             </tr>
             <tr>
-                <td align="left" height="30">可查询物流评价时间：</td>
+                <td align="left" height="30">淘宝提供物流跟踪订单最短评价时间：</td>
                 <td>
-                    <input id="mindate" name="mindate" type="text" value="<%=mindate %>" size="2" /> 天 (如果此订单可以在系统可查询物流状态，则买家在状态变成已收货后的2天之内好评可获取奖励)
+                    <input id="mindate" name="mindate" type="text" value="<%=mindate %>" size="2" /> 天 
+
                 </td>
             </tr>
             <tr>
-                <td align="left" height="30">不可查询物流评价时间：</td>
+                <td align="left" height="30">淘宝不提供物流跟踪最短评价时间：</td>
                 <td>
-                    <input id="maxdate" name="maxdate" type="text" value="<%=maxdate %>" size="2" /> 天 (如果此订单不可在系统可查询物流状态，则买家在状态变成已发货后的2天之内好评可获取奖励)
+                    <input id="maxdate" name="maxdate" type="text" value="<%=maxdate %>" size="2" /> 天 
                 </td>
             </tr>
             <tr>
