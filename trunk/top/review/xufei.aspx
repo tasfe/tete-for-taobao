@@ -60,7 +60,7 @@
         var num = document.getElementById("num").value;
 
         var url = "http://fuwu.taobao.com/item/subsc.htm?items=" + typ + ":" + num + ";";
-        window.location.href = url;
+        parent.location.href = url;
     }
 </script>
 
