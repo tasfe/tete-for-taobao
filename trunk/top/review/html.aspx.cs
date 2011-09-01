@@ -34,6 +34,20 @@ public partial class top_review_html : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
+        //判断VIP版本，只有VIP才能使用此功能
+        string sql = "SELECT * FROM TopTaobaoShop WHERE nick = '" + nick + "'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        if (dt.Rows.Count != 0)
+        {
+            string flag = dt.Rows[0]["versionNoBlog"].ToString();
+            if (flag == "0")
+            {
+                Response.Redirect("xufei.aspx");
+                Response.End();
+                return;
+            }
+        }
+
         BindData();
     }
 
@@ -105,7 +119,7 @@ public partial class top_review_html : System.Web.UI.Page
     {
         string appkey = "12159997";
         string secret = "614e40bfdb96e9063031d1a9e56fbed5";
- 
+
         TopXmlRestClient clientaa = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
         PictureUploadRequest request = new PictureUploadRequest();
 
@@ -152,7 +166,7 @@ public partial class top_review_html : System.Web.UI.Page
         //左侧分类的图片位置默认在最下面,获取当前序列号最大的
         SellercatsListGetRequest request1 = new SellercatsListGetRequest();
         request1.Nick = nick;
-        request1.Fields = "name,sort_order";
+        request1.Fields = "name,sort_order,parent_cid";
         PageList<SellerCat> cat = clientaa.SellercatsListGet(request1, session);
         if (cat.Content.Count == 0)
         {
@@ -161,9 +175,9 @@ public partial class top_review_html : System.Web.UI.Page
         else
         {
             int max = 0;
-            for (int i = 0; i < cat.Content.Count;i++ )
+            for (int i = 0; i < cat.Content.Count; i++)
             {
-                if (cat.Content[i].SortOrder > max)
+                if (cat.Content[i].ParentCid == 0 && cat.Content[i].SortOrder > max)
                 {
                     max = cat.Content[i].SortOrder;
                 }
@@ -194,7 +208,7 @@ public partial class top_review_html : System.Web.UI.Page
             clientaa.SellercatsListAdd(request, session);
         }
         else
-        { 
+        {
             //更新分类图片
             SellercatsListUpdateRequest request = new SellercatsListUpdateRequest();
             request.Cid = int.Parse(catid);
@@ -203,7 +217,7 @@ public partial class top_review_html : System.Web.UI.Page
         }
 
 
-        Response.Write("<script>alert('同步成功！');window.location.href='html.aspx';</script>"); 
+        Response.Write("<script>alert('同步成功！');window.location.href='html.aspx';</script>");
         Response.End();
         return;
     }
