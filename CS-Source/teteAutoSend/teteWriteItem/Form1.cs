@@ -251,7 +251,7 @@ namespace teteWriteItem
             {
                 sql = "SELECT session FROM TopTaobaoShop WHERE nick = '" + enddt.Rows[y]["nick"].ToString() + "'";
 
-                WriteLog(sql, "");
+                WriteLog("清除代码:" + sql, "");
                 DataTable dtnick = db.GetTable(sql);
                 if (dtnick.Rows.Count != 0)
                 {
@@ -262,7 +262,7 @@ namespace teteWriteItem
                 paramnew.Add("promotion_id", enddt.Rows[y]["promotionid"].ToString());
                 string resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.delete", session, paramnew);
 
-                WriteLog(resultnew, "");
+                WriteLog("清除代码:" + resultnew, "");
 
                 //删除该活动关联的用户群
                 paramnew = new Dictionary<string, string>();
@@ -272,7 +272,7 @@ namespace teteWriteItem
                 }
                 resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.tag.delete", session, paramnew);
 
-                WriteLog(resultnew, "");
+                WriteLog("清除代码:" + resultnew, "");
                    
             }
             #endregion
