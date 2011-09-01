@@ -93,7 +93,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
             //不赠送礼品
             string sql = "UPDATE TopOrder SET kefustatus = 2,kefutime = GETDATE() WHERE CHARINDEX(orderid, '" + ids + "') > 0";
             utils.ExecuteNonQuery(sql);
-            Response.Write("<script>alert('设置成功，选中的订单不赠送！');window.location.href='kefulist.aspx';</script>");
+            Response.Write("<script>alert('选中的订单【" + ids + "】已经设置为不赠送！');window.location.href='kefulist.aspx';</script>");
         }
     }
 
