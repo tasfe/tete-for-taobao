@@ -41,6 +41,7 @@
     <hr />
         <table width="740" cellpadding="0" cellspacing="0">
         <tr>
+                <td width="30"><input type="checkbox" />?</td>
                 <td width="120"><b>买家</b></td>
                 <td width="120"><b>订单号</b></td>
                 <td width="60"><b>下单日期 </b></td>
@@ -52,6 +53,7 @@
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
+                <td height="35"><input name="id" type="checkbox" value="<%#Eval("orderid")%>" /></td>
                 <td height="35"><%#Eval("buynick")%></td>
                 <td><%#Eval("orderid")%></td>
                 <td><%#Eval("addtime")%></td>
@@ -67,11 +69,28 @@
     </table>
 
     <div>
+        <input type="buttom" value="审核通过并赠送礼品" onclick="setOK()" />
+        <input type="buttom" value="审核不通过" onclick="setNotOK()" />
+    </div>
+
+    <div>
         <asp:Label ID="lbPage" runat="server"></asp:Label>
     </div>
     </div>
 </div>
 </form>
+
+<script language="javascript" type="text/javascript">
+    function setOK() {
+        document.getElementById("t").value = "ok";
+        document.getElementById("form1").submit();
+    }
+
+    function setNotOK() {
+        document.getElementById("t").value = "no";
+        document.getElementById("form1").submit();
+    }
+</script>
 
 </body>
 </html>
