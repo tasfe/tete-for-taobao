@@ -15,7 +15,7 @@ using System.Web;
 using System.Net;
 using System.Security.Cryptography;
 
-namespace teteWriteItem 
+namespace teteWriteItem
 {
 
     public partial class Form1 : Form
@@ -79,17 +79,7 @@ namespace teteWriteItem
                             newContent = Regex.Replace(product.Desc, @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>", @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>" + dtWrite.Rows[j]["html"].ToString() + @"<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>");
                         }
                         WriteLog("html2:" + newContent.Length.ToString(), "");
-                        //if (newContent.Length > 25000 || newContent.Length < 5)
-                        //{
-                        //    sql = "UPDATE TopWriteContent SET isok = -1 WHERE id = " + dtWrite.Rows[j]["id"].ToString();
-                        //    db.ExecSql(sql);
 
-
-                        //    //更新状态
-                        //    sql = "UPDATE TopMission SET isok = -1 WHERE id = " + dt.Rows[i]["id"].ToString();
-                        //    db.ExecSql(sql);
-                        //    continue;
-                        //}
 
                         //更新宝贝描述
                         IDictionary<string, string> param = new Dictionary<string, string>();
@@ -191,6 +181,104 @@ namespace teteWriteItem
         }
 
 
+        ///// <summary>
+        ///// 创建删除活动关联的宝贝描述
+        ///// </summary>
+        //private void Delete()
+        //{
+        //    Common.Cookie cookie = new Common.Cookie();
+        //    //判断如果活动未开始或进行中则可以关闭活动
+        //    string taobaoNick = cookie.getCookie("nick");
+        //    string session = cookie.getCookie("top_sessiongroupbuy");
+
+        //    //COOKIE过期判断
+        //    if (taobaoNick == "")
+        //    {
+        //        return;
+        //    }
+
+        //    string id = utils.NewRequest("id", utils.RequestType.QueryString);
+        //    Rijndael_ encode = new Rijndael_("tetesoft");
+        //    taobaoNick = encode.Decrypt(taobaoNick);
+
+        //    string sql = "SELECT COUNT(*) FROM TopMission WHERE groupbuyid = " + id + " AND typ='delete' AND isok = 0";
+        //    string count = utils.ExecuteString(sql);
+
+        //    if (count != "0")
+        //    {
+        //        return;
+        //    }
+
+        //    sql = "INSERT INTO TopMission (typ, nick, groupbuyid) VALUES ('delete', '" + taobaoNick + "', '" + id + "')";
+        //    utils.ExecuteNonQuery(sql);
+
+        //    sql = "SELECT TOP 1 ID FROM TopMission ORDER BY ID DESC";
+        //    string missionid = utils.ExecuteString(sql);
+
+        //    //获取团购信息并更新
+        //    sql = "SELECT name,productimg,productid FROM TopGroupBuy WHERE id = '" + id + "'";
+        //    DataTable dt = utils.ExecuteDataTable(sql);
+        //    if (dt.Rows.Count != 0)
+        //    {
+        //        sql = "UPDATE TopMission SET groupbuyname = '" + dt.Rows[0]["name"].ToString() + "',groupbuypic = '" + dt.Rows[0]["productimg"].ToString() + "',itemid = '" + dt.Rows[0]["productid"].ToString() + "' WHERE id = " + missionid;
+        //        utils.ExecuteNonQuery(sql);
+        //    }
+
+        //    //更新任务总数
+        //    sql = "SELECT COUNT(*) FROM TopWriteContent WHERE groupbuyid = '" + id + "' AND isok = 1";
+        //    count = utils.ExecuteString(sql);
+        //    sql = "UPDATE TopMission SET total = '" + count + "' WHERE id = " + missionid;
+        //    utils.ExecuteNonQuery(sql);
+
+        //}
+
+        /// <summary>
+        /// 清除代码
+        /// </summary>
+        /// <param name="id"></param>
+        public void clearGroupbuy(string id)
+        {
+            string appkey = "12287381";
+            string secret = "d3486dac8198ef01000e7bd4504601a4";
+            DBSql db = DBSql.getInstance();
+            string sql = "SELECT * FROM TopGroupBuy WHERE ID="+id;
+            string session = string.Empty;
+            #region 取消活动 删除该活动关联的用户群 将该团购标志为已结束
+            //WriteLog(sql, "");
+            DataTable enddt = db.GetTable(sql);
+            //通过接口将该用户加入人群
+            for (int y = 0; y < enddt.Rows.Count; y++)
+            {
+                sql = "SELECT session FROM TopTaobaoShop WHERE nick = '" + enddt.Rows[y]["nick"].ToString() + "'";
+
+                WriteLog(sql, "");
+                DataTable dtnick = db.GetTable(sql);
+                if (dtnick.Rows.Count != 0)
+                {
+                    session = db.GetTable(sql).Rows[0][0].ToString();
+                }
+                //取消该活动
+                IDictionary<string, string> paramnew = new Dictionary<string, string>();
+                paramnew.Add("promotion_id", enddt.Rows[y]["promotionid"].ToString());
+                string resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.delete", session, paramnew);
+
+                WriteLog(resultnew, "");
+
+                //删除该活动关联的用户群
+                paramnew = new Dictionary<string, string>();
+                if (enddt.Rows[y]["tagid"].ToString() != "1")
+                {
+                    paramnew.Add("tag_id", enddt.Rows[y]["tagid"].ToString());
+                }
+                resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.tag.delete", session, paramnew);
+
+                WriteLog(resultnew, "");
+                   
+            }
+            #endregion
+        }
+
+
         private void DeleteTaobao()
         {
             //try
@@ -212,7 +300,10 @@ namespace teteWriteItem
             DataTable dtWrite = null;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
+
+               
                 id = dt.Rows[i]["groupbuyid"].ToString();
+                clearGroupbuy(id);
                 session = dt.Rows[i]["sessiongroupbuy"].ToString();
                 missionid = dt.Rows[i]["id"].ToString();
                 html = "";
