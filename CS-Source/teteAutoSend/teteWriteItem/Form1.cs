@@ -15,7 +15,7 @@ using System.Web;
 using System.Net;
 using System.Security.Cryptography;
 
-namespace teteWriteItem
+namespace teteWriteItem 
 {
 
     public partial class Form1 : Form
