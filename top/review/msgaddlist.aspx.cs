@@ -27,9 +27,18 @@ public partial class top_review_msgaddlist : System.Web.UI.Page
         if (dt.Rows.Count != 0)
         {
             string flag = dt.Rows[0]["versionNoBlog"].ToString();
+
             if (flag == "0")
             {
                 Response.Redirect("xufei.aspx");
+                Response.End();
+                return;
+            }
+
+            if (flag == "1")
+            {
+                string msg = "尊敬的" + nick + "，非常抱歉的告诉您，只有专业版或者以上版本才能使用【短信自动提醒】功能，如需继续使用请<a href='http://pay.taobao.com/mysub/subarticle/upgrade_order_sub_article.htm?market_type=6&article_id=181' target='_blank'>购买高级会员服务</a>，谢谢！";
+                Response.Redirect("buy.aspx?msg=" + HttpUtility.UrlEncode(msg));
                 Response.End();
                 return;
             }
