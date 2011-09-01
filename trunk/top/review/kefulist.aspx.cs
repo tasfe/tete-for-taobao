@@ -53,7 +53,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         }
 
         string act = utils.NewRequest("act", utils.RequestType.QueryString);
-        string t = utils.NewRequest("t", utils.RequestType.QueryString);
+        string t = utils.NewRequest("t", utils.RequestType.Form);
         string ids = utils.NewRequest("id", utils.RequestType.Form);
 
         if (act == "send")
