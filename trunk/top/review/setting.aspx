@@ -27,7 +27,7 @@
     </ul>
   </div>
     <div id="main-content">
-        <table width="100%">
+        <table width="700">
             <tr>
                 <td align="left" width="180" height="30">是否开启按时好评送优惠券：</td>
                 <td>
