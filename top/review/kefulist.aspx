@@ -69,8 +69,8 @@
     </table>
 
     <div>
-        <input type="buttom" value="审核通过并赠送礼品" onclick="setOK()" />
-        <input type="buttom" value="审核不通过" onclick="setNotOK()" />
+        <input type="button" value="审核通过并赠送礼品" onclick="setOK()" />
+        <input type="button" value="审核不通过" onclick="setNotOK()" />
     </div>
 
     <div>
