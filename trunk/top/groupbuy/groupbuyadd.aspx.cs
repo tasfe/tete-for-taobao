@@ -134,7 +134,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
        // param.Add("tag_name", nick + "_团购人群_" + guid);
        // param.Add("description", nick + "_团购人群描述_" + guid);
        // string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.tag.add", session, param);
-        string tagid = "1L"; //new Regex(@"<tag_id>([^<]*)</tag_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+        string tagid = "1"; //new Regex(@"<tag_id>([^<]*)</tag_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
        // WriteLog("添加代码:" + result, "");
         //如果设置的是不需要参团就能购买
         //if (isfromflash == "0")
