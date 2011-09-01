@@ -41,7 +41,7 @@
     <hr />
         <table width="740" cellpadding="0" cellspacing="0">
         <tr>
-                <td width="30"><input type="checkbox" />?</td>
+                <td width="30"><input type="checkbox" onclick="selectAll()" /></td>
                 <td width="120"><b>买家</b></td>
                 <td width="120"><b>订单号</b></td>
                 <td width="60"><b>下单日期 </b></td>
@@ -89,6 +89,17 @@
     function setNotOK() {
         document.getElementById("t").value = "no";
         document.getElementById("form1").submit();
+    }
+
+    function selectAll() { 
+        var ids = document.getElementsByName("id");
+        for (i = 0; i < ids.length; i++) {
+            if (ids[i].checked == true) {
+                ids[i].checked = false;
+            } else {
+                ids[i].checked = true;
+            }
+        }
     }
 </script>
 
