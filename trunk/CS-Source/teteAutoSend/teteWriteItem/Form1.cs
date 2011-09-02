@@ -314,29 +314,26 @@ namespace teteWriteItem
                 //dtWrite = db.GetTable(sql); 
                 if (dtWrite == null || dtWrite.Rows.Count < 1)
                 {
-                     
                     for (int j = 1; j <= 500; j++)
                     {
                         ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
                         request.Fields = "num_iid,title,price,pic_url";
-                        request.PageSize = 200;
+                        request.PageSize = 15;
                         request.PageNo = j;
-                      
-
+                        
                         Cookie cookie = new Cookie();
                         string taobaoNick = dt.Rows[i]["nick"].ToString();
-
                         try
                         {
                             PageList<Item> product = client.ItemsOnsaleGet(request, session);
 
-                            WriteDeleteLog("INGCount：" + product.Content.Count.ToString(), "1");
+                            WriteDeleteLog(taobaoNick+"INGCount：" + product.Content.Count.ToString(), "1");
                             for (int num = 0; num < product.Content.Count; num++)
                             {
                                 RecordMissionDetail(id, missionid, product.Content[num].NumIid.ToString(), html);
                             }
 
-                            if (product.Content.Count < 200)
+                            if (product.Content.Count < 15)
                             {
                                 break;
                             }
@@ -349,8 +346,6 @@ namespace teteWriteItem
                             db.ExecSql(sql);
                             break;
                         }
-
-
                     }
 
                     sql = "SELECT DISTINCT itemid FROM TopWriteContent WHERE groupbuyid = '" + dt.Rows[i]["groupbuyid"].ToString() + "' AND isok = 1";
