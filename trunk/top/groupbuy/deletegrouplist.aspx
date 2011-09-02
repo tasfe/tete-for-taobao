@@ -28,7 +28,8 @@
 
     <div id="main-content">
 
-        <input type="button" value="添加团购" onclick="window.location.href='groupbuyadd.aspx'" />
+        <input type="button" value="添加团购" onclick="window.location.href='groupbuyadd.aspx'" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <b style=" color:Red"> 清除关联描述商品有漏掉的没清除时候,请点击强力清除描述</b>
     <hr />
 
        <table width="100%" cellpadding="0" cellspacing="0">
@@ -57,6 +58,7 @@
                 <td>
                     活动已取消 | <a href='grouplist.aspx?id=<%#Eval("id").ToString()%>&act=del' onclick="return confirm('有的时候取消活动因为网络问题可能失败，点此再次发送取消请求')">取消</a> <br />
                     <a href='groupbuydetail.aspx?id=<%#Eval("id").ToString()%>'>查看团购订单</a>  |  <a href='deletetaobao.aspx?id=<%#Eval("id").ToString()%>' onclick="return confirm('您确认要清除关联描述，该操作不可恢复？')">清除关联描述</a>
+                    |  <a href='deletetaobao.aspx?type=dle&id=<%#Eval("id").ToString()%>' onclick="return confirm('您确认要清除关联描述，该操作不可恢复？')">强力清除描述</a>
                 </td>
             </tr>
             </ItemTemplate>
