@@ -180,14 +180,14 @@ namespace tetegroupbuy
                     WriteLog("清除代码:" + resultnew, "");
 
                     //删除该活动关联的用户群
-                    paramnew = new Dictionary<string, string>();
-                    if (enddt.Rows[y]["tagid"].ToString() != "1")
-                    {
-                        paramnew.Add("tag_id", enddt.Rows[y]["tagid"].ToString());
-                    }
-                    resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.tag.delete", session, paramnew);
+                    //paramnew = new Dictionary<string, string>();
+                    //if (enddt.Rows[y]["tagid"].ToString() != "1")
+                    //{
+                    //    paramnew.Add("tag_id", enddt.Rows[y]["tagid"].ToString());
+                    //}
+                    //resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.tag.delete", session, paramnew);
 
-                    WriteLog("清除代码:" + resultnew, "");
+                    //WriteLog("清除代码:" + resultnew, "");
 
                     //将该团购标志为已结束
                     sql = "UPDATE TopGroupBuy SET isdelete = 1 WHERE id = " + enddt.Rows[y]["id"].ToString();
