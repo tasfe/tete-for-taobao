@@ -149,7 +149,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         param.Add("discount_value", newprice);
         param.Add("start_date", starttime);
         param.Add("end_date", endtime);
-        param.Add("promotion_title", "卖家促销");
+        param.Add("promotion_title", "团购打折");
          
 
         param.Add("tag_id", tagid);
