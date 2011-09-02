@@ -227,6 +227,14 @@ namespace teteReview
                                         textBox1.AppendText("\r\n" + resultmsg);
                                         textBox1.AppendText("\r\n\r\n");
 
+
+                                        //如果内容超过70个字则算2条
+                                        string number = "1";
+                                        if (msg.Length > 70)
+                                        {
+                                            number = "2";
+                                        }
+
                                         if (resultmsg != "0")
                                         {
                                             //记录短信发送记录
@@ -237,6 +245,7 @@ namespace teteReview
                                                                 "[content], " +
                                                                 "yiweiid, " +
                                                                 "orderid, " +
+                                                                "num, " +
                                                                 "typ " +
                                                             " ) VALUES ( " +
                                                                 " '" + nick + "', " +
@@ -245,6 +254,7 @@ namespace teteReview
                                                                 " '" + msg.Replace("'", "''") + "', " +
                                                                 " '" + resultmsg + "', " +
                                                                 " '" + tid + "', " +
+                                                                " '" + number + "', " +
                                                                 " 'fahuo' " +
                                                             ") ";
                                             db.ExecSql(sql);
@@ -254,7 +264,7 @@ namespace teteReview
                                             db.ExecSql(sql);
 
                                             //更新短信数量
-                                            sql = "UPDATE TopAutoReview SET used = used + 1,total = total-1 WHERE nick = '" + nick + "'";
+                                            sql = "UPDATE TopAutoReview SET used = used + " + number + ",total = total-" + number + " WHERE nick = '" + nick + "'";
                                             db.ExecSql(sql);
                                         }
                                         else
@@ -559,6 +569,13 @@ namespace teteReview
                                                         textBox2.AppendText("\r\n" + resultmsg);
                                                         textBox2.AppendText("\r\n\r\n");
 
+                                                        //如果内容超过70个字则算2条
+                                                        string number = "1";
+                                                        if (msg.Length > 70)
+                                                        {
+                                                            number = "2";
+                                                        }
+
                                                         if (resultmsg != "0")
                                                         {
                                                             //记录短信发送记录
@@ -569,6 +586,7 @@ namespace teteReview
                                                                                 "[content], " +
                                                                                 "yiweiid, " +
                                                                                 "orderid, " +
+                                                                                "num, " +
                                                                                 "typ " +
                                                                             " ) VALUES ( " +
                                                                                 " '" + nick + "', " +
@@ -577,6 +595,7 @@ namespace teteReview
                                                                                 " '" + msg.Replace("'", "''") + "', " +
                                                                                 " '" + resultmsg + "', " +
                                                                                 " '" + dtOrder.Rows[j]["orderid"].ToString() + "', " +
+                                                                                " '" + number + "', " +
                                                                                 " 'shipping' " +
                                                                             ") ";
                                                             db.ExecSql(sql);
@@ -586,7 +605,7 @@ namespace teteReview
                                                             db.ExecSql(sql);
 
                                                             //更新短信数量
-                                                            sql = "UPDATE TopAutoReview SET used = used + 1,total = total-1 WHERE nick = '" + nick + "'";
+                                                            sql = "UPDATE TopAutoReview SET used = used + " + number + ",total = total-" + number + " WHERE nick = '" + nick + "'";
                                                             db.ExecSql(sql);
                                                         }
                                                         else
@@ -1025,6 +1044,13 @@ namespace teteReview
                                         textBox4.AppendText("\r\n" + resultmsg);
                                         textBox4.AppendText("\r\n\r\n");
 
+                                        //如果内容超过70个字则算2条
+                                        string number = "1";
+                                        if (msg.Length > 70)
+                                        {
+                                            number = "2";
+                                        }
+
                                         if (resultmsg != "0")
                                         {
                                             //记录短信发送记录
@@ -1035,6 +1061,7 @@ namespace teteReview
                                                                 "[content], " +
                                                                 "yiweiid, " +
                                                                 "orderid, " +
+                                                                "num, " +
                                                                 "typ " +
                                                             " ) VALUES ( " +
                                                                 " '" + nick + "', " +
@@ -1043,6 +1070,7 @@ namespace teteReview
                                                                 " '" + msg.Replace("'", "''") + "', " +
                                                                 " '" + resultmsg + "', " +
                                                                 " '" + dtOrder.Rows[j]["orderid"].ToString() + "', " +
+                                                                " '" + number + "', " +
                                                                 " 'review' " +
                                                             ") ";
                                             db.ExecSql(sql);
@@ -1052,7 +1080,7 @@ namespace teteReview
                                             db.ExecSql(sql);
 
                                             //更新短信数量
-                                            sql = "UPDATE TopAutoReview SET used = used + 1,total = total-1 WHERE nick = '" + nick + "'";
+                                            sql = "UPDATE TopAutoReview SET used = used + " + number + ",total = total-" + number + " WHERE nick = '" + nick + "'";
                                             db.ExecSql(sql);
                                         }
                                         else
