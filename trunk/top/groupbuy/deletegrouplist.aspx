@@ -28,8 +28,12 @@
 
     <div id="main-content">
 
+    <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px; color:Red; font-weight:bold">
+    尊敬的用户您好，清除关联描述商品有漏掉没清除的时候,请点击强力清除描述！
+</div>
+
         <input type="button" value="添加团购" onclick="window.location.href='groupbuyadd.aspx'" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <b style=" color:Red"> 清除关联描述商品有漏掉的没清除时候,请点击强力清除描述</b>
+        
     <hr />
 
        <table width="100%" cellpadding="0" cellspacing="0">
