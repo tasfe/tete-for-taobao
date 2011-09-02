@@ -110,15 +110,16 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
 
 
         string imgs = Request.Form["img1"].ToString();
-        //string imgs2 = Request.Form["img2"].ToString();
+        string imgs2 = Request.Form["img2"].ToString();
 
         #region 插入店铺图片
         DataTable dttemp = null;
         TopXmlRestClient client = null;
+        //插入店铺保障图片
+        
         for (int i = 0; i < imgs.Split(',').Length; i++)
         {
             sql = "SELECT * FROM TopTaobaoShopImg WHERE nick='" + taobaoNick + "' AND name='" + imgs.Split(',')[i].ToString() + "'";
-
             dttemp = utils.ExecuteDataTable(sql);
             if (dttemp != null && dt.Rows.Count > 0)
             {
@@ -155,6 +156,49 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
             }
 
         }
+
+        //插入商城,良品图片
+        for (int j = 0; j < imgs2.Split(',').Length; j++)
+        {
+            sql = "SELECT * FROM TopTaobaoShopImg WHERE nick='" + taobaoNick + "' AND name='" + imgs2.Split(',')[j].ToString() + "'";
+            dttemp = utils.ExecuteDataTable(sql);
+            if (dttemp != null && dt.Rows.Count > 0)
+            {
+                continue;
+            }
+
+            FileStream stream = new FileStream("D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/images/" + imgs2.Split(',')[j].ToString(), FileMode.Open);
+            byte[] bytes = new byte[stream.Length];
+
+            stream.Read(bytes, 0, int.Parse(stream.Length.ToString()));
+
+            stream.Close();
+
+            client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12287381", "d3486dac8198ef01000e7bd4504601a4");
+
+            PictureUploadRequest req = new PictureUploadRequest();
+            req.PictureCategoryId = 0L;
+            req.ImageInputTitle = imgs2.Split(',')[j].ToString();
+            req.Title = imgs2.Split(',')[j].ToString();
+            req.Img = new Taobao.Top.Api.Util.FileItem(imgs2.Split(',')[j].ToString(), bytes);
+            client.PictureUpload(req, session);
+            PictureGetRequest pc = new PictureGetRequest();
+
+            pc.Title = imgs2.Split(',')[j].ToString();
+            pc.PictureCategoryId = 0L;
+
+            Taobao.Top.Api.Domain.PageList<Taobao.Top.Api.Domain.Picture> li = client.PictureGet(pc, session);
+
+            for (int num = 0; num < li.Content.Count; num++)
+            {
+                sql = "INSERT INTO TopTaobaoShopImg ([nick],[imgSrc] ,[name]) VALUES ('" + taobaoNick + "','" + li.Content[num].PicturePath + "','" + imgs2.Split(',')[j].ToString() + "')";
+                utils.ExecuteNonQuery(sql);
+
+            }
+
+        }
+
+
         #endregion
 
 
