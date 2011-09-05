@@ -51,18 +51,26 @@ public partial class top_groupbuy_deletetaobao : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         taobaoNick = encode.Decrypt(taobaoNick);
 
-        string sql = "SELECT COUNT(*) FROM TopMission WHERE groupbuyid = " + id + " AND typ='delete' AND isok = 0";
+        string sql = "SELECT COUNT(*) FROM TopMission WHERE groupbuyid = " + id + " AND typ='delete' AND isok = 0 AND nick<>''";
         string count = utils.ExecuteString(sql);
 
         if (count != "0")
         {
-            Response.Write(count + sql +"<script>alert('创建任务失败，有同类型的任务正在执行中，请等待其完成后再创建新的任务！');window.location.href='missionlist.aspx';</script>");
+            Response.Write("<script>alert('创建任务失败，有同类型的任务正在执行中，请等待其完成后再创建新的任务！');window.location.href='missionlist.aspx';</script>");
             Response.End();
             return;
         }
 
-        sql = "INSERT INTO TopMission (typ, nick, groupbuyid) VALUES ('delete', '" + taobaoNick + "', '" + id + "')";
-        utils.ExecuteNonQuery(sql);
+
+        if (taobaoNick.Trim() == "")
+        {
+            //SESSION超期 跳转到登录页
+            Response.Write("<script>parent.location.href='http://container.open.taobao.com/container?appkey=12287381'</script>");
+            Response.End();
+        }
+            sql = "INSERT INTO TopMission (typ, nick, groupbuyid) VALUES ('delete', '" + taobaoNick + "', '" + id + "')";
+            utils.ExecuteNonQuery(sql);
+       
 
         sql = "SELECT TOP 1 ID FROM TopMission ORDER BY ID DESC";
         string missionid = utils.ExecuteString(sql);
