@@ -56,7 +56,7 @@ public partial class top_groupbuy_deletetaobao : System.Web.UI.Page
 
         if (count != "0")
         {
-            Response.Write("<script>alert('创建任务失败，有同类型的任务正在执行中，请等待其完成后再创建新的任务！"+count+"" + sql + "');window.location.href='missionlist.aspx';</script>");
+            Response.Write(count + sql +"<script>alert('创建任务失败，有同类型的任务正在执行中，请等待其完成后再创建新的任务！');window.location.href='missionlist.aspx';</script>");
             Response.End();
             return;
         }
