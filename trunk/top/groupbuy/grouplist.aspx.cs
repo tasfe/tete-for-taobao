@@ -125,7 +125,7 @@ public partial class top_groupbuy_grouplist : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         taobaoNick = encode.Decrypt(taobaoNick);
 
-        string sql = "SELECT COUNT(*) FROM TopMission WHERE groupbuyid = " + id + " AND typ='delete' AND isok = 0";
+        string sql = "SELECT COUNT(*) FROM TopMission WHERE groupbuyid = " + id + " AND typ='delete' AND isok = 0 AND nick<>''";
         string count = utils.ExecuteString(sql);
 
         if (count != "0")
@@ -133,9 +133,16 @@ public partial class top_groupbuy_grouplist : System.Web.UI.Page
             return;
         }
 
-        sql = "INSERT INTO TopMission (typ, nick, groupbuyid) VALUES ('delete', '" + taobaoNick + "', '" + id + "')";
-        utils.ExecuteNonQuery(sql);
+        if (taobaoNick.Trim() == "")
+        {
+            //SESSION超期 跳转到登录页
+            Response.Write("<script>parent.location.href='http://container.open.taobao.com/container?appkey=12287381'</script>");
+            Response.End();
+        }
+            sql = "INSERT INTO TopMission (typ, nick, groupbuyid) VALUES ('delete', '" + taobaoNick + "', '" + id + "')";
+            utils.ExecuteNonQuery(sql);
 
+         
         sql = "SELECT TOP 1 ID FROM TopMission ORDER BY ID DESC";
         string missionid = utils.ExecuteString(sql);
 
