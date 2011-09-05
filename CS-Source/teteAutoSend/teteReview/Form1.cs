@@ -12,6 +12,7 @@ using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Web;
+using System.Diagnostics;
 
 namespace teteReview
 {
@@ -313,6 +314,8 @@ namespace teteReview
             //获取超过卖家设置时间还未支付的订单并取消
             string session = string.Empty;
             string debugOrder = string.Empty;
+            string debugResult = string.Empty;
+            string debugSql = string.Empty;
 
             DBSql db = DBSql.getInstance();
             string sql = "SELECT * FROM TopAutoReview WHERE isdel = 0";
@@ -408,19 +411,20 @@ namespace teteReview
                                 param.Add("tid", dtOrderList.Rows[l]["oid"].ToString());
 
                                 //textBox2.AppendText("\r\n[" + dtOrderList.Rows[l]["oid"].ToString() + "]");
-                                result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.traderates.get", session, param);
+                                string resultNew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.traderates.get", session, param);
                                 //textBox2.AppendText("\r\n" + result);
                                 //如果还没有评论则跳过
-                                if (result.IndexOf("<total_results>0</total_results>") != -1)
+                                if (resultNew.IndexOf("<total_results>0</total_results>") != -1)
                                 {
                                     continue;
                                 }
 
                                 Regex regReview = new Regex(@"<content>([^<]*)</content><created>([^<]*)</created><nick>([^<]*)</nick><result>([^<]*)</result>", RegexOptions.IgnoreCase);
-                                MatchCollection matchReview = regReview.Matches(result);
+                                MatchCollection matchReview = regReview.Matches(resultNew);
 
                                 //防止插入重复的评论判断
-                                sql = "SELECT COUNT(*) FROM TopTradeRate WHERE tid = " + orderid + " AND nick = '" + dtOrder.Rows[j]["buynick"].ToString() + "' AND itemid = " + dtOrderList.Rows[l]["itemid"].ToString();
+                                sql = "SELECT COUNT(*) FROM TopTradeRate WHERE tid = '" + orderid + "' AND nick = '" + dtOrder.Rows[j]["buynick"].ToString() + "' AND itemid = '" + dtOrderList.Rows[l]["itemid"].ToString() + "'";
+                                debugSql = sql;
                                 string reviewCount = db.GetTable(sql).Rows[0][0].ToString();
 
                                 //在多次插入的问题没有找到前先用此方法解决
@@ -482,6 +486,7 @@ namespace teteReview
                                 else
                                 {
                                     //param.Add("fields", "delivery_start,delivery_end,status");
+                                    debugResult = result;
 
                                     status = match[0].Groups[1].ToString();
                                     //记录该订单物流状态
@@ -660,12 +665,14 @@ namespace teteReview
                             }
 
                         }
-                        //textBox2.AppendText("\r\n\r\n**********************************************************");
+                        //textBox2.AppendText("\r\n\r\n**********************************************************");debugResult
                     }
                 }
                 catch(Exception e)
                 {
-                    textBox2.AppendText("\r\n\r\n" + debugOrder + "\r\n" + e.Message + "\r\n" + e.InnerException + "\r\n" + e.Source + "\r\n" + e.StackTrace + "\r\n************************************************");
+                    System.Diagnostics.StackTrace st = new System.Diagnostics.StackTrace(e, true);
+
+                    textBox2.AppendText("\r\n\r\n" + debugOrder + "\r\n" + debugSql + "\r\n" + debugResult + "\r\n" + e.Message + "\r\n" + e.InnerException + "\r\n" + e.Source + "\r\n" + e.StackTrace + "\r\n************************************************");
                     continue;
                 }
             }
@@ -840,6 +847,15 @@ namespace teteReview
                             //赠送优惠券
                             if (iscoupon == "1" && couponid.Trim() != "")
                             {
+                                //判断优惠券是否过期
+                                sql = "SELECT COUNT(*) FROM TopCoupon WHERE nick= '" + nick + "' AND coupon_id = '" + couponid + "' AND GETDATE() > end_time";
+                                string isCouponOver = db.GetTable(sql).Rows[0][0].ToString();
+                                if (isCouponOver == "1")
+                                {
+                                    textBox3.AppendText("\r\n该优惠券【" + couponid + "】已经过期"); ;
+                                    continue;
+                                }
+
                                 //测试用
                                 //buynick = "美杜莎之心";
                                 if (iskefu == "0")
