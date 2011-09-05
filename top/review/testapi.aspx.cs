@@ -54,7 +54,7 @@ public partial class top_review_testapi : System.Web.UI.Page
         //////88346168134906
 
         param = new Dictionary<string, string>();
-        param.Add("tid", "77562071164826");
+        param.Add("tid", "76048779201050");
         param.Add("fields", "delivery_start,delivery_end,status");
 
         //物流接口暂时停用，因为会影响错误率
