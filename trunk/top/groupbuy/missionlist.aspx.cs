@@ -61,7 +61,7 @@ public partial class top_groupbuy_missionlist : System.Web.UI.Page
         }
         else if (msg == "-1")
         {
-            return "<b style=\"color:green\">更新失敗 宝贝描述过长</b>";
+            return "<b style=\"color:green\">更新失败 </b>";
         }
         else
         {
