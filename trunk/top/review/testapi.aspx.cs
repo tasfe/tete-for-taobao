@@ -21,43 +21,48 @@ public partial class top_review_testapi : System.Web.UI.Page
     {
         string appkey = "12159997";
         string secret = "614e40bfdb96e9063031d1a9e56fbed5";
-        string session = "5082132382afa7c3d9bd333bda8408328c7b687qtWdSSrZ173675412";
+        string session = "508312894419b8bd5d07d89e7c65e1c439e36KFsf109a97618794262";
+
+
+        //91599347271901
+
+
 
 
         IDictionary<string, string> param = new Dictionary<string, string>();
 
-        param.Add("coupon_id", "3261756");
-        param.Add("buyer_nick", "美杜莎之心");
+        //param.Add("coupon_id", "3261756");
+        //param.Add("buyer_nick", "美杜莎之心");
 
-        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.send", session, param);
-        //<coupon_number>1323930538</coupon_number>
+        //string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.send", session, param);
+        ////<coupon_number>1323930538</coupon_number>
+
+        //Response.Write("<textarea>" + result + "</textarea>");
+
+        ////IDictionary<string, string> param = new Dictionary<string, string>();
+        ////param.Add("tid", "88346138077381");
+        ////param.Add("seller_nick", "天生一对6695");
+
+        //////物流接口暂时停用，因为会影响错误率
+        string result = string.Empty;
+
+        ////result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.logistics.trace.search", session, param);
+
+        ////Response.Write("<textarea>" + result + "</textarea>");
+
+        //////88345525137141
+        //////88346168134906
+
+        param = new Dictionary<string, string>();
+        param.Add("tid", "77562071164826");
+        param.Add("fields", "delivery_start,delivery_end,status");
+
+        //物流接口暂时停用，因为会影响错误率
+        result = string.Empty;
+
+        result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.logistics.orders.get", session, param);
 
         Response.Write("<textarea>" + result + "</textarea>");
-
-        //IDictionary<string, string> param = new Dictionary<string, string>();
-        //param.Add("tid", "88346138077381");
-        //param.Add("seller_nick", "天生一对6695");
-
-        ////物流接口暂时停用，因为会影响错误率
-        //string result = string.Empty;
-
-        //result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.logistics.trace.search", session, param);
-
-        //Response.Write("<textarea>" + result + "</textarea>");
-
-        ////88345525137141
-        ////88346168134906
-
-        //param = new Dictionary<string, string>();
-        //param.Add("tid", "88346138077381");
-        //param.Add("fields", "delivery_start,delivery_end,status");
-
-        ////物流接口暂时停用，因为会影响错误率
-        //result = string.Empty;
-
-        //result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.logistics.orders.get", session, param);
-
-        //Response.Write("<textarea>" + result + "</textarea>");
     }
 
 
