@@ -53,16 +53,20 @@ public partial class top_review_testapi : System.Web.UI.Page
         //////88345525137141
         //////88346168134906
 
-        param = new Dictionary<string, string>();
-        param.Add("tid", "76048779201050");
-        param.Add("fields", "delivery_start,delivery_end,status");
+        //param = new Dictionary<string, string>();
+        //param.Add("tid", "76048779201050");
+        //param.Add("fields", "delivery_start,delivery_end,status");
 
-        //物流接口暂时停用，因为会影响错误率
-        result = string.Empty;
+        ////物流接口暂时停用，因为会影响错误率
+        //result = string.Empty;
 
-        result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.logistics.orders.get", session, param);
+        //result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.logistics.orders.get", session, param);
 
-        Response.Write("<textarea>" + result + "</textarea>");
+        //Response.Write("<textarea>" + result + "</textarea>");
+
+        string txt = @"<?xml version=""1.0"" encoding=""utf-8"" ?><error_response><args list=""true""><arg><key>app_key</key><value>12159997</value></arg><arg><key>fields</key><value>delivery_start,delivery_end,status</value></arg><arg><key>format</key><value>xml</value></arg><arg><key>method</key><value>taobao.logistics.orders.get</value></arg><arg><key>session</key><value>508312894419b8bd5d07d89e7c65e1c439e36KFsf109a97618794262</value></arg><arg><key>sign</key><value>901E73FB0655390CA336769BA149C420</value></arg><arg><key>sign_method</key><value>md5</value></arg><arg><key>tid</key><value>76048779201050</value></arg><arg><key>timestamp</key><value>2011-09-05 11:38:11</value></arg><arg><key>v</key><value>2.0</value></arg></args><code>550</code><msg>Remote service error</msg><sub_code>isv.invalid-parameter:trade_id:P07</sub_code><sub_msg>查询不到结果,或者交易id不存在</sub_msg></error_response><!--top202077.cm3-->";
+
+        Response.Write(txt.IndexOf("不存在").ToString());
     }
 
 
