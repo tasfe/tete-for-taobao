@@ -5,22 +5,22 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Common;
 
-public partial class top_review_tongji : System.Web.UI.Page
+public partial class top_review_tongji1 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         string url = Request.UrlReferrer == null ? "" : Request.UrlReferrer.ToString();
         string ip = Request.UserHostAddress;
 
-        string sql = "SELECT COUNT(*) FROM TopTongji WHERE DATEDIFF(d, date, GETDATE()) = 0 AND ip = '" + ip + "' AND sellerid = '4545'";
+        string sql = "SELECT COUNT(*) FROM TopTongji WHERE DATEDIFF(d, date, GETDATE()) = 0 AND ip = '" + ip + "' AND sellerid = '11807'";
         string count = utils.ExecuteString(sql);
         if (count == "0")
         {
-            sql = "INSERT INTO TopTongji (ip, url, sellerid) VALUES ('" + ip + "','" + url + "','4545')";
+            sql = "INSERT INTO TopTongji (ip, url, sellerid) VALUES ('" + ip + "','" + url + "','11807')";
         }
         else
         {
-            sql = "UPDATE TopTongji SET count = count + 1 WHERE DATEDIFF(d, date, GETDATE()) = 0 AND ip = '" + ip + "' AND sellerid = '4545'";
+            sql = "UPDATE TopTongji SET count = count + 1 WHERE DATEDIFF(d, date, GETDATE()) = 0 AND ip = '" + ip + "' AND sellerid = '11807'";
         }
         utils.ExecuteNonQuery(sql);
     }
