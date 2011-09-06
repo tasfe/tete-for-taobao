@@ -253,6 +253,15 @@ public partial class top_review_kefulist : System.Web.UI.Page
 
                     if (int.Parse(total) > 0)
                     {
+                        //每张物流订单最多提示一次
+                        sql = "SELECT COUNT(*) FROM TopMsg WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND  sendto = '" + buynick + "' AND typ = 'gift'";
+                        string giftCount = utils.ExecuteString(sql);
+
+                        if (giftCount != "0")
+                        {
+                            return;
+                        }
+
                         //开始发送
                         string msg = GetMsg(giftcontent, shopname, buynick, iscoupon, isfree);
 
