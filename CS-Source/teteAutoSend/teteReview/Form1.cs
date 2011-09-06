@@ -222,6 +222,7 @@ namespace teteReview
                                     if (fahuoCount == "0")
                                     {
                                         string msg = GetMsg(fahuocontent, shopname, buynick, iscoupon, isfree);
+
                                         string resultmsg = SendMessage(phone, msg);
                                         textBox1.AppendText("\r\n" + nick);
                                         textBox1.AppendText("\r\n" + msg);
@@ -708,6 +709,12 @@ namespace teteReview
             giftcontent = giftcontent.Replace("[buynick]", buynick);
             giftcontent = giftcontent.Replace("[gift]", giftstr);//.Replace("[buynick]", buynick);
 
+            //强行截取
+            if (giftcontent.Length > 66)
+            {
+                giftcontent = giftcontent.Substring(0, 66);
+            }
+
             return giftcontent;
         }
 
@@ -729,8 +736,8 @@ namespace teteReview
                 try
                 {
                     //获取基本设置参数
-                    string mindate = (int.Parse(dt.Rows[i]["mindate"].ToString()) - 1).ToString();
-                    string maxdate = (int.Parse(dt.Rows[i]["maxdate"].ToString()) - 1).ToString();
+                    string mindate = (int.Parse(dt.Rows[i]["mindate"].ToString())).ToString();
+                    string maxdate = (int.Parse(dt.Rows[i]["maxdate"].ToString())).ToString();
                     string promotionid = dt.Rows[i]["promotionid"].ToString();
                     string couponid = dt.Rows[i]["couponid"].ToString();
                     string iscoupon = dt.Rows[i]["iscoupon"].ToString();
@@ -760,7 +767,7 @@ namespace teteReview
                     if (iskefu == "0")
                     {
                         //获取使用淘宝物流并在规定时间内给与好评的完成状态订单
-                        sql = "SELECT * FROM TopOrder WHERE ((nick = '" + dt.Rows[i]["nick"].ToString() + "' AND typ = 'system' AND delivery_start IS NOT NULL AND orderstatus = 'TRADE_FINISHED' AND DATEDIFF(d, delivery_start, reviewtime) < " + mindate + ") OR (nick = '" + dt.Rows[i]["nick"].ToString() + "' AND (typ = 'self' OR delivery_start IS NULL) AND orderstatus = 'TRADE_FINISHED' AND DATEDIFF(d, addtime, reviewtime) < " + maxdate + ")) AND issend = 0 AND result IS NOT NULL";
+                        sql = "SELECT * FROM TopOrder WHERE ((nick = '" + dt.Rows[i]["nick"].ToString() + "' AND typ = 'system' AND delivery_start IS NOT NULL AND orderstatus = 'TRADE_FINISHED' AND DATEDIFF(d, delivery_start, reviewtime) <= " + mindate + ") OR (nick = '" + dt.Rows[i]["nick"].ToString() + "' AND (typ = 'self' OR delivery_start IS NULL) AND orderstatus = 'TRADE_FINISHED' AND DATEDIFF(d, addtime, reviewtime) <= " + maxdate + ")) AND issend = 0 AND result IS NOT NULL";
                     }
                     else
                     {
@@ -970,8 +977,8 @@ namespace teteReview
                 try
                 {
                     //获取基本设置参数
-                    string mindate = (int.Parse(dt.Rows[i]["mindate"].ToString()) - 1).ToString();
-                    string maxdate = (int.Parse(dt.Rows[i]["maxdate"].ToString()) - 1).ToString();
+                    string mindate = (int.Parse(dt.Rows[i]["mindate"].ToString())).ToString();
+                    string maxdate = (int.Parse(dt.Rows[i]["maxdate"].ToString())).ToString();
                     string reviewflag = dt.Rows[i]["reviewflag"].ToString();
                     string reviewtime = dt.Rows[i]["reviewtime"].ToString();
                     string reviewcontent = dt.Rows[i]["reviewcontent"].ToString();
@@ -1047,7 +1054,7 @@ namespace teteReview
                                 if (int.Parse(total) > 0)
                                 {
                                     //每张物流订单最多提示一次
-                                    sql = "SELECT COUNT(*) FROM TopMsg WHERE sendto = '" + buynick + "' AND typ = 'review' AND orderid = " + dtOrder.Rows[j]["orderid"].ToString();
+                                    sql = "SELECT COUNT(*) FROM TopMsg WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND sendto = '" + buynick + "' AND typ = 'review'";// AND orderid = " + dtOrder.Rows[j]["orderid"].ToString();
                                     textBox4.AppendText("\r\n" + sql);
                                     string shippingCount = db.GetTable(sql).Rows[0][0].ToString();
                                     textBox4.AppendText("\r\nshippingCount-" + shippingCount);
