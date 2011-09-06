@@ -95,9 +95,10 @@ public partial class top_qqcontainer : System.Web.UI.Page
     private string getValue(string str, string field)
     {
         string value = string.Empty;
-
-        value = Regex.Match(str, @"<" + str + @">([^<]*)</" + str + ">", RegexOptions.IgnoreCase).Groups[1].ToString();
-
+        if(Regex.IsMatch(str, @"<" + str + @">([^<]*)</" + str + ">", RegexOptions.IgnoreCase))
+        {
+            value = Regex.Match(str, @"<" + str + @">([^<]*)</" + str + ">", RegexOptions.IgnoreCase).Groups[1].ToString();
+        }
         return value;
     }
 }
