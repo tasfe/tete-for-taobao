@@ -265,17 +265,17 @@ public partial class top_review_kefulist : System.Web.UI.Page
                         //开始发送
                         string msg = GetMsg(giftcontent, shopname, buynick, iscoupon, isfree);
 
+                        //强行截取
+                        if (msg.Length > 66)
+                        {
+                            msg = msg.Substring(0, 66);
+                        }
+
                         string result = SendMessage(phone, msg);
 
                         if (result != "0")
                         {
                             string number = "1";
-
-                            //强行截取
-                            if (msg.Length > 66)
-                            {
-                                msg = msg.Substring(0, 66);
-                            }
 
                             //如果内容超过70个字则算2条
                             if (msg.Length > 66)
