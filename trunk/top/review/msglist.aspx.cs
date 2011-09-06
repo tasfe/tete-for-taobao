@@ -59,7 +59,7 @@ public partial class top_review_msglist : System.Web.UI.Page
             return;
         }
 
-        string sqlNew = "SELECT b.*,o.deliverymsg FROM FROM TopMsg b LEFT JOIN TopOrder o ON o.orderid = b.orderid WHERE b.nick = '" + nick + "' AND b.sendto = '" + search.Text.Trim().Replace("'", "''") + "'";
+        string sqlNew = "SELECT b.*,o.deliverymsg FROM TopMsg b LEFT JOIN TopOrder o ON o.orderid = b.orderid WHERE b.nick = '" + nick + "' AND b.sendto = '" + search.Text.Trim().Replace("'", "''") + "'";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
