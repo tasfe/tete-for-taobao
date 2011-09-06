@@ -37,7 +37,6 @@ public partial class top_qqcontainer : System.Web.UI.Page
 
         ApiClient client = new ApiClient(strSPID, strSKEY, Convert.ToInt32(strUIN), strTOKEN);
         //通过以下的接口函数添加这些参数 
-        client.addParamInStringField("format", "xml");
         client.addParamInStringField("sellerUin", strUIN);
 
         client.invokeApi("http://api.paipai.com/shop/getShopInfo.xhtml?charset=utf-8");
@@ -96,9 +95,9 @@ public partial class top_qqcontainer : System.Web.UI.Page
     private string getValue(string str, string field)
     {
         string value = string.Empty;
-        if (Regex.IsMatch(str, @"<" + field + @">([^<]*)</" + field + ">", RegexOptions.IgnoreCase))
+        if (Regex.IsMatch(str, @"""" + field + @""":([""]*)([^<]*)([""]*)", RegexOptions.IgnoreCase))
         {
-            value = Regex.Match(str, @"<" + field + @">([^<]*)</" + field + ">", RegexOptions.IgnoreCase).Groups[1].ToString();
+            value = Regex.Match(str, @"""" + field + @""":([""]*)([^<]*)([""]*)", RegexOptions.IgnoreCase).Groups[2].ToString();
             value = value.Replace("'", "''");
         }
         return value;
