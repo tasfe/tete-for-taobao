@@ -36,7 +36,7 @@ public partial class top_qqcontainer : System.Web.UI.Page
         string strTOKEN = utils.NewRequest("usertoken", utils.RequestType.QueryString);
 
         ApiClient client = new ApiClient(strSPID, strSKEY, Convert.ToInt32(strUIN), strTOKEN);
-        //通过以下的接口函数添加这些参数
+        //通过以下的接口函数添加这些参数 
         client.addParamInStringField("sellerUin", strUIN);
 
         client.invokeApi("http://api.paipai.com/shop/getShopInfo.xhtml?charset=utf-8");
