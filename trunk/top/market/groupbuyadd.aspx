@@ -27,6 +27,9 @@
 
   <div class="crumbs"><a href="../show.html">我的特特</a><a href="javascript:;" class="nolink">特特营销推广专家</a> 添加活动 </div>
   
+  <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
+    因为淘宝政策调整，优惠接口目前最多优惠到7折，<A href='http://dev.open.taobao.com/bbs/read.php?tid=22210' target="_blank">点击查看详情</A>
+</div>
   
     <div id="main-content">
         <div style="float:left; width:520px;" class="otherarea">
