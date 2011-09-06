@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+<title>我要推广</title>
+<link href="../css/common.css" rel="stylesheet" />
+</head>
+<body style="padding:0px; margin:0px;">
+<div class="navigation" style="height:500px;">
+  <div class="crumbs"><a href="../show.html">我的特特</a><a href="javascript:;" class="nolink">营销推广</a> 我要推广 </div>
+  <div class="absright">
+    <ul>
+      <li>
+        <div class="msg">
+          <p class="help"><a href="http://service.taobao.com/support/help.htm" target="_blank">查看帮助</a></p>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="main-content">
+  	<img src="images/title.gif" /><br />
+    <br />
+    <div style="border:solid 1px; padding:2px; background-color:#CCC">
+    	<span style="font-size:14px; font-weight:bold; color:red;">您刚才选择的600*120的尺寸，最多展示商品数量为6个，如果您选择的数量多与6个则会随机从您选择的商品中选出6个进行展示。</span>
+    </div>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <form action="addidea-2.html">
+      <tr>
+        <td width="150" height="30">请选择您要推广商品：</td>
+        <td align="left">
+        	<input name="style" id="style1" type="radio" value="Tpl1" checked="checked" /><label for="style1" onclick="showhidden()">智能推荐</label>
+        	<input name="style" id="style2" type="radio" value="Tpl2" /><label for="style2" onclick="showhidden()">手动推荐</label>
+        </td>
+      </tr>
+      <tr id="panel1">
+         <td colspan=2>
+         
+        <table>   
+          <tr>
+      	    <td height="30" width="150">请选择搜索条件：</td>
+            <td>
+        	    <input name="orderby" id="Radio1" type="radio" value="Tpl1" checked="checked" /><label for="Radio1">全部商品</label> <br />
+        	    <input name="orderby" id="Radio5" type="radio" value="Tpl5" /><label for="Radio5">最新上架的商品</label> <br />
+        	    <input name="orderby" id="Radio2" type="radio" value="Tpl2" /><label for="Radio2">销量最好的产品</label> <br />
+        	    <input name="orderby" id="Radio3" type="radio" value="Tpl2" /><label for="Radio3">好评率最高的商品</label> <br />
+        	    <input name="orderby" id="Radio4" type="radio" value="Tpl2" /><label for="Radio4">收藏量最高的商品</label>
+            </td>
+          </tr>
+          <tr>
+      	    <td height="30">商品关键字：</td>
+            <td>
+        	    <input name="query" />
+            </td>
+          </tr>
+          <tr>
+      	    <td height="30">商品所在店铺分类：</td>
+            <td>
+        	    <select>
+        	        <option></option>
+        	        <option>分类1</option>
+        	        <option>分类2</option>
+        	        <option>分类3</option>
+        	    </select>
+            </td>
+          </tr>
+          </table>	 
+      
+       </td>
+       </tr>
+      
+        <tr id="panel2" style="display:none">
+         <td>
+            这里展示已经选中的商品列表
+         </td>
+            <td>
+        	    
+        	    <table>
+        	        <tr>
+                        <td colspan=2>
+        	                <input name="q" /> 
+        	                <input type="button" value="搜索" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan=2>
+        	                <input type="checkbox" /> 商品1 <br />
+        	                <input type="checkbox" /> 商品2 <br />
+        	                <input type="checkbox" /> 商品3 <br />
+        	                <input type="checkbox" /> 商品4 <br />
+        	                <input type="checkbox" /> 商品5 <br />
+        	                <input type="checkbox" /> 商品6 <br />
+                        </td>
+                      </tr>
+        	    </table>
+        	    
+            </td>
+          </tr>
+      
+      <tr>
+        <td>
+        	<input type="button" value="上一步" onclick="history.go(-1)" />
+        	<input type="submit" value="下一步" />
+        </td>
+        <td></td>
+      </tr>
+    </form>
+    </table>
+
+  </div>
+</div>
+<script language="javascript" type="text/javascript">
+function showhidden(){
+    if(document.getElementById("panel1").style.display == ""){
+        document.getElementById("panel1").style.display = "none";
+        document.getElementById("panel2").style.display = "";
+    }else{
+        document.getElementById("panel1").style.display = "";
+        document.getElementById("panel2").style.display = "none";
+    }
+}
+</script>
+</body>
+</html>
