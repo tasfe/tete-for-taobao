@@ -1,0 +1,3 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="qqcontainer.aspx.cs" Inherits="top_qqcontainer" %>
+
+读取拍拍信息中，请您稍等...

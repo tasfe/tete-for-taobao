@@ -43,7 +43,7 @@
                     <a href="couponsend.aspx">查看优惠券赠送记录</a>
                 </td>
             </tr>
-            <tr>
+            <!--<tr>
                 <td align="left" height="30">是否开启按时好评送礼品：</td>
                 <td>
                     开启<input name="isfree" type="radio" value="1" <%=check(isfree, "1") %> onclick="showArea1(1)" />
@@ -58,7 +58,7 @@
                     <input name="itemid" id="itemid" type="hidden" value="<%=itemid %>" /><br />
                     <a href="itemsend.aspx">查看礼品赠送记录</a>
                 </td>
-            </tr>
+            </tr>-->
             <tr>
                 <td align="left" height="30">淘宝提供物流跟踪订单最短评价时间：</td>
                 <td>
@@ -189,12 +189,12 @@
         }
     }
 
-    if ("<%=itemid %>" != "") {
+    /* if ("<%=itemid %>" != "") {
         getResultStr("<%=itemid %>");
-    }
+    }*/
     
     showArea(<%=iscoupon %>);
-    showArea1(<%=isfree %>);
+    //showArea1(<%=isfree %>);
 </script>
 
 </body>
