@@ -99,6 +99,7 @@ public partial class top_qqcontainer : System.Web.UI.Page
         if (Regex.IsMatch(str, @"<" + field + @">([^<]*)</" + field + ">", RegexOptions.IgnoreCase))
         {
             value = Regex.Match(str, @"<" + field + @">([^<]*)</" + field + ">", RegexOptions.IgnoreCase).Groups[1].ToString();
+            value = value.Replace("'", "''");
         }
         return value;
     }
