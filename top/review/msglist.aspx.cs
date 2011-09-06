@@ -48,6 +48,23 @@ public partial class top_review_msglist : System.Web.UI.Page
         BindData();
     }
 
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        if (search.Text.Trim() == "")
+        {
+            Response.Redirect("msglist.aspx");
+            return;
+        }
+
+        string sqlNew = "SELECT b.*,o.deliverymsg FROM FROM TopMsg b LEFT JOIN TopOrder o ON o.orderid = b.orderid WHERE b.nick = '" + nick + "' AND s.sendto = '" + search.Text.Trim().Replace("'", "''") + "'";
+        DataTable dt = utils.ExecuteDataTable(sqlNew);
+
+        rptArticle.DataSource = dt;
+        rptArticle.DataBind();
+
+        lbPage.Text = "";
+    }
+
     private void BindData()
     {
         string page = utils.NewRequest("page", utils.RequestType.QueryString);
