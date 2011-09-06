@@ -37,10 +37,67 @@ public partial class top_qqcontainer : System.Web.UI.Page
 
         ApiClient client = new ApiClient(strSPID, strSKEY, Convert.ToInt32(strUIN), strTOKEN);
         //通过以下的接口函数添加这些参数 
+        client.addParamInStringField("format", "xml");
         client.addParamInStringField("sellerUin", strUIN);
 
         client.invokeApi("http://api.paipai.com/shop/getShopInfo.xhtml?charset=utf-8");
+        string result = client.ToString();
 
-        Response.Write(client.ToString());
+        //记录到本地数据库
+        string sql = "INSERT INTO TopPaipaiShop (" +
+                        "sellerUin, " +
+                        "shopName, " +
+                        "logo, " +
+                        "regTime, " +
+                        "authenticated, " +
+                        "mainBusiness, " +
+                        "sellerLocation, " +
+                        "cityId, " +
+                        "sellerLevelCount, " +
+                        "guaranteeCompensation, " +
+                        "property, " +
+                        "itemCountOnSale, " +
+                        "goodDescriptionMatch, " +
+                        "attitudeOfService, " +
+                        "speedOfDelivery, " +
+                        "goodEval, " +
+                        "normalEval, " +
+                        "badEval, " +
+                        "sigTencent, " +
+                        "sigPaipai " +
+                    " ) VALUES ( " +
+                        " '" + getValue(result, "sellerUin") + "', " +
+                        " '" + getValue(result, "shopName") + "', " +
+                        " '" + getValue(result, "logo") + "', " +
+                        " '" + getValue(result, "regTime") + "', " +
+                        " '" + getValue(result, "authenticated") + "', " +
+                        " '" + getValue(result, "mainBusiness") + "', " +
+                        " '" + getValue(result, "sellerLocation") + "', " +
+                        " '" + getValue(result, "cityId") + "', " +
+                        " '" + getValue(result, "sellerLevelCount") + "', " +
+                        " '" + getValue(result, "guaranteeCompensation") + "', " +
+                        " '" + getValue(result, "property") + "', " +
+                        " '" + getValue(result, "itemCountOnSale") + "', " +
+                        " '" + getValue(result, "goodDescriptionMatch") + "', " +
+                        " '" + getValue(result, "attitudeOfService") + "', " +
+                        " '" + getValue(result, "speedOfDelivery") + "', " +
+                        " '" + getValue(result, "goodEval") + "', " +
+                        " '" + getValue(result, "normalEval") + "', " +
+                        " '" + getValue(result, "badEval") + "', " +
+                        " '" + getValue(result, "sigTencent") + "', " +
+                        " '" + getValue(result, "sigPaipai") + "' " +
+                  ") ";
+
+        Response.Write(sql);
+        //utils.ExecuteNonQuery(sql);
+    }
+
+    private string getValue(string str, string field)
+    {
+        string value = string.Empty;
+
+        value = Regex.Match(str, @"<" + str + @">([^<]*)</" + str + ">", RegexOptions.IgnoreCase).Groups[1].ToString();
+
+        return value;
     }
 }
