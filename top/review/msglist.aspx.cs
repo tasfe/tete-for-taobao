@@ -45,7 +45,10 @@ public partial class top_review_msglist : System.Web.UI.Page
             }
         }
 
-        BindData();
+        if (!IsPostBack)
+        {
+            BindData();
+        }
     }
 
     protected void Button1_Click(object sender, EventArgs e)

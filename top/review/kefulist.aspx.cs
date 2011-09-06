@@ -703,7 +703,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         {
             pageNow = int.Parse(page);
         }
-        int pageCount = 11;
+        int pageCount = 20;
         int dataCount = (pageNow - 1) * pageCount;
 
         string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.reviewtime DESC) AS rownumber FROM TopOrder b WHERE b.nick = '" + nick + "' AND b.orderstatus = 'TRADE_FINISHED' AND b.issend = 2 AND b.kefustatus = 0 AND reviewtime IS NOT NULL) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY reviewtime DESC";
@@ -723,7 +723,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
     {
         //分页数据初始化
         string str = string.Empty;
-        int pageCount = 11;
+        int pageCount = 20;
         int pageSize = 0;
         int pageNow = 1;
         string page = utils.NewRequest("page", utils.RequestType.QueryString);
