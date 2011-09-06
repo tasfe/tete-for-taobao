@@ -120,6 +120,13 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
             Response.End();
             return;
         }
+
+        if (decimal.Parse(zhekou) >= (decimal.Parse(product.Price)*0.7m))
+        {
+            Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>商品优惠价必须大于原价7折并且小于原价</font><br><a href='groupbuyadd.aspx'>重新添加</a>");
+            Response.End();
+            return;
+        }
         string newprice = Math.Round(decimal.Parse(product.Price) - decimal.Parse(zhekou), 2).ToString();
 
         //创建活动及相关人群

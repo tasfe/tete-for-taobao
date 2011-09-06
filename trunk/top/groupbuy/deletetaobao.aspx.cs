@@ -173,7 +173,10 @@ public partial class top_groupbuy_deletetaobao : System.Web.UI.Page
            
             sql = "delete from TopWriteContent where groupbuyid =  '" + dt.Rows[i]["groupbuyid"].ToString() + "'";
             utils.ExecuteNonQuery(sql);
- 
+            if (dt.Rows[i]["itemid"] != null && dt.Rows[i]["itemid"].ToString() != "" && dt.Rows[i]["itemid"].ToString() != "NULL")
+            {
+                RecordMissionDetail(id, missionid, dt.Rows[i]["itemid"].ToString(), "");
+            }
                 for (int j = 1; j <= 500; j++)
                 {
                     ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
