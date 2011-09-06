@@ -12,7 +12,7 @@ public partial class top_review_tongji : System.Web.UI.Page
         string url = Request.UrlReferrer == null ? "" : Request.UrlReferrer.ToString();
         string ip = Request.UserHostAddress;
 
-        string sql = "SELECT COUNT(*) FROM TopTongji WHERE DATEDIFF(d, date, GETDATE()) = 0 AND ip = '" + ip + "'";
+        string sql = "SELECT COUNT(*) FROM TopTongji WHERE DATEDIFF(d, date, GETDATE()) = 0 AND ip = '" + ip + "' AND sellerid = '4545'";
         string count = utils.ExecuteString(sql);
         if (count == "0")
         {
@@ -20,7 +20,7 @@ public partial class top_review_tongji : System.Web.UI.Page
         }
         else
         {
-            sql = "UPDATE TopTongji SET count = count + 1 WHERE DATEDIFF(d, date, GETDATE()) = 0 AND ip = '" + ip + "'";
+            sql = "UPDATE TopTongji SET count = count + 1 WHERE DATEDIFF(d, date, GETDATE()) = 0 AND ip = '" + ip + "' AND sellerid = '4545'";
         }
         utils.ExecuteNonQuery(sql);
     }
