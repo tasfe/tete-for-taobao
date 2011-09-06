@@ -257,79 +257,79 @@ public partial class top_review_kefulist : System.Web.UI.Page
                         sql = "SELECT COUNT(*) FROM TopMsg WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND  sendto = '" + buynick + "' AND typ = 'gift'";
                         string giftCount = utils.ExecuteString(sql);
 
-                        if (giftCount != "0")
+                        if (giftCount == "0")
                         {
-                            return;
-                        }
 
-                        //开始发送
-                        string msg = GetMsg(giftcontent, shopname, buynick, iscoupon, isfree);
 
-                        //强行截取
-                        if (msg.Length > 66)
-                        {
-                            msg = msg.Substring(0, 66);
-                        }
+                            //开始发送
+                            string msg = GetMsg(giftcontent, shopname, buynick, iscoupon, isfree);
 
-                        string result = SendMessage(phone, msg);
-
-                        if (result != "0")
-                        {
-                            string number = "1";
-
-                            //如果内容超过70个字则算2条
+                            //强行截取
                             if (msg.Length > 66)
                             {
-                                number = "2";
+                                msg = msg.Substring(0, 66);
                             }
 
-                            //记录短信发送记录
-                            sql = "INSERT INTO TopMsg (" +
-                                                "nick, " +
-                                                "sendto, " +
-                                                "phone, " +
-                                                "[content], " +
-                                                "yiweiid, " +
-                                                "num, " +
-                                                "typ " +
-                                            " ) VALUES ( " +
-                                                " '" + nick + "', " +
-                                                " '" + buynick + "', " +
-                                                " '" + phone + "', " +
-                                                " '" + msg.Replace("'", "''") + "', " +
-                                                " '" + result + "', " +
-                                                " '" + number + "', " +
-                                                " 'gift' " +
-                                            ") ";
-                            utils.ExecuteNonQuery(sql);
+                            string result = SendMessage(phone, msg);
 
-                            //更新状态
-                            sql = "UPDATE TopOrder SET isgiftmsg = 1 WHERE orderid = " + id;
-                            utils.ExecuteNonQuery(sql);
+                            if (result != "0")
+                            {
+                                string number = "1";
 
-                            //更新短信数量
-                            sql = "UPDATE TopAutoReview SET used = used + " + number + ",total = total-" + number + " WHERE nick = '" + nick + "'";
-                            utils.ExecuteNonQuery(sql);
-                        }
-                        else
-                        {
-                            //记录短信发送记录
-                            sql = "INSERT INTO TopMsgBak (" +
-                                                "nick, " +
-                                                "sendto, " +
-                                                "phone, " +
-                                                "[content], " +
-                                                "yiweiid, " +
-                                                "typ " +
-                                            " ) VALUES ( " +
-                                                " '" + nick + "', " +
-                                                " '" + buynick + "', " +
-                                                " '" + phone + "', " +
-                                                " '" + msg + "', " +
-                                                " '" + result + "', " +
-                                                " 'gift' " +
-                                            ") ";
-                            utils.ExecuteNonQuery(sql);
+                                //如果内容超过70个字则算2条
+                                if (msg.Length > 66)
+                                {
+                                    number = "2";
+                                }
+
+                                //记录短信发送记录
+                                sql = "INSERT INTO TopMsg (" +
+                                                    "nick, " +
+                                                    "sendto, " +
+                                                    "phone, " +
+                                                    "[content], " +
+                                                    "yiweiid, " +
+                                                    "num, " +
+                                                    "typ " +
+                                                " ) VALUES ( " +
+                                                    " '" + nick + "', " +
+                                                    " '" + buynick + "', " +
+                                                    " '" + phone + "', " +
+                                                    " '" + msg.Replace("'", "''") + "', " +
+                                                    " '" + result + "', " +
+                                                    " '" + number + "', " +
+                                                    " 'gift' " +
+                                                ") ";
+                                utils.ExecuteNonQuery(sql);
+
+                                //更新状态
+                                sql = "UPDATE TopOrder SET isgiftmsg = 1 WHERE orderid = " + id;
+                                utils.ExecuteNonQuery(sql);
+
+                                //更新短信数量
+                                sql = "UPDATE TopAutoReview SET used = used + " + number + ",total = total-" + number + " WHERE nick = '" + nick + "'";
+                                utils.ExecuteNonQuery(sql);
+                            }
+                            else
+                            {
+                                //记录短信发送记录
+                                sql = "INSERT INTO TopMsgBak (" +
+                                                    "nick, " +
+                                                    "sendto, " +
+                                                    "phone, " +
+                                                    "[content], " +
+                                                    "yiweiid, " +
+                                                    "typ " +
+                                                " ) VALUES ( " +
+                                                    " '" + nick + "', " +
+                                                    " '" + buynick + "', " +
+                                                    " '" + phone + "', " +
+                                                    " '" + msg + "', " +
+                                                    " '" + result + "', " +
+                                                    " 'gift' " +
+                                                ") ";
+                                utils.ExecuteNonQuery(sql);
+                            }
                         }
                     }
                 }
