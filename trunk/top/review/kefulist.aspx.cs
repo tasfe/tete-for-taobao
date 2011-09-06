@@ -271,8 +271,14 @@ public partial class top_review_kefulist : System.Web.UI.Page
                         {
                             string number = "1";
 
+                            //强行截取
+                            if (msg.Length > 66)
+                            {
+                                msg = msg.Substring(0, 66);
+                            }
+
                             //如果内容超过70个字则算2条
-                            if (msg.Length > 70)
+                            if (msg.Length > 66)
                             {
                                 number = "2";
                             }
