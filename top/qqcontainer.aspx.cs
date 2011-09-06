@@ -33,7 +33,7 @@ public partial class top_qqcontainer : System.Web.UI.Page
         string strSPID = "29230000ea039296234e9d74d8d3d5b7";
         string strSKEY = "2dsi35b3fdx050a41jufbnzirrlqd9kl";
         string strUIN = utils.NewRequest("useruin", utils.RequestType.QueryString);
-        string strTOKEN = "515c43020f279296234e1b94d0150436";
+        string strTOKEN = utils.NewRequest("usertoken", utils.RequestType.QueryString);
 
         ApiClient client = new ApiClient(strSPID, strSKEY, Convert.ToInt32(strUIN), strTOKEN);
         //通过以下的接口函数添加这些参数
