@@ -137,8 +137,8 @@ public partial class top_market_addidea_1 : System.Web.UI.Page
         rptShopCat.DataSource = dt;
         rptShopCat.DataBind();
 
-        Repeater1.DataSource = dt;
-        Repeater1.DataBind();
+        //Repeater1.DataSource = dt;
+        //Repeater1.DataBind();
 
         ////获取用户店铺商品列表
         //TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12132145", "1fdd2aadd5e2ac2909db2967cbb71e7f");
