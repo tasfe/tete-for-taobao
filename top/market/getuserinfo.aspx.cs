@@ -19,16 +19,20 @@ public partial class top_market_getuserinfo : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         for (int i = 0; i < dt.Rows.Count; i++)
         {
-            TradesBoughtGetRequest request = new TradesBoughtGetRequest();
-            request.Fields = "receiver_mobile";
-
-            PageList<Trade> trade = client.TradesBoughtGet(request, dt.Rows[i]["session"].ToString());
-
-            if (trade.Content.Count != 0)
+            try
             {
-                Response.Write(dt.Rows[i]["session"].ToString() + "---");
-                Response.Write(trade.Content[0].ReceiverMobile + "<br>");
+                TradesBoughtGetRequest request = new TradesBoughtGetRequest();
+                request.Fields = "receiver_mobile";
+
+                PageList<Trade> trade = client.TradesBoughtGet(request, dt.Rows[i]["session"].ToString());
+
+                if (trade.Content.Count != 0)
+                {
+                    Response.Write(dt.Rows[i]["session"].ToString() + "---");
+                    Response.Write(trade.Content[0].ReceiverMobile + "<br>");
+                }
             }
+            catch { }
         }
     }
 }
