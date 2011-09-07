@@ -96,7 +96,7 @@ public partial class top_qqcontainer : System.Web.UI.Page
     private string getValue(string str, string field)
     {
         string value = string.Empty;
-        if (Regex.IsMatch(str, @"""" + field + @""":([""]*)([^<]*)([""]*)", RegexOptions.IgnoreCase))
+        if (Regex.IsMatch(str, @"""" + field + @""":([""]*)([^<""\}]*)([""]*)", RegexOptions.IgnoreCase))
         {
             value = Regex.Match(str, @"""" + field + @""":([""]*)([^<]*)([""]*)", RegexOptions.IgnoreCase).Groups[2].ToString();
             value = value.Replace("'", "''");
