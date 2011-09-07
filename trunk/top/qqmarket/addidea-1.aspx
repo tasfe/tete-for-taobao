@@ -170,7 +170,7 @@
         
         var pagenow = pageid;
         createxmlHttpRequest();
-        var queryString = "http://www.7fshop.com/top/market/taobaoitem.aspx?act=get&query="+escape(q)+"&catid="+catid+"&p="+pagenow+"&t="+new Date().getTime();
+        var queryString = "http://www.7fshop.com/top/qqmarket/taobaoitem.aspx?act=get&query="+escape(q)+"&catid="+catid+"&p="+pagenow+"&t="+new Date().getTime();
         xmlHttp.open("GET",queryString);
         xmlHttp.onreadystatechange = handleStateChange;
         xmlHttp.send(null);

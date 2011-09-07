@@ -13,6 +13,7 @@ using Taobao.Top.Api;
 using Taobao.Top.Api.Request;
 using Taobao.Top.Api.Domain;
 using PaiPaiAPI;
+using System.Text.RegularExpressions;
 
 public partial class top_market_taobaoitem : System.Web.UI.Page
 {
@@ -39,26 +40,32 @@ public partial class top_market_taobaoitem : System.Web.UI.Page
 
         if (act == "get")
         {
-            //获取用户店铺商品列表
-            ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
-            request.Fields = "num_iid,title,price,pic_url";
-            request.PageSize = pageSizeNow;
-            request.PageNo = int.Parse(page);
-            request.Q = q;
-            if (catid != "0")
-            {
-                request.SellerCids = catid;
-            }
+            string strSPID = "29230000ea039296234e9d74d8d3d5b7";
+            string strSKEY = "2dsi35b3fdx050a41jufbnzirrlqd9kl";
+            string strUIN = taobaoNick;
+            string strTOKEN = session;
 
-            PageList<Item> product = client.ItemsOnsaleGet(request, session);
+            ApiClient clientQQ = new ApiClient(strSPID, strSKEY, Convert.ToInt32(strUIN), strTOKEN);
+            //通过以下的接口函数添加这些参数 
+            clientQQ.addParamInStringField("sellerUin", strUIN);
+            clientQQ.addParamInStringField("itemName", q);
+            clientQQ.addParamInStringField("pageIndex", page);
+            clientQQ.addParamInStringField("pageSize", pageSizeNow.ToString());
+            clientQQ.invokeApi("http://api.paipai.com/item/sellerSearchItemList.xhtml?charset=utf-8");
+
+            string result = clientQQ.ToString();
+
+            Regex reg = new Regex(@"""itemCode"":""([^<""\}]*)"",[\s]*""itemName"":""([^<""\}]*)"",", RegexOptions.IgnoreCase);
+            MatchCollection match = reg.Matches(result);
 
             //输出页面HTML
-            for (int i = 0; i < product.Content.Count; i++)
+            for (int i = 0; i < match.Count; i++)
             {
-                Response.Write("<input type='checkbox' name='items' id='item_" + product.Content[i].NumIid + "' title='" + product.Content[i].Title + "' value='" + product.Content[i].NumIid + "' onclick=\"InitArea(this)\"><label for='item_" + product.Content[i].NumIid + "'>" + product.Content[i].Title + "</label><br>");
+                Response.Write("<input type='checkbox' name='items' id='item_" + match[i].Groups[1].ToString() + "' title='" + match[i].Groups[2].ToString() + "' value='" + match[i].Groups[1].ToString() + "' onclick=\"InitArea(this)\"><label for='item_" + match[i].Groups[1].ToString() + "'>" + match[i].Groups[2].ToString() + "</label><br>");
             }
             Response.Write("<br>");
-            long totalPage = (product.TotalResults % pageSizeNow == 0) ? (product.TotalResults / pageSizeNow) : (product.TotalResults / pageSizeNow + 1);
+            long totalnum = long.Parse(new Regex(@"<countTotal>([^<]*)</countTotal>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString());
+            long totalPage = (totalnum % pageSizeNow == 0) ? (totalnum / pageSizeNow) : (totalnum / pageSizeNow + 1);
             //输出分页HTML
             for (int i = 1; i <= totalPage; i++)
             {
