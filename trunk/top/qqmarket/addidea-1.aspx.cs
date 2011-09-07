@@ -131,7 +131,7 @@ public partial class top_market_addidea_1 : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         taobaoNick = encode.Decrypt(taobaoNick);
 
-        string sql = "SELECT * FROM TopTaobaoShopCat WHERE nick = '" + taobaoNick + "'";
+        string sql = "SELECT * FROM TopTaobaoShopCatQQ WHERE nick = '" + taobaoNick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
 
         rptShopCat.DataSource = dt;
