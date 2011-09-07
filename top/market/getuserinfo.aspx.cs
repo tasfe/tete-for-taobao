@@ -21,6 +21,10 @@ public partial class top_market_getuserinfo : System.Web.UI.Page
         {
             try
             {
+                UserGetRequest request1 = new UserGetRequest();
+                request1.Fields = "seller_credit";
+                User user = client.UserGet(request1);
+
                 TradesBoughtGetRequest request = new TradesBoughtGetRequest();
                 request.Fields = "receiver_mobile";
 
@@ -31,6 +35,7 @@ public partial class top_market_getuserinfo : System.Web.UI.Page
                     if (trade.Content[0].ReceiverMobile.Length != 0)
                     {
                         Response.Write(dt.Rows[i]["nick"].ToString() + "---");
+                        Response.Write(user.SellerCredit.Level.ToString() + "---");
                         Response.Write(trade.Content[0].ReceiverMobile + "<br>");
                     }
                 }
