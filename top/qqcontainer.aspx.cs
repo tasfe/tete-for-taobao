@@ -41,53 +41,71 @@ public partial class top_qqcontainer : System.Web.UI.Page
 
         client.invokeApi("http://api.paipai.com/shop/getShopInfo.xhtml?charset=utf-8");
         string result = client.ToString();
+        string sql = string.Empty;
+
 
         //记录到本地数据库
-        string sql = "INSERT INTO TopPaipaiShop (" +
-                        "sellerUin, " +
-                        "shopName, " +
-                        "logo, " +
-                        "regTime, " +
-                        "authenticated, " +
-                        "mainBusiness, " +
-                        "sellerLocation, " +
-                        "cityId, " +
-                        "sellerLevelCount, " +
-                        "guaranteeCompensation, " +
-                        "property, " +
-                        "itemCountOnSale, " +
-                        "goodDescriptionMatch, " +
-                        "attitudeOfService, " +
-                        "speedOfDelivery, " +
-                        "goodEval, " +
-                        "normalEval, " +
-                        "badEval, " +
-                        "sigTencent, " +
-                        "sigPaipai " +
-                    " ) VALUES ( " +
-                        " '" + getValue(result, "sellerUin") + "', " +
-                        " '" + getValue(result, "shopName") + "', " +
-                        " '" + getValue(result, "logo") + "', " +
-                        " '" + getValue(result, "regTime") + "', " +
-                        " '" + getValue(result, "authenticated") + "', " +
-                        " '" + getValue(result, "mainBusiness") + "', " +
-                        " '" + getValue(result, "sellerLocation") + "', " +
-                        " '" + getValue(result, "cityId") + "', " +
-                        " '" + getValue(result, "sellerLevelCount") + "', " +
-                        " '" + getValue(result, "guaranteeCompensation") + "', " +
-                        " '" + getValue(result, "property") + "', " +
-                        " '" + getValue(result, "itemCountOnSale") + "', " +
-                        " '" + getValue(result, "goodDescriptionMatch") + "', " +
-                        " '" + getValue(result, "attitudeOfService") + "', " +
-                        " '" + getValue(result, "speedOfDelivery") + "', " +
-                        " '" + getValue(result, "goodEval") + "', " +
-                        " '" + getValue(result, "normalEval") + "', " +
-                        " '" + getValue(result, "badEval") + "', " +
-                        " '" + getValue(result, "sigTencent") + "', " +
-                        " '" + getValue(result, "sigPaipai") + "' " +
-                  ") ";
+        sql = "SELECT COUNT(*) FROM TopPaipaiShop WHERE sellerUin = '" + strUIN + "'";
+        string count = utils.ExecuteString(sql);
 
-        //Response.Write(sql);
+        if (count == "0")
+        {
+            sql = "INSERT INTO TopPaipaiShop (" +
+                            "sellerUin, " +
+                            "shopName, " +
+                            "logo, " +
+                            "regTime, " +
+                            "authenticated, " +
+                            "mainBusiness, " +
+                            "sellerLocation, " +
+                            "cityId, " +
+                            "sellerLevelCount, " +
+                            "guaranteeCompensation, " +
+                            "property, " +
+                            "itemCountOnSale, " +
+                            "goodDescriptionMatch, " +
+                            "attitudeOfService, " +
+                            "speedOfDelivery, " +
+                            "goodEval, " +
+                            "normalEval, " +
+                            "badEval, " +
+                            "sigTencent, " +
+                            "sigPaipai " +
+                        " ) VALUES ( " +
+                            " '" + getValue(result, "sellerUin") + "', " +
+                            " '" + getValue(result, "shopName") + "', " +
+                            " '" + getValue(result, "logo") + "', " +
+                            " '" + getValue(result, "regTime") + "', " +
+                            " '" + getValue(result, "authenticated") + "', " +
+                            " '" + getValue(result, "mainBusiness") + "', " +
+                            " '" + getValue(result, "sellerLocation") + "', " +
+                            " '" + getValue(result, "cityId") + "', " +
+                            " '" + getValue(result, "sellerLevelCount") + "', " +
+                            " '" + getValue(result, "guaranteeCompensation") + "', " +
+                            " '" + getValue(result, "property") + "', " +
+                            " '" + getValue(result, "itemCountOnSale") + "', " +
+                            " '" + getValue(result, "goodDescriptionMatch") + "', " +
+                            " '" + getValue(result, "attitudeOfService") + "', " +
+                            " '" + getValue(result, "speedOfDelivery") + "', " +
+                            " '" + getValue(result, "goodEval") + "', " +
+                            " '" + getValue(result, "normalEval") + "', " +
+                            " '" + getValue(result, "badEval") + "', " +
+                            " '" + getValue(result, "sigTencent") + "', " +
+                            " '" + getValue(result, "sigPaipai") + "' " +
+                      ") ";
+        }
+        else
+        {
+            sql = "UPDATE TopPaipaiShop SET lastlogin = GETDATE(), logintimes = logintimes + 1 WHERE sellerUin = '" + strUIN + "'";
+        }
+
+
+        Rijndael_ encode = new Rijndael_("tetesoft");
+        nick = encode.Encrypt(nick);
+
+        Common.Cookie cookie = new Common.Cookie();
+        cookie.setCookie("top_session", strTOKEN, 999999);
+        cookie.setCookie("nick", strUIN, 999999);
 
         utils.ExecuteNonQuery(sql);
         Response.Redirect("qqindex.html");
