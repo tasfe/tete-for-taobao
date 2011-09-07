@@ -14,7 +14,7 @@ public partial class top_market_getuserinfo : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12132145", "1fdd2aadd5e2ac2909db2967cbb71e7f");
-        string sql = "SELECT TOP 50 * FROM TopTaobaoShop WHERE enddate >= GETDATE() AND session IS NOT NULL ORDER BY enddate DESC";
+        string sql = "SELECT TOP 500 * FROM TopTaobaoShop WHERE enddate >= GETDATE() AND session IS NOT NULL ORDER BY enddate DESC";
 
         DataTable dt = utils.ExecuteDataTable(sql);
         for (int i = 0; i < dt.Rows.Count; i++)
@@ -24,6 +24,11 @@ public partial class top_market_getuserinfo : System.Web.UI.Page
                 UserGetRequest request1 = new UserGetRequest();
                 request1.Fields = "seller_credit";
                 User user = client.UserGet(request1, dt.Rows[i]["session"].ToString());
+
+                if (user.SellerCredit.Level < 7) 
+                {
+                    continue;
+                }
 
                 TradesBoughtGetRequest request = new TradesBoughtGetRequest();
                 request.Fields = "receiver_mobile";
