@@ -23,7 +23,7 @@ public partial class top_market_getuserinfo : System.Web.UI.Page
             {
                 UserGetRequest request1 = new UserGetRequest();
                 request1.Fields = "seller_credit";
-                User user = client.UserGet(request1);
+                User user = client.UserGet(request1, dt.Rows[i]["session"].ToString());
 
                 TradesBoughtGetRequest request = new TradesBoughtGetRequest();
                 request.Fields = "receiver_mobile";
