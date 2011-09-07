@@ -43,7 +43,7 @@ public partial class top_containerblog : System.Web.UI.Page
         string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString);
         top_session = utils.NewRequest("top_session", utils.RequestType.QueryString);
         string app_secret = "614e40bfdb96e9063031d1a9e56fbed5";
-        string top_sign = utils.NewRequest("top_sign", utils.RequestType.QueryString).Replace(" ", "+");
+        string top_sign = utils.NewRequest("top_sign", utils.RequestType.QueryString).Replace(" ", "+"); //字符串中的+在获取后会被替换成空格，要再替换回来
         string sign = utils.NewRequest("sign", utils.RequestType.QueryString);
 
         versionNo = utils.NewRequest("versionNo", utils.RequestType.QueryString);
@@ -53,9 +53,9 @@ public partial class top_containerblog : System.Web.UI.Page
 
         if (!Taobao.Top.Api.Util.TopUtils.VerifyTopResponse(top_parameters, top_session, top_sign, top_appkey, app_secret))
         {
-            Response.Write("top签名验证不通过，请不要非法注入");
-            Response.End();
-            return;
+            //Response.Write("top签名验证不通过，请不要非法注入");
+            //Response.End();
+            //return;
         }
 
         //验证客户版本参数是否正确
