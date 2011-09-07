@@ -12,6 +12,7 @@ using Common;
 using Taobao.Top.Api;
 using Taobao.Top.Api.Request;
 using Taobao.Top.Api.Domain;
+using PaiPaiAPI;
 
 public partial class top_market_taobaoitem : System.Web.UI.Page
 {
@@ -74,47 +75,55 @@ public partial class top_market_taobaoitem : System.Web.UI.Page
         else if (act == "getCat")
         {
             //记录店铺分类信息
-            SellercatsListGetRequest request1 = new SellercatsListGetRequest();
-            request1.Fields = "cid,parent_cid,name,is_parent";
-            request1.Nick = taobaoNick;
-            PageList<SellerCat> cat = client.SellercatsListGet(request1);
+            string strSPID = "29230000ea039296234e9d74d8d3d5b7";
+            string strSKEY = "2dsi35b3fdx050a41jufbnzirrlqd9kl";
+            string strUIN = taobaoNick;
+            string strTOKEN = session;
+
+            ApiClient clientQQ = new ApiClient(strSPID, strSKEY, Convert.ToInt32(strUIN), strTOKEN);
+            //通过以下的接口函数添加这些参数 
+            clientQQ.addParamInStringField("sellerUin", strUIN);
+            clientQQ.invokeApi("http://api.paipai.com/shop/getShopCategoryList.xhtml?charset=utf-8");
+
+            //正则获取分类信息
+            Response.Write(clientQQ.ToString());
 
             //清除老分类
             string sql = "DELETE FROM TopTaobaoShopCatQQ WHERE nick = '" + taobaoNick + "'";
             utils.ExecuteNonQuery(sql);
 
-            //插入新分类
-            for (int i = 0; i < cat.Content.Count; i++)
-            {
-                sql = "INSERT INTO TopTaobaoShopCatQQ (" +
-                                "cid, " +
-                                "parent_cid, " +
-                                "name, " +
-                                "pic_url, " +
-                                "sort_order, " +
-                                "created, " +
-                                "nick, " +
-                                "modified " +
-                            " ) VALUES ( " +
-                                " '" + cat.Content[i].Cid + "', " +
-                                " '" + cat.Content[i].ParentCid + "', " +
-                                " '" + cat.Content[i].Name + "', " +
-                                " '" + cat.Content[i].PicUrl + "', " +
-                                " '" + cat.Content[i].SortOrder + "', " +
-                                " '" + cat.Content[i].Created + "', " +
-                                " '" + taobaoNick + "', " +
-                                " '" + cat.Content[i].Modified + "' " +
-                          ") ";
-                utils.ExecuteNonQuery(sql);
-            }
+            ////插入新分类
+            //for (int i = 0; i < cat.Content.Count; i++)
+            //{
+            //    sql = "INSERT INTO TopTaobaoShopCatQQ (" +
+            //                    "cid, " +
+            //                    "parent_cid, " +
+            //                    "name, " +
+            //                    "pic_url, " +
+            //                    "sort_order, " +
+            //                    "created, " +
+            //                    "nick, " +
+            //                    "modified " +
+            //                " ) VALUES ( " +
+            //                    " '" + cat.Content[i].Cid + "', " +
+            //                    " '" + cat.Content[i].ParentCid + "', " +
+            //                    " '" + cat.Content[i].Name + "', " +
+            //                    " '" + cat.Content[i].PicUrl + "', " +
+            //                    " '" + cat.Content[i].SortOrder + "', " +
+            //                    " '" + cat.Content[i].Created + "', " +
+            //                    " '" + taobaoNick + "', " +
+            //                    " '" + cat.Content[i].Modified + "' " +
+            //              ") ";
+            //    utils.ExecuteNonQuery(sql);
+            //}
 
-            //输出页面HTML
-            Response.Write("<select id=\"shopcat\" name=\"shopcat\"><option value=\"0\"></option>");
-            for (int i = 0; i < cat.Content.Count; i++)
-            {
-                Response.Write("<option value='" + cat.Content[i].Cid + "'>" + cat.Content[i].Name + "</option>");
-            }
-            Response.Write("</select>");
+            ////输出页面HTML
+            //Response.Write("<select id=\"shopcat\" name=\"shopcat\"><option value=\"0\"></option>");
+            //for (int i = 0; i < cat.Content.Count; i++)
+            //{
+            //    Response.Write("<option value='" + cat.Content[i].Cid + "'>" + cat.Content[i].Name + "</option>");
+            //}
+            //Response.Write("</select>");
         }
     }
 }
