@@ -55,9 +55,6 @@ public partial class top_market_taobaoitem : System.Web.UI.Page
 
             string result = clientQQ.ToString();
 
-            Response.Write(result);
-            Response.End();
-
             Regex reg = new Regex(@"""itemCode"":""([^<""\}]*)"",[\s]*""itemName"":""([^<""\}]*)"",", RegexOptions.IgnoreCase);
             MatchCollection match = reg.Matches(result);
 
@@ -67,7 +64,7 @@ public partial class top_market_taobaoitem : System.Web.UI.Page
                 Response.Write("<input type='checkbox' name='items' id='item_" + match[i].Groups[1].ToString() + "' title='" + match[i].Groups[2].ToString() + "' value='" + match[i].Groups[1].ToString() + "' onclick=\"InitArea(this)\"><label for='item_" + match[i].Groups[1].ToString() + "'>" + match[i].Groups[2].ToString() + "</label><br>");
             }
             Response.Write("<br>");
-            long totalnum = long.Parse(new Regex(@"<countTotal>([^<]*)</countTotal>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString());
+            long totalnum = long.Parse(new Regex(@"""countTotal"":([^,]*)", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString());
             long totalPage = (totalnum % pageSizeNow == 0) ? (totalnum / pageSizeNow) : (totalnum / pageSizeNow + 1);
             //输出分页HTML
             for (int i = 1; i <= totalPage; i++)
