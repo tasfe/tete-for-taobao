@@ -12,7 +12,7 @@
   <param name="FlashID" value="id=<%= url %> " />
   <!-- Next object tag is for non-IE browsers. So hide it from IE using IECC. -->
   <!--[if !IE]>-->
-  <object type="application/x-shockwave-flash" data="Main.swf" width="750" height="450">
+  <object type="application/x-shockwave-flash" data="Main.swf??id=<%= url %>" width="750" height="450">
     <!--<![endif]-->
     <param name="quality" value="high" />
     <param name="wmode" value="opaque" />
