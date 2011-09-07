@@ -19,6 +19,7 @@
     <param name="swfversion" value="6.0.65.0" />
     <!-- This param tag prompts users with Flash Player 6.0 r65 and higher to download the latest version of Flash Player. Delete it if you don’t want users to see the prompt. -->
     <param name="expressinstall" value="Scripts/expressInstall.swf" />
+       <param name="flashvars" value="name=true&amp;gacode=UA-7483693-4&amp;config=config/loader.xml">
     <!-- The browser displays the following alternative content for users with Flash Player 6.0 and older. -->
     <div>
       <h4>Content on this page requires a newer version of Adobe Flash Player.</h4>
