@@ -17,7 +17,7 @@ public partial class testflash_data : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         //Response.Write(HttpUtility.UrlEncode("叶儿随清风") + "<br>");
-        Response.Write(Request.Url.AbsoluteUri);
+ 
 
         string str = string.Empty;
         string nick = utils.NewRequest("a", utils.RequestType.QueryString).Replace("'", "''");
@@ -33,6 +33,7 @@ public partial class testflash_data : System.Web.UI.Page
 
         sql = "SELECT TOP 1 * FROM TopGroupBuy WHERE nick = '" + nick + "' AND isdelete=0 AND [endtime]>getdate() ORDER BY ID  DESC ";
         //Response.Write(sql);
+        WriteDeleteLog("flash:" + Request.Url.AbsoluteUri, "");
         WriteDeleteLog("flash:" + sql, "");
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
