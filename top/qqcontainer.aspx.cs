@@ -101,7 +101,7 @@ public partial class top_qqcontainer : System.Web.UI.Page
 
 
         Rijndael_ encode = new Rijndael_("tetesoft");
-        nick = encode.Encrypt(nick);
+        strUIN = encode.Encrypt(strUIN);
 
         Common.Cookie cookie = new Common.Cookie();
         cookie.setCookie("top_session", strTOKEN, 999999);
