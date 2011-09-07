@@ -24,8 +24,11 @@ public partial class top_market_getuserinfo : System.Web.UI.Page
 
             PageList<Trade> trade = client.TradesBoughtGet(request, dt.Rows[i]["session"].ToString());
 
-            Response.Write(dt.Rows[i]["session"].ToString() + "---");
-            Response.Write(trade.Content[0].ReceiverMobile + "<br>");
+            if (trade.Content.Count != 0)
+            {
+                Response.Write(dt.Rows[i]["session"].ToString() + "---");
+                Response.Write(trade.Content[0].ReceiverMobile + "<br>");
+            }
         }
     }
 }
