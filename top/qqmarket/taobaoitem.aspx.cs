@@ -55,6 +55,9 @@ public partial class top_market_taobaoitem : System.Web.UI.Page
 
             string result = clientQQ.ToString();
 
+            Response.Write(result);
+            Response.End();
+
             Regex reg = new Regex(@"""itemCode"":""([^<""\}]*)"",[\s]*""itemName"":""([^<""\}]*)"",", RegexOptions.IgnoreCase);
             MatchCollection match = reg.Matches(result);
 
