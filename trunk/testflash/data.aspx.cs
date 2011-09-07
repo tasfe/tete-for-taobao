@@ -32,8 +32,7 @@ public partial class testflash_data : System.Web.UI.Page
 
 
         sql = "SELECT TOP 1 * FROM TopGroupBuy WHERE nick = '" + nick + "' AND isdelete=0 AND [endtime]>getdate() ORDER BY ID  DESC ";
-        //Response.Write(sql);
-        WriteDeleteLog("flash:" + Request.Url.AbsoluteUri, "");
+        //Response.Write(sql); 
         WriteDeleteLog("flash:" + sql, "");
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
@@ -58,8 +57,8 @@ public partial class testflash_data : System.Web.UI.Page
             str += "|" + dt.Rows[0]["producturl"].ToString();
             str += "|" + newprice;
             str += "|" + dt.Rows[0]["id"].ToString();
-            str += "|" + dt.Rows[0]["buycount"].ToString();
-            str += "|" + (tdays.Days * 24 + int.Parse(h)).ToString();
+            str += "|" + dt.Rows[0]["groupbyPcount"].ToString();
+            str += "|" + h;
             str += "|" + tdays.Minutes.ToString();
             str += "|" + tdays.Seconds.ToString();
             str += "|" + shopName;
@@ -74,6 +73,7 @@ public partial class testflash_data : System.Web.UI.Page
         //str = "http://img04.taobaocdn.com/imgextra/i4/T1EnVkXknLDtPAjkA._113138.jpg_310x310.jpg|1234.10|5.0|617.00";
 
         Response.Write(str);
+
     }
 
     /// <summary>
