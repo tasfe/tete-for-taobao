@@ -20,17 +20,9 @@ public partial class top_market_addidea : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-	Response.AddHeader("P3P", "CP=CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR");
+	    Response.AddHeader("P3P", "CP=CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR");
         Cookie cookie = new Cookie();
         string taobaoNick = cookie.getCookie("nick");
-
-        //过期判断
-        if (string.IsNullOrEmpty(taobaoNick))
-        {
-            Response.Write("<script>window.location.href='http://container.open.taobao.com/container?appkey=12132145'</script>");
-            Response.End();
-            return;
-        }
 
         url = "addidea-1.aspx";
         id = utils.NewRequest("id", Common.utils.RequestType.QueryString);

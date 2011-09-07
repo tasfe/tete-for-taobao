@@ -128,14 +128,6 @@ public partial class top_market_addidea_1 : System.Web.UI.Page
         string taobaoNick = cookie.getCookie("nick");
         string session = cookie.getCookie("top_session");
 
-        //COOKIE过期判断
-        if(taobaoNick == "")
-        {
-            //SESSION超期 跳转到登录页
-            Response.Write("<script>parent.location.href='http://container.open.taobao.com/container?appkey=12132145'</script>");
-            Response.End();
-        }
-
         Rijndael_ encode = new Rijndael_("tetesoft");
         taobaoNick = encode.Decrypt(taobaoNick);
 
@@ -148,29 +140,29 @@ public partial class top_market_addidea_1 : System.Web.UI.Page
         Repeater1.DataSource = dt;
         Repeater1.DataBind();
 
-        //获取用户店铺商品列表
-        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12132145", "1fdd2aadd5e2ac2909db2967cbb71e7f");
-        ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
-        request.Fields = "num_iid,title,price,pic_url";
-        request.PageSize = 10;
+        ////获取用户店铺商品列表
+        //TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12132145", "1fdd2aadd5e2ac2909db2967cbb71e7f");
+        //ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
+        //request.Fields = "num_iid,title,price,pic_url";
+        //request.PageSize = 10;
 
-        PageList<Item> product = new PageList<Item>();
+        //PageList<Item> product = new PageList<Item>();
 
-        try
-        {
-            product = client.ItemsOnsaleGet(request, session);
-        }
-        catch(Exception e)
-        {
-            if (e.Message == "27:Invalid session:Session not exist")
-            { 
-                //SESSION超期 跳转到登录页
-                Response.Write("<script>parent.location.href='http://container.open.taobao.com/container?appkey=12132145'</script>");
-                Response.End();
-            }
-            return;
-        }
-        rptItems.DataSource = product.Content;
-        rptItems.DataBind();
+        //try
+        //{
+        //    product = client.ItemsOnsaleGet(request, session);
+        //}
+        //catch(Exception e)
+        //{
+        //    if (e.Message == "27:Invalid session:Session not exist")
+        //    { 
+        //        //SESSION超期 跳转到登录页
+        //        Response.Write("<script>parent.location.href='http://container.open.taobao.com/container?appkey=12132145'</script>");
+        //        Response.End();
+        //    }
+        //    return;
+        //}
+        //rptItems.DataSource = product.Content;
+        //rptItems.DataBind();
     }
 }
