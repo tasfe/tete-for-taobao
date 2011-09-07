@@ -14,7 +14,7 @@ public partial class top_market_getuserinfo : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12132145", "1fdd2aadd5e2ac2909db2967cbb71e7f");
-        string sql = "SELECT TOP 200 * FROM TopTaobaoShop WHERE enddate >= GETDATE() AND session IS NOT NULL ORDER BY enddate DESC";
+        string sql = "SELECT TOP 100 * FROM TopTaobaoShop WHERE enddate >= GETDATE() AND session IS NOT NULL ORDER BY enddate DESC";
 
         DataTable dt = utils.ExecuteDataTable(sql);
         for (int i = 0; i < dt.Rows.Count; i++)
@@ -40,9 +40,9 @@ public partial class top_market_getuserinfo : System.Web.UI.Page
                 {
                     if (trade.Content[0].ReceiverMobile.Length != 0)
                     {
-                        Response.Write(dt.Rows[i]["nick"].ToString() + "---");
-                        Response.Write(user.SellerCredit.Level.ToString() + "---");
-                        Response.Write(trade.Content[0].ReceiverMobile + "<br>");
+                        Response.Write(dt.Rows[i]["nick"].ToString() + ",");
+                        Response.Write(user.SellerCredit.Level.ToString() + ",");
+                        Response.Write(trade.Content[0].ReceiverMobile + "\r\n");
                     }
                 }
             }
