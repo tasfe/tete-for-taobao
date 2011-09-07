@@ -87,10 +87,10 @@ public partial class top_qqcontainer : System.Web.UI.Page
                         " '" + getValue(result, "sigPaipai") + "' " +
                   ") ";
 
-        Response.Write(sql);
+        //Response.Write(sql);
 
-        //utils.ExecuteNonQuery(sql);
-        //Response.Redirect("qqindex.html");
+        utils.ExecuteNonQuery(sql);
+        Response.Redirect("qqindex.html");
     }
 
     private string getValue(string str, string field)
