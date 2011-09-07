@@ -43,7 +43,7 @@ public partial class top_containerblog : System.Web.UI.Page
         string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString);
         top_session = utils.NewRequest("top_session", utils.RequestType.QueryString);
         string app_secret = "614e40bfdb96e9063031d1a9e56fbed5";
-        string top_sign = utils.NewRequest("top_sign", utils.RequestType.QueryString);
+        string top_sign = utils.NewRequest("top_sign", utils.RequestType.QueryString).Replace("+", " ");
         string sign = utils.NewRequest("sign", utils.RequestType.QueryString);
 
         versionNo = utils.NewRequest("versionNo", utils.RequestType.QueryString);
