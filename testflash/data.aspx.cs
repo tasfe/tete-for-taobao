@@ -12,9 +12,12 @@ using System.Web.Security;
 
 public partial class testflash_data : System.Web.UI.Page
 {
+
+    public static string logUrl = "D:/svngroupbuy/website/ErrLog";
     protected void Page_Load(object sender, EventArgs e)
     {
         //Response.Write(HttpUtility.UrlEncode("叶儿随清风") + "<br>");
+        Response.Write(Request.Url.AbsoluteUri);
 
         string str = string.Empty;
         string nick = utils.NewRequest("a", utils.RequestType.QueryString).Replace("'", "''");
@@ -30,6 +33,7 @@ public partial class testflash_data : System.Web.UI.Page
 
         sql = "SELECT TOP 1 * FROM TopGroupBuy WHERE nick = '" + nick + "' AND isdelete=0 AND [endtime]>getdate() ORDER BY ID  DESC ";
         //Response.Write(sql);
+        WriteDeleteLog("flash:" + sql, "");
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
@@ -64,10 +68,50 @@ public partial class testflash_data : System.Web.UI.Page
         {
             str = "0";
         }
+
+        WriteDeleteLog("flashStr:" + str, "");
         //str = "http://img04.taobaocdn.com/imgextra/i4/T1EnVkXknLDtPAjkA._113138.jpg_310x310.jpg|1234.10|5.0|617.00";
 
         Response.Write(str);
     }
+
+    /// <summary>
+    /// 写日志
+    /// </summary>
+    /// <param name="value">日志内容</param>
+    /// <param name="type">类型 0(成功日志),1(错误日志) 可传空文本默认为0</param>
+    /// <returns></returns>
+    public static void WriteDeleteLog(string message, string type)
+    {
+        string tempStr = logUrl + "/Write" + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
+        string tempFile = tempStr + "/flash" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+        if (type == "1")
+        {
+            tempFile = tempStr + "/flashErr" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+        }
+        if (!Directory.Exists(tempStr))
+        {
+            Directory.CreateDirectory(tempStr);
+        }
+
+        if (System.IO.File.Exists(tempFile))
+        {
+            ///如果日志文件已经存在，则直接写入日志文件
+            StreamWriter sr = System.IO.File.AppendText(tempFile);
+            sr.WriteLine("\n");
+            sr.WriteLine(DateTime.Now + "\n" + message);
+            sr.Close();
+        }
+        else
+        {
+            ///创建日志文件
+            StreamWriter sr = System.IO.File.CreateText(tempFile);
+            sr.WriteLine(DateTime.Now + "\n" + message);
+            sr.Close();
+        }
+
+    }
+
 
     /// <summary>
     ///  生成团购宝贝图片
