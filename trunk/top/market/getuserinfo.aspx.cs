@@ -28,7 +28,7 @@ public partial class top_market_getuserinfo : System.Web.UI.Page
 
                 if (trade.Content.Count != 0)
                 {
-                    if (trade.Content[0].ReceiverMobile != "")
+                    if (trade.Content[0].ReceiverMobile.Length != 0)
                     {
                         Response.Write(dt.Rows[i]["nick"].ToString() + "---");
                         Response.Write(trade.Content[0].ReceiverMobile + "<br>");
