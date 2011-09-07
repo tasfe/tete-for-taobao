@@ -58,7 +58,7 @@ public partial class top_market_taobaoitem : System.Web.UI.Page
             Regex reg = new Regex(@"""itemCode"":""([^<""\}]*)"",[\s]*""itemName"":""([^<""\}]*)"",", RegexOptions.IgnoreCase);
             MatchCollection match = reg.Matches(result);
 
-            //输出页面HTML
+            //输出页面HTML 
             for (int i = 0; i < match.Count; i++)
             {
                 Response.Write("<input type='checkbox' name='items' id='item_" + match[i].Groups[1].ToString() + "' title='" + match[i].Groups[2].ToString() + "' value='" + match[i].Groups[1].ToString() + "' onclick=\"InitArea(this)\"><label for='item_" + match[i].Groups[1].ToString() + "'>" + match[i].Groups[2].ToString() + "</label><br>");
