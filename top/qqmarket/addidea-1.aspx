@@ -32,8 +32,8 @@
       <tr>
         <td width="130" height="30">请选择您要推广商品：</td>
         <td align="left">
-        	<input name="type" id="style1" type="radio" value="0" checked="checked" onclick="showhidden(0)" /><label for="style1" onclick="showhidden(0)">智能推荐</label>
-        	<input name="type" id="style2" type="radio" value="1" onclick="showhidden(1)" /><label for="style2" onclick="showhidden(1)">手动推荐</label>
+        	<!--<input name="type" id="style1" type="radio" value="0" onclick="showhidden(0)" /><label for="style1" onclick="showhidden(0)">智能推荐</label>-->
+        	<input name="type" id="style2" type="radio" value="1" checked="checked" onclick="showhidden(1)" /><label for="style2" onclick="showhidden(1)">手动推荐</label>
             <span id="tuijian1" style="color:#ccc">智能推荐是指系统根据您填写的关键字和店铺分类自动搜索出宝贝进行推荐展示</span>
             <span id="tuijian2" style="color:#ccc; display:none;">手动推荐是指系统根据您自行选择出的宝贝进行推荐展示</span>
         </td>
@@ -97,14 +97,8 @@
     <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:0px; padding:0px">
         	        <tr>
                         <td colspan=2>
-                            <select id="Select1">
+                            <select id="Select1" style="display:none">
         	                    <option value="0"></option>
-                    	        
-        	                    <asp:Repeater ID="Repeater1" runat="server">
-        	                        <ItemTemplate>
-        	                            <option value='<%#Eval("cid") %>'><%#Eval("name") %></option>
-        	                        </ItemTemplate>
-        	                    </asp:Repeater>
         	                </select>
         	                <input name="q" id="querySearch" /> 
         	                <input type="button" value="搜索" onclick="getTaobaoItem()" />
@@ -327,7 +321,7 @@
     }
     
     checkSelect("type", "<%=type %>");
-    showhidden(<%=type %>);
+    showhidden(1);
     //checkMuti("items", "<%=items %>")
     checkSelect("orderby", "<%=orderby %>");
     checkSelectDrop("shopcat", "<%=shopcat %>");
