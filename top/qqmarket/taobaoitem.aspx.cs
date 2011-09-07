@@ -80,13 +80,13 @@ public partial class top_market_taobaoitem : System.Web.UI.Page
             PageList<SellerCat> cat = client.SellercatsListGet(request1);
 
             //清除老分类
-            string sql = "DELETE FROM TopTaobaoShopCat WHERE nick = '" + taobaoNick + "'";
+            string sql = "DELETE FROM TopTaobaoShopCatQQ WHERE nick = '" + taobaoNick + "'";
             utils.ExecuteNonQuery(sql);
 
             //插入新分类
             for (int i = 0; i < cat.Content.Count; i++)
             {
-                sql = "INSERT INTO TopTaobaoShopCat (" +
+                sql = "INSERT INTO TopTaobaoShopCatQQ (" +
                                 "cid, " +
                                 "parent_cid, " +
                                 "name, " +
