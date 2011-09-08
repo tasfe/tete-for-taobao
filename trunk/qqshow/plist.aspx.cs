@@ -175,6 +175,11 @@ public partial class show_plist : System.Web.UI.Page
                         string strUIN = taobaoNick1;
                         string strTOKEN = session;
 
+                        Response.Write(taobaoNick1);
+                        Response.Write("----");
+                        Response.Write(session);
+                        Response.End();
+
                         ApiClient clientQQ = new ApiClient(strSPID, strSKEY, Convert.ToInt32(strUIN), strTOKEN);
                         //通过以下的接口函数添加这些参数 
                         clientQQ.addParamInStringField("itemCode", arr[i]);
