@@ -105,7 +105,7 @@
 
     <div id="mzif-container" style="margin: -20px auto 0 auto; width:500px; height:98px; overflow:hidden;">
     <iframe scrolling="no" src="
-http://meizhe.taovip.com/f/show?id=10" width="790" height="98" frameborder="0" allowTransparency="true">
+http://meizhe.taovip.com/f/show?id=10" width="500" height="98" frameborder="0" allowTransparency="true">
     </iframe>
     </div>
 
