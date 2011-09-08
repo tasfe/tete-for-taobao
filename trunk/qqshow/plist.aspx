@@ -16,8 +16,8 @@
     <asp:Repeater ID="test" runat="server">
             <ItemTemplate>
       <dl>
-        <dt><a href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" title="<%#Eval("itemname") %>" onclick="javascript:spreadStat('<%=id %>','<%#Eval("itemid") %>');" target="_blank"><img src="<%#Eval("itempicurl") %>_80x80.jpg" border="0" /></a></dt>
-        <dd><a href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" title="<%#Eval("itemname") %>" onclick="javascript:spreadStat('<%=id %>','<%#Eval("itemid") %>');" target="_blank"><%#left(Eval("itemname").ToString(), 16)%></a></dd>
+        <dt><a href="http://auction1.paipai.com/<%#Eval("itemid") %>" title="<%#Eval("itemname") %>" onclick="javascript:spreadStat('<%=id %>','<%#Eval("itemid") %>');" target="_blank"><img src="<%#Eval("itempicurl") %>_80x80.jpg" border="0" /></a></dt>
+        <dd><a href="http://auction1.paipai.com/<%#Eval("itemid") %>" title="<%#Eval("itemname") %>" onclick="javascript:spreadStat('<%=id %>','<%#Eval("itemid") %>');" target="_blank"><%#left(Eval("itemname").ToString(), 16)%></a></dd>
       </dl>
       </ItemTemplate>
       </asp:Repeater>
@@ -25,8 +25,8 @@
           <asp:Repeater ID="Repeater1" runat="server">
             <ItemTemplate>
       <dl>
-        <dt><a href="http://item.taobao.com/item.htm?id=<%#Eval("Created") %>" title="<%#Eval("title") %>" target="_blank"><img src="<%#Eval("picurl") %>.2.jpg" border="0" /></a></dt>
-        <dd><a href="http://item.taobao.com/item.htm?id=<%#Eval("Created") %>" title="<%#Eval("title") %>" target="_blank"><%#left(Eval("title").ToString(), 16)%></a></dd>
+        <dt><a href="http://auction1.paipai.com/<%#Eval("Created") %>" title="<%#Eval("title") %>" target="_blank"><img src="<%#Eval("picurl") %>.2.jpg" border="0" /></a></dt>
+        <dd><a href="http://auction1.paipai.com/<%#Eval("Created") %>" title="<%#Eval("title") %>" target="_blank"><%#left(Eval("title").ToString(), 16)%></a></dd>
       </dl>
       </ItemTemplate>
       </asp:Repeater>
@@ -91,18 +91,18 @@
                       align="middle"><DIV 
                         style="BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; MARGIN-TOP: 4px; BORDER-LEFT: #cccccc 1px solid; WIDTH: 160px; BORDER-BOTTOM: #cccccc 1px solid; HEIGHT: 160px"><DIV 
                         style="OVERFLOW: hidden; WIDTH: 160px; HEIGHT: 160px"><A 
-                        href="http://item.taobao.com/item.htm?id=<%#Eval("Created") %>" 
+                        href="http://auction1.paipai.com/<%#Eval("Created") %>" 
                         target="_blank"><IMG 
                         src="<%#Eval("picurl") %>.3.jpg" 
                         border=0 width="160" height="160" /></A></DIV></DIV></TD></TR><TR><TD 
                       align="middle"><DIV 
                         style="PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 12px; PADDING-BOTTOM: 4px; PADDING-TOP: 4px"><A 
                         style="FONT-SIZE: 12px; COLOR: #3f3f3f; TEXT-DECORATION: none" 
-                        href="http://item.taobao.com/item.htm?id=<%#Eval("Created") %>" 
+                        href="http://auction1.paipai.com/<%#Eval("Created") %>" 
                         target="_blank"><%#Eval("title") %></A><BR /><FONT 
                         style="COLOR: #fe596a"><B>￥&nbsp;<%#Eval("price")%>元</B></FONT> 
                         </DIV><A 
-                        href="http://item.taobao.com/item.htm?id=<%#Eval("Created") %>" 
+                        href="http://auction1.paipai.com/<%#Eval("Created") %>" 
                         target="_blank"><IMG 
                         src="/top/show1/buy1.gif" 
                         border=0 /></A> <DIV></DIV></TD></TR></TBODY></TABLE></TD>
