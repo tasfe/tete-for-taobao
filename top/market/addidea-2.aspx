@@ -23,7 +23,7 @@
     <br />
     预览效果如下：
     <br />    <br />
-    <script src="http://www.7fshop.com/qqshow/index.aspx?id=0&style=<%=style %>&size=<%=size %>&type=<%=type %>&orderby=<%=orderby %>&query=<%=query %>&shopcat=<%=shopcat %>&items=<%=items %>&title=<%=name %>" language="javascript" type="text/javascript"></script>
+    <script src="http://www.7fshop.com/show/index.aspx?id=0&style=<%=style %>&size=<%=size %>&type=<%=type %>&orderby=<%=orderby %>&query=<%=query %>&shopcat=<%=shopcat %>&items=<%=items %>&title=<%=name %>" language="javascript" type="text/javascript"></script>
     <br />    <br />
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <form action="<%=url %>" method="post">
