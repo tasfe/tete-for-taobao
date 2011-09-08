@@ -16,7 +16,7 @@
     <asp:Repeater ID="test" runat="server">
             <ItemTemplate>
       <dl>
-        <dt><a href="http://auction1.paipai.com/<%#Eval("itemid") %>" title="<%#Eval("itemname") %>" onclick="javascript:spreadStat('<%=id %>','<%#Eval("itemid") %>');" target="_blank"><img src="<%#Eval("itempicurl") %>_80x80.jpg" border="0" /></a></dt>
+        <dt><a href="http://auction1.paipai.com/<%#Eval("itemid") %>" title="<%#Eval("itemname") %>" onclick="javascript:spreadStat('<%=id %>','<%#Eval("itemid") %>');" target="_blank"><img src="<%#Eval("itempicurl") %>.2.jpg" border="0" /></a></dt>
         <dd><a href="http://auction1.paipai.com/<%#Eval("itemid") %>" title="<%#Eval("itemname") %>" onclick="javascript:spreadStat('<%=id %>','<%#Eval("itemid") %>');" target="_blank"><%#left(Eval("itemname").ToString(), 16)%></a></dd>
       </dl>
       </ItemTemplate>
