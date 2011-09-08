@@ -72,12 +72,11 @@
         </td>
       </tr>
     </table>
-    <br /><br /><br /><br />
+    <br /><br /><br />
     
-    友情链接：<br />
-    <!--<table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:0 10px;">
+    <table width="780" border="0" cellspacing="0" cellpadding="0" style="margin:0 10px;">
       <tr>
-        <td width="120" align="center">
+        <!--<td width="120" align="center">
         	<a href="http://seller.taobao.com/fuwu/service.htm?service_id=7888" target="_blank"><img src="http://img01.taobaocdn.com/imgextra/i1/85662775/T2uMpRXgFaXXXXXXXX_!!85662775.jpg" border="0" /></a>
             <br />
             <a href="http://seller.taobao.com/fuwu/service.htm?service_id=7888" target="_blank">淘模板</a>
@@ -93,21 +92,24 @@
         </td>
         <td width="120">
         	
+        </td>-->
+        <td width="560">
+        	<div id="mzif-container" style="margin: -20px auto 0 auto; width:560px; height:98px; overflow:hidden;">
+            <iframe scrolling="no" src="
+        http://meizhe.taovip.com/f/show?id=10" width="560" height="98" frameborder="0" allowTransparency="true">
+            </iframe>
+            </div>
         </td>
-        <td width="120">
+        <td width="110">
         	
         </td>
-        <td width="120">
+        <td width="110">
         	
         </td>
       </tr>
-    </table>-->
+    </table>
 
-    <div id="mzif-container" style="margin: -20px auto 0 auto; width:560px; height:98px; overflow:hidden;">
-    <iframe scrolling="no" src="
-http://meizhe.taovip.com/f/show?id=10" width="560" height="98" frameborder="0" allowTransparency="true">
-    </iframe>
-    </div>
+
 
 
     <script language="javascript" type="text/javascript">
