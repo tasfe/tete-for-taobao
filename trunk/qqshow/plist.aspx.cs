@@ -163,8 +163,8 @@ public partial class show_plist : System.Web.UI.Page
                 List<Item> itemList = new List<Item>();
 
                 //过滤可能发生的错误 
-                try
-                {
+                //try
+                //{
                     for (int i = 0; i < arr.Length; i++)
                     {
                         if (i >= int.Parse(num))
@@ -198,9 +198,9 @@ public partial class show_plist : System.Web.UI.Page
                             itemList.Add(product);
                         }
                     }
-                }
-                catch
-                { }
+                //}
+                //catch
+                //{ }
 
                 if (size == "743*308")
                 {
