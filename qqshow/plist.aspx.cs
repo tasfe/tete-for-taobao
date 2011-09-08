@@ -120,7 +120,7 @@ public partial class show_plist : System.Web.UI.Page
 
             Rijndael_ encode = new Rijndael_("tetesoft");
             taobaoNick1 = encode.Decrypt(taobaoNick1);
-            string sqlNew = "SELECT sellerUin FROM TopPaipaiShop WHERE nick = '" + taobaoNick1 + "'";
+            string sqlNew = "SELECT sellerUin FROM TopPaipaiShop WHERE sellerUin = '" + taobaoNick1 + "'";
             DataTable dtNew = utils.ExecuteDataTable(sqlNew);
             if (dtNew.Rows.Count != 0)
             {
