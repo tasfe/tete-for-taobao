@@ -14,6 +14,8 @@ using Taobao.Top.Api.Domain;
 using System.Collections.Generic;
 using Common;
 using Microsoft.Practices.EnterpriseLibrary.Caching;
+using PaiPaiAPI;
+using System.Text.RegularExpressions;
 
 public partial class show_plist : System.Web.UI.Page
 {
@@ -116,24 +118,17 @@ public partial class show_plist : System.Web.UI.Page
             Cookie cookie1 = new Cookie();
             string taobaoNick1 = cookie1.getCookie("nick");
 
-            //COOKIE过期判断
-            if (taobaoNick1 == "")
-            {
-                //SESSION超期 跳转到登录页
-                Response.Write("<script>parent.location.href='http://container.open.taobao.com/container?appkey=12132145'</script>");
-                Response.End();
-            }
             Rijndael_ encode = new Rijndael_("tetesoft");
             taobaoNick1 = encode.Decrypt(taobaoNick1);
-            string sqlNew = "SELECT sid FROM TopTaobaoShop WHERE nick = '" + taobaoNick1 + "'";
+            string sqlNew = "SELECT sellerUin FROM TopPaipaiShop WHERE nick = '" + taobaoNick1 + "'";
             DataTable dtNew = utils.ExecuteDataTable(sqlNew);
             if (dtNew.Rows.Count != 0)
             {
-                nickid = "http://shop" + dtNew.Rows[0]["sid"].ToString() + ".taobao.com/";
+                nickid = "http://shop.paipai.com/" + dtNew.Rows[0][0].ToString();
             }
             else
             {
-                nickid = "http://www.taobao.com/";
+                nickid = "http://www.paipai.com/";
             }
 
 
@@ -157,50 +152,7 @@ public partial class show_plist : System.Web.UI.Page
             //如果为自动选择模式
             if (type == "0")
             {
-                //如果没有选择具体商品
-                ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
-                request.Fields = "num_iid,title,price,pic_url";
-                request.PageSize = int.Parse(num);
-                if (orderby == "new")
-                {
-                    request.OrderBy = "list_time:desc";
-                }
-                else if (orderby == "sale")
-                {
-                    request.OrderBy = "volume:desc";
-                }
-
-                if (shopcat != "0")
-                {
-                    request.SellerCids = shopcat;
-                }
-
-                if (query != "0")
-                {
-                    request.Q = query;
-                }
-                try
-                {
-                    PageList<Item> product = client.ItemsOnsaleGet(request, session);
-
-                    if (size == "743*308")
-                    {
-                        panel1.Visible = false;
-                        panel2.Visible = true;
-                        Repeater2.DataSource = product.Content;
-                        Repeater2.DataBind();
-                    }
-                    else
-                    {
-                        Repeater1.DataSource = product.Content;
-                        Repeater1.DataBind();
-                    }
-                }
-                catch
-                {
-                    Response.Write(session + "- miss session!!");
-                    Response.End();
-                }
+                
             }
             //如果选择了具体商品
             else
@@ -218,12 +170,31 @@ public partial class show_plist : System.Web.UI.Page
                         if (i >= int.Parse(num))
                             break;
 
-                        ItemGetRequest request = new ItemGetRequest();
-                        request.Fields = "num_iid,title,price,pic_url";
-                        request.NumIid = long.Parse(arr[i]);
+                        string strSPID = "29230000ea039296234e9d74d8d3d5b7";
+                        string strSKEY = "2dsi35b3fdx050a41jufbnzirrlqd9kl";
+                        string strUIN = taobaoNick;
+                        string strTOKEN = session;
 
-                        Item product = client.ItemGet(request);
-                        itemList.Add(product);
+                        ApiClient clientQQ = new ApiClient(strSPID, strSKEY, Convert.ToInt32(strUIN), strTOKEN);
+                        //通过以下的接口函数添加这些参数 
+                        clientQQ.addParamInStringField("itemCode", arr[i]);
+                        clientQQ.invokeApi("http://api.paipai.com/item/getItem.xhtml?charset=utf-8");
+
+                        string result = clientQQ.ToString();
+
+                        Regex reg = new Regex(@"""itemName"":""([^""]*)"",[\s\S]*""itemPrice"":""([^""]*)"",[\s\S]*""picLink"":""([^""]*)"",", RegexOptions.IgnoreCase);
+                        MatchCollection match = reg.Matches(result);
+
+                        for (int j = 0; j < match.Count; j++)
+                        {
+                            Item product = new Item();
+                            product.NumIid = long.Parse(arr[i]);
+                            product.PicUrl = match[j].Groups[3].ToString();
+                            product.Price = match[j].Groups[2].ToString();
+                            product.Title = match[j].Groups[1].ToString();
+
+                            itemList.Add(product);
+                        }
                     }
                 }
                 catch
