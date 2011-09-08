@@ -172,7 +172,7 @@ public partial class show_plist : System.Web.UI.Page
 
                         string strSPID = "29230000ea039296234e9d74d8d3d5b7";
                         string strSKEY = "2dsi35b3fdx050a41jufbnzirrlqd9kl";
-                        string strUIN = taobaoNick;
+                        string strUIN = taobaoNick1;
                         string strTOKEN = session;
 
                         ApiClient clientQQ = new ApiClient(strSPID, strSKEY, Convert.ToInt32(strUIN), strTOKEN);
