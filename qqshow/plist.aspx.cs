@@ -182,6 +182,8 @@ public partial class show_plist : System.Web.UI.Page
 
                         string result = clientQQ.ToString();
 
+                        Response.Write(result);
+
                         Regex reg = new Regex(@"""itemName"":""([^""]*)"",[\s\S]*""itemPrice"":""([^""]*)"",[\s\S]*""picLink"":""([^""]*)"",", RegexOptions.IgnoreCase);
                         MatchCollection match = reg.Matches(result);
 
