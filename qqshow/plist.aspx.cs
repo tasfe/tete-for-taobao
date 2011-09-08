@@ -112,7 +112,7 @@ public partial class show_plist : System.Web.UI.Page
 
         TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12132145", "1fdd2aadd5e2ac2909db2967cbb71e7f");
 
-        //如果为0则为调试模式，自动按照参数进行调用
+        //如果为0则为调试模式，自动按照参数进行调用 
         if (id == "0")
         {
             Cookie cookie1 = new Cookie();
