@@ -103,9 +103,9 @@
       </tr>
     </table>
 
-    <div id="mzif-container" style="margin: -20px auto 0 auto; width:520px; height:98px; overflow:hidden;">
+    <div id="mzif-container" style="margin: -20px auto 0 auto; width:560px; height:98px; overflow:hidden;">
     <iframe scrolling="no" src="
-http://meizhe.taovip.com/f/show?id=10" width="420" height="98" frameborder="0" allowTransparency="true">
+http://meizhe.taovip.com/f/show?id=10" width="560" height="98" frameborder="0" allowTransparency="true">
     </iframe>
     </div>
 
