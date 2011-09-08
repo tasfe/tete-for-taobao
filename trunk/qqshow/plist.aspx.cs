@@ -126,7 +126,7 @@ public partial class show_plist : System.Web.UI.Page
             {
                 nickid = "http://shop.paipai.com/" + dtNew.Rows[0][0].ToString();
             }
-            else
+            else 
             {
                 nickid = "http://www.paipai.com/";
             }
