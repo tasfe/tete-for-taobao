@@ -141,6 +141,7 @@ public partial class top_containerblog : System.Web.UI.Page
         if(CheckUserExits(nick))
         {
             //更新该会员的店铺信息
+            string ip = Request.UserHostAddress;
             //记录2次登录日志
             string sql = "INSERT INTO TopLoginLog (" +
                            "nick " +
@@ -150,7 +151,7 @@ public partial class top_containerblog : System.Web.UI.Page
             utils.ExecuteNonQuery(sql);
 
             //更新登录次数和最近登陆时间
-            sql = "UPDATE toptaobaoshop SET logintimes = logintimes + 1,lastlogin = GETDATE(),session='" + top_session + "',sessionblog='" + top_session + "',versionNo='" + versionNo + "' WHERE nick = '" + nick + "'";
+            sql = "UPDATE toptaobaoshop SET logintimes = logintimes + 1,lastlogin = GETDATE(),session='" + top_session + "',sessionblog='" + top_session + "',versionNo='" + versionNo + "',ip='" + ip + "' WHERE nick = '" + nick + "'";
             utils.ExecuteNonQuery(sql);
         }
         else
@@ -182,6 +183,7 @@ public partial class top_containerblog : System.Web.UI.Page
     {
         TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12159997", "614e40bfdb96e9063031d1a9e56fbed5");
         //记录店铺基本信息
+        string ip = Request.UserHostAddress;
         ShopGetRequest request = new ShopGetRequest();
         request.Fields = "sid,cid,title,nick,desc,bulletin,pic_path,created,modified";
         request.Nick = nick;
@@ -210,6 +212,7 @@ public partial class top_containerblog : System.Web.UI.Page
                         "shop_score, " +
                         "versionNo, " +
                         "sessionblog, " +
+                        "ip, " +
                         "remain_count " +
                     " ) VALUES ( " +
                         " '" + shop.Sid + "', " +
@@ -224,6 +227,7 @@ public partial class top_containerblog : System.Web.UI.Page
                         " '" + shop.ShopScore + "', " +
                         " '" + versionNo + "', " +
                         " '" + top_session + "', " +
+                        " '" + ip + "', " +
                         " '" + shop.RemainCount + "' " +
                   ") ";
 
