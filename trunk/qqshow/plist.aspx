@@ -25,7 +25,7 @@
           <asp:Repeater ID="Repeater1" runat="server">
             <ItemTemplate>
       <dl>
-        <dt><a href="http://item.taobao.com/item.htm?id=<%#Eval("Created") %>" title="<%#Eval("title") %>" target="_blank"><img src="<%#Eval("picurl") %>" border="0" /></a></dt>
+        <dt><a href="http://item.taobao.com/item.htm?id=<%#Eval("Created") %>" title="<%#Eval("title") %>" target="_blank"><img src="<%#Eval("picurl") %>.2.jpg" border="0" /></a></dt>
         <dd><a href="http://item.taobao.com/item.htm?id=<%#Eval("Created") %>" title="<%#Eval("title") %>" target="_blank"><%#left(Eval("title").ToString(), 16)%></a></dd>
       </dl>
       </ItemTemplate>
@@ -93,8 +93,8 @@
                         style="OVERFLOW: hidden; WIDTH: 160px; HEIGHT: 160px"><A 
                         href="http://item.taobao.com/item.htm?id=<%#Eval("Created") %>" 
                         target="_blank"><IMG 
-                        src="<%#Eval("picurl") %>" 
-                        border=0 /></A></DIV></DIV></TD></TR><TR><TD 
+                        src="<%#Eval("picurl") %>.3.jpg" 
+                        border=0 width="160" height="160" /></A></DIV></DIV></TD></TR><TR><TD 
                       align="middle"><DIV 
                         style="PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 12px; PADDING-BOTTOM: 4px; PADDING-TOP: 4px"><A 
                         style="FONT-SIZE: 12px; COLOR: #3f3f3f; TEXT-DECORATION: none" 
