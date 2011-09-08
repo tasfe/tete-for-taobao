@@ -175,19 +175,12 @@ public partial class show_plist : System.Web.UI.Page
                         string strUIN = taobaoNick1;
                         string strTOKEN = session;
 
-                        //Response.Write(taobaoNick1);
-                        //Response.Write("----");
-                        //Response.Write(session);
-                        //Response.End();
-
                         ApiClient clientQQ = new ApiClient(strSPID, strSKEY, Convert.ToInt32(strUIN), strTOKEN);
                         //通过以下的接口函数添加这些参数 
                         clientQQ.addParamInStringField("itemCode", arr[i]);
                         clientQQ.invokeApi("http://api.paipai.com/item/getItem.xhtml?charset=utf-8");
 
                         string result = clientQQ.ToString();
-
-                        //Response.Write(result);
 
                         Regex reg = new Regex(@"""itemName"":""([^""]*)"",[\s\S]*""itemPrice"":""([^""]*)"",[\s\S]*""picLink"":""([^""]*)"",", RegexOptions.IgnoreCase);
                         MatchCollection match = reg.Matches(result);
@@ -285,15 +278,15 @@ public partial class show_plist : System.Web.UI.Page
         if (dt22.Rows.Count != 0)
         {
             string taobaoNick = dt22.Rows[0]["nick"].ToString();
-            string sqlNew = "SELECT sid FROM TopTaobaoShop WHERE nick = '" + taobaoNick + "'";
+            string sqlNew = "SELECT sellerUin FROM TopPaipaiShop WHERE sellerUin = '" + taobaoNick + "'";
             DataTable dtNew = utils.ExecuteDataTable(sqlNew);
             if (dtNew.Rows.Count != 0)
             {
-                nickid = "http://shop" + dtNew.Rows[0]["sid"].ToString() + ".taobao.com/";
+                nickid = "http://shop.paipai.com/" + dtNew.Rows[0][0].ToString();
             }
             else
             {
-                nickid = "http://www.taobao.com/";
+                nickid = "http://www.paipai.com/";
             }
         }
 
@@ -305,7 +298,7 @@ public partial class show_plist : System.Web.UI.Page
             cache += "<table background=\"/top/show1/4.gif\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" height=\"30\" style=\"border-right: #999999 1px solid; border-top: #999999 1px solid;border-left: #999999 1px solid; border-bottom: #999999 1px solid\" width=\"740\"><tr><td>    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td align=\"left\"><table align=\"left\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" height=\"30\"><tr><td width=\"10\"></td><td background=\"/top/show1/1.gif\" width=\"24\"></td><td background=\"/top/show1/2.gif\"><font color=\"white\" style=\"font-size: 13px\"><strong>" + title + "</strong></font></td><td><img src=\"/top/show1/3.gif\" /></td></tr></table></td><td align=\"right\"></td></tr></table></td></tr></table>  <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-right: #999999 1px solid;border-top: #999999 1px solid; overflow: hidden; border-left: #999999 1px solid;border-bottom: #999999 1px solid\" width=\"740\"><tr><td valign=\"top\"><TABLE cellSpacing=0 cellPadding=0 width=730 border=0><TBODY><TR><TD align=\"middle\"><TABLE cellSpacing=8 cellPadding=0 align=center border=0><TBODY><TR>";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                cache += "<TD vAlign=top align=\"middle\" width=175 bgColor=white><TABLE cellSpacing=0 cellPadding=0 align=center border=0><TBODY><TR><TD vAlign=top align=\"middle\" width=175 bgColor=white><TABLE cellSpacing=0 cellPadding=0 align=center border=0><TBODY><TR><TD align=\"middle\"><DIV style=\"BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; MARGIN-TOP: 4px; BORDER-LEFT: #cccccc 1px solid; WIDTH: 160px; BORDER-BOTTOM: #cccccc 1px solid; HEIGHT: 160px\"><DIV style=\"OVERFLOW: hidden; WIDTH: 160px; HEIGHT: 160px\"><A href=\"/click/?s=" + EncodeStr(new string[] { id, dt.Rows[i]["itemid"].ToString(), "http://item.taobao.com/item.htm?id=" + dt.Rows[i]["itemid"].ToString() }) + "\" onclick=\"javascript:spreadStat('" + id + "','" + dt.Rows[i]["itemid"].ToString() + "');\" target=\"_blank\"><IMG alt=\"" + dt.Rows[i]["itemname"].ToString() + "\" src=\"" + dt.Rows[i]["itempicurl"].ToString() + "_160x160.jpg\" border=0 /></A></DIV></DIV></TD></TR><TR><TD align=\"middle\"><DIV style=\"PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 12px; PADDING-BOTTOM: 4px; PADDING-TOP: 4px\"><A style=\"FONT-SIZE: 12px; COLOR: #3f3f3f; TEXT-DECORATION: none\" href=\"/click/?s=" + EncodeStr(new string[] { id, dt.Rows[i]["itemid"].ToString(), "http://item.taobao.com/item.htm?id=" + dt.Rows[i]["itemid"].ToString() }) + "\" onclick=\"javascript:spreadStat('" + id + "','" + dt.Rows[i]["itemid"].ToString() + "');\" target=\"_blank\" title=\"" + dt.Rows[i]["itemname"].ToString() + "\">" + dt.Rows[i]["itemname"].ToString() + "</A><BR /><FONT style=\"COLOR: #fe596a\"><B>￥&nbsp;" + dt.Rows[i]["itemprice"].ToString() + "元</B></FONT> </DIV><A href=\"/click/?s=" + EncodeStr(new string[] { id, dt.Rows[i]["itemid"].ToString(), "http://item.taobao.com/item.htm?id=" + dt.Rows[i]["itemid"].ToString() }) + "\" onclick=\"javascript:spreadStat('" + id + "','" + dt.Rows[i]["itemid"].ToString() + "');\" target=\"_blank\"><IMG src=\"/top/show1/buy1.gif\" border=0 /></A> <DIV></DIV></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD>";
+                cache += "<TD vAlign=top align=\"middle\" width=175 bgColor=white><TABLE cellSpacing=0 cellPadding=0 align=center border=0><TBODY><TR><TD vAlign=top align=\"middle\" width=175 bgColor=white><TABLE cellSpacing=0 cellPadding=0 align=center border=0><TBODY><TR><TD align=\"middle\"><DIV style=\"BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; MARGIN-TOP: 4px; BORDER-LEFT: #cccccc 1px solid; WIDTH: 160px; BORDER-BOTTOM: #cccccc 1px solid; HEIGHT: 160px\"><DIV style=\"OVERFLOW: hidden; WIDTH: 160px; HEIGHT: 160px\"><A href=\"/click/?s=" + EncodeStr(new string[] { id, dt.Rows[i]["itemid"].ToString(), "http://auction1.paipai.com/" + dt.Rows[i]["itemid"].ToString() }) + "\" onclick=\"javascript:spreadStat('" + id + "','" + dt.Rows[i]["itemid"].ToString() + "');\" target=\"_blank\"><IMG alt=\"" + dt.Rows[i]["itemname"].ToString() + "\" src=\"" + dt.Rows[i]["itempicurl"].ToString() + ".3.jpg\" width=160 height=160 border=0 /></A></DIV></DIV></TD></TR><TR><TD align=\"middle\"><DIV style=\"PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 12px; PADDING-BOTTOM: 4px; PADDING-TOP: 4px\"><A style=\"FONT-SIZE: 12px; COLOR: #3f3f3f; TEXT-DECORATION: none\" href=\"/click/?s=" + EncodeStr(new string[] { id, dt.Rows[i]["itemid"].ToString(), "http://auction1.paipai.com/" + dt.Rows[i]["itemid"].ToString() }) + "\" onclick=\"javascript:spreadStat('" + id + "','" + dt.Rows[i]["itemid"].ToString() + "');\" target=\"_blank\" title=\"" + dt.Rows[i]["itemname"].ToString() + "\">" + dt.Rows[i]["itemname"].ToString() + "</A><BR /><FONT style=\"COLOR: #fe596a\"><B>￥&nbsp;" + dt.Rows[i]["itemprice"].ToString() + "元</B></FONT> </DIV><A href=\"/click/?s=" + EncodeStr(new string[] { id, dt.Rows[i]["itemid"].ToString(), "http://auction1.paipai.com/" + dt.Rows[i]["itemid"].ToString() }) + "\" onclick=\"javascript:spreadStat('" + id + "','" + dt.Rows[i]["itemid"].ToString() + "');\" target=\"_blank\"><IMG src=\"/top/show1/buy1.gif\" border=0 /></A> <DIV></DIV></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD>";
             }
 
             cache += "</TR></TBODY></TABLE></td></tr><tr><td align=\"right\" height=\"24\" style=\"border-bottom: #999999 1px solid\" valign=\"center\"><a href=\"/click/?s=" + EncodeStr(new string[] { id, "0", nickid }) + "\" style=\"text-decoration: none\" target=\"_blank\"><font style=\"font-size: 13px; color: #ff6600\"><strong>更多详情请见 " + nickid + "</strong>&nbsp;</font></a></td></tr></table>";
@@ -315,7 +308,7 @@ public partial class show_plist : System.Web.UI.Page
             cache += "var url = '" + url + "';";
             cache += "if(\"0\" != \""+id+"\" && url != \"\"){";
             cache += "createxmlHttpRequest();";
-            cache += "var queryString = \"http://www.7fshop.com/show/plist.aspx?act=view&id=" + id + "&url=\"+escape(url)+\"&t=\"+new Date().getTime();";
+            cache += "var queryString = \"http://www.7fshop.com/qqshow/plist.aspx?act=view&id=" + id + "&url=\"+escape(url)+\"&t=\"+new Date().getTime();";
             cache += "xmlHttp.open(\"GET\",queryString);";
             cache += "xmlHttp.send(null);  }";
             cache += "</script>";
@@ -337,8 +330,8 @@ public partial class show_plist : System.Web.UI.Page
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 cache += "<dl>";
-                cache += "<dt><a href='/click/?s=" + EncodeStr(new string[] { id, dt.Rows[i]["itemid"].ToString(), "http://item.taobao.com/item.htm?id=" + dt.Rows[i]["itemid"].ToString() }) + "' title='" + dt.Rows[i]["itemname"].ToString() + "' onclick='javascript:spreadStat('" + id + "','" + dt.Rows[i]["itemid"].ToString() + "');' target='_blank'><img src='" + dt.Rows[i]["itempicurl"].ToString() + "_80x80.jpg' border='0' /></a></dt>";
-                cache += "<dd><a href='/click/?s=" + EncodeStr(new string[] { id, dt.Rows[i]["itemid"].ToString(), "http://item.taobao.com/item.htm?id=" + dt.Rows[i]["itemid"].ToString() }) + "' onclick='javascript:spreadStat('" + id + "','" + dt.Rows[i]["itemid"].ToString() + "');' target='_blank'>" + left(dt.Rows[i]["itemname"].ToString(), 16) + "</a></dd>";
+                cache += "<dt><a href='/click/?s=" + EncodeStr(new string[] { id, dt.Rows[i]["itemid"].ToString(), "http://auction1.paipai.com/" + dt.Rows[i]["itemid"].ToString() }) + "' title='" + dt.Rows[i]["itemname"].ToString() + "' onclick='javascript:spreadStat('" + id + "','" + dt.Rows[i]["itemid"].ToString() + "');' target='_blank'><img src='" + dt.Rows[i]["itempicurl"].ToString() + ".2.jpg' border='0' /></a></dt>";
+                cache += "<dd><a href='/click/?s=" + EncodeStr(new string[] { id, dt.Rows[i]["itemid"].ToString(), "http://auction1.paipai.com/" + dt.Rows[i]["itemid"].ToString() }) + "' onclick='javascript:spreadStat('" + id + "','" + dt.Rows[i]["itemid"].ToString() + "');' target='_blank'>" + left(dt.Rows[i]["itemname"].ToString(), 16) + "</a></dd>";
                 cache += "</dl>";
             }
             cache += "<br class=\"clearfloat\"/>";
@@ -352,7 +345,7 @@ public partial class show_plist : System.Web.UI.Page
             cache += "var url = '" + url + "';";
             cache += "if(\"0\" != \"" + id + "\" && url != \"\"){";
             cache += "createxmlHttpRequest();";
-            cache += "var queryString = \"http://www.7fshop.com/show/plist.aspx?act=view&id=" + id + "&url=\"+escape(url)+\"&t=\"+new Date().getTime();";
+            cache += "var queryString = \"http://www.7fshop.com/qqshow/plist.aspx?act=view&id=" + id + "&url=\"+escape(url)+\"&t=\"+new Date().getTime();";
             cache += "xmlHttp.open(\"GET\",queryString);";
             cache += "xmlHttp.send(null);  }";
             cache += "</script>";
