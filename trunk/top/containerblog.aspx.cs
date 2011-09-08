@@ -427,7 +427,7 @@ public partial class top_containerblog : System.Web.UI.Page
                     if (match[i].Groups[1].ToString() == "service-0-22904-7")
                     {
                         //判断当月是否加过短信，如果没加过
-                        sql = "SELECT COUNT(*) FROM TopTaobaoPay WHERE nick = '" + nick + "' AND typ = 'service-0-22904-6' AND enddate = '" + match[i].Groups[2].ToString() + "'";
+                        sql = "SELECT COUNT(*) FROM TopTaobaoPay WHERE nick = '" + nick + "' AND typ = 'service-0-22904-7' AND enddate = '" + match[i].Groups[2].ToString() + "'";
                         string count = utils.ExecuteString(sql);
                         if (count == "0")
                         {
