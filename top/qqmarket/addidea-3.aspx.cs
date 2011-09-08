@@ -288,16 +288,18 @@ public partial class top_market_addidea_3 : System.Web.UI.Page
 
             md5nick = MD5(taobaoNickNew);
 
-            string sqlNew = "SELECT sid FROM TopTaobaoShop WHERE nick = '" + taobaoNickNew + "'";
+            //string sqlNew = "SELECT sid FROM TopTaobaoShop WHERE nick = '" + taobaoNickNew + "'";
+            string sqlNew = "SELECT sellerUin FROM TopPaipaiShop WHERE sellerUin = '" + taobaoNickNew + "'";
             DataTable dtNew = utils.ExecuteDataTable(sqlNew);
             if (dtNew.Rows.Count != 0)
             {
-                nickid = "http://shop" + dtNew.Rows[0]["sid"].ToString() + ".taobao.com/";
+                nickid = "http://shop.paipai.com/" + dtNew.Rows[0][0].ToString();
             }
             else
             {
-                nickid = "http://www.taobao.com/";
+                nickid = "http://www.paipai.com/";
             }
+
             nickidEncode = "http://www.7fshop.com/click/?s=" + EncodeStr(new string[] { id, "0", nickid });
 
             string sql112 = "SELECT * FROM TopIdea WHERE id = " + id;
