@@ -82,7 +82,7 @@
             <br />
             <a href="http://seller.taobao.com/fuwu/service.htm?service_id=7888" target="_blank">淘模板</a>
         </td>
-        <td width="120">
+        <td width="120" align="center">
         	<a href="http://seller.taobao.com/fuwu/service.htm?service_id=6459" target="_blank"><img src="http://img03.taobaocdn.com/imgextra/i3/1204883/T20dpRXcdcXXXXXXXX_!!1204883.png
 " border="0" /></a>
             <br />
