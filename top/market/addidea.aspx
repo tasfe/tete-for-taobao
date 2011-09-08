@@ -75,7 +75,7 @@
     <br /><br /><br /><br />
     
     友情链接：<br />
-    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:0 10px;">
+    <!--<table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:0 10px;">
       <tr>
         <td width="120" align="center">
         	<a href="http://seller.taobao.com/fuwu/service.htm?service_id=7888" target="_blank"><img src="http://img01.taobaocdn.com/imgextra/i1/85662775/T2uMpRXgFaXXXXXXXX_!!85662775.jpg" border="0" /></a>
@@ -101,7 +101,7 @@
         	
         </td>
       </tr>
-    </table>
+    </table>-->
 
     <div id="mzif-container" style="margin: -20px auto 0 auto; width:560px; height:98px; overflow:hidden;">
     <iframe scrolling="no" src="
