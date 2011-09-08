@@ -253,14 +253,6 @@ public partial class top_market_addidea_3 : System.Web.UI.Page
                     List<Item> itemList = new List<Item>();
                     for (int i = 0; i < arr.Length; i++)
                     {
-                        ItemGetRequest request = new ItemGetRequest();
-                        request.Fields = "num_iid,title,price,pic_url";
-                        request.NumIid = long.Parse(arr[i]);
-
-                        Item product = client.ItemGet(request);
-                        itemList.Add(product);
-
-
                         string strSPID = "29230000ea039296234e9d74d8d3d5b7";
                         string strSKEY = "2dsi35b3fdx050a41jufbnzirrlqd9kl";
                         string strUIN = taobaoNick;
