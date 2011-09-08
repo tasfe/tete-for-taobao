@@ -195,7 +195,7 @@ public partial class show_plist : System.Web.UI.Page
                         for (int j = 0; j < match.Count; j++)
                         {
                             Item product = new Item();
-                            product.NumIid = long.Parse(arr[i]);
+                            product.Created = arr[i];
                             product.PicUrl = match[j].Groups[3].ToString();
                             product.Price = match[j].Groups[2].ToString();
                             product.Title = match[j].Groups[1].ToString();
