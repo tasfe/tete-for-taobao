@@ -31,7 +31,7 @@
     <img src='http://a.tbcdn.cn/sys/wangwang/smiley/48x48/68.gif' />
     <span style="font-size:20px; font-weight:bold">恭喜您，您已经成功创建了一个属于您自己的推广页！<br />特特推荐您使用以下几种推广方式：</span><br />
     <a href='showcode.aspx?id=<%=id %>' style="color:Red; font-weight:bold; font-size:16px;">【点击查看详细的推广教程】</a>
-    <a href='../../show/plist.aspx?id=<%=id %>' target="_blank" style="color:Red; font-weight:bold; font-size:16px;">【查看广告效果】</a>
+    <a href='../../qqshow/plist.aspx?id=<%=id %>' target="_blank" style="color:Red; font-weight:bold; font-size:16px;">【查看广告效果】</a>
     <br />
 
     
