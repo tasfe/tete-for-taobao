@@ -55,7 +55,7 @@
             <tr>
                 <td align="left" height="30">优惠券截至日期：</td>
                 <td>
-                    <input name="end_time" type="text" value="<%=enddate %>" />
+                    <input name="end_time" type="text" value="<%=enddate %>" /> 日期格式：2011-01-01
                 </td>
             </tr>
             <tr>
