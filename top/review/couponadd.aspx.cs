@@ -67,7 +67,7 @@ public partial class top_review_couponadd : System.Web.UI.Page
         if (result.IndexOf("error_response") != -1)
         {
             string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + err + "</font><br><a href='javascript:history.go(-1)'>重新添加</a><!--" + result + "-->");
+            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + err + "</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
             Response.End();
             return;
         }
