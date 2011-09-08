@@ -1,0 +1,84 @@
+﻿html {
+	margin:0;
+	padding:0;
+}
+body{
+	background:#fff;
+	padding:0;
+	margin:0;
+	font:12px "宋体","Trebuchet MS",Georgia,Serif;
+}
+#container {
+	margin:0;
+	background:#e6f3fb;
+	padding:0 6px 6px;
+}
+.inner {
+	margin: 0;
+	background: #fff;
+	padding: 0;
+	border:0;
+	zoom:1;
+	min-height:110px;
+}
+.inner dl {
+	padding:5px 0;
+	margin:0;
+	float:left;
+	width:100px;
+	height:118px;
+	font-size:12px;
+}
+.inner dl dt {
+	padding:0;
+	margin:0;
+	text-align:center;
+}
+.inner dl dd {
+	padding:0;
+	margin:0;
+	text-align:center;
+	height:16px;
+	line-height:16px;
+}
+.inner dl a {
+	color:#0394ef;
+	text-decoration:none;
+}
+.inner dl a:hover {
+	color:#0394ef;
+}
+.inner dl dd a:hover {
+	text-decoration:underline;
+}
+.outer {
+	margin: 0;
+	padding:1px;
+	background: #b2dcf4;
+}
+.navigation {
+	padding:5px 0 4px 10px;
+	height:15px;
+	line-height:15px;
+	background:#e6f3fb;
+}
+ 
+.dl-txt dl {
+	width:235px!important;
+	height:68px!important;
+}
+.dl-txt dl dt {
+	font-weight:bold;
+}
+.dl-txt dl dt a:hover {
+	text-decoration:underline;
+}
+.dl-txt {
+	min-height:80px!important;
+}
+.clearfloat { /* 此类应当放在 div 或 break 元素上，而且该元素应当是完全包含浮动的容器关闭之前的最后一个元素 */
+	clear:left;
+	font-size: 1px;
+	line-height: 0;
+	height:0;
+}
