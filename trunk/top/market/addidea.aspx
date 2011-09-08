@@ -93,10 +93,10 @@
         <td width="120">
         	
         </td>-->
-        <td width="460" height="120">
-        	<div id="mzif-container" style="margin:4px; width:460px; height:98px; overflow:hidden;">
+        <td width="450" height="120">
+        	<div id="mzif-container" style="margin:4px; width:440px; height:98px; overflow:hidden;">
             <iframe scrolling="no" src="
-        http://meizhe.taovip.com/f/show?id=10" width="560" height="98" frameborder="0" allowTransparency="true">
+        http://meizhe.taovip.com/f/show?id=10" width="440" height="98" frameborder="0" allowTransparency="true">
             </iframe>
             </div>
         </td>
