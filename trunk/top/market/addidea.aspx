@@ -72,6 +72,7 @@
         </td>
       </tr>
     </table>
+    <br /><br /><br /><br />
     
     友情链接：<br />
     <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:0 10px;">
