@@ -15,6 +15,8 @@ using Taobao.Top.Api.Domain;
 using System.Collections.Generic;
 using Microsoft.Practices.EnterpriseLibrary.Caching;
 using System.IO;
+using PaiPaiAPI;
+using System.Text.RegularExpressions;
 
 public partial class top_market_addidea_3 : System.Web.UI.Page
 {
@@ -257,24 +259,40 @@ public partial class top_market_addidea_3 : System.Web.UI.Page
 
                         Item product = client.ItemGet(request);
                         itemList.Add(product);
-                    }
 
-                    for (int i = 0; i < itemList.Count; i++)
-                    {
-                        sql = "INSERT INTO TopIdeaProduct (" +
-                                    "itemid, " +
-                                    "itemname, " +
-                                    "itemprice, " +
-                                    "itempicurl, " +
-                                    "ideaid " +
-                                " ) VALUES ( " +
-                                    " '" + itemList[i].NumIid + "', " +
-                                    " '" + itemList[i].Title + "', " +
-                                    " '" + itemList[i].Price + "', " +
-                                    " '" + itemList[i].PicUrl + "', " +
-                                    " '" + id + "' " +
-                              ") ";
-                        utils.ExecuteNonQuery(sql);
+
+                        string strSPID = "29230000ea039296234e9d74d8d3d5b7";
+                        string strSKEY = "2dsi35b3fdx050a41jufbnzirrlqd9kl";
+                        string strUIN = taobaoNick;
+                        string strTOKEN = session;
+
+                        ApiClient clientQQ = new ApiClient(strSPID, strSKEY, Convert.ToInt32(strUIN), strTOKEN);
+                        //通过以下的接口函数添加这些参数 
+                        clientQQ.addParamInStringField("itemCode", arr[i]);
+                        clientQQ.invokeApi("http://api.paipai.com/item/getItem.xhtml?charset=utf-8");
+
+                        string result = clientQQ.ToString();
+
+                        Regex reg = new Regex(@"""itemName"":""([^""]*)"",[\s\S]*""itemPrice"":""([^""]*)"",[\s\S]*""picLink"":""([^""]*)"",", RegexOptions.IgnoreCase);
+                        MatchCollection match = reg.Matches(result);
+
+                        for (int j = 0; j < match.Count; j++)
+                        {
+                            sql = "INSERT INTO TopIdeaProduct (" +
+                                        "itemid, " +
+                                        "itemname, " +
+                                        "itemprice, " +
+                                        "itempicurl, " +
+                                        "ideaid " +
+                                    " ) VALUES ( " +
+                                        " '" + arr[i] + "', " +
+                                        " '" + match[j].Groups[1].ToString() + "', " +
+                                        " '" + match[j].Groups[2].ToString() + "', " +
+                                        " '" + match[j].Groups[3].ToString() + "', " +
+                                        " '" + id + "' " +
+                                  ") ";
+                            utils.ExecuteNonQuery(sql);
+                        }
                     }
                 }
             }
