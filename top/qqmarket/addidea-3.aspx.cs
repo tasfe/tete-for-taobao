@@ -41,8 +41,8 @@ public partial class top_market_addidea_3 : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //try
-        //{
+        try
+        {
             id = utils.NewRequest("id", Common.utils.RequestType.QueryString);
 
             if (id != "" && !utils.IsInt32(id))
@@ -397,8 +397,8 @@ public partial class top_market_addidea_3 : System.Web.UI.Page
             string[] arrNew = size.Split('*');
             width = arrNew[0];
             height = arrNew[1];
-        //}
-        //catch { }
+        }
+        catch { }
     }
 
     private string EncodeStr(string[] parmArray)
