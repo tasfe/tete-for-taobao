@@ -59,7 +59,7 @@
       </tr>
       <tr>
         <td>
-        	<textarea cols="80" rows="2" id="Textarea6"><script src="http://www.7fshop.com/show/index.aspx?id=<%=id %>" language="javascript" type="text/javascript"></script></textarea><br />
+        	<textarea cols="80" rows="2" id="Textarea6"><script src="http://www.7fshop.com/qqshow/index.aspx?id=<%=id %>" language="javascript" type="text/javascript"></script></textarea><br />
         	<input type="submit" value="复制代码" onclick="copyToClipBoard('Textarea1')" />
         	<br />
     <br />
@@ -79,11 +79,11 @@
       <tr>
         <td>
             <strong>百度空间等其它论坛可用：</strong><br />
-        	<textarea cols="80" rows="2" id="Textarea1">http://www.7fshop.com/show/html2jpg.aspx?id=<%=id %></textarea><br />
+        	<textarea cols="80" rows="2" id="Textarea1">http://www.7fshop.com/qqshow/html2jpg.aspx?id=<%=id %></textarea><br />
         	<input type="submit" value="复制代码" onclick="copyToClipBoard('Textarea2')" />
         	<br /><br />
         	<strong>百度贴吧专用：</strong><br />
-        	<textarea cols="80" rows="2" id="Textarea5">http://www.7fshop.com/show/html2jpg/?id=<%=id %>.png</textarea><br />
+        	<textarea cols="80" rows="2" id="Textarea5">http://www.7fshop.com/qqshow/html2jpg/?id=<%=id %>.png</textarea><br />
         	<input type="submit" value="复制代码" onclick="copyToClipBoard('Textarea5')" />
         	<br />
     <br />
@@ -102,7 +102,7 @@
       </tr>
       <tr>
         <td>
-        	<a href='<%=nickidEncode %>' target="_blank"><img src='http://www.7fshop.com/show/html2jpg.aspx?id=<%=id %>' border=0 /></a><br />
+        	<a href='<%=nickidEncode %>' target="_blank"><img src='http://www.7fshop.com/qqshow/html2jpg.aspx?id=<%=id %>' border=0 /></a><br />
     <br />
         </td>
       </tr>
@@ -120,7 +120,7 @@
       </tr>
       <tr>
         <td>
-        	<textarea cols="80" rows="3" id="Textarea3"><a href='<%=nickidEncode %>' target="_blank"><img src='http://www.7fshop.com/show/html2jpg.aspx?id=<%=id %>' border=0 /></a></textarea><br />
+        	<textarea cols="80" rows="3" id="Textarea3"><a href='<%=nickidEncode %>' target="_blank"><img src='http://www.7fshop.com/qqshow/html2jpg.aspx?id=<%=id %>' border=0 /></a></textarea><br />
         	<input type="submit" value="复制代码" onclick="copyToClipBoard('Textarea3')" />
         	<br />
     <br />
@@ -392,7 +392,7 @@
       </tr>
       <tr>
         <td>
-        	<textarea cols="80" rows="2" id="Textarea1"><script src="http://www.7fshop.com/show/index.aspx?id=<%=id %>" language="javascript" type="text/javascript"></script></textarea><br />
+        	<textarea cols="80" rows="2" id="Textarea1"><script src="http://www.7fshop.com/qqshow/index.aspx?id=<%=id %>" language="javascript" type="text/javascript"></script></textarea><br />
         	<input type="submit" value="复制代码" onclick="copyToClipBoard('Textarea1')" />
         	<br />
     <br />
@@ -406,11 +406,11 @@
       <tr>
         <td>
             <strong>百度空间等其它论坛可用：</strong><br />
-        	<textarea cols="80" rows="2" id="Textarea2">http://www.7fshop.com/show/html2jpg.aspx?id=<%=id %></textarea><br />
+        	<textarea cols="80" rows="2" id="Textarea2">http://www.7fshop.com/qqshow/html2jpg.aspx?id=<%=id %></textarea><br />
         	<input type="submit" value="复制代码" onclick="copyToClipBoard('Textarea2')" />
         	<br /><br />
         	<strong>百度贴吧专用：</strong><br />
-        	<textarea cols="80" rows="2" id="Textarea5">http://www.7fshop.com/show/html2jpg/?id=<%=id %>.png</textarea><br />
+        	<textarea cols="80" rows="2" id="Textarea5">http://www.7fshop.com/qqshow/html2jpg/?id=<%=id %>.png</textarea><br />
         	<input type="submit" value="复制代码" onclick="copyToClipBoard('Textarea5')" />
         	<br />
     <br />
@@ -423,7 +423,7 @@
       </tr>
       <tr>
         <td>
-        	<a href='<%=nickid %>' target="_blank"><img src='http://www.7fshop.com/show/html2jpg.aspx?id=<%=id %>' border=0 /></a><br />
+        	<a href='<%=nickid %>' target="_blank"><img src='http://www.7fshop.com/qqshow/html2jpg.aspx?id=<%=id %>' border=0 /></a><br />
     <br />
         </td>
       </tr>
@@ -434,7 +434,7 @@
       </tr>
       <tr>
         <td>
-        	<textarea cols="80" rows="3" id="Textarea3"><a href='<%=nickid %>' target="_blank"><img src='http://www.7fshop.com/show/html2jpg.aspx?id=<%=id %>' border=0 /></a></textarea><br />
+        	<textarea cols="80" rows="3" id="Textarea3"><a href='<%=nickid %>' target="_blank"><img src='http://www.7fshop.com/qqshow/html2jpg.aspx?id=<%=id %>' border=0 /></a></textarea><br />
         	<input type="submit" value="复制代码" onclick="copyToClipBoard('Textarea3')" />
         	<br />
     <br />
