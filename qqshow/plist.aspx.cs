@@ -162,7 +162,7 @@ public partial class show_plist : System.Web.UI.Page
                 string[] arr = items.Split(',');
                 List<Item> itemList = new List<Item>();
 
-                //过滤可能发生的错误
+                //过滤可能发生的错误 
                 try
                 {
                     for (int i = 0; i < arr.Length; i++)
