@@ -170,15 +170,15 @@ public partial class topTest_market_html2jpg : System.Web.UI.Page
             }
 
             string nickid = string.Empty;
-            string sqlNew = "SELECT sid FROM TopTaobaoShop WHERE nick = '" + taobaoNick + "'";
+            string sqlNew = "SELECT sellerUin FROM TopPaipaiShop WHERE sellerUin = '" + taobaoNick + "'";
             DataTable dtNew = utils.ExecuteDataTable(sqlNew);
             if (dtNew.Rows.Count != 0)
             {
-                nickid = "http://shop" + dtNew.Rows[0]["sid"].ToString() + ".taobao.com/";
+                nickid = "http://shop.paipai.com/" + dtNew.Rows[0][0].ToString();
             }
             else
             {
-                nickid = "http://www.taobao.com/";
+                nickid = "http://www.paipai.com/";
             }
 
             using (Graphics graphics = Graphics.FromImage(CurrentBitmap))
@@ -207,7 +207,7 @@ public partial class topTest_market_html2jpg : System.Web.UI.Page
                     case "514*160":
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            saveimage(dt.Rows[i]["itempicurl"].ToString() + "_80x80.jpg", folderPath);
+                            saveimage(dt.Rows[i]["itempicurl"].ToString() + ".2.jpg", folderPath);
                             proPath = folderPath + "/proTmp.jpg";
                             pro1 = System.Drawing.Image.FromFile(proPath);
                             graphics.DrawImage(pro1, 17 + i * 100, 29, 80, 80);
@@ -220,7 +220,7 @@ public partial class topTest_market_html2jpg : System.Web.UI.Page
                     case "514*288":
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            saveimage(dt.Rows[i]["itempicurl"].ToString() + "_80x80.jpg", folderPath);
+                            saveimage(dt.Rows[i]["itempicurl"].ToString() + ".2.jpg", folderPath);
                             proPath = folderPath + "/proTmp.jpg";
                             pro1 = System.Drawing.Image.FromFile(proPath);
                             graphics.DrawImage(pro1, 17 + (i % 5) * 100, 29 + (i / 5 * 130), 80, 80);
@@ -233,7 +233,7 @@ public partial class topTest_market_html2jpg : System.Web.UI.Page
                     case "312*288":
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            saveimage(dt.Rows[i]["itempicurl"].ToString() + "_80x80.jpg", folderPath);
+                            saveimage(dt.Rows[i]["itempicurl"].ToString() + ".2.jpg", folderPath);
                             proPath = folderPath + "/proTmp.jpg";
                             pro1 = System.Drawing.Image.FromFile(proPath);
                             graphics.DrawImage(pro1, 17 + (i % 3) * 100, 29 + (i / 3 * 130), 80, 80);
@@ -246,7 +246,7 @@ public partial class topTest_market_html2jpg : System.Web.UI.Page
                     case "714*160":
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            saveimage(dt.Rows[i]["itempicurl"].ToString() + "_80x80.jpg", folderPath);
+                            saveimage(dt.Rows[i]["itempicurl"].ToString() + ".2.jpg", folderPath);
                             proPath = folderPath + "/proTmp.jpg";
                             pro1 = System.Drawing.Image.FromFile(proPath);
                             graphics.DrawImage(pro1, 17 + i * 100, 29, 80, 80);
@@ -259,7 +259,7 @@ public partial class topTest_market_html2jpg : System.Web.UI.Page
                     case "114*418":
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            saveimage(dt.Rows[i]["itempicurl"].ToString() + "_80x80.jpg", folderPath);
+                            saveimage(dt.Rows[i]["itempicurl"].ToString() + ".2.jpg", folderPath);
                             proPath = folderPath + "/proTmp.jpg";
                             pro1 = System.Drawing.Image.FromFile(proPath);
                             graphics.DrawImage(pro1, 17, 29 + i * 130, 80, 80);
@@ -272,7 +272,7 @@ public partial class topTest_market_html2jpg : System.Web.UI.Page
                     case "664*160":
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            saveimage(dt.Rows[i]["itempicurl"].ToString() + "_80x80.jpg", folderPath);
+                            saveimage(dt.Rows[i]["itempicurl"].ToString() + ".2.jpg", folderPath);
                             proPath = folderPath + "/proTmp.jpg";
                             pro1 = System.Drawing.Image.FromFile(proPath);
                             graphics.DrawImage(pro1, 17 + i * 100, 29, 80, 80);
@@ -285,7 +285,7 @@ public partial class topTest_market_html2jpg : System.Web.UI.Page
                     case "218*286":
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            saveimage(dt.Rows[i]["itempicurl"].ToString() + "_80x80.jpg", folderPath);
+                            saveimage(dt.Rows[i]["itempicurl"].ToString() + ".2.jpg", folderPath);
                             proPath = folderPath + "/proTmp.jpg";
                             pro1 = System.Drawing.Image.FromFile(proPath);
                             graphics.DrawImage(pro1, 17 + (i % 2) * 100, 29 + (i / 2 * 130), 80, 80);
@@ -298,7 +298,7 @@ public partial class topTest_market_html2jpg : System.Web.UI.Page
                     case "743*308":
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            saveimage(dt.Rows[i]["itempicurl"].ToString() + "_160x160.jpg", folderPath);
+                            saveimage(dt.Rows[i]["itempicurl"].ToString() + ".3.jpg", folderPath);
                             proPath = folderPath + "/proTmp.jpg";
 
                             Pen pen = new Pen(new SolidBrush(ColorTranslator.FromHtml("#cccccc")), 1);
