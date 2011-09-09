@@ -35,6 +35,7 @@
       </li>
     </ul>
   </div>
+     
     <div id="main-content" style="margin:0px;">
         
   	<!--<img src="images/title.gif" /><br />
@@ -91,7 +92,7 @@
                     <option>21:00</option>
                     <option>22:00</option>
                     <option>23:00</option>
-                </select>
+                </select> <font color='red'>请注意团购开始时间,只有团购时间到了,你设置的团购才有用</font>
                 <br />
 
                 团购结束时间：<input type="text" name="endtime" id="endtime" size="13" value="" readonly="readonly" /> 

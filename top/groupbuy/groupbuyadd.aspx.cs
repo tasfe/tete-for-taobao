@@ -47,10 +47,14 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         enddate = end.Month.ToString() + "/" + end.Day.ToString() + "/" + end.Year.ToString();
 
         //选择当前时间节点
-        int hour = DateTime.Now.Hour + 1;
+        int hour = DateTime.Now.Hour - 1;
 
         //如果是11点则选择0
         if (hour == 24)
+        {
+            hour = 0;
+        }
+        if (hour < 0)
         {
             hour = 0;
         }
