@@ -27,7 +27,8 @@
     <div id="main-content">
 
 <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px; color:Red; font-weight:bold">
-    尊敬的用户您好，店铺首页的FLASH目前只显示最新一个商品的团购信息，谢谢！
+    尊敬的用户您好，店铺首页的FLASH目前只显示最新一个商品的团购信息， 如果有到期的团购,请取消团购！谢谢！
+     
 </div>
         
         <input type="button" value="添加团购" onclick="window.location.href='groupbuyadd.aspx'" />
