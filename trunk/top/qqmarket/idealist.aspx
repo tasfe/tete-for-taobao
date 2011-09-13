@@ -39,7 +39,7 @@
         <td>
         	<a href='addidea.aspx?id=<%#Eval("id") %>' style="color:#333; text-decoration:none">修改</a> 
         	<a href="addidea-3.aspx?id=<%#Eval("id") %>" style="color:#333; text-decoration:none">获取代码</a> 
-        	<a href='../../show/plist.aspx?id=<%#Eval("id") %>' style="color:#333; text-decoration:none" target="_blank">预览</a> 
+        	<a href='../../qqshow/plist.aspx?id=<%#Eval("id") %>' style="color:#333; text-decoration:none" target="_blank">预览</a> 
         	<a href='idealist.aspx?id=<%#Eval("id") %>&act=update' style="color:#333; text-decoration:none">更新</a> 
             <a href="#" onclick="del('<%#Eval("id") %>')" style="color:#333; text-decoration:none">删除</a>
         </td>
@@ -61,7 +61,7 @@ function del(id){
 
 function copyToClipBoard(id)
 {
-    var clipBoardContent="<script src=\"http://www.7fshop.com/show/index.aspx?id="+id+"\" language=\"javascript\" type=\"text/javascript\">\<\/script>";
+    var clipBoardContent="<script src=\"http://www.7fshop.com/qqshow/index.aspx?id="+id+"\" language=\"javascript\" type=\"text/javascript\">\<\/script>";
     if(window.clipboardData){
         window.clipboardData.setData("Text",clipBoardContent);
         alert("复制成功");
