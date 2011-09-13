@@ -435,6 +435,11 @@ public partial class top_review_html : System.Web.UI.Page
                     //判断是否增加过该图片
                     string newcontent = CreateDescDel(item.Desc);
 
+                    Response.Write(item.Desc);
+                    Response.Write("********************************************");
+                    Response.Write(newcontent);
+                    return;
+
                     if (newcontent == "")
                     {
                         break;
