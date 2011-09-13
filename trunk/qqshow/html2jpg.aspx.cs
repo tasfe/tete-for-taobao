@@ -316,8 +316,9 @@ public partial class topTest_market_html2jpg : System.Web.UI.Page
                             font = new Font("宋体", 12);
                             graphics.DrawString(left(dt.Rows[i]["itemname"].ToString(), 0, 12), font, new SolidBrush(ColorTranslator.FromHtml("#3f3f3f")), 22 + i * 180, 212);
                             //价格
+                            //product.Price = (decimal.Parse(match[j].Groups[2].ToString()) / 100).ToString();
                             font = new Font("Arial", 12, FontStyle.Bold);
-                            graphics.DrawString("￥" + dt.Rows[i]["itemprice"].ToString() + "元", font, new SolidBrush(ColorTranslator.FromHtml("#fe596a")), 66 + i * 180, 228);
+                            graphics.DrawString("￥" + (decimal.Parse(dt.Rows[i]["itemprice"].ToString()) / 100).ToString() + "元", font, new SolidBrush(ColorTranslator.FromHtml("#fe596a")), 66 + i * 180, 228);
                             pro1.Dispose();
                             pro2.Dispose();
                         }

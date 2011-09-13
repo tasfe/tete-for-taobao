@@ -190,7 +190,7 @@ public partial class show_plist : System.Web.UI.Page
                             Item product = new Item();
                             product.Created = arr[i];
                             product.PicUrl = match[j].Groups[3].ToString();
-                            product.Price = match[j].Groups[2].ToString();
+                            product.Price = (decimal.Parse(match[j].Groups[2].ToString()) / 100).ToString();
                             product.Title = match[j].Groups[1].ToString();
 
                             itemList.Add(product);
