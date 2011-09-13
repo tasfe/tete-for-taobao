@@ -424,8 +424,8 @@ public partial class top_review_html : System.Web.UI.Page
 
             for (int i = 0; i < product.Content.Count; i++)
             {
-                try
-                {
+                //try
+                //{
                     //获取商品详细
                     ItemGetRequest requestItem = new ItemGetRequest();
                     requestItem.Fields = "desc";
@@ -435,10 +435,11 @@ public partial class top_review_html : System.Web.UI.Page
                     //判断是否增加过该图片
                     string newcontent = CreateDescDel(item.Desc);
 
+                    Response.Write(product.Content[i].NumIid.ToString() + "********************************************");
                     Response.Write(item.Desc);
                     Response.Write("********************************************");
                     Response.Write(newcontent);
-                    return;
+                    Response.Write("********************************************!!!!!!!!!");
 
                     if (newcontent == "")
                     {
@@ -450,10 +451,11 @@ public partial class top_review_html : System.Web.UI.Page
                     param.Add("num_iid", product.Content[i].NumIid.ToString());
                     param.Add("desc", newcontent);
                     string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update", session, param);
-                }
-                catch
-                { }
+                //}
+                //catch
+                //{ }
             }
+            return;
 
             if (product.Content.Count < 200)
             {
