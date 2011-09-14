@@ -66,7 +66,15 @@ public partial class top_review_html : System.Web.UI.Page
 
             if (leftimgurl == "")
             {
-                UploadImg();
+                try
+                {
+                    UploadImg();
+                }
+                catch
+                {
+                    Response.Write("装修图片需要上传到您的淘宝图片空间，您的空间剩余大小不够，无法上传！");
+                    Response.End();
+                }
             }
         }
         else
@@ -135,8 +143,8 @@ public partial class top_review_html : System.Web.UI.Page
 
         PictureGetRequest request1 = new PictureGetRequest();
         request1.Title = picname;
-
-        string path = clientaa.PictureGet(request1, session).Content[0].PicturePath;
+        string path = string.Empty;
+        path = clientaa.PictureGet(request1, session).Content[0].PicturePath;
 
         return path;
     }
@@ -424,8 +432,8 @@ public partial class top_review_html : System.Web.UI.Page
 
             for (int i = 0; i < product.Content.Count; i++)
             {
-                //try
-                //{
+                try
+                {
                     //获取商品详细
                     ItemGetRequest requestItem = new ItemGetRequest();
                     requestItem.Fields = "desc";
@@ -435,15 +443,17 @@ public partial class top_review_html : System.Web.UI.Page
                     //判断是否增加过该图片
                     string newcontent = CreateDescDel(item.Desc);
 
-                    Response.Write(product.Content[i].NumIid.ToString() + "********************************************");
-                    Response.Write(item.Desc);
-                    Response.Write("********************************************");
-                    Response.Write(newcontent);
-                    Response.Write("********************************************!!!!!!!!!");
+                    //if (product.Content[i].NumIid.ToString() == "10002247109")
+                    //{
+                    //    Response.Write(item.Desc);
+                    //    Response.Write("**************************************************");
+                    //    Response.Write(newcontent);
+                    //    return;
+                    //}
 
                     if (newcontent == "")
                     {
-                        break;
+                        continue;
                     }
 
                     //更新宝贝描述
@@ -451,11 +461,10 @@ public partial class top_review_html : System.Web.UI.Page
                     param.Add("num_iid", product.Content[i].NumIid.ToString());
                     param.Add("desc", newcontent);
                     string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update", session, param);
-                //}
-                //catch
-                //{ }
+                }
+                catch
+                { }
             }
-            return;
 
             if (product.Content.Count < 200)
             {
