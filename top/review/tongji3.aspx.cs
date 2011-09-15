@@ -12,17 +12,17 @@ public partial class top_review_tongji : System.Web.UI.Page
         string url = Request.UrlReferrer == null ? "" : Request.UrlReferrer.ToString();
         string ip = Request.UserHostAddress;
 
-        string sql = "SELECT COUNT(*) FROM TopTongjiImg WHERE DATEDIFF(d, date, GETDATE()) = 0 AND ip = '" + ip + "' AND sellerid = '764'";
+        string sql = "SELECT COUNT(*) FROM TopTongji WHERE DATEDIFF(d, date, GETDATE()) = 0 AND ip = '" + ip + "' AND sellerid = '7888'";
         string count = utils.ExecuteString(sql);
         if (count == "0")
         {
-            sql = "INSERT INTO TopTongjiImg (ip, url, sellerid) VALUES ('" + ip + "','" + url + "','764')";
+            sql = "INSERT INTO TopTongji (ip, url, sellerid) VALUES ('" + ip + "','" + url + "','7888')";
         }
         else
         {
-            sql = "UPDATE TopTongjiImg SET count = count + 1 WHERE DATEDIFF(d, date, GETDATE()) = 0 AND ip = '" + ip + "' AND sellerid = '764'";
+            sql = "UPDATE TopTongji SET count = count + 1 WHERE DATEDIFF(d, date, GETDATE()) = 0 AND ip = '" + ip + "' AND sellerid = '7888'";
         }
         utils.ExecuteNonQuery(sql);
-        Response.Redirect("images/tetefree.jpg");
+        Response.Redirect("http://www.kkye.com/helper/helper_get_ads.php?adv_id=10004");
     }
 }
