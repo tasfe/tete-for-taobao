@@ -644,8 +644,8 @@ public partial class top_review_kefulist : System.Web.UI.Page
                 if (content.IndexOf("<error>0</error>") == -1)
                 {
                     //发送失败
-                    Response.Write(content);
-                    Response.End();
+                    //Response.Write(content);
+                    //Response.End();
                     return "0";
                 }
                 else
