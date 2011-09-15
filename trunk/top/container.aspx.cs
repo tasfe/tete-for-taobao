@@ -41,15 +41,15 @@ public partial class top_container : System.Web.UI.Page
          * &x=36*/
         //签名验证
         string top_appkey = "12132145";
-        string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString);
-        top_session = utils.NewRequest("top_session", utils.RequestType.QueryString);
+        string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString).Replace(" ", "+");
+        top_session = utils.NewRequest("top_session", utils.RequestType.QueryString).Replace(" ", "+");
         string app_secret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
-        string top_sign = utils.NewRequest("top_sign", utils.RequestType.QueryString);
-        string sign = utils.NewRequest("sign", utils.RequestType.QueryString);
+        string top_sign = utils.NewRequest("top_sign", utils.RequestType.QueryString).Replace(" ", "+");
+        string sign = utils.NewRequest("sign", utils.RequestType.QueryString).Replace(" ", "+");
 
         versionNo = utils.NewRequest("versionNo", utils.RequestType.QueryString);
-        string leaseId = utils.NewRequest("leaseId", utils.RequestType.QueryString); ;//可以从 QueryString 来获取,也可以固定 
-        string timestamp = utils.NewRequest("timestamp", utils.RequestType.QueryString); ;//可以从 QueryString 来获取 
+        string leaseId = utils.NewRequest("leaseId", utils.RequestType.QueryString).Replace(" ", "+"); ;//可以从 QueryString 来获取,也可以固定 
+        string timestamp = utils.NewRequest("timestamp", utils.RequestType.QueryString).Replace(" ", "+"); ;//可以从 QueryString 来获取 
 
 
 
@@ -144,6 +144,7 @@ public partial class top_container : System.Web.UI.Page
         if(CheckUserExits(nick))
         {
             //更新该会员的店铺信息
+            string ip = Request.UserHostAddress;
             //记录2次登录日志
             string sql = "INSERT INTO TopLoginLog (" +
                            "nick " +
@@ -153,7 +154,7 @@ public partial class top_container : System.Web.UI.Page
             utils.ExecuteNonQuery(sql);
 
             //更新登录次数和最近登陆时间
-            sql = "UPDATE toptaobaoshop SET logintimes = logintimes + 1,lastlogin = GETDATE(),session='" + top_session + "',sessionmarket='" + top_session + "' WHERE nick = '" + nick + "'";
+            sql = "UPDATE toptaobaoshop SET logintimes = logintimes + 1,lastlogin = GETDATE(),session='" + top_session + "',sessionmarket='" + top_session + "',ip='" + ip + "' WHERE nick = '" + nick + "'";
             utils.ExecuteNonQuery(sql);
         }
         else
@@ -238,6 +239,7 @@ public partial class top_container : System.Web.UI.Page
             Response.End();
             return;
         }
+        string ip = Request.UserHostAddress;
         //记录到本地数据库
         string sql = "INSERT INTO TopTaobaoShop (" +
                         "sid, " +
@@ -250,6 +252,7 @@ public partial class top_container : System.Web.UI.Page
                         "created, " +
                         "modified, " +
                         "shop_score, " +
+                        "ip, " +
                         "remain_count " +
                     " ) VALUES ( " +
                         " '" + shop.Sid + "', " +
@@ -262,6 +265,7 @@ public partial class top_container : System.Web.UI.Page
                         " '" + shop.Created + "', " +
                         " '" + shop.Modified + "', " +
                         " '" + shop.ShopScore + "', " +
+                        " '" + ip + "', " +
                         " '" + shop.RemainCount + "' " +
                   ") ";
 
