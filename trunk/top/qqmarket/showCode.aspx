@@ -22,9 +22,9 @@
   <div style="display:none">
   <form id="tiebaForm" method="get" target="_blank">
     <input type="submit" value="submit" />
-    <textarea id="Textarea1" style="display:none">http://www.7fshop.com/show/html2jpg/?id=<%=id %>.png</textarea>
-    <textarea id="Textarea12" style="display:none">http://www.7fshop.com/show/html2jpg.aspx?id=<%=id %></textarea>
-    <textarea id="Textarea2" style="display:none"><a href='<%=nickid %>' target="_blank"><img src='http://www.7fshop.com/show/html2jpg/?id=<%=id %>.png' /></a></textarea>
+    <textarea id="Textarea1" style="display:none">http://www.7fshop.com/qqshow/html2jpg/?id=<%=id %>.png</textarea>
+    <textarea id="Textarea12" style="display:none">http://www.7fshop.com/qqshow/html2jpg.aspx?id=<%=id %></textarea>
+    <textarea id="Textarea2" style="display:none"><a href='<%=nickid %>' target="_blank"><img src='http://www.7fshop.com/qqshow/html2jpg/?id=<%=id %>.png' /></a></textarea>
     <textarea cols="80" rows="3" id="Textarea6">
         	
 <table width="514" height="168" cellpadding=0 cellspacing=0 style="margin:0; background:#e6f3fb; padding:0 6px 6px;">
@@ -157,7 +157,7 @@
         	<b>步骤一</b>、去腾讯微博首页<a href='http://t.qq.com/' target="_blank">http://t.qq.com/</a>使用QQ帐号登录微博 <br />
             <hr />
         	<b>步骤二</b>、在下面的图片上点鼠标右键下载到本地 <br />
-        	<img src='http://www.7fshop.com/show/html2jpg/?id=<%=id %>.png' />
+        	<img src='http://www.7fshop.com/qqshow/html2jpg/?id=<%=id %>.png' />
             <br /><hr />
         	<b>步骤三</b>、点击腾讯微博页面头部的<img src='images/qqtadd.gif' />打开插入图片窗口，选择您刚才下载到本地的图片然后上传。
             <br /><hr />
@@ -183,7 +183,7 @@
             <b>步骤二</b>、先点击左侧的写信弹出邮件发送页面，然后在右侧的联系人列表里面选择你需要发送推广邮件的好友。
             <br /><hr />
             <b>步骤三</b>、请点击<input type="button" value="复制代码" onclick="copyToClipBoard('Textarea1')" />复制图片地址，
-        	<textarea cols="80" rows="2" id="Textarea10" style="display:none">http://www.7fshop.com/show/html2jpg/?id=<%=id %>.png</textarea><br />
+        	<textarea cols="80" rows="2" id="Textarea10" style="display:none">http://www.7fshop.com/qqshow/html2jpg/?id=<%=id %>.png</textarea><br />
         	然后点击输入框上面的<img src='images/qqmailadd.gif' />弹出插入商品提示框，选择“网络照片”，并粘贴您刚才复制的地址，然后点击确定就会把你的广告图片插入
  <br /><hr />
         	<b>步骤四</b>、请输入您的广告词 <br />
@@ -206,7 +206,7 @@
             <br /><hr />
             <b>步骤二</b>、先点击页面顶部的日志栏目，然后点击下面内容左侧的“写日志”，输入您的推广标题。
             <b>步骤三</b>、请点击<input type="button" value="复制代码" onclick="copyToClipBoard('Textarea1')" />复制图片地址，
-        	<textarea cols="80" rows="2" id="Textarea5" style="display:none">http://www.7fshop.com/show/html2jpg/?id=<%=id %>.png</textarea><br />
+        	<textarea cols="80" rows="2" id="Textarea5" style="display:none">http://www.7fshop.com/qqshow/html2jpg/?id=<%=id %>.png</textarea><br />
         	然后所在输入框的上面菜单点击<img src='images/qzoneadd.gif' />，在弹出的提示框内选择“网络图片”并粘贴您刚才复制的图片地址，点击输入框下面的添加，稍等一下，再点击右下的“确定”插入您的推广图片。
  <br /><hr />
         	<b>步骤四</b>、请输入您的广告词 <br />
@@ -229,7 +229,7 @@
         	<b>步骤一</b>、去新浪微博首页<a href='http://t.sina.com.cn/' target="_blank">http://t.sina.com.cn/</a>使用新浪帐号登录微博，如果没有帐号请点此注册<a href='http://t.sina.com.cn/reg.php?ps=u3&lang=zh' target="_blank">http://t.sina.com.cn/reg.php?ps=u3&lang=zh</a> <br />
             <hr />
         	<b>步骤二</b>、在下面的图片上点鼠标右键下载到本地 <br />
-        	<img src='http://www.7fshop.com/show/html2jpg/?id=<%=id %>.png' />
+        	<img src='http://www.7fshop.com/qqshow/html2jpg/?id=<%=id %>.png' />
             <br /><hr />
         	<b>步骤三</b>、点击新浪微博页面头部的<img src='images/sinaadd.gif' />打开插入图片窗口，选择您刚才下载到本地的图片然后上传。
             <br /><hr />
@@ -254,7 +254,7 @@
         	<b>步骤一</b>、打开您论坛或者网站的FTP，下载您需要嵌入代码的HTML页面 <br />
             <br /><hr />
             <b>步骤二</b>、请点击<input type="button" value="复制代码" onclick="copyToClipBoard('Textarea16')" />复制下面地址，<br />
-        	<textarea cols="80" rows="2" id="Textarea16"><script src="http://www.7fshop.com/show/index.aspx?id=<%=id %>" language="javascript" type="text/javascript"></script></textarea><br />
+        	<textarea cols="80" rows="2" id="Textarea16"><script src="http://www.7fshop.com/qqshow/index.aspx?id=<%=id %>" language="javascript" type="text/javascript"></script></textarea><br />
         	并嵌入到相应的HTML页面中，就可以在论坛或者网站上推广您的店铺和商品
  <br />
         </td>
