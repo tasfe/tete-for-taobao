@@ -21,12 +21,6 @@
   </div>
   <div id="main-content">
 
-  
-<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px; color:Red; font-weight:bold">
-    若您不想自己去推广，可使用博客版推广专家自动帮您推广<br />
-    链接地址：<a href="redirect.aspx?t=1" target="_blank">http://seller.taobao.com/fuwu/service.htm?service_id=4545</a>
-</div>
-
     <br />
     <img src='http://a.tbcdn.cn/sys/wangwang/smiley/48x48/68.gif' />
     <span style="font-size:20px; font-weight:bold">恭喜您，您已经成功创建了一个属于您自己的推广页！<br />特特推荐您使用以下几种推广方式：</span><br />
@@ -97,7 +91,7 @@
 <table style="border-style:none;">
 <tr>
         <td>
-        	<span style="font-size:14px;">3、您可以直接将下面的图片用鼠标括起来右键点复制，然后粘贴到自己的博客日志里面，也可以将此图片右键下载<br />到本地发到您的微博里面</span>  <a href='http://blog.jianghu.taobao.com/u/MjA0MjAwODU2/blog/blog_detail.htm?aid=46415639' target="_blank" style="font-weight:bold; color:Red">客户案例</a>
+        	<span style="font-size:14px;">3、您可以直接将下面的图片用鼠标括起来右键点复制，然后粘贴到自己的博客日志里面，也可以将此图片右键下载<br />到本地发到您的微博里面</span>
         </td>
       </tr>
       <tr>
@@ -157,7 +151,7 @@
                         <tr>
                     <asp:Repeater ID="rptProduct" runat="server">
                         <ItemTemplate>
-                            <td height="120" width="100" align="center"><a href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" title="<%#Eval("itemname") %>" target="_blank"><img src="<%#Eval("itempicurl") %>_sum.jpg" width="80" height="80" border="0" /></a><br /><a href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" title="<%#Eval("itemname") %>" style="color:#0394ef;text-decoration:none; font-size:12px;" target="_blank"><%#Eval("itemname") %></a></td><%#Eval("html") %>
+                            <td height="120" width="100" align="center"><a href="http://auction1.paipai.com/<%#Eval("itemid") %>" title="<%#Eval("itemname") %>" target="_blank"><img src="<%#Eval("itempicurl") %>.2.jpg" width="80" height="80" border="0" /></a><br /><a href="http://auction1.paipai.com/<%#Eval("itemid") %>" title="<%#Eval("itemname") %>" style="color:#0394ef;text-decoration:none; font-size:12px;" target="_blank"><%#Eval("itemname") %></a></td><%#Eval("html") %>
                         </ItemTemplate>
                     </asp:Repeater>
                         </tr>
@@ -222,18 +216,18 @@
                       align="middle"><DIV 
                         style="BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; MARGIN-TOP: 4px; BORDER-LEFT: #cccccc 1px solid; WIDTH: 160px; BORDER-BOTTOM: #cccccc 1px solid; HEIGHT: 160px"><DIV 
                         style="OVERFLOW: hidden; WIDTH: 160px; HEIGHT: 160px"><A 
-                        href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" 
+                        href="http://auction1.paipai.com/<%#Eval("itemid") %>" 
                         target="_blank"><IMG 
                         src="<%#Eval("itempicurl") %>_160x160.jpg" 
                         border=0 /></A></DIV></DIV></TD></TR><TR><TD 
                       align="middle"><DIV 
                         style="PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 12px; PADDING-BOTTOM: 4px; PADDING-TOP: 4px"><A 
                         style="FONT-SIZE: 12px; COLOR: #3f3f3f; TEXT-DECORATION: none" 
-                        href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" 
+                        href="http://auction1.paipai.com/<%#Eval("itemid") %>" 
                         target="_blank"><%#Eval("itemname")%></A><BR /><FONT 
                         style="COLOR: #fe596a"><B>￥ <%#Eval("itemprice")%>元</B></FONT> 
                         </DIV><A 
-                        href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" 
+                        href="http://auction1.paipai.com/<%#Eval("itemid") %>" 
                         target="_blank"><IMG 
                         src="http://img02.taobaocdn.com/sns_album/i2/T1t8dQXgtgXXartXjX.gif" 
                         border=0 /></A> <DIV></DIV></TD></TR></TBODY></TABLE></TD>
@@ -372,9 +366,6 @@
 
 
 <!--tab ads end-->
-
-  <br />   
-    <img src="http://a.tbcdn.cn/sys/wangwang/smiley/48x48/28.gif" /> <a href='redirect.aspx?t=2' target="_blank" style="font-size:20px;">我没有时间去博客发文章推广，能不能自动帮我发文章呢？</a>
 
     <br />  
 
