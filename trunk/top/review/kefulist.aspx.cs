@@ -149,7 +149,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         {
 
             //获取该订单关联会员
-            sql = "SELECT * FROM TopOrder WHERE nick = '" + nick + "' AND orderid = " + id;
+            sql = "SELECT * FROM TopOrder WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
             dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count != 0)
             {
@@ -303,7 +303,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                 utils.ExecuteNonQuery(sql);
 
                                 //更新状态
-                                sql = "UPDATE TopOrder SET isgiftmsg = 1 WHERE orderid = " + id;
+                                sql = "UPDATE TopOrder SET isgiftmsg = 1 WHERE orderid = '" + id + "'";
                                 utils.ExecuteNonQuery(sql);
 
                                 //更新短信数量
@@ -337,7 +337,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         }
 
         //更新订单状态-不需要审核
-        sql = "UPDATE TopOrder SET issend = 1,kefustatus = 1,kefutime = GETDATE() WHERE orderid = " + id;
+        sql = "UPDATE TopOrder SET issend = 1,kefustatus = 1,kefutime = GETDATE() WHERE orderid = '" + id + "'";
         utils.ExecuteNonQuery(sql);
     }
 
@@ -398,7 +398,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
             {
 
                 //获取该订单关联会员
-                sql = "SELECT * FROM TopOrder WHERE nick = '" + nick + "' AND orderid = " + id;
+                sql = "SELECT * FROM TopOrder WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
                 dt = utils.ExecuteDataTable(sql);
                 if (dt.Rows.Count != 0)
                 {
@@ -538,7 +538,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                 utils.ExecuteNonQuery(sql);
 
                                 //更新状态
-                                sql = "UPDATE TopOrder SET isgiftmsg = 1 WHERE orderid = " + id;
+                                sql = "UPDATE TopOrder SET isgiftmsg = 1 WHERE orderid = '" + id + "'";
                                 utils.ExecuteNonQuery(sql);
 
                                 //更新短信数量
@@ -571,7 +571,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
             }
 
             //更新订单状态-不需要审核
-            sql = "UPDATE TopOrder SET issend = 1,kefustatus = 1,kefutime = GETDATE() WHERE orderid = " + id;
+            sql = "UPDATE TopOrder SET issend = 1,kefustatus = 1,kefutime = GETDATE() WHERE orderid = '" + id + "'";
             utils.ExecuteNonQuery(sql);
 
             Response.Write("<script>alert('该订单已成功赠送！');window.location.href='kefulist.aspx';</script>");
@@ -579,7 +579,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         else if (send == "2")
         { 
             //不赠送礼品
-            sql = "UPDATE TopOrder SET kefustatus = 2,kefutime = GETDATE() WHERE orderid = " + id;
+            sql = "UPDATE TopOrder SET kefustatus = 2,kefutime = GETDATE() WHERE orderid = '" + id + "'";
             utils.ExecuteNonQuery(sql);
             Response.Write("<script>alert('设置成功，该订单不赠送！');window.location.href='kefulist.aspx';</script>");
         }
