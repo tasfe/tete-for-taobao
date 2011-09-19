@@ -186,7 +186,7 @@ namespace teteReview
                         else
                         { 
                             //更新订单状态
-                            sql = "UPDATE TopOrder SET orderstatus='" + orderstatus + "',receiver_mobile='" + receiver_mobile + "' WHERE orderid = " + tid;
+                            sql = "UPDATE TopOrder SET orderstatus='" + orderstatus + "',receiver_mobile='" + receiver_mobile + "' WHERE orderid = '" + tid + "'";
                             db.ExecSql(sql);
                         }
 
@@ -203,7 +203,7 @@ namespace teteReview
                                 if (msgcount != "0")
                                 {
                                     //更新状态
-                                    sql = "UPDATE TopOrder SET isfahuomsg = 1 WHERE orderid = " + tid;
+                                    sql = "UPDATE TopOrder SET isfahuomsg = 1 WHERE orderid = '" + tid + "'";
                                     db.ExecSql(sql);
                                     continue;
                                 }
@@ -262,7 +262,7 @@ namespace teteReview
                                             db.ExecSql(sql);
 
                                             //更新状态
-                                            sql = "UPDATE TopOrder SET isfahuomsg = 1 WHERE orderid = " + tid;
+                                            sql = "UPDATE TopOrder SET isfahuomsg = 1 WHERE orderid = '" + tid + "'";
                                             db.ExecSql(sql);
 
                                             //更新短信数量
@@ -388,7 +388,7 @@ namespace teteReview
                         if (dtOrder.Rows[j]["orderstatus"].ToString() == "TRADE_CLOSED_BY_TAOBAO" || dtOrder.Rows[j]["orderstatus"].ToString() == "TRADE_CLOSED")
                         {
                             textBox2.AppendText("\r\n" + dtOrder.Rows[j]["orderid"].ToString() + "-订单为取消状态");
-                            sql = "UPDATE TopOrder SET isok = 1 WHERE orderid = " + dtOrder.Rows[j]["orderid"].ToString();
+                            sql = "UPDATE TopOrder SET isok = 1 WHERE orderid = '" + dtOrder.Rows[j]["orderid"].ToString() + "'";
                             db.ExecSql(sql);
                             continue;
                         }
@@ -399,8 +399,8 @@ namespace teteReview
                         {
                             string orderid = dtOrder.Rows[j]["orderid"].ToString();
                             //获取该订单的子订单
-                            sql = "SELECT * FROM TopOrderList WHERE tid = " + orderid;
-                            //textBox2.AppendText("\r\n" + sql);
+                            sql = "SELECT * FROM TopOrderList WHERE tid = '" + orderid + "'";
+                            //textBox2.AppendText("\r\nTRADE_FINISHED----" + sql);
                             DataTable dtOrderList = db.GetTable(sql);
                             for (int l = 0; l < dtOrderList.Rows.Count; l++)
                             {
@@ -413,7 +413,7 @@ namespace teteReview
 
                                 //textBox2.AppendText("\r\n[" + dtOrderList.Rows[l]["oid"].ToString() + "]");
                                 string resultNew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.traderates.get", session, param);
-                                //textBox2.AppendText("\r\n" + result);
+                                //textBox2.AppendText("\r\n[" + resultNew + "]");
                                 //如果还没有评论则跳过
                                 if (resultNew.IndexOf("<total_results>0</total_results>") != -1)
                                 {
@@ -426,6 +426,7 @@ namespace teteReview
                                 //防止插入重复的评论判断
                                 sql = "SELECT COUNT(*) FROM TopTradeRate WHERE tid = '" + orderid + "' AND nick = '" + dtOrder.Rows[j]["buynick"].ToString() + "' AND itemid = '" + dtOrderList.Rows[l]["itemid"].ToString() + "'";
                                 debugSql = sql;
+                                //textBox2.AppendText("\r\n" + sql);
                                 string reviewCount = db.GetTable(sql).Rows[0][0].ToString();
 
                                 //在多次插入的问题没有找到前先用此方法解决
@@ -454,7 +455,7 @@ namespace teteReview
                                 }
 
                                 //更新该订单为已评价
-                                sql = "UPDATE TopOrder SET isok = 1, reviewtime='" + matchReview[0].Groups[2].ToString() + "',result='" + matchReview[0].Groups[4].ToString() + "',content='" + matchReview[0].Groups[1].ToString() + "' WHERE orderid = " + orderid;
+                                sql = "UPDATE TopOrder SET isok = 1, reviewtime='" + matchReview[0].Groups[2].ToString() + "',result='" + matchReview[0].Groups[4].ToString() + "',content='" + matchReview[0].Groups[1].ToString() + "' WHERE orderid = '" + orderid + "'";
                                 //textBox2.AppendText("\r\n" + sql);
                                 db.ExecSql(sql);
                             }
@@ -480,7 +481,7 @@ namespace teteReview
                                 if (result.IndexOf("不存在") != -1)
                                 {
                                     //记录该订单物流状态
-                                    sql = "UPDATE TopOrder SET typ = 'self' WHERE orderid = " + dtOrder.Rows[j]["orderid"].ToString();
+                                    sql = "UPDATE TopOrder SET typ = 'self' WHERE orderid = '" + dtOrder.Rows[j]["orderid"].ToString() + "'";
                                     //textBox2.AppendText("\r\n" + sql);
                                     db.ExecSql(sql);
                                 }
@@ -491,7 +492,7 @@ namespace teteReview
 
                                     status = match[0].Groups[1].ToString();
                                     //记录该订单物流状态
-                                    sql = "UPDATE TopOrder SET typ = 'system', shippingstatus = '" + status + "' WHERE orderid = " + dtOrder.Rows[j]["orderid"].ToString();
+                                    sql = "UPDATE TopOrder SET typ = 'system', shippingstatus = '" + status + "' WHERE orderid = '" + dtOrder.Rows[j]["orderid"].ToString() + "'";
                                     //textBox2.AppendText("\r\n" + sql);
                                     db.ExecSql(sql);
 
@@ -517,7 +518,7 @@ namespace teteReview
                                             if (result.IndexOf("company-not-support") != -1)
                                             {
                                                 //记录该订单物流状态
-                                                sql = "UPDATE TopOrder SET typ = 'self' WHERE orderid = " + dtOrder.Rows[j]["orderid"].ToString();
+                                                sql = "UPDATE TopOrder SET typ = 'self' WHERE orderid = '" + dtOrder.Rows[j]["orderid"].ToString() + "'";
                                                 textBox2.AppendText("\r\n逻辑错误哦，不到物流公司-" + sql);
                                                 db.ExecSql(sql);
                                             }
@@ -533,12 +534,12 @@ namespace teteReview
 
                                         string delivery_end = match[0].Groups[1].ToString();
 
-                                        sql = "UPDATE TopOrder SET typ = 'system', shippingstatus = '" + status + "', delivery_start = '" + delivery_end + "', delivery_end = '" + delivery_end + "', deliverymsg = '" + result + "' WHERE orderid = " + dtOrder.Rows[j]["orderid"].ToString();
+                                        sql = "UPDATE TopOrder SET typ = 'system', shippingstatus = '" + status + "', delivery_start = '" + delivery_end + "', delivery_end = '" + delivery_end + "', deliverymsg = '" + result + "' WHERE orderid = '" + dtOrder.Rows[j]["orderid"].ToString() + "'";
                                         textBox2.AppendText("\r\n" + sql);
                                         db.ExecSql(sql);
 
                                         //如果获取物流状态时订单已经好评过了则不发送
-                                        sql = "SELECT reviewtime FROM TopOrder WHERE orderid = " + dtOrder.Rows[j]["orderid"].ToString();
+                                        sql = "SELECT reviewtime FROM TopOrder WHERE orderid = '" + dtOrder.Rows[j]["orderid"].ToString() + "'";
                                         string reviewtime = db.GetTable(sql).Rows[0][0].ToString();
                                         if (reviewtime.Trim().Length != 0)
                                         {
@@ -607,7 +608,7 @@ namespace teteReview
                                                             db.ExecSql(sql);
 
                                                             //更新状态
-                                                            sql = "UPDATE TopOrder SET isdeliverymsg = 1 WHERE orderid = " + id;
+                                                            sql = "UPDATE TopOrder SET isdeliverymsg = 1 WHERE orderid = '" + id + "'";
                                                             db.ExecSql(sql);
 
                                                             //更新短信数量
@@ -788,7 +789,7 @@ namespace teteReview
                         //根据用户等级判断赠送个数，如果超出赠送个数则跳出
 
                         //判断给的评价是否为好评
-                        sql = "SELECT result FROM TopTradeRate WHERE tid = " + orderid;
+                        sql = "SELECT result FROM TopTradeRate WHERE tid = '" + orderid + "'";
                         DataTable dtping = db.GetTable(sql);
                         string pingjia = string.Empty;
 
@@ -804,7 +805,7 @@ namespace teteReview
                         //如果是中差评则直接结束
                         if (pingjia == "neutral" || pingjia == "bad")
                         {
-                            sql = "UPDATE TopOrder SET issend = 1 WHERE orderid = " + orderid;
+                            sql = "UPDATE TopOrder SET issend = 1 WHERE orderid = '" + orderid + "'";
                             db.ExecSql(sql);
                             continue;
                         }
@@ -845,7 +846,7 @@ namespace teteReview
                                 else
                                 {
                                     //更新订单状态-需要审核
-                                    sql = "UPDATE TopOrder SET issend = 2 WHERE orderid = " + orderid;
+                                    sql = "UPDATE TopOrder SET issend = 2 WHERE orderid = '" + orderid + "'";
                                     //textBox3.AppendText("\r\n" + sql);
                                     db.ExecSql(sql);
                                 }
@@ -882,7 +883,7 @@ namespace teteReview
                                         if (result.IndexOf("买家只能得到最多") != -1)
                                         {
                                             textBox3.AppendText("\r\n买家只能得到最多-取消该订单赠送机会" + result);
-                                            sql = "UPDATE TopOrder SET issend = 1 WHERE orderid = " + orderid;
+                                            sql = "UPDATE TopOrder SET issend = 1 WHERE orderid = '" + orderid + "'";
                                             db.ExecSql(sql);
                                         }
 
@@ -916,14 +917,14 @@ namespace teteReview
 
 
                                     //更新订单状态-不需要审核
-                                    sql = "UPDATE TopOrder SET issend = 1 WHERE orderid = " + orderid;
+                                    sql = "UPDATE TopOrder SET issend = 1 WHERE orderid = '" + orderid + "'";
                                     //textBox3.AppendText("\r\n" + sql);
                                     db.ExecSql(sql);
                                 }
                                 else
                                 {
                                     //更新订单状态-需要审核
-                                    sql = "UPDATE TopOrder SET issend = 2 WHERE orderid = " + orderid;
+                                    sql = "UPDATE TopOrder SET issend = 2 WHERE orderid = '" + orderid + "'";
                                     //textBox3.AppendText("\r\n" + sql);
                                     db.ExecSql(sql);
                                 }
@@ -934,13 +935,13 @@ namespace teteReview
                             if (iskefu == "0")
                             {
                                 //啥赠送都不开的也算结束
-                                sql = "UPDATE TopOrder SET issend = 1 WHERE orderid = " + orderid;
+                                sql = "UPDATE TopOrder SET issend = 1 WHERE orderid = '" + orderid + "'";
                                 //textBox3.AppendText("\r\n" + sql);
                                 db.ExecSql(sql);
                             }
                             else
                             {
-                                sql = "UPDATE TopOrder SET issend = 2 WHERE orderid = " + orderid;
+                                sql = "UPDATE TopOrder SET issend = 2 WHERE orderid = '" + orderid + "'";
                                 //textBox3.AppendText("\r\n" + sql);
                                 db.ExecSql(sql);
                             }
@@ -1041,7 +1042,7 @@ namespace teteReview
                                 if (msgcount != "0")
                                 {
                                     //更新状态
-                                    sql = "UPDATE TopOrder SET istellmsg = 1 WHERE orderid = " + dtOrder.Rows[j]["orderid"].ToString();
+                                    sql = "UPDATE TopOrder SET istellmsg = 1 WHERE orderid = '" + dtOrder.Rows[j]["orderid"].ToString() + "'";
                                     db.ExecSql(sql);
                                     continue;
                                 }
@@ -1099,7 +1100,7 @@ namespace teteReview
                                             db.ExecSql(sql);
 
                                             //更新状态
-                                            sql = "UPDATE TopOrder SET istellmsg = 1 WHERE orderid = " + dtOrder.Rows[j]["orderid"].ToString();
+                                            sql = "UPDATE TopOrder SET istellmsg = 1 WHERE orderid = '" + dtOrder.Rows[j]["orderid"].ToString() + "'";
                                             db.ExecSql(sql);
 
                                             //更新短信数量
