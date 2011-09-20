@@ -23,6 +23,6 @@ public partial class top_review_tongji : System.Web.UI.Page
             sql = "UPDATE TopTongji SET count = count + 1 WHERE DATEDIFF(d, date, GETDATE()) = 0 AND ip = '" + ip + "' AND sellerid = '764'";
         }
         utils.ExecuteNonQuery(sql);
-        Response.Redirect("http://fuwu.taobao.com/serv/detail.htm?service_id=764&from=tmb");
+        Response.Redirect("http://fuwu.taobao.com/serv/detail.htm?service_id=4545&from=tmbtan");
     }
 }
