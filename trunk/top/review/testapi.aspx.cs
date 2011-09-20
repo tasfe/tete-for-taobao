@@ -19,9 +19,9 @@ public partial class top_review_testapi : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string appkey = "12159997";
-        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
-        string session = "508312894419b8bd5d07d89e7c65e1c439e36KFsf109a97618794262";
+        string appkey = "12132145";
+        string secret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
+        string session = "6101920f4127ce602b57fe7a2b3e191d8ecdad8730f2343742108849";
 
 
         //91599347271901
@@ -31,20 +31,29 @@ public partial class top_review_testapi : System.Web.UI.Page
 
         IDictionary<string, string> param = new Dictionary<string, string>();
 
-        //param.Add("coupon_id", "3261756");
-        //param.Add("buyer_nick", "美杜莎之心");
+        param.Add("promotion_id", "97049550");
 
-        //string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.send", session, param);
-        ////<coupon_number>1323930538</coupon_number>
+        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotions.delete", session, param);
+        //<coupon_number>1323930538</coupon_number>
 
-        //Response.Write("<textarea>" + result + "</textarea>");
+        Response.Write("<textarea>" + result + "</textarea>");
+
+        param = new Dictionary<string, string>();
+        param.Add("promotion_id", "97038901");
+        result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotions.delete", session, param);
+        Response.Write("<textarea>" + result + "</textarea>");
+
+        param = new Dictionary<string, string>();
+        param.Add("promotion_id", "97049550");
+        result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotions.delete", session, param);
+        Response.Write("<textarea>" + result + "</textarea>");
 
         ////IDictionary<string, string> param = new Dictionary<string, string>();
         ////param.Add("tid", "88346138077381");
         ////param.Add("seller_nick", "天生一对6695");
 
         //////物流接口暂时停用，因为会影响错误率
-        string result = string.Empty;
+        //string result = string.Empty;
 
         ////result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.logistics.trace.search", session, param);
 
