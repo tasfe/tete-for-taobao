@@ -777,7 +777,7 @@ namespace teteReview
                     DataTable dtOrder = db.GetTable(sql);
                     //textBox3.AppendText("\r\n" + sql);
                     textBox3.AppendText("\r\n" + dt.Rows[i]["nick"].ToString() + "-" + dtOrder.Rows.Count);
-
+                    //return;
                     //循环订单完成周期兵判断是否赠送礼品
                     for (int j = 0; j < dtOrder.Rows.Count; j++)
                     {
@@ -815,42 +815,42 @@ namespace teteReview
                         {
                             textBox3.AppendText("\r\n赠送礼品-" + orderid);
 
-                            //赠送礼品
-                            if (isfree == "1")
-                            {
-                                if (iskefu == "0")
-                                {
-                                    //赠送免费礼品
-                                    param = new Dictionary<string, string>();
-                                    param.Add("tag_id", tagid);
-                                    param.Add("nick", buynick);
+                            ////赠送礼品
+                            //if (isfree == "1")
+                            //{
+                            //    if (iskefu == "0")
+                            //    {
+                            //        //赠送免费礼品
+                            //        param = new Dictionary<string, string>();
+                            //        param.Add("tag_id", tagid);
+                            //        param.Add("nick", buynick);
 
-                                    result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.taguser.add", session, param);
+                            //        result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.taguser.add", session, param);
 
-                                    //记录到数据库
-                                    sql = "INSERT INTO TopItemSend (" +
-                                                        "nick, " +
-                                                        "promotionid, " +
-                                                        "itemid, " +
-                                                        "sendto, " +
-                                                        "count " +
-                                                    " ) VALUES ( " +
-                                                        " '" + nick + "', " +
-                                                        " '" + promotionid + "', " +
-                                                        " '" + itemid + "', " +
-                                                        " '" + buynick + "', " +
-                                                        " '1' " +
-                                                    ") ";
-                                    db.ExecSql(sql);
-                                }
-                                else
-                                {
-                                    //更新订单状态-需要审核
-                                    sql = "UPDATE TopOrder SET issend = 2 WHERE orderid = '" + orderid + "'";
-                                    //textBox3.AppendText("\r\n" + sql);
-                                    db.ExecSql(sql);
-                                }
-                            }
+                            //        //记录到数据库
+                            //        sql = "INSERT INTO TopItemSend (" +
+                            //                            "nick, " +
+                            //                            "promotionid, " +
+                            //                            "itemid, " +
+                            //                            "sendto, " +
+                            //                            "count " +
+                            //                        " ) VALUES ( " +
+                            //                            " '" + nick + "', " +
+                            //                            " '" + promotionid + "', " +
+                            //                            " '" + itemid + "', " +
+                            //                            " '" + buynick + "', " +
+                            //                            " '1' " +
+                            //                        ") ";
+                            //        db.ExecSql(sql);
+                            //    }
+                            //    else
+                            //    {
+                            //        //更新订单状态-需要审核
+                            //        sql = "UPDATE TopOrder SET issend = 2 WHERE orderid = '" + orderid + "'";
+                            //        //textBox3.AppendText("\r\n" + sql);
+                            //        db.ExecSql(sql);
+                            //    }
+                            //}
 
                             //赠送优惠券
                             if (iscoupon == "1" && couponid.Trim() != "")
@@ -890,6 +890,7 @@ namespace teteReview
                                         textBox3.AppendText("\r\n" + result);
                                         continue;
                                     }
+                                    //textBox3.AppendText("\r\n" + result);
 
                                     string number = match[0].Groups[1].ToString();
 
@@ -929,7 +930,7 @@ namespace teteReview
                                     db.ExecSql(sql);
                                 }
 
-                                //return;
+                                return;
                             }
 
                             if (iskefu == "0")
