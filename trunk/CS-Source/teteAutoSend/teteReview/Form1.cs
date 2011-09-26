@@ -185,8 +185,16 @@ namespace teteReview
                         }
                         else
                         { 
-                            //更新订单状态
-                            sql = "UPDATE TopOrder SET orderstatus='" + orderstatus + "',receiver_mobile='" + receiver_mobile + "' WHERE orderid = '" + tid + "'";
+                            //如果还没有获取到物流状态则不能更新为完成
+                            if (orderstatus == "TRADE_FINISHED")
+                            {
+                                //更新订单状态
+                                sql = "UPDATE TopOrder SET orderstatus='" + orderstatus + "',receiver_mobile='" + receiver_mobile + "' WHERE orderid = '" + tid + "' AND typ IS NOT NULL";
+                            }
+                            else
+                            {
+                                sql = "UPDATE TopOrder SET orderstatus='" + orderstatus + "',receiver_mobile='" + receiver_mobile + "' WHERE orderid = '" + tid + "'";
+                            }
                             db.ExecSql(sql);
                         }
 
@@ -304,7 +312,7 @@ namespace teteReview
                 }
             }
 
-            Thread.Sleep(900000);
+            Thread.Sleep(100000);
 
             Thread newThread = new Thread(DoMyJob);
             newThread.Start();
@@ -680,7 +688,7 @@ namespace teteReview
             }
 
             //每半个小时检查一次
-            Thread.Sleep(1800000);
+            Thread.Sleep(100000);
 
             Thread newThread = new Thread(CheckOrder);
             newThread.Start();
@@ -929,8 +937,6 @@ namespace teteReview
                                     //textBox3.AppendText("\r\n" + sql);
                                     db.ExecSql(sql);
                                 }
-
-                                return;
                             }
 
                             if (iskefu == "0")
@@ -956,7 +962,7 @@ namespace teteReview
                 }
             }
 
-            Thread.Sleep(900000);
+            Thread.Sleep(100000);
 
             Thread newThread = new Thread(SendGift);
             newThread.Start();
@@ -1144,7 +1150,7 @@ namespace teteReview
             }
 
             
-            Thread.Sleep(900000);
+            Thread.Sleep(100000);
 
             Thread newThread = new Thread(SendOrderMsg);
             newThread.Start();
