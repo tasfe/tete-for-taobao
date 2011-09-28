@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Common;
 
 public partial class top_special_addSpecial : System.Web.UI.Page
 {
@@ -11,7 +12,12 @@ public partial class top_special_addSpecial : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-                
+            Cookie cookie = new Cookie();
+            string taobaoNick = cookie.getCookie("nick");
+            string session = cookie.getCookie("top_sessiongroupbuy");
+            Rijndael_ encode = new Rijndael_("tetesoft");
+            taobaoNick = encode.Decrypt(taobaoNick);
+
         }
     }
 
