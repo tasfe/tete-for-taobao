@@ -86,12 +86,13 @@
     </ul>
   </div>
       <div id="main-content">
-        宝贝名称：  <input name="q" id="querySearch" style="width:230px;" /> 
-        	                <input type="button" value="搜索" onclick="getTaobaoItem()" /> &nbsp;<span 
+        宝贝名称：  <input name="q" id="querySearch" style="width:230px;" runat="server" />
+          <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Text="搜索" />
+&nbsp;&nbsp;<span 
               id="Label1" style="COLOR: #ff3300; FONT-WEIGHT: bold">请根据您宝贝的标题或者标题里的关键词搜索您要做特价的商品</span></div>
        <div style=" padding-left:10px;">
              <b style=" font-size:12px;">活动开始时间：</b>  
-             <input type="text" name="starttime" id="starttime" size="13" value="" readonly="readonly" /> 
+             <input type="text" name="starttime" id="starttime" size="13" value="" readonly="readonly" runat="server" /> 
                 <select id="startSelect" name="startSelect" runat="server">
                     <option>00:00</option>
                     <option>01:00</option>
@@ -120,7 +121,7 @@
                 </select> 
                 <b>活动结束时间：</b>  
                 
-                <input type="text" name="endtime" id="endtime" size="13" value="" readonly="readonly" /> 
+                <input type="text" name="endtime" id="endtime" size="13" value="" runat=server readonly="readonly" /> 
                 <select id="endSelect" name="endSelect" runat="server">
                     <option>00:00</option>
                     <option>01:00</option>
@@ -164,7 +165,9 @@
                  </div>
                  <div style=" text-align:center">
                    <br />
-                     <input id="Button1" type="button" value="添加到天天特价" /></div>
+                     <asp:Button ID="Button3" runat="server" onclick="Button3_Click" 
+                         Text="添加到天天特价" />
+                 </div>
               </div>
 
                
