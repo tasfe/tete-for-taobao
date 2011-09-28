@@ -22,7 +22,8 @@ namespace teteWriteItem
     {
 
         public static string logUrl = "D:/svngroupbuy/website/ErrLog";
-        public static string styleUrl = "D:/svnnew/top/groupbuy/tpl/style1.html";
+        public static string styleUrl = "D:/groupbuy.7fshop.com/wwwroot/top/groupbuy/tpl/style1.html";
+ 
         public Form1()
         {
             InitializeComponent();
