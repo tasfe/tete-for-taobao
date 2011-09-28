@@ -22,6 +22,7 @@ namespace teteWriteItem
     {
 
         public static string logUrl = "D:/svngroupbuy/website/ErrLog";
+        public static string styleUrl = "D:/svnnew/top/groupbuy/tpl/style1.html";
         public Form1()
         {
             InitializeComponent();
@@ -34,6 +35,31 @@ namespace teteWriteItem
             //获取最新团购相关的订单数据并加入数据库
             Thread newThread1 = new Thread(DeleteTaobao);
             newThread1.Start();
+        }
+
+        private string CreateGroupbuyHtml(string id)
+        {
+            DBSql db = DBSql.getInstance();
+            string str = string.Empty;
+            string html = File.ReadAllText(styleUrl);
+            string sql = "SELECT * FROM TopGroupBuy WHERE id = '" + id + "'";
+            DataTable dt = db.GetTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                str = html;
+                str = str.Replace("{name}", dt.Rows[0]["name"].ToString());
+                str = str.Replace("{oldprice}", dt.Rows[0]["productprice"].ToString());
+                str = str.Replace("{zhekou}", Math.Round((decimal.Parse(dt.Rows[0]["productprice"].ToString()) - decimal.Parse(dt.Rows[0]["zhekou"].ToString())) / decimal.Parse(dt.Rows[0]["productprice"].ToString()) * 10, 1).ToString());
+                str = str.Replace("{leftprice}", (decimal.Parse(dt.Rows[0]["productprice"].ToString()) - decimal.Parse(dt.Rows[0]["zhekou"].ToString())).ToString().Split('.')[0]);
+                str = str.Replace("{rightprice}", (decimal.Parse(dt.Rows[0]["productprice"].ToString()) - decimal.Parse(dt.Rows[0]["zhekou"].ToString())).ToString().Split('.')[1]);
+                str = str.Replace("{newprice}", dt.Rows[0]["zhekou"].ToString());
+                str = str.Replace("{buycount}", dt.Rows[0]["buycount"].ToString());
+                str = str.Replace("{producturl}", dt.Rows[0]["producturl"].ToString());
+                str = str.Replace("{productimg}", dt.Rows[0]["productimg"].ToString());
+                str = str.Replace("{id}", id);
+                str = str.Replace("'", "''");
+            }
+            return str;
         }
 
         private void DoMyJob()
@@ -50,6 +76,7 @@ namespace teteWriteItem
              
             DataTable dt = db.GetTable(sql);
             DataTable dtWrite = null;
+            string styleHtml = string.Empty;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 session = dt.Rows[i]["sessiongroupbuy"].ToString();
@@ -59,6 +86,7 @@ namespace teteWriteItem
                 dtWrite = db.GetTable(sql);
                 for (int j = 0; j < dtWrite.Rows.Count; j++)
                 {
+                    styleHtml = CreateGroupbuyHtml(dtWrite.Rows[j]["groupbuyid"].ToString());
                     try
                     {
                         //获取原宝贝描述
@@ -69,14 +97,14 @@ namespace teteWriteItem
                         string newContent = string.Empty;
                         string groupid = dtWrite.Rows[j]["groupbuyid"].ToString();
 
-                        WriteLog("html:" + dtWrite.Rows[j]["html"].ToString().Length.ToString(), "");
+                        WriteLog("html:" + styleHtml.Length.ToString(), "");
                         if (!Regex.IsMatch(product.Desc, @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>"))
                         {
-                            newContent = @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>" + dtWrite.Rows[j]["html"].ToString() + @"<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>" + product.Desc;
+                            newContent = @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>" + styleHtml + @"<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>" + product.Desc;
                         }
                         else
                         {
-                            newContent = Regex.Replace(product.Desc, @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>", @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>" + dtWrite.Rows[j]["html"].ToString() + @"<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>");
+                            newContent = Regex.Replace(product.Desc, @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>", @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>" + styleHtml + @"<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>");
                         }
                         WriteLog("html2:" + newContent.Length.ToString(), "");
 
@@ -88,27 +116,6 @@ namespace teteWriteItem
                         string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update ", session, param);
 
                         WriteLog("itemid:" + dtWrite.Rows[j]["itemid"].ToString(), "");
-
-                        //写入日志
-                        //sql = "INSERT INTO TopWriteContentLog (" +
-                        //        "groupbuyid, " +
-                        //        "missionid, " +
-                        //        "itemid, " +
-                        //        "html, " +
-                        //        "bakcontent, " +
-                        //        "newcontent, " +
-                        //        "isok" +
-                        //    " ) VALUES ( " +
-                        //        " '" + dtWrite.Rows[j]["groupbuyid"].ToString() + "', " +
-                        //        " '" + dtWrite.Rows[j]["missionid"].ToString() + "', " +
-                        //        " '" + dtWrite.Rows[j]["itemid"].ToString() + "', " +
-                        //        " '" + dtWrite.Rows[j]["html"].ToString() + "', " +
-                        //        " '" + product.Desc + "', " +
-                        //        " '" + newContent + "', " +
-                        //        " '1' " +
-                        //  ") ";
-
-                        //db.ExecSql(sql);
 
                         //更新状态
                         sql = "UPDATE TopWriteContent SET isok = 1 WHERE id = " + dtWrite.Rows[j]["id"].ToString();
@@ -154,32 +161,7 @@ namespace teteWriteItem
             DBSql.getInstance().ExecSql(sql);
         }
 
-        private string CreateGroupbuyHtml(string id)
-        {
-            string str = string.Empty;
-
-            string html = File.ReadAllText("D:/groupbuy.7fshop.com/wwwroot/top/groupbuy/tpl/style1.html");
-            string sql = "SELECT * FROM TopGroupBuy WHERE id = '" + id + "'";
-            DataTable dt = DBSql.getInstance().GetTable(sql);
-            if (dt.Rows.Count != 0)
-            {
-                str = html;
-                str = str.Replace("{name}", dt.Rows[0]["name"].ToString());
-                str = str.Replace("{oldprice}", dt.Rows[0]["productprice"].ToString());
-                str = str.Replace("{zhekou}", Math.Round((decimal.Parse(dt.Rows[0]["productprice"].ToString()) - decimal.Parse(dt.Rows[0]["zhekou"].ToString())) / decimal.Parse(dt.Rows[0]["productprice"].ToString()) * 10, 1).ToString());
-                str = str.Replace("{leftprice}", (decimal.Parse(dt.Rows[0]["productprice"].ToString()) - decimal.Parse(dt.Rows[0]["zhekou"].ToString())).ToString().Split('.')[0]);
-                str = str.Replace("{rightprice}", (decimal.Parse(dt.Rows[0]["productprice"].ToString()) - decimal.Parse(dt.Rows[0]["zhekou"].ToString())).ToString().Split('.')[1]);
-                str = str.Replace("{newprice}", dt.Rows[0]["zhekou"].ToString());
-                str = str.Replace("{buycount}", dt.Rows[0]["buycount"].ToString());
-                str = str.Replace("{producturl}", dt.Rows[0]["producturl"].ToString());
-                str = str.Replace("{productimg}", dt.Rows[0]["productimg"].ToString());
-                str = str.Replace("{id}", id);
-                str = str.Replace("'", "''");
-            }
-
-            return str;
-        }
-
+ 
 
         /// <summary>
         /// 清除代码
@@ -214,17 +196,6 @@ namespace teteWriteItem
                     string resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.delete", session, paramnew);
 
                     WriteLog("清除代码:" + resultnew, "");
-
-                    //删除该活动关联的用户群
-                    //paramnew = new Dictionary<string, string>();
-                    //if (enddt.Rows[y]["tagid"].ToString() != "1")
-                    //{
-                    //    paramnew.Add("tag_id", enddt.Rows[y]["tagid"].ToString());
-                    //}
-                    //resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.tag.delete", session, paramnew);
-
-                    //WriteLog("清除代码:" + resultnew, "");
-
                 }
             }catch{}
 
@@ -261,8 +232,6 @@ namespace teteWriteItem
                 html = "";
 
                 sql = "SELECT DISTINCT itemid FROM TopWriteContent WHERE groupbuyid = '" + dt.Rows[i]["groupbuyid"].ToString() + "' AND isok = 1";
-                //sql = "delete from TopWriteContent where groupbuyid =  '" + dt.Rows[i]["groupbuyid"].ToString() + "'";
-                //db.ExecSql(sql);
                 dtWrite = db.GetTable(sql); 
                 if (dtWrite == null || dtWrite.Rows.Count < 1)
                 {
@@ -316,9 +285,8 @@ namespace teteWriteItem
                         string newContent = string.Empty;
                         string groupid = dt.Rows[i]["groupbuyid"].ToString();
 
-                        if (!Regex.IsMatch(product.Desc, @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>"))
+                        if (!Regex.IsMatch(product.Desc, @"<div>[\s]*<a name=""tetesoft-area-start-" + groupid + @""">[\s]*</a>[\s]*</div>[\s]*([\s\S]*)<div>[\s]*<a name=""tetesoft-area-end-" + groupid + @""">[\s]*</a>[\s]*</div>"))
                         {
-
                             //更新状态
 
                             WriteDeleteLog("http://item.taobao.com/item.htm?id=" + dtWrite.Rows[j]["itemid"].ToString() + " 不含需要清除的代码", "");
@@ -328,7 +296,7 @@ namespace teteWriteItem
                         }
                         else
                         {
-                            newContent = Regex.Replace(product.Desc, @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>", @"");
+                            newContent = Regex.Replace(product.Desc, @"<div>[\s]*<a name=""tetesoft-area-start-" + groupid + @""">[\s]*</a>[\s]*</div>[\s]*([\s\S]*)<div>[\s]*<a name=""tetesoft-area-end-" + groupid + @""">[\s]*</a>[\s]*</div>", @"");
                         }
 
                         //更新宝贝描述
