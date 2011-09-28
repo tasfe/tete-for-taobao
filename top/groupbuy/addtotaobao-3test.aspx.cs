@@ -198,7 +198,7 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
     /// </summary>
     private void RecordMissionDetail(string groupbuyid, string missionid, string itemid, string html)
     {
-        string sql = "INSERT INTO TopWriteContent (groupbuyid, missionid, itemid, html) VALUES ('" + groupbuyid + "', '" + missionid + "', '" + itemid + "', '" + html + "')";
+        string sql = "INSERT INTO TopWriteContent (groupbuyid, missionid, itemid, html) VALUES ('" + groupbuyid + "', '" + missionid + "', '" + itemid + "', '')";
         utils.ExecuteNonQuery(sql);
 
         return;
