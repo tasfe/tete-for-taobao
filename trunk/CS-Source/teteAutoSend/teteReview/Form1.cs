@@ -34,8 +34,16 @@ namespace teteReview
             newThread.Start();
 
             //获取订单物流状态并发送短信
-            Thread newThread1 = new Thread(CheckOrder);
+            Thread newThread1 = new Thread(CheckOrder_1);
             newThread1.Start();
+
+            //获取订单物流状态并发送短信
+            Thread newThread11 = new Thread(CheckOrder_2);
+            newThread11.Start();
+
+            //获取订单物流状态并发送短信
+            Thread newThread12 = new Thread(CheckOrder_3);
+            newThread12.Start();
 
             //获取订单完成状态兵判断是否赠送礼品
             Thread newThread2 = new Thread(SendGift);
@@ -48,6 +56,24 @@ namespace teteReview
             //获取卖家动态评分
             Thread newThread4 = new Thread(GetShopScore);
             newThread4.Start();
+        }
+
+        private void CheckOrder_1()
+        {
+            Thread.Sleep(15000);
+            CheckOrderByType("1");
+        }
+
+        private void CheckOrder_2()
+        {
+            Thread.Sleep(25000);
+            CheckOrderByType("2");
+        }
+
+        private void CheckOrder_3()
+        {
+            Thread.Sleep(35000);
+            CheckOrderByType("3");
         }
 
         /// <summary>
@@ -219,14 +245,14 @@ namespace teteReview
                                 //判断是否还有短信可发
                                 sql = "SELECT total FROM TopAutoReview WHERE nick = '" + nick + "'";
                                 string total = db.GetTable(sql).Rows[0][0].ToString();
-                                //textBox2.AppendText("\r\n" + total);
+                                //textBox5.AppendText("\r\n" + total);
                                 if (int.Parse(total) > 0)
                                 {
                                     string phone = receiver_mobile;
                                     //每张物流订单最多提示一次
                                     sql = "SELECT COUNT(*) FROM TopMsg WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND sendto = '" + buynick + "' AND typ = 'fahuo'";
                                     string fahuoCount = db.GetTable(sql).Rows[0][0].ToString();
-                                    //textBox2.AppendText("\r\nshippingCount-" + fahuocontent);
+                                    //textBox5.AppendText("\r\nshippingCount-" + fahuocontent);
                                     if (fahuoCount == "0")
                                     {
                                         string msg = GetMsg(fahuocontent, shopname, buynick, iscoupon, isfree);
@@ -318,7 +344,7 @@ namespace teteReview
             newThread.Start();
         }
 
-        private void CheckOrder()
+        private void CheckOrderByType(string typ)
         {
             //获取超过卖家设置时间还未支付的订单并取消
             string session = string.Empty;
@@ -327,9 +353,11 @@ namespace teteReview
             string debugSql = string.Empty;
 
             DBSql db = DBSql.getInstance();
-            string sql = "SELECT * FROM TopAutoReview WHERE isdel = 0";
-            //textBox2.AppendText("\r\n" + sql);
+            //string sql = "SELECT * FROM TopAutoReview WHERE isdel = 0";
+            string sql = "SELECT r.* FROM TopAutoReview r INNER JOIN TopTaobaoShop s ON s.nick = r.nick WHERE r.isdel = 0 AND s.versionNoBlog = " + typ;
+            textBox5.AppendText("\r\n" + sql);
             DataTable dt = db.GetTable(sql);
+
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 try
@@ -347,7 +375,7 @@ namespace teteReview
 
                     //通过接口将该用户加入人群
                     sql = "SELECT * FROM TopTaobaoShop WHERE nick = '" + dt.Rows[i]["nick"].ToString() + "'";
-                    //textBox2.AppendText("\r\n" + sql);
+                    //textBox5.AppendText("\r\n" + sql);
                     DataTable dtnick = db.GetTable(sql);
                     if (dtnick.Rows.Count != 0)
                     {
@@ -365,7 +393,7 @@ namespace teteReview
                     //获取改用户设置的短信提醒的订单
                     sql = "SELECT * FROM TopOrder WHERE nick = '" + dt.Rows[i]["nick"].ToString() + "' AND isok = 0 AND orderstatus <> 'WAIT_SELLER_SEND_GOODS' AND orderstatus <> 'WAIT_BUYER_PAY'";
                     DataTable dtOrder = db.GetTable(sql);
-                    textBox2.AppendText("\r\n\r\n" + nick + "-" + dtOrder.Rows.Count);
+                    //textBox5.AppendText("\r\n\r\n" + nick + "-" + dtOrder.Rows.Count);
 
                     //循环订单获取物流状态并判断是否发送短信
                     for (int j = 0; j < dtOrder.Rows.Count; j++)
@@ -374,8 +402,8 @@ namespace teteReview
                         IDictionary<string, string> param = new Dictionary<string, string>();
                         param.Add("fields", "delivery_start,delivery_end,status");
                         param.Add("tid", dtOrder.Rows[j]["orderid"].ToString());
-                        textBox2.AppendText("\r\n" + j.ToString() + "、" + dtOrder.Rows[j]["orderid"].ToString());
-                        //textBox2.AppendText("\r\nreview-----------" + dtOrder.Rows[j]["orderstatus"].ToString());
+                        textBox5.AppendText("\r\n" + j.ToString() + "、" + dtOrder.Rows[j]["orderid"].ToString());
+                        //textBox5.AppendText("\r\nreview-----------" + dtOrder.Rows[j]["orderstatus"].ToString());
 
                         //物流接口暂时停用，因为会影响错误率
                         string result = string.Empty;
@@ -390,12 +418,12 @@ namespace teteReview
                         }
                         Regex reg = new Regex(@"<status>([^<]*)</status>", RegexOptions.IgnoreCase);
                         MatchCollection match = reg.Matches(result);
-                        //textBox2.AppendText("\r\n" + result);
+                        textBox5.AppendText("\r\n" + result);
 
                         //如果订单状态为已取消
                         if (dtOrder.Rows[j]["orderstatus"].ToString() == "TRADE_CLOSED_BY_TAOBAO" || dtOrder.Rows[j]["orderstatus"].ToString() == "TRADE_CLOSED")
                         {
-                            textBox2.AppendText("\r\n" + dtOrder.Rows[j]["orderid"].ToString() + "-订单为取消状态");
+                            textBox5.AppendText("\r\n" + dtOrder.Rows[j]["orderid"].ToString() + "-订单为取消状态");
                             sql = "UPDATE TopOrder SET isok = 1 WHERE orderid = '" + dtOrder.Rows[j]["orderid"].ToString() + "'";
                             db.ExecSql(sql);
                             continue;
@@ -408,7 +436,7 @@ namespace teteReview
                             string orderid = dtOrder.Rows[j]["orderid"].ToString();
                             //获取该订单的子订单
                             sql = "SELECT * FROM TopOrderList WHERE tid = '" + orderid + "'";
-                            //textBox2.AppendText("\r\nTRADE_FINISHED----" + sql);
+                            //textBox5.AppendText("\r\nTRADE_FINISHED----" + sql);
                             DataTable dtOrderList = db.GetTable(sql);
                             for (int l = 0; l < dtOrderList.Rows.Count; l++)
                             {
@@ -419,9 +447,9 @@ namespace teteReview
                                 param.Add("role", "buyer");
                                 param.Add("tid", dtOrderList.Rows[l]["oid"].ToString());
 
-                                //textBox2.AppendText("\r\n[" + dtOrderList.Rows[l]["oid"].ToString() + "]");
+                                //textBox5.AppendText("\r\n[" + dtOrderList.Rows[l]["oid"].ToString() + "]");
                                 string resultNew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.traderates.get", session, param);
-                                //textBox2.AppendText("\r\n[" + resultNew + "]");
+                                //textBox5.AppendText("\r\n[" + resultNew + "]");
                                 //如果还没有评论则跳过
                                 if (resultNew.IndexOf("<total_results>0</total_results>") != -1)
                                 {
@@ -434,7 +462,7 @@ namespace teteReview
                                 //防止插入重复的评论判断
                                 sql = "SELECT COUNT(*) FROM TopTradeRate WHERE tid = '" + orderid + "' AND nick = '" + dtOrder.Rows[j]["buynick"].ToString() + "' AND itemid = '" + dtOrderList.Rows[l]["itemid"].ToString() + "'";
                                 debugSql = sql;
-                                //textBox2.AppendText("\r\n" + sql);
+                                //textBox5.AppendText("\r\n" + sql);
                                 string reviewCount = db.GetTable(sql).Rows[0][0].ToString();
 
                                 //在多次插入的问题没有找到前先用此方法解决
@@ -458,13 +486,13 @@ namespace teteReview
                                                         " '" + dtOrderList.Rows[l]["itemid"].ToString() + "', " +
                                                         " '" + matchReview[0].Groups[4].ToString() + "' " +
                                                     ") ";
-                                    //textBox2.AppendText("\r\n" + sql);
+                                    //textBox5.AppendText("\r\n" + sql);
                                     db.ExecSql(sql);
                                 }
 
                                 //更新该订单为已评价
                                 sql = "UPDATE TopOrder SET isok = 1, reviewtime='" + matchReview[0].Groups[2].ToString() + "',result='" + matchReview[0].Groups[4].ToString() + "',content='" + matchReview[0].Groups[1].ToString() + "' WHERE orderid = '" + orderid + "'";
-                                //textBox2.AppendText("\r\n" + sql);
+                                //textBox5.AppendText("\r\n" + sql);
                                 db.ExecSql(sql);
                             }
                         }
@@ -490,7 +518,7 @@ namespace teteReview
                                 {
                                     //记录该订单物流状态
                                     sql = "UPDATE TopOrder SET typ = 'self' WHERE orderid = '" + dtOrder.Rows[j]["orderid"].ToString() + "'";
-                                    //textBox2.AppendText("\r\n" + sql);
+                                    //textBox5.AppendText("\r\n" + sql);
                                     db.ExecSql(sql);
                                 }
                                 else
@@ -501,7 +529,7 @@ namespace teteReview
                                     status = match[0].Groups[1].ToString();
                                     //记录该订单物流状态
                                     sql = "UPDATE TopOrder SET typ = 'system', shippingstatus = '" + status + "' WHERE orderid = '" + dtOrder.Rows[j]["orderid"].ToString() + "'";
-                                    //textBox2.AppendText("\r\n" + sql);
+                                    //textBox5.AppendText("\r\n" + sql);
                                     db.ExecSql(sql);
 
                                     //如果货物已派件
@@ -515,7 +543,7 @@ namespace teteReview
                                         result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.logistics.trace.search", session, param);
                                         reg = new Regex(@"<status_time>([^<]*)</status_time></transit_step_info></trace_list></logistics_trace_search_response>", RegexOptions.IgnoreCase);
                                         match = reg.Matches(result);
-                                        //textBox2.AppendText("\r\n" + result);
+                                        //textBox5.AppendText("\r\n" + result);
 
                                         //reg = new Regex(@"<delivery_end>([^<]*)</delivery_end><delivery_start>([^<]*)</delivery_start>", RegexOptions.IgnoreCase);
                                         //match = reg.Matches(result);
@@ -527,7 +555,7 @@ namespace teteReview
                                             {
                                                 //记录该订单物流状态
                                                 sql = "UPDATE TopOrder SET typ = 'self' WHERE orderid = '" + dtOrder.Rows[j]["orderid"].ToString() + "'";
-                                                textBox2.AppendText("\r\n逻辑错误哦，不到物流公司-" + sql);
+                                                textBox5.AppendText("\r\n逻辑错误哦，不到物流公司-" + sql);
                                                 db.ExecSql(sql);
                                             }
                                             continue;
@@ -536,14 +564,14 @@ namespace teteReview
                                         //如果对方还没有签收
                                         if (result.IndexOf("签收人") == -1 && result.IndexOf("正常签收录入扫描") == -1)
                                         {
-                                            textBox2.AppendText("\r\n对方还没有签收");
+                                            textBox5.AppendText("\r\n对方还没有签收");
                                             continue;
                                         }
 
                                         string delivery_end = match[0].Groups[1].ToString();
 
                                         sql = "UPDATE TopOrder SET typ = 'system', shippingstatus = '" + status + "', delivery_start = '" + delivery_end + "', delivery_end = '" + delivery_end + "', deliverymsg = '" + result + "' WHERE orderid = '" + dtOrder.Rows[j]["orderid"].ToString() + "'";
-                                        textBox2.AppendText("\r\n" + sql);
+                                        textBox5.AppendText("\r\n" + sql);
                                         db.ExecSql(sql);
 
                                         //如果获取物流状态时订单已经好评过了则不发送
@@ -551,38 +579,38 @@ namespace teteReview
                                         string reviewtime = db.GetTable(sql).Rows[0][0].ToString();
                                         if (reviewtime.Trim().Length != 0)
                                         {
-                                            textBox2.AppendText("\r\n如果获取物流状态时订单已经好评过了则不发送");
+                                            textBox5.AppendText("\r\n如果获取物流状态时订单已经好评过了则不发送");
                                             continue;
                                         }
 
                                         //如果物流状态为可发送且没发送过则发送短信，且必须为VIP版本
-                                        textBox2.AppendText("\r\n" + isdeliverymsg);
+                                        textBox5.AppendText("\r\n" + isdeliverymsg);
                                         if (isdeliverymsg != "1")
                                         {
-                                            textBox2.AppendText("\r\n" + shippingflag);
+                                            textBox5.AppendText("\r\n" + shippingflag);
                                             //判断是否开启该短信发送节点-物流到达判断
                                             if (shippingflag == "1")
                                             {
                                                 //判断是否还有短信可发
                                                 sql = "SELECT total FROM TopAutoReview WHERE nick = '" + nick + "'";
                                                 string total = db.GetTable(sql).Rows[0][0].ToString();
-                                                textBox2.AppendText("\r\n" + total);
+                                                textBox5.AppendText("\r\n" + total);
                                                 if (int.Parse(total) > 0)
                                                 {
                                                     //每张物流订单最多提示一次
                                                     sql = "SELECT COUNT(*) FROM TopMsg WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND sendto = '" + buynick + "' AND typ = 'shipping'";
                                                     //sql = "SELECT COUNT(*) FROM TopMsg WHERE sendto = '" + buynick + "' AND typ = 'shipping' AND orderid = " + dtOrder.Rows[j]["orderid"].ToString();
-                                                    textBox2.AppendText("\r\n" + sql);
+                                                    textBox5.AppendText("\r\n" + sql);
                                                     string shippingCount = db.GetTable(sql).Rows[0][0].ToString();
-                                                    textBox2.AppendText("\r\nshippingCount-" + shippingCount);
+                                                    textBox5.AppendText("\r\nshippingCount-" + shippingCount);
                                                     if (shippingCount == "0")
                                                     {
                                                         string msg = GetMsg(shippingcontent, shopname, buynick, iscoupon, isfree);
                                                         string resultmsg = SendMessage(phone, msg);
-                                                        textBox2.AppendText("\r\n" + nick);
-                                                        textBox2.AppendText("\r\n" + msg);
-                                                        textBox2.AppendText("\r\n" + resultmsg);
-                                                        textBox2.AppendText("\r\n\r\n");
+                                                        textBox5.AppendText("\r\n" + nick);
+                                                        textBox5.AppendText("\r\n" + msg);
+                                                        textBox5.AppendText("\r\n" + resultmsg);
+                                                        textBox5.AppendText("\r\n\r\n");
 
                                                         //如果内容超过70个字则算2条
                                                         string number = "1";
@@ -662,12 +690,12 @@ namespace teteReview
                                             //                    " '" + content + "', " +
                                             //                    " 'message' " +
                                             //                ") ";
-                                            ////textBox2.AppendText("\r\n" + sql);
+                                            ////textBox5.AppendText("\r\n" + sql);
                                             //db.ExecSql(sql);
 
                                             ////增加该物流信息的发送次数
                                             //sql = "UPDATE TopOrder SET sendcount = sendcount + 1 WHERE orderid = " + dtOrder.Rows[j]["orderid"].ToString();
-                                            ////textBox2.AppendText("\r\n" + sql);
+                                            ////textBox5.AppendText("\r\n" + sql);
                                             //db.ExecSql(sql);
                                         }
                                     }
@@ -675,23 +703,36 @@ namespace teteReview
                             }
 
                         }
-                        //textBox2.AppendText("\r\n\r\n**********************************************************");debugResult
+                        //textBox5.AppendText("\r\n\r\n**********************************************************");debugResult
                     }
                 }
                 catch(Exception e)
                 {
                     System.Diagnostics.StackTrace st = new System.Diagnostics.StackTrace(e, true);
 
-                    textBox2.AppendText("\r\n\r\n" + debugOrder + "\r\n" + debugSql + "\r\n" + debugResult + "\r\n" + e.Message + "\r\n" + e.InnerException + "\r\n" + e.Source + "\r\n" + e.StackTrace + "\r\n************************************************");
+                    textBox5.AppendText("\r\n\r\n" + debugOrder + "\r\n" + debugSql + "\r\n" + debugResult + "\r\n" + e.Message + "\r\n" + e.InnerException + "\r\n" + e.Source + "\r\n" + e.StackTrace + "\r\n************************************************");
                     continue;
                 }
             }
 
             //每半个小时检查一次
-            Thread.Sleep(100000);
+            Thread.Sleep(600000);
 
-            Thread newThread = new Thread(CheckOrder);
-            newThread.Start();
+            if (typ == "1")
+            {
+                Thread newThread = new Thread(CheckOrder_1);
+                newThread.Start();
+            }
+            if (typ == "2")
+            {
+                Thread newThread = new Thread(CheckOrder_2);
+                newThread.Start();
+            }
+            if (typ == "3")
+            {
+                Thread newThread = new Thread(CheckOrder_3);
+                newThread.Start();
+            }
         }
 
 
@@ -869,7 +910,7 @@ namespace teteReview
                                 if (isCouponOver == "1")
                                 {
                                     textBox3.AppendText("\r\n该优惠券【" + couponid + "】已经过期"); ;
-                                    continue;
+                                    break;
                                 }
 
                                 //测试用
@@ -1055,10 +1096,10 @@ namespace teteReview
                                 }
 
                                 //判断是否还有短信可发
-                                //textBox2.AppendText("\r\n" + sql);
+                                //textBox5.AppendText("\r\n" + sql);
                                 sql = "SELECT total FROM TopAutoReview WHERE nick = '" + nick + "'";
                                 string total = db.GetTable(sql).Rows[0][0].ToString();
-                                //textBox2.AppendText("\r\n" + total);
+                                //textBox5.AppendText("\r\n" + total);
                                 if (int.Parse(total) > 0)
                                 {
                                     //每张物流订单最多提示一次
@@ -1396,7 +1437,6 @@ namespace teteReview
             return Regex.Replace(result, @"[\x00-\x08\x0b-\x0c\x0e-\x1f]", "");
         }
         #endregion
-
-
+      
     }
 }
