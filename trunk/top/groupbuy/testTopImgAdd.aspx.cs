@@ -145,18 +145,19 @@ public partial class top_groupbuy_testTopImgAdd : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
 
-
-
         string imgs = Request.Form["img1"].ToString();
         //string imgs2 = Request.Form["img2"].ToString();
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
         string session = cookie.getCookie("top_sessiongroupbuy");
-
+        string sql = string.Empty;
+        Dictionary<string, string> di = new Dictionary<string, string>();
         for (int i = 0; i < imgs.Split(',').Length; i++)
         {
-            FileStream stream = new FileStream("D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/images/" + imgs.Split(',')[i].ToString(), FileMode.Open);
+            sql = "SELECT * FROM TopTaobaoShopImg WHERE nick='" + taobaoNick + "' AND name='" + imgs.Split(',')[i].ToString() + "'";
 
+            di.Add(imgs.Split(',')[i].ToString(), "");
+            FileStream stream = new FileStream("D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/images/" + imgs.Split(',')[i].ToString(), FileMode.Open);
             byte[] bytes = new byte[stream.Length];
 
             stream.Read(bytes, 0, int.Parse(stream.Length.ToString()));
@@ -165,40 +166,35 @@ public partial class top_groupbuy_testTopImgAdd : System.Web.UI.Page
 
             string appkey = "12287381";
             string secret = "d3486dac8198ef01000e7bd4504601a4";
-            //IDictionary<string, string> param = new Dictionary<string, string>();
-            //param = new Dictionary<string, string>();
-            //param.Add("picture_category_id", "0");
-            //param.Add("img", bytes.ToString());
-            //param.Add("image_input_title", imgs.Split(',')[i].ToString());
-            //param.Add("title", "aa");
-            //string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.picture.upload", session, param);
-            //Response.Write(result);
 
             TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12287381", "d3486dac8198ef01000e7bd4504601a4");
 
             PictureUploadRequest req = new PictureUploadRequest();
             req.PictureCategoryId = 0L;
-            req.ImageInputTitle = "123456";
-            req.Title = "555555";
+            req.ImageInputTitle = imgs.Split(',')[i].ToString();
+            req.Title = imgs.Split(',')[i].ToString();
             req.Img = new Taobao.Top.Api.Util.FileItem(imgs.Split(',')[i].ToString(), bytes);
             client.PictureUpload(req, session);
             PictureGetRequest pc=new PictureGetRequest();
-            
-            pc.Title="555555";
+
+            pc.Title = imgs.Split(',')[i].ToString();
             pc.PictureCategoryId=0L;
 
             Taobao.Top.Api.Domain.PageList<Taobao.Top.Api.Domain.Picture> li=client.PictureGet(pc, session);
 
-
             for (int j = 0; j < li.Content.Count; j++)
             {
-                Response.Write(li.Content[j].PicturePath);
+                sql = "INSERT INTO TopTaobaoShopImg ([nick],[imgSrc] ,[name]) VALUES ('" + taobaoNick + "','" + li.Content[j].PicturePath + "','" + imgs.Split(',')[i].ToString() + "')";
+                
             }
 
         }
 
-
-
-
     }
 }
+  
+
+      
+
+  
+ 
