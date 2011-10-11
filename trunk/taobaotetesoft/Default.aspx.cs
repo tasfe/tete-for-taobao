@@ -12,13 +12,16 @@ using System.Data;
 public partial class _Default : System.Web.UI.Page
 {
     public string taobaoCookie = string.Empty;
+    public string count = string.Empty;
     public string loginTaobaoCookieStr = string.Empty;
     public string loginTelCookieStr = string.Empty;
     public string taobaoUrl = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        string sql = "SELECT COUNT(*) FROM TopMicroBlogAccount WHERE typ = 'qq'";
+        string truecount = utils.ExecuteString(sql);
+        count = (int.Parse(truecount) + 30000).ToString();
     }
 
     protected void Button1_Click(object sender, EventArgs e)
@@ -63,7 +66,8 @@ public partial class _Default : System.Web.UI.Page
         taobaoCookie += getKeyData(@"v=([^;]*);", loginCookieStr);
         taobaoCookie += getKeyData(@"_lang=([^;]*);", loginCookieStr);
         taobaoCookie += getKeyData(@"x=([^;]*);", loginCookieStr);
-        taobaoCookie += getKeyData(@"publishItemObj=([^;]*);", loginCookieStr);  
+        taobaoCookie += getKeyData(@"publishItemObj=([^;]*);", loginCookieStr);
+  
  
         Response.Write("登录成功，您的验证COOKIE是" + taobaoCookie);
 
