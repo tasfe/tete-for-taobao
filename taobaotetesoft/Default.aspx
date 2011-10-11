@@ -27,7 +27,7 @@ left: 40%;
 
     <div class="b2" id="area1" runat="server">
 				<strong>特特营销推广 V1.0 【腾讯微博互粉系统】</strong>
-				<table width="240" cellspacing="0" cellpadding="4" border="0">
+				<table width="280" cellspacing="0" cellpadding="4" border="0">
 				<tbody><tr><td align="left" style="color: red;" colspan="2" id="errortd"></td></tr>
                         <!--<tr> 
 				                <td width="50" class="f14">帐　号:</td>
@@ -45,7 +45,7 @@ left: 40%;
                      
                      <tr> 
 							<td>
-                                这是一款免费有效的帮您增加粉丝数量的软件，目前已经有<%=count %>使用该软件...
+                                这是一款免费有效的帮您增加粉丝数量的软件，目前已经有<%=count %>人正在使用该软件...
                             </td>
 					 </tr>
                      <tr> 
