@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>淘营销 V1.0 【淘宝卖家会员数据导出系统】</title>
+    <title>特特营销推广 V1.0 【腾讯微博互粉系统】</title>
     <style>
         .b2 {
             background:none repeat scroll 0 0 #F9F9F9;
@@ -26,15 +26,10 @@ left: 40%;
     <input type="hidden" id="paramHidden" name="paramHidden" runat="server" />
 
     <div class="b2" id="area1" runat="server">
-				<strong>淘营销 V1.0 【淘宝卖家会员数据导出系统】</strong>
+				<strong>特特营销推广 V1.0 【腾讯微博互粉系统】</strong>
 				<table width="240" cellspacing="0" cellpadding="4" border="0">
 				<tbody><tr><td align="left" style="color: red;" colspan="2" id="errortd"></td></tr>
-				        <tr> 
-				                <td width="50" class="f14" colspan="2">
-                                    请输入您的淘宝帐号密码
-                                </td>
-				        </tr>
-                        <tr> 
+                        <!--<tr> 
 				                <td width="50" class="f14">帐　号:</td>
 				                <td width="156"><input type="text" class="ip" title="用户名/验证邮箱" value="" id="Text1" name="uid"></td>
 				        </tr>
@@ -46,6 +41,17 @@ left: 40%;
 							<td>&nbsp;</td>
 							<td> 
                                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text=" 登录 " /></td>
+					 </tr>-->
+                     
+                     <tr> 
+							<td>
+                                这是一款免费有效的帮您增加粉丝数量的软件..
+                            </td>
+					 </tr>
+                     <tr> 
+							<td>
+                                <input type="button" value="立即使用" onclick="" />
+                            </td>
 					 </tr>
 				
 				</tbody></table>
