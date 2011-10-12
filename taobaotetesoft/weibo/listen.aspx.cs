@@ -32,13 +32,13 @@ public partial class weibo_listen : System.Web.UI.Page
         string sql = string.Empty;
 
         //每小时最多一键收听一次
-        sql = "SELECT COUNT(*) FROM TopMircoBlogNumLog WHERE typ = 'onekey' AND uid = '" + uid + "' AND  DATEDIFF(s, adddate, GETDATE() ) < 3600";
+        sql = "SELECT COUNT(*) FROM TopMicroBlogAccount WHERE typ = 'onekey' AND uid = '" + uid + "' AND  DATEDIFF(s, adddate, GETDATE() ) < 3600";
         string count = utils.ExecuteString(sql);
 
         if (count == "0")
         {
             //一键收听，取得自己没有收听过的20个随机账户
-            sql = "SELECT TOP 20 uid FROM TopMircoBlogAccount WHERE typ = 'qq' AND uid NOT IN (SELECT listen FROM TopMicroBlogListen WHERE uid = '" + uid + "') ORDER BY NEWID()";
+            sql = "SELECT TOP 20 uid FROM TopMicroBlogAccount WHERE typ = 'qq' AND uid NOT IN (SELECT listen FROM TopMicroBlogListen WHERE uid = '" + uid + "') ORDER BY NEWID()";
             DataTable dt = utils.ExecuteDataTable(sql);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -50,7 +50,7 @@ public partial class weibo_listen : System.Web.UI.Page
             utils.ExecuteNonQuery(sql);
 
             //增加积分
-            sql = "UPDATE TopMircoBlogAccount SET score = score + 20 WHERE uid = '" + uid + "'";
+            sql = "UPDATE TopMicroBlogAccount SET score = score + 20 WHERE uid = '" + uid + "'";
             utils.ExecuteNonQuery(sql);
 
             //输出提示
