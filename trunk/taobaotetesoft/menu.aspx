@@ -121,7 +121,7 @@ width:940px;
 <body>
     <form id="form1" runat="server">
     <div class="head">
-  <h1><strong>淘营销 V1.0</strong></h1>
+  <h1><strong>特特营销推广 V1.0</strong></h1>
   <h2><a href="#"><%=nick %>的个人中心</a>，<a href="logout.aspx">退出</a></h2>
 </div>
 
@@ -130,14 +130,13 @@ width:940px;
               <div class="inner">
                 <div class="inner-content">
                   <div style="" class="user-service-used">
-                    <h4>用户资料营销</h4>
+                    <h4>微博营销</h4>
                     <ul id="useddiv" class="pro-list">
                     
-                    <li class="rightC"><a href="User/getUserList.aspx" target="actWindow">客户资料导出</a></li>
-                    <li class="rightC"><a href="User/getUserInfo.aspx" target="actWindow">测试客户资料导出</a></li>
-                    <li class="rightC"><a href="User/getUserList.aspx" target="actWindow">历史数据查看</a></li>
-                    <li class="rightC"><a href="User/MobileSend.aspx" target="actWindow">短信群发</a></li>
-                    <li class="rightC"><a href="#" target="_blank">购买此软件</a></li>
+                    <li class="rightC"><a href="weibo/listen.aspx" target="actWindow">一键收听</a></li>
+                    <li class="rightC"><a href="weibo/hand.aspx" target="actWindow">手动收听</a></li>
+                    <li class="rightC"><a href="weibo/tuijian.aspx" target="actWindow">微博推荐</a></li>
+                    <li class="rightC"><a href="weibo/log.aspx" target="actWindow">积分日志</a></li>
 
                   </div>
                 </div>
@@ -147,7 +146,7 @@ width:940px;
             <div class="r-container" style="width:704px; ">
             <div class="inner">
                 <div class="inner-content" style="height:480px">
-                    <iframe name="actWindow" src="User/getUserList.aspx" width="680" height="470" frameborder="0"></iframe>
+                    <iframe name="actWindow" src="weibo/info.aspx" width="680" height="470" frameborder="0"></iframe>
             </div></div>
             </div>
 </div>
