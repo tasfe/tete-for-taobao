@@ -55,6 +55,16 @@ public partial class record : System.Web.UI.Page
             //写入数据库
             sql = "INSERT INTO TopMicroBlogAccount (nick, uid, typ, tokenKey, tokenSecrect) VALUES ('" + nick + "', '" + weiboName + "', 'qq', '" + tokenKey + "', '" + tokenSecret + "')";
             utils.ExecuteNonQuery(sql);
+
+            //赠送积分
+
+            //记录操作日志
+            sql = "INSERT INTO TopMicroBlogNumLog (uid, typ, num) VALUES ('" + weiboName + "', 'reg', 100)";
+            utils.ExecuteNonQuery(sql);
+
+            //增加积分
+            sql = "UPDATE TopMicroBlogAccount SET score = score + 100 WHERE uid = '" + weiboName + "'";
+            utils.ExecuteNonQuery(sql);
         }
 
         cookie.setCookie("uid", weiboName, 999999);
