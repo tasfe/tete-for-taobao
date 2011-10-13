@@ -26,7 +26,7 @@ public partial class weibo_js_userscore : System.Web.UI.Page
         tokenSecret = cookie.getCookie("tokenSecret");
         uid = cookie.getCookie("uid");
 
-        string score = utils.ExecuteString("SELECT score FROM TopMicroBlogAccoount WHERE uid = '" + uid + "'");
+        string score = utils.ExecuteString("SELECT score FROM TopMicroBlogAccount WHERE uid = '" + uid + "'");
         Response.Write("document.write('您目前的剩余积分是【"+score+"】');");
     }
 }
