@@ -15,8 +15,8 @@ line-height:22px;
 padding:10px;
 width:300px;
 position: absolute; /*绝对定位*/ 
-top: 30%; /* 距顶部50%*/ 
-left: 40%; 
+top: 10%; /* 距顶部50%*/ 
+left: 20%; 
             }
     </style>
 </head>
