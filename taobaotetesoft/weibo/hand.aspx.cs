@@ -18,6 +18,7 @@ public partial class weibo_hand : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        string sql = string.Empty;
         appKey = "d3225497956249cbb13a7cb7375d62bd";
         appSecret = "6cf7a3274cb676328e77dff3e203061d";
 
@@ -31,12 +32,19 @@ public partial class weibo_hand : System.Web.UI.Page
         if (act == "listen")
         {
             listen(listento);
+
+            //记录操作日志
+            sql = "INSERT INTO TopMicroBlogNumLog (uid, typ, num) VALUES ('" + uid + "', 'add', 1)";
+            utils.ExecuteNonQuery(sql);
+
+            //减少积分
+            sql = "UPDATE TopMicroBlogAccount SET score = score + 1 WHERE uid = '" + uid + "'";
+            utils.ExecuteNonQuery(sql);
+
             Response.Redirect("hand.aspx");
             return;
         }
            
-        string sql = string.Empty;
-
         //每小时最多一键收听一次
         sql = "SELECT TOP 10 uid FROM TopMicroBlogAccount WHERE typ = 'qq' AND score > 0 AND uid <> '' AND uid NOT IN (SELECT listen FROM TopMicroBlogListen WHERE uid = '" + uid + "') ORDER BY NEWID()";
 
