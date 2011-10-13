@@ -68,7 +68,9 @@ z-index:99;
             <h3>一键收听</h3>
             <a href="info.aspx" id="pa:goCenter">个人中心首页&gt;&gt;</a>
           </div>
-
+          
+          <div>一键收听会给您增加20个积分..</div>
+          <br />
           <span><%=str %></span>
     </form>
     
