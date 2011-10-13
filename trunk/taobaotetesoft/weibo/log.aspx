@@ -69,16 +69,18 @@ z-index:99;
             <a href="info.aspx" id="pa:goCenter">个人中心首页&gt;&gt;</a>
           </div>
 
-          <table width="700" cellpadding="0" cellspacing="0">
+          <table width="600" cellpadding="0" cellspacing="0">
         <tr>
                 <td width="120"><b>内容</b></td>
+                <td width="60"><b>积分 </b></td>
                 <td width="60"><b>时间 </b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
-                <td height="40"><%#Eval("typ")%></td>
-                <td height="40"><%#Eval("adddate")%></td>
+                <td height="18"><%#Eval("typ")%></td>
+                <td ><%#Eval("num")%></td>
+                <td ><%#Eval("adddate")%></td>
             </tr>
             </ItemTemplate>
         </asp:Repeater>
