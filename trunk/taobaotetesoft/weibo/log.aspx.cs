@@ -58,6 +58,30 @@ public partial class weibo_log : System.Web.UI.Page
     }
 
 
+    /// <summary>
+    /// 短信类型
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    public static string message(string str, string detail)
+    {
+        string newstr = string.Empty;
+        if (str == "onekey")
+        {
+            newstr = "一键收听别人20个微博";
+        }
+        else if (str == "add")
+        {
+            newstr = "收听【" + detail + "】的微博";
+        }
+        else if (str == "deduct")
+        {
+            newstr = "被【" + detail + "】收听您的微博";
+        }
+        return newstr;
+    }
+
+
     private string InitPageStr(int total, string url)
     {
         //分页数据初始化

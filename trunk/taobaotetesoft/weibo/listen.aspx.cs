@@ -85,9 +85,9 @@ public partial class weibo_listen : System.Web.UI.Page
         //记录日志
         string sql = "INSERT INTO TopMicroBlogListen (uid, listen) VALUES ('" + uid + "', '" + listento + "')";
         utils.ExecuteNonQuery(sql);
-
+        
         //记录操作日志
-        sql = "INSERT INTO TopMicroBlogNumLog (uid, typ, num) VALUES ('" + listento + "', 'deduct', -1)";
+        sql = "INSERT INTO TopMicroBlogNumLog (uid, typ, num, bak) VALUES ('" + listento + "', 'deduct', -1, '" + uid + "')";
         utils.ExecuteNonQuery(sql);
 
         //减少积分

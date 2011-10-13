@@ -79,7 +79,7 @@ z-index:99;
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
-                <td height="18"><%#Eval("typ")%></td>
+                <td height="18"><%#message(Eval("typ").ToString(), Eval("bak").ToString())%></td>
                 <td ><%#Eval("num")%></td>
                 <td ><%#Eval("adddate")%></td>
             </tr>

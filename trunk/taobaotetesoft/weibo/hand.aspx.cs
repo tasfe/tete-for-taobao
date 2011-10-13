@@ -34,7 +34,7 @@ public partial class weibo_hand : System.Web.UI.Page
             listen(listento);
 
             //记录操作日志
-            sql = "INSERT INTO TopMicroBlogNumLog (uid, typ, num) VALUES ('" + uid + "', 'add', 1)";
+            sql = "INSERT INTO TopMicroBlogNumLog (uid, typ, num, bak) VALUES ('" + uid + "', 'add', 1, '" + listento + "')";
             utils.ExecuteNonQuery(sql);
 
             //减少积分
@@ -77,7 +77,7 @@ public partial class weibo_hand : System.Web.UI.Page
         utils.ExecuteNonQuery(sql);
 
         //记录操作日志
-        sql = "INSERT INTO TopMicroBlogNumLog (uid, typ, num) VALUES ('" + listento + "', 'deduct', -1)";
+        sql = "INSERT INTO TopMicroBlogNumLog (uid, typ, num, bak) VALUES ('" + listento + "', 'deduct', -1, '" + uid + "')";
         utils.ExecuteNonQuery(sql);
 
         //减少积分
