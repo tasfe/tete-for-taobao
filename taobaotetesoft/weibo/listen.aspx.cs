@@ -103,6 +103,6 @@ public partial class weibo_listen : System.Web.UI.Page
         byte[] temp1 = Encoding.Convert(utf8, defaultChars, temp);
         string result = defaultChars.GetString(temp1);
 
-        Response.Write(result);
+        //Response.Write(result);
     }
 }

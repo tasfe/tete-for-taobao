@@ -68,8 +68,26 @@ z-index:99;
             <h3>手动收听</h3>
             <a href="info.aspx" id="pa:goCenter">个人中心首页&gt;&gt;</a>
           </div>
+          <div>每收听一个客户会给您增加1个积分..</div>
+          <br />
+          <table width="700" cellpadding="0" cellspacing="0">
+        <tr>
+                <td width="120"><b>用户名称</b></td>
+                <td width="60"><b>操作 </b></td>
+            </tr>
+        <asp:Repeater ID="rptArticle" runat="server">
+            <ItemTemplate>
+            <tr>
+                <td height="40"><%#Eval("uid")%></td>
+                <td>
+                    <a href='?listento=<%#Eval("uid")%>&act=listen'>收听</a>
+                    <a href='http://t.qq.com/<%#Eval("uid")%>' target="_blank">查看</a>
+                </td>
+            </tr>
+            </ItemTemplate>
+        </asp:Repeater>
+    </table>
 
-          这里显示可以收听的列表
     </form>
     
 </body>
