@@ -71,6 +71,15 @@ z-index:99;
             <script src="js_userscore.aspx" type="text/javascript"></script>
             <br />
             <br />
+            您可以使用以下功能：
+            <br />
+            <a href="weibo/listen.aspx">一键收听</a>
+            <br />
+            <a href="weibo/hand.aspx">手动收听</a>
+            <br />
+            <a href="weibo/tuijian.aspx">微博推荐</a>
+            <br />
+            <a href="weibo/log.aspx">积分日志</a>
             
     </form>
     
