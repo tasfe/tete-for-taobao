@@ -82,6 +82,10 @@ public partial class weibo_log : System.Web.UI.Page
         {
             newstr = "微博推荐特特互粉软件";
         }
+        else if (str == "reg")
+        {
+            newstr = "注册新用户赠送积分";
+        }
         return newstr;
     }
 

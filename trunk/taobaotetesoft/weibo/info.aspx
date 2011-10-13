@@ -67,8 +67,11 @@ z-index:99;
         <div class="c-title">
             <h3>个人中心</h3>
           </div>
-
-          我的概述
+          
+            <script src="js_userscore.aspx" type="text/javascript"></script>
+            <br />
+            <br />
+            
     </form>
     
 </body>
