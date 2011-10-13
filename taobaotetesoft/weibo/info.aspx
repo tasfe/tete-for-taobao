@@ -73,14 +73,19 @@ z-index:99;
             <br />
             您可以使用以下功能：
             <br />
-            <a href="weibo/listen.aspx">一键收听</a>
+            <a href="listen.aspx">一键收听</a>
             <br />
-            <a href="weibo/hand.aspx">手动收听</a>
+            <a href="hand.aspx">手动收听</a>
             <br />
-            <a href="weibo/tuijian.aspx">微博推荐</a>
+            <a href="tuijian.aspx">微博推荐</a>
             <br />
-            <a href="weibo/log.aspx">积分日志</a>
+            <a href="log.aspx">积分日志</a>
             
+            <br />
+            <br />
+            积分是您增加粉丝的能量，1点积分可以增加1个粉丝<br />
+            只要您使用上面的几个功能不断增加积分，您的粉丝数也会不断增加，如果积分是0那您的粉丝数就不会增加了<br />
+            PS：您的粉丝数会慢慢增加，因为一次增加过多会给您带来隐患，大家懂的.. (^.^)
     </form>
     
 </body>
