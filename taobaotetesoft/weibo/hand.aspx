@@ -70,7 +70,7 @@ z-index:99;
           </div>
           <div>每收听一个客户会给您增加1个积分..</div>
           <br />
-          <table width="700" cellpadding="0" cellspacing="0">
+          <table width="600" cellpadding="0" cellspacing="0">
         <tr>
                 <td width="120"><b>用户名称</b></td>
                 <td width="60"><b>操作 </b></td>
@@ -78,7 +78,7 @@ z-index:99;
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
-                <td height="40"><%#Eval("uid")%></td>
+                <td height="18"><%#Eval("uid")%></td>
                 <td>
                     <a href='?listento=<%#Eval("uid")%>&act=listen'>收听</a>
                     <a href='http://t.qq.com/<%#Eval("uid")%>' target="_blank">查看</a>
