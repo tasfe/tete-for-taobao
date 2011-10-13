@@ -78,6 +78,10 @@ public partial class weibo_log : System.Web.UI.Page
         {
             newstr = "被【" + detail + "】收听您的微博";
         }
+        else if (str == "send")
+        {
+            newstr = "微博推荐特特互粉软件";
+        }
         return newstr;
     }
 

@@ -69,8 +69,10 @@ z-index:99;
             <script src="js_userscore.aspx" type="text/javascript"></script>
             <a href="info.aspx" id="pa:goCenter">个人中心首页&gt;&gt;</a>
           </div>
-
-          推荐成功，+10积分！
+          
+          <div>微博推荐会给您增加10个积分..</div>
+          <br />
+          <span><%=str %></span>
     </form>
     
 </body>
