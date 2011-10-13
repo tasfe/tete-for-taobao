@@ -69,7 +69,24 @@ z-index:99;
             <a href="info.aspx" id="pa:goCenter">个人中心首页&gt;&gt;</a>
           </div>
 
-          显示积分列表
+          <table width="700" cellpadding="0" cellspacing="0">
+        <tr>
+                <td width="120"><b>内容</b></td>
+                <td width="60"><b>时间 </b></td>
+            </tr>
+        <asp:Repeater ID="rptArticle" runat="server">
+            <ItemTemplate>
+            <tr>
+                <td height="40"><%#Eval("typ")%></td>
+                <td height="40"><%#Eval("adddate")%></td>
+            </tr>
+            </ItemTemplate>
+        </asp:Repeater>
+    </table>
+    
+    <div>
+        <asp:Label ID="lbPage" runat="server"></asp:Label>
+    </div>
     </form>
     
 </body>
