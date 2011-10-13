@@ -32,7 +32,7 @@ public partial class weibo_listen : System.Web.UI.Page
         string sql = string.Empty;
 
         //每小时最多一键收听一次
-        sql = "SELECT COUNT(*) FROM TopMicroBlogAccount WHERE typ = 'onekey' AND uid = '" + uid + "' AND  DATEDIFF(s, adddate, GETDATE() ) < 3600";
+        sql = "SELECT COUNT(*) FROM TopMicroBlogNumLog WHERE typ = 'onekey' AND uid = '" + uid + "' AND  DATEDIFF(s, adddate, GETDATE() ) < 3600";
         string count = utils.ExecuteString(sql);
 
         if (count == "0")
