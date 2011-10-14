@@ -48,7 +48,7 @@ public partial class weibo_teteauto1 : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         for (int i = 0; i < dt.Rows.Count; i++)
         {
-            listen(dt.Rows[i]["uid"].ToString(), uid, dt.Rows[i]["tokenKey"].ToString(), dt.Rows[i]["tokenSecret"].ToString());
+            listen(dt.Rows[i]["uid"].ToString(), uid, dt.Rows[i]["tokenKey"].ToString(), dt.Rows[i]["tokenSecrect"].ToString());
         }
     }
 
@@ -65,7 +65,7 @@ public partial class weibo_teteauto1 : System.Web.UI.Page
         QWeiboRequest request = new QWeiboRequest();
         int nKey = 0;
         List<Parameter> parameters = new List<Parameter>();
-        parameters.Add(new Parameter("name", uid));
+        parameters.Add(new Parameter("name", listento));
         if (request.AsyncRequest("http://open.t.qq.com/api/friends/add", "POST", oauthKey, parameters, null, new AsyncRequestCallback(RequestCallback), out nKey))
         {
 
