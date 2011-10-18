@@ -41,7 +41,7 @@ public partial class weibo_log : System.Web.UI.Page
         {
             pageNow = int.Parse(page);
         }
-        int pageCount = 10;
+        int pageCount = 18;
         int dataCount = (pageNow - 1) * pageCount;
 
         string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY id DESC) AS rownumber FROM TopMicroBlogNumLog WHERE uid = '" + uid + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY id DESC";
@@ -94,7 +94,7 @@ public partial class weibo_log : System.Web.UI.Page
     {
         //分页数据初始化
         string str = string.Empty;
-        int pageCount = 10;
+        int pageCount = 18;
         int pageSize = 0;
         int pageNow = 1;
         string page = utils.NewRequest("page", utils.RequestType.QueryString);
