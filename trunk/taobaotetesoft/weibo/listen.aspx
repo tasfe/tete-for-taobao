@@ -65,8 +65,8 @@ z-index:99;
 <body>
     <form id="form1" runat="server">
         <div class="c-title">
-            <h3>一键收听</h3>
-            <script src="js_userscore.aspx" type="text/javascript"></script>
+            <h3>一键收听
+            <script src="js_userscore.aspx" type="text/javascript"></script></h3>
             <a href="info.aspx" id="pa:goCenter">个人中心首页&gt;&gt;</a>
           </div>
           

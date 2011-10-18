@@ -65,10 +65,10 @@ z-index:99;
 <body>
     <form id="form1" runat="server">
         <div class="c-title">
-            <h3>个人中心</h3>
+            <h3>个人中心    
+            <script src="js_userscore.aspx" type="text/javascript"></script></h3>
           </div>
-          
-            <script src="js_userscore.aspx" type="text/javascript"></script>
+     
             <br />
             <br />
             您可以使用以下功能：
