@@ -25,15 +25,6 @@ public partial class _Default : System.Web.UI.Page
         string sql = "SELECT COUNT(*) FROM TopMicroBlogAccount WHERE typ = 'qq'";
         string truecount = utils.ExecuteString(sql);
         count = (int.Parse(truecount)).ToString();
-
-        //跳转到授权页面
-        if (GetRequestToken(appKey, appSecret) != false)
-        {
-            Session["tokenSecret"] = tokenSecret;
-            string url = "http://open.t.qq.com/cgi-bin/authorize?oauth_token=" + tokenKey;
-            Response.Redirect(url);
-            return;
-        }
     }
 
 
