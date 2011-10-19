@@ -14,7 +14,7 @@ public partial class weibo_info : System.Web.UI.Page
         Common.Cookie cookie = new Common.Cookie();
         string uid = cookie.getCookie("uid");
 
-        string sql = "SELECT COUNT(*) FROM listen = '" + uid + "' AND DATEDIFF(d, adddate, GETDATE() ) = 0";
+        string sql = "SELECT COUNT(*) FROM TopMicroBlogListen WHERE listen = '" + uid + "' AND DATEDIFF(d, adddate, GETDATE() ) = 0";
         string count = utils.ExecuteString(sql);
 
 
