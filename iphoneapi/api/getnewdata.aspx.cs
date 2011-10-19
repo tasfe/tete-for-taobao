@@ -59,11 +59,16 @@ public partial class api_getnewdata : System.Web.UI.Page
                 utils.ExecuteNonQuery(sql);
             }
 
+
+            //清除之前的老商品数据
+            sql = "DELETE FROM TeteShopItem WHERE nick = '" + uid + "'";
+            utils.ExecuteNonQuery(sql);
+
             //同步商品数据
             for (int j = 1; j <= 500; j++)
             {
                 ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
-                request.Fields = "num_iid,title,price,pic_url,cid";
+                request.Fields = "num_iid,title,price,pic_url,seller_cids";
                 request.PageSize = 200;
                 request.PageNo = j;
 
@@ -79,7 +84,7 @@ public partial class api_getnewdata : System.Web.UI.Page
                                 "price, " +
                                 "nick " +
                             " ) VALUES ( " +
-                                " '" + product.Content[i].Cid + "', " +
+                                " '" + product.Content[i].SellerCids + "', " +
                                 " '" + product.Content[i].NumIid + "', " +
                                 " '" + product.Content[i].Title + "', " +
                                 " '" + product.Content[i].PicUrl + "', " +
@@ -91,7 +96,7 @@ public partial class api_getnewdata : System.Web.UI.Page
                     utils.ExecuteNonQuery(sql);
 
                     //更新分类数量
-                    sql = "UPDATE TeteShopCategory SET catecount = catecount + 1 WHERE nick = '" + uid + "' AND cateid = " + product.Content[i].Cid + "";
+                    sql = "UPDATE TeteShopCategory SET catecount = catecount + 1 WHERE nick = '" + uid + "' AND cateid = " + product.Content[i].SellerCids + "";
                     utils.ExecuteNonQuery(sql);
                 }
                 if (product.Content.Count < 200)
