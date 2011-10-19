@@ -63,7 +63,7 @@ public partial class api_getnewdata : System.Web.UI.Page
             for (int j = 1; j <= 500; j++)
             {
                 ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
-                request.Fields = "num_iid,title,price,pic_url";
+                request.Fields = "num_iid,title,price,pic_url,cid";
                 request.PageSize = 200;
                 request.PageNo = j;
 
@@ -91,7 +91,7 @@ public partial class api_getnewdata : System.Web.UI.Page
                     utils.ExecuteNonQuery(sql);
 
                     //更新分类数量
-                    sql = "UPDATE TeteShopCategory SET count = count = 1 WHERE nick = '" + uid + "' AND cateid = " + product.Content[i].Cid + "";
+                    sql = "UPDATE TeteShopCategory SET catecount = catecount + 1 WHERE nick = '" + uid + "' AND cateid = " + product.Content[i].Cid + "";
                     utils.ExecuteNonQuery(sql);
                 }
                 if (product.Content.Count < 200)
