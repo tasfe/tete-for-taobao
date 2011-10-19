@@ -32,8 +32,18 @@ public partial class api_getnewdata : System.Web.UI.Page
             request1.Nick = taobaonick;
             PageList<SellerCat> cat = client.SellercatsListGet(request1);
 
+            //清除之前的老分类
+            sql = "DELETE FROM TeteShopCategory WHERE nick = '" + uid + "'";
+            utils.ExecuteNonQuery(sql);
+
             for (int i = 0; i < cat.Content.Count; i++)
             {
+                //过滤其他软件增加的分类
+                if (cat.Content[i].Name.IndexOf("统计") != -1 || cat.Content[i].Name.IndexOf("多买多优惠") != -1)
+                {
+                    continue;
+                }
+
                 sql = "INSERT INTO TeteShopCategory (" +
                                 "cateid, " +
                                 "catename, " +
@@ -47,6 +57,47 @@ public partial class api_getnewdata : System.Web.UI.Page
                           ") ";
                 Response.Write(sql + "<br>");
                 utils.ExecuteNonQuery(sql);
+            }
+
+            //同步商品数据
+            for (int j = 1; j <= 500; j++)
+            {
+                ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
+                request.Fields = "num_iid,title,price,pic_url";
+                request.PageSize = 200;
+                request.PageNo = j;
+
+                PageList<Item> product = client.ItemsOnsaleGet(request, dt.Rows[0]["session"].ToString());
+                for (int i = 0; i < product.Content.Count; i++)
+                {
+                    sql = "INSERT INTO TeteShopItem (" +
+                                "cateid, " +
+                                "itemid, " +
+                                "itemname, " +
+                                "picurl, " +
+                                "linkurl, " +
+                                "price, " +
+                                "nick " +
+                            " ) VALUES ( " +
+                                " '" + product.Content[i].Cid + "', " +
+                                " '" + product.Content[i].NumIid + "', " +
+                                " '" + product.Content[i].Title + "', " +
+                                " '" + product.Content[i].PicUrl + "', " +
+                                " 'http://a.m.taobao.com/i" + product.Content[i].NumIid + ".htm', " +
+                                " '" + product.Content[i].Price + "', " +
+                                " '" + uid + "' " +
+                          ") ";
+                    Response.Write(sql + "<br>");
+                    utils.ExecuteNonQuery(sql);
+
+                    //更新分类数量
+                    sql = "UPDATE TeteShopCategory SET count = count = 1 WHERE nick = '" + uid + "' AND cateid = " + product.Content[i].Cid + "";
+                    utils.ExecuteNonQuery(sql);
+                }
+                if (product.Content.Count < 200)
+                {
+                    break;
+                }
             }
         }
     }
