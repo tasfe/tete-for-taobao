@@ -24,7 +24,7 @@ public partial class weibo_teteauto1 : System.Web.UI.Page
         string sql = string.Empty;
 
         //每小时最多一键收听一次
-        sql = "SELECT uid FROM TopMicroBlogAccount WHERE typ = 'qq' AND score > 0 AND uid <> '' AND id > 672";
+        sql = "SELECT uid FROM TopMicroBlogAccount WHERE typ = 'qq' AND score > 20 AND uid <> '' AND id > 672";
         DataTable dt = utils.ExecuteDataTable(sql);
         for (int i = 0; i < dt.Rows.Count; i++)
         {

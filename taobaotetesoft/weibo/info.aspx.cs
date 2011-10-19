@@ -3,11 +3,21 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Common;
 
 public partial class weibo_info : System.Web.UI.Page
 {
+    public string str = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        Common.Cookie cookie = new Common.Cookie();
+        string uid = cookie.getCookie("uid");
 
+        string sql = "SELECT COUNT(*) FROM listen = '" + uid + "' AND DATEDIFF(d, adddate, GETDATE() ) = 0";
+        string count = utils.ExecuteString(sql);
+
+
+        string str = "今天特特共帮您增加了【" + count + "】个粉丝";
     }
 }

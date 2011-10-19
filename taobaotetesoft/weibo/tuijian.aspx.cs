@@ -34,7 +34,7 @@ public partial class weibo_tuijian : System.Web.UI.Page
 
         if (count == "0")
         {
-            string str = "#互听大队#您还在为没有粉丝烦恼吗，向您推荐一款免费迅速的增加您粉丝的软件，让您迅速拥有成千上万的粉丝..http://weibo.tetesoft.com";
+            string str = "#互听大队##互听##互听工具#您还在为没有粉丝烦恼吗，向您推荐一款免费迅速的增加您粉丝的软件，让您迅速拥有成千上万的粉丝..http://weibo.tetesoft.com";
             SendMessage(str);
 
             //记录操作日志
@@ -42,11 +42,11 @@ public partial class weibo_tuijian : System.Web.UI.Page
             utils.ExecuteNonQuery(sql);
 
             //增加积分
-            sql = "UPDATE TopMicroBlogAccount SET score = score + 10 WHERE uid = '" + uid + "'";
+            sql = "UPDATE TopMicroBlogAccount SET score = score + 5 WHERE uid = '" + uid + "'";
             utils.ExecuteNonQuery(sql);
 
             //输出提示
-            str = "收听成功，+10积分！";
+            str = "收听成功，+5积分！";
         }
         else
         {

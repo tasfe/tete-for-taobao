@@ -59,11 +59,11 @@ public partial class record : System.Web.UI.Page
             //赠送积分
 
             //记录操作日志
-            sql = "INSERT INTO TopMicroBlogNumLog (uid, typ, num) VALUES ('" + weiboName + "', 'reg', 100)";
+            sql = "INSERT INTO TopMicroBlogNumLog (uid, typ, num) VALUES ('" + weiboName + "', 'reg', 5)";
             utils.ExecuteNonQuery(sql);
 
             //增加积分
-            sql = "UPDATE TopMicroBlogAccount SET score = score + 100 WHERE uid = '" + weiboName + "'";
+            sql = "UPDATE TopMicroBlogAccount SET score = score + 5 WHERE uid = '" + weiboName + "'";
             utils.ExecuteNonQuery(sql);
         }
 
