@@ -57,6 +57,11 @@ public partial class api_Default : System.Web.UI.Page
             str = "{\"detail_response\":{";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
+                if (i != 0)
+                {
+                    str += ",";
+                }
+
                 str += "\"item\":{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
             }
             str += "}}";
@@ -81,6 +86,11 @@ public partial class api_Default : System.Web.UI.Page
             str = "{\"list_response\":{";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
+                if (i != 0)
+                {
+                    str += ",";
+                }
+
                 str += "\"item\":{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\"}";
             }
             str += "}}";
@@ -105,6 +115,11 @@ public partial class api_Default : System.Web.UI.Page
             str = "{\"cate_response\":{";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
+                if (i != 0)
+                {
+                    str += ",";
+                }
+
                 str += "\"cate\":{\"cid\":\"" + dt.Rows[i]["cateid"].ToString() + "\",\"parent_cid\":\"" + dt.Rows[i]["parentid"].ToString() + "\",\"name\":\"" + dt.Rows[i]["catename"].ToString() + "\",\"count\":\"" + dt.Rows[i]["catecount"].ToString() + "\"}";
             }
             str += "}}";
