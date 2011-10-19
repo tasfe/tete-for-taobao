@@ -105,10 +105,21 @@ public partial class record : System.Web.UI.Page
 
         QWeiboRequest request = new QWeiboRequest();
         int nKey = 0;
-        if (request.AsyncRequest("http://open.t.qq.com/api/t/add", "POST", oauthKey, parameters, files, new AsyncRequestCallback(RequestCallback), out nKey))
+        if (request.AsyncRequest("http://open.t.qq.com/api/t/add", "POST", oauthKey, parameters, files, new AsyncRequestCallback(RequestCallbackSend), out nKey))
         {
             //textOutput.Text = "请求中...";
         }
+    }
+
+    protected void RequestCallbackSend(int key, string content)
+    {
+        Encoding utf8 = Encoding.GetEncoding(65001);
+        Encoding defaultChars = Encoding.Default;
+        byte[] temp = utf8.GetBytes(content);
+        byte[] temp1 = Encoding.Convert(utf8, defaultChars, temp);
+        string result = defaultChars.GetString(temp1);
+
+        //Response.Write(result + "<br><br>");
     }
 
     protected void RequestCallback(int key, string content)
@@ -121,7 +132,7 @@ public partial class record : System.Web.UI.Page
 
         //获取微博名称
         weiboName = Regex.Match(result, @"""name"":""([^""]*)""").Groups[1].ToString();
-        //Response.Write(weiboName);
+        //Response.Write(result + "<br><br>");
     }
 
     private bool GetAccessToken(string customKey, string customSecret, string requestToken, string requestTokenSecrect, string verify)
