@@ -74,10 +74,6 @@ public partial class record : System.Web.UI.Page
         {
             string str = "#互听##互听工具#您还在为没有粉丝烦恼吗，向您推荐一款免费迅速的增加您粉丝的软件，让您迅速拥有成千上万的粉丝..http://weibo.tetesoft.com";
             SendMessage(str);
-
-            //更新登录时间和登录次数
-            sql = "UPDATE TopMicroBlogAccount SET lastlogin = GETDATE(), logintimes = logintimes + 1 WHERE uid = '" + weiboName + "'";
-            utils.ExecuteNonQuery(sql);
         }
 
     }
@@ -120,6 +116,10 @@ public partial class record : System.Web.UI.Page
         byte[] temp1 = Encoding.Convert(utf8, defaultChars, temp);
         string result = defaultChars.GetString(temp1);
 
+
+        //更新登录时间和登录次数
+        string sql = "UPDATE TopMicroBlogAccount SET lastlogin = GETDATE(), logintimes = logintimes + 1 WHERE uid = '" + weiboName + "'";
+        utils.ExecuteNonQuery(sql);
         //Response.Write(result + "<br><br>");
         Response.Redirect("menu.aspx");
     }
