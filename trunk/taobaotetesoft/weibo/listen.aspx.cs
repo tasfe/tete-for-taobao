@@ -30,6 +30,9 @@ public partial class weibo_listen : System.Web.UI.Page
         //Response.Write(tokenSecret);
 
         string sql = string.Empty;
+        string uids = string.Empty;
+
+        uids = "以下为您具体收听的微博清单：<br>";
 
         //每小时最多一键收听一次
         sql = "SELECT COUNT(*) FROM TopMicroBlogNumLog WHERE typ = 'onekey' AND uid = '" + uid + "' AND  DATEDIFF(s, adddate, GETDATE() ) < 3600";
@@ -43,6 +46,8 @@ public partial class weibo_listen : System.Web.UI.Page
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 listen(dt.Rows[i]["uid"].ToString());
+
+                uids += "<a href='http://t.qq.com/" + dt.Rows[i]["uid"].ToString() + "' target='_blank'></a><br>";
             }
 
             //记录操作日志
@@ -54,7 +59,7 @@ public partial class weibo_listen : System.Web.UI.Page
             utils.ExecuteNonQuery(sql);
 
             //输出提示
-            str = "收听成功，+20积分！";
+            str = uids + "<br>收听成功，+20积分！";
         }
         else
         {
