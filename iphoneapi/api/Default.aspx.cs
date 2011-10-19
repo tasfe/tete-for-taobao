@@ -14,6 +14,7 @@ public partial class api_Default : System.Web.UI.Page
     private string itemid = string.Empty;
     private string page = string.Empty;
     private string pagesize = string.Empty;
+    private string direct = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -25,6 +26,7 @@ public partial class api_Default : System.Web.UI.Page
             itemid = utils.NewRequest("itemid", utils.RequestType.QueryString);
             page = utils.NewRequest("page", utils.RequestType.QueryString);
             pagesize = utils.NewRequest("pagesize", utils.RequestType.QueryString);
+            direct = utils.NewRequest("direct", utils.RequestType.QueryString);
 
             switch (act)
             {
@@ -40,6 +42,9 @@ public partial class api_Default : System.Web.UI.Page
                 case "detail":
                     ShowDetailInfo();
                     break;
+                case "near":
+                    ShowNearInfo();
+                    break;
             }
         }
         catch
@@ -47,6 +52,43 @@ public partial class api_Default : System.Web.UI.Page
             string str = "{\"error_response\":\"service_error\"}";
             Response.Write(str);
         }
+    }
+
+    private void ShowNearInfo()
+    {
+        string sql = string.Empty;
+        string str = string.Empty;
+
+        if (direct == "left")
+        {
+            sql = "SELECT TOP 1 * FROM TeteShopItem WHERE nick = '" + uid + "' AND itemid < " + itemid + " AND CHARINDEX('" + cid + "', cateid) > 0 ORDER BY id DESC";
+        }
+        else
+        {
+            sql = "SELECT TOP 1 * FROM TeteShopItem WHERE nick = '" + uid + "' AND itemid > " + itemid + " AND CHARINDEX('" + cid + "', cateid) > 0 ORDER BY id ASC";
+        }
+
+        DataTable dt = utils.ExecuteDataTable(sql);
+        if (dt.Rows.Count != 0)
+        {
+            str = "{\"item\":[";
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (i != 0)
+                {
+                    str += ",";
+                }
+
+                str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
+            }
+            str += "]}";
+        }
+        else
+        {
+            str = "{\"\"}";
+        }
+
+        Response.Write(str);
     }
 
     private void ShowDetailInfo()
