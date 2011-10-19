@@ -100,21 +100,22 @@ public partial class api_getnewdata : System.Web.UI.Page
                     Response.Write(sql + "<br>");
                     utils.ExecuteNonQuery(sql);
 
-
-                    //更新大类商品数量
-                    sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + uid + "' AND parentid <> 0";
-                    DataTable dtCate = utils.ExecuteDataTable(sql);
-                    for (int k = 0; k < dtCate.Rows.Count;k++ )
-                    {
-                        Response.Write(sql + "<br>");
-                        sql = "UDPATE TeteShopCategory SET catecount = catecount + " + dtCate.Rows[k]["catecount"].ToString() + " WHERE nick = '" + uid + "' AND cateid = " + dtCate.Rows[k]["parentid"].ToString();
-                        utils.ExecuteNonQuery(sql);
-                    }
                 }
                 if (product.Content.Count < 200)
                 {
                     break;
                 }
+            }
+
+
+            //更新大类商品数量
+            sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + uid + "' AND parentid <> 0";
+            DataTable dtCate = utils.ExecuteDataTable(sql);
+            for (int k = 0; k < dtCate.Rows.Count; k++)
+            {
+                Response.Write(sql + "<br>");
+                sql = "UPDATE TeteShopCategory SET catecount = catecount + " + dtCate.Rows[k]["catecount"].ToString() + " WHERE nick = '" + uid + "' AND cateid = " + dtCate.Rows[k]["parentid"].ToString();
+                utils.ExecuteNonQuery(sql);
             }
         }
     }
