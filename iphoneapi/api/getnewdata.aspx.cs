@@ -96,7 +96,7 @@ public partial class api_getnewdata : System.Web.UI.Page
                     utils.ExecuteNonQuery(sql);
 
                     //更新分类数量
-                    sql = "UPDATE TeteShopCategory SET catecount = catecount + 1 WHERE nick = '" + uid + "' AND cateid = " + product.Content[i].SellerCids + "";
+                    sql = "UPDATE TeteShopCategory SET catecount = catecount + 1 WHERE nick = '" + uid + "' AND CHARINDEX(cateid, '" + product.Content[i].SellerCids + "') > 0";
                     utils.ExecuteNonQuery(sql);
                 }
                 if (product.Content.Count < 200)
