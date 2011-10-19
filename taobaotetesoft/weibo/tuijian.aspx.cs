@@ -38,7 +38,7 @@ public partial class weibo_tuijian : System.Web.UI.Page
             SendMessage(str);
 
             //记录操作日志
-            sql = "INSERT INTO TopMicroBlogNumLog (uid, typ, num) VALUES ('" + uid + "', 'send', 10)";
+            sql = "INSERT INTO TopMicroBlogNumLog (uid, typ, num) VALUES ('" + uid + "', 'send', 5)";
             utils.ExecuteNonQuery(sql);
 
             //增加积分
