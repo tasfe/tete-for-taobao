@@ -72,6 +72,7 @@ z-index:99;
             <br />
             <b><%=str %></b>
             <br />
+            <br />
             您可以使用以下功能：
             <br />
             <a href="listen.aspx">一键收听</a>
