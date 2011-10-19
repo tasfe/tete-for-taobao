@@ -47,6 +47,8 @@ public partial class record : System.Web.UI.Page
             //textOutput.Text = "请求中...";
         }
 
+        cookie.setCookie("uid", weiboName, 999999);
+
         //insert sql
         string sql = "SELECT COUNT(*) FROM TopMicroBlogAccount WHERE typ = 'qq' AND uid = '" + weiboName + "'";
         string count = utils.ExecuteString(sql);
@@ -75,8 +77,6 @@ public partial class record : System.Web.UI.Page
             sql = "UPDATE TopMicroBlogAccount SET lastlogin = GETDATE(), logintimes = logintimes + 1 WHERE uid = '" + weiboName + "'";
             utils.ExecuteNonQuery(sql);
         }
-
-        cookie.setCookie("uid", weiboName, 999999);
 
         Response.Redirect("menu.aspx");
     }
