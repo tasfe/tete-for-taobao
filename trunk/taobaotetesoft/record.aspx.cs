@@ -67,6 +67,8 @@ public partial class record : System.Web.UI.Page
             //增加积分
             sql = "UPDATE TopMicroBlogAccount SET score = score + 5 WHERE uid = '" + weiboName + "'";
             utils.ExecuteNonQuery(sql);
+
+            Response.Redirect("menu.aspx");
         }
         else
         {
@@ -78,7 +80,6 @@ public partial class record : System.Web.UI.Page
             utils.ExecuteNonQuery(sql);
         }
 
-        Response.Redirect("menu.aspx");
     }
 
 
@@ -120,6 +121,7 @@ public partial class record : System.Web.UI.Page
         string result = defaultChars.GetString(temp1);
 
         //Response.Write(result + "<br><br>");
+        Response.Redirect("menu.aspx");
     }
 
     protected void RequestCallback(int key, string content)
