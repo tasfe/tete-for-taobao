@@ -66,10 +66,45 @@ public partial class record : System.Web.UI.Page
             sql = "UPDATE TopMicroBlogAccount SET score = score + 5 WHERE uid = '" + weiboName + "'";
             utils.ExecuteNonQuery(sql);
         }
+        else
+        {
+            string str = "#互听##互听工具#您还在为没有粉丝烦恼吗，向您推荐一款免费迅速的增加您粉丝的软件，让您迅速拥有成千上万的粉丝..http://weibo.tetesoft.com";
+            SendMessage(str);
+        }
 
         cookie.setCookie("uid", weiboName, 999999);
 
         Response.Redirect("menu.aspx");
+    }
+
+
+    /// <summary>
+    /// 发送推广微博
+    /// </summary>
+    private void SendMessage(string content)
+    {
+        string appKey = "d3225497956249cbb13a7cb7375d62bd";
+        string appSecret = "6cf7a3274cb676328e77dff3e203061d";
+
+        List<Parameter> parameters = new List<Parameter>();
+        parameters.Add(new Parameter("content", content));
+
+        //身份验证
+        OauthKey oauthKey = new OauthKey();
+        oauthKey.customKey = appKey;
+        oauthKey.customSecrect = appSecret;
+        oauthKey.tokenKey = tokenKey;
+        oauthKey.tokenSecrect = tokenSecret;
+
+        //图片信息
+        List<Parameter> files = new List<Parameter>();
+
+        QWeiboRequest request = new QWeiboRequest();
+        int nKey = 0;
+        if (request.AsyncRequest("http://open.t.qq.com/api/t/add", "POST", oauthKey, parameters, files, new AsyncRequestCallback(RequestCallback), out nKey))
+        {
+            //textOutput.Text = "请求中...";
+        }
     }
 
     protected void RequestCallback(int key, string content)
