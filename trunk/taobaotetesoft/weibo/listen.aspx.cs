@@ -47,7 +47,11 @@ public partial class weibo_listen : System.Web.UI.Page
             {
                 listen(dt.Rows[i]["uid"].ToString());
 
-                uids += "<a href='http://t.qq.com/" + dt.Rows[i]["uid"].ToString() + "' target='_blank'></a><br>";
+                uids += "<a href='http://t.qq.com/" + dt.Rows[i]["uid"].ToString() + "' target='_blank'>" + dt.Rows[i]["uid"].ToString() + "</a>&nbsp;&nbsp;&nbsp;&nbsp;";
+                if (i % 3 == 0)
+                {
+                    uids += "<br>";
+                }
             }
 
             //记录操作日志
