@@ -18,6 +18,6 @@ public partial class weibo_info : System.Web.UI.Page
         string count = utils.ExecuteString(sql);
 
 
-        string str = "今天特特共帮您增加了【" + count + "】个粉丝";
+        str = "今天特特共帮您增加了【" + count + "】个粉丝";
     }
 }
