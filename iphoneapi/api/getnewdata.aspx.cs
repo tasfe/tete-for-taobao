@@ -97,6 +97,7 @@ public partial class api_getnewdata : System.Web.UI.Page
 
                     //更新分类数量
                     sql = "UPDATE TeteShopCategory SET catecount = catecount + 1 WHERE nick = '" + uid + "' AND CHARINDEX(cateid, '" + product.Content[i].SellerCids + "') > 0";
+                    Response.Write(sql + "<br>");
                     utils.ExecuteNonQuery(sql);
 
 
@@ -105,7 +106,9 @@ public partial class api_getnewdata : System.Web.UI.Page
                     DataTable dtCate = utils.ExecuteDataTable(sql);
                     for (int k = 0; k < dtCate.Rows.Count;k++ )
                     {
+                        Response.Write(sql + "<br>");
                         sql = "UDPATE TeteShopCategory SET catecount = catecount + " + dtCate.Rows[k]["catecount"].ToString() + " WHERE nick = '" + uid + "' AND cateid = " + dtCate.Rows[k]["parentid"].ToString();
+                        utils.ExecuteNonQuery(sql);
                     }
                 }
                 if (product.Content.Count < 200)
