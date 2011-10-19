@@ -61,11 +61,11 @@ public partial class api_Default : System.Web.UI.Page
 
         if (direct == "left")
         {
-            sql = "SELECT TOP 1 * FROM TeteShopItem WHERE nick = '" + uid + "' AND itemid < " + itemid + " AND CHARINDEX('" + cid + "', cateid) > 0 ORDER BY id DESC";
+            sql = "SELECT TOP 1 * FROM TeteShopItem WHERE nick = '" + uid + "' AND id < (SELECT id FROM TeteShopItem WHERE itemid = " + itemid + ") AND CHARINDEX('" + cid + "', cateid) > 0 ORDER BY id DESC";
         }
         else
         {
-            sql = "SELECT TOP 1 * FROM TeteShopItem WHERE nick = '" + uid + "' AND itemid > " + itemid + " AND CHARINDEX('" + cid + "', cateid) > 0 ORDER BY id ASC";
+            sql = "SELECT TOP 1 * FROM TeteShopItem WHERE nick = '" + uid + "' AND id > (SELECT id FROM TeteShopItem WHERE itemid = " + itemid + ") AND CHARINDEX('" + cid + "', cateid) > 0 ORDER BY id ASC";
         }
 
         DataTable dt = utils.ExecuteDataTable(sql);
