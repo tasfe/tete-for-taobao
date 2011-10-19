@@ -40,7 +40,7 @@ public partial class api_Default : System.Web.UI.Page
         }
         catch
         {
-            string str = "{\"error_response\":{\"service_error\"}}";
+            string str = "{\"error_response\":\"service_error\"}";
             Response.Write(str);
         }
     }
@@ -54,7 +54,7 @@ public partial class api_Default : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            str = "{\"detail_response\":{";
+            str = "{";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 if (i != 0)
@@ -64,11 +64,11 @@ public partial class api_Default : System.Web.UI.Page
 
                 str += "\"item\":{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
             }
-            str += "}}";
+            str += "}";
         }
         else
         {
-            str = "{\"detail_response\":{\"\"}}";
+            str = "{\"\"}";
         }
 
         Response.Write(str);
@@ -83,7 +83,7 @@ public partial class api_Default : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            str = "{\"list_response\":{";
+            str = "{";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 if (i != 0)
@@ -93,11 +93,11 @@ public partial class api_Default : System.Web.UI.Page
 
                 str += "\"item\":{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\"}";
             }
-            str += "}}";
+            str += "}";
         }
         else
         {
-            str = "{\"list_response\":{\"\"}}";
+            str = "{\"\"}";
         }
 
         Response.Write(str);
@@ -112,7 +112,7 @@ public partial class api_Default : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            str = "{\"cate_response\":{";
+            str = "{";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 if (i != 0)
@@ -122,11 +122,11 @@ public partial class api_Default : System.Web.UI.Page
 
                 str += "\"cate\":{\"cid\":\"" + dt.Rows[i]["cateid"].ToString() + "\",\"parent_cid\":\"" + dt.Rows[i]["parentid"].ToString() + "\",\"name\":\"" + dt.Rows[i]["catename"].ToString() + "\",\"count\":\"" + dt.Rows[i]["catecount"].ToString() + "\"}";
             }
-            str += "}}";
+            str += "}";
         }
         else
         {
-            str = "{\"cate_response\":{\"\"}}";
+            str = "{\"\"}";
         }
 
         Response.Write(str);
@@ -144,11 +144,11 @@ public partial class api_Default : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            str = "{\"ads_response\":{\"adsurl\":\"" + dt.Rows[0][0].ToString() + "\"}}";
+            str = "{\"adsurl\":\"" + dt.Rows[0][0].ToString() + "\"}";
         }
         else
         {
-            str = "{\"ads_response\":{\"adsurl\":\"\"}}";
+            str = "{\"adsurl\":\"\"}";
         }
 
         Response.Write(str);
