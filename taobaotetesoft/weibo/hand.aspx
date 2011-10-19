@@ -88,7 +88,11 @@ z-index:99;
             </ItemTemplate>
         </asp:Repeater>
     </table>
-
+    
+    
+    <div>
+        <asp:Label ID="lbPage" runat="server"></asp:Label>
+    </div>
     </form>
     
 </body>
