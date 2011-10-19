@@ -74,7 +74,7 @@ public partial class api_Default : System.Web.UI.Page
         string sql = string.Empty;
         string str = string.Empty;
 
-        sql = "SELECT * FROM TeteShopItem WHERE nick = '" + uid + "' AND cateid = " + cid + "";
+        sql = "SELECT * FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
