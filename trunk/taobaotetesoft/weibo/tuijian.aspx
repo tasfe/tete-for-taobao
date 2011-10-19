@@ -70,7 +70,7 @@ z-index:99;
             <a href="info.aspx" id="pa:goCenter">个人中心首页&gt;&gt;</a>
           </div>
           
-          <div>微博推荐会给您增加10个积分..</div>
+          <div>微博推荐会给您增加5个积分..</div>
           <br />
           <span><%=str %></span>
     </form>
