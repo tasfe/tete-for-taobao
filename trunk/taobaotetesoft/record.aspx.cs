@@ -54,19 +54,22 @@ public partial class record : System.Web.UI.Page
         string count = utils.ExecuteString(sql);
         if (count == "0")
         {
-            //写入数据库
-            sql = "INSERT INTO TopMicroBlogAccount (nick, uid, typ, tokenKey, tokenSecrect) VALUES ('" + nick + "', '" + weiboName + "', 'qq', '" + tokenKey + "', '" + tokenSecret + "')";
-            utils.ExecuteNonQuery(sql);
+            if (weiboName != "")
+            {
+                //写入数据库
+                sql = "INSERT INTO TopMicroBlogAccount (nick, uid, typ, tokenKey, tokenSecrect) VALUES ('" + nick + "', '" + weiboName + "', 'qq', '" + tokenKey + "', '" + tokenSecret + "')";
+                utils.ExecuteNonQuery(sql);
 
-            //赠送积分
+                //赠送积分
 
-            //记录操作日志
-            sql = "INSERT INTO TopMicroBlogNumLog (uid, typ, num) VALUES ('" + weiboName + "', 'reg', 5)";
-            utils.ExecuteNonQuery(sql);
+                //记录操作日志
+                sql = "INSERT INTO TopMicroBlogNumLog (uid, typ, num) VALUES ('" + weiboName + "', 'reg', 5)";
+                utils.ExecuteNonQuery(sql);
 
-            //增加积分
-            sql = "UPDATE TopMicroBlogAccount SET score = score + 5 WHERE uid = '" + weiboName + "'";
-            utils.ExecuteNonQuery(sql);
+                //增加积分
+                sql = "UPDATE TopMicroBlogAccount SET score = score + 5 WHERE uid = '" + weiboName + "'";
+                utils.ExecuteNonQuery(sql);
+            }
 
             Response.Redirect("menu.aspx");
         }

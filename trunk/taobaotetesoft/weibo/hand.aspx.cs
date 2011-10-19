@@ -31,18 +31,33 @@ public partial class weibo_hand : System.Web.UI.Page
         string listento = utils.NewRequest("listento", utils.RequestType.QueryString);
         if (act == "listen")
         {
-            listen(listento);
+            //每小时最多一键收听一次
+            sql = "SELECT COUNT(*) FROM TopMicroBlogNumLog WHERE typ = 'add' AND uid = '" + uid + "' AND  DATEDIFF(s, adddate, GETDATE() ) < 3600";
+            string count = utils.ExecuteString(sql);
+            if (int.Parse(count) < 10)
+            {
+                listen(listento);
 
-            //记录操作日志
-            sql = "INSERT INTO TopMicroBlogNumLog (uid, typ, num, bak) VALUES ('" + uid + "', 'add', 1, '" + listento + "')";
-            utils.ExecuteNonQuery(sql);
+                //记录操作日志
+                sql = "INSERT INTO TopMicroBlogNumLog (uid, typ, num, bak) VALUES ('" + uid + "', 'add', 1, '" + listento + "')";
+                utils.ExecuteNonQuery(sql);
 
-            //减少积分
-            sql = "UPDATE TopMicroBlogAccount SET score = score + 1 WHERE uid = '" + uid + "'";
-            utils.ExecuteNonQuery(sql);
+                //减少积分
+                sql = "UPDATE TopMicroBlogAccount SET score = score + 1 WHERE uid = '" + uid + "'";
+                utils.ExecuteNonQuery(sql);
 
-            Response.Redirect("hand.aspx");
-            return;
+                //如果这个人积分为0则给他发送私信提醒他回来赚积分
+                sql = "SELECT score FROM TopMicroBlogAccount WHERE uid = '" + uid + "'";
+
+                Response.Redirect("hand.aspx");
+                return;
+            }
+            else
+            {
+                Response.Write("<script>alert('每小时最多收听10个别人的微博，请您过一会再来：）');</script>");
+                Response.End();
+                return;
+            }
         }
            
         //每小时最多一键收听一次
