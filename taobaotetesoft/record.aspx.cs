@@ -80,7 +80,17 @@ public partial class record : System.Web.UI.Page
 
             string str = "#互听##互听工具#【特特互听】您还在为没有粉丝烦恼吗，向您推荐一款免费迅速的增加您粉丝的软件，让您迅速拥有成千上万的粉丝("+num+")..http://weibo.tetesoft.com";
 
-            string score = utils.ExecuteString("SELECT score FROM TopMicroBlogAccount WHERE uid = '" + weiboName + "'");
+            //string score = utils.ExecuteString("SELECT score FROM TopMicroBlogAccount WHERE uid = '" + weiboName + "'");
+            sql = "SELECT * FROM TopMicroBlogAccount WHERE uid = '" + weiboName + "'";
+            DataTable dtUser = utils.ExecuteDataTable(sql);
+            if (dtUser.Rows.Count == 0)
+            {
+                return;
+            }
+            string score = dtUser.Rows[0]["score"].ToString();
+            tokenKey = dtUser.Rows[0]["tokenKey"].ToString();
+            tokenSecret = dtUser.Rows[0]["tokenSecrect"].ToString();
+
             if (int.Parse(score) > 20)
             {
                 //登录增加20个粉丝

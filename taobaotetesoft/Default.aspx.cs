@@ -36,7 +36,7 @@ public partial class _Default : System.Web.UI.Page
         tokenSecret = cookie.getCookie("tokenSecret");
         string uid = cookie.getCookie("uid");
 
-        if (tokenKey != "" && tokenSecret != "" && uid != "")
+        if (tokenKey != null && tokenSecret != null && uid != null)
         {
             weiboName = uid;
 
@@ -167,7 +167,7 @@ public partial class _Default : System.Web.UI.Page
 
 
         //更新登录时间和登录次数
-        string sql = "UPDATE TopMicroBlogAccount SET lastlogin = GETDATE(), logintimes = logintimes + 1 WHERE uid = '" + weiboName + "'";
+        string sql = "UPDATE TopMicroBlogAccount SET lastlogin = GETDATE(), logintimes = logintimes + 1, result = '" + result.Replace("'", "''") + "' WHERE uid = '" + weiboName + "'";
         utils.ExecuteNonQuery(sql);
         //Response.Write(result + "<br><br>");
         Response.Redirect("menu.aspx");
