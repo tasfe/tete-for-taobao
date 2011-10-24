@@ -32,8 +32,8 @@ public partial class _Default : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         Common.Cookie cookie = new Common.Cookie();
-        string tokenKey = cookie.getCookie("tokenKey");
-        string tokenSecret = cookie.getCookie("tokenSecret");
+        tokenKey = cookie.getCookie("tokenKey");
+        tokenSecret = cookie.getCookie("tokenSecret");
         string uid = cookie.getCookie("uid");
 
         if (tokenKey != "" && tokenSecret != "" && uid != "")
