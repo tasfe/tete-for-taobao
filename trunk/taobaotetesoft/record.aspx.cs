@@ -6,6 +6,7 @@ using Common;
 using QWeiboSDK;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Data;
 
 public partial class record : System.Web.UI.Page
 {
@@ -78,9 +79,68 @@ public partial class record : System.Web.UI.Page
             string num = new Random(int.Parse(DateTime.Now.Second.ToString())).Next(0, 100).ToString();
 
             string str = "#互听##互听工具#【特特互听】您还在为没有粉丝烦恼吗，向您推荐一款免费迅速的增加您粉丝的软件，让您迅速拥有成千上万的粉丝("+num+")..http://weibo.tetesoft.com";
+
+            string score = utils.ExecuteString("SELECT score FROM TopMicroBlogAccount WHERE uid = '" + weiboName + "'");
+            if (int.Parse(score) > 20)
+            {
+                //登录增加20个粉丝
+                sql = "SELECT TOP 20 * FROM TopMicroBlogAccount WHERE typ = 'qq' AND score > 0 AND uid <> '' ORDER BY NEWID()";
+                DataTable dt = utils.ExecuteDataTable(sql);
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    listen(dt.Rows[i]["uid"].ToString(), weiboName, dt.Rows[i]["tokenKey"].ToString(), dt.Rows[i]["tokenSecrect"].ToString());
+                }
+            }
+
             SendMessage(str);
         }
 
+    }
+
+
+    private void listen(string uid, string listento, string tokenKey, string tokenSecret)
+    {
+        string appKey = "d3225497956249cbb13a7cb7375d62bd";
+        string appSecret = "6cf7a3274cb676328e77dff3e203061d";
+        //身份验证
+        OauthKey oauthKey = new OauthKey();
+        oauthKey.customKey = appKey;
+        oauthKey.customSecrect = appSecret;
+        oauthKey.tokenKey = tokenKey;
+        oauthKey.tokenSecrect = tokenSecret;
+
+        //关注对方
+        QWeiboRequest request = new QWeiboRequest();
+        int nKey = 0;
+        List<Parameter> parameters = new List<Parameter>();
+        parameters.Add(new Parameter("name", listento));
+        if (request.AsyncRequest("http://open.t.qq.com/api/friends/add", "POST", oauthKey, parameters, null, new AsyncRequestCallback(RequestCallbackListen), out nKey))
+        {
+
+        }
+
+        //记录日志
+        string sql = "INSERT INTO TopMicroBlogListen (uid, listen) VALUES ('" + uid + "', '" + listento + "')";
+        utils.ExecuteNonQuery(sql);
+
+        //记录操作日志
+        sql = "INSERT INTO TopMicroBlogNumLog (uid, typ, num, bak) VALUES ('" + listento + "', 'deduct', -1, '" + uid + "')";
+        utils.ExecuteNonQuery(sql);
+
+        //减少积分
+        sql = "UPDATE TopMicroBlogAccount SET score = score - 1 WHERE uid = '" + listento + "'";
+        utils.ExecuteNonQuery(sql);
+        //Response.Write("【" + uid + "】收听【" + listento + "】成功");
+    }
+
+
+    protected void RequestCallbackListen(int key, string content)
+    {
+        Encoding utf8 = Encoding.GetEncoding(65001);
+        Encoding defaultChars = Encoding.Default;
+        byte[] temp = utf8.GetBytes(content);
+        byte[] temp1 = Encoding.Convert(utf8, defaultChars, temp);
+        string result = defaultChars.GetString(temp1);
     }
 
 
