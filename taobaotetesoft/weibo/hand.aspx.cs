@@ -54,7 +54,7 @@ public partial class weibo_hand : System.Web.UI.Page
             }
             else
             {
-                Response.Write("<script>alert('每小时最多收听10个别人的微博，请您过一会再来：）');</script>");
+                Response.Write("<script>alert('每小时最多收听10个别人的微博，请您过一会再来：）');history.go(-1);</script>");
                 Response.End();
                 return;
             }

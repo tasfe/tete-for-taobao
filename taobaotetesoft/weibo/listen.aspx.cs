@@ -41,7 +41,7 @@ public partial class weibo_listen : System.Web.UI.Page
         if (count == "0")
         {
             //一键收听，取得自己没有收听过的20个随机账户
-            sql = "SELECT TOP 20 uid FROM TopMicroBlogAccount WHERE typ = 'qq' AND score > 0 AND uid <> '' AND uid NOT IN (SELECT listen FROM TopMicroBlogListen WHERE uid = '" + uid + "') ORDER BY NEWID()";
+            sql = "SELECT TOP 20 uid FROM TopMicroBlogAccount WHERE typ = 'qq' AND score > 0 AND uid <> '' AND uid NOT IN (SELECT listen FROM TopMicroBlogListen WHERE uid = '" + uid + "') ORDER BY score DESC";
             DataTable dt = utils.ExecuteDataTable(sql);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
