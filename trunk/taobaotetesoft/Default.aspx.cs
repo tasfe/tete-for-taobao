@@ -15,6 +15,7 @@ public partial class _Default : System.Web.UI.Page
     private string appKey = string.Empty;
     private string appSecret = string.Empty;
     public string count = string.Empty;
+    public string weiboName = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -37,7 +38,11 @@ public partial class _Default : System.Web.UI.Page
 
         if (tokenKey != "" && tokenSecret != "" && uid != "")
         {
-            Response.Redirect("menu.aspx");
+            weiboName = uid;
+            string num = new Random(int.Parse(DateTime.Now.Ticks.ToString())).Next(0, 100).ToString();
+
+            string str = "#互听##互听工具#【特特互听】您还在为没有粉丝烦恼吗，向您推荐一款免费迅速的增加您粉丝的软件，让您迅速拥有成千上万的粉丝(" + num + ")..http://weibo.tetesoft.com";
+            SendMessage(str);
             return;
         }
 
@@ -49,6 +54,52 @@ public partial class _Default : System.Web.UI.Page
             Response.Redirect(url);
             return;
         }
+    }
+
+
+    /// <summary>
+    /// 发送推广微博
+    /// </summary>
+    private void SendMessage(string content)
+    {
+        string appKey = "d3225497956249cbb13a7cb7375d62bd";
+        string appSecret = "6cf7a3274cb676328e77dff3e203061d";
+
+        List<Parameter> parameters = new List<Parameter>();
+        parameters.Add(new Parameter("content", content));
+
+        //身份验证
+        OauthKey oauthKey = new OauthKey();
+        oauthKey.customKey = appKey;
+        oauthKey.customSecrect = appSecret;
+        oauthKey.tokenKey = tokenKey;
+        oauthKey.tokenSecrect = tokenSecret;
+
+        //图片信息
+        List<Parameter> files = new List<Parameter>();
+
+        QWeiboRequest request = new QWeiboRequest();
+        int nKey = 0;
+        if (request.AsyncRequest("http://open.t.qq.com/api/t/add", "POST", oauthKey, parameters, files, new AsyncRequestCallback(RequestCallbackSend), out nKey))
+        {
+            //textOutput.Text = "请求中...";
+        }
+    }
+
+    protected void RequestCallbackSend(int key, string content)
+    {
+        Encoding utf8 = Encoding.GetEncoding(65001);
+        Encoding defaultChars = Encoding.Default;
+        byte[] temp = utf8.GetBytes(content);
+        byte[] temp1 = Encoding.Convert(utf8, defaultChars, temp);
+        string result = defaultChars.GetString(temp1);
+
+
+        //更新登录时间和登录次数
+        string sql = "UPDATE TopMicroBlogAccount SET lastlogin = GETDATE(), logintimes = logintimes + 1 WHERE uid = '" + weiboName + "'";
+        utils.ExecuteNonQuery(sql);
+        //Response.Write(result + "<br><br>");
+        Response.Redirect("menu.aspx");
     }
 
     protected void RequestCallback(int key, string content)
