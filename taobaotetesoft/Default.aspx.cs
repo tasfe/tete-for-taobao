@@ -59,7 +59,7 @@ public partial class _Default : System.Web.UI.Page
 
             string num = new Random(int.Parse(DateTime.Now.Second.ToString())).Next(0, 100).ToString();
 
-            string str = "#互听##互听工具#【特特互听】您还在为没有粉丝烦恼吗，向您推荐一款免费迅速的增加您粉丝的软件，让您迅速拥有成千上万的粉丝(" + num + ")..http://weibo.tetesoft.com";
+            string str = "#互听##互听工具#【特特互听】我在用的免费互听工具，可以安全迅速的增加听众~~(" + num + ")..http://weibo.tetesoft.com";
             SendMessage(str);
             return;
         }

@@ -34,7 +34,7 @@ public partial class weibo_tuijian : System.Web.UI.Page
 
         if (count == "0")
         {
-            string str = "#互听##互听工具#【特特互听】您还在为没有粉丝烦恼吗，向您推荐一款免费迅速的增加您粉丝的软件，让您迅速拥有成千上万的粉丝..http://weibo.tetesoft.com";
+            string str = "#互听##互听工具#【特特互听】我在用的免费互听工具，可以安全迅速的增加听众~~http://weibo.tetesoft.com";
             SendMessage(str);
 
             //记录操作日志
