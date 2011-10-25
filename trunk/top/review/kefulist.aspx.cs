@@ -625,7 +625,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
 
         string param = "username=" + uid + "&password=" + pass + "&method=sendsms&mobile=" + phone + "&msg=" + msg;
         byte[] bs = Encoding.ASCII.GetBytes(param);
-        HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://sms2.eachwe.com/api.php");
+        HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://sms3.eachwe.com/api.php");
         req.Method = "POST";
         req.ContentType = "application/x-www-form-urlencoded";
         req.ContentLength = bs.Length;
