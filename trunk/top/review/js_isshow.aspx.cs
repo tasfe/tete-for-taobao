@@ -30,7 +30,7 @@ public partial class top_review_js_isshow : System.Web.UI.Page
         {
             string phone = dt.Rows[0][0].ToString();
 
-            if (phone.Length != 0)
+            if (phone.Length == 0)
             {
                 Response.Write("setTimeout('showArea()', 3000);");
             }
