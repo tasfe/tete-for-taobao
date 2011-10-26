@@ -169,10 +169,15 @@ background: none repeat scroll 0% 0% rgb(153, 153, 153); opacity: 0.4; width: 10
 2184px; z-index: 10002;"></div>
 <div id="ggArea" style="display:none; position: absolute; display:none; top: 220px; left: 
 
-400px;  z-index: 10003;">
-    <a href='javascript:closeArea();' style="font-size:16px; font-weight:bold; color:white">关闭窗口</a> 3秒后窗口自动关闭.. <br>
-    请您填写下手机号码，这样如果您的优惠券快到期或者送完的时候我们会有消息提醒您及时进行调整...<br />
-    <input type="text" name="phone" />  <input type="button" onclick="savephone()" value="提交" />
+300px;  z-index: 10003;">
+    <a href='javascript:closeArea();' style="font-size:16px; font-weight:bold; color:white">关闭窗口</a> 60秒后窗口自动关闭.. <br>
+    <div style="BACKGROUND-COLOR:#fff; width:350px; height:120px;  padding:10px;">
+    <span style="font-size:14px; font-weight:bold;">请您填写下手机号码，这样如果您的优惠券快到期或者送完的时候我们会有消息提醒您及时进行调整...</span><br />
+    <br />
+    请输入您的手机号码：
+    <br />
+    <input type="text" id="phone" name="phone" style="height:20px; width:150px;" />  <input type="button" onclick="savephone()" style="width:60px; height:24px;" value="马上提交" />
+    </div>
 </div>
 
 
@@ -186,12 +191,13 @@ background: none repeat scroll 0% 0% rgb(153, 153, 153); opacity: 0.4; width: 10
         else if (window.XMLHttpRequest)
             xmlHttp = new XMLHttpRequest();
     }
+
     function showArea() {
         document.getElementById("divBackground").style.display = "block";
         document.getElementById("divBackground").style.filter = "alpha(opacity=50)";
         document.getElementById("ggArea").style.display = "block";
 
-        setTimeout('closeArea()', 3000);
+        setTimeout('closeArea()', 60000);
     }
 
     function closeArea() {
@@ -201,7 +207,7 @@ background: none repeat scroll 0% 0% rgb(153, 153, 153); opacity: 0.4; width: 10
 
     function savephone() {
         var phone = document.getElementById("phone").value;
-        var url = "review/setting.aspx?act=savephone&phone=" + phone;
+        var url = "http://haoping.7fshop.com/top/review/setting.aspx?act=savephone&phone=" + phone;
 
         createxmlHttpRequest();
         var queryString = url + "&t=" + new Date().getTime();
@@ -209,12 +215,12 @@ background: none repeat scroll 0% 0% rgb(153, 153, 153); opacity: 0.4; width: 10
         xmlHttp.onreadystatechange = handleStateChangeCat;
         xmlHttp.send(null);
 
-        closeArea();
     }
 
     function handleStateChangeCat() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             alert('手机号码保存成功，谢谢您的合作！');
+            closeArea();
         }
     }
 </script>

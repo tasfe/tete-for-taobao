@@ -40,7 +40,7 @@ public partial class top_review_setting : System.Web.UI.Page
         string phone = utils.NewRequest("phone", utils.RequestType.QueryString);
         if (act == "savephone")
         {
-            string newsql = "UPDATE TopAutoReview SET phone = '" + phone + "' WHERE '" + nick + "'";
+            string newsql = "UPDATE TopAutoReview SET phone = '" + phone + "' WHERE nick =  '" + nick + "'";
             utils.ExecuteNonQuery(newsql);
             return;
         }
