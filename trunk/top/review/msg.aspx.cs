@@ -101,19 +101,19 @@ public partial class top_review_msg : System.Web.UI.Page
             //增加默认值
             if (giftcontent.Length == 0)
             {
-                giftcontent = "+[shopname]+:亲爱的[buynick],恭喜您获得我店[gift],请注意查收,感谢您的及时评价!";
+                giftcontent = "+[shopname]+:亲爱的[buynick],恭喜您获得我店[gift],请注意查收,感谢您的及时优质评价!";
             }
             if (shippingcontent.Length == 0)
             {
-                shippingcontent = "+[shopname]+:亲爱的[buynick],您的宝贝已到达,请您尽快确认好评,满分好评+优质评价,即可获赠[gift],赶快行动!哦!";
+                shippingcontent = "+[shopname]+:亲爱的[buynick],您的宝贝已到达,请您帮忙确认,满分好评+优质评价,即可获赠[gift]哦!";
             }
             if (reviewcontent.Length == 0)
             {
-                reviewcontent = "+[shopname]+:亲爱的[buynick],您购买的货物已经收到很多天了,请尽快确认好评,满分好评+优质评价,即可获赠[gift],赶快行动!哦!";
+                reviewcontent = "+[shopname]+:亲爱的[buynick],您购买的货物已经收到很多天了,请帮忙确认,满分好评+优质评价,即可获赠[gift]哦!";
             }
             if (fahuocontent.Length == 0)
             {
-                fahuocontent = "+[shopname]+:亲爱的[buynick],您购买的货物已经发出,请您在收到货物后尽快确认好评,满分好评+优质评价,即可获赠[gift],赶快行动!哦!";
+                fahuocontent = "+[shopname]+:亲爱的[buynick],您购买的货物已经发出,请您在收到货物后帮忙确认,满分好评+优质评价,即可获赠[gift]哦!";
             }
             if (shopname.Length == 0)
             {
