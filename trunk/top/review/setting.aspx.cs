@@ -36,6 +36,15 @@ public partial class top_review_setting : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
+        string act = utils.NewRequest("act", utils.RequestType.QueryString);
+        string phone = utils.NewRequest("phone", utils.RequestType.QueryString);
+        if (act == "savephone")
+        {
+            string newsql = "UPDATE TopAutoReview SET phone = '" + phone + "' WHERE '" + nick + "'";
+            utils.ExecuteNonQuery(newsql);
+            return;
+        }
+
         //判断VIP版本，只有VIP才能使用此功能
         string sql = "SELECT * FROM TopTaobaoShop WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
