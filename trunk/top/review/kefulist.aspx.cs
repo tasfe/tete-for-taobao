@@ -30,7 +30,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         nick = encode.Decrypt(taobaoNick);
 
         //判断VIP版本，只有VIP才能使用此功能
-        string sql = "SELECT * FROM TopTaobaoShop WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TopTaobaoShop WITH (NOLOCK) WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
@@ -118,7 +118,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         string shopname = string.Empty;
         
         //获取优惠券信息
-        sql = "SELECT * FROM TopAutoReview WHERE nick = '" + nick + "'";
+        sql = "SELECT * FROM TopAutoReview WITH (NOLOCK) WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
@@ -149,7 +149,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         {
 
             //获取该订单关联会员
-            sql = "SELECT * FROM TopOrder WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
+            sql = "SELECT * FROM TopOrder WITH (NOLOCK) WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
             dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count != 0)
             {
@@ -254,7 +254,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                     if (int.Parse(total) > 0)
                     {
                         //每张物流订单最多提示一次
-                        sql = "SELECT COUNT(*) FROM TopMsg WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND  sendto = '" + buynick + "' AND typ = 'gift'";
+                        sql = "SELECT COUNT(*) FROM TopMsg WITH (NOLOCK) WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND  sendto = '" + buynick + "' AND typ = 'gift'";
                         string giftCount = utils.ExecuteString(sql);
 
                         if (giftCount == "0")
@@ -367,7 +367,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         if (send == "1")
         {
             //获取优惠券信息
-            sql = "SELECT * FROM TopAutoReview WHERE nick = '" + nick + "'";
+            sql = "SELECT * FROM TopAutoReview WITH (NOLOCK) WHERE nick = '" + nick + "'";
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count != 0)
             {
@@ -398,7 +398,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
             {
 
                 //获取该订单关联会员
-                sql = "SELECT * FROM TopOrder WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
+                sql = "SELECT * FROM TopOrder WITH (NOLOCK) WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
                 dt = utils.ExecuteDataTable(sql);
                 if (dt.Rows.Count != 0)
                 {
@@ -497,7 +497,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                     if (giftflag == "1")
                     {
                         //判断是否还有短信可发
-                        sql = "SELECT total FROM TopAutoReview WHERE nick = '" + nick + "'";
+                        sql = "SELECT total FROM TopAutoReview WITH (NOLOCK) WHERE nick = '" + nick + "'";
                         string total = utils.ExecuteString(sql);
 
                         if (int.Parse(total) > 0)
@@ -688,7 +688,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
             return;
         }
 
-        string sqlNew = "SELECT * FROM TopOrder WHERE nick = '" + nick + "' AND (orderstatus = 'TRADE_FINISHED' OR orderstatus = 'TradeRated') AND issend = 2 AND kefustatus = 0 AND buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
+        string sqlNew = "SELECT * FROM TopOrder WITH (NOLOCK) WHERE nick = '" + nick + "' AND (orderstatus = 'TRADE_FINISHED' OR orderstatus = 'TradeRated') AND issend = 2 AND kefustatus = 0 AND buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
@@ -712,7 +712,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         int pageCount = 20;
         int dataCount = (pageNow - 1) * pageCount;
 
-        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.reviewtime DESC) AS rownumber FROM TopOrder b WHERE b.nick = '" + nick + "' AND (b.orderstatus = 'TRADE_FINISHED' OR b.orderstatus = 'TradeRated') AND b.issend = 2 AND b.kefustatus = 0 AND reviewtime IS NOT NULL) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY reviewtime DESC";
+        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.reviewtime DESC) AS rownumber FROM TopOrder b WITH (NOLOCK) WHERE b.nick = '" + nick + "' AND (b.orderstatus = 'TRADE_FINISHED' OR b.orderstatus = 'TradeRated') AND b.issend = 2 AND b.kefustatus = 0 AND reviewtime IS NOT NULL) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY reviewtime DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
