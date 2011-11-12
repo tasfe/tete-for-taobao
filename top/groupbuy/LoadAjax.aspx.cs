@@ -77,54 +77,57 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
 
             WriteLog("sql1:" + sql, "");
             dtWrite = utils.ExecuteDataTable(sql);
-            for (int j = 0; j < dtWrite.Rows.Count; j++)
+            if (dtWrite != null)
             {
-                styleHtml = CreateGroupbuyHtml(dtWrite.Rows[j]["groupbuyid"].ToString());
-                try
+                for (int j = 0; j < dtWrite.Rows.Count; j++)
                 {
-                    //获取原宝贝描述
-                    ItemGetRequest requestItem = new ItemGetRequest();
-                    requestItem.Fields = "desc";
-                    requestItem.NumIid = long.Parse(dtWrite.Rows[j]["itemid"].ToString());
-                    Item product = client.ItemGet(requestItem, session);
-                    string newContent = string.Empty;
-                    string groupid = dtWrite.Rows[j]["groupbuyid"].ToString();
-
-                    WriteLog("html:" + styleHtml.Length.ToString(), "");
-                    if (!Regex.IsMatch(product.Desc, @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>"))
+                    styleHtml = CreateGroupbuyHtml(dtWrite.Rows[j]["groupbuyid"].ToString());
+                    try
                     {
-                        newContent = @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>" + styleHtml + @"<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>" + product.Desc;
+                        //获取原宝贝描述
+                        ItemGetRequest requestItem = new ItemGetRequest();
+                        requestItem.Fields = "desc";
+                        requestItem.NumIid = long.Parse(dtWrite.Rows[j]["itemid"].ToString());
+                        Item product = client.ItemGet(requestItem, session);
+                        string newContent = string.Empty;
+                        string groupid = dtWrite.Rows[j]["groupbuyid"].ToString();
+
+                        WriteLog("html:" + styleHtml.Length.ToString(), "");
+                        if (!Regex.IsMatch(product.Desc, @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>"))
+                        {
+                            newContent = @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>" + styleHtml + @"<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>" + product.Desc;
+                        }
+                        else
+                        {
+                            newContent = Regex.Replace(product.Desc, @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>", @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>" + styleHtml + @"<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>");
+                        }
+                        WriteLog("html2:" + newContent.Length.ToString(), "");
+
+
+                        //更新宝贝描述
+                        IDictionary<string, string> param = new Dictionary<string, string>();
+                        param.Add("num_iid", dtWrite.Rows[j]["itemid"].ToString());
+                        param.Add("desc", newContent);
+                        string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update ", session, param);
+
+                        WriteLog("itemid:" + dtWrite.Rows[j]["itemid"].ToString(), "");
+
+                        //更新状态
+                        sql = "UPDATE TopWriteContent SET isok = 1 WHERE id = " + dtWrite.Rows[j]["id"].ToString();
+                        utils.ExecuteNonQuery(sql);
+
+                        //更新状态
+                        sql = "UPDATE TopMission SET success = success + 1 WHERE id = " + dt.Rows[i]["id"].ToString();
+                        utils.ExecuteNonQuery(sql);
                     }
-                    else
+                    catch (Exception e)
                     {
-                        newContent = Regex.Replace(product.Desc, @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>", @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>" + styleHtml + @"<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>");
+                        WriteLog(e.Message, "1");
+                        WriteLog(e.StackTrace, "1");
+                        sql = "UPDATE TopMission SET fail = fail + 1,isok = -1  WHERE id = " + dt.Rows[i]["id"].ToString();
+                        utils.ExecuteNonQuery(sql);
+                        continue;
                     }
-                    WriteLog("html2:" + newContent.Length.ToString(), "");
-
-
-                    //更新宝贝描述
-                    IDictionary<string, string> param = new Dictionary<string, string>();
-                    param.Add("num_iid", dtWrite.Rows[j]["itemid"].ToString());
-                    param.Add("desc", newContent);
-                    string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update ", session, param);
-
-                    WriteLog("itemid:" + dtWrite.Rows[j]["itemid"].ToString(), "");
-
-                    //更新状态
-                    sql = "UPDATE TopWriteContent SET isok = 1 WHERE id = " + dtWrite.Rows[j]["id"].ToString();
-                    utils.ExecuteNonQuery(sql);
-
-                    //更新状态
-                    sql = "UPDATE TopMission SET success = success + 1 WHERE id = " + dt.Rows[i]["id"].ToString();
-                    utils.ExecuteNonQuery(sql);
-                }
-                catch (Exception e)
-                {
-                    WriteLog(e.Message, "1");
-                    WriteLog(e.StackTrace, "1");
-                    sql = "UPDATE TopMission SET fail = fail + 1,isok = -1  WHERE id = " + dt.Rows[i]["id"].ToString();
-                    utils.ExecuteNonQuery(sql);
-                    continue;
                 }
             }
 
