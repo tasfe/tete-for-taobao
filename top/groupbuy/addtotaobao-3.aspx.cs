@@ -145,7 +145,7 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
             string sql = "UPDATE TopMission SET total = '" + itemcount + "' WHERE id = " + missionid;
             utils.ExecuteNonQuery(sql);
 
-            Response.Redirect("missionlist.aspx");
+            //Response.Redirect("missionlist.aspx");
     }
 
     //判断是否有同类型任务进行中
