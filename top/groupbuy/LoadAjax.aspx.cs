@@ -18,6 +18,7 @@ using System.Security.Cryptography;
 
 public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
 {
+    public static string logUrl = "D:/svngroupbuy/website/ErrLog";
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Request.QueryString["mid"] != null)
@@ -49,6 +50,8 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
         if (Request.QueryString["sqltype"] != null)
         {
             DoMyJob(Request.QueryString["sqltype"].ToString());
+            Response.Write("ok");
+            Response.End();
         }
     }
 

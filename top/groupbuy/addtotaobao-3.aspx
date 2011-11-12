@@ -12,14 +12,14 @@
 
 
     function showNumber(dateStr) {
-
+        alert(dateStr);
         $.ajax({
             url: dateStr,
             success: function (data) {
                 $('#jd').html(data + "%");
                 $('#lpc').attr("width", data * 5);
                 if (data < 100) {
-
+                    alert($('#missID').val());
                     setTimeout("showNumber('LoadAjax.aspx?date=" + new Date() + "&mid=" + $('#missID').val() + "')", 1000);
                 }
                 else {
@@ -33,10 +33,10 @@
 
     }
 
-    function reqUrl(dateStr) {
+    function reqUrl(dateStr2) {
 
         $.ajax({
-            url: dateStr,
+            url: dateStr2,
             success: function (data) {
 
             }
