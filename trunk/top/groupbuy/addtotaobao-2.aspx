@@ -20,11 +20,21 @@
   </div>
   <div id="main-content">
     <div style="width:750px; height:400px; overflow:scroll;" id="lbView" runat="server" visible="false">
-        
+        正在更新到淘宝描述,请等待........
+         <table bgcolor="#dddddd" height=20 ALIGN=CENTER BORDER="0" WIDTH="500">
+            <tr>
+                <td align=left >
+                 <table  id=lpc bgcolor=#98CC00 height=20>
+                     <tr align=center><td ><span id=jd >10%</span></td></tr>
+                 </table>
+                </td>
+            </tr>
+     </table>
     </div>
     <br />    <br />
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <form id="myform" action="<%=url %>" method="post">
+      
         <input name="act" value="save" type="hidden" />
         <input name="name" value="<%=name %>" type="hidden" />
         <input name="style" value="<%=style %>" type="hidden" />
