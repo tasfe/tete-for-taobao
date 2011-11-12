@@ -11,7 +11,7 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        int mid = Request.QueryString["mid"] == null ? 0 : int.Parse(Request.QueryString["mid"].ToString());
+        int mid = Request.QueryString["mid"] == null ? 0 : Request.QueryString["mid"] == "" ? 0 : int.Parse(Request.QueryString["mid"].ToString());
         int d = 10;
         string sql = "select * from  TopMission  WHERE id = " + mid.ToString();
         DataTable dt= utils.ExecuteDataTable(sql);
