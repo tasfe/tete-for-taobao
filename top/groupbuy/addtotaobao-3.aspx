@@ -12,12 +12,12 @@
 
 
     function showNumber(dateStr) {
-        alert(dateStr);
+      
         $.ajax({
             url: dateStr,
             success: function (data) {
                 $('#jd').html(data + "%");
-                $('#lpc').attr("width", data * 5);
+                $('#lpc').attr("width", data);
                 if (data < 100) {
                     alert($('#missID').val());
                     setTimeout("showNumber('LoadAjax.aspx?date=" + new Date() + "&mid=" + $('#missID').val() + "')", 1000);
@@ -76,7 +76,7 @@
   </div>
      <script type="text/javascript">
          showNumber('LoadAjax.aspx?date=' + new Date() + "&mid=" + document.getElementById("missID").value);
-         reqUrl('LoadAjax.aspx?date=' + new Date() + "&sqltype=" + document.getElementById("missID").value);
+         reqUrl('LoadAjax2.aspx?date=' + new Date() + "&sqltype=" + document.getElementById("missID").value);
      </script> 
 
 </div>
