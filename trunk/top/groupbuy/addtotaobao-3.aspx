@@ -9,7 +9,7 @@
 
 <script type="text/ecmascript" src="js/jquery-1.5.1.js"></script>
 <script type="text/javascript">
-
+    
 
     function showNumber(dateStr) {
       
@@ -35,12 +35,12 @@
 
     function reqUrl(dateStr2) {
 
-        $.ajax({
-            url: dateStr2,
-            success: function (data) {
+     
+    $.get(dateStr2, function(data){
+  });
 
-            }
-        });
+
+       
 
     }
 
