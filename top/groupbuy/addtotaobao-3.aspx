@@ -15,6 +15,7 @@
                 $('#jd').html(Math.ceil(data * 0.2) + "%");
                 $('#lpc').attr("width", data);
                 if (data < 400) {
+                    alert("DCC");
                     setTimeout("showNumber('LoadAjax.aspx?date=" + new Date() + "')", 1000);
                 }
                 else {
@@ -26,6 +27,8 @@
             }
         });
     }
+
+    alert("DD");
         showNumber('LoadAjax.aspx?date=' + new Date());
    
 </script>
