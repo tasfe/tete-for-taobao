@@ -149,6 +149,7 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
             utils.ExecuteNonQuery(sql);
 
             missID.Value = missionid;
+            Response.Write("<script type=\"text/javascript\">showNumber('LoadAjax.aspx?date=' + new Date() + \"&mid=\" + " + missionid + ");</script>");
             //更新任务
             DoMyJob(missionid);
             //Response.Redirect("missionlist.aspx");
