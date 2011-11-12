@@ -5,35 +5,41 @@
 <head>
 <title>我要推广</title>
 <link href="../css/common.css" rel="stylesheet" />
-<link href="images/tab.css" rel="stylesheet" />
-<script type="text/ecmascript" src="js/jquery-1.5.1.js"></script>
+<link href="images/tab.css" rel="stylesheet" /> 
+ 
+
+
+
+<script type="text/ecmascript" src=js/jquery-1.5.1.js></script>
 <script type="text/javascript">
+
+
     function showNumber(dateStr) {
-        alert($('#jd'));
         $.ajax({
             url: dateStr,
             success: function (data) {
                 $('#jd').html(Math.ceil(data * 0.2) + "%");
                 $('#lpc').attr("width", data);
                 if (data < 400) {
-                    alert("DCC");
+
+                    alert($('#lpc').val());
                     setTimeout("showNumber('LoadAjax.aspx?date=" + new Date() + "')", 1000);
                 }
                 else {
-                    alert("DDDDDDDD");
+                    alert($('#jd').val());
                     $('#jd').html("100%");
                     $('#lpc').attr("width", 500);
-                    window.location.href = "missionlist.aspx";
                 }
 
             }
         });
-    }
 
-    alert($('#lpc'));
         showNumber('LoadAjax.aspx?date=' + new Date());
-   
+
+ 
+
 </script>
+
 </head>
 <body style="padding:0px; margin:0px;">
 <div class="navigation" style="height:500px;">
