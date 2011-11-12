@@ -63,9 +63,9 @@
      </table>
      <input type=hidden id=missID value="" runat=server />
   </div>
-<%--      <script type="text/javascript">
+     <script type="text/javascript">
          showNumber('LoadAjax.aspx?date=' + new Date() + "&mid=" + document.getElementById("missID").value);
-     </script>--%>
+     </script> 
 
 </div>
 
