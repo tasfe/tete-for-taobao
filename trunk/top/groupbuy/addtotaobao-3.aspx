@@ -20,13 +20,14 @@
                 else {
                     $('#jd').html("100%");
                     $('#lpc').attr("width", 500);
-                    window.location.href="missionlist.aspx";
+                    window.location.href = "missionlist.aspx";
                 }
 
             }
         });
-
+    }
         showNumber('LoadAjax.aspx?date=' + new Date());
+   
 </script>
 </head>
 <body style="padding:0px; margin:0px;">
@@ -42,9 +43,7 @@
     </ul>
   </div>
   <div id="main-content">
-        
-  </div>
-     <table bgcolor="#dddddd" height=20 ALIGN=CENTER BORDER="0" WIDTH="500">
+        <table bgcolor="#dddddd" height=20 ALIGN=CENTER BORDER="0" WIDTH="500">
             <tr>
                 <td align=left >
                  <table  id=lpc bgcolor=#98CC00 height=20>
@@ -53,6 +52,8 @@
                 </td>
             </tr>
      </table>
+  </div>
+     
 
 </div>
 
