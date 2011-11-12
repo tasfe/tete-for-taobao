@@ -9,7 +9,7 @@
 <script type="text/ecmascript" src="js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript">
     function showNumber(dateStr) {
-        alert(dateStr);
+        alert($('#jd'));
         $.ajax({
             url: dateStr,
             success: function (data) {
@@ -30,7 +30,7 @@
         });
     }
 
-    alert("DD");
+    alert($('#lpc'));
         showNumber('LoadAjax.aspx?date=' + new Date());
    
 </script>
