@@ -12,19 +12,20 @@
 
 
     function showNumber(dateStr) {
-        alert(datestr);
+
         $.ajax({
             url: dateStr,
             success: function (data) {
-                $('#jd').html( data  + "%");
-                $('#lpc').attr("width", data*5);
+                $('#jd').html(data + "%");
+                $('#lpc').attr("width", data * 5);
                 if (data < 100) {
-                    alert($('#missID').val());
+
                     setTimeout("showNumber('LoadAjax.aspx?date=" + new Date() + "&mid=" + $('#missID').val() + "')", 1000);
                 }
                 else {
                     $('#jd').html("100%");
                     $('#lpc').attr("width", 500);
+                    location.href = "missionlist.aspx";
                 }
 
             }
@@ -32,7 +33,7 @@
 
     }
 
-    showNumber('LoadAjax.aspx?date=' + new Date() + "&mid=" + document.getElementById("missID").value);
+ 
 
 </script>
 
@@ -50,6 +51,7 @@
     </ul>
   </div>
   <div id="main-content">
+  正在更新到淘宝描述,请等待........
         <table bgcolor="#dddddd" height=20 ALIGN=CENTER BORDER="0" WIDTH="500">
             <tr>
                 <td align=left >
@@ -61,7 +63,9 @@
      </table>
      <input type=hidden id=missID value="" runat=server />
   </div>
-     
+     <script type="text/javascript">
+         showNumber('LoadAjax.aspx?date=' + new Date() + "&mid=" + document.getElementById("missID").value);
+     </script>
 
 </div>
 
