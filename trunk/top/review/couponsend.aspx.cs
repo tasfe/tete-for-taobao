@@ -72,6 +72,8 @@ public partial class top_review_couponsend : System.Web.UI.Page
         int pageCount = 12;
         int dataCount = (pageNow - 1) * pageCount;
 
+        //string sqlCoupon = "SELECT * FROM TopCoupon WHERE coupon_id = " + ; 
+
         string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT s.*,c.coupon_name,ROW_NUMBER() OVER (ORDER BY s.id DESC) AS rownumber FROM TopCouponSend s INNER JOIN TopCoupon c ON c.coupon_id = s.couponid WHERE s.nick = '" + nick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY id DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
         //Response.Write(sqlNew);

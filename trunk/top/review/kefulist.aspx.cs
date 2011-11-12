@@ -688,7 +688,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
             return;
         }
 
-        string sqlNew = "SELECT * FROM TopOrder WITH (NOLOCK) WHERE nick = '" + nick + "' AND (orderstatus = 'TRADE_FINISHED' OR orderstatus = 'TradeRated') AND issend = 2 AND kefustatus = 0 AND buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
+        string sqlNew = "SELECT * FROM TopOrder WITH (NOLOCK) WHERE nick = '" + nick + "' AND issend = 2 AND kefustatus = 0 AND buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
@@ -712,14 +712,14 @@ public partial class top_review_kefulist : System.Web.UI.Page
         int pageCount = 20;
         int dataCount = (pageNow - 1) * pageCount;
 
-        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.reviewtime DESC) AS rownumber FROM TopOrder b WITH (NOLOCK) WHERE b.nick = '" + nick + "' AND (b.orderstatus = 'TRADE_FINISHED' OR b.orderstatus = 'TradeRated') AND b.issend = 2 AND b.kefustatus = 0 AND reviewtime IS NOT NULL) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY reviewtime DESC";
+        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.reviewtime DESC) AS rownumber FROM TopOrder b WITH (NOLOCK) WHERE b.nick = '" + nick + "' AND b.issend = 2 AND b.kefustatus = 0 AND reviewtime IS NOT NULL) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY reviewtime DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
         rptArticle.DataBind();
 
         //分页数据初始化
-        sqlNew = "SELECT COUNT(*) FROM TopOrder WHERE nick = '" + nick + "' AND (orderstatus = 'TRADE_FINISHED' OR orderstatus = 'TradeRated') AND issend = 2 AND kefustatus = 0 AND reviewtime IS NOT NULL";
+        sqlNew = "SELECT COUNT(*) FROM TopOrder WHERE nick = '" + nick + "' AND issend = 2 AND kefustatus = 0 AND reviewtime IS NOT NULL";
         int totalCount = int.Parse(utils.ExecuteString(sqlNew));
 
         lbPage.Text = InitPageStr(totalCount, "kefulist.aspx");
