@@ -151,7 +151,7 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
             missID.Value = missionid;
  
             //更新任务
-            DoMyJob(missionid);
+           // DoMyJob(missionid);
             //Response.Redirect("missionlist.aspx");
     }
 
