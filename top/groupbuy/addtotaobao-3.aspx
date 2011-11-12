@@ -6,9 +6,6 @@
 <title>我要推广</title>
 <link href="../css/common.css" rel="stylesheet" />
 <link href="images/tab.css" rel="stylesheet" />
- 
-
-
 
 <script type="text/ecmascript" src="js/jquery-1.5.1.js"></script>
 <script type="text/javascript">
@@ -18,10 +15,10 @@
         $.ajax({
             url: dateStr,
             success: function (data) {
-                $('#jd').html(Math.ceil(data * 0.2) + "%");
-                $('#lpc').attr("width", data);
-                if (data < 400) {
-                    setTimeout("showNumber('LoadAjax.aspx?date=" + new Date() + "')", 1000);
+                $('#jd').html( data  + "%");
+                $('#lpc').attr("width", data*5);
+                if (data < 100) {
+                    setTimeout("showNumber('LoadAjax.aspx?date=" + new Date() + "&mid=" + $('#missID').val() + "')", 1000);
                 }
                 else {
                     $('#jd').html("100%");
@@ -33,7 +30,7 @@
 
     }
 
-    showNumber('LoadAjax.aspx?date=' + new Date());
+    showNumber('LoadAjax.aspx?date=' + new Date() + "&mid=" + $('#missID').val());
 
 </script>
 
@@ -60,6 +57,7 @@
                 </td>
             </tr>
      </table>
+     <input type=hidden id=missID value="" runat=server />
   </div>
      
 
