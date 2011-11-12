@@ -6,9 +6,10 @@
 <title>我要推广</title>
 <link href="../css/common.css" rel="stylesheet" />
 <link href="images/tab.css" rel="stylesheet" />
-<script type="text/ecmascript" src=js/jquery-1.3.2.min.js></script>
+<script type="text/ecmascript" src="js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript">
     function showNumber(dateStr) {
+        alert(dateStr);
         $.ajax({
             url: dateStr,
             success: function (data) {
@@ -19,6 +20,7 @@
                     setTimeout("showNumber('LoadAjax.aspx?date=" + new Date() + "')", 1000);
                 }
                 else {
+                    alert("DDDDDDDD");
                     $('#jd').html("100%");
                     $('#lpc').attr("width", 500);
                     window.location.href = "missionlist.aspx";
