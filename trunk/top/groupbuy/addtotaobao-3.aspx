@@ -6,7 +6,7 @@
 <title>我要推广</title>
 <link href="../css/common.css" rel="stylesheet" />
 <link href="images/tab.css" rel="stylesheet" />
-<script type="text/ecmascript" src=jquery-1.5.1.js></script>
+<script type="text/ecmascript" src=js/jquery-1.3.2.min.js></script>
 <script type="text/javascript">
     function showNumber(dateStr) {
         $.ajax({
