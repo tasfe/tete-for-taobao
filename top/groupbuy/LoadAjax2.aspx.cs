@@ -21,32 +21,7 @@ public partial class top_groupbuy_LoadAjax2 : System.Web.UI.Page
     public static string logUrl = "D:/svngroupbuy/website/ErrLog";
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.QueryString["mid"] != null)
-        {
-            int mid = Request.QueryString["mid"] == null ? 0 : Request.QueryString["mid"] == "" ? 0 : int.Parse(Request.QueryString["mid"].ToString());
-            int d = 10;
-            string sql = "select * from  TopMission  WHERE id = " + mid.ToString();
-            DataTable dt = utils.ExecuteDataTable(sql);
-            if (dt != null)
-            {
-                int tol = int.Parse(dt.Rows[0]["total"].ToString());//总数
-                int su = int.Parse(dt.Rows[0]["success"].ToString()) + int.Parse(dt.Rows[0]["fail"].ToString());//已完成
-
-                int num = 100;
-                if (tol != 0)
-                {
-                    num = (su / tol) * 100;
-                }
-
-                Response.Write(num.ToString());
-                Response.End();
-            }
-            else
-            {
-                Response.Write(d.ToString());
-                Response.End();
-            }
-        }
+ 
         if (Request.QueryString["sqltype"] != null)
         {
             DoMyJob(Request.QueryString["sqltype"].ToString());
