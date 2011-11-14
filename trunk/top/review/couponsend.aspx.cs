@@ -48,7 +48,7 @@ public partial class top_review_couponsend : System.Web.UI.Page
             return;
         }
 
-        string sqlNew = "SELECT s.*,c.coupon_name FROM TopCouponSend s INNER JOIN TopCoupon c ON c.coupon_id = s.couponid WHERE s.nick = '" + nick + "' AND s.sendto = '" + search.Text.Trim().Replace("'", "''") + "'";
+        string sqlNew = "SELECT s.*,c.coupon_name FROM TopCouponSend s INNER JOIN TopCoupon c ON c.coupon_id = s.couponid WHERE s.nick = '" + nick + "' AND s.sendto = '" + search.Text.Trim().Replace("'", "''") + "' AND s.number <> ''";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
@@ -74,14 +74,14 @@ public partial class top_review_couponsend : System.Web.UI.Page
 
         //string sqlCoupon = "SELECT * FROM TopCoupon WHERE coupon_id = " + ; 
 
-        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT s.*,c.coupon_name,ROW_NUMBER() OVER (ORDER BY s.id DESC) AS rownumber FROM TopCouponSend s INNER JOIN TopCoupon c ON c.coupon_id = s.couponid WHERE s.nick = '" + nick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY id DESC";
+        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT s.*,c.coupon_name,ROW_NUMBER() OVER (ORDER BY s.id DESC) AS rownumber FROM TopCouponSend s INNER JOIN TopCoupon c ON c.coupon_id = s.couponid WHERE s.nick = '" + nick + "' AND s.number <> '') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY id DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
         //Response.Write(sqlNew);
         rptArticle.DataSource = dt;
         rptArticle.DataBind();
 
         //分页数据初始化
-        sqlNew = "SELECT COUNT(*) FROM TopCouponSend WHERE nick = '" + nick + "'";
+        sqlNew = "SELECT COUNT(*) FROM TopCouponSend WHERE nick = '" + nick + "' AND number <> ''";
         int totalCount = int.Parse(utils.ExecuteString(sqlNew));
 
         lbPage.Text = InitPageStr(totalCount, "couponsend.aspx");
