@@ -18,7 +18,7 @@ using System.Security.Cryptography;
 namespace teteWriteItem
 {
 
-    public partial class Form1 : Form
+    public partial class Form1 : Form 
     {
 
         public static string logUrl = "D:/svngroupbuy/website/ErrLog";
@@ -146,7 +146,7 @@ namespace teteWriteItem
 
             WriteLog("**********************************************************", "");
             //休息后继续循环-默认10分钟一次
-            Thread.Sleep(60000);
+            Thread.Sleep(90000);
 
             Thread newThread = new Thread(DoMyJob);
             newThread.Start();
