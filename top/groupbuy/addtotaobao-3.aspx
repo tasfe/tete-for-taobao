@@ -17,7 +17,7 @@
             url: dateStr,
             success: function (data) {
                 $('#jd').html(data + "%");
-                $('#lpc').attr("width", data);
+                $('#lpc').attr("width", data*5);
                 if (data < 100) {
  
                     setTimeout("showNumber('LoadAjax.aspx?date=" + new Date() + "&mid=" + $('#missID').val() + "')", 2000);
