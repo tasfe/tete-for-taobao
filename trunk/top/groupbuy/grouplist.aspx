@@ -67,6 +67,7 @@
                     <a href='grouplist.aspx?id=<%#Eval("id").ToString()%>&act=del' onclick="return confirm('您确认要取消团购活动，该操作不可恢复？')">取消团购</a> <br />
                     <a href='addtotaobao-1.aspx?id=<%#Eval("id").ToString()%>'>同步到描述</a> | 
                     <a href='deletetaobao.aspx?id=<%#Eval("id").ToString()%>' onclick="return confirm('您确认要清除关联描述，该操作不可恢复？')">清除关联描述</a>
+                     <a href='getcode.aspx?id=<%#Eval("id").ToString()%>'>查看站外推广代码</a>
                 </td>
             </tr>
             </ItemTemplate>
