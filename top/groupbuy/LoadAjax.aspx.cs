@@ -18,18 +18,18 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
         if (dt != null)
         {
             int tol = int.Parse(dt.Rows[0]["total"].ToString());//总数
-            int su = int.Parse(dt.Rows[0]["success"].ToString()) + int.Parse(dt.Rows[0]["fail"].ToString());//已完成
-
-            int num = 100;
+            decimal su = int.Parse(dt.Rows[0]["success"].ToString()) + int.Parse(dt.Rows[0]["fail"].ToString());//已完成
+           
+            decimal num = 100;
             if (su < 1)
             {
                 su = 1;
             }
-            if (tol != 0)
+            if (tol > 0)
             {
                 num = (su / tol) * 100;
             }
-
+            num=System.Math.Round(num, 2);
             Response.Write(num.ToString());
             Response.End();
         }
