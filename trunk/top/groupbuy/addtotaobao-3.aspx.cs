@@ -299,7 +299,7 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
             session = dt.Rows[i]["sessiongroupbuy"].ToString();
             sql = "SELECT * FROM TopWriteContent WHERE missionid = '" + dt.Rows[i]["id"].ToString() + "' AND isok = 0";
 
-            WriteLog("sql1:" + sql, "");
+            //WriteLog("sql1:" + sql, "");
             dtWrite = utils.ExecuteDataTable(sql);
             for (int j = 0; j < dtWrite.Rows.Count; j++)
             {
@@ -314,7 +314,7 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
                     string newContent = string.Empty;
                     string groupid = dtWrite.Rows[j]["groupbuyid"].ToString();
 
-                    WriteLog("html:" + styleHtml.Length.ToString(), "");
+                    //WriteLog("html:" + styleHtml.Length.ToString(), "");
                     if (!Regex.IsMatch(product.Desc, @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>"))
                     {
                         newContent = @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>" + styleHtml + @"<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>" + product.Desc;
@@ -323,7 +323,7 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
                     {
                         newContent = Regex.Replace(product.Desc, @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>", @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>" + styleHtml + @"<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>");
                     }
-                    WriteLog("html2:" + newContent.Length.ToString(), "");
+                    //WriteLog("html2:" + newContent.Length.ToString(), "");
 
 
                     //更新宝贝描述
@@ -332,7 +332,7 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
                     param.Add("desc", newContent);
                     string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update ", session, param);
 
-                    WriteLog("itemid:" + dtWrite.Rows[j]["itemid"].ToString(), "");
+                    //WriteLog("itemid:" + dtWrite.Rows[j]["itemid"].ToString(), "");
 
                     //更新状态
                     sql = "UPDATE TopWriteContent SET isok = 1 WHERE id = " + dtWrite.Rows[j]["id"].ToString();
@@ -344,8 +344,8 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
                 }
                 catch (Exception e)
                 {
-                    WriteLog(e.Message, "1");
-                    WriteLog(e.StackTrace, "1");
+                    //WriteLog(e.Message, "1");
+                    //WriteLog(e.StackTrace, "1");
                     sql = "UPDATE TopMission SET fail = fail + 1,isok = -1  WHERE id = " + dt.Rows[i]["id"].ToString();
                      utils.ExecuteNonQuery(sql);
                     continue;
@@ -469,11 +469,45 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
                 }
                 postData.Append(name);
                 postData.Append("=");
-                postData.Append(Uri.EscapeDataString(value));
+               // postData.Append(Uri.EscapeDataString(value));
+                postData.Append(GetUriFormate(value));
                 hasParam = true;
             }
         }
         return postData.ToString();
+    }
+
+    /// <summary>
+    /// 将参数转换成 uri 格式
+    /// </summary>
+    /// <param name="inputString">string类型的字符串</param>
+    /// <returns>编码后的string</returns>
+    private static string GetUriFormate(string inputString)
+    {
+        StringBuilder strBuilder = new StringBuilder();
+        string sourceStr = inputString;
+        int len = sourceStr.Length;
+        do
+        {
+            if (len - 21766 <= 0)
+            {
+                strBuilder.Append(Uri.EscapeDataString(sourceStr));
+            }
+            else
+            {
+                strBuilder.Append(Uri.EscapeDataString(sourceStr.Substring(0, 21766)));
+
+                sourceStr = sourceStr.Substring(21766);
+                len = sourceStr.Length;
+                if (len - 21766 < 0)
+                {
+                    strBuilder.Append(Uri.EscapeDataString(sourceStr));
+                }
+            }
+        }
+        while (len - 21766 > 0);
+
+        return strBuilder.ToString();
     }
     /// <summary> 
     /// TOP API POST 请求 
