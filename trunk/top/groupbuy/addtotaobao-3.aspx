@@ -20,7 +20,7 @@
                 $('#lpc').attr("width", data);
                 if (data < 100) {
  
-                    setTimeout("showNumber('LoadAjax.aspx?date=" + new Date() + "&mid=" + $('#missID').val() + "')", 1000);
+                    setTimeout("showNumber('LoadAjax.aspx?date=" + new Date() + "&mid=" + $('#missID').val() + "')", 2000);
                 }
                 else {
                     $('#jd').html("100%");
