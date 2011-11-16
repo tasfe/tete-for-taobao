@@ -51,14 +51,14 @@ public partial class top_review_oldkefulist : System.Web.UI.Page
         int pageCount = 12;
         int dataCount = (pageNow - 1) * pageCount;
 
-        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.kefutime DESC) AS rownumber FROM TopOrder b WHERE b.nick = '" + nick + "' AND b.orderstatus = 'TRADE_FINISHED' AND b.kefustatus <> 0 AND reviewtime IS NOT NULL) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY kefutime DESC";
+        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.kefutime DESC) AS rownumber FROM TopOrder b WHERE b.nick = '" + nick + "' AND b.kefustatus <> 0 AND reviewtime IS NOT NULL) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY kefutime DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
         rptArticle.DataBind();
 
         //分页数据初始化
-        sqlNew = "SELECT COUNT(*) FROM TopOrder WHERE nick = '" + nick + "' AND orderstatus = 'TRADE_FINISHED' AND kefustatus <> 0 AND reviewtime IS NOT NULL";
+        sqlNew = "SELECT COUNT(*) FROM TopOrder WHERE nick = '" + nick + "' AND kefustatus <> 0 AND reviewtime IS NOT NULL";
         int totalCount = int.Parse(utils.ExecuteString(sqlNew));
 
         lbPage.Text = InitPageStr(totalCount, "oldkefulist.aspx");
@@ -73,7 +73,7 @@ public partial class top_review_oldkefulist : System.Web.UI.Page
             return;
         }
 
-        string sqlNew = "SELECT * FROM TopOrder WHERE nick = '" + nick + "' AND orderstatus = 'TRADE_FINISHED' AND kefustatus <> 0 AND buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
+        string sqlNew = "SELECT * FROM TopOrder WHERE nick = '" + nick + "' AND kefustatus <> 0 AND buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
