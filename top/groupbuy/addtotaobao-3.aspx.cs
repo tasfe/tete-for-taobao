@@ -332,7 +332,7 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
                     param.Add("desc", newContent);
                     string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update ", session, param);
 
-                    //WriteLog("itemid:" + dtWrite.Rows[j]["itemid"].ToString(), "");
+                    WriteLog("itemid:" + dtWrite.Rows[j]["itemid"].ToString(), "", dt.Rows[i]["nick"].ToString());
 
                     //更新状态
                     sql = "UPDATE TopWriteContent SET isok = 1 WHERE id = " + dtWrite.Rows[j]["id"].ToString();
@@ -344,8 +344,8 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
                 }
                 catch (Exception e)
                 {
-                    //WriteLog(e.Message, "1");
-                    //WriteLog(e.StackTrace, "1");
+                    WriteLog(e.Message, "1", dt.Rows[i]["nick"].ToString());
+                    WriteLog(e.StackTrace, "1", dt.Rows[i]["nick"].ToString());
                     sql = "UPDATE TopMission SET fail = fail + 1,isok = -1  WHERE id = " + dt.Rows[i]["id"].ToString();
                      utils.ExecuteNonQuery(sql);
                     continue;
@@ -376,13 +376,14 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
     /// <param name="value">日志内容</param>
     /// <param name="type">类型 0(成功日志),1(错误日志) 可传空文本默认为0</param>
     /// <returns></returns>
-    public static void WriteLog(string message, string type)
+    public static void WriteLog(string message, string type,string nick)
     {
-        string tempStr = logUrl + "/Groupby" + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
-        string tempFile = tempStr + "/Groupbypromotion" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+ 
+        string tempStr = logUrl + "/Groupby"+nick + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
+        string tempFile = tempStr + "/Groupbypromotion" + nick + DateTime.Now.ToString("yyyyMMdd") + ".txt";
         if (type == "1")
         {
-            tempFile = tempStr + "/GroupbypromotionErr" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+            tempFile = tempStr + "/GroupbypromotionErr" + nick + DateTime.Now.ToString("yyyyMMdd") + ".txt";
         }
         if (!Directory.Exists(tempStr))
         {
