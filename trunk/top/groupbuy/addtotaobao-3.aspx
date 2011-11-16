@@ -33,11 +33,11 @@
 
     }
 
-    function reqUrl(dateStr2) {
+//    function reqUrl(dateStr2) {
 
-     
-    $.get(dateStr2, function(data){
-  });
+//     
+//    $.get(dateStr2, function(data){
+//  });
 
 
        
@@ -76,7 +76,6 @@
   </div>
      <script type="text/javascript">
          showNumber('LoadAjax.aspx?date=' + new Date() + "&mid=" + $('#missID').val());
-         reqUrl('LoadAjax2.aspx?date=' + new Date() + "&sqltype=" + document.getElementById("missID").value);
      </script> 
 
 </div>
