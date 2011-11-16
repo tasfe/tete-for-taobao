@@ -21,6 +21,10 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
             int su = int.Parse(dt.Rows[0]["success"].ToString()) + int.Parse(dt.Rows[0]["fail"].ToString());//已完成
 
             int num = 100;
+            if (su < 1)
+            {
+                su = 1;
+            }
             if (tol != 0)
             {
                 num = (su / tol) * 100;
