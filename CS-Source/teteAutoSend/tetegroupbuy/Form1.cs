@@ -322,7 +322,7 @@ namespace tetegroupbuy
                 //MessageBox.Show("\r\n" + e.StackTrace);
                 Thread newThread = new Thread(DoMyJob);
                 //休息后继续循环-默认10分钟一次
-                Thread.Sleep(600000);
+                Thread.Sleep(900000);
                 newThread.Start();
             }
         }
