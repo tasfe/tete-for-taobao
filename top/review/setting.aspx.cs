@@ -28,6 +28,7 @@ public partial class top_review_setting : System.Web.UI.Page
     public string issendmsg = string.Empty;
     public string iskefu = string.Empty;
     public string iscancelauto = string.Empty;
+    public string iskeyword = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -89,6 +90,7 @@ public partial class top_review_setting : System.Web.UI.Page
             issendmsg = dt.Rows[0]["issendmsg"].ToString();
             iskefu = dt.Rows[0]["iskefu"].ToString();
             iscancelauto = dt.Rows[0]["iscancelauto"].ToString();
+            iskeyword = dt.Rows[0]["iskeyword"].ToString();
         }
         else
         { 
@@ -99,6 +101,7 @@ public partial class top_review_setting : System.Web.UI.Page
             iscoupon = "0";
             issendmsg = "0";
             iscancelauto = "1";
+            iskeyword = "0";
             
             //默认B店开启审核
             string typ = utils.ExecuteString("SELECT typ FROM TopTaobaoShop WHERE nick = '" + nick + "'");
@@ -120,6 +123,7 @@ public partial class top_review_setting : System.Web.UI.Page
                 if (flag != "3")
                 {
                     iskefu = "1";
+                    iskeyword = "1";
                 }
             }
         }
@@ -238,6 +242,12 @@ public partial class top_review_setting : System.Web.UI.Page
                     Response.End();
                     return;
                 }
+                if (utils.NewRequest("iskeyword", utils.RequestType.Form) == "1")
+                {
+                    Response.Write("<script>alert('尊敬的" + nick + "，非常抱歉的告诉您，只有VIP版本才能使用【好评自动判定】功能！');window.location.href='setting.aspx';</script>");
+                    Response.End();
+                    return;
+                }
             }
         }
 
@@ -346,6 +356,7 @@ public partial class top_review_setting : System.Web.UI.Page
                         "mindate, " +
                         "maxdate, " +
                         "iscancelauto, " +
+                        "iskeyword, " +
                         "issendmsg " +
                     " ) VALUES ( " +
                         " '" + nick + "', " +
@@ -359,6 +370,7 @@ public partial class top_review_setting : System.Web.UI.Page
                         " '" + utils.NewRequest("mindate", utils.RequestType.Form) + "', " +
                         " '" + utils.NewRequest("maxdate", utils.RequestType.Form) + "', " +
                         " '" + utils.NewRequest("iscancelauto", utils.RequestType.Form) + "', " +
+                        " '" + utils.NewRequest("iskeyword", utils.RequestType.Form) + "', " +
                         " '" + utils.NewRequest("issendmsg", utils.RequestType.Form) + "' " +
                     ") ";
             utils.ExecuteNonQuery(sql);
@@ -381,6 +393,7 @@ public partial class top_review_setting : System.Web.UI.Page
                         "maxdate = '" + utils.NewRequest("maxdate", utils.RequestType.Form) + "', " +
                         "updatedate = GETDATE(), " +
                         "iscancelauto = '" + utils.NewRequest("iscancelauto", utils.RequestType.Form) + "', " +
+                        "iskeyword = '" + utils.NewRequest("iskeyword", utils.RequestType.Form) + "', " +
                         "issendmsg = '" + utils.NewRequest("issendmsg", utils.RequestType.Form) + "' " +
                     "WHERE nick = '" + nick + "'";
             //Response.Write(sql);

@@ -78,6 +78,21 @@
                 </td>
             </tr>
             <tr>
+                <td align="left" height="30">默认好评优惠券处理：</td>
+                <td>
+                    赠送<input name="iscancelauto" type="radio" value="0" <%=check(iscancelauto, "0") %> />
+                    不赠送<input name="iscancelauto" type="radio" value="1" <%=check(iscancelauto, "1") %> />
+                </td>
+            </tr>
+            <tr>
+                <td align="left" height="30">好评自动判定：</td>
+                <td>
+                    开启<input name="iskeyword" type="radio" value="0" <%=check(iskeyword, "0") %> />
+                    不开启<input name="iskeyword" type="radio" value="1" <%=check(iskeyword, "1") %> />
+                    <a href="keyword.aspx">设置好评自动判定规则</a>
+                </td>
+            </tr>
+            <tr>
                 <td align="left" height="30">是否开启评价审核：</td>
                 <td>
                     开启<input name="iskefu" type="radio" value="1" <%=check(iskefu, "1") %> />
@@ -85,13 +100,6 @@
                     <a href="kefulist.aspx">查看待审核列表</a>
                 </td>
             </tr>
-            <tr>
-                <td align="left">默认好评处理：</td>
-                <td>
-                    赠送<input name="iscancelauto" type="radio" value="0" <%=check(iscancelauto, "0") %> />
-                    不赠送<input name="iscancelauto" type="radio" value="1" <%=check(iscancelauto, "1") %> />
-                </td>
-            </tr> 
             <tr>
                 <td align="left" colspan="2">
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" OnClientClick="return check()" />
