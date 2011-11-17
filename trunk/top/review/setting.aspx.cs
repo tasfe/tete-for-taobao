@@ -27,6 +27,7 @@ public partial class top_review_setting : System.Web.UI.Page
     public string iscoupon = string.Empty;
     public string issendmsg = string.Empty;
     public string iskefu = string.Empty;
+    public string iscancelauto = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -87,6 +88,7 @@ public partial class top_review_setting : System.Web.UI.Page
             iscoupon = dt.Rows[0]["iscoupon"].ToString();
             issendmsg = dt.Rows[0]["issendmsg"].ToString();
             iskefu = dt.Rows[0]["iskefu"].ToString();
+            iscancelauto = dt.Rows[0]["iscancelauto"].ToString();
         }
         else
         { 
@@ -96,6 +98,7 @@ public partial class top_review_setting : System.Web.UI.Page
             isfree = "0";
             iscoupon = "0";
             issendmsg = "0";
+            iscancelauto = "1";
             
             //默认B店开启审核
             string typ = utils.ExecuteString("SELECT typ FROM TopTaobaoShop WHERE nick = '" + nick + "'");
@@ -342,6 +345,7 @@ public partial class top_review_setting : System.Web.UI.Page
                         "iskefu, " +
                         "mindate, " +
                         "maxdate, " +
+                        "iscancelauto, " +
                         "issendmsg " +
                     " ) VALUES ( " +
                         " '" + nick + "', " +
@@ -354,6 +358,7 @@ public partial class top_review_setting : System.Web.UI.Page
                         " '" + utils.NewRequest("iskefu", utils.RequestType.Form) + "', " +
                         " '" + utils.NewRequest("mindate", utils.RequestType.Form) + "', " +
                         " '" + utils.NewRequest("maxdate", utils.RequestType.Form) + "', " +
+                        " '" + utils.NewRequest("iscancelauto", utils.RequestType.Form) + "', " +
                         " '" + utils.NewRequest("issendmsg", utils.RequestType.Form) + "' " +
                     ") ";
             utils.ExecuteNonQuery(sql);
@@ -375,6 +380,7 @@ public partial class top_review_setting : System.Web.UI.Page
                         "mindate = '" + utils.NewRequest("mindate", utils.RequestType.Form) + "', " +
                         "maxdate = '" + utils.NewRequest("maxdate", utils.RequestType.Form) + "', " +
                         "updatedate = GETDATE(), " +
+                        "iscancelauto = '" + utils.NewRequest("iscancelauto", utils.RequestType.Form) + "', " +
                         "issendmsg = '" + utils.NewRequest("issendmsg", utils.RequestType.Form) + "' " +
                     "WHERE nick = '" + nick + "'";
             //Response.Write(sql);
