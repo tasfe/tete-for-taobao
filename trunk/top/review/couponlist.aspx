@@ -33,8 +33,9 @@
 
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
-                <td width="180"><b>优惠券名称</b></td>
+                <td width="140"><b>优惠券名称</b></td>
                 <td width="80"><b>优惠券金额</b></td>
+                <td width="40"><b>最大领取数量</b></td>
                 <td width="120"><b>优惠券截止日期</b> </b></td>
                 <td width="80"><b>使用条件</b> </td>
                 <td width="100"><b>总领用量/已领用</b> </td>
@@ -45,6 +46,7 @@
             <tr>
                 <td height="35"><%#Eval("coupon_name")%></td>
                 <td><%#Eval("denominations")%></td>
+                <td><%#Eval("per")%></td>
                 <td><%#Eval("end_time")%></td>
                 <td><%#Eval("condition")%></td>
                 <td><%#Eval("total")%> / <%#Eval("used")%></td>
