@@ -1,0 +1,19 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="index" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>管理系统</title>
+</head>
+<frameset name="main" framespacing="0" border="false" rows="97,*" frameborder="0" scrolling="yes">
+        <frame style=" border-bottom-color:1px #9DB3C5 solid;"   scrolling="yes"    name="topFrame"   id="topFrame"  src="top.aspx">
+        <frameset cols="191,*" framespacing="0" frameborder="0" border="false" id="frame">
+       <frame style="border-right:1px #9DB3C5 solid;" name="leftFrame" noresize="noresize" scrolling="yes" id="leftFrame"  src="Menu.aspx">
+       <frame name="mainFrame" id="mainFrame" scrolling="yes" src="show.aspx" >
+       </frameset>
+       </frameset>
+</frameset>
+</html>
