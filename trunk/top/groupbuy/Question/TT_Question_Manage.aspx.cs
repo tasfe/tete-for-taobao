@@ -29,6 +29,9 @@ public partial class TT_Question_Manage : System.Web.UI.Page
 		//获取用户信息
         Cookie cookie = new Cookie();
         string taobaoNick = cookie.getCookie("nick");
+        Rijndael_ encode = new Rijndael_("tetesoft");
+
+        taobaoNick = encode.Decrypt(taobaoNick);
             DataTable dt = utils.ExecuteDataTable("SELECT * FROM TT_Question  WHERE LV=1 and userid='"+taobaoNick+"' ORDER BY id DESC ");
             dt.Columns.Add("count");
             dt= getCount(dt);
