@@ -24,3 +24,17 @@ E:\svn\website\CS-Source\teteAutoSend\teteReview\obj\x86\Debug\GenerateResource-
 E:\svn\website\CS-Source\teteAutoSend\teteReview\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
 E:\svn\website\CS-Source\teteAutoSend\teteReview\obj\x86\Debug\teteReview.exe
 E:\svn\website\CS-Source\teteAutoSend\teteReview\obj\x86\Debug\teteReview.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteReview\bin\Debug\teteReview.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteReview\bin\Debug\teteReview.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteReview\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Caching.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteReview\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteReview\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteReview\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteReview\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteReview\obj\x86\Debug\teteReview.Form1.resources
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteReview\obj\x86\Debug\teteReview.Properties.Resources.resources
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteReview\obj\x86\Debug\teteReview.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteReview\obj\x86\Debug\teteReview.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteReview\bin\Debug\teteReview.exe.config
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteReview\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteReview\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog

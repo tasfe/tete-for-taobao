@@ -29,9 +29,9 @@ namespace teteReview
             appkey = "12159997";
             secret = "614e40bfdb96e9063031d1a9e56fbed5";
 
-            //获取最新团购相关的订单数据并加入数据库
-            Thread newThread = new Thread(DoMyJob);
-            newThread.Start();
+            ////获取最新团购相关的订单数据并加入数据库
+            //Thread newThread = new Thread(DoMyJob);
+            //newThread.Start();
 
             //获取订单物流状态并发送短信
             Thread newThread1 = new Thread(CheckOrder_1);
@@ -45,9 +45,9 @@ namespace teteReview
             Thread newThread12 = new Thread(CheckOrder_3);
             newThread12.Start();
 
-            //获取订单完成状态兵判断是否赠送礼品
-            Thread newThread2 = new Thread(SendGift);
-            newThread2.Start();
+            ////获取订单完成状态兵判断是否赠送礼品
+            //Thread newThread2 = new Thread(SendGift);
+            //newThread2.Start();
 
             //获取长期未确认订单并给予短信提示
             Thread newThread3 = new Thread(SendOrderMsg);
@@ -84,6 +84,7 @@ namespace teteReview
         /// </summary>
         private void DoMyJob()
         {
+            Thread.Sleep(5000);
             //获取超过卖家设置时间还未支付的订单并取消
             string session = string.Empty;
 
@@ -166,8 +167,15 @@ namespace teteReview
                         string buynick = match[j].Groups[1].ToString();
 
                         //判断该订单是否存在
-                        sql = "SELECT COUNT(*) FROM TopOrder WHERE orderid = '"+tid+"'";
-                        string orderCount = db.GetTable(sql).Rows[0][0].ToString();
+                        sql = "SELECT COUNT(*) FROM TopOrder WHERE orderid = '" + tid + "'";
+                        DataTable dtOrder = db.GetTable(sql);
+                        if(dtOrder.Rows.Count == 0)
+                        {
+                            WriteLog("DoMyJob()获取用户订单方法出现错误，错误信息的SQL如下：\r\n" + sql + "\r\n************************************************");
+                            continue;
+                        }
+
+                        string orderCount = dtOrder.Rows[0][0].ToString();
                         if (orderCount == "0")
                         {
                             //记录用户产生的订单
@@ -359,7 +367,7 @@ namespace teteReview
             string session = string.Empty;
 
             DBSql db = DBSql.getInstance();
-            string sql = "SELECT * FROM TopAutoReview WHERE isdel = 0 AND nick = 'yww936807'";
+            string sql = "SELECT * FROM TopAutoReview WHERE isdel = 0";
             //textBox1.AppendText("\r\n" + sql);
             DataTable dt = db.GetTable(sql);
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -638,7 +646,7 @@ namespace teteReview
 
             if (isDebug == "1")
             {
-                sql = "SELECT r.* FROM TopAutoReview r INNER JOIN TopTaobaoShop s ON s.nick = r.nick WHERE r.isdel = 0 AND r.nick = '贵和酒类专营店' AND s.versionNoBlog = " + typ;
+                sql = "SELECT r.* FROM TopAutoReview r INNER JOIN TopTaobaoShop s ON s.nick = r.nick WHERE r.isdel = 0 AND r.nick = '姐艾旗舰店' AND s.versionNoBlog = " + typ;
             }
             else
             {
@@ -683,11 +691,11 @@ namespace teteReview
                     //获取改用户设置的短信提醒的订单
                     if (isDebug == "1")
                     {
-                        sql = "SELECT * FROM TopOrder WHERE nick = '" + dt.Rows[i]["nick"].ToString() + "' AND isok = 0 AND orderstatus <> 'WAIT_SELLER_SEND_GOODS' AND orderstatus <> 'WAIT_BUYER_PAY' AND buynick = 'yeyaong'";
+                        sql = "SELECT * FROM TopOrder WHERE nick = '" + dt.Rows[i]["nick"].ToString() + "' AND isok = 0 AND orderstatus <> 'WAIT_SELLER_SEND_GOODS' AND orderstatus <> 'WAIT_BUYER_PAY'";
                     }
                     else
                     {
-                        sql = "SELECT * FROM TopOrder WHERE nick = '" + dt.Rows[i]["nick"].ToString() + "' AND isok = 0 AND orderstatus <> 'WAIT_SELLER_SEND_GOODS' AND orderstatus <> 'WAIT_BUYER_PAY'";
+                        sql = "SELECT * FROM TopOrder WHERE nick = '" + dt.Rows[i]["nick"].ToString() + "' AND isok = 0 AND orderstatus <> 'WAIT_SELLER_SEND_GOODS' AND orderstatus <> 'WAIT_BUYER_PAY' AND orderstatus <> 'TradeRated'";
                     }
                     DataTable dtOrder = db.GetTable(sql);
                     //textBox5.AppendText("\r\n\r\n" + nick + "-" + dtOrder.Rows.Count);
@@ -735,79 +743,87 @@ namespace teteReview
                         }
 
 
-                        //如果订单状态为已结束则获取订单评论
-                        if (dtOrder.Rows[j]["orderstatus"].ToString() == "TRADE_FINISHED")
-                        {
-                            string orderid = dtOrder.Rows[j]["orderid"].ToString();
-                            //获取该订单的子订单
-                            sql = "SELECT * FROM TopOrderList WHERE tid = '" + orderid + "'";
-                            //textBox5.AppendText("\r\nTRADE_FINISHED----" + sql);
-                            DataTable dtOrderList = db.GetTable(sql);
-                            for (int l = 0; l < dtOrderList.Rows.Count; l++)
-                            {
-                                //获取该订单的好评信息 taobao.traderates.get
-                                param = new Dictionary<string, string>();
-                                param.Add("fields", "content,created,nick,result");
-                                param.Add("rate_type", "get");
-                                param.Add("role", "buyer");
-                                param.Add("tid", dtOrderList.Rows[l]["oid"].ToString());
+                        ////如果订单状态为已结束则获取订单评论
+                        //if (dtOrder.Rows[j]["orderstatus"].ToString() == "TRADE_FINISHED")
+                        //{
+                        //    string orderid = dtOrder.Rows[j]["orderid"].ToString();
+                        //    //获取该订单的子订单
+                        //    sql = "SELECT * FROM TopOrderList WHERE tid = '" + orderid + "'";
+                        //    //textBox5.AppendText("\r\nTRADE_FINISHED----" + sql);
+                        //    DataTable dtOrderList = db.GetTable(sql);
+                        //    for (int l = 0; l < dtOrderList.Rows.Count; l++)
+                        //    {
+                        //        //获取该订单的好评信息 taobao.traderates.get
+                        //        param = new Dictionary<string, string>();
+                        //        param.Add("fields", "content,created,nick,result");
+                        //        param.Add("rate_type", "get");
+                        //        param.Add("role", "buyer");
+                        //        param.Add("tid", dtOrderList.Rows[l]["oid"].ToString());
 
-                                string resultNew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.traderates.get", session, param);
+                        //        string resultNew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.traderates.get", session, param);
           
-                                if (isDebug == "1")
-                                {
-                                    WriteLog(resultNew);
-                                }
-                                //如果还没有评论则跳过
-                                if (resultNew.IndexOf("<total_results>0</total_results>") != -1)
-                                {
-                                    continue;
-                                }
+                        //        if (isDebug == "1")
+                        //        {
+                        //            WriteLog(resultNew);
+                        //        }
+                        //        //如果还没有评论则跳过
+                        //        if (resultNew.IndexOf("<total_results>0</total_results>") != -1 || resultNew.IndexOf("<msg>Remote service error</msg>") != -1)
+                        //        {
+                        //            continue;
+                        //        }
 
-                                Regex regReview = new Regex(@"<content>([^<]*)</content><created>([^<]*)</created><nick>([^<]*)</nick><result>([^<]*)</result>", RegexOptions.IgnoreCase);
-                                MatchCollection matchReview = regReview.Matches(resultNew);
+                        //        Regex regReview = new Regex(@"<content>([^<]*)</content><created>([^<]*)</created><nick>([^<]*)</nick><result>([^<]*)</result>", RegexOptions.IgnoreCase);
+                        //        MatchCollection matchReview = regReview.Matches(resultNew);
 
-                                //防止插入重复的评论判断
-                                sql = "SELECT COUNT(*) FROM TopTradeRate WHERE tid = '" + orderid + "' AND nick = '" + dtOrder.Rows[j]["buynick"].ToString() + "' AND itemid = '" + dtOrderList.Rows[l]["itemid"].ToString() + "'";
-                                debugSql = sql;
+                        //        //防止插入重复的评论判断
+                        //        sql = "SELECT COUNT(*) FROM TopTradeRate WHERE tid = '" + orderid + "' AND nick = '" + dtOrder.Rows[j]["buynick"].ToString() + "' AND itemid = '" + dtOrderList.Rows[l]["itemid"].ToString() + "'";
+                        //        debugSql = sql;
 
-                                if (isDebug == "1")
-                                {
-                                    WriteLog(sql);
-                                }
-                                string reviewCount = db.GetTable(sql).Rows[0][0].ToString();
+                        //        if (isDebug == "1")
+                        //        {
+                        //            WriteLog(sql);
+                        //        }
 
-                                //在多次插入的问题没有找到前先用此方法解决
-                                if (reviewCount == "0")
-                                {
-                                    //插入数据库
-                                    sql = "INSERT INTO TopTradeRate (" +
-                                                        "tid, " +
-                                                        "content, " +
-                                                        "created, " +
-                                                        "nick, " +
-                                                        "owner, " +
-                                                        "itemid, " +
-                                                        "result " +
-                                                    " ) VALUES ( " +
-                                                        " '" + orderid + "', " +
-                                                        " '" + matchReview[0].Groups[1].ToString() + "', " +
-                                                        " '" + matchReview[0].Groups[2].ToString() + "', " +
-                                                        " '" + dtOrder.Rows[j]["buynick"].ToString() + "', " +
-                                                        " '" + nick + "', " +
-                                                        " '" + dtOrderList.Rows[l]["itemid"].ToString() + "', " +
-                                                        " '" + matchReview[0].Groups[4].ToString() + "' " +
-                                                    ") ";
-                                    //textBox5.AppendText("\r\n" + sql);
-                                    db.ExecSql(sql);
-                                }
+                        //        DataTable dtReview = db.GetTable(sql);
+                        //        if(dtReview.Rows.Count == 0)
+                        //        {
+                        //            WriteLog("CheckOrderByType()出现错误，错误信息的SQL如下：\r\n" + sql + "\r\n************************************************");
+                        //            continue;
+                        //        }
 
-                                //更新该订单为已评价
-                                sql = "UPDATE TopOrder SET isok = 1, reviewtime='" + matchReview[0].Groups[2].ToString() + "',result='" + matchReview[0].Groups[4].ToString() + "',content='" + matchReview[0].Groups[1].ToString() + "' WHERE orderid = '" + orderid + "'";
-                                //textBox5.AppendText("\r\n" + sql);
-                                db.ExecSql(sql);
-                            }
-                        }
+                        //        string reviewCount = dtReview.Rows[0][0].ToString();
+
+                        //        //在多次插入的问题没有找到前先用此方法解决
+                        //        if (reviewCount == "0")
+                        //        {
+                        //            //插入数据库
+                        //            sql = "INSERT INTO TopTradeRate (" +
+                        //                                "tid, " +
+                        //                                "content, " +
+                        //                                "created, " +
+                        //                                "nick, " +
+                        //                                "owner, " +
+                        //                                "itemid, " +
+                        //                                "result " +
+                        //                            " ) VALUES ( " +
+                        //                                " '" + orderid + "', " +
+                        //                                " '" + matchReview[0].Groups[1].ToString() + "', " +
+                        //                                " '" + matchReview[0].Groups[2].ToString() + "', " +
+                        //                                " '" + dtOrder.Rows[j]["buynick"].ToString() + "', " +
+                        //                                " '" + nick + "', " +
+                        //                                " '" + dtOrderList.Rows[l]["itemid"].ToString() + "', " +
+                        //                                " '" + matchReview[0].Groups[4].ToString() + "' " +
+                        //                            ") ";
+                        //            //textBox5.AppendText("\r\n" + sql);
+                        //            db.ExecSql(sql);
+                        //        }
+
+                        //        //更新该订单为已评价
+                        //        sql = "UPDATE TopOrder SET isok = 1, reviewtime='" + matchReview[0].Groups[2].ToString() + "',result='" + matchReview[0].Groups[4].ToString() + "',content='" + matchReview[0].Groups[1].ToString() + "' WHERE orderid = '" + orderid + "'";
+                        //        //textBox5.AppendText("\r\n" + sql);
+                        //        db.ExecSql(sql);
+                        //    }
+                        //}
 
 
 
@@ -880,6 +896,11 @@ namespace teteReview
                                             continue;
                                         }
 
+                                        if (result.IndexOf("<msg>Remote service error</msg>") != -1)
+                                        {
+                                            continue;
+                                        }
+
                                         string delivery_end = match[0].Groups[1].ToString();
 
                                         sql = "UPDATE TopOrder SET typ = 'system', shippingstatus = '" + status + "', delivery_start = '" + delivery_end + "', delivery_end = '" + delivery_end + "', deliverymsg = '" + result + "' WHERE orderid = '" + dtOrder.Rows[j]["orderid"].ToString() + "'";
@@ -888,7 +909,15 @@ namespace teteReview
 
                                         //如果获取物流状态时订单已经好评过了则不发送
                                         sql = "SELECT reviewtime FROM TopOrder WHERE orderid = '" + dtOrder.Rows[j]["orderid"].ToString() + "'";
-                                        string reviewtime = db.GetTable(sql).Rows[0][0].ToString();
+
+                                         DataTable dtReviewTime = db.GetTable(sql);
+                                        if(dtReviewTime.Rows.Count == 0)
+                                        {
+                                            WriteLog("dtReviewTime()出现错误，错误信息的SQL如下：\r\n" + sql + "\r\n************************************************");
+                                            continue;
+                                        }
+
+                                        string reviewtime = dtReviewTime.Rows[0][0].ToString();
                                         if (reviewtime.Trim().Length != 0)
                                         {
                                             //textBox5.AppendText("\r\n如果获取物流状态时订单已经好评过了则不发送");
@@ -1088,6 +1117,7 @@ namespace teteReview
         /// </summary>
         private void SendGift()
         {
+            Thread.Sleep(10000);
             //获取超过卖家设置时间还未支付的订单并取消
             string session = string.Empty;
 
@@ -1109,6 +1139,10 @@ namespace teteReview
                     string tagid = dt.Rows[i]["tagid"].ToString();
                     string iskefu = dt.Rows[i]["iskefu"].ToString();
                     string itemid = dt.Rows[i]["itemid"].ToString();
+
+                    string giftflag = dt.Rows[i]["giftflag"].ToString();
+                    string giftcontent = dt.Rows[i]["giftcontent"].ToString();
+                    string shopname = dt.Rows[i]["shopname"].ToString();
 
 
                     //通过接口将该用户加入人群
@@ -1140,7 +1174,7 @@ namespace teteReview
                     DataTable dtOrder = db.GetTable(sql);
                     //textBox3.AppendText("\r\n" + sql);
                     //textBox3.AppendText("\r\n" + dt.Rows[i]["nick"].ToString() + "-" + dtOrder.Rows.Count);
-                    WriteLog(dt.Rows[i]["nick"].ToString() + "-" + dtOrder.Rows.Count);
+                    //WriteLog(dt.Rows[i]["nick"].ToString() + "-" + dtOrder.Rows.Count);
                     //return;
                     //循环订单完成周期兵判断是否赠送礼品
                     for (int j = 0; j < dtOrder.Rows.Count; j++)
@@ -1149,6 +1183,7 @@ namespace teteReview
                         string orderid = dtOrder.Rows[j]["orderid"].ToString();
                         string result = string.Empty;
                         string buynick = dtOrder.Rows[j]["buynick"].ToString();
+                        string phone = dtOrder.Rows[j]["receiver_mobile"].ToString();
 
                         //根据用户等级判断赠送个数，如果超出赠送个数则跳出
 
@@ -1227,6 +1262,9 @@ namespace teteReview
                                 {
                                     WriteLog("【" + nick + "】的优惠券【" + couponid + "】已经过期");
 
+                                    //自动给该客户的优惠券增加使用期限
+                                    AddCouponDateInfo(nick, couponid, session);
+
                                     //textBox3.AppendText("\r\n该优惠券【" + couponid + "】已经过期"); ;
                                     break;
                                 }
@@ -1286,8 +1324,78 @@ namespace teteReview
 
                                     //更新订单状态-不需要审核
                                     sql = "UPDATE TopOrder SET issend = 1 WHERE orderid = '" + orderid + "'";
-                                    //textBox3.AppendText("\r\n" + sql);
                                     db.ExecSql(sql);
+
+
+                                    //发送短信发送短信发送短信
+                                    sql = "SELECT total FROM TopAutoReview WHERE nick = '" + nick + "'";
+                                    string total = db.GetTable(sql).Rows[0][0].ToString();
+                                    //textBox5.AppendText("\r\n" + total);
+                                    if (int.Parse(total) > 0)
+                                    {
+                                        sql = "SELECT COUNT(*) FROM TopMsg WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND sendto = '" + buynick + "' AND typ = 'gift'";// AND orderid = " + dtOrder.Rows[j]["orderid"].ToString();
+                                        string giftCount = db.GetTable(sql).Rows[0][0].ToString();
+                                        if (giftCount == "0")
+                                        {
+                                            string msg = GetMsg(giftcontent, shopname, buynick, iscoupon, isfree);
+                                            string resultmsg = SendMessage(phone, msg);
+
+                                            if (resultmsg != "0")
+                                            {
+                                                //记录短信发送记录
+                                                sql = "INSERT INTO TopMsg (" +
+                                                                    "nick, " +
+                                                                    "sendto, " +
+                                                                    "phone, " +
+                                                                    "[content], " +
+                                                                    "yiweiid, " +
+                                                                    "orderid, " +
+                                                                    "num, " +
+                                                                    "typ " +
+                                                                " ) VALUES ( " +
+                                                                    " '" + nick + "', " +
+                                                                    " '" + buynick + "', " +
+                                                                    " '" + phone + "', " +
+                                                                    " '" + msg.Replace("'", "''") + "', " +
+                                                                    " '" + resultmsg + "', " +
+                                                                    " '" + dtOrder.Rows[j]["orderid"].ToString() + "', " +
+                                                                    " '1', " +
+                                                                    " 'gift' " +
+                                                                ") ";
+                                                db.ExecSql(sql);
+
+                                                //更新状态
+                                                sql = "UPDATE TopOrder SET isgiftmsg = 1 WHERE orderid = '" + dtOrder.Rows[j]["orderid"].ToString() + "'";
+                                                db.ExecSql(sql);
+
+                                                //更新短信数量
+                                                sql = "UPDATE TopAutoReview SET used = used + 1,total = total-1 WHERE nick = '" + nick + "'";
+                                                db.ExecSql(sql);
+                                            }
+                                            else
+                                            {
+                                                //记录短信发送记录
+                                                sql = "INSERT INTO TopMsgBak (" +
+                                                                    "nick, " +
+                                                                    "sendto, " +
+                                                                    "phone, " +
+                                                                    "[content], " +
+                                                                    "yiweiid, " +
+                                                                    "orderid, " +
+                                                                    "typ " +
+                                                                " ) VALUES ( " +
+                                                                    " '" + nick + "', " +
+                                                                    " '" + buynick + "', " +
+                                                                    " '" + phone + "', " +
+                                                                    " '" + msg.Replace("'", "''") + "', " +
+                                                                    " '" + resultmsg + "', " +
+                                                                    " '" + dtOrder.Rows[j]["orderid"].ToString() + "', " +
+                                                                    " 'gift' " +
+                                                                ") ";
+                                                db.ExecSql(sql);
+                                            }
+                                        }
+                                    }
                                 }
                                 else
                                 {
@@ -1311,6 +1419,7 @@ namespace teteReview
                                 //textBox3.AppendText("\r\n" + sql);
                                 db.ExecSql(sql);
                             }
+
                         }
                     }
                 }
@@ -1329,10 +1438,69 @@ namespace teteReview
         }
 
         /// <summary>
+        /// 给客户的优惠券延期
+        /// </summary>
+        /// <param name="nick"></param>
+        /// <param name="couponid"></param>
+        private void AddCouponDateInfo(string nick, string couponid, string session)
+        {
+            DBSql db = DBSql.getInstance();
+            //获取老优惠券的设置
+            string insertSql = string.Empty;
+            string sql = "SELECT * FROM TopCoupon WHERE coupon_id = '" + couponid + "' AND nick = '" + nick + "'";
+            WriteLog(sql + "\r\n");
+            DataTable dt = db.GetTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                //创建新的优惠券
+                string guid = Guid.NewGuid().ToString().Substring(0, 4);
+                IDictionary<string, string> param = new Dictionary<string, string>();
+                param.Add("denominations", dt.Rows[0]["denominations"].ToString());
+                param.Add("end_time", DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd"));
+                param.Add("condition", dt.Rows[0]["condition"].ToString());
+                string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.add", session, param);
+                WriteLog(result + "\r\n");
+
+                if (result.IndexOf("error_response") == -1)
+                {
+                    string coupon_id = new Regex(@"<coupon_id>([^<]*)</coupon_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+
+                    sql = "INSERT INTO TopCoupon (" +
+                                    "nick, " +
+                                    "coupon_name, " +
+                                    "coupon_id, " +
+                                    "denominations, " +
+                                    "end_time, " +
+                                    "total, " +
+                                    "per, " +
+                                    "condition " +
+                                " ) VALUES ( " +
+                                    " '" + nick + "', " +
+                                    " '" + dt.Rows[0]["coupon_name"].ToString() + "', " +
+                                    " '" + coupon_id + "', " +
+                                    " '" + dt.Rows[0]["denominations"].ToString() + "', " +
+                                    " '" + DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd") + "', " +
+                                    " '" + dt.Rows[0]["total"].ToString() + "', " +
+                                    " '" + dt.Rows[0]["per"].ToString() + "', " +
+                                    " '" + dt.Rows[0]["condition"].ToString() + "' " +
+                                ") ";
+                    WriteLog(sql + "\r\n");
+                    db.ExecSql(sql);
+
+                    //将新的优惠券保存到基本设置中
+                    sql = "UPDATE TopAutoReview SET couponid = '" + coupon_id + "' WHERE nick = '" + nick + "'";
+                    WriteLog(sql + "\r\n");
+                    db.ExecSql(sql);
+                }        
+            }
+        }
+
+        /// <summary>
         /// 获取长期未确认订单并给予短信提示
         /// </summary>
         public void SendOrderMsg()
         {
+            Thread.Sleep(11000);
             //获取超过卖家设置时间还未支付的订单并取消
             string session = string.Empty;
 
@@ -1524,7 +1692,8 @@ namespace teteReview
         /// 获取卖家动态评分信息1天1次
         /// </summary>
         public void GetShopScore()
-        { 
+        {
+            Thread.Sleep(12000);
             //获取超过卖家设置时间还未支付的订单并取消
             string session = string.Empty;
 
@@ -1600,7 +1769,7 @@ namespace teteReview
 
             string param = "username=" + uid + "&password=" + pass + "&method=sendsms&mobile=" + phone + "&msg=" + msg;
             byte[] bs = Encoding.ASCII.GetBytes(param);
-            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://sms2.eachwe.com/api.php");
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://sms3.eachwe.com/api.php");
             req.Method = "POST";
             req.ContentType = "application/x-www-form-urlencoded";
             req.ContentLength = bs.Length;

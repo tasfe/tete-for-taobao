@@ -28,3 +28,10 @@ E:\工作文件2\svn特特\website\CS-Source\teteAutoSend\tetegroupbuy\obj\x86\D
 E:\工作文件2\svn特特\website\CS-Source\teteAutoSend\tetegroupbuy\obj\x86\Debug\GenerateResource.write.1.tlog
 E:\工作文件2\svn特特\website\CS-Source\teteAutoSend\tetegroupbuy\obj\x86\Debug\tetegroupbuy.exe
 E:\工作文件2\svn特特\website\CS-Source\teteAutoSend\tetegroupbuy\obj\x86\Debug\tetegroupbuy.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuy\obj\x86\Debug\teteReview.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuy\obj\x86\Debug\teteReview.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuy\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuy\obj\x86\Debug\tetegroupbuy.Form1.resources
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuy\obj\x86\Debug\teteReview.Properties.Resources.resources
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuy\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuy\obj\x86\Debug\GenerateResource.write.1.tlog
