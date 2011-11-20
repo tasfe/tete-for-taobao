@@ -1,0 +1,11 @@
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSend\bin\Debug\ReviewSend.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSend\bin\Debug\ReviewSend.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSend\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSend\obj\x86\Debug\ReviewSend.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSend\obj\x86\Debug\ReviewSend.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSend\bin\Debug\TeteTopApi.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSend\bin\Debug\TeteTopApi.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSend\bin\Debug\ReviewSend.exe.config
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSend\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSend\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSend\bin\Debug\Microsoft.Practices.ObjectBuilder.dll

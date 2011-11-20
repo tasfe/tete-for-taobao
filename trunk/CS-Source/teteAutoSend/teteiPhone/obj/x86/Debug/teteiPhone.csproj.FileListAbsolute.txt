@@ -1,0 +1,13 @@
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteiPhone\bin\Debug\teteiPhone.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteiPhone\bin\Debug\teteiPhone.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteiPhone\bin\Debug\JdSoft.Apns.Feedback.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteiPhone\bin\Debug\JdSoft.Apns.Notifications.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteiPhone\bin\Debug\JdSoft.Apple.AppStore.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteiPhone\bin\Debug\Newtonsoft.Json.Compact.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteiPhone\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteiPhone\obj\x86\Debug\teteiPhone.Form1.resources
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteiPhone\obj\x86\Debug\teteiPhone.Properties.Resources.resources
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteiPhone\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteiPhone\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteiPhone\obj\x86\Debug\teteiPhone.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\teteiPhone\obj\x86\Debug\teteiPhone.pdb

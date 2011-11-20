@@ -1,0 +1,5 @@
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSendCheck\bin\Debug\ReviewSendCheck.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSendCheck\bin\Debug\ReviewSendCheck.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSendCheck\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSendCheck\obj\x86\Debug\ReviewSendCheck.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSendCheck\obj\x86\Debug\ReviewSendCheck.pdb

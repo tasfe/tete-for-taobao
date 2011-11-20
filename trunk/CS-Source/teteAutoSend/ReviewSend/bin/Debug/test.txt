@@ -1,0 +1,15 @@
+   在 Microsoft.Practices.EnterpriseLibrary.Data.DatabaseMapper.MapName(String name, IConfigurationSource configSource)
+   在 Microsoft.Practices.EnterpriseLibrary.Common.Configuration.ObjectBuilder.ConfigurationNameMappingStrategy.BuildUp(IBuilderContext context, Type t, Object existing, String id)
+   在 Microsoft.Practices.ObjectBuilder.BuilderBase`1.DoBuildUp(IReadWriteLocator locator, Type typeToBuild, String idToBuild, Object existing, PolicyList[] transientPolicies)
+   在 Microsoft.Practices.ObjectBuilder.BuilderBase`1.BuildUp(IReadWriteLocator locator, Type typeToBuild, String idToBuild, Object existing, PolicyList[] transientPolicies)
+   在 Microsoft.Practices.ObjectBuilder.BuilderBase`1.BuildUp[TTypeToBuild](IReadWriteLocator locator, String idToBuild, Object existing, PolicyList[] transientPolicies)
+   在 Microsoft.Practices.EnterpriseLibrary.Common.Configuration.ObjectBuilder.EnterpriseLibraryFactory.BuildUp[T](IReadWriteLocator locator, IConfigurationSource configurationSource)
+   在 Microsoft.Practices.EnterpriseLibrary.Common.Configuration.ObjectBuilder.EnterpriseLibraryFactory.BuildUp[T](IConfigurationSource configurationSource)
+   在 Microsoft.Practices.EnterpriseLibrary.Data.DatabaseFactory.CreateDatabase()
+   在 TeteTopApi.utils.ExecuteDataTable(String dbstring) 位置 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\utils.cs:行号 120
+   在 TeteTopApi.DataContract.ShopData.ShopInfoGetByNick(String nick) 位置 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\DataContract\ShopData.cs:行号 21
+   在 TeteTopApi.Logic.TradeSuccess.Start() 位置 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\Logic\TradeSuccess.cs:行号 29
+   在 TeteTopApi.ReceiveMessage.ActTradeSuccess(Trade trade) 位置 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\ReceiveMessage.cs:行号 80
+   在 TeteTopApi.ReceiveMessage.ActOrderInfo() 位置 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\ReceiveMessage.cs:行号 52
+   在 TeteTopApi.ReceiveMessage.ActData() 位置 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\ReceiveMessage.cs:行号 31
+   在 TeteTopApi.WebPost.Post(String url, String appkey, String appSecret, String method, String session, IDictionary`2 param) 位置 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\WebPost.cs:行号 244
