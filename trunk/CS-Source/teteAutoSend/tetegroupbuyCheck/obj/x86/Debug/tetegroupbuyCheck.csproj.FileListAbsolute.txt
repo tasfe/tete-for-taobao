@@ -1,0 +1,5 @@
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuyCheck\bin\Debug\tetegroupbuyCheck.exe
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuyCheck\bin\Debug\tetegroupbuyCheck.pdb
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuyCheck\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuyCheck\obj\x86\Debug\tetegroupbuyCheck.exe
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuyCheck\obj\x86\Debug\tetegroupbuyCheck.pdb
