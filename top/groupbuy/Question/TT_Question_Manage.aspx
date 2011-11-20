@@ -12,16 +12,8 @@
 
 <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="../show.html">我的特特</a><a href="javascript:;" class="nolink">博客营销</a> 我的售后问题 </div>
-  <div class="absright">
-    <ul>
-      <li>
-        <div class="msg">
-            
-        </div>
-      </li>
-    </ul>
-  </div>
+  <div class="crumbs"> 我的售后问题 </div>
+ 
     <div id="main-content">
 
     <form id="form1" runat="server">
@@ -33,7 +25,7 @@
         
            <table style=" width:760px;">
             <tr style=" height:35px; background-color:#81979D; color:White; text-align:center" >
-                <td style=" width:102px; height: 35px;">工单ID</td>
+                <td style=" width:102px; height: 35px;">序号ID</td>
                 <td style="height: 35px">标题</td>
                 <td style=" width:170px; height: 35px;">状态</td>
                 <td style=" width:150px; height: 35px;">提交时间</td>

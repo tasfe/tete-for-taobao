@@ -41,6 +41,10 @@ public partial class TT_Question : System.Web.UI.Page
 //获取用户信息
         Cookie cookie = new Cookie();
         string taobaoNick = cookie.getCookie("nick");
+        Rijndael_ encode = new Rijndael_("tetesoft");
+ 
+        taobaoNick = encode.Decrypt(taobaoNick);
+     
                //查询该用户是否发布
                string sql = string.Empty;
                DataTable dtisE = utils.ExecuteDataTable("SELECT * FROM TT_Question WHERE lv=1 AND state=0  AND userID='"+taobaoNick+"'");
@@ -53,7 +57,7 @@ public partial class TT_Question : System.Web.UI.Page
                    //添加
                    sql = "INSERT INTO  TT_Question ([Title] ,[Details] ,[Phone] ,[Date],[ReturnDate]," +
                        "[State] ,[UserID],LV) VALUES ('" + txttitle.Text.Trim() + "','" + txtxxi.Text + "','" + txtph.Text
-                       + "' ,'" + DateTime.Now.ToString() + "',null,0,'"+taobaoNick+"',1)";
+                       + "' ,'" + DateTime.Now.ToString() + "',null,0,'" + taobaoNick + "',1)";
 
                    utils.ExecuteNonQuery(sql);
                    //查询
