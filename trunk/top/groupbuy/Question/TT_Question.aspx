@@ -73,16 +73,8 @@ text-align:left;
 
 <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="../show.html">我的特特</a><a href="javascript:;" class="nolink">博客营销</a> 我的售后问题 </div>
-  <div class="absright">
-    <ul>
-      <li>
-        <div class="msg">
-            
-        </div>
-      </li>
-    </ul>
-  </div>
+  <div class="crumbs"> 我的售后问题 </div>
+ 
     <div id="main-content">
 
     <form id="form1" runat="server">
@@ -115,7 +107,10 @@ text-align:left;
                     <th>联系电话</th>
                     <td>
                             &nbsp;<asp:TextBox ID="txtph" runat="server" Height="20px" Width="151px" MaxLength="11"></asp:TextBox>
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtph"
+                            <font color="red">*</font>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3"
+                                runat="server" ErrorMessage="非空" ControlToValidate="txtph"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtph"
                                 ErrorMessage="请输入正确的手机号码" ValidationExpression="\d+"></asp:RegularExpressionValidator>方便我们与您联系
 			       </td>
      </tr>
@@ -129,7 +124,9 @@ text-align:left;
      </tr>
   <tr>
     <td style="text-align: center; height: 36px;"  colspan="2"><span id="submit_span"><asp:Button
-                            ID="btOK" runat="server" Height="24px" OnClientClick="return setIsSpan();" OnClick="Button1_Click" Text="提交工单" Width="87px" /></span><span style="display: none;" id="loading_span">&nbsp
+                            ID="btOK" runat="server" Height="24px" 
+            OnClientClick="return setIsSpan();" OnClick="Button1_Click" Text="提交" 
+            Width="87px" /></span><span style="display: none;" id="loading_span">&nbsp
                         <img height="16" align="absmiddle" width="16" src="images/loading_16x16.gif"> 正在提交，请稍候...</span></td>
   </tr>
   </tbody>
