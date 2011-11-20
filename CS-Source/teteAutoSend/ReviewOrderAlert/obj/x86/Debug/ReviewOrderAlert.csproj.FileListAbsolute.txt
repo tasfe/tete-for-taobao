@@ -1,0 +1,11 @@
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewOrderAlert\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewOrderAlert\bin\Debug\ReviewOrderAlert.exe.config
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewOrderAlert\bin\Debug\ReviewOrderAlert.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewOrderAlert\bin\Debug\ReviewOrderAlert.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewOrderAlert\bin\Debug\TeteTopApi.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewOrderAlert\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewOrderAlert\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewOrderAlert\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewOrderAlert\bin\Debug\TeteTopApi.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewOrderAlert\obj\x86\Debug\ReviewOrderAlert.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewOrderAlert\obj\x86\Debug\ReviewOrderAlert.pdb

@@ -1,0 +1,9 @@
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TestApi\bin\Debug\TestApi.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TestApi\bin\Debug\TestApi.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TestApi\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TestApi\obj\x86\Debug\TestApi.Form1.resources
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TestApi\obj\x86\Debug\TestApi.Properties.Resources.resources
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TestApi\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TestApi\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TestApi\obj\x86\Debug\TestApi.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TestApi\obj\x86\Debug\TestApi.pdb
