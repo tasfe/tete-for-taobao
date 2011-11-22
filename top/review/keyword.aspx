@@ -11,7 +11,8 @@
     a{color:Blue; text-decoration:none;}
 </style>
 </head>
-<body>
+
+<body style="padding:0px; margin:0px;">
     <form id="form1" runat="server">
     <input type="hidden" name="t" id="t" value="" />
 <div class="navigation" style="height:600px;">
@@ -30,16 +31,16 @@
 
         <table width="700">
             <tr>
-                <td align="left" width="180" height="30">好评字数判定：</td>
+                <td align="left" width="120" height="30">好评字数判定：</td>
                 <td>
                     评价内容的字数必须大于<input 
-                        type="text" name="wordcount" value="0" style="width: 28px" />字才算好评
+                        type="text" name="wordcount" value="<%=wordcount %>" style="width: 28px" />字才算好评
                 </td>
             </tr>
             <tr>
-                <td align="left" width="180" height="30">包含关键字：</td>
+                <td align="left" width="120" height="30">包含关键字：</td>
                 <td>
-                    <textarea name="keyword" rows="8" cols="50"></textarea> 
+                    <textarea name="keyword" rows="8" cols="50"><%=keyword %></textarea> 
                     <br /> 只有包含了以上关键字的才算好评，多个关键字请用回车分开
                 </td>
             </tr>
@@ -47,6 +48,7 @@
             <tr>
                 <td align="left" colspan="2">
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" />
+                    <input type="button" value="返回基本设置" onclick="window.location.href='setting.aspx'" />
                 </td>
             </tr>
         </table>
