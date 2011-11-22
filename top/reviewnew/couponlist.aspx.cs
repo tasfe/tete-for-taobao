@@ -29,11 +29,11 @@ public partial class top_review_couponlist : System.Web.UI.Page
         nick = encode.Decrypt(taobaoNick);
 
         //判断VIP版本，只有VIP才能使用此功能
-        string sql = "SELECT * FROM TopTaobaoShop WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            string flag = dt.Rows[0]["versionNoBlog"].ToString();
+            string flag = dt.Rows[0]["session"].ToString();
             if (flag == "0")
             {
                 Response.Redirect("xufei.aspx");
@@ -72,7 +72,7 @@ public partial class top_review_couponlist : System.Web.UI.Page
         string session = cookie.getCookie("top_sessiongroupbuy");
 
         //通过数据库查询获取活动ID
-        string sql = "UPDATE TopCoupon SET isdel = 1 WHERE id = " + id;
+        string sql = "UPDATE TCS_Coupon SET isdel = 1 WHERE guid = " + id;
         utils.ExecuteNonQuery(sql);
 
         Response.Write("<script>alert('取消成功！');window.location.href='couponlist.aspx';</script>");
@@ -80,7 +80,7 @@ public partial class top_review_couponlist : System.Web.UI.Page
 
     private void BindData()
     {
-        string sql = "SELECT * FROM TopCoupon WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY id DESC";
+        string sql = "SELECT * FROM TCS_Coupon WHERE nick = '" + nick + "' AND isdel = 0";
         DataTable dt = utils.ExecuteDataTable(sql);
 
         rptArticle.DataSource = dt;
