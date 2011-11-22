@@ -48,22 +48,6 @@
                     <a href="couponsend.aspx">查看优惠券赠送记录</a>
                 </td>
             </tr>
-            <!--<tr>
-                <td align="left" height="30">是否开启按时好评送礼品：</td>
-                <td>
-                    开启<input name="isfree" type="radio" value="1" <%=check(isfree, "1") %> onclick="showArea1(1)" />
-                    不开启<input name="isfree" type="radio" value="0" <%=check(isfree, "0") %> onclick="showArea1(0)" />
-                </td>
-            </tr>
-            <tr id="itemArea">
-                <td align="left" height="30">免费赠送的礼品：</td>
-                <td>
-                    <input type="button" value="选择宝贝" onclick="OpenDialogLable('dialogProduct.aspx',650,560);" />
-                    <div id="productArea"></div>
-                    <input name="itemid" id="itemid" type="hidden" value="<%=itemid %>" /><br />
-                    <a href="itemsend.aspx">查看礼品赠送记录</a>
-                </td>
-            </tr>-->
             <tr>
                 <td align="left" height="30">淘宝提供物流跟踪订单最短评价时间：</td>
                 <td>
@@ -190,7 +174,7 @@
         //获取当前使用样式
         var style = "0";
 
-        var queryString = "/top/review/taobaoitem.aspx?act=getResultStr&isradio=1&style=" + style + "&ids=" + str + "&t=" + new Date().getTime();
+        var queryString = "/top/reviewnew/taobaoitem.aspx?act=getResultStr&isradio=1&style=" + style + "&ids=" + str + "&t=" + new Date().getTime();
         xmlHttp.open("GET", queryString);
         xmlHttp.onreadystatechange = handleStateChangeResultStr;
         xmlHttp.send(null);
