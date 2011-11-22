@@ -74,7 +74,7 @@ public partial class top_review_couponsend : System.Web.UI.Page
 
         //string sqlCoupon = "SELECT * FROM TopCoupon WHERE coupon_id = " + ; 
 
-        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT s.*,ROW_NUMBER() OVER (ORDER BY s.id DESC) AS rownumber FROM TCS_CouponSend s WHERE s.nick = '" + nick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY taobaonumber DESC";
+        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT s.*,ROW_NUMBER() OVER (ORDER BY s.taobaonumber DESC) AS rownumber FROM TCS_CouponSend s WHERE s.nick = '" + nick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY taobaonumber DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
         //Response.Write(sqlNew);
         rptArticle.DataSource = dt;
