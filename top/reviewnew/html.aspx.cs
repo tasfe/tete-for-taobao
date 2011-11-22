@@ -35,11 +35,11 @@ public partial class top_review_html : System.Web.UI.Page
         nick = encode.Decrypt(taobaoNick);
 
         //判断VIP版本，只有VIP才能使用此功能
-        string sql = "SELECT * FROM TopTaobaoShop WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            string flag = dt.Rows[0]["versionNoBlog"].ToString();
+            string flag = dt.Rows[0]["version"].ToString();
             if (flag == "0")
             {
                 Response.Redirect("xufei.aspx");
@@ -53,7 +53,7 @@ public partial class top_review_html : System.Web.UI.Page
 
     private void BindData()
     {
-        string sql = "SELECT * FROM TopAutoReview WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
@@ -116,7 +116,7 @@ public partial class top_review_html : System.Web.UI.Page
         string detailimgurl = pic5 + "|" + pic6 + "|" + pic7;
 
         //更新到个人信息里面
-        string sql = "UPDATE TopAutoReview SET " +
+        string sql = "UPDATE TCS_ShopConfig SET " +
                "leftimgurl = '" + leftimgurl + "', " +
                "detailimgurl = '" + detailimgurl + "' " +
            "WHERE nick = '" + nick + "'";
@@ -164,7 +164,7 @@ public partial class top_review_html : System.Web.UI.Page
 
 
         //保存到数据库
-        string sql = "UPDATE TopAutoReview SET leftimgname = '" + name + "', leftimgistop = '" + istop + "' WHERE nick = '" + nick + "'";
+        string sql = "UPDATE TCS_ShopConfig SET leftimgname = '" + name + "', leftimgistop = '" + istop + "' WHERE nick = '" + nick + "'";
 
         utils.ExecuteNonQuery(sql);
 
@@ -234,7 +234,7 @@ public partial class top_review_html : System.Web.UI.Page
     {
         string imgurl = string.Empty;
         string taobaourl = string.Empty;
-        string sql = "SELECT * FROM TopAutoReview WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
@@ -309,7 +309,7 @@ public partial class top_review_html : System.Web.UI.Page
         //保存到数据库
         string name = utils.NewRequest("detail", utils.RequestType.Form);
         string istop = utils.NewRequest("detailimgistop", utils.RequestType.Form);
-        string sql = "UPDATE TopAutoReview SET detailimgname = '" + name + "', detailimgistop = '" + istop + "' WHERE nick = '" + nick + "'";
+        string sql = "UPDATE TCS_ShopConfig SET detailimgname = '" + name + "', detailimgistop = '" + istop + "' WHERE nick = '" + nick + "'";
 
         utils.ExecuteNonQuery(sql);
 
@@ -365,7 +365,7 @@ public partial class top_review_html : System.Web.UI.Page
     private string CreateDesc(string desc, string istop)
     {
         string newdesc = string.Empty;
-        string sql = "SELECT * FROM TopAutoReview WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
 
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
@@ -486,7 +486,7 @@ public partial class top_review_html : System.Web.UI.Page
     private string CreateDescDel(string desc)
     {
         string newdesc = string.Empty;
-        string sql = "SELECT * FROM TopAutoReview WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
 
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
