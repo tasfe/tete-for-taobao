@@ -48,7 +48,7 @@ public partial class top_review_setting : System.Web.UI.Page
         }
 
         //判断VIP版本，只有VIP才能使用此功能
-        string sql = "SELECT * FROM TCS_CouponSend WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
