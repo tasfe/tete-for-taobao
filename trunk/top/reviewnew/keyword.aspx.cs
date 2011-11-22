@@ -31,7 +31,7 @@ public partial class top_review_keyword : System.Web.UI.Page
 
         if (!IsPostBack)
         {
-            string sql = "SELECT * FROM TopAutoReview WHERE nick = '" + nick + "'";
+            string sql = "SELECT * FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count != 0)
             {
@@ -48,7 +48,7 @@ public partial class top_review_keyword : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        string sql = "UPDATE TopAutoReview SET " +
+        string sql = "UPDATE TCS_ShopConfig SET " +
                         "wordcount = '" + utils.NewRequest("wordcount", utils.RequestType.Form) + "', " +
                         "keyword = '" + utils.NewRequest("keyword", utils.RequestType.Form).Replace("\r\n", "|") + "' " +
                     "WHERE nick = '" + nick + "'";
