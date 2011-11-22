@@ -160,6 +160,11 @@ public partial class top_containerblog : System.Web.UI.Page
             InsertUserInfo(nick);
         }
 
+        
+        IDictionary<string, string> param = new Dictionary<string, string>();
+        string result = Post("http://gw.api.taobao.com/router/rest", "12159997", "614e40bfdb96e9063031d1a9e56fbed5", "taobao.increment.customer.permit", top_session, param);
+
+
         //更新用户订购信息
         CheckUser("0", nick);
         
