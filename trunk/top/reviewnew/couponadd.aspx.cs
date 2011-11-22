@@ -74,12 +74,12 @@ public partial class top_review_couponadd : System.Web.UI.Page
 
         string coupon_id = new Regex(@"<coupon_id>([^<]*)</coupon_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
 
-        string sql = "INSERT INTO TopCoupon (" +
+        string sql = "INSERT INTO TCS_Coupon (" +
                         "nick, " +
-                        "coupon_name, " +
-                        "coupon_id, " +
-                        "denominations, " +
-                        "end_time, " +
+                        "name, " +
+                        "taobaocouponid, " +
+                        "num, " +
+                        "enddate, " +
                         "total, " +
                         "per, " +
                         "condition " +
