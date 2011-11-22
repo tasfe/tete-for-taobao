@@ -44,10 +44,10 @@
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
-                <td height="35"><%#Eval("coupon_name")%></td>
-                <td><%#Eval("denominations")%></td>
+                <td height="35"><%#Eval("name")%></td>
+                <td><%#Eval("num")%></td>
                 <td><%#Eval("per")%></td>
-                <td><%#Eval("end_time")%></td>
+                <td><%#Eval("enddate")%></td>
                 <td><%#Eval("condition")%></td>
                 <td><%#Eval("total")%> / <%#Eval("used")%></td>
                 <td><a href='couponlist.aspx?act=del&id=<%#Eval("id")%>' onclick="return confirm('您确定要删除吗，该操作不可恢复？')">删除</a></td>

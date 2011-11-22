@@ -34,20 +34,16 @@
 
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
-                <td width="160"><b>优惠券名称</b></td>
                 <td width="100"><b>优惠券编号</b></td>
                 <td width="150"><b>买家</b></td>
                 <td width="150"><b>赠送日期 </b></td>
-                <td width="50"><b>数量 </b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
-                <td height="30"><%#Eval("coupon_name")%></td>
-                <td><%#Eval("number") %></td>
-                <td><%#Eval("sendto") %></td>
+                <td height="30"><%#Eval("number") %></td>
+                <td><%#Eval("buynick") %></td>
                 <td><%#Eval("adddate") %></td>
-                <td><%#Eval("count") %></td>
             </tr>
             </ItemTemplate>
         </asp:Repeater>
