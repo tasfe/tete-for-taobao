@@ -53,15 +53,15 @@
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
-                <td height="35"><input name="id" type="checkbox" value="<%#Eval("orderid")%>" /></td>
+                <td height="35"><input name="id" type="checkbox" value="<%#Eval("tid")%>" /></td>
                 <td height="35"><%#Eval("buynick")%></td>
-                <td><%#Eval("orderid")%></td>
-                <td><%#Eval("addtime")%></td>
-                <td><%#Eval("reviewtime")%></td>
+                <td><%#Eval("tid")%></td>
+                <td><%#Eval("adddate")%></td>
+                <td><%#Eval("reviewdate")%></td>
                 <td><img src='<%#getimg(Eval("result").ToString())%>' /></td>
                 <td><%#left(Eval("content").ToString())%></td>
                 <td>
-                    <a href='kefulist.aspx?id=<%#Eval("orderid")%>&act=send&send=1'>赠送</a> | <a href='kefulist.aspx?id=<%#Eval("orderid")%>&act=send&send=2'>不赠送</a>
+                    <a href='kefulist.aspx?id=<%#Eval("tid")%>&act=send&send=1'>赠送</a> | <a href='kefulist.aspx?id=<%#Eval("tid")%>&act=send&send=2'>不赠送</a>
                 </td>
             </tr>
             </ItemTemplate>
