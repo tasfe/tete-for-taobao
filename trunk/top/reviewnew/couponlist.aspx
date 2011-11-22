@@ -49,7 +49,7 @@
                 <td><%#Eval("per")%></td>
                 <td><%#Eval("enddate")%></td>
                 <td><%#Eval("condition")%></td>
-                <td><%#Eval("total")%> / <%#Eval("used")%></td>
+                <td><%#Eval("count")%> / <%#Eval("used")%></td>
                 <td><a href='couponlist.aspx?act=del&id=<%#Eval("id")%>' onclick="return confirm('您确定要删除吗，该操作不可恢复？')">删除</a></td>
             </tr>
             </ItemTemplate>
