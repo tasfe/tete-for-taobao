@@ -21,11 +21,11 @@ public partial class top_review_reviewlist : System.Web.UI.Page
         nick = encode.Decrypt(taobaoNick);
 
         //判断VIP版本，只有VIP才能使用此功能
-        string sql = "SELECT * FROM TopTaobaoShop WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            string flag = dt.Rows[0]["versionNoBlog"].ToString();
+            string flag = dt.Rows[0]["version"].ToString();
             if (flag == "0")
             {
                 Response.Redirect("xufei.aspx");
@@ -45,7 +45,7 @@ public partial class top_review_reviewlist : System.Web.UI.Page
             return;
         }
 
-        string sqlNew = "SELECT * FROM TopTradeRate WHERE owner = '" + nick + "' AND nick = '" + search.Text.Trim().Replace("'", "''") + "'";
+        string sqlNew = "SELECT * FROM TCS_TradeRate WHERE nick = '" + nick + "' AND buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
@@ -74,14 +74,14 @@ public partial class top_review_reviewlist : System.Web.UI.Page
         int pageCount = 12;
         int dataCount = (pageNow - 1) * pageCount;
 
-        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.created DESC) AS rownumber FROM TopTradeRate b WHERE b.owner = '" + nick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY a.created DESC";
+        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.adddate DESC) AS rownumber FROM TCS_TradeRate b WHERE b.nick = '" + nick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY a.adddate DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
         rptArticle.DataBind();
 
         //分页数据初始化
-        sqlNew = "SELECT COUNT(*) FROM TopTradeRate WHERE owner = '" + nick + "'";
+        sqlNew = "SELECT COUNT(*) FROM TCS_TradeRate WHERE nick = '" + nick + "'";
         int totalCount = int.Parse(utils.ExecuteString(sqlNew));
 
         lbPage.Text = InitPageStr(totalCount, "reviewlist.aspx");
