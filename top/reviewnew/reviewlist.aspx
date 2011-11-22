@@ -47,7 +47,7 @@
                 <td height="30"><%#Eval("nick") %></td>
                 <td><img src='<%#getimg(Eval("result").ToString())%>' /></td>
                 <td><%#left(Eval("content").ToString())%></td>
-                <td><%#Eval("created") %></td>
+                <td><%#Eval("adddate") %></td>
                 <td><a href="http://item.tmall.com/item.htm?id=<%#Eval("itemid") %>" target="_blank">查看宝贝</a></td>
             </tr>
             </ItemTemplate>
