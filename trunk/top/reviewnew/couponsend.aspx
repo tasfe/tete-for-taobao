@@ -41,9 +41,9 @@
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
-                <td height="30"><%#Eval("number") %></td>
+                <td height="30"><%#Eval("taobaonumber") %></td>
                 <td><%#Eval("buynick") %></td>
-                <td><%#Eval("adddate") %></td>
+                <td><%#Eval("senddate") %></td>
             </tr>
             </ItemTemplate>
         </asp:Repeater>
