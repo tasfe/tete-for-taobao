@@ -122,8 +122,8 @@ public partial class top_review_setting : System.Web.UI.Page
                 string flag = dtTest.Rows[0]["versionNoBlog"].ToString();
                 if (flag != "3")
                 {
-                    iskefu = "1";
-                    iskeyword = "1";
+                    iskefu = "0";
+                    iskeyword = "0";
                 }
             }
         }

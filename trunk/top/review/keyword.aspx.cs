@@ -52,6 +52,7 @@ public partial class top_review_keyword : System.Web.UI.Page
                         "wordcount = '" + utils.NewRequest("wordcount", utils.RequestType.Form) + "', " +
                         "keyword = '" + utils.NewRequest("keyword", utils.RequestType.Form).Replace("\r\n", "|") + "' " +
                     "WHERE nick = '" + nick + "'";
+
         utils.ExecuteNonQuery(sql);
 
         Response.Write("<script>alert('保存成功！');window.location.href='keyword.aspx';</script>");
