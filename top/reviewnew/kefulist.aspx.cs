@@ -91,7 +91,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         else if (t == "no") 
         {
             //不赠送礼品
-            string sql = "UPDATE TopOrder SET kefustatus = 2,kefutime = GETDATE() WHERE CHARINDEX(orderid, '" + ids + "') > 0";
+            string sql = "UPDATE TCS_TrateRateCheck SET issend = 2,ischeck = 1,checkdate = GETDATE() WHERE CHARINDEX(tid, '" + ids + "') > 0";
             utils.ExecuteNonQuery(sql);
             Response.Write("<script>alert('选中的订单【" + ids + "】已经设置为不赠送！');window.location.href='kefulist.aspx';</script>");
         }
@@ -124,11 +124,6 @@ public partial class top_review_kefulist : System.Web.UI.Page
         {
             iscoupon = dt.Rows[0]["iscoupon"].ToString();
             couponid = dt.Rows[0]["couponid"].ToString();
-            isfree = dt.Rows[0]["isfree"].ToString();
-            promotionid = dt.Rows[0]["promotionid"].ToString();
-            tagid = dt.Rows[0]["tagid"].ToString();
-            itemid = dt.Rows[0]["itemid"].ToString();
-
             giftflag = dt.Rows[0]["giftflag"].ToString();
             giftcontent = dt.Rows[0]["giftcontent"].ToString();
             shopname = dt.Rows[0]["shopname"].ToString();
@@ -149,18 +144,22 @@ public partial class top_review_kefulist : System.Web.UI.Page
         {
 
             //获取该订单关联会员
-            sql = "SELECT * FROM TopOrder WITH (NOLOCK) WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
+            sql = "SELECT * FROM TCS_Trade WITH (NOLOCK) WHERE nick = '" + nick + "' AND tid = '" + id + "'";
             dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count != 0)
             {
                 buynick = dt.Rows[0]["buynick"].ToString();
-                phone = dt.Rows[0]["receiver_mobile"].ToString();
+                phone = dt.Rows[0]["mobile"].ToString();
             }
             else
             {
                 Response.Write("<script>alert('【系统错误】：找不到该订单【" + id + "】关联的淘宝会员，请联系客服人员！');window.location.href='kefulist.aspx';</script>");
                 return;
             }
+
+            //获取淘宝优惠券ID
+            sql = "SELECT taobaocouponid FROM TCS_Coupon WHERE guid = '" + couponid + "'";
+            string taobaocouponid = utils.ExecuteString(sql);
 
             //执行优惠券赠送行为
             string appkey = "12159997";
@@ -183,23 +182,21 @@ public partial class top_review_kefulist : System.Web.UI.Page
                 string number = match[0].Groups[1].ToString();
 
                 //赠送优惠券
-                sql = "INSERT INTO TopCouponSend (" +
+                sql = "INSERT INTO TCS_CouponSend (" +
                                     "nick, " +
-                                    "couponid, " +
-                                    "sendto, " +
-                                    "number, " +
-                                    "count " +
+                                    "guid, " +
+                                    "buynick, " +
+                                    "taobaonumber " +
                                 " ) VALUES ( " +
                                     " '" + nick + "', " +
                                     " '" + couponid + "', " +
                                     " '" + buynick + "', " +
-                                    " '" + number + "', " +
-                                    " '1' " +
+                                    " '" + number + "'" +
                                 ") ";
                 utils.ExecuteNonQuery(sql);
 
                 //更新优惠券已经赠送数量
-                sql = "UPDATE TopCoupon SET used = used + 1 WHERE coupon_id = " + couponid;
+                sql = "UPDATE TCS_Coupon SET used = used + 1 WHERE guid = " + couponid;
                 utils.ExecuteNonQuery(sql);
             }
         }
@@ -213,13 +210,13 @@ public partial class top_review_kefulist : System.Web.UI.Page
                 if (giftflag == "1")
                 {
                     //判断是否还有短信可发
-                    sql = "SELECT total FROM TopAutoReview WHERE nick = '" + nick + "'";
+                    sql = "SELECT total FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
                     string total = utils.ExecuteString(sql);
 
                     if (int.Parse(total) > 0)
                     {
                         //每张物流订单最多提示一次
-                        sql = "SELECT COUNT(*) FROM TopMsg WITH (NOLOCK) WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND  sendto = '" + buynick + "' AND typ = 'gift'";
+                        sql = "SELECT COUNT(*) FROM TCS_Msg WITH (NOLOCK) WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND  buynick = '" + buynick + "' AND typ = 'gift'";
                         string giftCount = utils.ExecuteString(sql);
 
                         if (giftCount == "0")
@@ -248,9 +245,9 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                 }
 
                                 //记录短信发送记录
-                                sql = "INSERT INTO TopMsg (" +
+                                sql = "INSERT INTO TCS_Msg (" +
                                                     "nick, " +
-                                                    "sendto, " +
+                                                    "buynick, " +
                                                     "phone, " +
                                                     "[content], " +
                                                     "yiweiid, " +
@@ -267,33 +264,33 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                                 ") ";
                                 utils.ExecuteNonQuery(sql);
 
-                                //更新状态
-                                sql = "UPDATE TopOrder SET isgiftmsg = 1 WHERE orderid = '" + id + "'";
-                                utils.ExecuteNonQuery(sql);
+                                ////更新状态
+                                //sql = "UPDATE TopOrder SET isgiftmsg = 1 WHERE orderid = '" + id + "'";
+                                //utils.ExecuteNonQuery(sql);
 
                                 //更新短信数量
-                                sql = "UPDATE TopAutoReview SET used = used + " + number + ",total = total-" + number + " WHERE nick = '" + nick + "'";
+                                sql = "UPDATE TCS_ShopConfig SET used = used + " + number + ",total = total-" + number + " WHERE nick = '" + nick + "'";
                                 utils.ExecuteNonQuery(sql);
                             }
                             else
                             {
-                                //记录短信发送记录
-                                sql = "INSERT INTO TopMsgBak (" +
-                                                    "nick, " +
-                                                    "sendto, " +
-                                                    "phone, " +
-                                                    "[content], " +
-                                                    "yiweiid, " +
-                                                    "typ " +
-                                                " ) VALUES ( " +
-                                                    " '" + nick + "', " +
-                                                    " '" + buynick + "', " +
-                                                    " '" + phone + "', " +
-                                                    " '" + msg + "', " +
-                                                    " '" + result + "', " +
-                                                    " 'gift' " +
-                                                ") ";
-                                utils.ExecuteNonQuery(sql);
+                                ////记录短信发送记录
+                                //sql = "INSERT INTO TopMsgBak (" +
+                                //                    "nick, " +
+                                //                    "sendto, " +
+                                //                    "phone, " +
+                                //                    "[content], " +
+                                //                    "yiweiid, " +
+                                //                    "typ " +
+                                //                " ) VALUES ( " +
+                                //                    " '" + nick + "', " +
+                                //                    " '" + buynick + "', " +
+                                //                    " '" + phone + "', " +
+                                //                    " '" + msg + "', " +
+                                //                    " '" + result + "', " +
+                                //                    " 'gift' " +
+                                //                ") ";
+                                //utils.ExecuteNonQuery(sql);
                             }
                         }
                     }
@@ -302,7 +299,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         }
 
         //更新订单状态-不需要审核
-        sql = "UPDATE TopOrder SET issend = 1,kefustatus = 1,kefutime = GETDATE() WHERE orderid = '" + id + "'";
+        sql = "UPDATE TopOrder SET issend = 1,ischeck = 1,checkdate = GETDATE() WHERE tid = '" + id + "'";
         utils.ExecuteNonQuery(sql);
     }
 
