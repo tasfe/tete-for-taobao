@@ -204,41 +204,6 @@ public partial class top_review_kefulist : System.Web.UI.Page
             }
         }
 
-        //赠送礼品
-        if (isfree == "1")
-        {
-            string appkey = "12159997";
-            string secret = "614e40bfdb96e9063031d1a9e56fbed5";
-            IDictionary<string, string> param = new Dictionary<string, string>();
-            param.Add("tag_id", tagid);
-            param.Add("nick", buynick);
-
-            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.taguser.add", session, param);
-
-            //如果失败
-            if (result.IndexOf("<msg>") != -1)
-            {
-                Response.Write("<script>alert('【系统错误】：将用户加入优惠组失败，请稍后再试或者联系客服人员！');window.location.href='kefulist.aspx';</script>");
-                return;
-            }
-
-            //记录到数据库
-            sql = "INSERT INTO TopItemSend (" +
-                                "nick, " +
-                                "promotionid, " +
-                                "itemid, " +
-                                "sendto, " +
-                                "count " +
-                            " ) VALUES ( " +
-                                " '" + nick + "', " +
-                                " '" + promotionid + "', " +
-                                " '" + itemid + "', " +
-                                " '" + buynick + "', " +
-                                " '1' " +
-                            ") ";
-            utils.ExecuteNonQuery(sql);
-        }
-
         //发送短信
         if (1 == 1) //短信测试中
         {
@@ -373,11 +338,6 @@ public partial class top_review_kefulist : System.Web.UI.Page
             {
                 iscoupon = dt.Rows[0]["iscoupon"].ToString();
                 couponid = dt.Rows[0]["couponid"].ToString();
-                isfree = dt.Rows[0]["isfree"].ToString();
-                promotionid = dt.Rows[0]["promotionid"].ToString();
-                tagid = dt.Rows[0]["tagid"].ToString();
-                itemid = dt.Rows[0]["itemid"].ToString();
-
                 giftflag = dt.Rows[0]["giftflag"].ToString();
                 giftcontent = dt.Rows[0]["giftcontent"].ToString();
                 shopname = dt.Rows[0]["shopname"].ToString();
@@ -432,10 +392,10 @@ public partial class top_review_kefulist : System.Web.UI.Page
                     string number = match[0].Groups[1].ToString();
 
                     //赠送优惠券
-                    sql = "INSERT INTO TopCouponSend (" +
+                    sql = "INSERT INTO TCS_CouponSend (" +
                                         "nick, " +
                                         "couponid, " +
-                                        "sendto, " +
+                                        "buynick, " +
                                         "number, " +
                                         "count " +
                                     " ) VALUES ( " +
@@ -451,41 +411,6 @@ public partial class top_review_kefulist : System.Web.UI.Page
                     sql = "UPDATE TopCoupon SET used = used + 1 WHERE coupon_id = " + couponid;
                     utils.ExecuteNonQuery(sql);
                 }
-            }
-
-            //赠送礼品
-            if (isfree == "1")
-            {
-                string appkey = "12159997";
-                string secret = "614e40bfdb96e9063031d1a9e56fbed5";
-                IDictionary<string, string> param = new Dictionary<string, string>();
-                param.Add("tag_id", tagid);
-                param.Add("nick", buynick);
-
-                string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.taguser.add", session, param);
-
-                //如果失败
-                if (result.IndexOf("<msg>") != -1)
-                {
-                    Response.Write("<script>alert('【系统错误】：将用户加入优惠组失败，请稍后再试或者联系客服人员！');window.location.href='kefulist.aspx';</script>");
-                    return;
-                }
-
-                //记录到数据库
-                sql = "INSERT INTO TopItemSend (" +
-                                    "nick, " +
-                                    "promotionid, " +
-                                    "itemid, " +
-                                    "sendto, " +
-                                    "count " +
-                                " ) VALUES ( " +
-                                    " '" + nick + "', " +
-                                    " '" + promotionid + "', " +
-                                    " '" + itemid + "', " +
-                                    " '" + buynick + "', " +
-                                    " '1' " +
-                                ") ";
-                utils.ExecuteNonQuery(sql);
             }
 
             //发送短信
