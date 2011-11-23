@@ -91,7 +91,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         else if (t == "no") 
         {
             //不赠送礼品
-            string sql = "UPDATE TCS_TradeRateCheck SET issend = 2,ischeck = 1,checkdate = GETDATE() WHERE CHARINDEX(tid, '" + ids + "') > 0";
+            string sql = "UPDATE TCS_TradeRateCheck SET issend = 2,ischeck = 1,checkdate = GETDATE() WHERE CHARINDEX(orderid, '" + ids + "') > 0";
             utils.ExecuteNonQuery(sql);
             Response.Write("<script>alert('选中的订单【" + ids + "】已经设置为不赠送！');window.location.href='kefulist.aspx';</script>");
         }
@@ -144,7 +144,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         {
 
             //获取该订单关联会员
-            sql = "SELECT * FROM TCS_Trade WITH (NOLOCK) WHERE nick = '" + nick + "' AND tid = '" + id + "'";
+            sql = "SELECT * FROM TCS_Trade WITH (NOLOCK) WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
             dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count != 0)
             {
@@ -165,7 +165,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
             string appkey = "12159997";
             string secret = "614e40bfdb96e9063031d1a9e56fbed5";
             IDictionary<string, string> param = new Dictionary<string, string>();
-            param.Add("coupon_id", couponid);
+            param.Add("coupon_id", taobaocouponid);
             param.Add("buyer_nick", buynick);
 
             string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.send", session, param);
@@ -299,7 +299,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         }
 
         //更新订单状态-不需要审核
-        sql = "UPDATE TCS_TradeRateCheck SET issend = 1,ischeck = 1,checkdate = GETDATE() WHERE tid = '" + id + "'";
+        sql = "UPDATE TCS_TradeRateCheck SET issend = 1,ischeck = 1,checkdate = GETDATE() WHERE orderid = '" + id + "'";
         utils.ExecuteNonQuery(sql);
     }
 
@@ -355,7 +355,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
             {
 
                 //获取该订单关联会员
-                sql = "SELECT * FROM TCS_Trade WITH (NOLOCK) WHERE nick = '" + nick + "' AND tid = '" + id + "'";
+                sql = "SELECT * FROM TCS_Trade WITH (NOLOCK) WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
                 dt = utils.ExecuteDataTable(sql);
                 if (dt.Rows.Count != 0)
                 {
@@ -496,7 +496,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
             }
 
             //更新订单状态-不需要审核
-            sql = "UPDATE TCS_TradeRateCheck SET issend = 1,ischeck = 1,checkdate = GETDATE() WHERE tid = '" + id + "'";
+            sql = "UPDATE TCS_TradeRateCheck SET issend = 1,ischeck = 1,checkdate = GETDATE() WHERE orderid = '" + id + "'";
             utils.ExecuteNonQuery(sql);
 
             Response.Write("<script>alert('该订单已成功赠送！');window.location.href='kefulist.aspx';</script>");
@@ -504,7 +504,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         else if (send == "2")
         { 
             //不赠送礼品
-            sql = "UPDATE TCS_TradeRateCheck SET issend = 2,ischeck = 1,checkdate = GETDATE() WHERE tid = '" + id + "'";
+            sql = "UPDATE TCS_TradeRateCheck SET issend = 2,ischeck = 1,checkdate = GETDATE() WHERE orderid = '" + id + "'";
             utils.ExecuteNonQuery(sql);
             Response.Write("<script>alert('设置成功，该订单不赠送！');window.location.href='kefulist.aspx';</script>");
         }
