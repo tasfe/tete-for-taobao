@@ -51,7 +51,7 @@ public partial class top_review_oldkefulist : System.Web.UI.Page
         int pageCount = 12;
         int dataCount = (pageNow - 1) * pageCount;
 
-        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.reviewdate DESC) AS rownumber FROM TCS_TradeRateCheck b WITH (NOLOCK) WHERE b.nick = '" + nick + "' AND b.ischeck = 1 ) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY reviewdate DESC";
+        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.checkdate DESC) AS rownumber FROM TCS_TradeRateCheck b WITH (NOLOCK) WHERE b.nick = '" + nick + "' AND b.ischeck = 1 ) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY checkdate DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
