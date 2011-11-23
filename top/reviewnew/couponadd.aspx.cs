@@ -63,9 +63,16 @@ public partial class top_review_couponadd : System.Web.UI.Page
         param.Add("condition", condition);
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.add", session, param);
 
-        //Response.Write(result + "<br><br>" + price + "<br><br>" + condition + "<br><br>" + end_time + "<br><br>" + coupon_name);
+        Response.Write(result + "<br><br>" + price + "<br><br>" + condition + "<br><br>" + end_time + "<br><br>" + coupon_name);
         if (result.IndexOf("error_response") != -1)
         {
+            if (result.IndexOf("end_time") != -1)
+            {
+                Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>错误的日期格式，正确的日期格式为：2011-01-01</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
+                Response.End();
+                return;
+            }
+
             string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + err + "</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
             Response.End();
