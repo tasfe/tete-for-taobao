@@ -48,7 +48,7 @@
             <ItemTemplate>
             <tr>
                 <td height="30"><%#Eval("buynick")%></td>
-                <td><%#Eval("tid")%></td>
+                <td><%#Eval("orderid")%></td>
                 <td><%#Eval("adddate")%></td>
                 <td><%#Eval("reviewdate")%></td>
                 <td><img src='<%#getimg(Eval("result").ToString())%>' /></td>

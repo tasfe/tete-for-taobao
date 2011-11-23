@@ -60,7 +60,7 @@
             <tr>
                 <td height="35"><input name="id" type="checkbox" value="<%#Eval("tid")%>" /></td>
                 <td height="35"><%#Eval("buynick")%></td>
-                <td><%#Eval("tid")%></td>
+                <td><%#Eval("orderid")%></td>
                 <td><%#Eval("adddate")%></td>
                 <td><%#Eval("reviewdate")%></td>
                 <td><img src='<%#getimg(Eval("result").ToString())%>' /></td>
