@@ -39,6 +39,11 @@
     <input type="button" value="查看历史处理结果" onclick="window.location.href='oldkefulist.aspx'" />
     
     <hr />
+    <div>
+        <input type="checkbox" onclick="selectAll()" />
+        <input type="button" value="审核通过并赠送礼品" onclick="setOK()" />
+        <input type="button" value="审核不通过" onclick="setNotOK()" />
+    </div>
         <table width="740" cellpadding="0" cellspacing="0">
         <tr>
                 <td width="30"><input type="checkbox" onclick="selectAll()" /></td>
