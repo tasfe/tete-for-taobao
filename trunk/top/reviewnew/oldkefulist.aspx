@@ -48,13 +48,13 @@
             <ItemTemplate>
             <tr>
                 <td height="30"><%#Eval("buynick")%></td>
-                <td><%#Eval("orderid")%></td>
-                <td><%#Eval("addtime")%></td>
-                <td><%#Eval("reviewtime")%></td>
+                <td><%#Eval("tid")%></td>
+                <td><%#Eval("adddate")%></td>
+                <td><%#Eval("reviewdate")%></td>
                 <td><img src='<%#getimg(Eval("result").ToString())%>' /></td>
                 <td><%#left(Eval("content").ToString())%></td>
-                <td><%#result(Eval("kefustatus").ToString())%></td>
-                <td><%#Eval("kefutime")%></td>
+                <td><%#result(Eval("issend").ToString())%></td>
+                <td><%#Eval("checkdate")%></td>
             </tr>
             </ItemTemplate>
         </asp:Repeater>
