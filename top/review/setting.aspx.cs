@@ -17,6 +17,7 @@ using System.Data;
 public partial class top_review_setting : System.Web.UI.Page
 {
     public string couponstr = string.Empty;
+    public string couponid = string.Empty;
     public string session = string.Empty;
     public string nick = string.Empty;
     public string itemid = string.Empty;
@@ -69,14 +70,6 @@ public partial class top_review_setting : System.Web.UI.Page
     /// </summary>
     private void BindData()
     {
-        //数据绑定
-        DataTable dtCoupon = utils.ExecuteDataTable("SELECT * FROM TopCoupon WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY id DESC");
-        couponstr = "<select name='couponid'>";
-        for (int i = 0; i < dtCoupon.Rows.Count; i++)
-        {
-            couponstr += "<option value='" + dtCoupon.Rows[i]["coupon_id"].ToString() + "'>" + dtCoupon.Rows[i]["coupon_name"].ToString() + " - " + dtCoupon.Rows[i]["denominations"].ToString() + "元</option>";
-        }
-        couponstr += "</select>";
 
         string sql = "SELECT * FROM TopAutoReview WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
@@ -91,6 +84,7 @@ public partial class top_review_setting : System.Web.UI.Page
             iskefu = dt.Rows[0]["iskefu"].ToString();
             iscancelauto = dt.Rows[0]["iscancelauto"].ToString();
             iskeyword = dt.Rows[0]["iskeyword"].ToString();
+            couponid = dt.Rows[0]["couponid"].ToString();
         }
         else
         { 
@@ -127,6 +121,23 @@ public partial class top_review_setting : System.Web.UI.Page
                 }
             }
         }
+
+
+        //数据绑定
+        DataTable dtCoupon = utils.ExecuteDataTable("SELECT * FROM TopCoupon WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY id DESC");
+        couponstr = "<select name='couponid'>";
+        for (int i = 0; i < dtCoupon.Rows.Count; i++)
+        {
+            if (dtCoupon.Rows[i]["coupon_id"].ToString() == couponid)
+            {
+                couponstr += "<option value='" + dtCoupon.Rows[i]["coupon_id"].ToString() + "' selected>" + dtCoupon.Rows[i]["coupon_name"].ToString() + " - " + dtCoupon.Rows[i]["denominations"].ToString() + "元</option>";
+            }
+            else
+            {
+                couponstr += "<option value='" + dtCoupon.Rows[i]["coupon_id"].ToString() + "'>" + dtCoupon.Rows[i]["coupon_name"].ToString() + " - " + dtCoupon.Rows[i]["denominations"].ToString() + "元</option>";
+            }
+        }
+        couponstr += "</select>";
     }
 
 
