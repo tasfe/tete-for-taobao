@@ -58,7 +58,7 @@ public partial class top_review_oldkefulist : System.Web.UI.Page
         rptArticle.DataBind();
 
         //分页数据初始化
-        sqlNew = "SELECT COUNT(*) FROM TCS_TradeRateCheck WHERE nick = '" + nick + "' AND ischeck = 1 ORDER BY checkdate DESC";
+        sqlNew = "SELECT COUNT(*) FROM TCS_TradeRateCheck WHERE nick = '" + nick + "' AND ischeck = 1";
         int totalCount = int.Parse(utils.ExecuteString(sqlNew));
 
         lbPage.Text = InitPageStr(totalCount, "oldkefulist.aspx");
