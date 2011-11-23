@@ -211,7 +211,7 @@ public partial class top_review_setting : System.Web.UI.Page
         }
         else
         {
-            sql = "UPDATE TopAutoReview SET " +
+            sql = "UPDATE TCS_ShopConfig SET " +
                         "iscoupon = '" + utils.NewRequest("iscoupon", utils.RequestType.Form) + "', " +
                         "couponid = '" + utils.NewRequest("couponid", utils.RequestType.Form) + "', " +
                         "iskefu = '" + utils.NewRequest("iskefu", utils.RequestType.Form) + "', " +
