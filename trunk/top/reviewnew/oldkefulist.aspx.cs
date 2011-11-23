@@ -58,7 +58,7 @@ public partial class top_review_oldkefulist : System.Web.UI.Page
         rptArticle.DataBind();
 
         //分页数据初始化
-        sqlNew = "SELECT COUNT(*) FROM TCS_TradeRateCheck WHERE nick = '" + nick + "' AND ischeck = 1";
+        sqlNew = "SELECT COUNT(*) FROM TCS_TradeRateCheck WHERE nick = '" + nick + "' AND ischeck = 1 ORDER BY checkdate DESC";
         int totalCount = int.Parse(utils.ExecuteString(sqlNew));
 
         lbPage.Text = InitPageStr(totalCount, "oldkefulist.aspx");
@@ -73,7 +73,7 @@ public partial class top_review_oldkefulist : System.Web.UI.Page
             return;
         }
 
-        string sqlNew = "SELECT * FROM TCS_TradeRateCheck WHERE nick = '" + nick + "' AND ischeck = 1";
+        string sqlNew = "SELECT * FROM TCS_TradeRateCheck WHERE nick = '" + nick + "' AND ischeck = 1 ORDER BY checkdate DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;

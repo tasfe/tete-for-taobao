@@ -372,7 +372,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                 }
 
                 //获取淘宝优惠券ID
-                sql = "SELECT taobaocouponid FROM TCS_Coupon WHERE guid = " + couponid;
+                sql = "SELECT taobaocouponid FROM TCS_Coupon WHERE guid = '" + couponid + "'";
                 string taobaocouponid = utils.ExecuteString(sql);
 
 
