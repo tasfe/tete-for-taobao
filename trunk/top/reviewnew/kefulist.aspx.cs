@@ -186,11 +186,13 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                     "nick, " +
                                     "guid, " +
                                     "buynick, " +
+                                    "orderid, " +
                                     "taobaonumber " +
                                 " ) VALUES ( " +
                                     " '" + nick + "', " +
                                     " '" + couponid + "', " +
                                     " '" + buynick + "', " +
+                                    " '" + id + "', " +
                                     " '" + number + "'" +
                                 ") ";
                 utils.ExecuteNonQuery(sql);
@@ -398,11 +400,13 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                         "nick, " +
                                         "guid, " +
                                         "buynick, " +
+                                        "orderid, " +
                                         "taobaonumber " +
                                     " ) VALUES ( " +
                                         " '" + nick + "', " +
                                         " '" + couponid + "', " +
                                         " '" + buynick + "', " +
+                                        " '" + id + "', " +
                                         " '" + number + "'" +
                                     ") ";
                     utils.ExecuteNonQuery(sql);
