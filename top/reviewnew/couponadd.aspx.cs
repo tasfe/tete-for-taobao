@@ -56,7 +56,7 @@ public partial class top_review_couponadd : System.Web.UI.Page
         string per = utils.NewRequest("per", utils.RequestType.Form);
 
         //创建活动相关人群
-        string guid = Guid.NewGuid().ToString().Substring(0, 4);
+        string guid = Guid.NewGuid().ToString();
         IDictionary<string, string> param = new Dictionary<string, string>();
         param.Add("denominations", price);
         param.Add("end_time", end_time);
