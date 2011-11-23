@@ -73,7 +73,7 @@ public partial class top_review_oldkefulist : System.Web.UI.Page
             return;
         }
 
-        string sqlNew = "SELECT * FROM TopOrder WHERE nick = '" + nick + "' AND kefustatus <> 0 AND buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
+        string sqlNew = "SELECT * FROM TCS_TradeRateCheck WHERE nick = '" + nick + "' AND ischeck = 1";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
