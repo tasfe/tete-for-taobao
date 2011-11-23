@@ -95,6 +95,11 @@ public partial class top_review_couponadd : System.Web.UI.Page
                     ") ";
         utils.ExecuteNonQuery(sql);
         //Response.Write("<br><br>" + sql);
+
+        //更新基本设置里面的优惠券
+        sql = "UPDATE TopAutoReview SET couponid = '" + coupon_id + "' WHERE nick = '" + nick + "'";
+        utils.ExecuteNonQuery(sql);
+
         Response.Redirect("couponlist.aspx");
     }
 

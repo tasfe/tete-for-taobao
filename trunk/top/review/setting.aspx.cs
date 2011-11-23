@@ -128,7 +128,7 @@ public partial class top_review_setting : System.Web.UI.Page
         couponstr = "<select name='couponid'>";
         for (int i = 0; i < dtCoupon.Rows.Count; i++)
         {
-            if (dtCoupon.Rows[i]["coupon_id"].ToString() == couponid)
+            if (dtCoupon.Rows[i]["coupon_id"].ToString().Trim() == couponid.Trim())
             {
                 couponstr += "<option value='" + dtCoupon.Rows[i]["coupon_id"].ToString() + "' selected>" + dtCoupon.Rows[i]["coupon_name"].ToString() + " - " + dtCoupon.Rows[i]["denominations"].ToString() + "元</option>";
             }
