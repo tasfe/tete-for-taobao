@@ -83,6 +83,7 @@ public partial class top_review_couponadd : System.Web.UI.Page
                         "count, " +
                         "per, " +
                         "guid, " +
+                        "typ, " +
                         "condition " +
                     " ) VALUES ( " +
                         " '" + nick + "', " +
@@ -93,6 +94,7 @@ public partial class top_review_couponadd : System.Web.UI.Page
                         " '" + total + "', " +
                         " '" + per + "', " +
                         " '" + guid + "', " +
+                        " 'taobao', " +
                         " '" + condition + "' " +
                     ") ";
         utils.ExecuteNonQuery(sql);
