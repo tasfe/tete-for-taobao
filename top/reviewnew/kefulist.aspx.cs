@@ -299,7 +299,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         }
 
         //更新订单状态-不需要审核
-        sql = "UPDATE TopOrder SET issend = 1,ischeck = 1,checkdate = GETDATE() WHERE tid = '" + id + "'";
+        sql = "UPDATE TCS_TradeRateCheck SET issend = 1,ischeck = 1,checkdate = GETDATE() WHERE tid = '" + id + "'";
         utils.ExecuteNonQuery(sql);
     }
 
