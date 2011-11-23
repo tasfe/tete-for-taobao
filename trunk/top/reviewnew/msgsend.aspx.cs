@@ -37,11 +37,11 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
         nick = encode.Decrypt(taobaoNick);
 
         //判断VIP版本，只有VIP才能使用此功能
-        string sql = "SELECT * FROM TopTaobaoShop WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            string flag = dt.Rows[0]["versionNoBlog"].ToString();
+            string flag = dt.Rows[0]["version"].ToString();
             if (flag == "0")
             {
                 Response.Redirect("xufei.aspx");
@@ -56,11 +56,11 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
     private void BindData()
     {
         //数据绑定
-        DataTable dtCoupon = utils.ExecuteDataTable("SELECT * FROM TopCoupon WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY id DESC");
+        DataTable dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_Coupon WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY startdate DESC");
         couponstr = "<select name='couponid'>";
         for (int i = 0; i < dtCoupon.Rows.Count; i++)
         {
-            couponstr += "<option value='" + dtCoupon.Rows[i]["coupon_id"].ToString() + "'>" + dtCoupon.Rows[i]["coupon_name"].ToString() + " - " + dtCoupon.Rows[i]["denominations"].ToString() + "元</option>";
+            couponstr += "<option value='" + dtCoupon.Rows[i]["guid"].ToString() + "'>" + dtCoupon.Rows[i]["name"].ToString() + " - " + dtCoupon.Rows[i]["num"].ToString() + "元</option>";
         }
         couponstr += "</select>";
     }
@@ -98,23 +98,21 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
             string number = match[0].Groups[1].ToString();
 
             //赠送优惠券
-            sql = "INSERT INTO TopCouponSend (" +
+            sql = "INSERT INTO TCS_CouponSend (" +
                                 "nick, " +
-                                "couponid, " +
-                                "sendto, " +
-                                "number, " +
-                                "count " +
+                                "guid, " +
+                                "buynick, " +
+                                "number " +
                             " ) VALUES ( " +
                                 " '" + nick + "', " +
                                 " '" + couponid + "', " +
                                 " '" + buynick + "', " +
-                                " '" + number + "', " +
-                                " '1' " +
+                                " '" + number + "' " +
                             ") ";
             utils.ExecuteNonQuery(sql);
 
             //更新优惠券已经赠送数量
-            sql = "UPDATE TopCoupon SET used = used + 1 WHERE coupon_id = " + couponid;
+            sql = "UPDATE TCS_Coupon SET used = used + 1 WHERE guid = " + couponid;
             utils.ExecuteNonQuery(sql);
             Response.Write("<script>alert('赠送成功！');window.location.href='msgsend.aspx';</script>");
         }

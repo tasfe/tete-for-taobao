@@ -21,11 +21,11 @@ public partial class top_groupbuy_build : System.Web.UI.Page
         nick = encode.Decrypt(taobaoNick);
 
         //判断VIP版本，只有VIP才能使用此功能
-        string sql = "SELECT * FROM TopTaobaoShop WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            string flag = dt.Rows[0]["versionNoBlog"].ToString();
+            string flag = dt.Rows[0]["version"].ToString();
 
             if (flag == "0")
             {

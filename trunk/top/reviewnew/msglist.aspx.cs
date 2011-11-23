@@ -23,11 +23,11 @@ public partial class top_review_msglist : System.Web.UI.Page
         nick = encode.Decrypt(taobaoNick);
 
         //判断VIP版本，只有VIP才能使用此功能
-        string sql = "SELECT * FROM TopTaobaoShop WITH (NOLOCK) WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TCS_ShopSession WITH (NOLOCK) WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            string flag = dt.Rows[0]["versionNoBlog"].ToString();
+            string flag = dt.Rows[0]["version"].ToString();
 
             if (flag == "0")
             {
@@ -59,7 +59,7 @@ public partial class top_review_msglist : System.Web.UI.Page
             return;
         }
 
-        string sqlNew = "SELECT b.*,o.deliverymsg FROM TopMsg b WITH (NOLOCK) LEFT JOIN TopOrder o WITH (NOLOCK) ON o.orderid = b.orderid WHERE b.nick = '" + nick + "' AND b.sendto = '" + search.Text.Trim().Replace("'", "''") + "'";
+        string sqlNew = "SELECT b.* FROM TCS_MsgSend b WITH (NOLOCK) WHERE b.nick = '" + nick + "' AND b.buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
@@ -83,14 +83,14 @@ public partial class top_review_msglist : System.Web.UI.Page
         int pageCount = 10;
         int dataCount = (pageNow - 1) * pageCount;
 
-        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT b.*,o.deliverymsg,ROW_NUMBER() OVER (ORDER BY b.id DESC) AS rownumber FROM TopMsg b WITH (NOLOCK) LEFT JOIN TopOrder o WITH (NOLOCK) ON o.orderid = b.orderid WHERE b.nick = '" + nick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY id DESC";
+        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT b.*,ROW_NUMBER() OVER (ORDER BY b.adddate DESC) AS rownumber FROM TCS_MsgSend b WITH (NOLOCK) WHERE b.nick = '" + nick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY adddate DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
         rptArticle.DataBind();
 
         //分页数据初始化
-        sqlNew = "SELECT COUNT(*) FROM TopMsg WITH (NOLOCK) WHERE nick = '" + nick + "'";
+        sqlNew = "SELECT COUNT(*) FROM TCS_MsgSend WITH (NOLOCK) WHERE nick = '" + nick + "'";
         int totalCount = int.Parse(utils.ExecuteString(sqlNew));
 
         lbPage.Text = InitPageStr(totalCount, "msglist.aspx");
