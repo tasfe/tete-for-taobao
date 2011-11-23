@@ -37,7 +37,6 @@
         <tr>
                 <td width="120"><b>买家</b></td>
                 <td width="90"><b>手机号码</b></td>
-                <!--<td width="120"><b>订单编号</b></td>-->
                 <td width="100"><b>类型 </b></td>
                 <td width="60"><b>发送日期 </b></td>
                 <td width="60"><b>发送内容 </b></td>
@@ -45,10 +44,9 @@
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
-                <td height="40"><%#Eval("sendto")%></td>
-                <td><%#Eval("phone")%></td>
-                <!--<td><%#Eval("orderid")%></td>-->
-                <td><%#message(Eval("typ").ToString(), Eval("deliverymsg").ToString())%></td>
+                <td height="40"><%#Eval("buynick")%></td>
+                <td><%#Eval("mobile")%></td>
+                <td><%#message(Eval("typ").ToString())%></td>
                 <td><%#Eval("adddate")%></td>
                 <td><%#Eval("content")%></td>
             </tr>

@@ -101,14 +101,14 @@ public partial class top_review_msglist : System.Web.UI.Page
     /// </summary>
     /// <param name="str"></param>
     /// <returns></returns>
-    public static string message(string str, string detail)
+    public static string message(string str)
     {
-        detail = Regex.Replace(detail, @"<[^>]*>", "");
+        //detail = Regex.Replace(detail, @"<[^>]*>", "");
 
         string newstr = string.Empty;
         if (str == "shipping")
         {
-            newstr = "<font color=green title='" + detail + "'>物流签收</font>";
+            newstr = "<font color=green>物流签收</font>";
         }
         else if (str == "review")
         {
