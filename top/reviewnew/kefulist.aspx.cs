@@ -91,10 +91,9 @@ public partial class top_review_kefulist : System.Web.UI.Page
         else if (t == "no") 
         {
             //不赠送礼品
-            string sql = "UPDATE TCS_TrateRateCheck SET issend = 2,ischeck = 1,checkdate = GETDATE() WHERE CHARINDEX(tid, '" + ids + "') > 0";
+            string sql = "UPDATE TCS_TradeRateCheck SET issend = 2,ischeck = 1,checkdate = GETDATE() WHERE CHARINDEX(tid, '" + ids + "') > 0";
             utils.ExecuteNonQuery(sql);
-            Response.Write(sql);
-            //Response.Write("<script>alert('选中的订单【" + ids + "】已经设置为不赠送！');window.location.href='kefulist.aspx';</script>");
+            Response.Write("<script>alert('选中的订单【" + ids + "】已经设置为不赠送！');window.location.href='kefulist.aspx';</script>");
         }
     }
 
