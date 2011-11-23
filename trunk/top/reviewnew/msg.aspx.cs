@@ -44,11 +44,11 @@ public partial class top_review_msg : System.Web.UI.Page
         nick = encode.Decrypt(taobaoNick);
 
         //判断VIP版本，只有VIP才能使用此功能
-        string sql = "SELECT * FROM TopTaobaoShop WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            string flag = dt.Rows[0]["versionNoBlog"].ToString();
+            string flag = dt.Rows[0]["version"].ToString();
 
             if (flag == "0")
             {
@@ -81,7 +81,7 @@ public partial class top_review_msg : System.Web.UI.Page
     {
 
         //获取相关短信设置
-        string sql = "SELECT * FROM TopAutoReview WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
@@ -136,7 +136,7 @@ public partial class top_review_msg : System.Web.UI.Page
         string fahuoflag = utils.NewRequest("fahuoflag", utils.RequestType.Form) == "1" ? "1" : "0";
         string reviewtime = utils.NewRequest("reviewtime", utils.RequestType.Form);
 
-        string sql = "UPDATE TopAutoReview SET " +
+        string sql = "UPDATE TCS_ShopConfig SET " +
             "giftflag = '" + giftflag + "', " +
             "giftcontent = '" + utils.NewRequest("giftcontent", utils.RequestType.Form) + "', " +
             "shippingflag = '" + shippingflag + "', " +
