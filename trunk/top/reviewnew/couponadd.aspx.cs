@@ -80,8 +80,9 @@ public partial class top_review_couponadd : System.Web.UI.Page
                         "taobaocouponid, " +
                         "num, " +
                         "enddate, " +
-                        "total, " +
+                        "count, " +
                         "per, " +
+                        "guid, " +
                         "condition " +
                     " ) VALUES ( " +
                         " '" + nick + "', " +
@@ -91,13 +92,13 @@ public partial class top_review_couponadd : System.Web.UI.Page
                         " '" + end_time + "', " +
                         " '" + total + "', " +
                         " '" + per + "', " +
+                        " '" + guid + "', " +
                         " '" + condition + "' " +
                     ") ";
         utils.ExecuteNonQuery(sql);
         Response.Write("<br><br>" + sql);
 
-
-        sql = "UPDATE TCS_ShopConfig SET couponid = '" + coupon_id + "' WHERE nick = '" + nick + "'";
+        sql = "UPDATE TCS_ShopConfig SET couponid = '" + guid + "' WHERE nick = '" + nick + "'";
         utils.ExecuteNonQuery(sql);
 
         Response.Write("<br><br>" + sql);
