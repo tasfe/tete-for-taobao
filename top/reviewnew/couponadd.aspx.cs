@@ -96,7 +96,7 @@ public partial class top_review_couponadd : System.Web.UI.Page
         utils.ExecuteNonQuery(sql);
 
 
-        sql = "UPDATE TopAutoReview SET couponid = '" + coupon_id + "' WHERE nick = '" + nick + "'";
+        sql = "UPDATE TCS_ShopConfig SET couponid = '" + coupon_id + "' WHERE nick = '" + nick + "'";
         utils.ExecuteNonQuery(sql);
 
         //Response.Write("<br><br>" + sql);
