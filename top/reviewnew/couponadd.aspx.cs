@@ -94,6 +94,11 @@ public partial class top_review_couponadd : System.Web.UI.Page
                         " '" + condition + "' " +
                     ") ";
         utils.ExecuteNonQuery(sql);
+
+
+        sql = "UPDATE TopAutoReview SET couponid = '" + coupon_id + "' WHERE nick = '" + nick + "'";
+        utils.ExecuteNonQuery(sql);
+
         //Response.Write("<br><br>" + sql);
         Response.Redirect("couponlist.aspx");
     }
