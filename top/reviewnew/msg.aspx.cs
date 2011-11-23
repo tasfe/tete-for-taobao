@@ -65,7 +65,7 @@ public partial class top_review_msg : System.Web.UI.Page
                 return;
             }
 
-            oldshopname = dt.Rows[0]["title"].ToString();
+            oldshopname = dt.Rows[0]["nick"].ToString();
         }
 
         if (!IsPostBack)
