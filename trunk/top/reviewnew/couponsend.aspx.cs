@@ -48,7 +48,7 @@ public partial class top_review_couponsend : System.Web.UI.Page
             return;
         }
 
-        string sqlNew = "SELECT * FROM TCS_CouponSend WHERE nick = '" + nick + "' AND buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
+        string sqlNew = "SELECT * FROM TCS_CouponSend WHERE nick = '" + nick + "' AND buynick = '" + search.Text.Trim().Replace("'", "''") + "' ORDER BY taobaonumber DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
