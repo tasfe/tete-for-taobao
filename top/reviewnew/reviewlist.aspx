@@ -44,7 +44,7 @@
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
-                <td height="30"><%#Eval("nick") %></td>
+                <td height="30"><%#Eval("buynick") %></td>
                 <td><img src='<%#getimg(Eval("result").ToString())%>' /></td>
                 <td><%#left(Eval("content").ToString())%></td>
                 <td><%#Eval("reviewdate") %></td>
