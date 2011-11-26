@@ -63,7 +63,7 @@ public partial class top_review_couponadd : System.Web.UI.Page
         param.Add("condition", condition);
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.add", session, param);
 
-        Response.Write(result + "<br><br>" + price + "<br><br>" + condition + "<br><br>" + end_time + "<br><br>" + coupon_name);
+        //Response.Write(result + "<br><br>" + price + "<br><br>" + condition + "<br><br>" + end_time + "<br><br>" + coupon_name);
         if (result.IndexOf("error_response") != -1)
         {
             if (result.IndexOf("end_time") != -1)
@@ -110,8 +110,8 @@ public partial class top_review_couponadd : System.Web.UI.Page
         sql = "UPDATE TCS_ShopConfig SET couponid = '" + guid + "' WHERE nick = '" + nick + "'";
         utils.ExecuteNonQuery(sql);
 
-        Response.Write("<br><br>" + sql);
-        //Response.Redirect("couponlist.aspx");
+        //Response.Write("<br><br>" + sql);
+        Response.Redirect("couponlist.aspx");
     }
 
 
