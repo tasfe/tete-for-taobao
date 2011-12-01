@@ -64,6 +64,15 @@ public partial class top_review_couponadd : System.Web.UI.Page
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.add", session, param);
 
         //Response.Write(result + "<br><br>" + price + "<br><br>" + condition + "<br><br>" + end_time + "<br><br>" + coupon_name);
+//Insufficient session permissions
+
+if (result.IndexOf("Insufficient session permissions") != -1)
+        {
+            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12159997&scope=promotion' target='_parent'>重新授权</a>");
+            	Response.End();
+            return;
+        }
+
         if (result.IndexOf("error_response") != -1)
         {
             if (result.IndexOf("end_time") != -1)
@@ -73,13 +82,16 @@ public partial class top_review_couponadd : System.Web.UI.Page
                 return;
             }
 
-            string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + err + "</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
+            string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", 
+RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + err + 
+"</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
             Response.End();
             return;
         }
 
-        string coupon_id = new Regex(@"<coupon_id>([^<]*)</coupon_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+        string coupon_id = new Regex(@"<coupon_id>([^<]*)</coupon_id>", 
+RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
 
         string sql = "INSERT INTO TCS_Coupon (" +
                         "nick, " +
@@ -107,7 +119,8 @@ public partial class top_review_couponadd : System.Web.UI.Page
         utils.ExecuteNonQuery(sql);
         Response.Write("<br><br>" + sql);
 
-        sql = "UPDATE TCS_ShopConfig SET couponid = '" + guid + "' WHERE nick = '" + nick + "'";
+        sql = "UPDATE TCS_ShopConfig SET couponid = '" + guid + "' WHERE nick = '" + nick + 
+"'";
         utils.ExecuteNonQuery(sql);
 
         //Response.Write("<br><br>" + sql);
@@ -133,10 +146,12 @@ public partial class top_review_couponadd : System.Web.UI.Page
     /// <param name="parameters">所有字符型的TOP请求参数</param> 
     /// <param name="secret">签名密钥</param> 
     /// <returns>签名</returns> 
-    protected static string CreateSign(IDictionary<string, string> parameters, string secret)
+    protected static string CreateSign(IDictionary<string, string> parameters, string 
+secret)
     {
         parameters.Remove("sign");
-        IDictionary<string, string> sortedParams = new SortedDictionary<string, string>(parameters);
+        IDictionary<string, string> sortedParams = new SortedDictionary<string, string>
+(parameters);
         IEnumerator<KeyValuePair<string, string>> dem = sortedParams.GetEnumerator();
         StringBuilder query = new StringBuilder(secret);
         while (dem.MoveNext())
@@ -202,7 +217,8 @@ public partial class top_review_couponadd : System.Web.UI.Page
     /// <param name="session">调用私有的sessionkey</param> 
     /// <param name="param">请求参数</param> 
     /// <returns>返回字符串</returns> 
-    public static string Post(string url, string appkey, string appSecret, string method, string session,
+    public static string Post(string url, string appkey, string appSecret, string method, 
+string session,
     IDictionary<string, string> param)
     {
         #region -----API系统参数----
