@@ -69,7 +69,7 @@ public partial class top_containertest1 : System.Web.UI.Page
         Response.Write(nick);
         Response.End();
 
-        string sql = "SELECT * FROM TopTaobaoShop WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
