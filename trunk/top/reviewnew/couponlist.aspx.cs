@@ -59,10 +59,10 @@ public partial class top_review_couponlist : System.Web.UI.Page
     {
         //判断如果活动未开始或进行中则可以关闭活动
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
-        if (!utils.IsInt32(id))
-        {
-            return;
-        }
+        //if (!utils.IsInt32(id))
+        //{
+        //    return;
+        //}
 
         //删除活动
         string appkey = "12159997";
@@ -72,7 +72,7 @@ public partial class top_review_couponlist : System.Web.UI.Page
         string session = cookie.getCookie("top_sessiongroupbuy");
 
         //通过数据库查询获取活动ID
-        string sql = "UPDATE TCS_Coupon SET isdel = 1 WHERE guid = " + id;
+        string sql = "UPDATE TCS_Coupon SET isdel = 1 WHERE guid = '" + id + "'";
         utils.ExecuteNonQuery(sql);
 
         Response.Write("<script>alert('取消成功！');window.location.href='couponlist.aspx';</script>");
