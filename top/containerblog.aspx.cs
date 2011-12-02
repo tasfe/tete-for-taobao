@@ -49,6 +49,15 @@ public partial class top_containerblog : System.Web.UI.Page
         versionNo = utils.NewRequest("versionNo", utils.RequestType.QueryString);
         string leaseId = utils.NewRequest("leaseId", utils.RequestType.QueryString).Replace(" ", "+"); //可以从 QueryString 来获取,也可以固定 
         string timestamp = utils.NewRequest("timestamp", utils.RequestType.QueryString).Replace(" ", "+"); //可以从 QueryString 来获取 
+        string agreementsign = utils.NewRequest("agreementsign", utils.RequestType.QueryString);
+
+
+        if (agreementsign == "")
+        {
+            Response.Redirect("http://container.api.taobao.com/container?appkey=12159997&scope=promotion");
+            return;
+        }
+
 
 
         if (!Taobao.Top.Api.Util.TopUtils.VerifyTopResponse(top_parameters, top_session, top_sign, top_appkey, app_secret))
