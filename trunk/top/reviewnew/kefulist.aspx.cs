@@ -153,8 +153,18 @@ public partial class top_review_kefulist : System.Web.UI.Page
             }
             else
             {
-                Response.Write("<script>alert('【系统错误】：找不到该订单【" + id + "】关联的淘宝会员，请联系客服人员！');window.location.href='kefulist.aspx';</script>");
-                return;
+                sql = "SELECT * FROM TCS_TradeOld WITH (NOLOCK) WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
+                dt = utils.ExecuteDataTable(sql);
+                if (dt.Rows.Count != 0)
+                {
+                    buynick = dt.Rows[0]["buynick"].ToString();
+                    phone = dt.Rows[0]["mobile"].ToString();
+                }
+                else
+                {
+                    //Response.Write("<script>alert('【系统错误】：找不到该订单【" + id + "】关联的淘宝会员，请联系客服人员！');window.location.href='kefulist.aspx';</script>");
+                    return;
+                }
             }
 
             //获取淘宝优惠券ID
@@ -223,8 +233,6 @@ public partial class top_review_kefulist : System.Web.UI.Page
 
                         if (giftCount == "0")
                         {
-
-
                             //开始发送
                             string msg = GetMsg(giftcontent, shopname, buynick, iscoupon, isfree);
 
@@ -250,7 +258,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                 sql = "INSERT INTO TCS_MsgSend (" +
                                                     "nick, " +
                                                     "buynick, " +
-                                                    "phone, " +
+                                                    "mobile, " +
                                                     "[content], " +
                                                     "yiweiid, " +
                                                     "num, " +
@@ -366,8 +374,18 @@ public partial class top_review_kefulist : System.Web.UI.Page
                 }
                 else
                 {
+                    sql = "SELECT * FROM TCS_TradeOld WITH (NOLOCK) WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
+                    dt = utils.ExecuteDataTable(sql);
+                    if (dt.Rows.Count != 0)
+                {
+                    buynick = dt.Rows[0]["buynick"].ToString();
+                    phone = dt.Rows[0]["mobile"].ToString();
+                }
+                else
+                {
                     Response.Write("<script>alert('【系统错误】：找不到该订单【" + id + "】关联的淘宝会员，请联系客服人员！');window.location.href='kefulist.aspx';</script>");
                     return;
+                        }
                 }
 
                 //获取淘宝优惠券ID
@@ -420,8 +438,11 @@ public partial class top_review_kefulist : System.Web.UI.Page
             //发送短信
             if (1 == 1) //短信测试中
             {
+                //Response.Write(iscoupon + "<br>");
+                //Response.Write(isfree + "<br>");
                 if (iscoupon == "1" || isfree == "1")
                 {
+                    Response.Write(giftflag + "<br>");
                     //判断是否开启该短信发送节点
                     if (giftflag == "1")
                     {
@@ -434,8 +455,10 @@ public partial class top_review_kefulist : System.Web.UI.Page
                             //开始发送
                             string msg = GetMsg(giftcontent, shopname, buynick, iscoupon, isfree);
 
+                            //Response.Write(msg + "<br>");
                             string result = SendMessage(phone, msg);
 
+                            //Response.Write(result + "<br>");
                             if (result != "0")
                             {
                                 string number = "1";
@@ -450,7 +473,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                 sql = "INSERT INTO TCS_MsgSend (" +
                                                     "nick, " +
                                                     "buynick, " +
-                                                    "phone, " +
+                                                    "mobile, " +
                                                     "[content], " +
                                                     "yiweiid, " +
                                                     "num, " +
@@ -464,6 +487,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                                     " '" + number + "', " +
                                                     " 'gift' " +
                                                 ") ";
+                                //Response.Write(sql + "<br>");
                                 utils.ExecuteNonQuery(sql);
 
                                 ////更新状态
