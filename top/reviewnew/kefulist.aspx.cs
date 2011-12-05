@@ -208,7 +208,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                 utils.ExecuteNonQuery(sql);
 
                 //更新优惠券已经赠送数量
-                sql = "UPDATE TCS_Coupon SET used = used + 1 WHERE guid = " + couponid;
+                sql = "UPDATE TCS_Coupon SET used = used + 1 WHERE guid = '" + couponid + "'";
                 utils.ExecuteNonQuery(sql);
             }
         }
@@ -430,7 +430,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                     utils.ExecuteNonQuery(sql);
 
                     //更新优惠券已经赠送数量
-                    sql = "UPDATE TCS_Coupon SET used = used + 1 WHERE guid = " + couponid;
+                    sql = "UPDATE TCS_Coupon SET used = used + 1 WHERE guid = '" + couponid + "'";
                     utils.ExecuteNonQuery(sql);
                 }
             }
