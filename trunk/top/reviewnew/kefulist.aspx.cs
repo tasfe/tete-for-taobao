@@ -443,6 +443,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                 if (iscoupon == "1" || isfree == "1")
                 {
                     Response.Write(giftflag + "<br>");
+
                     //判断是否开启该短信发送节点
                     if (giftflag == "1")
                     {
@@ -452,71 +453,76 @@ public partial class top_review_kefulist : System.Web.UI.Page
 
                         if (int.Parse(total) > 0)
                         {
-                            //开始发送
-                            string msg = GetMsg(giftcontent, shopname, buynick, iscoupon, isfree);
-
-                            //Response.Write(msg + "<br>");
-                            string result = SendMessage(phone, msg);
-
-                            //Response.Write(result + "<br>");
-                            if (result != "0")
+                            sql = "SELECT COUNT(*) FROM TCS_MsgSend WHERE buynick = '" + buynick + "' AND nick = '" + nick + "' AND typ = 'gift' AND DATEDIFF(d, adddate, GETDATE()) = 0";
+                            string count = utils.ExecuteString(sql);
+                            if (count == "0")
                             {
-                                string number = "1";
+                                //开始发送
+                                string msg = GetMsg(giftcontent, shopname, buynick, iscoupon, isfree);
 
-                                //如果内容超过70个字则算2条
-                                if (msg.Length > 70)
+                                //Response.Write(msg + "<br>");
+                                string result = SendMessage(phone, msg);
+
+                                //Response.Write(result + "<br>");
+                                if (result != "0")
                                 {
-                                    number = "2";
+                                    string number = "1";
+
+                                    //如果内容超过70个字则算2条
+                                    if (msg.Length > 70)
+                                    {
+                                        number = "2";
+                                    }
+
+                                    //记录短信发送记录
+                                    sql = "INSERT INTO TCS_MsgSend (" +
+                                                        "nick, " +
+                                                        "buynick, " +
+                                                        "mobile, " +
+                                                        "[content], " +
+                                                        "yiweiid, " +
+                                                        "num, " +
+                                                        "typ " +
+                                                    " ) VALUES ( " +
+                                                        " '" + nick + "', " +
+                                                        " '" + buynick + "', " +
+                                                        " '" + phone + "', " +
+                                                        " '" + msg.Replace("'", "''") + "', " +
+                                                        " '" + result + "', " +
+                                                        " '" + number + "', " +
+                                                        " 'gift' " +
+                                                    ") ";
+                                    //Response.Write(sql + "<br>");
+                                    utils.ExecuteNonQuery(sql);
+
+                                    ////更新状态
+                                    //sql = "UPDATE TopOrder SET isgiftmsg = 1 WHERE orderid = '" + id + "'";
+                                    //utils.ExecuteNonQuery(sql);
+
+                                    //更新短信数量
+                                    sql = "UPDATE TCS_ShopConfig SET used = used + " + number + ",total = total-" + number + " WHERE nick = '" + nick + "'";
+                                    utils.ExecuteNonQuery(sql);
                                 }
-
-                                //记录短信发送记录
-                                sql = "INSERT INTO TCS_MsgSend (" +
-                                                    "nick, " +
-                                                    "buynick, " +
-                                                    "mobile, " +
-                                                    "[content], " +
-                                                    "yiweiid, " +
-                                                    "num, " +
-                                                    "typ " +
-                                                " ) VALUES ( " +
-                                                    " '" + nick + "', " +
-                                                    " '" + buynick + "', " +
-                                                    " '" + phone + "', " +
-                                                    " '" + msg.Replace("'", "''") + "', " +
-                                                    " '" + result + "', " +
-                                                    " '" + number + "', " +
-                                                    " 'gift' " +
-                                                ") ";
-                                //Response.Write(sql + "<br>");
-                                utils.ExecuteNonQuery(sql);
-
-                                ////更新状态
-                                //sql = "UPDATE TopOrder SET isgiftmsg = 1 WHERE orderid = '" + id + "'";
-                                //utils.ExecuteNonQuery(sql);
-
-                                //更新短信数量
-                                sql = "UPDATE TCS_ShopConfig SET used = used + " + number + ",total = total-" + number + " WHERE nick = '" + nick + "'";
-                                utils.ExecuteNonQuery(sql);
-                            }
-                            else
-                            {
-                                ////记录短信发送记录
-                                //sql = "INSERT INTO TopMsgBak (" +
-                                //                    "nick, " +
-                                //                    "sendto, " +
-                                //                    "phone, " +
-                                //                    "[content], " +
-                                //                    "yiweiid, " +
-                                //                    "typ " +
-                                //                " ) VALUES ( " +
-                                //                    " '" + nick + "', " +
-                                //                    " '" + buynick + "', " +
-                                //                    " '" + phone + "', " +
-                                //                    " '" + msg + "', " +
-                                //                    " '" + result + "', " +
-                                //                    " 'gift' " +
-                                //                ") ";
-                                //utils.ExecuteNonQuery(sql);
+                                else
+                                {
+                                    ////记录短信发送记录
+                                    //sql = "INSERT INTO TopMsgBak (" +
+                                    //                    "nick, " +
+                                    //                    "sendto, " +
+                                    //                    "phone, " +
+                                    //                    "[content], " +
+                                    //                    "yiweiid, " +
+                                    //                    "typ " +
+                                    //                " ) VALUES ( " +
+                                    //                    " '" + nick + "', " +
+                                    //                    " '" + buynick + "', " +
+                                    //                    " '" + phone + "', " +
+                                    //                    " '" + msg + "', " +
+                                    //                    " '" + result + "', " +
+                                    //                    " 'gift' " +
+                                    //                ") ";
+                                    //utils.ExecuteNonQuery(sql);
+                                }
                             }
                         }
                     }
