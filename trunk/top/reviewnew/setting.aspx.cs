@@ -226,7 +226,7 @@ public partial class top_review_setting : System.Web.UI.Page
             utils.ExecuteNonQuery(sql);
         }
 
-        sql = "INSERT INTO TCS_ShopActLog (nick, typ, message) VALUES ('" + nick + "', 'setting', '" + sql + "')";
+        sql = "INSERT INTO TCS_ShopActLog (nick, typ, message) VALUES ('" + nick + "', 'setting', '" + sql.Replace("'", "''") + "')";
         utils.ExecuteNonQuery(sql);
 
         Response.Write("<script>alert('保存成功！');window.location.href='setting.aspx';</script>");
