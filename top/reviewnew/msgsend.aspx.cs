@@ -87,6 +87,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.send", session, param);
         Regex reg = new Regex(@"<coupon_number>([^<]*)</coupon_number>", RegexOptions.IgnoreCase);
         MatchCollection match = reg.Matches(result);
+
         //如果失败
         if (!reg.IsMatch(result))
         {

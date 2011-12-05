@@ -68,7 +68,7 @@ public partial class top_review_couponadd : System.Web.UI.Page
 
 if (result.IndexOf("Insufficient session permissions") != -1)
         {
-            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12159997&scope=promotion' target='_parent'>重新授权</a>");
+            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12159997&scope=logistics,promotion,trade,traderates' target='_parent'>重新授权</a>");
             	Response.End();
             return;
         }
