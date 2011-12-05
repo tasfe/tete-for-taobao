@@ -34,7 +34,7 @@
         <select name="typ">
             <option value="service-0-22904-1">标准版</option>
             <option value="service-0-22904-2">专业版</option>
-            <option value="service-0-22904-3">VIP版</option>
+            <option value="service-0-22904-3" selected>VIP版</option>
         </select>
         <br> 
 
@@ -44,7 +44,7 @@
             <option value="1">1个月</option>
             <option value="3">3个月</option>
             <option value="6">6个月</option>
-            <option value="12">12个月</option>
+            <option value="12" selected>12个月</option>
         </select>
         <br> 
         <br> 
