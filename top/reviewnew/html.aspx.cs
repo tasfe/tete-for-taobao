@@ -198,7 +198,7 @@ public partial class top_review_html : System.Web.UI.Page
         string catid = string.Empty;
         for (int i = 0; i < cat.Content.Count; i++)
         {
-            Response.Write(cat.Content[i].Name + "<br>");
+            //Response.Write(cat.Content[i].Name + "<br>");
 
             if (cat.Content[i].Name == "好评有礼_特特营销")
             {
@@ -207,7 +207,7 @@ public partial class top_review_html : System.Web.UI.Page
                 break;
             }
         }
-        Response.End();
+        //Response.End();
 
         if (isok == "0")
         {
@@ -218,8 +218,8 @@ public partial class top_review_html : System.Web.UI.Page
 
             string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.sellercats.list.add", session, param);
 
-            Response.Write(result);
-            Response.End();
+            //Response.Write(result);
+            //Response.End();
 
             ////添加到左侧分类
             //SellercatsListAddRequest request = new SellercatsListAddRequest();
@@ -230,11 +230,17 @@ public partial class top_review_html : System.Web.UI.Page
         }
         else
         {
-            //更新分类图片
-            SellercatsListUpdateRequest request = new SellercatsListUpdateRequest();
-            request.Cid = int.Parse(catid);
-            request.PictUrl = GetTaobaoImg(name, "left");
-            clientaa.SellercatsListUpdate(request, session);
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            param.Add("cid", catid);
+            param.Add("pict_url", GetTaobaoImg(name, "left"));
+
+            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.sellercats.list.update", session, param);
+
+            ////更新分类图片
+            //SellercatsListUpdateRequest request = new SellercatsListUpdateRequest();
+            //request.Cid = int.Parse(catid);
+            //request.PictUrl = GetTaobaoImg(name, "left");
+            //clientaa.SellercatsListUpdate(request, session);
         }
 
 
