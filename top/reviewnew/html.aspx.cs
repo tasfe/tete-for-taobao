@@ -198,6 +198,8 @@ public partial class top_review_html : System.Web.UI.Page
         string catid = string.Empty;
         for (int i = 0; i < cat.Content.Count; i++)
         {
+            Response.Write(cat.Content[i].Name + "<br>");
+
             if (cat.Content[i].Name == "好评有礼_特特营销")
             {
                 isok = "1";
@@ -205,6 +207,7 @@ public partial class top_review_html : System.Web.UI.Page
                 break;
             }
         }
+        Response.End();
 
         if (isok == "0")
         {
