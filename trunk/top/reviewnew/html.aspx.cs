@@ -244,7 +244,7 @@ public partial class top_review_html : System.Web.UI.Page
         }
 
 
-        Response.Write("<script>alert('同步成功！');window.location.href='html.aspx';</script>");
+        Response.Write("<script>alert('同步成功，如果是第一次同步左侧分类可能需要多等待一会才能看到，或者您可以在店铺装修里面发布一下即可！');window.location.href='html.aspx';</script>");
         Response.End();
         return;
     }
