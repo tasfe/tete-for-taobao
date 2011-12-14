@@ -208,12 +208,22 @@ public partial class top_review_html : System.Web.UI.Page
 
         if (isok == "0")
         {
-            //添加到左侧分类
-            SellercatsListAddRequest request = new SellercatsListAddRequest();
-            request.Name = "好评有礼_特特营销";
-            request.PictUrl = GetTaobaoImg(name, "left");
-            request.SortOrder = order;
-            clientaa.SellercatsListAdd(request, session);
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            param.Add("name", "好评有礼_特特营销");
+            param.Add("pict_url", GetTaobaoImg(name, "left"));
+            param.Add("sort_order", order.ToString());
+
+            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.sellercats.list.add", session, param);
+
+            Response.Write(result);
+            Response.End();
+
+            ////添加到左侧分类
+            //SellercatsListAddRequest request = new SellercatsListAddRequest();
+            //request.Name = "好评有礼_特特营销";
+            //request.PictUrl = GetTaobaoImg(name, "left");
+            //request.SortOrder = order;
+            //clientaa.SellercatsListAdd(request, session);
         }
         else
         {
