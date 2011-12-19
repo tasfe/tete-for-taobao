@@ -103,7 +103,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
                                 "nick, " +
                                 "guid, " +
                                 "buynick, " +
-                                "number " +
+                                "taobaonumber " +
                             " ) VALUES ( " +
                                 " '" + nick + "', " +
                                 " '" + couponid + "', " +
