@@ -27,7 +27,7 @@ public partial class top_containerblog : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-	Response.AddHeader("P3P", "CP=CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR");
+        Response.AddHeader("P3P", "CP=CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR");
         /*
          * http://www.7fshop.com/top/container.aspx
          * ?top_appkey=12132145
@@ -49,15 +49,7 @@ public partial class top_containerblog : System.Web.UI.Page
         versionNo = utils.NewRequest("versionNo", utils.RequestType.QueryString);
         string leaseId = utils.NewRequest("leaseId", utils.RequestType.QueryString).Replace(" ", "+"); //可以从 QueryString 来获取,也可以固定 
         string timestamp = utils.NewRequest("timestamp", utils.RequestType.QueryString).Replace(" ", "+"); //可以从 QueryString 来获取 
-        string agreementsign = utils.NewRequest("agreementsign", utils.RequestType.QueryString);
-
-
-        if (agreementsign == "")
-        {
-            Response.Redirect("http://container.api.taobao.com/container?appkey=12159997&scope=promotion");
-            return;
-        }
-
+        string agreementsign = utils.NewRequest("agreementsign", utils.RequestType.QueryString).Replace(" ", "+");
 
 
         if (!Taobao.Top.Api.Util.TopUtils.VerifyTopResponse(top_parameters, top_session, top_sign, top_appkey, app_secret))
@@ -91,6 +83,24 @@ public partial class top_containerblog : System.Web.UI.Page
             Response.End();
             return;
         }
+
+
+        if (agreementsign != "")
+        {
+            //加密NICK
+            Rijndael_ encode = new Rijndael_("tetesoft");
+            nick = encode.Encrypt(nick);
+
+            Common.Cookie cookie = new Common.Cookie();
+            cookie.setCookie("top_sessionblog", top_session, 999999);
+            cookie.setCookie("top_sessiongroupbuy", top_session, 999999);
+            cookie.setCookie("nick", nick, 999999);
+
+            Response.Redirect("indexnew.html");
+            return;
+        }
+
+
         //判断跳转
         GetData(nick);
     }
@@ -140,27 +150,27 @@ public partial class top_containerblog : System.Web.UI.Page
         //{
         //    nick = item.Content[0].Nick;
         //}
-        
+
         //获取店铺基本信息
         UserGetRequest request = new UserGetRequest();
         request.Fields = "user_id,nick,seller_credit";
         request.Nick = nick;
         User user = client.UserGet(request, session);
 
-        if(CheckUserExits(nick))
+        if (CheckUserExits(nick))
         {
             //更新该会员的店铺信息
-            string ip = Request.UserHostAddress;
+            //string ip = Request.UserHostAddress;
             //记录2次登录日志
-            string sql = "INSERT INTO TopLoginLog (" +
+            /*string sql = "INSERT INTO TopLoginLog (" +
                            "nick " +
                        " ) VALUES ( " +
                            " '" + nick + "'" +
                      ") ";
-            utils.ExecuteNonQuery(sql);
+            utils.ExecuteNonQuery(sql);*/
 
             //更新登录次数和最近登陆时间
-            sql = "UPDATE toptaobaoshop SET logintimes = logintimes + 1,lastlogin = GETDATE(),session='" + top_session + "',sessionblog='" + top_session + "',versionNo='" + versionNo + "',ip='" + ip + "' WHERE nick = '" + nick + "'";
+            string sql = "UPDATE TCS_ShopSession SET session='" + top_session + "',version='" + versionNo + "' WHERE nick = '" + nick + "'";
             utils.ExecuteNonQuery(sql);
         }
         else
@@ -169,14 +179,13 @@ public partial class top_containerblog : System.Web.UI.Page
             InsertUserInfo(nick);
         }
 
-        
+
         IDictionary<string, string> param = new Dictionary<string, string>();
         string result = Post("http://gw.api.taobao.com/router/rest", "12159997", "614e40bfdb96e9063031d1a9e56fbed5", "taobao.increment.customer.permit", top_session, param);
 
-
         //更新用户订购信息
         CheckUser("0", nick);
-        
+
         //加密NICK
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Encrypt(nick);
@@ -245,13 +254,28 @@ public partial class top_containerblog : System.Web.UI.Page
                         " '" + shop.RemainCount + "' " +
                   ") ";
 
+
+        sql = "INSERT INTO TCS_ShopSession (" +
+                       "sid, " +
+                       "nick, " +
+                       "typ, " +
+                       "version, " +
+                       "session" +
+                   " ) VALUES ( " +
+                       " '" + shop.Sid + "', " +
+                       " '" + shop.Nick + "', " +
+                       " 'taobao', " +
+                       " '" + versionNo + "', " +
+                       " '" + top_session + "' " +
+                 ") ";
+
         utils.ExecuteNonQuery(sql);
 
 
 
 
         //记录店铺分类信息
-        SellercatsListGetRequest request1 = new SellercatsListGetRequest();
+        /*SellercatsListGetRequest request1 = new SellercatsListGetRequest();
         request1.Fields = "cid,parent_cid,name,is_parent";
         request1.Nick = nick;
         PageList<SellerCat> cat = client.SellercatsListGet(request1);
@@ -279,6 +303,7 @@ public partial class top_containerblog : System.Web.UI.Page
                       ") ";
             utils.ExecuteNonQuery(sql);
         }
+*/
 
         //记录店铺所有商品信息-暂不记录
     }
@@ -290,14 +315,14 @@ public partial class top_containerblog : System.Web.UI.Page
     /// <returns></returns>
     private bool CheckUserExits(string nick)
     {
-        string sql = "SELECT * FROM TopTaobaoShop WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count == 0)
         {
             return false;
         }
         else
-        { 
+        {
             return true;
         }
     }
@@ -330,13 +355,13 @@ public partial class top_containerblog : System.Web.UI.Page
         param.Add("nick", u);
         string result1 = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.user.get", top_session, param);
 
-        try
+        /*try
         {
             string typ = new Regex(@"<type>([^<]*)</type>", RegexOptions.IgnoreCase).Match(result1).Groups[1].ToString();
             string sql1 = "UPDATE TopTaobaoShop SET typ = '" + typ + "' WHERE nick = '" + u + "'";
             utils.ExecuteNonQuery(sql1);
         }
-        catch { }
+        catch { }*/
 
         string sql = string.Empty;
         //判断短信购买及充值情况
@@ -361,12 +386,12 @@ public partial class top_containerblog : System.Web.UI.Page
                     if (match[i].Groups[1].ToString() == "service-0-22904-4")
                     {
                         //判断当月是否加过短信，如果没加过
-                        sql = "SELECT COUNT(*) FROM TopTaobaoPay WHERE nick = '" + nick + "' AND typ = 'service-0-22904-4' AND enddate = '" + match[i].Groups[2].ToString() + "'";
+                        sql = "SELECT COUNT(*) FROM TCS_PayLog WHERE nick = '" + nick + "' AND typ = 'service-0-22904-4' AND enddate = '" + match[i].Groups[2].ToString() + "'";
                         string count = utils.ExecuteString(sql);
                         if (count == "0")
-                        { 
+                        {
                             //插入充值记录并更新短信条数
-                            sql = "INSERT INTO TopTaobaoPay (" +
+                            sql = "INSERT INTO TCS_PayLog (" +
                                             "typ, " +
                                             "enddate, " +
                                             "nick, " +
@@ -380,7 +405,7 @@ public partial class top_containerblog : System.Web.UI.Page
                             utils.ExecuteNonQuery(sql);
 
                             //更新短信条数
-                            sql = "UPDATE TopAutoReview SET total = total + 100 WHERE nick = '" + nick + "'";
+                            sql = "UPDATE TCS_ShopConfig SET total = total + 100 WHERE nick = '" + nick + "'";
                             utils.ExecuteNonQuery(sql);
                         }
                     }
@@ -389,12 +414,12 @@ public partial class top_containerblog : System.Web.UI.Page
                     if (match[i].Groups[1].ToString() == "service-0-22904-5")
                     {
                         //判断当月是否加过短信，如果没加过
-                        sql = "SELECT COUNT(*) FROM TopTaobaoPay WHERE nick = '" + nick + "' AND typ = 'service-0-22904-5' AND enddate = '" + match[i].Groups[2].ToString() + "'";
+                        sql = "SELECT COUNT(*) FROM TCS_PayLog WHERE nick = '" + nick + "' AND typ = 'service-0-22904-5' AND enddate = '" + match[i].Groups[2].ToString() + "'";
                         string count = utils.ExecuteString(sql);
                         if (count == "0")
                         {
                             //插入充值记录并更新短信条数
-                            sql = "INSERT INTO TopTaobaoPay (" +
+                            sql = "INSERT INTO TCS_PayLog (" +
                                             "typ, " +
                                             "enddate, " +
                                             "nick, " +
@@ -408,7 +433,7 @@ public partial class top_containerblog : System.Web.UI.Page
                             utils.ExecuteNonQuery(sql);
 
                             //更新短信条数
-                            sql = "UPDATE TopAutoReview SET total = total + 510 WHERE nick = '" + nick + "'";
+                            sql = "UPDATE TCS_ShopConfig SET total = total + 510 WHERE nick = '" + nick + "'";
                             utils.ExecuteNonQuery(sql);
                         }
                     }
@@ -417,12 +442,12 @@ public partial class top_containerblog : System.Web.UI.Page
                     if (match[i].Groups[1].ToString() == "service-0-22904-6")
                     {
                         //判断当月是否加过短信，如果没加过
-                        sql = "SELECT COUNT(*) FROM TopTaobaoPay WHERE nick = '" + nick + "' AND typ = 'service-0-22904-6' AND enddate = '" + match[i].Groups[2].ToString() + "'";
+                        sql = "SELECT COUNT(*) FROM TCS_PayLog WHERE nick = '" + nick + "' AND typ = 'service-0-22904-6' AND enddate = '" + match[i].Groups[2].ToString() + "'";
                         string count = utils.ExecuteString(sql);
                         if (count == "0")
                         {
                             //插入充值记录并更新短信条数
-                            sql = "INSERT INTO TopTaobaoPay (" +
+                            sql = "INSERT INTO TCS_PayLog (" +
                                             "typ, " +
                                             "enddate, " +
                                             "nick, " +
@@ -436,7 +461,7 @@ public partial class top_containerblog : System.Web.UI.Page
                             utils.ExecuteNonQuery(sql);
 
                             //更新短信条数
-                            sql = "UPDATE TopAutoReview SET total = total + 1030 WHERE nick = '" + nick + "'";
+                            sql = "UPDATE TCS_ShopConfig SET total = total + 1030 WHERE nick = '" + nick + "'";
                             utils.ExecuteNonQuery(sql);
                         }
                     }
@@ -445,12 +470,12 @@ public partial class top_containerblog : System.Web.UI.Page
                     if (match[i].Groups[1].ToString() == "service-0-22904-7")
                     {
                         //判断当月是否加过短信，如果没加过
-                        sql = "SELECT COUNT(*) FROM TopTaobaoPay WHERE nick = '" + nick + "' AND typ = 'service-0-22904-7' AND enddate = '" + match[i].Groups[2].ToString() + "'";
+                        sql = "SELECT COUNT(*) FROM TCS_PayLog WHERE nick = '" + nick + "' AND typ = 'service-0-22904-7' AND enddate = '" + match[i].Groups[2].ToString() + "'";
                         string count = utils.ExecuteString(sql);
                         if (count == "0")
                         {
                             //插入充值记录并更新短信条数
-                            sql = "INSERT INTO TopTaobaoPay (" +
+                            sql = "INSERT INTO TCS_PayLog (" +
                                             "typ, " +
                                             "enddate, " +
                                             "nick, " +
@@ -464,7 +489,36 @@ public partial class top_containerblog : System.Web.UI.Page
                             utils.ExecuteNonQuery(sql);
 
                             //更新短信条数
-                            sql = "UPDATE TopAutoReview SET total = total + 5200 WHERE nick = '" + nick + "'";
+                            sql = "UPDATE TCS_ShopConfig SET total = total + 5200 WHERE nick = '" + nick + "'";
+                            utils.ExecuteNonQuery(sql);
+                        }
+                    }
+
+
+                    //1000元
+                    if (match[i].Groups[1].ToString() == "service-0-22904-8")
+                    {
+                        //判断当月是否加过短信，如果没加过
+                        sql = "SELECT COUNT(*) FROM TCS_PayLog WHERE nick = '" + nick + "' AND typ = 'service-0-22904-8' AND enddate = '" + match[i].Groups[2].ToString() + "'";
+                        string count = utils.ExecuteString(sql);
+                        if (count == "0")
+                        {
+                            //插入充值记录并更新短信条数
+                            sql = "INSERT INTO TCS_PayLog (" +
+                                            "typ, " +
+                                            "enddate, " +
+                                            "nick, " +
+                                            "count " +
+                                        " ) VALUES ( " +
+                                            " '" + match[i].Groups[1].ToString() + "', " +
+                                            " '" + match[i].Groups[2].ToString() + "', " +
+                                            " '" + nick + "', " +
+                                            " '10500' " +
+                                      ") ";
+                            utils.ExecuteNonQuery(sql);
+
+                            //更新短信条数
+                            sql = "UPDATE TCS_ShopConfig SET total = total + 10500 WHERE nick = '" + nick + "'";
                             utils.ExecuteNonQuery(sql);
                         }
                     }
@@ -473,55 +527,57 @@ public partial class top_containerblog : System.Web.UI.Page
             }
         }
 
+        /*
+                param = new Dictionary<string, string>();
+                param.Add("nick", u);
+                if (t == "0")
+                {
+                    appkey = "12159997";
+                    secret = "614e40bfdb96e9063031d1a9e56fbed5";
+                    param.Add("lease_id", "161220");
+                }
+                else
+                {
+                    param.Add("lease_id", "133368");
+                }
+                string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.appstore.subscribe.get", "", param);
 
-        param = new Dictionary<string, string>();
-        param.Add("nick", u);
-        if (t == "0")
-        {
-            appkey = "12159997";
-            secret = "614e40bfdb96e9063031d1a9e56fbed5";
-            param.Add("lease_id", "161220");
-        }
-        else
-        {
-            param.Add("lease_id", "133368");
-        }
-        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.appstore.subscribe.get", "", param);
+                string enddate = string.Empty;
+                string version = string.Empty;
+                sql = string.Empty;
 
-        string enddate = string.Empty;
-        string version = string.Empty;
-        sql = string.Empty;
+                if (result.IndexOf("invali") != -1)
+                {
+                    //到期了
+                    if (t == "0")
+                    {
+                        sql = "UPDATE TopTaobaoShop SET isoverblog = 1,enddateBlog = GETDATE() WHERE nick = '" + u + "'";
+                    }
+                    else
+                    {
+                        sql = "UPDATE TopTaobaoShop SET isover = 1,enddate = GETDATE() WHERE nick = '" + u + "'";
+                    }
+                    utils.ExecuteNonQuery(sql);
+                }
+                else
+                {
+                    //更新日期
+                    enddate = new Regex(@"<end_date>([^<]*)</end_date>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                    version = new Regex(@"<version_no>([^<]*)</version_no>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
 
-        if (result.IndexOf("invali") != -1)
-        {
-            //到期了
-            if (t == "0")
-            {
-                sql = "UPDATE TopTaobaoShop SET isoverblog = 1,enddateBlog = GETDATE() WHERE nick = '" + u + "'";
-            }
-            else
-            {
-                sql = "UPDATE TopTaobaoShop SET isover = 1,enddate = GETDATE() WHERE nick = '" + u + "'";
-            }
-            utils.ExecuteNonQuery(sql);
-        }
-        else
-        {
-            //更新日期
-            enddate = new Regex(@"<end_date>([^<]*)</end_date>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-            version = new Regex(@"<version_no>([^<]*)</version_no>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                    if (t == "0")
+                    {
+                        sql = "UPDATE TopTaobaoShop SET enddateBlog = '" + enddate + "',versionNoBlog = '" + version + "' WHERE nick = '" + u + "'";
+                    }
+                    else
+                    {
+                        sql = "UPDATE TopTaobaoShop SET enddate = '" + enddate + "',versionNo = '" + version + "' WHERE nick = '" + u + "'";
+                    }
+                    utils.ExecuteNonQuery(sql);
+                }
+                //Response.Write(sql + "<br>");
 
-            if (t == "0")
-            {
-                sql = "UPDATE TopTaobaoShop SET enddateBlog = '" + enddate + "',versionNoBlog = '" + version + "' WHERE nick = '" + u + "'";
-            }
-            else
-            {
-                sql = "UPDATE TopTaobaoShop SET enddate = '" + enddate + "',versionNo = '" + version + "' WHERE nick = '" + u + "'";
-            }
-            utils.ExecuteNonQuery(sql);
-        }
-        //Response.Write(sql + "<br>");
+        */
     }
 
     /// <summary> 
