@@ -39,10 +39,10 @@ public partial class top_containerblog : System.Web.UI.Page
          * &y=13
          * &x=36*/
         //签名验证
-        string top_appkey = "12159997";
+        string top_appkey = "12223169";
         string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString).Replace(" ", "+");
         top_session = utils.NewRequest("top_session", utils.RequestType.QueryString).Replace(" ", "+");
-        string app_secret = "614e40bfdb96e9063031d1a9e56fbed5";
+        string app_secret = "ff3d3442ab809930d187623ffad8e91e";
         string top_sign = utils.NewRequest("top_sign", utils.RequestType.QueryString).Replace(" ", "+"); //字符串中的+在获取后会被替换成空格，要再替换回来
         string sign = utils.NewRequest("sign", utils.RequestType.QueryString).Replace(" ", "+");
 
@@ -92,11 +92,10 @@ public partial class top_containerblog : System.Web.UI.Page
             nick = encode.Encrypt(nick);
 
             Common.Cookie cookie = new Common.Cookie();
-            cookie.setCookie("top_sessionblog", top_session, 999999);
-            cookie.setCookie("top_sessiongroupbuy", top_session, 999999);
+            cookie.setCookie("top_sessionkai", top_session, 999999);
             cookie.setCookie("nick", nick, 999999);
 
-            Response.Redirect("indexnew.html");
+            Response.Redirect("indexkai.html");
             return;
         }
 
@@ -191,11 +190,10 @@ public partial class top_containerblog : System.Web.UI.Page
         nick = encode.Encrypt(nick);
 
         Common.Cookie cookie = new Common.Cookie();
-        cookie.setCookie("top_sessionblog", top_session, 999999);
-        cookie.setCookie("top_sessiongroupbuy", top_session, 999999);
+        cookie.setCookie("top_sessionkai", top_session, 999999);
         cookie.setCookie("nick", nick, 999999);
 
-        Response.Redirect("indexnew.html");
+        Response.Redirect("indexkai.html");
     }
 
 
@@ -343,9 +341,8 @@ public partial class top_containerblog : System.Web.UI.Page
 
     private void CheckUser(string t, string u)
     {
-        string appkey = "12159997";
-        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
-
+        string appkey = "12223169";
+        string secret = "ff3d3442ab809930d187623ffad8e91e";
 
 
 

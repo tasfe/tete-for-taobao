@@ -50,14 +50,14 @@ public partial class top_container : System.Web.UI.Page
         versionNo = utils.NewRequest("versionNo", utils.RequestType.QueryString);
         string leaseId = utils.NewRequest("leaseId", utils.RequestType.QueryString).Replace(" ", "+"); ;//可以从 QueryString 来获取,也可以固定 
         string timestamp = utils.NewRequest("timestamp", utils.RequestType.QueryString).Replace(" ", "+"); ;//可以从 QueryString 来获取 
-        string agreementsign = utils.NewRequest("agreementsign", utils.RequestType.QueryString);
+        //string agreementsign = utils.NewRequest("agreementsign", utils.RequestType.QueryString);
 
 
-        if (agreementsign == "")
-        {
-            Response.Redirect("http://container.api.taobao.com/container?appkey=12132145&scope=promotion");
-            return;
-        }
+        //if (agreementsign == "")
+        //{
+        //    Response.Redirect("http://container.api.taobao.com/container?appkey=12132145&scope=promotion");
+        //    return;
+        //}
 
 
 
