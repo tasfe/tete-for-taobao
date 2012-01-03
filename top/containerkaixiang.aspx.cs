@@ -132,7 +132,7 @@ public partial class top_containerblog : System.Web.UI.Page
         string session = top_session;
         //string session = "23200d282b335fc82ee9466c363c14f7e1b03";
 
-        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12159997", "614e40bfdb96e9063031d1a9e56fbed5");
+        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12223169", "ff3d3442ab809930d187623ffad8e91e");
 
         //通过获取当前会话客户的在销商品来获取用户NICK
         //ItemsOnsaleGetRequest request1 = new ItemsOnsaleGetRequest();
@@ -180,7 +180,7 @@ public partial class top_containerblog : System.Web.UI.Page
 
 
         IDictionary<string, string> param = new Dictionary<string, string>();
-        string result = Post("http://gw.api.taobao.com/router/rest", "12159997", "614e40bfdb96e9063031d1a9e56fbed5", "taobao.increment.customer.permit", top_session, param);
+        string result = Post("http://gw.api.taobao.com/router/rest", "12223169", "ff3d3442ab809930d187623ffad8e91e", "taobao.increment.customer.permit", top_session, param);
 
         //更新用户订购信息
         CheckUser("0", nick);
@@ -202,7 +202,7 @@ public partial class top_containerblog : System.Web.UI.Page
     /// </summary>
     private void InsertUserInfo(string nick)
     {
-        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12159997", "614e40bfdb96e9063031d1a9e56fbed5");
+        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12223169", "ff3d3442ab809930d187623ffad8e91e");
         //记录店铺基本信息
         string ip = Request.UserHostAddress;
         ShopGetRequest request = new ShopGetRequest();
