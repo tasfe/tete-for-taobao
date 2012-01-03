@@ -65,11 +65,11 @@ public partial class top_review_couponlist : System.Web.UI.Page
         //}
 
         //删除活动
-        string appkey = "12159997";
-        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+        string appkey = "12223169";
+        string secret = "ff3d3442ab809930d187623ffad8e91e";
         IDictionary<string, string> param = new Dictionary<string, string>();
         Common.Cookie cookie = new Common.Cookie();
-        string session = cookie.getCookie("top_sessiongroupbuy");
+        string session = cookie.getCookie("top_sessionkai");
 
         //通过数据库查询获取活动ID
         string sql = "UPDATE TCS_Coupon SET isdel = 1 WHERE guid = '" + id + "'";

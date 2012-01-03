@@ -22,7 +22,7 @@ public partial class top_review_couponadd : System.Web.UI.Page
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
-        session = cookie.getCookie("top_sessiongroupbuy");
+        session = cookie.getCookie("top_sessionkai");
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
@@ -45,8 +45,8 @@ public partial class top_review_couponadd : System.Web.UI.Page
     //创建新优惠券
     protected void Button1_Click(object sender, EventArgs e)
     {
-        string appkey = "12159997";
-        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+        string appkey = "12223169";
+        string secret = "ff3d3442ab809930d187623ffad8e91e";
 
         string price = utils.NewRequest("price", utils.RequestType.Form);
         string condition = utils.NewRequest("condition", utils.RequestType.Form);

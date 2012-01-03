@@ -32,7 +32,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
     {
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
-        session = cookie.getCookie("top_sessiongroupbuy");
+        session = cookie.getCookie("top_sessionkai");
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
@@ -73,8 +73,8 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         //执行优惠券赠送行为
-        string appkey = "12159997";
-        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+        string appkey = "12223169";
+        string secret = "ff3d3442ab809930d187623ffad8e91e";
         string sql = string.Empty;
 
         string couponid = utils.NewRequest("couponid", utils.RequestType.Form);
