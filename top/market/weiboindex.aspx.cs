@@ -128,7 +128,7 @@ public partial class top_microblog_weiboindex : System.Web.UI.Page
         string url = httpRequest.GetAuthorizationUrl();
         Session["oauth_token"] = httpRequest.Token;
         Session["oauth_token_secret"] = httpRequest.TokenSecret;
-        Response.Redirect(url + "&oauth_callback=" + baseurl + "/top/microblog/record.aspx?typ=sina");
+        Response.Redirect(url + "&oauth_callback=" + baseurl + "/top/market/record.aspx?typ=sina");
     }
 
 
@@ -278,7 +278,7 @@ public partial class top_microblog_weiboindex : System.Web.UI.Page
         OauthKey oauthKey = new OauthKey();
         oauthKey.customKey = customKey;
         oauthKey.customSecrect = customSecret;
-        oauthKey.callbackUrl = baseurl + "/top/microblog/record.aspx?typ=qq";
+        oauthKey.callbackUrl = baseurl + "/top/market/record.aspx?typ=qq";
 
         QWeiboRequest request = new QWeiboRequest();
         return ParseToken(request.SyncRequest(url, "GET", oauthKey, parameters, null));
