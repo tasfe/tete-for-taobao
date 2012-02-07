@@ -27,7 +27,7 @@ public partial class top_container : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-	Response.AddHeader("P3P", "CP=CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR");
+        Response.AddHeader("P3P", "CP=CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR");
         //File.WriteAllText(Server.MapPath("aaaaa.txt"), Request.Url.ToString());
         /*
          * http://www.7fshop.com/top/container.aspx
@@ -50,14 +50,6 @@ public partial class top_container : System.Web.UI.Page
         versionNo = utils.NewRequest("versionNo", utils.RequestType.QueryString);
         string leaseId = utils.NewRequest("leaseId", utils.RequestType.QueryString).Replace(" ", "+"); ;//可以从 QueryString 来获取,也可以固定 
         string timestamp = utils.NewRequest("timestamp", utils.RequestType.QueryString).Replace(" ", "+"); ;//可以从 QueryString 来获取 
-        //string agreementsign = utils.NewRequest("agreementsign", utils.RequestType.QueryString);
-
-
-        //if (agreementsign == "")
-        //{
-        //    Response.Redirect("http://container.api.taobao.com/container?appkey=12132145&scope=promotion");
-        //    return;
-        //}
 
 
 
@@ -139,7 +131,7 @@ public partial class top_container : System.Web.UI.Page
         //{
         //    nick = item.Content[0].Nick;
         //}
-        
+
         //获取店铺基本信息
         UserGetRequest request = new UserGetRequest();
         request.Fields = "user_id,nick,seller_credit";
@@ -149,7 +141,7 @@ public partial class top_container : System.Web.UI.Page
         //加入推荐好友判断
         Tuijian(nick);
 
-        if(CheckUserExits(nick))
+        if (CheckUserExits(nick))
         {
             //更新该会员的店铺信息
             string ip = Request.UserHostAddress;
@@ -173,7 +165,7 @@ public partial class top_container : System.Web.UI.Page
 
         //更新用户订购信息
         CheckUser("1", nick);
-        
+
         //加密NICK
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Encrypt(nick);
@@ -326,7 +318,7 @@ public partial class top_container : System.Web.UI.Page
             return false;
         }
         else
-        { 
+        {
             return true;
         }
     }
@@ -350,57 +342,32 @@ public partial class top_container : System.Web.UI.Page
 
     private void CheckUser(string t, string u)
     {
-        string appkey = "12132145";
-        string secret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
+        string top_appkey = "12132145";
+        string app_secret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
+        string sql = string.Empty;
 
         IDictionary<string, string> param = new Dictionary<string, string>();
         param.Add("nick", u);
-        if (t == "0")
+        param.Add("article_code", "service-0-22762");
+        string resultnew = Post("http://gw.api.taobao.com/router/rest", top_appkey, app_secret, "taobao.vas.subscribe.get", "", param);
+        
+        Regex reg = new Regex(@"<article_user_subscribe><item_code>([^<]*)</item_code><deadline>([^<]*)</deadline></article_user_subscribe>", RegexOptions.IgnoreCase);
+        //更新日期
+        MatchCollection match = reg.Matches(resultnew);
+        for (int i = 0; i < match.Count; i++)
         {
-            appkey = "12159997";
-            secret = "614e40bfdb96e9063031d1a9e56fbed5";
-            param.Add("lease_id", "161220");
-        }
-        else
-        {
-            param.Add("lease_id", "133368");
-        }
-        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.appstore.subscribe.get", "", param);
-
-        string enddate = string.Empty;
-        string version = string.Empty;
-        string sql = string.Empty;
-
-        if (result.IndexOf("invali") != -1)
-        {
-            //到期了
-            if (t == "0")
+            try
             {
-                sql = "UPDATE TopTaobaoShop SET isoverblog = 1,enddateBlog = GETDATE() WHERE nick = '" + u + "'";
+                //腾讯微博自动推广
+                if (match[i].Groups[1].ToString() == "service-0-22762-9")
+                {
+                    Common.Cookie cookie = new Common.Cookie();
+                    cookie.setCookie("mircoblog", "1", 999999);
+                }
             }
-            else
-            {
-                sql = "UPDATE TopTaobaoShop SET isover = 1,enddate = GETDATE() WHERE nick = '" + u + "'";
-            }
-            utils.ExecuteNonQuery(sql);
+            catch { }
         }
-        else
-        {
-            //更新日期
-            enddate = new Regex(@"<end_date>([^<]*)</end_date>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-            version = new Regex(@"<version_no>([^<]*)</version_no>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-
-            if (t == "0")
-            {
-                sql = "UPDATE TopTaobaoShop SET enddateBlog = '" + enddate + "',versionNoBlog = '" + version + "' WHERE nick = '" + u + "'";
-            }
-            else
-            {
-                sql = "UPDATE TopTaobaoShop SET enddate = '" + enddate + "',versionNo = '" + version + "' WHERE nick = '" + u + "'";
-            }
-            utils.ExecuteNonQuery(sql);
-        }
-        //Response.Write(sql + "<br>");
+        
     }
 
     /// <summary> 
