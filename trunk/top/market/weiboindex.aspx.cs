@@ -32,18 +32,18 @@ public partial class top_microblog_weiboindex : System.Web.UI.Page
         Common.Cookie cookie1 = new Common.Cookie();
         string taobaoNick = cookie1.getCookie("nick");
         string isMicroBlog = cookie1.getCookie("mircoblog");
+        Rijndael_ encode = new Rijndael_("tetesoft");
+        nick = encode.Decrypt(taobaoNick);
 
         //过期判断
         if (isMicroBlog != "1")
         {
-            string msg = "尊敬的" + taobaoNick + "，非常抱歉的告诉您，您尚未订购该功能，如需继续使用请<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-9:1;' target='_blank'>购买该服务</a>，谢谢！";
+            string msg = "尊敬的" + nick + "，非常抱歉的告诉您，您尚未订购该功能，如需继续使用请<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-9:1;' target='_blank'>购买该服务</a>，谢谢！";
             Response.Redirect("buy.aspx?msg=" + HttpUtility.UrlEncode(msg));
             Response.End();
             return;
         }
 
-        Rijndael_ encode = new Rijndael_("tetesoft");
-        nick = encode.Decrypt(taobaoNick);
 
         //判断是否需要取消
         string act = utils.NewRequest("act", utils.RequestType.QueryString);
