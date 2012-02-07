@@ -26,5 +26,7 @@ public partial class top_market_weibo : System.Web.UI.Page
             Response.End();
             return;
         }
+
+        Response.Redirect("http://weibo.tetesoft.com");
     }
 }
