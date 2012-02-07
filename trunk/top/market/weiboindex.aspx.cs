@@ -31,11 +31,12 @@ public partial class top_microblog_weiboindex : System.Web.UI.Page
 
         Common.Cookie cookie1 = new Common.Cookie();
         string taobaoNick = cookie1.getCookie("nick");
+        string isMicroBlog = cookie1.getCookie("mircoblog");
 
         //过期判断
-        if (string.IsNullOrEmpty(taobaoNick))
+        if (isMicroBlog != "1")
         {
-            Response.Write("<script>parent.location.href='http://container.open.taobao.com/container?appkey=12132145'</script>");
+            Response.Write("<script>parent.location.href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-9:1'</script>");
             Response.End();
             return;
         }
