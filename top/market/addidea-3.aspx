@@ -373,9 +373,9 @@
 
 <!--tab ads end-->
 
-  <!--<br />   
-    <img src="http://a.tbcdn.cn/sys/wangwang/smiley/48x48/28.gif" /> <a href='redirect.aspx?t=2' target="_blank" style="font-size:20px;">我没有时间去博客发文章推广，能不能自动帮我发文章呢？</a>
-    -->
+<!--  <br />   
+    <img src="http://a.tbcdn.cn/sys/wangwang/smiley/48x48/28.gif" /> <a href='redirect.aspx?t=2' target="_blank" style="font-size:20px;">我没有时间去博客发文章推广，能不能自动帮我发文章呢？</a>-->
+
     <br />  
 
  <!--<a href='javascript:GoToHelp();' style="color:Red; font-weight:bold; font-size:16px;">【如果您还是不会操作，请点此查看更加详细的教程】</a> <br />-->
