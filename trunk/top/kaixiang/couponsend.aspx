@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="couponsend.aspx.cs" Inherits="top_review_couponsend" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>好评有礼</title>
+    <title>开箱有礼</title>
 <link href="../css/common.css" rel="stylesheet" />
 <style>
     td{font-size:12px;}
@@ -15,7 +15,7 @@
     <input type="hidden" name="t" id="t" value="" />
 <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="javascript:;" class="nolink">好评有礼</a> 优惠券赠送列表 </div>
+  <div class="crumbs"><a href="javascript:;" class="nolink">开箱有礼</a> 优惠券赠送列表 </div>
   <div class="absright">
     <ul>
       <li>
