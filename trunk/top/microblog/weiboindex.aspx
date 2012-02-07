@@ -26,7 +26,7 @@
     <div id="main-content">
     
     <asp:Button ID="Button4" runat="server" Text="关联QQ微博" onclick="Button4_Click" />
-    <asp:Button ID="Button6" runat="server" Text="关联新浪微博" onclick="Button6_Click" />
+    <!--<asp:Button ID="Button6" runat="server" Text="关联新浪微博" onclick="Button6_Click" />-->
     <br />
     目前已经关联微博：<br />
 
