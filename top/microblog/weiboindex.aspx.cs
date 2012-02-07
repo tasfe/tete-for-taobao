@@ -35,7 +35,7 @@ public partial class top_microblog_weiboindex : System.Web.UI.Page
         //过期判断
         if (string.IsNullOrEmpty(taobaoNick))
         {
-            Response.Write("<script>parent.location.href='http://container.open.taobao.com/container?appkey=12159997'</script>");
+            Response.Write("<script>parent.location.href='http://container.open.taobao.com/container?appkey=12132145'</script>");
             Response.End();
             return;
         }
