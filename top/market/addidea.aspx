@@ -80,7 +80,7 @@
         	<a href="http://seller.taobao.com/fuwu/service.htm?service_id=7888" title="淘模板" target="_blank"><img src="http://img01.taobaocdn.com/imgextra/i1/85662775/T2uMpRXgFaXXXXXXXX_!!85662775.jpg" border="0" /></a>
         </td>
         <td width="108" align="center">
-        	<a href="http://seller.taobao.com/fuwu/service.htm?service_id=6459" title="团购专家" target="_blank"><img src="http://img03.taobaocdn.com/imgextra/i3/1204883/T20dpRXcdcXXXXXXXX_!!1204883.png
+        	<a href="http://seller.taobao.com/fuwu/service.htm?service_id=4545" title="好评有礼" target="_blank"><img src="http://img01.taobaocdn.com/top/i1/T1mGx6XmBBXXb1upjX.jpg
 " border="0" /></a>
         </td>
         <td width="108" align="center">
@@ -108,6 +108,8 @@
         	<a href="http://fuwu.taobao.com/serv/detail.htm?service_id=296" title="数宝网店掌柜" target="_blank"><img src="http://img01.taobaocdn.com/top/i1/T1w49nXnJYXXb1upjX.jpg" border="0" /></a>
         </td>
         <td width="108" align="center">
+            <a href="http://seller.taobao.com/fuwu/service.htm?service_id=6459" title="团购专家" target="_blank"><img src="http://img03.taobaocdn.com/imgextra/i3/1204883/T20dpRXcdcXXXXXXXX_!!1204883.png
+" border="0" /></a>
         </td>
         <td width="108" align="center">
         </td>
