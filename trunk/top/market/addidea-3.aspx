@@ -22,9 +22,9 @@
   <div id="main-content">
 
   
-<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px; color:Red; font-weight:bold">
+<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px; color:Red; font-weight:bold; font-size:18px;">
     若您不想自己去推广，可使用腾讯微博推广自动帮您推广 
-    <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-9:1' target="_blank">点此订购</a>
+    <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-9:1' target="_blank">点此订购</a> <br />
 </div>
 
     <br />

@@ -41,14 +41,14 @@
       <tr>
         <td height="30">请选择尺寸：</td>
         <td align="left">
-        	<input name="size" id="size1" type="radio" onclick="showview(this)" value="514*160" checked="checked" /><label for="size1">514*160</label> 
+        	<input name="size" id="size1" type="radio" onclick="showview(this)" value="514*160" /><label for="size1">514*160</label> 
         	<input name="size" id="size2" type="radio" onclick="showview(this)" value="514*288" /><label for="size2">514*288</label> 
         	<input name="size" id="size4" type="radio" onclick="showview(this)" value="664*160" /><label for="size4">664*160</label> 
         	<input name="size" id="size3" type="radio" onclick="showview(this)" value="312*288" /><label for="size3">312*288</label> <br />
         	<input name="size" id="size7" type="radio" onclick="showview(this)" value="218*286" /><label for="size7">218*286</label>
         	<input name="size" id="size5" type="radio" onclick="showview(this)" value="714*160" /><label for="size5">714*160</label> 
         	<input name="size" id="size6" type="radio" onclick="showview(this)" value="114*418" /><label for="size6">114*418</label> 
-        	<input name="size" id="size8" type="radio" onclick="showview(this)" value="743*308" /><label for="size8">743*308</label> <br />
+        	<input name="size" id="size8" type="radio" onclick="showview(this)" value="743*308" checked="checked" /><label for="size8">743*308</label> <br />
         </td>
       </tr>
       <tr>
@@ -68,7 +68,7 @@
       </tr>
       <tr>
         <td align="left" colspan="2">
-        	<img src="images/view-size1.gif" id="viewImg" />
+        	<img src="images/view-size8.gif" id="viewImg" />
         </td>
       </tr>
     </table>
@@ -127,7 +127,10 @@
 <tr>
 
         <td colspan="4" height="120" align="left">
-        	<div id="mzif-container" style="margin: -20px auto 0 auto; width:530px; height:98px; overflow:hidden;">    <iframe scrolling="no" src="http://applink.goodtp.com/f/show?id=10&count=6" width="530" height="98" frameborder="0" allowTransparency="true">    </iframe>    </div> 
+        	<div id="mzif-container" style="margin: -20px auto 0 auto; width:530px; height:98px; overflow:hidden;">
+    <iframe scrolling="no" src="http://applink.goodtp.com/f/show?id=10&count=6" width="530" height="98" frameborder="0" allowTransparency="true">
+    </iframe>
+    </div> 
         </td>
 </tr>
     </table>
