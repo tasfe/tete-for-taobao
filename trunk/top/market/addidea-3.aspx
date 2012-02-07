@@ -22,10 +22,10 @@
   <div id="main-content">
 
   
-<!--<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px; color:Red; font-weight:bold">
-    若您不想自己去推广，可使用博客版推广专家自动帮您推广<br />
-    链接地址：<a href="redirect.aspx?t=1" target="_blank">http://seller.taobao.com/fuwu/service.htm?service_id=4545</a>
-</div>-->
+<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px; color:Red; font-weight:bold">
+    若您不想自己去推广，可使用腾讯微博推广自动帮您推广<br />
+    <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-9:1'>点此订购</a>
+</div>
 
     <br />
     <img src='http://a.tbcdn.cn/sys/wangwang/smiley/48x48/68.gif' />
