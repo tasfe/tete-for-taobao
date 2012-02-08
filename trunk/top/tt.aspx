@@ -14,6 +14,12 @@
                 <%#Eval("url") %> -- <%#Eval("num") %> <br />
             </ItemTemplate>
         </asp:Repeater>
+        <hr />
+        <asp:Repeater ID="rptResult1" runat="server">
+            <ItemTemplate>
+                <%#Eval("num1") %> -- <%#Eval("num2") %> <br />
+            </ItemTemplate>
+        </asp:Repeater>
     </div>
     </form>
 </body>
