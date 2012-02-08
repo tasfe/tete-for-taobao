@@ -15,5 +15,11 @@ public partial class top_tt : System.Web.UI.Page
 
         rptResult.DataSource = dt;
         rptResult.DataBind();
+
+        sql = "SELECT DATEDIFF(d,date,GETDATE()) AS num1,COUNT(DATEDIFF(d,date,GETDATE())) AS num2 FROM [TopTongji] WHERE id > 40886 GROUP BY DATEDIFF(d,date,GETDATE())";
+        dt = utils.ExecuteDataTable(sql);
+
+        rptResult1.DataSource = dt;
+        rptResult1.DataBind();
     }
 }
