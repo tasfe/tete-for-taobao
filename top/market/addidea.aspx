@@ -85,7 +85,7 @@
         </td>
         <td width="108" align="center">
         	<a href="http://seller.taobao.com/fuwu/service.htm?service_id=11807&f=mianfei" title="特特团购" target="_blank"><img src="http://img01.taobaocdn.com/top/i1/T1VvaiXX4lXXb1upjX.jpg
-" border="0" /></a>
+" width=80 height=80 border="0" /></a>
         </td>
         <td width="108" align="center">
         	<a href="http://fuwu.taobao.com/serv/detail.htm?service_id=6704" title="聪明店长_宝贝推广专家 " target="_blank"><img src="http://img01.taobaocdn.com/top/i1/T1QDRZXo4yXXb1upjX.jpg
