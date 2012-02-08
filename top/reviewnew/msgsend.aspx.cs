@@ -65,7 +65,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
         couponstr += "</select>";
     }
 
-     /// <summary>
+    /// <summary>
     /// 保存设置
     /// </summary>
     /// <param name="sender"></param>
@@ -80,42 +80,64 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
         string couponid = utils.NewRequest("couponid", utils.RequestType.Form);
         string buynick = this.txtBuyerNick.Text;
 
-        IDictionary<string, string> param = new Dictionary<string, string>();
-        param.Add("coupon_id", couponid);
-        param.Add("buyer_nick", buynick);
+        //获取淘宝优惠券ID
+        sql = "SELECT guid FROM TCS_Coupon WHERE taobaocouponid = '" + couponid + "'";
+        string guid = utils.ExecuteString(sql);
 
-        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.send", session, param);
-        Regex reg = new Regex(@"<coupon_number>([^<]*)</coupon_number>", RegexOptions.IgnoreCase);
-        MatchCollection match = reg.Matches(result);
+        //判断优惠券赠送限制
+        sql = "SELECT per FROM TCS_Coupon WITH (NOLOCK) WHERE guid = '" + guid + "' ";
+        string max = utils.ExecuteString(sql);
 
-        //如果失败
-        if (!reg.IsMatch(result))
+        //判断该用户是否超过了最大赠送
+        sql = "SELECT guid FROM TCS_CouponSend WITH (NOLOCK) WHERE buynick= '" + buynick + "' AND guid = '" + guid + "'";
+        DataTable dtCoupon = utils.ExecuteDataTable(sql);
+        if (dtCoupon.Rows.Count >= int.Parse(max))
         {
-            string err = new Regex(@"<reason>([^<]*)</reason>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-            Response.Write("<script>alert('【系统错误】：" + err + "，请稍后再试或者联系客服人员！');window.location.href='msgsend.aspx';</script>");
+            //退出    
+            Response.Write("<script>alert('赠送失败，买家获得的优惠券不会超过您设定的每人获取上限！');window.location.href='msgsend.aspx';</script>");
         }
         else
         {
-            string number = match[0].Groups[1].ToString();
 
-            //赠送优惠券
-            sql = "INSERT INTO TCS_CouponSend (" +
-                                "nick, " +
-                                "guid, " +
-                                "buynick, " +
-                                "taobaonumber " +
-                            " ) VALUES ( " +
-                                " '" + nick + "', " +
-                                " '" + couponid + "', " +
-                                " '" + buynick + "', " +
-                                " '" + number + "' " +
-                            ") ";
-            utils.ExecuteNonQuery(sql);
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            param.Add("coupon_id", couponid);
+            param.Add("buyer_nick", buynick);
 
-            //更新优惠券已经赠送数量
-            sql = "UPDATE TCS_Coupon SET used = used + 1 WHERE guid = " + couponid;
-            utils.ExecuteNonQuery(sql);
-            Response.Write("<script>alert('赠送成功！');window.location.href='msgsend.aspx';</script>");
+            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.send", session, param);
+            Regex reg = new Regex(@"<coupon_number>([^<]*)</coupon_number>", RegexOptions.IgnoreCase);
+            MatchCollection match = reg.Matches(result);
+
+            //如果失败
+            if (!reg.IsMatch(result))
+            {
+                string err = new Regex(@"<reason>([^<]*)</reason>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                Response.Write("<script>alert('【系统错误】：" + err + "，请稍后再试或者联系客服人员！');window.location.href='msgsend.aspx';</script>");
+            }
+            else
+            {
+                string number = match[0].Groups[1].ToString();
+
+                //赠送优惠券
+                sql = "INSERT INTO TCS_CouponSend (" +
+                                    "nick, " +
+                                    "guid, " +
+                                    "buynick, " +
+                                    "taobaonumber " +
+                                " ) VALUES ( " +
+                                    " '" + nick + "', " +
+                                    " '" + couponid + "', " +
+                                    " '" + buynick + "', " +
+                                    " '" + number + "' " +
+                                ") ";
+                //Response.Write(sql);
+                //Response.End();
+                utils.ExecuteNonQuery(sql);
+
+                //更新优惠券已经赠送数量
+                sql = "UPDATE TCS_Coupon SET used = used + 1 WHERE guid = " + couponid;
+                utils.ExecuteNonQuery(sql);
+                Response.Write("<script>alert('赠送成功！');window.location.href='msgsend.aspx';</script>");
+            }
         }
     }
 
