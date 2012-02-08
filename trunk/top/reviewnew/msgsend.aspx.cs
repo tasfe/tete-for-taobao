@@ -95,6 +95,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
         {
             //退出    
             Response.Write("<script>alert('赠送失败，买家获得的优惠券不会超过您设定的每人获取上限！');window.location.href='msgsend.aspx';</script>");
+            Response.End();
         }
         else
         {
@@ -125,7 +126,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
                                     "taobaonumber " +
                                 " ) VALUES ( " +
                                     " '" + nick + "', " +
-                                    " '" + couponid + "', " +
+                                    " '" + guid + "', " +
                                     " '" + buynick + "', " +
                                     " '" + number + "' " +
                                 ") ";
