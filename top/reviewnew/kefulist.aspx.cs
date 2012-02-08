@@ -42,7 +42,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                 Response.End();
                 return;
             }
-            
+
             if (flag != "3")
             {
                 string msg = "尊敬的" + nick + "，非常抱歉的告诉您，只有VIP版本才能使用【评价手动审核】功能，如需继续使用请<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-3:1;' target='_blank'>购买高级会员服务</a>，谢谢！";
@@ -88,7 +88,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
             }
             Response.Write("<script>alert('选中的订单【" + ids + "】已成功赠送！');window.location.href='kefulist.aspx';</script>");
         }
-        else if (t == "no") 
+        else if (t == "no")
         {
             //不赠送礼品
             string sql = "UPDATE TCS_TradeRateCheck SET issend = 2,ischeck = 1,checkdate = GETDATE() WHERE CHARINDEX(orderid, '" + ids + "') > 0";
@@ -116,7 +116,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         string giftflag = string.Empty;
         string giftcontent = string.Empty;
         string shopname = string.Empty;
-        
+
         //获取优惠券信息
         sql = "SELECT * FROM TCS_ShopConfig WITH (NOLOCK) WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
@@ -171,45 +171,59 @@ public partial class top_review_kefulist : System.Web.UI.Page
             sql = "SELECT taobaocouponid FROM TCS_Coupon WHERE guid = '" + couponid + "'";
             string taobaocouponid = utils.ExecuteString(sql);
 
-            //执行优惠券赠送行为
-            string appkey = "12159997";
-            string secret = "614e40bfdb96e9063031d1a9e56fbed5";
-            IDictionary<string, string> param = new Dictionary<string, string>();
-            param.Add("coupon_id", taobaocouponid);
-            param.Add("buyer_nick", buynick);
+            //判断优惠券赠送限制
+            sql = "SELECT per FROM TCS_Coupon WITH (NOLOCK) WHERE guid = '" + couponid + "' ";
+            string max = utils.ExecuteString(sql);
 
-            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.send", session, param);
-            Regex reg = new Regex(@"<coupon_number>([^<]*)</coupon_number>", RegexOptions.IgnoreCase);
-            MatchCollection match = reg.Matches(result);
-            //如果失败
-            if (!reg.IsMatch(result))
+            //判断该用户是否超过了最大赠送
+            sql = "SELECT guid FROM TCS_CouponSend WITH (NOLOCK) WHERE buynick= '" + buynick + "' AND guid = '" + couponid + "'";
+            DataTable dtCoupon = utils.ExecuteDataTable(sql);
+            if (dtCoupon.Rows.Count >= int.Parse(max))
             {
-                string err = new Regex(@"<msg>([^<]*)</msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-                //Response.Write("<script>alert('【系统错误】：" + err + "，请稍后再试或者联系客服人员！');window.location.href='kefulist.aspx';</script>");
+                //退出
             }
             else
             {
-                string number = match[0].Groups[1].ToString();
+                //执行优惠券赠送行为
+                string appkey = "12159997";
+                string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+                IDictionary<string, string> param = new Dictionary<string, string>();
+                param.Add("coupon_id", taobaocouponid);
+                param.Add("buyer_nick", buynick);
 
-                //赠送优惠券
-                sql = "INSERT INTO TCS_CouponSend (" +
-                                    "nick, " +
-                                    "guid, " +
-                                    "buynick, " +
-                                    "orderid, " +
-                                    "taobaonumber " +
-                                " ) VALUES ( " +
-                                    " '" + nick + "', " +
-                                    " '" + couponid + "', " +
-                                    " '" + buynick + "', " +
-                                    " '" + id + "', " +
-                                    " '" + number + "'" +
-                                ") ";
-                utils.ExecuteNonQuery(sql);
+                string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.send", session, param);
+                Regex reg = new Regex(@"<coupon_number>([^<]*)</coupon_number>", RegexOptions.IgnoreCase);
+                MatchCollection match = reg.Matches(result);
+                //如果失败
+                if (!reg.IsMatch(result))
+                {
+                    string err = new Regex(@"<msg>([^<]*)</msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                    //Response.Write("<script>alert('【系统错误】：" + err + "，请稍后再试或者联系客服人员！');window.location.href='kefulist.aspx';</script>");
+                }
+                else
+                {
+                    string number = match[0].Groups[1].ToString();
 
-                //更新优惠券已经赠送数量
-                sql = "UPDATE TCS_Coupon SET used = used + 1 WHERE guid = '" + couponid + "'";
-                utils.ExecuteNonQuery(sql);
+                    //赠送优惠券
+                    sql = "INSERT INTO TCS_CouponSend (" +
+                                        "nick, " +
+                                        "guid, " +
+                                        "buynick, " +
+                                        "orderid, " +
+                                        "taobaonumber " +
+                                    " ) VALUES ( " +
+                                        " '" + nick + "', " +
+                                        " '" + couponid + "', " +
+                                        " '" + buynick + "', " +
+                                        " '" + id + "', " +
+                                        " '" + number + "'" +
+                                    ") ";
+                    utils.ExecuteNonQuery(sql);
+
+                    //更新优惠券已经赠送数量
+                    sql = "UPDATE TCS_Coupon SET used = used + 1 WHERE guid = '" + couponid + "'";
+                    utils.ExecuteNonQuery(sql);
+                }
             }
         }
 
@@ -377,61 +391,75 @@ public partial class top_review_kefulist : System.Web.UI.Page
                     sql = "SELECT * FROM TCS_TradeOld WITH (NOLOCK) WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
                     dt = utils.ExecuteDataTable(sql);
                     if (dt.Rows.Count != 0)
-                {
-                    buynick = dt.Rows[0]["buynick"].ToString();
-                    phone = dt.Rows[0]["mobile"].ToString();
-                }
-                else
-                {
-                    Response.Write("<script>alert('【系统错误】：找不到该订单【" + id + "】关联的淘宝会员，请联系客服人员！');window.location.href='kefulist.aspx';</script>");
-                    return;
-                        }
+                    {
+                        buynick = dt.Rows[0]["buynick"].ToString();
+                        phone = dt.Rows[0]["mobile"].ToString();
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('【系统错误】：找不到该订单【" + id + "】关联的淘宝会员，请联系客服人员！');window.location.href='kefulist.aspx';</script>");
+                        return;
+                    }
                 }
 
                 //获取淘宝优惠券ID
                 sql = "SELECT taobaocouponid FROM TCS_Coupon WHERE guid = '" + couponid + "'";
                 string taobaocouponid = utils.ExecuteString(sql);
 
+                //判断优惠券赠送限制
+                sql = "SELECT per FROM TCS_Coupon WITH (NOLOCK) WHERE guid = '" + couponid + "' ";
+                string max = utils.ExecuteString(sql);
 
-                //执行优惠券赠送行为
-                string appkey = "12159997";
-                string secret = "614e40bfdb96e9063031d1a9e56fbed5";
-                IDictionary<string, string> param = new Dictionary<string, string>();
-                param.Add("coupon_id", taobaocouponid);
-                param.Add("buyer_nick", buynick);
-
-                string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.send", session, param);
-                Regex reg = new Regex(@"<coupon_number>([^<]*)</coupon_number>", RegexOptions.IgnoreCase);
-                MatchCollection match = reg.Matches(result);
-                //如果失败
-                if (!reg.IsMatch(result))
+                //判断该用户是否超过了最大赠送
+                sql = "SELECT guid FROM TCS_CouponSend WITH (NOLOCK) WHERE buynick= '" + buynick + "' AND guid = '" + couponid + "'";
+                DataTable dtCoupon = utils.ExecuteDataTable(sql);
+                if (dtCoupon.Rows.Count >= int.Parse(max))
                 {
-                    string err = new Regex(@"<msg>([^<]*)</msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-                    //Response.Write("<script>alert('【系统错误】：" + err + "，请稍后再试或者联系客服人员！');window.location.href='kefulist.aspx';</script>");
+                    //退出
                 }
                 else
                 {
-                    string number = match[0].Groups[1].ToString();
 
-                    //赠送优惠券
-                    sql = "INSERT INTO TCS_CouponSend (" +
-                                        "nick, " +
-                                        "guid, " +
-                                        "buynick, " +
-                                        "orderid, " +
-                                        "taobaonumber " +
-                                    " ) VALUES ( " +
-                                        " '" + nick + "', " +
-                                        " '" + couponid + "', " +
-                                        " '" + buynick + "', " +
-                                        " '" + id + "', " +
-                                        " '" + number + "'" +
-                                    ") ";
-                    utils.ExecuteNonQuery(sql);
+                    //执行优惠券赠送行为
+                    string appkey = "12159997";
+                    string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+                    IDictionary<string, string> param = new Dictionary<string, string>();
+                    param.Add("coupon_id", taobaocouponid);
+                    param.Add("buyer_nick", buynick);
 
-                    //更新优惠券已经赠送数量
-                    sql = "UPDATE TCS_Coupon SET used = used + 1 WHERE guid = '" + couponid + "'";
-                    utils.ExecuteNonQuery(sql);
+                    string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.send", session, param);
+                    Regex reg = new Regex(@"<coupon_number>([^<]*)</coupon_number>", RegexOptions.IgnoreCase);
+                    MatchCollection match = reg.Matches(result);
+                    //如果失败
+                    if (!reg.IsMatch(result))
+                    {
+                        string err = new Regex(@"<msg>([^<]*)</msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                        //Response.Write("<script>alert('【系统错误】：" + err + "，请稍后再试或者联系客服人员！');window.location.href='kefulist.aspx';</script>");
+                    }
+                    else
+                    {
+                        string number = match[0].Groups[1].ToString();
+
+                        //赠送优惠券
+                        sql = "INSERT INTO TCS_CouponSend (" +
+                                            "nick, " +
+                                            "guid, " +
+                                            "buynick, " +
+                                            "orderid, " +
+                                            "taobaonumber " +
+                                        " ) VALUES ( " +
+                                            " '" + nick + "', " +
+                                            " '" + couponid + "', " +
+                                            " '" + buynick + "', " +
+                                            " '" + id + "', " +
+                                            " '" + number + "'" +
+                                        ") ";
+                        utils.ExecuteNonQuery(sql);
+
+                        //更新优惠券已经赠送数量
+                        sql = "UPDATE TCS_Coupon SET used = used + 1 WHERE guid = '" + couponid + "'";
+                        utils.ExecuteNonQuery(sql);
+                    }
                 }
             }
 
@@ -536,7 +564,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
             Response.Write("<script>alert('该订单已成功赠送！');window.location.href='kefulist.aspx';</script>");
         }
         else if (send == "2")
-        { 
+        {
             //不赠送礼品
             sql = "UPDATE TCS_TradeRateCheck SET issend = 2,ischeck = 1,checkdate = GETDATE() WHERE orderid = '" + id + "'";
             utils.ExecuteNonQuery(sql);
@@ -608,7 +636,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                     return "0";
                 }
                 else
-                { 
+                {
                     //发送成功
                     Regex reg = new Regex(@"<sid>([^<]*)</sid>", RegexOptions.IgnoreCase);
                     MatchCollection match = reg.Matches(content);
