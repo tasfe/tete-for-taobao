@@ -354,6 +354,7 @@ public partial class top_container : System.Web.UI.Page
         Regex reg = new Regex(@"<article_user_subscribe><item_code>([^<]*)</item_code><deadline>([^<]*)</deadline></article_user_subscribe>", RegexOptions.IgnoreCase);
         //更新日期
         MatchCollection match = reg.Matches(resultnew);
+        Common.Cookie cookie = new Common.Cookie();
         for (int i = 0; i < match.Count; i++)
         {
             try
@@ -361,8 +362,13 @@ public partial class top_container : System.Web.UI.Page
                 //腾讯微博自动推广
                 if (match[i].Groups[1].ToString() == "service-0-22762-9")
                 {
-                    Common.Cookie cookie = new Common.Cookie();
                     cookie.setCookie("mircoblog", "1", 999999);
+                }
+
+                //腾讯微博自动fensi
+                if (match[i].Groups[1].ToString() == "service-0-22762-10")
+                {
+                    cookie.setCookie("fensi", "1", 999999);
                 }
             }
             catch { }
