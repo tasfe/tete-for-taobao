@@ -26,10 +26,15 @@ public partial class _Default : System.Web.UI.Page
         string sql = "SELECT COUNT(*) FROM TopMicroBlogAccount WHERE typ = 'qq'";
         string truecount = utils.ExecuteString(sql);
         count = (int.Parse(truecount) + 31000).ToString();
+
+        string f = utils.NewRequest("f", utils.RequestType.QueryString);
+        if (f == "tete")
+        {
+            Act();
+        }
     }
 
-
-    protected void Button1_Click(object sender, EventArgs e)
+    private void Act()
     {
         Common.Cookie cookie = new Common.Cookie();
         tokenKey = cookie.getCookie("tokenKey");
@@ -72,6 +77,13 @@ public partial class _Default : System.Web.UI.Page
             Response.Redirect(url);
             return;
         }
+    }
+
+
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Act();
     }
 
 
