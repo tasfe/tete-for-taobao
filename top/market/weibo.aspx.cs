@@ -27,6 +27,6 @@ public partial class top_market_weibo : System.Web.UI.Page
             return;
         }
 
-        Response.Redirect("http://weibo.tetesoft.com");
+        Response.Redirect("http://weibo.tetesoft.com/?f=tete");
     }
 }
