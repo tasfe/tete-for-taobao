@@ -24,9 +24,9 @@
   </div>
     <div id="main-content">
     他们已经在使用了，您还等什么。。<br />
-    <a href='http://iphone.tetesoft.com/down/sfznhbx/mshop.apk' target="_blank"><img src='images/mshop/mshop1.jpg' style='border:solid 1px;' /></a>
-    <a href='http://haoping.7fshop.com/top/test/Tacera.apk' target="_blank"><img src='images/mshop/mshop2.jpg' style='border:solid 1px;' /></a>
-    <a href='http://iphone.tetesoft.com/down/xnttd/mshop.apk' target="_blank"><img src='images/mshop/mshop3.jpg' style='border:solid 1px;' /></a>
+    <a href='http://iphone.tetesoft.com/down/sfznhbx/mshop.apk' target="_blank"><img src='images/mshop/mshop1.jpg' style='border:solid 1px black;' /></a>
+    <a href='http://haoping.7fshop.com/top/test/Tacera.apk' target="_blank"><img src='images/mshop/mshop2.jpg' style='border:solid 1px black;' /></a>
+    <a href='http://iphone.tetesoft.com/down/xnttd/mshop.apk' target="_blank"><img src='images/mshop/mshop3.jpg' style='border:solid 1px black;' /></a>
     <br />
         <div id="ggArea" style="  z-index: 10003; background-color:white; padding:5px">
 <span style="font-size:18px; font-weight:bold; color:red;">新年送大礼，手机客户端最低只要9元<br>让您的网店直入驻买家手机</span><br>
