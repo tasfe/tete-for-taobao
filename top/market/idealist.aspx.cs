@@ -20,6 +20,17 @@ public partial class top_market_idealist : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        Common.Cookie cookie1 = new Common.Cookie();
+        string taobaoNick = cookie1.getCookie("nick");
+        //过期判断
+        if (string.IsNullOrEmpty(taobaoNick))
+        {
+            string msg = "尊敬的淘宝卖家，非常抱歉的告诉您，您还没有购买此服务或者登录信息已失效，如需继续使用请<a href='http://fuwu.taobao.com/serv/detail.htm?service_id=764' target='_blank'>进入该服务</a>，谢谢！";
+            Response.Redirect("buy.aspx?msg=" + HttpUtility.UrlEncode(msg));
+            Response.End();
+            return;
+        }
+
         BindData();
     }
 

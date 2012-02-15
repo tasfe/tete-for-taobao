@@ -27,6 +27,15 @@ public partial class top_groupbuy_deletegrouplist : System.Web.UI.Page
         string nick = encode.Decrypt(taobaoNick);
 
         //过期判断
+        if (string.IsNullOrEmpty(taobaoNick))
+        {
+            string msg = "尊敬的淘宝卖家，非常抱歉的告诉您，您还没有购买此服务或者登录信息已失效，如需继续使用请<a href='http://fuwu.taobao.com/serv/detail.htm?service_id=764' target='_blank'>进入该服务</a>，谢谢！";
+            Response.Redirect("buy.aspx?msg=" + HttpUtility.UrlEncode(msg));
+            Response.End();
+            return;
+        }
+
+        //过期判断
         if (isAct != "1")
         {
             string msg = "尊敬的" + nick + "，非常抱歉的告诉您，您尚未订购该功能，如需继续使用请<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-10:1;' target='_blank'>购买该服务</a>，谢谢！";
