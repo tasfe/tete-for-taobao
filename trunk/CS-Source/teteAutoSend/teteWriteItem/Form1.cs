@@ -33,7 +33,7 @@ namespace teteWriteItem
             Thread newThread = new Thread(DoMyJob);
             newThread.Start();
 
-            //获取最新团购相关的订单数据并加入数据库
+            //清除宝贝团购信息
             Thread newThread1 = new Thread(DeleteTaobao);
             newThread1.Start();
         }
@@ -306,7 +306,7 @@ namespace teteWriteItem
                         //request.Desc = newContent;
                         //client.ItemUpdate(request, session);
 
-
+                       
 
                         //更新宝贝描述
                         IDictionary<string, string> param = new Dictionary<string, string>();
@@ -314,27 +314,17 @@ namespace teteWriteItem
                         param.Add("desc", newContent);
                         string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update ", session, param);
                          
-                        WriteDeleteLog("itemid:" + dtWrite.Rows[j]["itemid"].ToString(), "");
-                        //写入日志
-                        //sql = "INSERT INTO TopWriteContentLog (" +
-                        //        "groupbuyid, " +
-                        //        "missionid, " +
-                        //        "itemid, " +
-                        //        "html, " +
-                        //        "bakcontent, " +
-                        //        "newcontent, " +
-                        //        "isok" +
-                        //    " ) VALUES ( " +
-                        //        " '" + dt.Rows[i]["groupbuyid"].ToString() + "', " +
-                        //        " '" + dt.Rows[i]["id"].ToString() + "', " +
-                        //        " '" + dtWrite.Rows[j]["itemid"].ToString() + "', " +
-                        //        " '', " +
-                        //        " '" + product.Desc + "', " +
-                        //        " '" + newContent + "', " +
-                        //        " '1' " +
-                        //  ") ";
-                        //WriteDeleteLog("INSERT INTO TopWriteContentLog 进行中", "");
-                        //db.ExecSql(sql);
+                        WriteDeleteLog("删除宝贝itemid:" + dtWrite.Rows[j]["itemid"].ToString(), "");
+                        if (dtWrite.Rows[j]["itemid"].ToString() == "10531402078" || dtWrite.Rows[j]["itemid"].ToString() == "13485305330")
+                        {
+                            WriteDeleteLog("删除宝贝itemidHtml:" + dtWrite.Rows[j]["itemid"].ToString() + newContent, "");
+                        }
+
+
+                        //更新状态
+                        sql = "UPDATE TopWriteContent SET isok = 1 WHERE id = " + dtWrite.Rows[j]["id"].ToString();
+                        db.ExecSql(sql);
+
 
                         //更新状态
                         sql = "UPDATE TopMission SET success = success + 1,isok = 1 WHERE id = " + dt.Rows[i]["id"].ToString();
@@ -342,8 +332,8 @@ namespace teteWriteItem
                     }
                     catch (Exception e)
                     {
-                        WriteDeleteLog(e.StackTrace, "1");
-                        WriteDeleteLog(e.Message, "1");
+                        WriteDeleteLog("删除宝贝" + e.StackTrace, "1");
+                        WriteDeleteLog("删除宝贝" + e.Message, "1");
                         sql = "UPDATE TopMission SET fail = fail + 1,isok = -1 WHERE id = " + dt.Rows[i]["id"].ToString();
                         db.ExecSql(sql);
                         continue;
