@@ -20,7 +20,6 @@ public partial class top_market_addidea : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-	Response.AddHeader("P3P", "CP=CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR");
         Cookie cookie = new Cookie();
         string taobaoNick = cookie.getCookie("nick");
 
