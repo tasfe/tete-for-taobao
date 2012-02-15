@@ -332,7 +332,7 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
                     param.Add("desc", newContent);
                     string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update ", session, param);
 
-                    WriteLog("itemid:" + dtWrite.Rows[j]["itemid"].ToString(), "", dt.Rows[i]["nick"].ToString());
+                    WriteLog("itemid:" + dtWrite.Rows[j]["itemid"].ToString() + resultpro, "", dt.Rows[i]["nick"].ToString());
 
                     //更新状态
                     sql = "UPDATE TopWriteContent SET isok = 1 WHERE id = " + dtWrite.Rows[j]["id"].ToString();
