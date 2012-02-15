@@ -16,8 +16,9 @@ public partial class top_market_result : System.Web.UI.Page
     {
         Cookie cookie = new Cookie();
         string taobaoNick = cookie.getCookie("nick");
+        string session = cookie.getCookie("top_session");
         //过期判断
-        if (string.IsNullOrEmpty(taobaoNick))
+        if (string.IsNullOrEmpty(session))
         {
             string msg = "尊敬的淘宝卖家，非常抱歉的告诉您，您还没有购买此服务或者登录信息已失效，如需继续使用请<a href='http://fuwu.taobao.com/serv/detail.htm?service_id=764' target='_blank'>进入该服务</a>，谢谢！";
             Response.Redirect("buy.aspx?msg=" + HttpUtility.UrlEncode(msg));
