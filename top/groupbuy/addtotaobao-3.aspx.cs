@@ -335,7 +335,7 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
                     if (resultpro.IndexOf("ITEM_PROPERTIES_ERROR") != -1)
                     {
                         WriteLog("更新宝贝描述：宝贝ID：" + dtWrite.Rows[j]["itemid"].ToString() + "返回的错误信息" + resultpro, "", dt.Rows[i]["nick"].ToString());
-                    }
+                    } 
                     else
                     {
                         WriteLog("itemid:" + dtWrite.Rows[j]["itemid"].ToString() + resultpro, "", dt.Rows[i]["nick"].ToString());
