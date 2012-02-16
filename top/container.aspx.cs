@@ -253,6 +253,7 @@ public partial class top_container : System.Web.UI.Page
                         "modified, " +
                         "shop_score, " +
                         "ip, " +
+                        "session, " +
                         "remain_count " +
                     " ) VALUES ( " +
                         " '" + shop.Sid + "', " +
@@ -266,6 +267,7 @@ public partial class top_container : System.Web.UI.Page
                         " '" + shop.Modified + "', " +
                         " '" + shop.ShopScore + "', " +
                         " '" + ip + "', " +
+                        " '" + top_session + "', " +
                         " '" + shop.RemainCount + "' " +
                   ") ";
 
@@ -362,13 +364,16 @@ public partial class top_container : System.Web.UI.Page
                 //腾讯微博自动推广
                 if (match[i].Groups[1].ToString() == "service-0-22762-9")
                 {
+                    param = new Dictionary<string, string>();
+                    string result = Post("http://gw.api.taobao.com/router/rest", top_appkey, app_secret, "taobao.increment.customer.permit", top_session, param);
+
                     cookie.setCookie("mircoblog", "1", 999999);
                 }
 
                 //腾讯微博自动fensi
                 if (match[i].Groups[1].ToString() == "service-0-22762-10")
                 {
-                    cookie.setCookie("fensi", "1", 999999);
+                    cookie.setCookie("act", "1", 999999);
                 }
             }
             catch { }
