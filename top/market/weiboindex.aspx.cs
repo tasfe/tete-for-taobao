@@ -103,6 +103,22 @@ public partial class top_microblog_weiboindex : System.Web.UI.Page
                 count2 = "0";
                 count3 = "0";
                 count4 = "0";
+
+                //直接插入
+                sql = "INSERT INTO TopMicroBlogAuto (" +
+                        "nick, " +
+                        "content1, " +
+                        "content2, " +
+                        "content3, " +
+                        "content4 " +
+                    " ) VALUES ( " +
+                        " '" + nick + "', " +
+                        " '" + text1.Value + "', " +
+                        " '" + text2.Value + "', " +
+                        " '" + text3.Value + "', " +
+                        " '" + text4.Value + "' " +
+                    ") ";
+                utils.ExecuteNonQuery(sql);
             }
             else
             {
