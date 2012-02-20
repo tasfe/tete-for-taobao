@@ -79,6 +79,9 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                 param.Add("nick", buyer_nick);
 
                 string nickresult = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.user.get", session, param);
+
+                Response.Write(nickresult + "<br>");
+
                 string sex = GetValueByProperty(nickresult, "sex");
                 string level = GetValueByProperty(nickresult, "level");
                 string created = GetValueByProperty(nickresult, "created");
@@ -128,7 +131,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                 utils.ExecuteNonQuery(sql);
                 index++;
             }
-
+            break;
             if (match.Count < 100)
             {
                 break;
