@@ -289,89 +289,94 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
         string session = string.Empty;
         TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
 
-        string sql = "SELECT t.*, s.sessiongroupbuy FROM TopMission t INNER JOIN TopTaobaoShop s ON s.nick = t.nick WHERE t.isok = 0 AND t.typ = 'write' AND t.id="+topMissionID+"  ORDER BY t.id ASC";
+        string sql = "SELECT t.*, s.sessiongroupbuy FROM TopMission t INNER JOIN TopTaobaoShop s ON s.nick = t.nick WHERE t.isok = 0 AND t.typ = 'write' AND t.id=" + topMissionID + "  ORDER BY t.id ASC";
 
         DataTable dt = utils.ExecuteDataTable(sql);
         DataTable dtWrite = null;
         string styleHtml = string.Empty;
-        for (int i = 0; i < dt.Rows.Count; i++)
+        if (dt != null)
         {
-            session = dt.Rows[i]["sessiongroupbuy"].ToString();
-            sql = "SELECT * FROM TopWriteContent WHERE missionid = '" + dt.Rows[i]["id"].ToString() + "' AND isok = 0";
-
-            //WriteLog("sql1:" + sql, "");
-            dtWrite = utils.ExecuteDataTable(sql);
-            for (int j = 0; j < dtWrite.Rows.Count; j++)
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
-                styleHtml = CreateGroupbuyHtml(dtWrite.Rows[j]["groupbuyid"].ToString());
-                try
+                session = dt.Rows[i]["sessiongroupbuy"].ToString();
+                sql = "SELECT * FROM TopWriteContent WHERE missionid = '" + dt.Rows[i]["id"].ToString() + "' AND isok = 0";
+
+                //WriteLog("sql1:" + sql, "");
+                dtWrite = utils.ExecuteDataTable(sql);
+                if (dtWrite != null)
                 {
-                    //获取原宝贝描述
-                    ItemGetRequest requestItem = new ItemGetRequest();
-                    requestItem.Fields = "desc";
-                    requestItem.NumIid = long.Parse(dtWrite.Rows[j]["itemid"].ToString());
-                    Item product = client.ItemGet(requestItem, session);
-                    string newContent = string.Empty;
-                    string groupid = dtWrite.Rows[j]["groupbuyid"].ToString();
-
-                    //WriteLog("html:" + styleHtml.Length.ToString(), "");
-                    if (!Regex.IsMatch(product.Desc, @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>"))
+                    for (int j = 0; j < dtWrite.Rows.Count; j++)
                     {
-                        newContent = @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>" + styleHtml + @"<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>" + product.Desc;
+                        styleHtml = CreateGroupbuyHtml(dtWrite.Rows[j]["groupbuyid"].ToString());
+                        try
+                        {
+                            //获取原宝贝描述
+                            ItemGetRequest requestItem = new ItemGetRequest();
+                            requestItem.Fields = "desc";
+                            requestItem.NumIid = long.Parse(dtWrite.Rows[j]["itemid"].ToString());
+                            Item product = client.ItemGet(requestItem, session);
+                            string newContent = string.Empty;
+                            string groupid = dtWrite.Rows[j]["groupbuyid"].ToString();
+
+                            //WriteLog("html:" + styleHtml.Length.ToString(), "");
+                            if (!Regex.IsMatch(product.Desc, @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>"))
+                            {
+                                newContent = @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>" + styleHtml + @"<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>" + product.Desc;
+                            }
+                            else
+                            {
+                                newContent = Regex.Replace(product.Desc, @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>", @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>" + styleHtml + @"<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>");
+                            }
+                            //WriteLog("html2:" + newContent.Length.ToString(), "");
+
+
+                            //更新宝贝描述
+                            IDictionary<string, string> param = new Dictionary<string, string>();
+                            param.Add("num_iid", dtWrite.Rows[j]["itemid"].ToString());
+                            param.Add("desc", newContent);
+                            string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update ", session, param);
+
+                            if (resultpro.IndexOf("ITEM_PROPERTIES_ERROR") != -1)
+                            {
+                                WriteLog("更新宝贝描述：宝贝ID：" + dtWrite.Rows[j]["itemid"].ToString() + "返回的错误信息" + resultpro, "", dt.Rows[i]["nick"].ToString());
+                                //插入宝贝错误日志
+                                sql = "insert TopMissionErrDetail (TopMissionID,itemid,nick,ErrDetail) values('" + dt.Rows[i]["id"].ToString() + "','" + dtWrite.Rows[j]["itemid"].ToString() + "','" + dt.Rows[i]["nick"].ToString() + "','" + resultpro + "')";
+                                utils.ExecuteNonQuery(sql);
+                                //更新宝贝错误数
+                                sql = "UPDATE TopMission SET fail = fail + 1,isok = -1  WHERE id = " + dt.Rows[i]["id"].ToString();
+                                utils.ExecuteNonQuery(sql);
+                            }
+                            else
+                            {
+                                WriteLog("itemid:" + dtWrite.Rows[j]["itemid"].ToString() + resultpro, "", dt.Rows[i]["nick"].ToString());
+                                //更新状态
+                                sql = "UPDATE TopWriteContent SET isok = 1 WHERE id = " + dtWrite.Rows[j]["id"].ToString();
+                                utils.ExecuteNonQuery(sql);
+
+                                //更新状态
+                                sql = "UPDATE TopMission SET success = success + 1 WHERE id = " + dt.Rows[i]["id"].ToString();
+                                utils.ExecuteNonQuery(sql);
+                            }
+
+                        }
+                        catch (Exception e)
+                        {
+                            WriteLog(e.Message, "1", dt.Rows[i]["nick"].ToString());
+                            WriteLog(e.StackTrace, "1", dt.Rows[i]["nick"].ToString());
+                            sql = "UPDATE TopMission SET fail = fail + 1,isok = -1  WHERE id = " + dt.Rows[i]["id"].ToString();
+                            utils.ExecuteNonQuery(sql);
+                            continue;
+                        }
                     }
-                    else
-                    {
-                        newContent = Regex.Replace(product.Desc, @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>", @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>" + styleHtml + @"<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>");
-                    }
-                    //WriteLog("html2:" + newContent.Length.ToString(), "");
 
-
-                    //更新宝贝描述
-                    IDictionary<string, string> param = new Dictionary<string, string>();
-                    param.Add("num_iid", dtWrite.Rows[j]["itemid"].ToString());
-                    param.Add("desc", newContent);
-                    string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update ", session, param);
-
-                    if (resultpro.IndexOf("ITEM_PROPERTIES_ERROR") != -1)
-                    {
-                        WriteLog("更新宝贝描述：宝贝ID：" + dtWrite.Rows[j]["itemid"].ToString() + "返回的错误信息" + resultpro, "", dt.Rows[i]["nick"].ToString());
-                    } 
-                    else
-                    {
-                        WriteLog("itemid:" + dtWrite.Rows[j]["itemid"].ToString() + resultpro, "", dt.Rows[i]["nick"].ToString());
-                    }
-                    //更新状态
-                    sql = "UPDATE TopWriteContent SET isok = 1 WHERE id = " + dtWrite.Rows[j]["id"].ToString();
-                     utils.ExecuteNonQuery(sql);
-
-                    //更新状态
-                    sql = "UPDATE TopMission SET success = success + 1 WHERE id = " + dt.Rows[i]["id"].ToString();
-                    utils.ExecuteNonQuery(sql);
+                    dtWrite.Dispose();
                 }
-                catch (Exception e)
-                {
-                    WriteLog(e.Message, "1", dt.Rows[i]["nick"].ToString());
-                    WriteLog(e.StackTrace, "1", dt.Rows[i]["nick"].ToString());
-                    sql = "UPDATE TopMission SET fail = fail + 1,isok = -1  WHERE id = " + dt.Rows[i]["id"].ToString();
-                     utils.ExecuteNonQuery(sql);
-                    continue;
-                }
+                sql = "UPDATE TopMission SET isok = 1 WHERE id = " + dt.Rows[i]["id"].ToString();
+                utils.ExecuteNonQuery(sql);
             }
-
-            dtWrite.Dispose();
-
-            sql = "UPDATE TopMission SET isok = 1 WHERE id = " + dt.Rows[i]["id"].ToString();
-             utils.ExecuteNonQuery(sql);
+            dt.Dispose();
         }
-
-        dt.Dispose();
-  
-
     }
-
-
-
-
 
 
 
