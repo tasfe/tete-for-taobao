@@ -42,7 +42,6 @@
                 <td width="80"><b>交易量（笔） </b></td>
                 <td width="80"><b>交易额（元） </b></td>
                 <td width="80"><b>最后交易时间 </b></td>
-                <td width="60"><b>会员类型</b></td>
                 <td width="60"><b>操作</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
@@ -50,11 +49,10 @@
             <tr>
                 <td height="35"><input name="id" type="checkbox" value="<%#Eval("guid") %>" /></td>
                 <td height="35"><%#Eval("buynick") %> <img src='level/<%#Eval("buyerlevel") %>.gif' /></td>
-                <td><%#Eval("grade") %></td>
+                <td><%#getgrade(Eval("grade").ToString())%></td>
                 <td><%#Eval("tradecount")%></td>
                 <td><%#Eval("tradeamount")%></td>
                 <td><%#Eval("lastorderdate")%></td>
-                <td><%#Eval("groupid")%></td>
                 <td>
                     <a href="#">修改</a>
                 </td>
