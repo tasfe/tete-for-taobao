@@ -41,6 +41,9 @@ public partial class top_crm_initcustom : System.Web.UI.Page
         param.Add("page_size", "100");
         param.Add("current_page", "1");
 
+        string sql = "SELECT session FROM TCS_ShopSession WHERE nick = '" + nick + "'";
+        string session = utils.ExecuteString(sql);
+
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.send", session, param);
         Response.Write(result);
     }
