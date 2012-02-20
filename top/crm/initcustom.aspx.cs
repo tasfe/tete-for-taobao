@@ -95,6 +95,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                                     " '" + buyer_id + "', " +
                                     " '" + grade + "'" +
                                 ") ";
+            Response.Write(sql + "<br><br>");
             utils.ExecuteNonQuery(sql);
         }
     }
