@@ -41,7 +41,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
         param.Add("page_size", "100");
         param.Add("current_page", "1");
 
-        Response.Write(DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd") + " 00:00:00<br>");
+        //Response.Write(DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd") + " 00:00:00<br>");
 
         string sql = "SELECT session FROM TCS_ShopSession WHERE nick = '" + nick + "'";
         string session = utils.ExecuteString(sql);
