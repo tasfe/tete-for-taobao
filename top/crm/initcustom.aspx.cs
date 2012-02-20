@@ -55,7 +55,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
             string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.crm.members.search", session, param);
             Regex reg = new Regex(@"<crm_member>([\s\S]*?)</crm_member>", RegexOptions.IgnoreCase);
             MatchCollection match = reg.Matches(result);
-            Response.Write(match.Count.ToString() + "<hr>");
+            //Response.Write(match.Count.ToString() + "<hr>");
             for (int i = 0; i < match.Count; i++)
             {
                 string str = match[i].Groups[0].ToString();
@@ -73,6 +73,18 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                 string city = GetValueByProperty(str, "city");
                 string avg_price = GetValueByProperty(str, "avg_price");
 
+                //获取该会员的详细资料taobao.user.get
+                param = new Dictionary<string, string>();
+                param.Add("fields", "sex,buyer_credit.level,created,last_visit,birthday");
+                param.Add("nick", buyer_nick);
+
+                string nickresult = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.user.get", session, param);
+                string sex = GetValueByProperty(nickresult, "sex");
+                string level = GetValueByProperty(nickresult, "level");
+                string created = GetValueByProperty(nickresult, "created");
+                string last_visit = GetValueByProperty(nickresult, "last_visit");
+                string birthday = GetValueByProperty(nickresult, "birthday");
+
                 sql = "INSERT INTO TCS_Customer (" +
                                         "nick, " +
                                         "buynick, " +
@@ -86,7 +98,12 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                                         "avgprice, " +
                                         "source, " +
                                         "buyerid, " +
-                                        "grade " +
+                                        "grade, " +
+                                        "sex, " +
+                                        "buyerlevel, " +
+                                        "created, " +
+                                        "lastlogin, " +
+                                        "birthday " +
                                     " ) VALUES ( " +
                                         " '" + nick + "', " +
                                         " '" + buyer_nick + "', " +
@@ -100,7 +117,12 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                                         " '" + avg_price + "', " +
                                         " '" + relation_source + "', " +
                                         " '" + buyer_id + "', " +
-                                        " '" + grade + "'" +
+                                        " '" + grade + "'," +
+                                        " '" + sex + "', " +
+                                        " '" + level + "', " +
+                                        " '" + created + "', " +
+                                        " '" + last_visit + "', " +
+                                        " '" + birthday + "'" +
                                     ") ";
                 //Response.Write(sql + "<br><br>");
                 utils.ExecuteNonQuery(sql);
