@@ -98,6 +98,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
             Response.Write(sql + "<br><br>");
             utils.ExecuteNonQuery(sql);
         }
+        Response.Write(result);
     }
 
     public static string GetValueByProperty(string str, string prop)
