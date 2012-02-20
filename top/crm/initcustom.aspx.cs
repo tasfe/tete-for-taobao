@@ -46,8 +46,70 @@ public partial class top_crm_initcustom : System.Web.UI.Page
         string sql = "SELECT session FROM TCS_ShopSession WHERE nick = '" + nick + "'";
         string session = utils.ExecuteString(sql);
 
-        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.crm.members.get", session, param);
-        Response.Write("<html>" + result + "</html>");
+        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.crm.members.search", session, param);
+        Regex reg = new Regex(@"<basic_member>([^<]*)</basic_member>", RegexOptions.IgnoreCase);
+        MatchCollection match = reg.Matches(result);
+        for (int i = 0; i < match.Count; i++)
+        {
+            string str = match[i].Groups[0].ToString();
+            string buyer_id = GetValueByProperty(str, "buyer_id");
+            string buyer_nick = GetValueByProperty(str, "buyer_nick");
+            string group_ids = GetValueByProperty(str, "group_ids");
+            string item_num = GetValueByProperty(str, "item_num");
+            string grade = GetValueByProperty(str, "grade");
+            string relation_source = GetValueByProperty(str, "relation_source");
+            string last_trade_time = GetValueByProperty(str, "last_trade_time");
+            string status = GetValueByProperty(str, "status");
+            string trade_amount = GetValueByProperty(str, "trade_amount");
+            string trade_count = GetValueByProperty(str, "trade_count");
+            string province = GetValueByProperty(str, "province");
+            string city = GetValueByProperty(str, "city");
+            string avg_price = GetValueByProperty(str, "avg_price");
+
+            sql = "INSERT INTO TCS_Customer (" +
+                                    "nick, " +
+                                    "buynick, " +
+                                    "status, " +
+                                    "tradecount, " +
+                                    "tradeamount, " +
+                                    "groupid, " +
+                                    "lastorderdate, " +
+                                    "province, " +
+                                    "city, " +
+                                    "avgprice, " +
+                                    "source, " +
+                                    "buyerid, " +
+                                    "grade " +
+                                " ) VALUES ( " +
+                                    " '" + nick + "', " +
+                                    " '" + buyer_nick + "', " +
+                                    " '" + status + "', " +
+                                    " '" + trade_count + "', " +
+                                    " '" + trade_amount + "', " +
+                                    " '" + group_ids + "', " +
+                                    " '" + last_trade_time + "', " +
+                                    " '" + province + "', " +
+                                    " '" + city + "', " +
+                                    " '" + avg_price + "', " +
+                                    " '" + relation_source + "', " +
+                                    " '" + buyer_id + "', " +
+                                    " '" + grade + "'" +
+                                ") ";
+            utils.ExecuteNonQuery(sql);
+        }
+    }
+
+    public static string GetValueByProperty(string str, string prop)
+    {
+        Regex reg = new Regex(@"<" + prop + @">([^<]*)</" + prop + @">", RegexOptions.IgnoreCase);
+        if (reg.IsMatch(str))
+        {
+            return reg.Match(str).Groups[1].ToString();
+        }
+        else
+        {
+            return "";
+        }
     }
 
     #region TOP API
