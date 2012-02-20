@@ -39,6 +39,7 @@
                 <td width="30"><input type="checkbox" onclick="selectAll()" /></td>
                 <td width="100"><b>客户昵称</b></td>
                 <td width="40"><b>性别</b></td>
+                <td width="60"><b>生日</b></td>
                 <td width="50"><b>等级</b></td>
                 <td width="50"><b>交易量</b></td>
                 <td width="50"><b>交易额</b></td>
@@ -51,6 +52,8 @@
                 <td height="35"><input name="id" type="checkbox" value="<%#Eval("guid") %>" /></td>
                 <td><%#Eval("buynick") %> <img src='level/<%#Eval("buyerlevel") %>.gif' /></td>
                 <td><%#getsex(Eval("sex").ToString())%></td>
+                <td><%#Eval("birthday").ToString().Replace(" 00:00:00.000", "")%></td>
+                <td><%#Eval("lastorderdate").ToString().Replace(" 0:00:00", "")%></td>
                 <td><%#getgrade(Eval("grade").ToString())%></td>
                 <td><%#Eval("tradecount")%></td>
                 <td><%#Eval("tradeamount")%></td>
