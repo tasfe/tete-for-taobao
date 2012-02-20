@@ -46,9 +46,12 @@ public partial class top_crm_initcustom : System.Web.UI.Page
         string sql = "SELECT session FROM TCS_ShopSession WHERE nick = '" + nick + "'";
         string session = utils.ExecuteString(sql);
 
+        nick = this.TextBox1.Text;
+
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.crm.members.search", session, param);
-        Regex reg = new Regex(@"<crm_member>([\s\S]*)</crm_member>", RegexOptions.IgnoreCase);
+        Regex reg = new Regex(@"<crm_member>([\s\S]*?)</crm_member>", RegexOptions.IgnoreCase);
         MatchCollection match = reg.Matches(result);
+        Response.Write(match.Count.ToString() + "<hr>");
         for (int i = 0; i < match.Count; i++)
         {
             string str = match[i].Groups[0].ToString();
