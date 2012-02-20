@@ -49,7 +49,7 @@
             <ItemTemplate>
             <tr>
                 <td height="35"><input name="id" type="checkbox" value="<%#Eval("guid") %>" /></td>
-                <td height="35"><%#Eval("buynick") %> <%#Eval("buyerlevel") %></td>
+                <td height="35"><%#Eval("buynick") %> <img src='<%#Eval("buyerlevel") %>.gif' /></td>
                 <td><%#Eval("grade") %></td>
                 <td><%#Eval("tradecount")%></td>
                 <td><%#Eval("tradeamount")%></td>
