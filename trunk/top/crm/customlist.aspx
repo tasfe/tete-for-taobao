@@ -52,7 +52,7 @@
                 <td height="35"><input name="id" type="checkbox" value="<%#Eval("guid") %>" /></td>
                 <td><%#Eval("buynick") %> <img src='level/<%#Eval("buyerlevel") %>.gif' /></td>
                 <td><%#getsex(Eval("sex").ToString())%></td>
-                <td><%#Eval("birthday").ToString().Replace(" 00:00:00.000", "")%></td>
+                <td><%#Eval("birthday").ToString().Replace(" 0:00:00", "")%></td>
                 <td><%#Eval("lastorderdate").ToString().Replace(" 0:00:00", "")%></td>
                 <td><%#getgrade(Eval("grade").ToString())%></td>
                 <td><%#Eval("tradecount")%></td>
