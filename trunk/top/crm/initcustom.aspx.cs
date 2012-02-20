@@ -47,7 +47,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
         string session = utils.ExecuteString(sql);
 
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.crm.members.search", session, param);
-        Regex reg = new Regex(@"<basic_member>([^<]*)</basic_member>", RegexOptions.IgnoreCase);
+        Regex reg = new Regex(@"<crm_member>([^<]*)</crm_member>", RegexOptions.IgnoreCase);
         MatchCollection match = reg.Matches(result);
         for (int i = 0; i < match.Count; i++)
         {
