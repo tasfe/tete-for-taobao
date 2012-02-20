@@ -52,4 +52,24 @@ public partial class top_crm_customlist : System.Web.UI.Page
 
         return str;
     }
+
+    public static string getsex(string sex)
+    {
+        string str = string.Empty;
+
+        switch (sex)
+        {
+            case "m":
+                str = "男";
+                break;
+            case "f":
+                str = "女";
+                break;
+            case "":
+                str = "-";
+                break;
+        }
+
+        return str;
+    }
 }
