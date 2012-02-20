@@ -47,7 +47,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
         string session = utils.ExecuteString(sql);
 
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.crm.members.get", session, param);
-        Response.Write(result);
+        Response.Write("<html>" + result + "</html>");
     }
 
     #region TOP API
