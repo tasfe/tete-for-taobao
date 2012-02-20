@@ -49,8 +49,8 @@
             <ItemTemplate>
             <tr>
                 <td height="35"><input name="id" type="checkbox" value="<%#Eval("guid") %>" /></td>
+                <td><%#Eval("buynick") %> <img src='level/<%#Eval("buyerlevel") %>.gif' /></td>
                 <td><%#getsex(Eval("sex").ToString())%></td>
-                <td height="35"><%#Eval("buynick") %> <img src='level/<%#Eval("buyerlevel") %>.gif' /></td>
                 <td><%#getgrade(Eval("grade").ToString())%></td>
                 <td><%#Eval("tradecount")%></td>
                 <td><%#Eval("tradeamount")%></td>
