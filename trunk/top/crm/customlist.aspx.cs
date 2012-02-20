@@ -33,6 +33,9 @@ public partial class top_crm_customlist : System.Web.UI.Page
 
         switch (grade)
         {
+            case "0":
+                str = "<span style='#333333'>尚未购买</span>";
+                break;
             case "1":
                 str = "普通会员";
                 break;
