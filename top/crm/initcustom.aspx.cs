@@ -44,7 +44,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
         string sql = "SELECT session FROM TCS_ShopSession WHERE nick = '" + nick + "'";
         string session = utils.ExecuteString(sql);
 
-        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.send", session, param);
+        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.crm.members.get", session, param);
         Response.Write(result);
     }
 
