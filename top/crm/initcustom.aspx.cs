@@ -36,12 +36,12 @@ public partial class top_crm_initcustom : System.Web.UI.Page
         string appkey = "12159997";
         string secret = "614e40bfdb96e9063031d1a9e56fbed5";
         IDictionary<string, string> param = new Dictionary<string, string>();
-        param.Add("min_last_trade_time", DateTime.Now.AddMonths(-3).ToString("yyyy-mm-dd") + " 00:00:00");
-        param.Add("max_last_trade_time", DateTime.Now.ToString("yyyy-mm-dd") + " 00:00:00");
+        param.Add("min_last_trade_time", DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd") + " 00:00:00");
+        param.Add("max_last_trade_time", DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
         param.Add("page_size", "100");
         param.Add("current_page", "1");
 
-        Response.Write(DateTime.Now.AddMonths(-3).ToString("yyyy-mm-dd") + " 00:00:00<br>");
+        Response.Write(DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd") + " 00:00:00<br>");
 
         string sql = "SELECT session FROM TCS_ShopSession WHERE nick = '" + nick + "'";
         string session = utils.ExecuteString(sql);
