@@ -40,9 +40,9 @@
                 <td width="100"><b>客户昵称</b></td>
                 <td width="40"><b>性别</b></td>
                 <td width="50"><b>等级</b></td>
-                <td width="40"><b>交易量</b></td>
-                <td width="40"><b>交易额</b></td>
-                <td width="50"><b>最后交易</b></td>
+                <td width="50"><b>交易量</b></td>
+                <td width="50"><b>交易额</b></td>
+                <td width="60"><b>最后交易</b></td>
                 <td width="60"><b>操作</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
@@ -54,7 +54,7 @@
                 <td><%#getgrade(Eval("grade").ToString())%></td>
                 <td><%#Eval("tradecount")%></td>
                 <td><%#Eval("tradeamount")%></td>
-                <td><%#Eval("lastorderdate").ToString().Replace(" 00:00:00", "")%></td>
+                <td><%#Eval("lastorderdate").ToString().Replace(" 0:00:00", "")%></td>
                 <td>
                     <a href="#">修改</a>
                 </td>
