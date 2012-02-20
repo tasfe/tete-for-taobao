@@ -26,4 +26,27 @@ public partial class top_crm_customlist : System.Web.UI.Page
         rptArticle.DataSource = dt;
         rptArticle.DataBind();
     }
+
+    public static string getgrade(string grade)
+    {
+        string str = string.Empty;
+
+        switch (grade)
+        {
+            case "1":
+                str = "普通会员";
+                break;
+            case "2":
+                str = "<span style='color:blue'>高级会员</span>";
+                break;
+            case "3":
+                str = "<span style='color:green'>VIP会员</span>";
+                break;
+            case "4":
+                str = "<span style='color:red'>至尊VIP会员</span>";
+                break;
+        }
+
+        return str;
+    }
 }
