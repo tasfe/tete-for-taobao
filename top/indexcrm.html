@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>好评有礼_特特营销</title>
+    <link href="css/css.css" rel="stylesheet" />
+    <link href="css/member.css" rel="stylesheet" />
+</head>
+<body>
+
+<div id="page">
+
+<!--头部登录信息-->
+<div id="header">
+    <div id="site-nav" style="margin-bottom:5px;">
+	    <p class="login-info">
+            <script language="javascript" type="text/javascript" src="js_userinfoblog.aspx"></script> 
+            在线客服：
+            <a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid=%E7%BE%8E%E6%9D%9C%E8%8E%8E%E4%B9%8B%E5%BF%83&site=cntaobao&s=1&charset=utf-8" ><img border="0" align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=%E7%BE%8E%E6%9D%9C%E8%8E%8E%E4%B9%8B%E5%BF%83&site=cntaobao&s=1&charset=utf-8" alt="有问题请点这里" /></a>
+        </p>
+        <ul class="quick-menu">
+            <li>
+            </li>       
+        </ul>
+    </div>
+</div>
+
+
+
+<div id="content">
+    <div id="mytaobao-panel" class="grid-c2">
+        <div class="col-sub">
+            <div id="mytaobao-menu" class="box-diamond">
+<!--content-->
+
+<div class="mytaobao-bd">
+
+
+<div class="menu-box">
+<h3 class="mytaobao-bar"><span> 客户列表 </span>
+<button class="menu-close">-</button>
+</h3>
+<ul class="group">
+		<li><span> <a
+		href="crm/customlist.aspx" target="mainframe">客户列表</a></span></li>
+    </ul>
+</div>
+
+<div class="menu-box">
+<h3 class="mytaobao-bar"><span> 优惠券赠送 </span>
+<button class="menu-close">-</button>
+</h3>
+<ul class="group">
+		<li><span> <a href="crm/couponlist.aspx" target="mainframe">优惠券管理</a></span></li>		
+		<li><span> <a href="crm/couponsend.aspx" target="mainframe">优惠券赠送记录</a></span></li>		
+		<li><span> <a href="crm/msgsend.aspx" target="mainframe">手动赠送</a></span></li>		
+    </ul>
+</div>
+
+</div>
+
+</div>
+<!--content-->
+            </div>
+        </div>
+        
+        <div style="width:780px; margin-left:10px; float:left; height:1060px;"> 
+                <iframe style="overflow:scroll; width: 100%; height:1060px; padding:0px;" name="mainframe" src="crm/customlist.aspx" frameborder="0" scrolling="no"></iframe>
+        </div>
+    </div>
+</div>
+
+<br /><br /><br />
+
+
+<div id="footer">
+<div id="copyright">
+    Copyright &copy; 2010-2012 tetesoft.com 版权所有 <br />
+    <a href='http://www.miibeian.gov.cn/' target="_blank">沪ICP备10023864号-1</a>
+</div>
+<div class="copyright">
+    
+    
+</div></div>
+
+
+
+</div>
+
+<div style="display:none">
+    <script src="http://s15.cnzz.com/stat.php?id=2663330&web_id=2663330&show=pic" language="JavaScript"></script>
+</div>
+
+
+
+
+
+<div id="divBackground" style="position: absolute; display:none; top: 0pt; left: 0pt; 
+
+background: none repeat scroll 0% 0% rgb(153, 153, 153); opacity: 0.4; width: 100%; height: 
+
+2184px; z-index: 10002;"></div>
+<div id="ggArea" style="display:none; position: absolute; display:none; top: 220px; left: 
+
+300px;  z-index: 10003;">
+    <a href='javascript:closeArea();' style="font-size:16px; font-weight:bold; color:white">关闭窗口</a> 60秒后窗口自动关闭.. <br>
+    <div style="BACKGROUND-COLOR:#fff; width:350px; height:120px;  padding:10px;">
+    <span style="font-size:14px; font-weight:bold;">请您填写下手机号码，这样如果您的优惠券快到期或者送完的时候我们会有消息提醒您及时进行调整...</span><br />
+    <br />
+    请输入您的手机号码：
+    <br />
+    <input type="text" id="phone" name="phone" style="height:20px; width:150px;" />  <input type="button" onclick="savephone()" style="width:60px; height:24px;" value="马上提交" />
+    </div>
+</div>
+
+
+<script>
+    var xmlHttp;
+    var itemsStr;
+    var itemsStrTxt;
+    function createxmlHttpRequest() {
+        if (window.ActiveXObject)
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+        else if (window.XMLHttpRequest)
+            xmlHttp = new XMLHttpRequest();
+    }
+
+    function showArea() {
+        document.getElementById("divBackground").style.display = "block";
+        document.getElementById("divBackground").style.filter = "alpha(opacity=50)";
+        document.getElementById("ggArea").style.display = "block";
+
+        setTimeout('closeArea()', 60000);
+    }
+
+    function closeArea() {
+        document.getElementById("divBackground").style.display = "none";
+        document.getElementById("ggArea").style.display = "none";
+    }
+
+    function savephone() {
+        var phone = document.getElementById("phone").value;
+
+        var reg = /^0{0,1}(13[0-9]|14[0-9]|15[0-9]|18[0-9])[0-9]{8}$/;
+        if (!reg.test(phone)) {
+            alert('请输入正确的手机号码，谢谢您的合作！');
+            document.getElementById('phone').focus();
+            return false;
+        }
+
+        var url = "http://haoping.7fshop.com/top/review/setting.aspx?act=savephone&phone=" + phone;
+
+        createxmlHttpRequest();
+        var queryString = url + "&t=" + new Date().getTime();
+        xmlHttp.open("GET", queryString);
+        xmlHttp.onreadystatechange = handleStateChangeCat;
+        xmlHttp.send(null);
+
+    }
+
+    function handleStateChangeCat() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            alert('手机号码保存成功，谢谢您的合作！');
+            closeArea();
+        }
+    }
+</script>
+
+<script language="javascript" src="review/js_isshow.aspx" type="text/javascript"></script>
+
+
+</body>
+</html>
