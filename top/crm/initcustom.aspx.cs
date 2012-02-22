@@ -80,14 +80,30 @@ public partial class top_crm_initcustom : System.Web.UI.Page
 
                 string nickresult = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.user.get", session, param);
 
-                Response.Write(nickresult + "<br>");
-
                 string sex = GetValueByProperty(nickresult, "sex");
                 string level = GetValueByProperty(nickresult, "level");
                 string created = GetValueByProperty(nickresult, "created");
                 string last_visit = GetValueByProperty(nickresult, "last_visit");
                 string birthday = GetValueByProperty(nickresult, "birthday");
                 string email = GetValueByProperty(nickresult, "email");
+
+                //获取会员在本店的订单地址记录
+                param = new Dictionary<string, string>();
+                param.Add("fields", "receiver_name,receiver_state,receiver_city,receiver_district,receiver_address,receiver_mobile");
+                param.Add("nick", nick);
+                param.Add("buyer_nick", buyer_nick);
+                param.Add("page_size", "1");
+                param.Add("start_created", DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd") + " 00:00:00");
+                param.Add("end_created", DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+
+                string receiver_name = GetValueByProperty(nickresult, "receiver_name");
+                string receiver_state = GetValueByProperty(nickresult, "receiver_state");
+                string receiver_city = GetValueByProperty(nickresult, "receiver_city");
+                string receiver_district = GetValueByProperty(nickresult, "receiver_district");
+                string receiver_address = GetValueByProperty(nickresult, "receiver_address");
+                string receiver_mobile = GetValueByProperty(nickresult, "receiver_mobile");
+
+                nickresult = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.user.get", session, param);
 
                 sql = "INSERT INTO TCS_Customer (" +
                                         "nick, " +
@@ -108,7 +124,13 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                                         "created, " +
                                         "lastlogin, " +
                                         "email, " +
-                                        "birthday " +
+                                        "birthday, " +
+                                        "mobile, " +
+                                        "truename, " +
+                                        "address, " +
+                                        "sheng, " +
+                                        "shi, " +
+                                        "qu " +
                                     " ) VALUES ( " +
                                         " '" + nick + "', " +
                                         " '" + buyer_nick + "', " +
@@ -128,7 +150,13 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                                         " '" + created + "', " +
                                         " '" + last_visit + "', " +
                                         " '" + email + "', " +
-                                        " '" + birthday + "'" +
+                                        " '" + birthday + "'," +
+                                        " '" + receiver_mobile + "', " +
+                                        " '" + receiver_name + "', " +
+                                        " '" + receiver_address + "', " +
+                                        " '" + receiver_state + "', " +
+                                        " '" + receiver_city + "', " +
+                                        " '" + receiver_district + "'" +
                                     ") ";
                 //Response.Write(sql + "<br><br>");
                 utils.ExecuteNonQuery(sql);
