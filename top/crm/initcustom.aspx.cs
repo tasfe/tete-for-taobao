@@ -42,7 +42,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
             IDictionary<string, string> param = new Dictionary<string, string>();
             param.Add("min_last_trade_time", DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd") + " 00:00:00");
             param.Add("max_last_trade_time", DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
-            param.Add("page_size", "100");
+            param.Add("page_size", "10");
             param.Add("current_page", j.ToString());
 
             //Response.Write(DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd") + " 00:00:00<br>");
@@ -87,6 +87,8 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                 string birthday = GetValueByProperty(nickresult, "birthday");
                 string email = GetValueByProperty(nickresult, "email");
 
+                Response.Write(nickresult + "<br>");
+
                 //获取会员在本店的订单地址记录
                 param = new Dictionary<string, string>();
                 param.Add("fields", "receiver_name,receiver_state,receiver_city,receiver_district,receiver_address,receiver_mobile");
@@ -103,7 +105,8 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                 string receiver_address = GetValueByProperty(nickresult, "receiver_address");
                 string receiver_mobile = GetValueByProperty(nickresult, "receiver_mobile");
 
-                nickresult = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.user.get", session, param);
+                nickresult = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.trades.sold.get", session, param);
+                Response.Write(nickresult + "<br><br>");
 
                 sql = "INSERT INTO TCS_Customer (" +
                                         "nick, " +
