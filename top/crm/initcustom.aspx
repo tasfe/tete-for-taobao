@@ -24,11 +24,13 @@
     </ul>
   </div>
 
+
+    <div id="main-content">
+    
   <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
 最多只能导入3个月的历史会员数据，导入时间会稍长，请您耐心等待...
 </div>
 
-    <div id="main-content">
             <asp:Button ID="Button1" runat="server" Text="导入历史客户" 
                 onclick="Button1_Click1" />
     </div>
