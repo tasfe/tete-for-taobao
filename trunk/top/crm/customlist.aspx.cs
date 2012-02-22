@@ -90,7 +90,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
                 str = "女";
                 break;
             case "":
-                str = "-";
+                str = "--";
                 break;
         }
 
