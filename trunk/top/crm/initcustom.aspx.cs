@@ -42,7 +42,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
             IDictionary<string, string> param = new Dictionary<string, string>();
             param.Add("min_last_trade_time", DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd") + " 00:00:00");
             param.Add("max_last_trade_time", DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
-            param.Add("page_size", "10");
+            param.Add("page_size", "100");
             param.Add("current_page", j.ToString());
 
             //Response.Write(DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd") + " 00:00:00<br>");
@@ -165,7 +165,6 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                 utils.ExecuteNonQuery(sql);
                 index++;
             }
-            break;
             if (match.Count < 100)
             {
                 break;
