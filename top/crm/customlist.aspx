@@ -41,7 +41,7 @@
                 <td width="50"><b>省</b></td>
                 <td width="50"><b>市</b></td>
                 <td width="50"><b>区</b></td>
-                <td width="50"><b>手机</b></td>
+                <td width="70"><b>手机</b></td>
                 <td width="40"><b>性别</b></td>
                 <td width="50"><b>等级</b></td>
                 <td width="50"><b>交易量</b></td>
