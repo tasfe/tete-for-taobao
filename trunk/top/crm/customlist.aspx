@@ -16,7 +16,7 @@
     <div>
         <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="javascript:;" class="nolink">特特CRM_客户营销</a> 客户列表 </div>
+  <div class="crumbs"><a href="javascript:;" class="nolink">特特CRM_客户关系营销</a> 客户列表 </div>
   <div class="absright">
     <ul>
       <li>
@@ -27,16 +27,11 @@
     </ul>
   </div>
     <div id="main-content">
-    请输入客户昵称：<asp:TextBox ID="search" runat="server"></asp:TextBox>
-    <asp:Button ID="Button1" runat="server" Text="搜索" />
-    <hr />
-    <div style="margin-bottom:10px;">
-        <input type="checkbox" onclick="selectAll()" />
-        <input type="button" value="为选中客户赠送优惠券" onclick="setOK()" />
-    </div>
+        <input type="button" value="优惠券赠送" onclick="setOK()" />
+        <hr />
+
         <table width="740" cellpadding="0" cellspacing="0">
         <tr>
-                <td width="30"><input type="checkbox" onclick="selectAll()" /></td>
                 <td width="100"><b>客户昵称</b></td>
                 <td width="50"><b>省</b></td>
                 <td width="50"><b>市</b></td>
@@ -47,12 +42,10 @@
                 <td width="50"><b>交易量</b></td>
                 <td width="50"><b>交易额</b></td>
                 <td width="60"><b>最后交易</b></td>
-                <td width="60"><b>操作</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
-                <td height="35"><input name="id" type="checkbox" value="<%#Eval("guid") %>" /></td>
                 <td><%#Eval("buynick") %> <img src='level/<%#Eval("buyerlevel") %>.gif' valign="middle" /></td>
                 <td><%#Eval("sheng")%></td>
                 <td><%#Eval("shi")%></td>
@@ -63,9 +56,6 @@
                 <td><%#Eval("tradecount")%></td>
                 <td><%#Eval("tradeamount")%></td>
                 <td><%#Eval("lastorderdate").ToString().Replace(" 0:00:00", "")%></td>
-                <td>
-                    <a href="#">修改</a>
-                </td>
             </tr>
             </ItemTemplate>
         </asp:Repeater>
