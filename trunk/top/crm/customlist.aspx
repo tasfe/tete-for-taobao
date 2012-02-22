@@ -30,7 +30,7 @@
 
         <table width="740" cellpadding="0" cellspacing="0">
         <tr>
-                <td width="100"><b>客户昵称</b></td>
+                <td width="100" height="35"><b>客户昵称</b></td>
                 <td width="50"><b>省</b></td>
                 <td width="50"><b>市</b></td>
                 <td width="50"><b>区</b></td>
@@ -44,7 +44,7 @@
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
-                <td><%#Eval("buynick") %> <img src='level/<%#Eval("buyerlevel") %>.gif' valign="middle" /></td>
+                <td height="35"><%#Eval("buynick") %> <img src='level/<%#Eval("buyerlevel") %>.gif' valign="middle" /></td>
                 <td><%#Eval("sheng")%></td>
                 <td><%#Eval("shi")%></td>
                 <td><%#Eval("qu")%></td>
