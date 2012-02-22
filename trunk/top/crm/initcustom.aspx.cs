@@ -161,7 +161,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                                         " '" + receiver_city + "', " +
                                         " '" + receiver_district + "'" +
                                     ") ";
-                //Response.Write(sql + "<br><br>");
+                Response.Write(sql + "<br><br>");
                 utils.ExecuteNonQuery(sql);
                 index++;
             }
