@@ -46,7 +46,7 @@
                 <td width="50"><b>等级</b></td>
                 <td width="50"><b>交易量</b></td>
                 <td width="50"><b>交易额</b></td>
-                <td width="75"><b>最后交易</b></td>
+                <td width="60"><b>最后交易</b></td>
                 <td width="60"><b>操作</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
