@@ -38,6 +38,10 @@
         <tr>
                 <td width="30"><input type="checkbox" onclick="selectAll()" /></td>
                 <td width="100"><b>客户昵称</b></td>
+                <td width="50"><b>省</b></td>
+                <td width="50"><b>市</b></td>
+                <td width="50"><b>区</b></td>
+                <td width="50"><b>手机</b></td>
                 <td width="40"><b>性别</b></td>
                 <td width="50"><b>等级</b></td>
                 <td width="50"><b>交易量</b></td>
@@ -50,6 +54,10 @@
             <tr>
                 <td height="35"><input name="id" type="checkbox" value="<%#Eval("guid") %>" /></td>
                 <td><%#Eval("buynick") %> <img src='level/<%#Eval("buyerlevel") %>.gif' /></td>
+                <td><%#Eval("sheng")%></td>
+                <td><%#Eval("shi")%></td>
+                <td><%#Eval("qu")%></td>
+                <td><%#Eval("mobile")%></td>
                 <td><%#getsex(Eval("sex").ToString())%></td>
                 <td><%#getgrade(Eval("grade").ToString())%></td>
                 <td><%#Eval("tradecount")%></td>
