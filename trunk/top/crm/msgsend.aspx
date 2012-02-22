@@ -6,7 +6,7 @@
 <link href="../css/common.css" rel="stylesheet" />
 <style>
     td{font-size:12px;}
-    a{color:Blue; text-decoration:none;font-size:14px;}
+    a{color:Blue; text-decoration:none;}
 </style>
 
 
@@ -28,10 +28,6 @@
     </ul>
   </div>
     <div id="main-content">
-
-<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
-    本功能用于某些买家延期购买后的优惠券赠送等特殊赠送，正常评价的优惠券会自动赠送，不需要手动操作，买家获得的优惠券不会超过您设定的每人获取上限..
-</div>
 
         <table width="700">
             <tr>
