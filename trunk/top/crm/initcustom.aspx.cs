@@ -87,7 +87,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                 string birthday = GetValueByProperty(nickresult, "birthday");
                 string email = GetValueByProperty(nickresult, "email");
 
-                Response.Write(nickresult + "<br>");
+                //Response.Write(nickresult + "<br>");
 
                 //获取会员在本店的订单地址记录
                 param = new Dictionary<string, string>();
@@ -98,6 +98,8 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                 param.Add("start_created", DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd") + " 00:00:00");
                 param.Add("end_created", DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
 
+                nickresult = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.trades.sold.get", session, param);
+
                 string receiver_name = GetValueByProperty(nickresult, "receiver_name");
                 string receiver_state = GetValueByProperty(nickresult, "receiver_state");
                 string receiver_city = GetValueByProperty(nickresult, "receiver_city");
@@ -105,8 +107,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                 string receiver_address = GetValueByProperty(nickresult, "receiver_address");
                 string receiver_mobile = GetValueByProperty(nickresult, "receiver_mobile");
 
-                nickresult = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.trades.sold.get", session, param);
-                Response.Write(nickresult + "<br><br>");
+                //Response.Write(nickresult + "<br><br>");
 
                 sql = "INSERT INTO TCS_Customer (" +
                                         "nick, " +
@@ -161,7 +162,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                                         " '" + receiver_city + "', " +
                                         " '" + receiver_district + "'" +
                                     ") ";
-                Response.Write(sql + "<br><br>");
+                //Response.Write(sql + "<br><br>");
                 utils.ExecuteNonQuery(sql);
                 index++;
             }
