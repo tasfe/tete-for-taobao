@@ -75,7 +75,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
 
                 //获取该会员的详细资料taobao.user.get
                 param = new Dictionary<string, string>();
-                param.Add("fields", "sex,buyer_credit.level,created,last_visit,birthday");
+                param.Add("fields", "sex,buyer_credit.level,created,last_visit,birthday,email");
                 param.Add("nick", buyer_nick);
 
                 string nickresult = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.user.get", session, param);
@@ -87,6 +87,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                 string created = GetValueByProperty(nickresult, "created");
                 string last_visit = GetValueByProperty(nickresult, "last_visit");
                 string birthday = GetValueByProperty(nickresult, "birthday");
+                string email = GetValueByProperty(nickresult, "email");
 
                 sql = "INSERT INTO TCS_Customer (" +
                                         "nick, " +
@@ -106,6 +107,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                                         "buyerlevel, " +
                                         "created, " +
                                         "lastlogin, " +
+                                        "email, " +
                                         "birthday " +
                                     " ) VALUES ( " +
                                         " '" + nick + "', " +
@@ -125,6 +127,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                                         " '" + level + "', " +
                                         " '" + created + "', " +
                                         " '" + last_visit + "', " +
+                                        " '" + email + "', " +
                                         " '" + birthday + "'" +
                                     ") ";
                 //Response.Write(sql + "<br><br>");

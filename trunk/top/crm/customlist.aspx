@@ -65,6 +65,10 @@
         </asp:Repeater>
     </table>
 
+    <div>
+        <asp:Label ID="lbPage" runat="server"></asp:Label>
+    </div>
+
     </div>
 </div>
     </div>
