@@ -38,7 +38,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
         int pageCount = 20;
         int dataCount = (pageNow - 1) * pageCount;
 
-        string sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.buyerlevel DESC) AS rownumber FROM TCS_Customer b WITH (NOLOCK) WHERE b.nick = '" + nick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY buyerlevel DESC";
+        string sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.lastorderdate DESC) AS rownumber FROM TCS_Customer b WITH (NOLOCK) WHERE b.nick = '" + nick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY lastorderdate DESC";
         DataTable dt = utils.ExecuteDataTable(sql);
 
         rptArticle.DataSource = dt;
