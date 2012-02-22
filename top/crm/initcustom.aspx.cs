@@ -30,7 +30,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
         nick = encode.Decrypt(taobaoNick);
     }
 
-    protected void Button1_Click(object sender, EventArgs e)
+    protected void Button1_Click1(object sender, EventArgs e)
     {
         int index = 0;
 
@@ -50,7 +50,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
             string sql = "SELECT session FROM TCS_ShopSession WHERE nick = '" + nick + "'";
             string session = utils.ExecuteString(sql);
 
-            nick = this.TextBox1.Text;
+            //nick = this.TextBox1.Text;
 
             string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.crm.members.search", session, param);
             Regex reg = new Regex(@"<crm_member>([\s\S]*?)</crm_member>", RegexOptions.IgnoreCase);
@@ -165,6 +165,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
                 utils.ExecuteNonQuery(sql);
                 index++;
             }
+            break;
             if (match.Count < 100)
             {
                 break;
