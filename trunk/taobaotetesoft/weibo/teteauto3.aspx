@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="teteauto3.aspx.cs" Inherits="weibo_teteauto1" %>
