@@ -24,6 +24,7 @@ public partial class weibo_info : System.Web.UI.Page
 
 
         sql = "SELECT COUNT(*) FROM TopMicroBlogAccount WHERE score > (SELECT score FROM TopMicroBlogAccount WHERE uid = '" + uid + "')";
+        Response.Write(sql);
         order = utils.ExecuteString(sql);
 
         order = (int.Parse(order) + 1).ToString();
