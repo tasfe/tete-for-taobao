@@ -10,6 +10,7 @@ namespace TeteTopApi.Logic
 {
     public class TradeSellerShip
     {
+        private static object padlock2 = new object();
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -32,7 +33,8 @@ namespace TeteTopApi.Logic
             TopApiHaoping api = new TopApiHaoping(shop.Session);
             Trade trade = api.GetTradeByTid(TradeInfo);
 
-            //判断该订单是否存在
+            //发送短信-上LOCK锁定
+            //判断该评价是否存在
             TradeData dbTrade = new TradeData();
             if (!dbTrade.CheckTradeExits(trade))
             {
@@ -40,25 +42,29 @@ namespace TeteTopApi.Logic
                 dbTrade.InsertTradeInfo(trade);
             }
 
-            //判断该用户是否开启了发货短信
-            if (shop.MsgIsFahuo == "1" && int.Parse(shop.MsgCount) > 0)
+            lock (padlock2)
             {
-                //判断同类型的短信该客户今天是否只收到一条
-                ShopData db = new ShopData();
-                if (!db.IsSendMsgToday(trade, "fahuo"))
+                //判断该用户是否开启了发货短信
+                if (shop.MsgIsFahuo == "1" && int.Parse(shop.MsgCount) > 0)
                 {
-                    //发送短信
-                    string msg = Message.GetMsg(shop.MsgFahuoContent, shop.MsgShopName, TradeInfo.BuyNick, shop.MsgIsFahuo);
-                    string msgResult = Message.Send(trade.Mobile, msg);
+                    //判断同类型的短信该客户今天是否只收到一条
+                    ShopData db = new ShopData();
+                    if (!db.IsSendMsgToday(trade, "fahuo"))
+                    {
+                        //发送短信
+                        string msg = Message.GetMsg(shop.MsgFahuoContent, shop.MsgShopName, TradeInfo.BuyNick, shop.IsCoupon);
+                        string msgResult = Message.Send(trade.Mobile, msg);
 
-                    //记录
-                    if (msgResult != "0")
-                    {
-                        db.InsertShopMsgLog(shop, trade, msg, msgResult, "fahuo");
-                    }
-                    else
-                    {
-                        db.InsertShopErrMsgLog(shop, trade, msg, msgResult, "fahuo");
+                        //记录
+                        if (msgResult != "0")
+                        {
+                            db.InsertShopMsgLog(shop, trade, msg, msgResult, "fahuo");
+                        }
+                        else
+                        {
+                            db.InsertShopErrMsgLog(shop, trade, msg, msgResult, "fahuo");
+                        }
+                        shop.MsgCount = (int.Parse(shop.MsgCount) - 1).ToString();
                     }
                 }
             }

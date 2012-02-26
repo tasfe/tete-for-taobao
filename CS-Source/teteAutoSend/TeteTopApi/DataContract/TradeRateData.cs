@@ -15,18 +15,16 @@ namespace TeteTopApi.DataContract
         /// <param name="tradeRate"></param>
         public void InsertTradeInfo(TradeRate tradeRate)
         {
-            string sql = "INSERT INTO TopTradeRate (" +
-                                "tid, " +
-                                "oid, " +
+            string sql = "INSERT INTO TCS_TradeRate (" +
+                                "orderid, " +
                                 "content, " +
-                                "created, " +
+                                "reviewdate, " +
+                                "buynick, " +
                                 "nick, " +
-                                "owner, " +
                                 "itemid, " +
                                 "result " +
                             " ) VALUES ( " +
                                 " '" + tradeRate.Tid + "', " +
-                                " '" + tradeRate.Oid + "', " +
                                 " '" + tradeRate.Content + "', " +
                                 " '" + tradeRate.Created + "', " +
                                 " '" + tradeRate.BuyNick + "', " +
@@ -45,7 +43,7 @@ namespace TeteTopApi.DataContract
         /// <returns></returns>
         public bool CheckTradeRateExits(TradeRate tradeRate)
         {
-            string sql = "SELECT id FROM TopTradeRate WITH (NOLOCK) WHERE tid = '" + tradeRate.Tid + "' AND nick = '" + tradeRate.BuyNick + "' AND owner = '" + tradeRate.Nick + "'";
+            string sql = "SELECT orderid FROM TCS_TradeRate WITH (NOLOCK) WHERE orderid = '" + tradeRate.Tid + "' AND buynick = '" + tradeRate.BuyNick + "' AND nick = '" + tradeRate.Nick + "'";
             Console.Write(sql + "\r\n");
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count == 0)
@@ -54,6 +52,20 @@ namespace TeteTopApi.DataContract
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// 获取用户账户中的未审核评价数量
+        /// </summary>
+        /// <param name="shop"></param>
+        /// <returns></returns>
+        public string GetUncheckedTradeRateCount(ShopInfo shop)
+        {
+            string sql = "SELECT COUNT(*) FROM TCS_TradeRateCheck WHERE nick = '" + shop.Nick + "' AND ischeck = 0";
+            Console.Write(sql + "\r\n");
+            string result = utils.ExecuteString(sql);
+
+            return result;
         }
     }
 }

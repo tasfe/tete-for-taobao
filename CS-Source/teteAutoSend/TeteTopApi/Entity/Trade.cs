@@ -84,5 +84,35 @@ namespace TeteTopApi.Entity
         /// 物流信息原文，方便重复查看问题
         /// </summary>
         public string DeliveryMsg { get; set; }
+
+        /// <summary>
+        /// 物流公司缩写
+        /// </summary>
+        public string ShippingCompanyShort { get; set; }
+
+        /// <summary>
+        /// 物流公司名称
+        /// </summary>
+        public string ShippingCompanyName { get; set; }
+
+        /// <summary>
+        /// 快递单号
+        /// </summary>
+        public string ShippingNumber { get; set; }
+
+        /// <summary>
+        /// 是否使用了优惠券
+        /// </summary>
+        public string IsUseCoupon { get; set; }
+
+        /// <summary>
+        /// 优惠券的优惠金额
+        /// </summary>
+        public string CouponPrice { get; set; }
+
+        /// <summary>
+        /// 订单总金额
+        /// </summary>
+        public string OrderPrice { get; set; }
     }
 }

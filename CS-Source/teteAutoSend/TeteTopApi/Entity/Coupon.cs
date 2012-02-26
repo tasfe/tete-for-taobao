@@ -16,8 +16,13 @@ namespace TeteTopApi.Entity
         public string Per { get; set; }
 
         /// <summary>
-        /// 优惠券ID
+        /// 优惠券淘宝对应ID
         /// </summary>
-        public string CouponId { get; set; }
+        public string TaobaoCouponId { get; set; }
+
+        /// <summary>
+        /// 优惠券唯一GUID
+        /// </summary>
+        public string CouponGUID { get; set; }
     }
 }

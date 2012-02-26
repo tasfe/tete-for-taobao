@@ -56,6 +56,11 @@ namespace TeteTopApi.Entity
         public string IsKefu { get; set; }
 
         /// <summary>
+        /// 优惠券自动赠送开关
+        /// </summary>
+        public string IsCoupon { get; set; }
+
+        /// <summary>
         /// 系统自动评价或者短评价不赠送开关
         /// </summary>
         public string IsCancelAuto { get; set; }
@@ -119,5 +124,10 @@ namespace TeteTopApi.Entity
         /// 好评判断评价字数长度
         /// </summary>
         public string WordCount { get; set; }
+
+        /// <summary>
+        /// 卖家手机号码
+        /// </summary>
+        public string Mobile { get; set; }
     }
 }
