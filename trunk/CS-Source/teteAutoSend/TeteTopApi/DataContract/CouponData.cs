@@ -9,6 +9,7 @@ namespace TeteTopApi.DataContract
 {
     public class CouponData
     {
+        private static object padlockcoupon = new object();
         /// <summary>
         /// 记录该优惠券的赠送信息
         /// </summary>
@@ -17,39 +18,53 @@ namespace TeteTopApi.DataContract
         /// <param name="couponId"></param>
         public void InsertCouponSendRecord(Trade trade, ShopInfo shop, string couponId)
         {
-            string sql = "INSERT INTO TopCouponSend (" +
+            string sql = "INSERT INTO TCS_CouponSend (" +
                                 "nick, " +
-                                "couponid, " +
-                                "sendto, " +
-                                "number, " +
-                                "count " +
+                                "guid, " +
+                                "buynick, " +
+                                "orderid, " +
+                                "taobaonumber " +
                             " ) VALUES ( " +
                                 " '" + trade.Nick + "', " +
                                 " '" + shop.CouponID + "', " +
                                 " '" + trade.BuyNick + "', " +
-                                " '" + couponId + "', " +
-                                " '1' " +
+                                " '" + trade.Tid + "', " +
+                                " '" + couponId + "' " +
                             ") ";
             Console.Write(sql + "\r\n");
             utils.ExecuteNonQuery(sql);
 
             //更新优惠券已经赠送数量
-            sql = "UPDATE TopCoupon SET used = used + 1 WHERE coupon_id = '" + shop.CouponID + "'";
+            sql = "UPDATE TCS_Coupon SET used = used + 1 WHERE guid = '" + shop.CouponID + "'";
             Console.Write(sql + "\r\n");
             utils.ExecuteNonQuery(sql);
         }
 
         /// <summary>
-        /// 判断该优惠券是否过期
+        /// 获取最近7天内卖家的优惠券赠送数量
+        /// </summary>
+        /// <param name="shop"></param>
+        /// <returns></returns>
+        public string GetCouponSendCountWeekByNick(ShopInfo shop)
+        {
+            string sql = "SELECT COUNT(*) FROM TCS_CouponSend WHERE nick = '" + shop.Nick + "' AND DATEDIFF(d,senddate,GETDATE()) < 14";
+            Console.Write(sql + "\r\n");
+            string result = utils.ExecuteString(sql);
+
+            return result;
+        }
+
+        /// <summary>
+        /// 判定该优惠券是否过期或删除
         /// </summary>
         /// <param name="shop"></param>
         /// <returns></returns>
         public bool CheckCouponCanUsed(ShopInfo shop)
         {
-            string sql = "SELECT id FROM TopCoupon WITH (NOLOCK) WHERE nick= '" + shop.Nick + "' AND coupon_id = '" + shop.CouponID + "' AND GETDATE() > end_time";
+            string sql = "SELECT guid FROM TCS_Coupon WITH (NOLOCK) WHERE nick= '" + shop.Nick + "' AND guid = '" + shop.CouponID + "' AND (GETDATE() > enddate OR isdel = 1)";
             Console.Write(sql + "\r\n");
             DataTable dt = utils.ExecuteDataTable(sql);
-            if (dt.Rows.Count == 0)
+            if (dt.Rows.Count != 0)
             {
                 return false;
             }
@@ -64,7 +79,7 @@ namespace TeteTopApi.DataContract
         /// <returns></returns>
         public bool CheckUserCanGetCoupon(Trade trade, Coupon coupon)
         {
-            string sql = "SELECT id FROM TopCouponSend WITH (NOLOCK) WHERE sendto= '" + trade.BuyNick + "' AND couponid = '" + coupon.CouponId + "'";
+            string sql = "SELECT guid FROM TCS_CouponSend WITH (NOLOCK) WHERE buynick= '" + trade.BuyNick + "' AND guid = '" + coupon.CouponGUID + "'";
             Console.Write(sql + "\r\n");
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count >= int.Parse(coupon.Per))
@@ -76,13 +91,31 @@ namespace TeteTopApi.DataContract
         }
 
         /// <summary>
-        /// 判断该订单的优惠券是否赠送过
+        /// 判断优惠券是否已经赠送完毕
+        /// </summary>
+        /// <param name="shop"></param>
+        /// <returns></returns>
+        public bool CheckCouponCanSend(Trade trade, Coupon coupon)
+        {
+            string sql = "SELECT guid FROM TCS_Coupon WITH (NOLOCK) WHERE guid = '" + coupon.CouponGUID + "' AND used >= count";
+            Console.Write(sql + "\r\n");
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// 判断该订单的优惠券是否赠送过-因为数据库优惠券赠送表没加订单号，所以暂时用每天赠送一个代替
         /// </summary>
         /// <param name="shop"></param>
         /// <returns></returns>
         public bool CheckUserCouponSend(Trade trade, Coupon coupon)
         {
-            string sql = "SELECT id FROM TopCouponSend WITH (NOLOCK) WHERE sendto= '" + trade.BuyNick + "' AND couponid = '" + coupon.CouponId + "'";
+            string sql = "SELECT guid FROM TCS_CouponSend WITH (NOLOCK) WHERE buynick= '" + trade.BuyNick + "' AND guid = '" + coupon.CouponGUID + "' AND orderid = '" + trade.Tid + "'";
             Console.Write(sql + "\r\n");
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count > 0)
@@ -100,15 +133,22 @@ namespace TeteTopApi.DataContract
         /// <returns></returns>
         public Coupon GetCouponInfoById(ShopInfo shop)
         {
-            string sql = "SELECT * FROM TopCoupon WITH (NOLOCK) WHERE coupon_id = '" + shop.CouponID + "' ";
-            Console.Write(sql + "\r\n");
-            DataTable dt = utils.ExecuteDataTable(sql);
-            if (dt.Rows.Count == 0)
+            lock (padlockcoupon)
             {
-                return new Coupon();
-            }
+                DataTable dt = new DataTable();
 
-            return FormatData(dt);
+                string sql = "SELECT * FROM TCS_Coupon WITH (NOLOCK) WHERE guid = '" + shop.CouponID + "' ";
+                Console.Write(sql + "\r\n");
+                dt = utils.ExecuteDataTable(sql);
+                if (dt.Rows.Count == 0)
+                {
+                    return new Coupon();
+                }
+                else
+                {
+                    return FormatData(dt);
+                }
+            }
         }
 
         private Coupon FormatData(DataTable dt)
@@ -116,7 +156,8 @@ namespace TeteTopApi.DataContract
             Coupon info = new Coupon();
 
             info.Per = dt.Rows[0]["per"].ToString().Trim();
-            info.CouponId = dt.Rows[0]["coupon_id"].ToString().Trim();
+            info.CouponGUID = dt.Rows[0]["guid"].ToString().Trim();
+            info.TaobaoCouponId = dt.Rows[0]["taobaocouponid"].ToString().Trim();
 
             return info;
         }

@@ -7,3 +7,4 @@ D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\bin\Debug\Microso
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\bin\Debug\QWeiboSDK.dll

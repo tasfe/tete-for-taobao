@@ -9,20 +9,26 @@ namespace TeteTopApi.DataContract
 {
     public class TradeData
     {
+        private static object padlocktrade = new object();
         /// <summary>
         /// 记录卖家的已发货订单信息
         /// </summary>
         /// <param name="trade"></param>
         public void InsertTradeInfo(Trade trade)
         {
-            string sql = "INSERT INTO TopOrder (" +
+            string sql = "INSERT INTO TCS_Trade (" +
                                 "nick, " +
                                 "orderid, " +
-                                "orderstatus, " +
-                                "addtime, " +
-                                "paytime, " +
+                                "status, " +
+                                "adddate, " +
+                                "senddate, " +
                                 "buynick, " +
-                                "receiver_mobile " +
+                                "totalprice, " +
+                                "iscoupon, " +
+                                "couponprice, " +
+                                "shippingshort, " +
+                                "shippingnumber, " +
+                                "mobile " +
                             " ) VALUES ( " +
                                 " '" + trade.Nick + "', " +
                                 " '" + trade.Tid + "', " +
@@ -30,6 +36,11 @@ namespace TeteTopApi.DataContract
                                 " '" + trade.Created + "', " +
                                 " '" + trade.SendTime + "', " +
                                 " '" + trade.BuyNick + "', " +
+                                " '" + trade.OrderPrice + "', " +
+                                " '" + trade.IsUseCoupon + "', " +
+                                " '" + trade.CouponPrice + "', " +
+                                " '" + trade.ShippingCompanyShort + "', " +
+                                " '" + trade.ShippingNumber + "', " +
                                 " '" + trade.Mobile + "' " +
                             ") ";
             Console.Write(sql + "\r\n");
@@ -40,11 +51,49 @@ namespace TeteTopApi.DataContract
         /// 更新该订单的评价为待审核状态
         /// </summary>
         /// <param name="trade"></param>
-        public void UpdateTradeKefuById(Trade trade)
+        public void UpdateTradeKefuById(Trade trade, TradeRate tradeRate)
         {
-            string sql = "UPDATE TopOrder WITH (ROWLOCK) SET issend = 2 WHERE orderid = '" + trade.Tid + "'";
+            string sql = "INSERT INTO TCS_TradeRateCheck (" +
+                                "nick, " +
+                                "orderid, " +
+                                "adddate, " +
+                                "reviewdate, " +
+                                "buynick, " +
+                                "result, " +
+                                "content " +
+                            " ) VALUES ( " +
+                                " '" + trade.Nick + "', " +
+                                " '" + trade.Tid + "', " +
+                                " '" + trade.Created + "', " +
+                                " '" + tradeRate.Created + "', " +
+                                " '" + trade.BuyNick + "', " +
+                                " '" + tradeRate.Result + "', " +
+                                " '" + tradeRate.Content + "' " +
+                            ") ";
             Console.Write(sql + "\r\n");
             utils.ExecuteNonQuery(sql);
+        }
+
+        /// <summary>
+        /// 判断该客服评价审核信息是否已经记录过
+        /// </summary>
+        /// <param name="tradeRate"></param>
+        /// <returns></returns>
+        public bool CheckTradeRateCheckExits(Trade trade)
+        {
+            lock (padlocktrade)
+            {
+                bool boolResult = true;
+                string sql = "SELECT orderid FROM TCS_TradeRateCheck WITH (NOLOCK) WHERE orderid = '" + trade.Tid + "' AND nick = '" + trade.Nick + "'";
+                Console.Write(sql + "\r\n");
+                DataTable dt = utils.ExecuteDataTable(sql);
+                if (dt.Rows.Count == 0)
+                {
+                    boolResult = false;
+                }
+
+                return boolResult;
+            }
         }
 
         /// <summary>
@@ -55,7 +104,7 @@ namespace TeteTopApi.DataContract
         /// <param name="status"></param>
         public void UpdateTradeShippingStatusSelf(Trade trade, string status)
         {
-            string sql = "UPDATE TopOrder SET typ = 'self', shippingstatus = '" + status + "' WHERE orderid = '" + trade.Tid + "'";
+            string sql = "UPDATE TCS_Trade SET typ = 'self', shippingstatus = '" + status + "',shippingshort = '" + trade.ShippingCompanyName + "',shippingnumber= '" + trade.ShippingNumber + "' WHERE orderid = '" + trade.Tid + "'";
             Console.Write(sql + "\r\n");
             utils.ExecuteNonQuery(sql);
         }
@@ -68,7 +117,7 @@ namespace TeteTopApi.DataContract
         /// <param name="status"></param>
         public void UpdateTradeShippingStatusSystem(Trade trade, string status)
         {
-            string sql = "UPDATE TopOrder SET typ = 'system', shippingstatus = '" + status + "', delivery_end = '" + trade.DeliveryEnd + "', deliverymsg = '" + trade.DeliveryMsg + "', isdeliverymsg = 1  WHERE orderid = '" + trade.Tid + "'";
+            string sql = "UPDATE TCS_Trade SET typ = 'system', shippingstatus = '" + status + "', shippingdate = '" + trade.DeliveryEnd + "',shippingshort = '" + trade.ShippingCompanyName + "',shippingnumber= '" + trade.ShippingNumber + "' WHERE orderid = '" + trade.Tid + "'";
             Console.Write(sql + "\r\n");
             utils.ExecuteNonQuery(sql);
         }
@@ -80,7 +129,7 @@ namespace TeteTopApi.DataContract
         /// <param name="tradeRate"></param>
         public void UpdateTradeRateById(Trade trade, TradeRate tradeRate)
         {
-            string sql = "UPDATE TopOrder WITH (ROWLOCK) SET isok = 1, reviewtime='" + tradeRate.Created + "',result='" + tradeRate.Result + "',content='" + tradeRate.Content + "' WHERE orderid = '" + trade.Tid + "'";
+            string sql = "UPDATE TCS_Trade WITH (ROWLOCK) SET reviewdate='" + tradeRate.Created + "' WHERE orderid = '" + trade.Tid + "'";
             Console.Write(sql + "\r\n");
             utils.ExecuteNonQuery(sql);
         }
@@ -92,15 +141,19 @@ namespace TeteTopApi.DataContract
         /// <returns></returns>
         public bool CheckTradeExits(Trade trade)
         {
-            string sql = "SELECT orderid FROM TopOrder WITH (NOLOCK) WHERE orderid = '" + trade.Tid + "' AND nick = '" + trade.Nick + "'";
-            Console.Write(sql + "\r\n");
-            DataTable dt = utils.ExecuteDataTable(sql);
-            if (dt.Rows.Count == 0)
+            lock (padlocktrade)
             {
-                return false;
-            }
+                bool boolResult = true;
+                string sql = "SELECT orderid FROM TCS_Trade WITH (NOLOCK) WHERE orderid = '" + trade.Tid + "' AND nick = '" + trade.Nick + "'";
+                Console.Write(sql + "\r\n");
+                DataTable dt = utils.ExecuteDataTable(sql);
+                if (dt.Rows.Count == 0)
+                {
+                    boolResult = false;
+                }
 
-            return true;
+                return boolResult;
+            }
         }
 
         /// <summary>
@@ -110,7 +163,8 @@ namespace TeteTopApi.DataContract
         /// <returns></returns>
         public List<Trade> GetShippingTrade(ShopInfo shop)
         {
-            string sql = "SELECT * FROM TopOrder WHERE nick = '" + shop.Nick + "' AND isok = 0 AND orderstatus <> 'WAIT_SELLER_SEND_GOODS' AND orderstatus <> 'WAIT_BUYER_PAY' AND orderstatus <> 'TradeRated' AND isdeliverymsg = 0";
+            //string sql = "SELECT * FROM TCS_Trade WHERE nick = '" + shop.Nick + "' AND orderstatus <> 'WAIT_SELLER_SEND_GOODS' AND orderstatus <> 'WAIT_BUYER_PAY' AND orderstatus <> 'TradeRated' ";
+            string sql = "SELECT * FROM TCS_Trade WHERE nick = '" + shop.Nick + "' AND (typ IS NULL OR (typ = 'system' AND shippingdate IS NULL AND shippingstatus <> 'ACCEPTED_BY_RECEIVER')) AND reviewdate IS NULL AND mobile <> ''";
             Console.Write(sql + "\r\n");
             DataTable dt = utils.ExecuteDataTable(sql);
 
@@ -124,13 +178,60 @@ namespace TeteTopApi.DataContract
         /// <returns></returns>
         public List<Trade> GetUnconfirmTrade(ShopInfo shop)
         {
-            string sql = "SELECT * FROM TopOrder WHERE (nick = '" + shop.Nick + "' AND typ = 'system' AND delivery_start IS NOT NULL AND (orderstatus = 'WAIT_BUYER_CONFIRM_GOODS' OR orderstatus = 'TradeSellerShip') AND DATEDIFF(d, delivery_start, GETDATE()) = " + shop.MinDateSystem + ") OR  (nick = '" + shop.Nick + "' AND (typ = 'self' OR delivery_start IS NULL) AND (orderstatus = 'WAIT_BUYER_CONFIRM_GOODS' OR orderstatus = 'TradeSellerShip') AND DATEDIFF(d, addtime, GETDATE()) = " + shop.MinDateSelf + ") AND istellmsg = 0";
+            string sql = "SELECT * FROM TCS_Trade WHERE (nick = '" + shop.Nick + "' AND typ = 'system' AND reviewdate IS NULL AND DATEDIFF(d, shippingdate, GETDATE()) = " + shop.MinDateSystem + ") OR (nick = '" + shop.Nick + "' AND typ = 'self' AND reviewdate IS NULL AND DATEDIFF(d, senddate, GETDATE()) = " + shop.MinDateSelf + ")";
             Console.Write(sql + "\r\n");
             DataTable dt = utils.ExecuteDataTable(sql);
 
             return FormatDataList(dt);
         }
 
+        /// <summary>
+        /// 获取指定卖家的长期未确认的订单
+        /// </summary>
+        /// <param name="shop"></param>
+        /// <returns></returns>
+        public List<Trade> GetUnconfirmTradeTest(ShopInfo shop)
+        {
+            string sql = "SELECT * FROM TCS_Trade WHERE (nick = '" + shop.Nick + "' AND typ = 'system' AND reviewdate IS NULL AND DATEDIFF(d, shippingdate, GETDATE()) >= " + shop.MinDateSystem + " AND DATEDIFF(d, shippingdate, GETDATE()) <= " + (int.Parse(shop.MinDateSystem) + 4).ToString() + ") OR (nick = '" + shop.Nick + "' AND typ = 'self' AND reviewdate IS NULL AND DATEDIFF(d, senddate, GETDATE()) >= " + shop.MinDateSelf + " AND DATEDIFF(d, senddate, GETDATE()) <= " + (int.Parse(shop.MinDateSelf) + 4).ToString() + ")";
+            Console.Write(sql + "\r\n");
+            DataTable dt = utils.ExecuteDataTable(sql);
+
+            return FormatDataList(dt);
+        }
+
+        /// <summary>
+        /// 获取指定卖家的全部订单
+        /// </summary>
+        /// <param name="shop"></param>
+        /// <returns></returns>
+        public List<Trade> GetTradeAllByNick(ShopInfo shop)
+        {
+            string sql = "SELECT * FROM TCS_Trade WHERE nick = '" + shop.Nick + "'";
+            Console.Write(sql + "\r\n");
+            DataTable dt = utils.ExecuteDataTable(sql);
+
+            return FormatDataList(dt);
+        }
+
+
+        /// <summary>
+        /// 判断今天该短信是否发过
+        /// </summary>
+        /// <param name="trade"></param>
+        /// <param name="typ"></param>
+        /// <returns></returns>
+        public bool IsTaobaoCompany(Trade trade)
+        {
+            string sql = "SELECT id FROM TCS_TaobaoShippingCompany WHERE name = '" + trade.ShippingCompanyName + "'";
+            Console.Write(sql + "\r\n");
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count == 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         /// <summary>
         /// 生成新格式的店铺基本设置数据
@@ -145,7 +246,7 @@ namespace TeteTopApi.DataContract
             {
                 Trade info = new Trade();
 
-                info.Mobile = dt.Rows[i]["receiver_mobile"].ToString();
+                info.Mobile = dt.Rows[i]["mobile"].ToString();
                 info.BuyNick = dt.Rows[i]["buynick"].ToString();
                 info.Tid = dt.Rows[i]["orderid"].ToString();
                 info.Nick = dt.Rows[i]["nick"].ToString();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TeteTopApi.DataContract;
 
 namespace TeteTopApi
 {
@@ -26,7 +27,12 @@ namespace TeteTopApi
         {
             string result = WebPost.CommonPost(Url, AppKey, Secret, method, session, param);
 
-            //Console.Write(result + "\r\n");
+            if (result.IndexOf("Missing session") != -1)
+            { 
+                //错误记录
+                LogData dbLog = new LogData();
+                dbLog.InsertErrorLog("system", "MissingSession", "", result.ToString(), "");
+            }
 
             return result;
         }
@@ -34,6 +40,13 @@ namespace TeteTopApi
         public string CommonTopApiXml(string method, IDictionary<string, string> param, string session)
         {
             string result = WebPost.CommonPostXml(Url, AppKey, Secret, method, session, param);
+
+            if (result.IndexOf("Missing session") != -1)
+            {
+                //错误记录
+                LogData dbLog = new LogData();
+                dbLog.InsertErrorLog("system", "MissingSession", "", result.ToString(), "");
+            }
 
             return result;
         }
@@ -44,10 +57,23 @@ namespace TeteTopApi
         public string ConnectServer()
         {
             WebPost post = new WebPost();
-            
-                IDictionary<string, string> param = new Dictionary<string, string>();
-                string result = post.Post(Url, AppKey, Secret, "", Session, param);
-            
+
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            string result = post.Post(Url, AppKey, Secret, "", Session, param);
+
+            return "";
+        }
+
+        /// <summary>
+        /// 连接通知服务器
+        /// </summary>
+        public string ConnectServerFree()
+        {
+            WebPost post = new WebPost();
+
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            string result = post.PostFree(Url, AppKey, Secret, "", Session, param);
+
             return "";
         }
 
