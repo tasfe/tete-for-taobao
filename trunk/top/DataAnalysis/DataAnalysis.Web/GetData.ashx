@@ -6,16 +6,16 @@ using System.Web;
 public class GetData : IHttpHandler {
     
     public void ProcessRequest (HttpContext context) {
-        context.Response.ContentType = "image/jpeg";
+        context.Response.ContentType = "image/gif";
         context.Response.Clear();
         context.Response.BufferOutput = true;
         
         //插入信息
         TopVisitInfo info = CreateVisitInfo(context);
         InsertInfo(info);
-        
-        System.Drawing.Image img = System.Drawing.Image.FromFile(context.Server.MapPath("~/Images/2.jpg"));
-        img.Save(context.Response.OutputStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+        System.Drawing.Image img = System.Drawing.Image.FromFile(context.Server.MapPath("~/Images/2.gif"));
+        img.Save(context.Response.OutputStream, System.Drawing.Imaging.ImageFormat.Gif);
         context.Response.End();
         //context.Response.ContentType = "text/plain";
         //context.Response.Write("Hello World");
