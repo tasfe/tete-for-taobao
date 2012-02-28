@@ -46,4 +46,9 @@ public class TopVisitInfo
     /// 来访者操作系统语言
     /// </summary>
     public string VisitOSLanguage { set; get; }
+
+    /// <summary>
+    /// 订购店铺ID
+    /// </summary>
+    public string VisitShopId { set; get; }
 }
