@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using System.Runtime.InteropServices;
 
 /// <summary>
 /// 获取来访客户端信息
@@ -92,5 +93,55 @@ public class DataHelper
         }
 
         return osVersion;
+    }
+
+    [DllImport("Iphlpapi.dll")]
+    private static extern int SendARP(Int32 dest, Int32 host, ref Int64 mac, ref Int32 length);
+    [DllImport("Ws2_32.dll")]
+    private static extern Int32 inet_addr(string ip);
+    public string GetClientMAC()
+    {
+        try
+        {
+            string userip = GetIPAddress();
+            Int32 ldest = inet_addr(userip); //目的地的ip 
+            Int32 lhost = inet_addr(""); //本地服务器的ip 
+            Int64 macinfo = new Int64();
+            Int32 len = 6;
+            int res = SendARP(ldest, 0, ref macinfo, ref len);
+            string mac_src = macinfo.ToString("X");
+            if (mac_src == "0")
+            {
+                if (userip == "127.0.0.1")
+                    return "Localhost!";
+                else
+                    return "null";
+            }
+            while (mac_src.Length < 12)
+            {
+                mac_src = mac_src.Insert(0, "0");
+            }
+            string mac_dest = "";
+            for (int i = 0; i < 11; i++)
+            {
+                if (0 == (i % 2))
+                {
+                    if (i == 10)
+                    {
+                        mac_dest = mac_dest.Insert(0, mac_src.Substring(i, 2));
+                    }
+                    else
+                    {
+                        mac_dest = "-" + mac_dest.Insert(0, mac_src.Substring(i, 2));
+                    }
+                }
+            }
+            return mac_dest;
+        }
+        catch (Exception err)
+        {
+            return err.Message;
+        }
+
     }
 }
