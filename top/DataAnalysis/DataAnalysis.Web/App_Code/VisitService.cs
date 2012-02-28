@@ -32,7 +32,7 @@ public class VisitService
             info.Hour = int.Parse(dr["PVHour"].ToString());
             list.Add(info);
         }
-        list.OrderBy(o => o.PVCount);
+        list.OrderBy(o => o.Hour);
         return list;
     }
 
@@ -47,7 +47,7 @@ public class VisitService
             info.Hour = int.Parse(dr["IPHour"].ToString());
             list.Add(info);
         }
-        list.OrderBy(o => o.PVCount);
+        list.OrderBy(o => o.Hour);
         return list;
     }
 
