@@ -13,7 +13,7 @@ public class VisitService
     const string SQL_HOUR_PVTOTAL = "SELECT VisitShopId,Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM [TopVisitInfo] GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime),VisitShopId HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),GetDate(),5) ORDER BY PVHour";// AND VisitShopId IS NOT NULL";
 
     //统计小时IP流量
-    const string SQL_HOUR_IPTOTAL = "SELECT VisitShopId,VisitIP,Count(*) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM [TopVisitInfo] GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime),VisitShopId,VisitIP HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),GetDate(),5) ORDER BY IPHour";
+    const string SQL_HOUR_IPTOTAL = "SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM[TopVisitInfo]GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),GetDate(),5) ORDER BY IPHour";
 
     public void InsertVisitInfo(TopVisitInfo info)
     {
