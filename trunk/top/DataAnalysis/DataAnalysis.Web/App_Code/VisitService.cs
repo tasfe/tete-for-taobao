@@ -7,7 +7,7 @@ using System.Data;
 /// </summary>
 public class VisitService
 {
-    const string SQL_INSERT = "INSERT TopVisitInfo(VisitID,VisitIP,VisitUrl,VisitTime,VisitUserAgent,VisitBrower,VisitOSLanguage) VALUES(@VisitID,@VisitIP,@VisitUrl,@VisitTime,@VisitUserAgent,@VisitBrower,@VisitOSLanguage)";
+    const string SQL_INSERT = "INSERT TopVisitInfo(VisitID,VisitIP,VisitUrl,VisitTime,VisitUserAgent,VisitBrower,VisitOSLanguage,VisitShopId) VALUES(@VisitID,@VisitIP,@VisitUrl,@VisitTime,@VisitUserAgent,@VisitBrower,@VisitOSLanguage,@VisitShopId)";
 
     //统计小时PV流量
     const string SQL_HOUR_PVTOTAL = "SELECT VisitShopId,Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM [TopVisitInfo] GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime),VisitShopId HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),GetDate(),5) ORDER BY PVHour";// AND VisitShopId IS NOT NULL";
@@ -60,7 +60,8 @@ public class VisitService
             new  SqlParameter("@VisitTime",info.VisitTime),
             new SqlParameter("@VisitUserAgent", info.VisitUserAgent),
             new SqlParameter("@VisitBrower", info.VisitBrower),
-            new SqlParameter("@VisitOSLanguage",info.VisitOSLanguage)
+            new SqlParameter("@VisitOSLanguage",info.VisitOSLanguage),
+            new SqlParameter("@VisitShopId",info.VisitShopId)
         };
 
         return param;
