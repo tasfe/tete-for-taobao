@@ -1,6 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 /// <summary>
 /// Summary description for VisitService
@@ -10,10 +11,10 @@ public class VisitService
     const string SQL_INSERT = "INSERT TopVisitInfo(VisitID,VisitIP,VisitUrl,VisitTime,VisitUserAgent,VisitBrower,VisitOSLanguage,VisitShopId) VALUES(@VisitID,@VisitIP,@VisitUrl,@VisitTime,@VisitUserAgent,@VisitBrower,@VisitOSLanguage,@VisitShopId)";
 
     //统计小时PV流量
-    const string SQL_HOUR_PVTOTAL = "SELECT VisitShopId,Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM [TopVisitInfo] GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime),VisitShopId HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),GetDate(),5) ORDER BY PVHour";// AND VisitShopId IS NOT NULL";
+    const string SQL_HOUR_PVTOTAL = "SELECT VisitShopId,Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM [TopVisitInfo] GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime),VisitShopId HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),GetDate(),5)  ";//ORDER BY PVHour";// AND VisitShopId IS NOT NULL";
 
     //统计小时IP流量
-    const string SQL_HOUR_IPTOTAL = "SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM[TopVisitInfo]GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),GetDate(),5) ORDER BY IPHour";
+    const string SQL_HOUR_IPTOTAL = "SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM[TopVisitInfo]GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),GetDate(),5) ";//ORDER BY IPHour";
 
     public void InsertVisitInfo(TopVisitInfo info)
     {
@@ -31,7 +32,7 @@ public class VisitService
             info.Hour = int.Parse(dr["PVHour"].ToString());
             list.Add(info);
         }
-
+        list.OrderBy(o => o.PVCount);
         return list;
     }
 
@@ -46,7 +47,7 @@ public class VisitService
             info.Hour = int.Parse(dr["IPHour"].ToString());
             list.Add(info);
         }
-
+        list.OrderBy(o => o.PVCount);
         return list;
     }
 
