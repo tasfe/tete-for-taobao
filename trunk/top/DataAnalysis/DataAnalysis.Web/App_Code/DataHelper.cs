@@ -105,7 +105,7 @@ public class DataHelper
         {
             string userip = GetIPAddress();
             Int32 ldest = inet_addr(userip); //目的地的ip 
-            Int32 lhost = inet_addr(""); //本地服务器的ip 
+            Int32 lhost = inet_addr("223.4.6.115"); //本地服务器的ip 
             Int64 macinfo = new Int64();
             Int32 len = 6;
             int res = SendARP(ldest, 0, ref macinfo, ref len);
@@ -140,6 +140,7 @@ public class DataHelper
         }
         catch (Exception err)
         {
+            LogInfo.Add("获取mac", err.Message);
             return err.Message;
         }
 
