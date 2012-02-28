@@ -13,9 +13,9 @@ using System.Xml.Linq;
 /// <summary>
 /// Summary description for HourPVInfo
 /// </summary>
-public class HourPVInfo
+public class HourTotalInfo
 {
-	public HourPVInfo()
+	public HourTotalInfo()
 	{
 		//
 		// TODO: Add constructor logic here
