@@ -22,15 +22,15 @@ public partial class PageVisitTotal : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!Page.IsPostBack)
-        {
+        //if (!Page.IsPostBack)
+        //{
             DateTime now = DateTime.Now;
             DateTime end = now.AddDays(1);
             DateTime start = new DateTime(now.Year, now.Month, now.Day);
             DateTime endtime = new DateTime(end.Year, end.Month, end.Day);
 
             Bind(start, endtime);
-        }
+        //}
     }
 
     private void Bind(DateTime start, DateTime end)
