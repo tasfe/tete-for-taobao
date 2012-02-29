@@ -118,8 +118,8 @@ public class VisitService
     public IList<PageVisitInfoTotal> GetAllVisitPageInfoList(string nickNo, DateTime start, DateTime end, int pcount, int recordCount)
     {
         string sql = SQL_SELECT_ALL_BYDATE.Replace("@tableName", GetRealTable(nickNo));
-        int srecode = recordCount * (pcount - 1) + 1;
-        int erecode = recordCount * pcount;
+        int srecode = 0;//recordCount * (pcount - 1) + 1;
+        int erecode = 2000;//recordCount * pcount;
         SqlParameter[] param = new[]
             {
                 new SqlParameter("@sdate",start),
@@ -139,7 +139,7 @@ public class VisitService
             {
                 info = list.Where(o => o.VisitURL == url).ToList()[0];
                 info.VisitCount += count;
-                info.IPCount += 1;
+                info.IPCount++;
             }
             else
             {
