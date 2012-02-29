@@ -48,7 +48,7 @@ public class TopVisitInfo
     public string VisitOSLanguage { set; get; }
 
     /// <summary>
-    /// 订购店铺ID
+    /// 订购店铺ID(实际使用的是nick)
     /// </summary>
     public string VisitShopId { set; get; }
 }
