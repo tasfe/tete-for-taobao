@@ -9,15 +9,15 @@
     <form id="form1" runat="server">
     <div>
      
-        <table width="720" cellpadding="0" cellspacing="0" align="center">
+        <table width="720" cellpadding="0" cellspacing="0">
             <tr>
-                <td width="480">
+                <td width="480" align="center">
                     <b>受访页面</b>
                 </td>
-                <td width="120">
+                <td width="120" align="center">
                     <b>浏览次数</b>
                 </td>
-                <td width="120">
+                <td width="120" align="center">
                     <b>人均浏览次数 </b>
                 </td>
             </tr>
@@ -27,10 +27,10 @@
                         <td height="35">
                             <%#Eval("VisitURL")%>
                         </td>
-                        <td>
+                        <td align="center">
                             <%#Eval("VisitCount")%>
                         </td>
-                        <td>
+                        <td align="center">
                             <%#Eval("VisitAvg")%>
                         </td>
                     </tr>
