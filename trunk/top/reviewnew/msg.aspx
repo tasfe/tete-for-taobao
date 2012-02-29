@@ -37,7 +37,7 @@
 
         <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
             短信内容设置中的[shopname]、[buynick]、[gift]在短信发送时会被自动替换成您的 店铺名称、购买者昵称和赠送礼品内容，请不要随意删除..<br />
-            请大家尽量精简自己的短信内容，一条短信的内容不要超过70个字，否则将会作为多条短信发送~ ：）
+            请大家尽量精简自己的短信内容，一条短信的内容不要超过66个字，否则您的短信内容将会被截取成66个字~ ：）
         </div>
 
 
