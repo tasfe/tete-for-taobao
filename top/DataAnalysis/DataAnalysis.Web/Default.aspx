@@ -61,7 +61,7 @@
                 });
 
 		</script>
-
+    <img src="GetData.ashx" />
     <script type="text/javascript" src="js/highcharts.js"></script>
 
     <script type="text/javascript" src="js/modules/exporting.js"></script>
