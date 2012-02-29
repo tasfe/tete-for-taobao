@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System;
 
 /// <summary>
 /// Summary description for VisitService
@@ -48,6 +49,11 @@ public class VisitService
     //统计小时IP流量(指定表/订购用户)
     const string SQL_HOUR_IPTOTAL_TABLE = "SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM @tableName GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),GetDate(),5) ";//ORDER BY IPHour";
 
+    //查找流水
+    const string SQL_SELECT_ALL_BYDATE = "SELECT * FROM(SELECT  VisitUrl,VisitIP, COUNT(*) AS VCount,ROW_NUMBER() OVER(ORDER BY VisitUrl ASC, VisitIP ASC) as RowNum FROM (SELECT *  FROM @tableName WHERE  VisitTime BETWEEN @sdate AND @edate AND VisitUrl<>'') a GROUP BY VisitUrl,visitIP )  b  WHERE RowNum BETWEEN @srecode AND @erecode";
+
+    const string SQL_SELECT_IPTOTAL_TABLE_BYDATE="";
+
     /// <summary>
     /// 用户订购获取代码时生成一张表
     /// </summary>
@@ -68,7 +74,7 @@ public class VisitService
     public void InsertVisitInfo(TopVisitInfo info, string nickNo)
     {
         string sql = SQL_INSERT_TABLE.Replace("@tableName", GetRealTable(nickNo));
-        DBHelper.ExecuteNonQuery(SQL_INSERT,CreateParameter(info));
+        DBHelper.ExecuteNonQuery(sql, CreateParameter(info));
     }
 
     //一个订购用户一张表
@@ -106,6 +112,46 @@ public class VisitService
             list.Add(info);
         }
         list.OrderBy(o => o.Hour);
+        return list;
+    }
+
+    public IList<PageVisitInfoTotal> GetAllVisitPageInfoList(string nickNo, DateTime start, DateTime end, int pcount, int recordCount)
+    {
+        string sql = SQL_SELECT_ALL_BYDATE.Replace("@tableName", GetRealTable(nickNo));
+        int srecode = recordCount * (pcount - 1) + 1;
+        int erecode = recordCount * pcount;
+        SqlParameter[] param = new[]
+            {
+                new SqlParameter("@sdate",start),
+                new SqlParameter("@edate",end),
+                new SqlParameter("@srecode",srecode),
+                new SqlParameter("@erecode",erecode)
+            };
+        DataTable dt = DBHelper.ExecuteDataTable(sql, param);
+        IList<PageVisitInfoTotal> list = new List<PageVisitInfoTotal>();
+        foreach (DataRow dr in dt.Rows)
+        {
+            string url = dr["VisitUrl"].ToString();
+            int count = int.Parse(dr["VCount"].ToString());
+
+            PageVisitInfoTotal info = null;
+            if (list.Where(o => o.VisitURL == url).ToList().Count > 0)
+            {
+                info = list.Where(o => o.VisitURL == info.VisitURL).ToList()[0];
+                info.VisitCount += count;
+                info.IPCount += 1;
+            }
+            else
+            {
+                info = new PageVisitInfoTotal();
+                info.VisitURL = dr["VisitUrl"].ToString();
+                info.VisitCount = count;
+                info.IPCount = 1;
+            }
+            list.Add(info);
+        }
+        list.OrderByDescending(o => o.VisitCount);
+
         return list;
     }
 
