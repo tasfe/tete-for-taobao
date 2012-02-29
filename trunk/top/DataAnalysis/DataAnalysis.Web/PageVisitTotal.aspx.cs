@@ -22,15 +22,15 @@ public partial class PageVisitTotal : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if (!Page.IsPostBack)
-        //{
+        if (!Page.IsPostBack)
+        {
             DateTime now = DateTime.Now;
             DateTime end = now.AddDays(1);
             DateTime start = new DateTime(now.Year, now.Month, now.Day);
             DateTime endtime = new DateTime(end.Year, end.Month, end.Day);
 
             Bind(start, endtime);
-        //}
+        }
     }
 
     private void Bind(DateTime start, DateTime end)
@@ -79,5 +79,24 @@ public partial class PageVisitTotal : System.Web.UI.Page
 
         Rpt_PageVisit.DataSource = pds;
         Rpt_PageVisit.DataBind();
+    }
+
+    protected void Btn_Select_Click(object sender, EventArgs e)
+    {
+        DateTime now = DateTime.Now;
+        DateTime end = now.AddDays(1);
+        DateTime start = new DateTime(now.Year, now.Month, now.Day);
+        DateTime endtime = new DateTime(end.Year, end.Month, end.Day);
+        try
+        {
+            start = DateTime.Parse(TB_Start.Text + ":0:0");
+            endtime = DateTime.Parse(TB_End.Text + ":0:0");
+        }
+        catch
+        {
+            TB_Start.Text = start.ToString("yyyy-MM-dd HH");
+            TB_End.Text = endtime.ToString("yyyy-MM-dd HH");
+        }
+        Bind(start, endtime);
     }
 }
