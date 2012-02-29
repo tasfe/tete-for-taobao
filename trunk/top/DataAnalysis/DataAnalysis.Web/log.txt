@@ -8,3 +8,52 @@ Log Entry : 2012/2/27 13:17:44 INSERT TopVisitInfo(VisitID,VisitIP,VisitUrl,Visi
 
 Log Entry : 2012/2/27 13:41:06 INSERT TopVisitInfo(VisitID,VisitIP,VisitUrl,VisitTime,VisitUserAgent,VisitBrower,VisitOSLanguage) VALUES(@VisitID,@VisitIP,@VisitUrl,@VisitTime,@VisitUserAgent,@VisitBrower,@VisitOSLanguage) 必须声明标量变量 "@VisitID"。
 -------------------------------
+
+Log Entry : 2012/2/28 15:58:21 SELECT VisitShopId,VisitIP,Count(*) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM [TopVisitInfo] GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime),VisitShopId,VisitIP HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),GetDate(),5) ORDER BY PVHour 列名 'PVHour' 无效。
+-------------------------------
+
+Log Entry : 2012/2/29 10:34:06 CREATE TABLE TopVisitInfo_1234234324(
+	[VisitID] [uniqueidentifier] NOT NULL,
+	[VisitIP] [varchar](50) NULL,
+	[VisitUrl] [varchar](250) NULL,
+	[VisitTime] [datetime] NULL,
+	[VisitUserAgent] [varchar](50) NULL,
+	[VisitBrower] [varchar](50) NULL,
+	[VisitOSLanguage] [varchar](50) NULL,
+	[VisitShopId] [varchar](50) NULL,
+ CONSTRAINT [PK_TopVisitInfo] PRIMARY KEY CLUSTERED 
+(
+	[VisitID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] 数据库中已存在名为 'PK_TopVisitInfo' 的对象。
+无法创建约束。请参阅前面的错误消息。
+-------------------------------
+
+Log Entry : 2012/2/29 10:51:13 CREATE TABLE [dbo].[TopVisitInfo](
+	[VisitID] [uniqueidentifier] NOT NULL,
+	[VisitIP] [varchar](50) NULL,
+	[VisitUrl] [varchar](250) NULL,
+	[VisitTime] [datetime] NULL,
+	[VisitUserAgent] [varchar](50) NULL,
+	[VisitBrower] [varchar](50) NULL,
+	[VisitOSLanguage] [varchar](50) NULL,
+	[VisitShopId] [varchar](50) NULL,
+ CONSTRAINT PK_TopVisitInfo_1234234324 PRIMARY KEY CLUSTERED 
+(
+	[VisitID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+ 数据库中已存在名为 'TopVisitInfo' 的对象。
+-------------------------------
+
+Log Entry : 2012/2/29 12:49:57 INSERT TopVisitInfo_00000000000000000000000000000000(VisitID,VisitIP,VisitUrl,VisitTime,VisitUserAgent,VisitBrower,VisitOSLanguage,VisitShopId) VALUES(@VisitID,@VisitIP,@VisitUrl,@VisitTime,@VisitUserAgent,@VisitBrower,@VisitOSLanguage,@VisitShopId) 参数化查询 '(@VisitID uniqueidentifier,@VisitIP nvarchar(9),@VisitUrl nvarch' 需要参数 '@VisitShopId'，但未提供该参数。
+-------------------------------
+
+Log Entry : 2012/2/29 16:54:46 SELECT * FROM(SELECT  VisitUrl,VisitIP, COUNT(*) AS VCount,ROW_NUMBER() OVER(ORDER BY VisitUrl ASC, VisitIP ASC) as RowNum FROM (SELECT *  FROM TopVisitInfo_246bcca56c050c665b67708d33127e46 WHERE  VisitTime BETWEEN @sdate AND @edate AND VisitUrl<>'') a GROUP BY VisitUrl,visitIP )  b  WHERE RowNum BETWEEN @srecode AND @erecode 必须声明标量变量 "@sdate"。
+-------------------------------
+
+Log Entry : 2012/2/29 16:56:07 SELECT * FROM(SELECT  VisitUrl,VisitIP, COUNT(*) AS VCount,ROW_NUMBER() OVER(ORDER BY VisitUrl ASC, VisitIP ASC) as RowNum FROM (SELECT *  FROM TopVisitInfo_246bcca56c050c665b67708d33127e46 WHERE  VisitTime BETWEEN @sdate AND @edate AND VisitUrl<>'') a GROUP BY VisitUrl,visitIP )  b  WHERE RowNum BETWEEN @srecode AND @erecode 必须声明标量变量 "@sdate"。
+-------------------------------
+
+Log Entry : 2012/2/29 16:59:40 SELECT * FROM(SELECT  VisitUrl,VisitIP, COUNT(*) AS VCount,ROW_NUMBER() OVER(ORDER BY VisitUrl ASC, VisitIP ASC) as RowNum FROM (SELECT *  FROM TopVisitInfo_246bcca56c050c665b67708d33127e46 WHERE  VisitTime BETWEEN @sdate AND @edate AND VisitUrl<>'') a GROUP BY VisitUrl,visitIP )  b  WHERE RowNum BETWEEN @srecode AND @erecode 必须声明标量变量 "@sdate"。
+-------------------------------

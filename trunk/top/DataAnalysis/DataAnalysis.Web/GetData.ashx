@@ -7,12 +7,12 @@ public class GetData : IHttpHandler {
 
     public void ProcessRequest(HttpContext context)
     {
+        
         //插入信息
         TopVisitInfo info = CreateVisitInfo(context);
         InsertInfo(info);
-
-
-        context.Response.Redirect(info.VisitUrl + "&isok=1");
+        
+        //context.Response.Redirect("http://groupbuy.7fshop.com/top/groupbuy/groupbuy_imag.aspx?id=" + context.Request.QueryString["id"].ToString() + "&typ=" + context.Request.QueryString["typ"].ToString() + "&isok=1");
         
         //context.Response.ContentType = "image/gif";
         //context.Response.Clear();
@@ -73,12 +73,18 @@ public class GetData : IHttpHandler {
     private static void InsertInfo(TopVisitInfo info)
     {
         VisitService visitDal = new VisitService();
-        visitDal.InsertVisitInfo(info);
+
+        //测试用
+        string nickNo = DataHelper.Encrypt(info.VisitShopId);
+        visitDal.CreateTable(nickNo);
+
+        visitDal.InsertVisitInfo(info, nickNo);
     }
 
     private static TopVisitInfo CreateVisitInfo(HttpContext context)
     {
         DataHelper dataHelper = new DataHelper(context);
+        
         TopVisitInfo info = new TopVisitInfo();
         info.VisitID = Guid.NewGuid();
         info.VisitIP = dataHelper.GetIPAddress();
@@ -87,6 +93,8 @@ public class GetData : IHttpHandler {
         info.VisitUserAgent = dataHelper.GetUserAgent();
         info.VisitBrower = dataHelper.GetBrower();
         info.VisitOSLanguage = dataHelper.GetOSLanguage();
+        info.VisitShopId = "234543534";// context.Request.QueryString["nick"];
+        
         return info;
     }
     

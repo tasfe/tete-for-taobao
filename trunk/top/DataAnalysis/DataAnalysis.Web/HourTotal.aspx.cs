@@ -20,11 +20,12 @@ public partial class HourPVTotal : System.Web.UI.Page
         {
 
             VisitService visitDal = new VisitService();
-            IList<HourTotalInfo> list = visitDal.GetHourPVTotal();
-            IList<HourTotalInfo> ipList = visitDal.GetHourIPTotal();
+            IList<HourTotalInfo> list = visitDal.GetHourPVTotal("246bcca56c050c665b67708d33127e46");
+            IList<HourTotalInfo> ipList = visitDal.GetHourIPTotal("246bcca56c050c665b67708d33127e46");
              
             SeriseText ="[{name:'PV量', data:[";
             string iptotal = ",{name:'IP量',data:[";
+            string avg = ",{name:'人均浏览次数',data:[";
             DateText = "[";
             for (int h = 0; h <= DateTime.Now.Hour; h++)
             {
@@ -42,11 +43,18 @@ public partial class HourPVTotal : System.Web.UI.Page
                 else
                     SeriseText += thisInfo[0].PVCount + ",";
 
+                if (thisIpInfo.Count == 0)
+                    avg += "0,";
+                else
+                    avg +=((double)thisInfo[0].PVCount / thisIpInfo[0].PVCount).ToString(".00") + ",";
+
             }
             SeriseText = SeriseText.Substring(0, SeriseText.Length - 1);
             SeriseText += "]}";
             iptotal = iptotal.Substring(0, iptotal.Length - 1);
-            SeriseText += iptotal + "]}]";
+            iptotal += "]}";
+            avg = iptotal + avg.Substring(0, avg.Length - 1);
+            SeriseText += avg + "]}]";
 
             DateText = DateText.Substring(0, DateText.Length - 1);
             DateText += "]";

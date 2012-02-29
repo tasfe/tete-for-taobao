@@ -42,7 +42,7 @@
                     },
                     yAxis: {
                         title: {
-                            text: 'PV量'
+                            text: '24小时IP/PV量'
                         },
                         plotLines: [{
                             value: 0,
@@ -53,7 +53,7 @@
                         tooltip: {
                             formatter: function() {
                                 return '<b>' + this.series.name + '</b><br/>' +
-					this.x + ': ' + this.y;
+					this.x + '： ' + this.y;
                             }
                         },
                         legend: {
