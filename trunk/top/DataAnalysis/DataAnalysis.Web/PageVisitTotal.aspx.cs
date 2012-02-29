@@ -11,15 +11,18 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Data.SqlClient;
+using System.Text;
+using System.Collections.Generic;
 
 public partial class PageVisitTotal : System.Web.UI.Page
 {
 
     readonly VisitService visitDal = new VisitService();
+    PagedDataSource pds = new PagedDataSource();
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!this.Page.IsPostBack)
+        if (!Page.IsPostBack)
         {
             DateTime now = DateTime.Now;
             DateTime end = now.AddDays(1);
@@ -30,75 +33,51 @@ public partial class PageVisitTotal : System.Web.UI.Page
         }
     }
 
-    private void Bind(DateTime start,DateTime end)
+    private void Bind(DateTime start, DateTime end)
     {
+        int TotalCount = 0;//总记录数
+        int TotalPage = 1; //总页数
+
         int page = 1;
         try
         {
-            page = int.Parse(Request.QueryString["page"]);
+            page = int.Parse(Request.QueryString["Page"]);
         }
         catch { }
-        Rpt_PageVisit.DataSource = visitDal.GetAllVisitPageInfoList("246bcca56c050c665b67708d33127e46", start, end, page, 20);
-        Rpt_PageVisit.DataBind();
-        lbPage.Text = InitPageStr(10, "PageVisitTotal.aspx",page);
-    }
 
-    private string InitPageStr(int total, string url,int page)
-    {
-        //分页数据初始化
-        string str = string.Empty;
-        int pageCount = 20;
-        int pageSize = 0;
-        int pageNow = 1;
-        pageNow = page;
-        //取总分页数
-        if (total % pageCount == 0)
-        {
-            pageSize = total / pageCount;
-        }
+        IList<PageVisitInfoTotal> list = visitDal.GetAllVisitPageInfoList("246bcca56c050c665b67708d33127e46", start, end, page, 20);
+        TotalCount = list.Count;
+        pds.DataSource = list;
+        pds.AllowPaging = true;
+        pds.PageSize = 20;
+        int CurPage;
+        if (Request.QueryString["Page"] != null)
+            CurPage = Convert.ToInt32(Request.QueryString["Page"]);
+        else
+            CurPage = 1;
+
+        if (TotalCount == 0)
+            TotalPage = 1;
         else
         {
-            pageSize = total / pageCount + 1;
-        }
-
-        //如果总页面大于20，则最大页面差不超过20
-        int start = 1;
-        int end = 20;
-
-        if (pageSize < end)
-        {
-            end = pageSize;
-        }
-        else
-        {
-            if (pageNow > 15)
-            {
-                start = pageNow - 10;
-
-                if (pageNow < (total - 10))
-                {
-                    end = pageNow + 10;
-                }
-                else
-                {
-                    end = total;
-                }
-            }
-        }
-
-        for (int i = start; i <= end; i++)
-        {
-            if (i.ToString() == pageNow.ToString())
-            {
-                str += i.ToString() + " ";
-            }
+            if (TotalCount % pds.PageSize == 0)
+                TotalPage = TotalCount / pds.PageSize;
             else
-            {
-                str += "<a href='" + url + "?page=" + i.ToString() + "'>[" + i.ToString() + "]</a> ";
-            }
+                TotalPage = TotalCount / pds.PageSize + 1;
         }
 
-        return str;
-    }
+        pds.CurrentPageIndex = CurPage - 1;
+        lblCurrentPage.Text = "共" + TotalCount.ToString() + "条记录 当前页：" + CurPage.ToString() + "/" + TotalPage;
 
+        lnkFrist.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=1";
+        if (!pds.IsFirstPage)
+            lnkPrev.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(CurPage - 1);
+
+        if (!pds.IsLastPage)
+            lnkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(CurPage + 1);
+        lnkEnd.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + TotalPage;
+
+        Rpt_PageVisit.DataSource = pds;
+        Rpt_PageVisit.DataBind();
+    }
 }
