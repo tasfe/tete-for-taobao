@@ -137,7 +137,7 @@ public class VisitService
             PageVisitInfoTotal info = null;
             if (list.Where(o => o.VisitURL == url).ToList().Count > 0)
             {
-                info = list.Where(o => o.VisitURL == info.VisitURL).ToList()[0];
+                info = list.Where(o => o.VisitURL == url).ToList()[0];
                 info.VisitCount += count;
                 info.IPCount += 1;
             }
