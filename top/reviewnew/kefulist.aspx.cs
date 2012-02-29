@@ -14,6 +14,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Xml;
+using System.Web.Security;
 
 public partial class top_review_kefulist : System.Web.UI.Page
 {
@@ -607,29 +608,43 @@ public partial class top_review_kefulist : System.Web.UI.Page
         return giftcontent;
     }
 
-    /// <summary>
-    /// 通过借口发送短信
-    /// </summary>
-    /// <param name="phone"></param>
-    /// <param name="content"></param>
-    private string SendMessage(string phone, string msg)
+    public static string UrlEncode(string str)
     {
-        string uid = "terrylv";
-        string pass = "123456";
-
-        msg = HttpUtility.UrlEncode(msg);
-
-        string param = "username=" + uid + "&password=" + pass + "&method=sendsms&mobile=" + phone + "&msg=" + msg;
-        byte[] bs = Encoding.ASCII.GetBytes(param);
-        HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://sms3.eachwe.com/api.php");
-        req.Method = "POST";
-        req.ContentType = "application/x-www-form-urlencoded";
-        req.ContentLength = bs.Length;
-
-        using (Stream reqStream = req.GetRequestStream())
+        StringBuilder sb = new StringBuilder();
+        byte[] byStr = System.Text.Encoding.Default.GetBytes(str);
+        for (int i = 0; i < byStr.Length; i++)
         {
-            reqStream.Write(bs, 0, bs.Length);
+            sb.Append(@"%" + Convert.ToString(byStr[i], 16));
         }
+
+        return (sb.ToString());
+    }
+
+    public static string MD5(string str)
+    {
+        return FormsAuthentication.HashPasswordForStoringInConfigFile(str, "MD5");
+    }
+
+    public static string Send(string phone, string msg)
+    {
+        string uid = "ZXHD-SDK-0107-XNYFLX";
+        string pass = MD5("WEGXBEPY").ToLower();
+
+        msg = UrlEncode(msg);
+
+        string param = "regcode=" + uid + "&pwd=" + pass + "&phone=" + phone + "&CONTENT=" + msg + "&extnum=11&level=1&schtime=null&reportflag=1&url=&smstype=0&key=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+        byte[] bs = Encoding.ASCII.GetBytes(param);
+
+        HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://sms.pica.com:8082/zqhdServer/sendSMS.jsp" + "?" + param);
+
+        req.Method = "GET";
+        //req.ContentType = "application/x-www-form-urlencoded";
+        //req.ContentLength = bs.Length;
+
+        //using (Stream reqStream = req.GetRequestStream())
+        //{
+        //    reqStream.Write(bs, 0, bs.Length);
+        //}
 
         using (HttpWebResponse myResponse = (HttpWebResponse)req.GetResponse())
         {
@@ -637,24 +652,71 @@ public partial class top_review_kefulist : System.Web.UI.Page
             {
                 string content = reader.ReadToEnd();
 
-                if (content.IndexOf("<error>0</error>") == -1)
+                if (content.IndexOf("<result>0</result>") == -1)
                 {
                     //发送失败
-                    //Response.Write(content);
-                    //Response.End();
-                    return "0";
+                    return content;
                 }
                 else
                 {
                     //发送成功
                     Regex reg = new Regex(@"<sid>([^<]*)</sid>", RegexOptions.IgnoreCase);
                     MatchCollection match = reg.Matches(content);
-                    string number = match[0].Groups[1].ToString();
+                    string number = "888888";// match[0].Groups[1].ToString();
                     return number;
                 }
             }
         }
     }
+
+    ///// <summary>
+    ///// 通过借口发送短信
+    ///// </summary>
+    ///// <param name="phone"></param>
+    ///// <param name="content"></param>
+    //private string SendMessage(string phone, string msg)
+    //{
+    //    string uid = "terrylv";
+    //    string pass = "123456";
+
+    //    msg = HttpUtility.UrlEncode(msg);
+
+    //    string param = "username=" + uid + "&password=" + pass + "&method=sendsms&mobile=" + phone + "&msg=" + msg;
+    //    byte[] bs = Encoding.ASCII.GetBytes(param);
+    //    HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://sms3.eachwe.com/api.php");
+    //    req.Method = "POST";
+    //    req.ContentType = "application/x-www-form-urlencoded";
+    //    req.ContentLength = bs.Length;
+
+    //    using (Stream reqStream = req.GetRequestStream())
+    //    {
+    //        reqStream.Write(bs, 0, bs.Length);
+    //    }
+
+    //    using (HttpWebResponse myResponse = (HttpWebResponse)req.GetResponse())
+    //    {
+    //        using (StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.GetEncoding("GB2312")))
+    //        {
+    //            string content = reader.ReadToEnd();
+
+    //            if (content.IndexOf("<error>0</error>") == -1)
+    //            {
+    //                //发送失败
+    //                //Response.Write(content);
+    //                //Response.End();
+    //                return "0";
+    //            }
+    //            else
+    //            {
+    //                //发送成功
+    //                Regex reg = new Regex(@"<sid>([^<]*)</sid>", RegexOptions.IgnoreCase);
+    //                MatchCollection match = reg.Matches(content);
+    //                string number = match[0].Groups[1].ToString();
+    //                return number;
+    //            }
+    //        }
+    //    }
+    //}
 
     public static string left(string str)
     {

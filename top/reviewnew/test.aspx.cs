@@ -10,31 +10,86 @@ using System.Net;
 using System.Text;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
+using System.Web.Security;
 
 public partial class crm_test : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string appkey = "12159997";
-        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
-        //string session = "610261249120700fcda21f569d424328537a3d82a101d7c204200856"; //yeersuiqingfeng
-        string session = "6100727483a193d09db4ee201c82bfb90cc1b045c4e9bec490504596";   //guihejiuye
-        //buynick = "叶儿随清风";
+        //string top_session = "6102b21db4b39e9aaec471c5d6f3217531c5f8ee2c7bd4b13009583";
+        //IDictionary<string, string> param = new Dictionary<string, string>();
+        //string result = Post("http://gw.api.taobao.com/router/rest", "12159997", "614e40bfdb96e9063031d1a9e56fbed5", "taobao.increment.customer.permit", top_session, param);
 
-        string sql = "SELECT * FROM TCS_Trade WHERE nick = '贵和酒类专营店'";
-        DataTable dt = utils.ExecuteDataTable(sql);
+        //Response.Write("<html>" + result + "</html>");
+        //Response.End();
 
-        for (int i = 0; i < dt.Rows.Count; i++)
-        {
-            IDictionary<string, string> param = new Dictionary<string, string>();
-            param.Add("fields", "promotion_details");
-            param.Add("tid", dt.Rows[i]["orderid"].ToString());
-            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.trade.fullinfo.get", session, param);
-
-            Response.Write(result + "<hr>");
-        }
+        SendMessage("13816190083", "+心怡yy+:亲，您购买的货物已经发出,5分满分好评+优质评价,即可获赠掌上游戏机一个和优惠券喔,是要全部5分才有喔&!");
     }
 
+    public static string UrlEncode(string str)
+    {
+        StringBuilder sb = new StringBuilder();
+        byte[] byStr = System.Text.Encoding.Default.GetBytes(str);
+        for (int i = 0; i < byStr.Length; i++)
+        {
+            sb.Append(@"%" + Convert.ToString(byStr[i], 16));
+        }
+
+        return (sb.ToString());
+    }
+
+
+    private string SendMessage(string phone, string msg)
+    {
+        string uid = "ZXHD-SDK-0107-XNYFLX";
+        string pass = MD5AAA("WEGXBEPY");
+
+        msg = UrlEncode(msg);
+
+        string param = "regcode=" + uid + "&pwd=" + pass + "&phone=" + phone + "&CONTENT=" + msg + "&extnum=11&level=1&schtime=null&reportflag=1&url=&smstype=4&key=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+        //byte[] bs = Encoding.ASCII.GetBytes(param);
+        //param = "regcode=短信帐号&pwd=(明码做md5加密后的字符串作密码))&key=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&CNAME=中文公司名&ENAME=英文公司名&CSNAME=中文简称&ESNAME=英文简称&ENTERPRISETYPEID=01&ADDR=联系地址&LINKTEL=联系电话&LINKMAN=&EMAIL=邮箱地址&FAX=传真&POSTCODE=邮编(6字符长度)&MOBILETEL=联系手机";
+        byte[] bs = Encoding.ASCII.GetBytes(param);
+        HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://sms.pica.com:8082/zqhdServer/sendSMS.jsp" + "?" + param);
+        req.ContentType = "gb2312";
+
+        Response.Write("http://sms.pica.com:8082/zqhdServer/sendSMS.jsp" + "?" + param);
+        Response.End();
+        
+        req.Method = "GET";
+        //req.ContentType = "application/x-www-form-urlencoded";
+        //req.ContentLength = bs.Length;
+
+        //using (Stream reqStream = req.GetRequestStream())
+        //{
+        //    reqStream.Write(bs, 0, bs.Length);
+        //}
+        using (HttpWebResponse myResponse = (HttpWebResponse)req.GetResponse())
+        {
+            using (StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.GetEncoding("GB2312")))
+            {
+                string content = reader.ReadToEnd();
+                Response.Write(content + "!!!!!!!!");
+                Response.End();
+
+                if (content.IndexOf("<error>0</error>") == -1)
+                {
+                    //发送失败
+                    Response.Write(content);
+                    Response.End();
+                    return "0";
+                }
+                else
+                {
+                    //发送成功
+                    Regex reg = new Regex(@"<sid>([^<]*)</sid>", RegexOptions.IgnoreCase);
+                    MatchCollection match = reg.Matches(content);
+                    string number = match[0].Groups[1].ToString();
+                    return number;
+                }
+            }
+        }
+    }
 
 
 
@@ -73,6 +128,12 @@ public partial class crm_test : System.Web.UI.Page
             result.Append(hex);
         }
         return result.ToString();
+    }
+
+
+    public static string MD5AAA(string str)
+    {
+        return FormsAuthentication.HashPasswordForStoringInConfigFile(str, "MD5").ToLower();
     }
     /// <summary> 
     /// 组装普通文本请求参数。 
