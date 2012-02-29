@@ -147,8 +147,9 @@ public class VisitService
                 info.VisitURL = dr["VisitUrl"].ToString();
                 info.VisitCount = count;
                 info.IPCount = 1;
+
+                list.Add(info);
             }
-            list.Add(info);
         }
         list.OrderByDescending(o => o.VisitCount);
 
