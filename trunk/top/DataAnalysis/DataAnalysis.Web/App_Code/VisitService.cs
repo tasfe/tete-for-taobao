@@ -95,8 +95,9 @@ public class VisitService
             info.Hour = int.Parse(dr["PVHour"].ToString());
             list.Add(info);
         }
-        list.OrderBy(o => o.Hour);
-        return list;
+        IList<HourTotalInfo> rlist = list.OrderBy(o => o.Hour).ToList();
+
+        return rlist;
     }
 
     public IList<HourTotalInfo> GetHourIPTotal(string nickNo)
@@ -111,8 +112,9 @@ public class VisitService
             info.Hour = int.Parse(dr["IPHour"].ToString());
             list.Add(info);
         }
-        list.OrderBy(o => o.Hour);
-        return list;
+        IList<HourTotalInfo> rlist = list.OrderBy(o => o.Hour).ToList();
+        
+        return rlist;
     }
 
     public IList<PageVisitInfoTotal> GetAllVisitPageInfoList(string nickNo, DateTime start, DateTime end, int pcount, int recordCount)
@@ -151,9 +153,9 @@ public class VisitService
                 list.Add(info);
             }
         }
-        list.OrderByDescending(o => o.VisitCount);
+         IList<PageVisitInfoTotal> rlist = list.OrderByDescending(o => o.VisitCount).ToList();
 
-        return list;
+         return rlist;
     }
 
     #region 所有订购用户使用一张流水表
