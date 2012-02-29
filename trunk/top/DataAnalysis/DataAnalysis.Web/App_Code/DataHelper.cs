@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Runtime.InteropServices;
+using System.Web.Security;
 
 /// <summary>
 /// 获取来访客户端信息
@@ -95,10 +96,49 @@ public class DataHelper
         return osVersion;
     }
 
+    /// <summary>
+    /// MD5加密
+    /// </summary>
+    public static string Encrypt(string value)
+    {
+        return Encrypt(value, "00000000000000000000000000000000");
+    }
+
+    /// <summary>
+    /// MD5加密
+    /// </summary>
+    public static string Encrypt(string value, string defaultValue)
+    {
+        if (value == null)
+        {
+            return defaultValue;
+        }
+        var md5 = FormsAuthentication.HashPasswordForStoringInConfigFile(value, "MD5");
+        return md5 != null ? md5.ToLower() : defaultValue;
+    }
+
+    ///<summary>
+    /// 生成MD5摘要加密，可以对加密结果进行截取
+    ///</summary>
+    ///<param name="value">源字符串</param>
+    ///<param name="start">截取开始位置</param>
+    ///<param name="count">截取长度</param>
+    public static string EncryptSubstring(string value, int start, int length)
+    {
+        return Encrypt(value).Substring(start, length);
+    }
+
+    #region 获取局域网访问者的MAC
+
     [DllImport("Iphlpapi.dll")]
     private static extern int SendARP(Int32 dest, Int32 host, ref Int64 mac, ref Int32 length);
     [DllImport("Ws2_32.dll")]
     private static extern Int32 inet_addr(string ip);
+
+    /// <summary>
+    /// 应该可获取局域网访问者的MAC(未测)
+    /// </summary>
+    /// <returns></returns>
     public string GetClientMAC()
     {
         try
@@ -143,6 +183,7 @@ public class DataHelper
             LogInfo.Add("获取mac", err.Message);
             return err.Message;
         }
-
     }
+
+    #endregion
 }
