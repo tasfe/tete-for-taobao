@@ -9,15 +9,15 @@
     <form id="form1" runat="server">
     <div>
      
-        <table width="720" cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" width="100%">
             <tr>
-                <td width="480" align="center">
+                <td align="center">
                     <b>受访页面</b>
                 </td>
-                <td width="120" align="center">
+                <td width="220" align="center">
                     <b>浏览次数</b>
                 </td>
-                <td width="120" align="center">
+                <td width="220" align="center">
                     <b>人均浏览次数 </b>
                 </td>
             </tr>
