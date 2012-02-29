@@ -52,12 +52,13 @@ public class DBHelper
     /// </summary>
     /// <param name="dbstring">SQL语句</param> 
     /// <returns>返回结果的DataTable</returns>
-    public static DataTable ExecuteDataTable(string dbstring)
+    public static DataTable ExecuteDataTable(string dbstring, params SqlParameter[] sqlparam)
     {
 
         Database db = DatabaseFactory.CreateDatabase();
         dbstring = ReplaceSQL(dbstring);
         DbCommand dbCommand = db.GetSqlStringCommand(dbstring);
+        dbCommand.Parameters.AddRange(sqlparam);
         DataTable dt = null;
 
 
