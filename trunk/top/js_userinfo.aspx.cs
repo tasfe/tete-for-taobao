@@ -35,6 +35,10 @@ public partial class top_js_userinfo : System.Web.UI.Page
         Response.Write("document.write('您好，" + taobaoNick + "！ <a href=logout.aspx>退出</a>');");
         if (iscrm == "1")
         {
+            Response.Write("document.write('<img src=\"http://haoping.7fshop.com/top/crm/setcookie.aspx?nick=" + oldTaobaoNick + "&session=" + session + "&iscrm=1\" width=0 height=0>');");
+        }
+        else
+        {
             Response.Write("document.write('<img src=\"http://haoping.7fshop.com/top/crm/setcookie.aspx?nick=" + oldTaobaoNick + "&session=" + session + "\" width=0 height=0>');");
         }
     }

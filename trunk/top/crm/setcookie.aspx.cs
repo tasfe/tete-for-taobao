@@ -11,12 +11,15 @@ public partial class top_crm_setcookie : System.Web.UI.Page
     {
         string nick = utils.NewRequest("nick", utils.RequestType.QueryString);
         string top_session = utils.NewRequest("session", utils.RequestType.QueryString);
+        string iscrm = utils.NewRequest("iscrm", utils.RequestType.QueryString);
 
         Common.Cookie cookie = new Common.Cookie();
         cookie.setCookie("top_session", top_session, 999999);
         cookie.setCookie("nick", nick, 999999);
-        cookie.setCookie("iscrm", "1", 999999);
-
+        if (iscrm == "1")
+        {
+            cookie.setCookie("iscrm", "1", 999999);
+        }
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(nick);
 
