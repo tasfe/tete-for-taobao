@@ -17,7 +17,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:ScriptManager ID="ScriptManager1" runat="server" />
+       <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
         
         <script type="text/javascript">
             var chart;
@@ -74,8 +74,8 @@
     <script type="text/javascript" src="js/modules/exporting.js"></script>
     <div style="text-align:center">
      <asp:TextBox 
-                ID="TB_Start" runat="server" onFocus="WdatePicker({minDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd HH'})" class="Wdate" Width="120px"></asp:TextBox>
-                <%--<asp:Button ID="Btn_Select" runat="server" Text="查看"  onclick="Btn_Select_Click" />--%><br />
+                ID="TB_Start" runat="server" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})" class="Wdate" Width="120px"></asp:TextBox>
+               <asp:Button ID="Btn_Select" runat="server" Text="查看"  onclick="Btn_Select_Click" /><br />
     </div>
     <div id="container" style="width: 800px; height: 400px; margin: 0 auto">
     </div>
