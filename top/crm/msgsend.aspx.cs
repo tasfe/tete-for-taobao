@@ -28,6 +28,8 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
     public string issendmsg = string.Empty;
     public string iskefu = string.Empty;
 
+    public string typ = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         Common.Cookie cookie = new Common.Cookie();
@@ -35,6 +37,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
         session = cookie.getCookie("top_sessiongroupbuy");
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
+        typ = utils.NewRequest("typ", utils.RequestType.QueryString);
 
         //过期判断
         if (string.IsNullOrEmpty(taobaoNick))

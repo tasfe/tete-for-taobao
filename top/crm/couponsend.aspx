@@ -28,8 +28,9 @@
     <div id="main-content">
     
     请输入买家昵称：<asp:TextBox ID="search" runat="server"></asp:TextBox>
-    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="搜索" />
+    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="搜索" />  
     
+        <input type="button" value="继续赠送" onclick="window.location.href='msgsend.aspx'" />
     <hr />
 
     <table width="700" cellpadding="0" cellspacing="0">

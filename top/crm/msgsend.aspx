@@ -28,6 +28,9 @@
     </ul>
   </div>
     <div id="main-content">
+    
+        <input type="button" value="返回客户列表" onclick="window.location.href='customlist.aspx'" />
+        <hr />
 
         <table width="700">
             <tr>
