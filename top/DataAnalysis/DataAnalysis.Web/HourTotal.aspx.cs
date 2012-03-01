@@ -18,6 +18,16 @@ public partial class HourPVTotal : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            int day = 1;
+            try
+            {
+                if (Request.QueryString["days"] != null)
+                {
+                    day = int.Parse(Request.QueryString["days"]);
+                }
+            }
+            catch { }
+
 
             VisitService visitDal = new VisitService();
             IList<HourTotalInfo> list = visitDal.GetHourPVTotal("246bcca56c050c665b67708d33127e46");

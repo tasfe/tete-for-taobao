@@ -57,3 +57,48 @@ Log Entry : 2012/2/29 16:56:07 SELECT * FROM(SELECT  VisitUrl,VisitIP, COUNT(*) 
 
 Log Entry : 2012/2/29 16:59:40 SELECT * FROM(SELECT  VisitUrl,VisitIP, COUNT(*) AS VCount,ROW_NUMBER() OVER(ORDER BY VisitUrl ASC, VisitIP ASC) as RowNum FROM (SELECT *  FROM TopVisitInfo_246bcca56c050c665b67708d33127e46 WHERE  VisitTime BETWEEN @sdate AND @edate AND VisitUrl<>'') a GROUP BY VisitUrl,visitIP )  b  WHERE RowNum BETWEEN @srecode AND @erecode 必须声明标量变量 "@sdate"。
 -------------------------------
+
+Log Entry : 2012/3/1 10:58:46 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_ WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_ where  VisitTime BETWEEN@start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_ where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 在应使用条件的上下文(在 'BETWEEN@start' 附近)中指定了非布尔类型的表达式。
+-------------------------------
+
+Log Entry : 2012/3/1 10:59:15 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_246bcca56c050c665b67708d33127e46 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_246bcca56c050c665b67708d33127e46 where  VisitTime BETWEEN@start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_246bcca56c050c665b67708d33127e46 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 在应使用条件的上下文(在 'BETWEEN@start' 附近)中指定了非布尔类型的表达式。
+-------------------------------
+
+Log Entry : 2012/3/1 10:59:45 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_246bcca56c050c665b67708d33127e46 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_246bcca56c050c665b67708d33127e46 where  VisitTime BETWEEN@start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_246bcca56c050c665b67708d33127e46 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 在应使用条件的上下文(在 'BETWEEN@start' 附近)中指定了非布尔类型的表达式。
+-------------------------------

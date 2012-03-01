@@ -4,70 +4,49 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Untitled Page</title>
+    <title>主页</title>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
-      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-
-    <script type="text/javascript">
-        var chart;
-        $(document).ready(function() {
-            chart = new Highcharts.Chart({
-                chart: {
-                    renderTo: 'container',
-                    defaultSeriesType: 'line',
-                    marginRight: 130,
-                    marginBottom: 25
-                },
-                title: {
-                    text: '测试',
-                    x: -20 //center
-                },
-                subtitle: {
-                    text: '测试test',
-                    x: -20
-                },
-                xAxis: {
-                    categories: [<%=DateText %>]
-                },
-                yAxis: {
-                    title: {
-                        text: '温度 (°C)'
-                    },
-                    plotLines: [{
-                        value: 0,
-                        width: 1,
-                        color: '#808080'
-}]
-                    },
-                    tooltip: {
-                        formatter: function() {
-                            return '<b>' + this.series.name + '</b><br/>' +
-					this.x + ': ' + this.y + '°C';
-                        }
-                    },
-                    legend: {
-                        layout: 'vertical',
-                        align: 'right',
-                        verticalAlign: 'top',
-                        x: -10,
-                        y: 100,
-                        borderWidth: 0
-                    },
-                    series:<%=SeriseText %>
-                    });
-                });
-
-		</script>
-    <img src="GetData.ashx" />
-    <script type="text/javascript" src="js/highcharts.js"></script>
-
-    <script type="text/javascript" src="js/modules/exporting.js"></script>
-
-    <div id="container" style="width: 800px; height: 400px; margin: 0 auto">
-    </div>
+          <div id="title">统计概括</div>
+          <div style="width:100%; float:left">
+            <div style="width:50%; float:left">
+              <table cellspacing="0" cellpadding="0" width="40%" border="1">
+                  <tr>
+                    <td colspan="2">
+                       今日流量
+                    </td>
+                  </tr>
+                 
+                  <asp:Repeater ID="Rpt_IpPV" runat="server">
+                     <ItemTemplate>
+                         <tr>
+                           <td><%#Eval("Key")%></td>
+                           <td><%#Eval("Value")%></td>
+                         </tr>
+                     </ItemTemplate>
+                  </asp:Repeater>
+              </table>
+            </div>
+            <div style="width:50%; float:left">
+              <table>
+                 <tr><td colspan="2">宝贝订购排行</td></tr>
+                 <asp:Repeater runat="server" ID="Rpt_GoodsSellTop">
+                    <ItemTemplate>
+                       <tr>
+                            <td>
+                              <%# Container.ItemIndex + 1%>
+                            </td>
+                          <td>
+                                <%#Eval("GoodsName")%>
+                          </td>
+                       </tr>
+                    </ItemTemplate>
+                 </asp:Repeater>
+               </table>
+            </div>
+          </div>
     </div>
     </form>
 </body>

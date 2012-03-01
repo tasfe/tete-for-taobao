@@ -54,6 +54,20 @@ public class VisitService
 
     const string SQL_SELECT_IPTOTAL_TABLE_BYDATE="";
 
+    const string SQL_INDEX_TOTAL = @"SELECT  'pv' as pv,COUNT(*) pvcount FROM  @tableName WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from @tableName where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from @tableName where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d";
+
     /// <summary>
     /// 用户订购获取代码时生成一张表
     /// </summary>
@@ -156,6 +170,27 @@ public class VisitService
          IList<PageVisitInfoTotal> rlist = list.OrderByDescending(o => o.VisitCount).ToList();
 
          return rlist;
+    }
+
+    public IList<IndexTotalInfo> GetIndexTotalInfoList(string nickNo,DateTime start, DateTime end)
+    {
+        string sql = SQL_INDEX_TOTAL.Replace("@tableName", GetRealTable(nickNo));
+        SqlParameter[] param = new[]
+        {
+            new SqlParameter("@start",start),
+            new SqlParameter("@end",end)
+        };
+          DataTable dt = DBHelper.ExecuteDataTable(sql, param);
+        IList<IndexTotalInfo> list = new List<IndexTotalInfo>();
+        foreach (DataRow dr in dt.Rows)
+        { 
+            IndexTotalInfo info = new IndexTotalInfo();
+            info.Key = dr["pv"].ToString();
+            info.Value = dr["pvcount"] == DBNull.Value ? 0 : int.Parse(dr["pvcount"].ToString());
+            list.Add(info);
+        }
+        IList<IndexTotalInfo> rlist = list.OrderBy(o => o.Key).ToList();
+        return rlist;
     }
 
     #region 所有订购用户使用一张流水表

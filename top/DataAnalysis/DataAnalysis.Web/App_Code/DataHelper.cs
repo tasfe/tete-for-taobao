@@ -128,6 +128,20 @@ public class DataHelper
         return Encrypt(value).Substring(start, length);
     }
 
+    /// <summary>
+    /// 指定从什么时间开始
+    /// </summary>
+    /// <param name="start">开始时间</param>
+    /// <param name="days">间隔天数</param>
+    /// <returns>返回含2个时间的数组，第一个开始，第二个结束</returns>
+    public static DateTime[] GetDateTime(DateTime start, int days)
+    {
+        DateTime end = start.AddDays(days);
+        DateTime rstart = new DateTime(start.Year, start.Month, start.Day);
+        DateTime rend = new DateTime(end.Year, end.Month, end.Day);
+        return new[] { rstart, rend };
+    }
+
     #region 获取局域网访问者的MAC
 
     [DllImport("Iphlpapi.dll")]
