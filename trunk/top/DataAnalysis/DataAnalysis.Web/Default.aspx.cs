@@ -18,7 +18,7 @@ public partial class _Default : System.Web.UI.Page
         {
             VisitService vistitDal = new VisitService();
             DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
-            Rpt_IpPV.DataSource = vistitDal.GetIndexTotalInfoList("246bcca56c050c665b67708d33127e46", darray[0], darray[1]);
+            Rpt_IpPV.DataSource = vistitDal.GetIndexTotalInfoList("2343b8b01bbe00cfa404d1fc993819ae", darray[0], darray[1]);
             Rpt_IpPV.DataBind();
         }
     }

@@ -42,7 +42,7 @@ public partial class PageVisitTotal : System.Web.UI.Page
         }
         catch { }
 
-        IList<PageVisitInfoTotal> list = visitDal.GetAllVisitPageInfoList("246bcca56c050c665b67708d33127e46", start, end, page, 20);
+        IList<PageVisitInfoTotal> list = visitDal.GetAllVisitPageInfoList("2343b8b01bbe00cfa404d1fc993819ae", start, end, page, 20);
         TotalCount = list.Count;
         pds.DataSource = list;
         pds.AllowPaging = true;
