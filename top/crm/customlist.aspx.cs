@@ -34,7 +34,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
         //过期判断
         if (iscrm != "1")
         {
-            string msg = "尊敬的" + nick + "，非常抱歉的告诉您，您尚未订购该功能，如需继续使用请购买该服务:<br><br><a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:1;' target='_blank'>购买1月9元</a><br><a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:3;' target='_blank'>购买3月21元</a><br><a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:6;' target='_blank'>购买6月39元</a><br><a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:12;' target='_blank'>购买12月76元</a><br>";
+            string msg = "尊敬的" + nick + "，非常抱歉的告诉您，您尚未订购该功能，如需继续使用请购买该服务:<br><br><a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:1;' target='_blank'>购买19元/月</a><br><a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:3;' target='_blank'>购买54元/季</a><br><a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:6;' target='_blank'>购买99元/半年</a><br><a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:12;' target='_blank'>购买188元/年</a><br>";
             Response.Redirect("buy.aspx?msg=" + HttpUtility.UrlEncode(msg));
             Response.End();
             return;
