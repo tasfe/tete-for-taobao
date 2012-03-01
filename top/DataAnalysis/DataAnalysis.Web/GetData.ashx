@@ -94,6 +94,11 @@ public class GetData : IHttpHandler {
         info.VisitOSLanguage = dataHelper.GetOSLanguage();
         info.VisitShopId = context.Request.QueryString["nick"];  // "234543534"
         
+        info.GoodsId = "";
+        info.GoodsName = "";
+        info.GoodsClassId = "";
+        info.GoodsClassName = "";
+        
         return info;
     }
 
