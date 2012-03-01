@@ -30,7 +30,7 @@
 
         <table width="740" cellpadding="0" cellspacing="0">
         <tr>
-                <td width="100" height="35"><b>客户昵称</b></td>
+                <td width="100"><b>客户昵称</b></td>
                 <td width="50"><b>省</b></td>
                 <td width="50"><b>市</b></td>
                 <td width="50"><b>区</b></td>
