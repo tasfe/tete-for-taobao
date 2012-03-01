@@ -18,9 +18,10 @@ public partial class top_js_userinfo : System.Web.UI.Page
         string taobaoNick = cookie.getCookie("nick");
         string session = cookie.getCookie("top_session");
         string oldTaobaoNick = taobaoNick;
+        string iscrm = cookie.getCookie("iscrm");
 
         //过期判断
-        if(string.IsNullOrEmpty(taobaoNick))
+        if (string.IsNullOrEmpty(taobaoNick))
         {
             Response.Write("window.location.href='http://container.open.taobao.com/container?appkey=12132145'");
             Response.End();
@@ -32,6 +33,9 @@ public partial class top_js_userinfo : System.Web.UI.Page
 
         Response.AddHeader("P3P", "CP=CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR");
         Response.Write("document.write('您好，" + taobaoNick + "！ <a href=logout.aspx>退出</a>');");
-        Response.Write("document.write('<img src=\"http://haoping.7fshop.com/top/crm/setcookie.aspx?nick=" + oldTaobaoNick + "&session=" + session + "\" width=0 height=0>');");
+        if (iscrm == "1")
+        {
+            Response.Write("document.write('<img src=\"http://haoping.7fshop.com/top/crm/setcookie.aspx?nick=" + oldTaobaoNick + "&session=" + session + "\" width=0 height=0>');");
+        }
     }
 }
