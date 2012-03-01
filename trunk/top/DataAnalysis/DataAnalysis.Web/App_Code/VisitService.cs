@@ -203,7 +203,6 @@ group by VisitIP,VisitBrower,VisitUserAgent
         foreach (DataRow dr in dt.Rows)
         {
             TopVisitInfo info = new TopVisitInfo();
-            info.VisitID = new Guid(dr["VisitID"].ToString());
             info.VisitIP = dr["VisitIP"].ToString();
             info.VisitTime = DateTime.Parse(dr["VisitTime"].ToString());
             list.Add(info);
