@@ -52,3 +52,14 @@ public class TopVisitInfo
     /// </summary>
     public string VisitShopId { set; get; }
 }
+
+/// <summary>
+/// 首页显示
+/// </summary>
+public class IndexTotalInfo
+{
+    public string Key { set; get; }
+
+    public int Value { set; get; }
+}
+

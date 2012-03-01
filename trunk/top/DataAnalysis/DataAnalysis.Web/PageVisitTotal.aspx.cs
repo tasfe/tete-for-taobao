@@ -24,12 +24,9 @@ public partial class PageVisitTotal : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            DateTime now = DateTime.Now;
-            DateTime end = now.AddDays(1);
-            DateTime start = new DateTime(now.Year, now.Month, now.Day);
-            DateTime endtime = new DateTime(end.Year, end.Month, end.Day);
+            DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
 
-            Bind(start, endtime);
+            Bind(darray[0], darray[1]);
         }
     }
 
