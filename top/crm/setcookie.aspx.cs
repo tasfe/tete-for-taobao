@@ -26,6 +26,7 @@ public partial class top_crm_setcookie : System.Web.UI.Page
         if (count == "0")
         {
             sql = "INSERT INTO TCS_CrmConfig (nick, session, updatedate) VALUES ('" + nick + "','" + top_session + "','" + DateTime.Now.AddMonths(-3).ToString() + "')";
+            Response.Write(sql);
             utils.ExecuteNonQuery(sql);
         }
     }
