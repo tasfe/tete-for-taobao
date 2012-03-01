@@ -65,6 +65,13 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
     {
         //数据绑定
         DataTable dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_CouponCrm WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY startdate DESC");
+
+        if (dtCoupon.Rows.Count <= 0)
+        {
+            Response.Write("<script>alert('请先创建1张淘宝优惠券才能可以给买家赠送优惠券！');window.location.href='couponadd.aspx'</script>");
+            Response.End();
+        }
+
         couponstr = "<select name='couponid'>";
         for (int i = 0; i < dtCoupon.Rows.Count; i++)
         {
