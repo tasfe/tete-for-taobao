@@ -22,10 +22,10 @@ public class VisitService
 	[VisitUserAgent] [varchar](50) NULL,
 	[VisitBrower] [varchar](50) NULL,
 	[VisitOSLanguage] [varchar](50) NULL,
-    [GoodsId] [varchar(50)] NULL,
-    [GoodsName] [nvarchar(100)] NULL,
-    [GoodsClassId] [varchar(50)] NULL,
-    [GoodsClassName] [nvarchar(60)] NULL,
+    [GoodsId] [varchar](50) NULL,
+    [GoodsName] [nvarchar](100) NULL,
+    [GoodsClassId] [varchar](50) NULL,
+    [GoodsClassName] [nvarchar](60) NULL,
  CONSTRAINT @pk PRIMARY KEY CLUSTERED 
 (
 	[VisitID] ASC
@@ -228,7 +228,7 @@ group by VisitIP,VisitBrower,VisitUserAgent
             new SqlParameter("@GoodsId",info.GoodsId),
             new SqlParameter("@GoodsName",info.GoodsName),
             new SqlParameter("@GoodsClassId",info.GoodsClassId),
-            new SqlParameter("@GoodsClass",info.GoodsClassName)
+            new SqlParameter("@GoodsClassName",info.GoodsClassName)
         };
 
         return param;
