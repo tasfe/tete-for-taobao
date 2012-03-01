@@ -75,7 +75,9 @@
     <div style="text-align:center">
      <asp:TextBox 
                 ID="TB_Start" runat="server" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})" class="Wdate" Width="120px"></asp:TextBox>
-               <asp:Button ID="Btn_Select" runat="server" Text="查看"  onclick="Btn_Select_Click" /><br />
+               <asp:Button ID="Btn_Select" runat="server" Text="查看"  onclick="Btn_Select_Click" />
+       <asp:HiddenField ID="HF_Date" runat="server" />
+               <br />
     </div>
     <div id="container" style="width: 800px; height: 400px; margin: 0 auto">
     </div>

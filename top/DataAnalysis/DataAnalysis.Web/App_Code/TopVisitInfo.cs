@@ -51,6 +51,14 @@ public class TopVisitInfo
     /// 订购店铺ID(实际使用的是nick)
     /// </summary>
     public string VisitShopId { set; get; }
+
+    public string GoodsId { set; get; }
+
+    public string GoodsName { set; get; }
+
+    public string GoodsClassId { set; get; }
+
+    public string GoodsClassName { set; get; }
 }
 
 /// <summary>

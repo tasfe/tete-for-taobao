@@ -35,6 +35,12 @@ public partial class HourPVTotal : System.Web.UI.Page
 
     private void ShowChart(DateTime date)
     {
+        //大于今天
+        if (DateTime.Parse(date.ToShortDateString()) > DateTime.Parse(DateTime.Now.ToShortDateString()))
+        {
+            TB_Start.Text = HF_Date.Value;
+            return;
+        }
         VisitService visitDal = new VisitService();
         IList<HourTotalInfo> list = visitDal.GetHourPVTotal("2343b8b01bbe00cfa404d1fc993819ae", date);
         IList<HourTotalInfo> ipList = visitDal.GetHourIPTotal("2343b8b01bbe00cfa404d1fc993819ae", date);
@@ -77,7 +83,8 @@ public partial class HourPVTotal : System.Web.UI.Page
 
         DateText = DateText.Substring(0, DateText.Length - 1);
         DateText += "]";
-        TB_Start.Text = date.ToShortDateString(); 
+        TB_Start.Text = date.ToShortDateString();
+        HF_Date.Value = date.ToShortDateString(); 
     }
 
     protected string DateText

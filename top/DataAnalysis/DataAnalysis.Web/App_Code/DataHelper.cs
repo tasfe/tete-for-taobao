@@ -2,6 +2,9 @@
 using System.Web;
 using System.Runtime.InteropServices;
 using System.Web.Security;
+using System.Configuration;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 /// <summary>
 /// 获取来访客户端信息
@@ -140,6 +143,11 @@ public class DataHelper
         DateTime rstart = new DateTime(start.Year, start.Month, start.Day);
         DateTime rend = new DateTime(end.Year, end.Month, end.Day);
         return new[] { rstart, rend };
+    }
+
+    public static string GetAppSetings(string key)
+    {
+        return ConfigurationSettings.AppSettings[key];
     }
 
     #region 获取局域网访问者的MAC
