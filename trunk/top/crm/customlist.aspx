@@ -25,7 +25,7 @@
     </ul>
   </div>
     <div id="main-content">
-        <input type="button" value="优惠券赠送" onclick="setOK()" />
+        <input type="button" value="优惠券赠送" onclick="window.location.href='msgsend.aspx?typ=<%=typ %>'" />
         <hr />
 
         <table width="740" cellpadding="0" cellspacing="0">

@@ -10,6 +10,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
 {
     public string session = string.Empty;
     public string nick = string.Empty;
+    public string typ = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -26,6 +27,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
     private void BindData()
     {
         string count = utils.NewRequest("count", utils.RequestType.QueryString);
+        typ = count;
         string condition = string.Empty;
         string pageUrl = "customlist.aspx?1=1";
 
