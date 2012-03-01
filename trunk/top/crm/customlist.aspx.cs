@@ -27,31 +27,40 @@ public partial class top_crm_customlist : System.Web.UI.Page
     {
         string count = utils.NewRequest("count", utils.RequestType.QueryString);
         string condition = string.Empty;
+        string pageUrl = "customlist.aspx?1=1";
 
         switch (count)
         {
             case "0":
+                pageUrl = "customlist.aspx?count=0";
                 condition = " AND b.tradecount = 0";
                 break;
             case "1":
+                pageUrl = "customlist.aspx?count=1";
                 condition = " AND b.tradecount = 1";
                 break;
             case "2":
+                pageUrl = "customlist.aspx?count=2";
                 condition = " AND b.tradecount > 1";
                 break;
             case "a":
+                pageUrl = "customlist.aspx?count=a";
                 condition = " AND b.grade = 0";
                 break;
             case "b":
+                pageUrl = "customlist.aspx?count=b";
                 condition = " AND b.grade = 1";
                 break;
             case "c":
+                pageUrl = "customlist.aspx?count=c";
                 condition = " AND b.grade = 2";
                 break;
             case "d":
+                pageUrl = "customlist.aspx?count=d";
                 condition = " AND b.grade = 3";
                 break;
             case "e":
+                pageUrl = "customlist.aspx?count=e";
                 condition = " AND b.grade = 4";
                 break;
         }
@@ -79,7 +88,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
         sql = "SELECT COUNT(*) FROM TCS_Customer b WHERE b.nick = '" + nick + "' " + condition + "";
         int totalCount = int.Parse(utils.ExecuteString(sql));
 
-        lbPage.Text = InitPageStr(totalCount, "customlist.aspx");
+        lbPage.Text = InitPageStr(totalCount, pageUrl);
     }
 
     public static string getgrade(string grade)
@@ -190,7 +199,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
             }
             else
             {
-                str += "<a href='" + url + "?page=" + i.ToString() + "'>[" + i.ToString() + "]</a> ";
+                str += "<a href='" + url + "&page=" + i.ToString() + "'>[" + i.ToString() + "]</a> ";
             }
         }
 
