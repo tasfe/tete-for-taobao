@@ -39,6 +39,21 @@ public partial class top_crm_customlist : System.Web.UI.Page
             case "2":
                 condition = " AND b.tradecount > 1";
                 break;
+            case "a":
+                condition = " AND b.grade = 0";
+                break;
+            case "b":
+                condition = " AND b.grade = 1";
+                break;
+            case "c":
+                condition = " AND b.grade = 2";
+                break;
+            case "d":
+                condition = " AND b.grade = 3";
+                break;
+            case "e":
+                condition = " AND b.grade = 4";
+                break;
         }
 
         string page = utils.NewRequest("page", utils.RequestType.QueryString);
