@@ -22,23 +22,26 @@ public class VisitService
 	[VisitUserAgent] [varchar](50) NULL,
 	[VisitBrower] [varchar](50) NULL,
 	[VisitOSLanguage] [varchar](50) NULL,
-	[VisitShopId] [varchar](50) NULL,
+    [GoodsId] [varchar(50)] NULL,
+    [GoodsName] [nvarchar(100)] NULL,
+    [GoodsClassId] [varchar(50)] NULL,
+    [GoodsClassName] [nvarchar(60)] NULL,
  CONSTRAINT @pk PRIMARY KEY CLUSTERED 
 (
 	[VisitID] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
- CREATE INDEX index_@tableName_VisitShopId ON @tableName([VisitShopId])
- CREATE INDEX index_@tableName_VisitTime ON @tableName([VisitTime])";
-
-    //插入
-    const string SQL_INSERT = "INSERT TopVisitInfo(VisitID,VisitIP,VisitUrl,VisitTime,VisitUserAgent,VisitBrower,VisitOSLanguage,VisitShopId) VALUES(@VisitID,@VisitIP,@VisitUrl,@VisitTime,@VisitUserAgent,@VisitBrower,@VisitOSLanguage,@VisitShopId)";
+ CREATE INDEX index_@tableName_VisitTime ON @tableName([VisitTime])
+ CREATE INDEX index_@tableName_GoodsId ON @tableName([GoodsId])
+ CREATE INDEX index_@tableName_GoodsName ON @tableName([GoodsName])
+ CREATE INDEX index_@tableName_GoodsClassId ON @tableName([GoodsClassId])
+ CREATE INDEX index_@tableName_GoodsClassName ON @tableName([GoodsClassName])";
 
     //指定表插入
-    const string SQL_INSERT_TABLE = "INSERT @tableName(VisitID,VisitIP,VisitUrl,VisitTime,VisitUserAgent,VisitBrower,VisitOSLanguage,VisitShopId) VALUES(@VisitID,@VisitIP,@VisitUrl,@VisitTime,@VisitUserAgent,@VisitBrower,@VisitOSLanguage,@VisitShopId)";
+    const string SQL_INSERT_TABLE = "INSERT @tableName(VisitID,VisitIP,VisitUrl,VisitTime,VisitUserAgent,VisitBrower,VisitOSLanguage,GoodsId,GoodsName,GoodsClassId,GoodsClassName) VALUES(@VisitID,@VisitIP,@VisitUrl,@VisitTime,@VisitUserAgent,@VisitBrower,@VisitOSLanguage,@GoodsId,@GoodsName,@GoodsClassId,@GoodsClassName)";
 
     //统计小时PV流量(指定表/订购用户)
-    const string SQL_HOUR_PVTOTAL_TABLE = "SELECT VisitShopId,Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM @tableName GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime),VisitShopId HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  ";//ORDER BY PVHour";// AND VisitShopId IS NOT NULL";
+    const string SQL_HOUR_PVTOTAL_TABLE = "SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM @tableName GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  ";//ORDER BY PVHour
 
     //统计小时IP流量(指定表/订购用户)
     const string SQL_HOUR_IPTOTAL_TABLE = "SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM @tableName GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5) ";//ORDER BY IPHour";
@@ -222,7 +225,10 @@ group by VisitIP,VisitBrower,VisitUserAgent
             new SqlParameter("@VisitUserAgent", info.VisitUserAgent),
             new SqlParameter("@VisitBrower", info.VisitBrower),
             new SqlParameter("@VisitOSLanguage",info.VisitOSLanguage),
-            new SqlParameter("@VisitShopId",info.VisitShopId)
+            new SqlParameter("@GoodsId",info.GoodsId),
+            new SqlParameter("@GoodsName",info.GoodsName),
+            new SqlParameter("@GoodsClassId",info.GoodsClassId),
+            new SqlParameter("@GoodsClass",info.GoodsClassName)
         };
 
         return param;
