@@ -22,11 +22,32 @@ public partial class top_review_couponadd : System.Web.UI.Page
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
-        session = cookie.getCookie("top_sessiongroupbuy");
+        session = cookie.getCookie("top_session");
+        string iscrm = cookie.getCookie("iscrm");
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
         enddate = DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd");
+
+
+
+        //过期判断
+        if (string.IsNullOrEmpty(taobaoNick))
+        {
+            string msg = "尊敬的淘宝卖家，非常抱歉的告诉您，您还没有购买此服务或者登录信息已失效，如需继续使用请<a href='http://fuwu.taobao.com/serv/detail.htm?service_id=764' target='_blank'>进入该服务</a>，谢谢！";
+            Response.Redirect("buy.aspx?msg=" + HttpUtility.UrlEncode(msg));
+            Response.End();
+            return;
+        }
+
+        //过期判断
+        if (iscrm != "1")
+        {
+            string msg = "尊敬的" + nick + "，非常抱歉的告诉您，您尚未订购该功能，如需继续使用请购买该服务:<br><br><a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:1;' target='_blank'>购买1月9元</a><br><a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:3;' target='_blank'>购买3月21元</a><br><a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:6;' target='_blank'>购买6月39元</a><br><a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:12;' target='_blank'>购买12月76元</a><br>";
+            Response.Redirect("buy.aspx?msg=" + HttpUtility.UrlEncode(msg));
+            Response.End();
+            return;
+        }
 
         if (id != "")
         {
@@ -45,8 +66,8 @@ public partial class top_review_couponadd : System.Web.UI.Page
     //创建新优惠券
     protected void Button1_Click(object sender, EventArgs e)
     {
-        string appkey = "12159997";
-        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+        string appkey = "12132145";
+        string secret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
 
         string price = utils.NewRequest("price", utils.RequestType.Form);
         string condition = utils.NewRequest("condition", utils.RequestType.Form);
@@ -66,9 +87,9 @@ public partial class top_review_couponadd : System.Web.UI.Page
         //Response.Write(result + "<br><br>" + price + "<br><br>" + condition + "<br><br>" + end_time + "<br><br>" + coupon_name);
 //Insufficient session permissions
 
-if (result.IndexOf("Insufficient session permissions") != -1)
+        if (result.IndexOf("Insufficient session permissions") != -1)
         {
-            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12159997&scope=promotion' target='_parent'>重新授权</a>");
+            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12132145&scope=promotion' target='_parent'>重新授权</a>");
             	Response.End();
             return;
         }
@@ -90,7 +111,7 @@ if (result.IndexOf("Insufficient session permissions") != -1)
 
         string coupon_id = new Regex(@"<coupon_id>([^<]*)</coupon_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
 
-        string sql = "INSERT INTO TCS_Coupon (" +
+        string sql = "INSERT INTO TCS_CouponCrm (" +
                         "nick, " +
                         "name, " +
                         "taobaocouponid, " +
@@ -113,10 +134,6 @@ if (result.IndexOf("Insufficient session permissions") != -1)
                         " 'taobao', " +
                         " '" + condition + "' " +
                     ") ";
-        utils.ExecuteNonQuery(sql);
-        Response.Write("<br><br>" + sql);
-
-        sql = "UPDATE TCS_ShopConfig SET couponid = '" + guid + "' WHERE nick = '" + nick + "'";
         utils.ExecuteNonQuery(sql);
 
         //Response.Write("<br><br>" + sql);

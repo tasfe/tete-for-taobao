@@ -26,8 +26,27 @@ public partial class top_crm_initcustom : System.Web.UI.Page
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
         session = cookie.getCookie("top_sessiongroupbuy");
+        string iscrm = cookie.getCookie("iscrm");
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
+
+        //过期判断
+        if (string.IsNullOrEmpty(taobaoNick))
+        {
+            string msg = "尊敬的淘宝卖家，非常抱歉的告诉您，您还没有购买此服务或者登录信息已失效，如需继续使用请<a href='http://fuwu.taobao.com/serv/detail.htm?service_id=764' target='_blank'>进入该服务</a>，谢谢！";
+            Response.Redirect("buy.aspx?msg=" + HttpUtility.UrlEncode(msg));
+            Response.End();
+            return;
+        }
+
+        //过期判断
+        if (iscrm != "1")
+        {
+            string msg = "尊敬的" + nick + "，非常抱歉的告诉您，您尚未订购该功能，如需继续使用请购买该服务:<br><br><a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:1;' target='_blank'>购买1月9元</a><br><a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:3;' target='_blank'>购买3月21元</a><br><a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:6;' target='_blank'>购买6月39元</a><br><a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:12;' target='_blank'>购买12月76元</a><br>";
+            Response.Redirect("buy.aspx?msg=" + HttpUtility.UrlEncode(msg));
+            Response.End();
+            return;
+        }
     }
 
     protected void Button1_Click1(object sender, EventArgs e)
@@ -37,8 +56,8 @@ public partial class top_crm_initcustom : System.Web.UI.Page
         for (int j = 1; j < 9999; j++)
         {
             //执行优惠券赠送行为
-            string appkey = "12159997";
-            string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+            string appkey = "12132145";
+            string secret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
             IDictionary<string, string> param = new Dictionary<string, string>();
             param.Add("min_last_trade_time", DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd") + " 00:00:00");
             param.Add("max_last_trade_time", DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
