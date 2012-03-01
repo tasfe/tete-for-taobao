@@ -31,13 +31,13 @@ public partial class top_crm_customlist : System.Web.UI.Page
         switch (count)
         {
             case "0":
-                condition = " AND tradeamount = 0";
+                condition = " AND b.tradeamount = 0";
                 break;
             case "1":
-                condition = " AND tradeamount = 1";
+                condition = " AND b.tradeamount = 1";
                 break;
             case "2":
-                condition = " AND tradeamount > 1";
+                condition = " AND b.tradeamount > 1";
                 break;
         }
 
@@ -61,7 +61,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
         rptArticle.DataBind();
 
         //分页数据初始化
-        sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "'";
+        sql = "SELECT COUNT(*) FROM TCS_Customer b WHERE b.nick = '" + nick + "' " + condition + "";
         int totalCount = int.Parse(utils.ExecuteString(sql));
 
         lbPage.Text = InitPageStr(totalCount, "customlist.aspx");
