@@ -10,15 +10,12 @@
     <form id="form1" runat="server">
     <div>
           <div id="title">统计概括</div>
-          <div style="width:100%; float:left">
-            <div style="width:50%; float:left">
               <table cellspacing="0" cellpadding="0" width="40%" border="1">
                   <tr>
                     <td colspan="2">
                        今日流量
                     </td>
                   </tr>
-                 
                   <asp:Repeater ID="Rpt_IpPV" runat="server">
                      <ItemTemplate>
                          <tr>
@@ -28,8 +25,6 @@
                      </ItemTemplate>
                   </asp:Repeater>
               </table>
-            </div>
-            <div style="width:50%; float:left">
               <table>
                  <tr><td colspan="2">宝贝订购排行</td></tr>
                  <asp:Repeater runat="server" ID="Rpt_GoodsSellTop">
@@ -45,8 +40,25 @@
                     </ItemTemplate>
                  </asp:Repeater>
                </table>
-            </div>
-          </div>
+               
+               <table>
+                  <tr>
+                    <td>在线客户</td>
+                  </tr>
+                  <asp:Repeater ID="Rpt_OnlineCustomer" runat="server">
+                      <ItemTemplate>
+                         <tr>
+                            <td>
+                              <%#Eval("VisitIP")%>
+                            </td>
+                            <td>
+                              <%#Eval("VisitTime")%>
+                            </td>
+                         </tr>
+                      </ItemTemplate>
+                  </asp:Repeater>
+               </table>
+               
     </div>
     </form>
 </body>
