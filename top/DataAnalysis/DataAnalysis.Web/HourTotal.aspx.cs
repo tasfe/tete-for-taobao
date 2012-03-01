@@ -44,7 +44,7 @@ public partial class HourPVTotal : System.Web.UI.Page
         string avg = ",{name:'人均浏览次数',data:[";
         DateText = "[";
         int nowhour = 23;
-        if (date.Day == DateTime.Now.Day)
+        if (date.ToShortDateString() == DateTime.Now.ToShortDateString())
             nowhour = date.Hour;
         for (int h = 0; h <= nowhour; h++)
         {
@@ -77,6 +77,7 @@ public partial class HourPVTotal : System.Web.UI.Page
 
         DateText = DateText.Substring(0, DateText.Length - 1);
         DateText += "]";
+        TB_Start.Text = date.ToShortDateString(); 
     }
 
     protected string DateText
@@ -97,6 +98,8 @@ public partial class HourPVTotal : System.Web.UI.Page
         try
         {
             now = DateTime.Parse(TB_Start.Text);
+            if (now.ToShortDateString() == DateTime.Now.ToShortDateString())
+                now = DateTime.Now;
         }
         catch { TB_Start.Text = now.ToShortDateString(); }
         ShowChart(now);
