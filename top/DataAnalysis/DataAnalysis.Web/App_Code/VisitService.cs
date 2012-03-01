@@ -68,6 +68,8 @@ SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FRO
 group by VisitIP,VisitBrower,VisitUserAgent
 ) d";
 
+    const string SQL_INDEX_TOP_ONLINECUSTOMER = "SELECT TOP @topNum VisitID,VisitIP,VisitTime,FROM @tableName WHERE  VisitTime BETWEEN @start AND @ end ORDER BY VisitTime DESC ";
+
     /// <summary>
     /// 用户订购获取代码时生成一张表
     /// </summary>
@@ -172,7 +174,7 @@ group by VisitIP,VisitBrower,VisitUserAgent
          return rlist;
     }
 
-    public IList<IndexTotalInfo> GetIndexTotalInfoList(string nickNo,DateTime start, DateTime end)
+    public IList<IndexTotalInfo> GetIndexTotalInfoList(string nickNo, DateTime start, DateTime end)
     {
         string sql = SQL_INDEX_TOTAL.Replace("@tableName", GetRealTable(nickNo));
         SqlParameter[] param = new[]
@@ -180,16 +182,39 @@ group by VisitIP,VisitBrower,VisitUserAgent
             new SqlParameter("@start",start),
             new SqlParameter("@end",end)
         };
-          DataTable dt = DBHelper.ExecuteDataTable(sql, param);
+        DataTable dt = DBHelper.ExecuteDataTable(sql, param);
         IList<IndexTotalInfo> list = new List<IndexTotalInfo>();
         foreach (DataRow dr in dt.Rows)
-        { 
+        {
             IndexTotalInfo info = new IndexTotalInfo();
             info.Key = dr["pv"].ToString();
             info.Value = dr["pvcount"] == DBNull.Value ? 0 : int.Parse(dr["pvcount"].ToString());
             list.Add(info);
         }
         IList<IndexTotalInfo> rlist = list.OrderBy(o => o.Key).ToList();
+        return rlist;
+    }
+
+    public IList<TopVisitInfo> GetIndexOnlineCustomer(string nickNo, int topNum,DateTime start,DateTime end)
+    {
+        string sql = SQL_INDEX_TOP_ONLINECUSTOMER.Replace("@tableName", GetRealTable(nickNo));
+        SqlParameter[] param = new[]
+        {
+            new SqlParameter("@topNum",topNum),
+            new SqlParameter("@start",start),
+            new SqlParameter("@end",end)
+        };
+        DataTable dt = DBHelper.ExecuteDataTable(sql, param);
+        IList<TopVisitInfo> list = new List<TopVisitInfo>();
+        foreach (DataRow dr in dt.Rows)
+        {
+            TopVisitInfo info = new TopVisitInfo();
+            info.VisitID = new Guid(dr["Value"].ToString());
+            info.VisitIP = dr["VisitIP"].ToString();
+            info.VisitTime = DateTime.Parse(dr["VisitTime"].ToString());
+            list.Add(info);
+        }
+        IList<TopVisitInfo> rlist = list.OrderByDescending(o => o.VisitTime).ToList();
         return rlist;
     }
 
