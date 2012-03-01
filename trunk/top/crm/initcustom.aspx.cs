@@ -192,6 +192,10 @@ public partial class top_crm_initcustom : System.Web.UI.Page
             }
         }
 
+        //更新最后同步会员时间
+        string sqlnew = "UPDATE TCS_CrmConfig SET updatedate = GETDATE() WHERE nick = '" + nick + "'";
+        utils.ExecuteNonQuery(sqlnew);
+
         Response.Write("导入会员OK，共有" + index.ToString() + "条！！");
     }
 
