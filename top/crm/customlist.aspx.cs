@@ -25,6 +25,22 @@ public partial class top_crm_customlist : System.Web.UI.Page
 
     private void BindData()
     {
+        string count = utils.NewRequest("count", utils.RequestType.QueryString);
+        string condition = string.Empty;
+
+        switch (count)
+        {
+            case "0":
+                condition = " AND tradeamount = 0";
+                break;
+            case "1":
+                condition = " AND tradeamount = 1";
+                break;
+            case "2":
+                condition = " AND tradeamount > 1";
+                break;
+        }
+
         string page = utils.NewRequest("page", utils.RequestType.QueryString);
         int pageNow = 1;
         if (page == "")
@@ -38,7 +54,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
         int pageCount = 20;
         int dataCount = (pageNow - 1) * pageCount;
 
-        string sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.lastorderdate DESC) AS rownumber FROM TCS_Customer b WITH (NOLOCK) WHERE b.nick = '" + nick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY lastorderdate DESC";
+        string sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.lastorderdate DESC) AS rownumber FROM TCS_Customer b WITH (NOLOCK) WHERE b.nick = '" + nick + "' " + condition + ") AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY lastorderdate DESC";
         DataTable dt = utils.ExecuteDataTable(sql);
 
         rptArticle.DataSource = dt;
