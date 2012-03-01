@@ -29,7 +29,8 @@
   </div>
     <div id="main-content">
         <img src="http://a.tbcdn.cn/sys/wangwang/smiley/48x48/68.gif" /> 
-        <span style="font-size:16px;"><%=msg %></span>
+        <span style="font-size:16px;"><%=msg %></span><br /><br />
+        <span style="font-size:20px; font-weight:bold; color:red">3月特惠全部短信8折，现在升级版本更赠送短信，具体情况请联系客服人员...</span>
         <br> 
         <br> 
         <a href='qubie.html'>查看版本区别</a>
