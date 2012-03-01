@@ -30,8 +30,8 @@ public partial class HourPVTotal : System.Web.UI.Page
 
 
             VisitService visitDal = new VisitService();
-            IList<HourTotalInfo> list = visitDal.GetHourPVTotal("246bcca56c050c665b67708d33127e46");
-            IList<HourTotalInfo> ipList = visitDal.GetHourIPTotal("246bcca56c050c665b67708d33127e46");
+            IList<HourTotalInfo> list = visitDal.GetHourPVTotal("2343b8b01bbe00cfa404d1fc993819ae");
+            IList<HourTotalInfo> ipList = visitDal.GetHourIPTotal("2343b8b01bbe00cfa404d1fc993819ae");
              
             SeriseText ="[{name:'PV量', data:[";
             string iptotal = ",{name:'IP量',data:[";
