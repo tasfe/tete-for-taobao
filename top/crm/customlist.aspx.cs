@@ -75,7 +75,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
         {
             pageNow = int.Parse(page);
         }
-        int pageCount = 20;
+        int pageCount = 10;
         int dataCount = (pageNow - 1) * pageCount;
 
         string sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.lastorderdate DESC) AS rownumber FROM TCS_Customer b WITH (NOLOCK) WHERE b.nick = '" + nick + "' " + condition + ") AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY lastorderdate DESC";
