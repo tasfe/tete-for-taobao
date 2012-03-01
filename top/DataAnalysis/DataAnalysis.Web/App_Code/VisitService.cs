@@ -68,7 +68,7 @@ SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FRO
 group by VisitIP,VisitBrower,VisitUserAgent
 ) d";
 
-    const string SQL_INDEX_TOP_ONLINECUSTOMER = "SELECT DISTINCT TOP @topNum VisitID,VisitIP,VisitTime FROM @tableName WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC ";
+    const string SQL_INDEX_TOP_ONLINECUSTOMER = "SELECT DISTINCT TOP @topNum VisitIP,VisitTime FROM @tableName WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC ";
 
     /// <summary>
     /// 用户订购获取代码时生成一张表
