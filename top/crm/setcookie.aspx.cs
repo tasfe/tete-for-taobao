@@ -15,5 +15,6 @@ public partial class top_crm_setcookie : System.Web.UI.Page
         Common.Cookie cookie = new Common.Cookie();
         cookie.setCookie("top_session", top_session, 999999);
         cookie.setCookie("nick", nick, 999999);
+        cookie.setCookie("iscrm", "1", 999999);
     }
 }
