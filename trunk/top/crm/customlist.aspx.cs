@@ -31,13 +31,13 @@ public partial class top_crm_customlist : System.Web.UI.Page
         switch (count)
         {
             case "0":
-                condition = " AND b.tradeamount = 0";
+                condition = " AND b.tradecount = 0";
                 break;
             case "1":
-                condition = " AND b.tradeamount = 1";
+                condition = " AND b.tradecount = 1";
                 break;
             case "2":
-                condition = " AND b.tradeamount > 1";
+                condition = " AND b.tradecount > 1";
                 break;
         }
 
