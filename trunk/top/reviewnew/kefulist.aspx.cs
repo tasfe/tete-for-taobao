@@ -163,18 +163,18 @@ public partial class top_review_kefulist : System.Web.UI.Page
             }
             else
             {
-                sql = "SELECT * FROM TCS_TradeOld WITH (NOLOCK) WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
-                dt = utils.ExecuteDataTable(sql);
-                if (dt.Rows.Count != 0)
-                {
-                    buynick = dt.Rows[0]["buynick"].ToString();
-                    phone = dt.Rows[0]["mobile"].ToString();
-                }
-                else
-                {
-                    //Response.Write("<script>alert('【系统错误】：找不到该订单【" + id + "】关联的淘宝会员，请联系客服人员！');window.location.href='kefulist.aspx';</script>");
-                    return;
-                }
+                //sql = "SELECT * FROM TCS_TradeOld WITH (NOLOCK) WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
+                //dt = utils.ExecuteDataTable(sql);
+                //if (dt.Rows.Count != 0)
+                //{
+                //    buynick = dt.Rows[0]["buynick"].ToString();
+                //    phone = dt.Rows[0]["mobile"].ToString();
+                //}
+                //else
+                //{
+                //    //Response.Write("<script>alert('【系统错误】：找不到该订单【" + id + "】关联的淘宝会员，请联系客服人员！');window.location.href='kefulist.aspx';</script>");
+                //    return;
+                //}
             }
 
             //获取淘宝优惠券ID
@@ -620,15 +620,15 @@ public partial class top_review_kefulist : System.Web.UI.Page
         return (sb.ToString());
     }
 
-    public static string MD5(string str)
+    public static string MD5AAA(string str)
     {
         return FormsAuthentication.HashPasswordForStoringInConfigFile(str, "MD5");
     }
 
-    public static string Send(string phone, string msg)
+    public static string SendMessage(string phone, string msg)
     {
         string uid = "ZXHD-SDK-0107-XNYFLX";
-        string pass = MD5("WEGXBEPY").ToLower();
+        string pass = MD5AAA("WEGXBEPY").ToLower();
 
         msg = UrlEncode(msg);
 
