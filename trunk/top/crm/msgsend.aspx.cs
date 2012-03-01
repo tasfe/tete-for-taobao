@@ -89,24 +89,45 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
         string buynick = "";// this.txtBuyerNick.Text;
 
         //获取淘宝优惠券ID
-        sql = "SELECT guid FROM TCS_Coupon WHERE taobaocouponid = '" + couponid + "'";
+        sql = "SELECT guid FROM TCS_CouponCrm WHERE taobaocouponid = '" + couponid + "'";
         string guid = utils.ExecuteString(sql);
 
-        //判断优惠券赠送限制
-        sql = "SELECT per FROM TCS_Coupon WITH (NOLOCK) WHERE guid = '" + guid + "' ";
-        string max = utils.ExecuteString(sql);
+        string typ = utils.NewRequest("typ", utils.RequestType.Form);
+        string condition = string.Empty;
 
-        //判断该用户是否超过了最大赠送
-        sql = "SELECT guid FROM TCS_CouponSend WITH (NOLOCK) WHERE buynick= '" + buynick + "' AND guid = '" + guid + "'";
-        DataTable dtCoupon = utils.ExecuteDataTable(sql);
-        if (dtCoupon.Rows.Count >= int.Parse(max))
+        switch (typ)
         {
-            //退出    
-            Response.Write("<script>alert('赠送失败，买家获得的优惠券不会超过您设定的每人获取上限！');window.location.href='msgsend.aspx';</script>");
-            Response.End();
+            case "0":
+                condition = " AND b.tradecount = 0";
+                break;
+            case "1":
+                condition = " AND b.tradecount = 1";
+                break;
+            case "2":
+                condition = " AND b.tradecount > 1";
+                break;
+            case "a":
+                condition = " AND b.grade = 0";
+                break;
+            case "b":
+                condition = " AND b.grade = 1";
+                break;
+            case "c":
+                condition = " AND b.grade = 2";
+                break;
+            case "d":
+                condition = " AND b.grade = 3";
+                break;
+            case "e":
+                condition = " AND b.grade = 4";
+                break;
         }
-        else
+
+        sql = "SELECT * FROM TCS_Customer b WHERE b.nick = '" + nick + "' " + condition + "";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        for (int i = 0; i < dt.Rows.Count; i++)
         {
+            buynick = dt.Rows[i]["buynick"].ToString();
 
             IDictionary<string, string> param = new Dictionary<string, string>();
             param.Add("coupon_id", couponid);
@@ -119,15 +140,15 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
             //如果失败
             if (!reg.IsMatch(result))
             {
-                string err = new Regex(@"<reason>([^<]*)</reason>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-                Response.Write("<script>alert('【系统错误】：" + err + "，请稍后再试或者联系客服人员！');window.location.href='msgsend.aspx';</script>");
+                //string err = new Regex(@"<reason>([^<]*)</reason>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                //Response.Write("<script>alert('【系统错误】：" + err + "，请稍后再试或者联系客服人员！');window.location.href='msgsend.aspx';</script>");
             }
             else
             {
                 string number = match[0].Groups[1].ToString();
 
                 //赠送优惠券
-                sql = "INSERT INTO TCS_CouponSend (" +
+                sql = "INSERT INTO TCS_CouponSendCrm (" +
                                     "nick, " +
                                     "guid, " +
                                     "buynick, " +
@@ -141,11 +162,6 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
                 //Response.Write(sql);
                 //Response.End();
                 utils.ExecuteNonQuery(sql);
-
-                //更新优惠券已经赠送数量
-                sql = "UPDATE TCS_Coupon SET used = used + 1 WHERE guid = " + couponid;
-                utils.ExecuteNonQuery(sql);
-                Response.Write("<script>alert('赠送成功！');window.location.href='msgsend.aspx';</script>");
             }
         }
     }
