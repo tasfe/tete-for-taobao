@@ -12,7 +12,7 @@ public class GetData : IHttpHandler {
         TopVisitInfo info = CreateVisitInfo(context);
         InsertInfo(info);
         
-        //context.Response.Redirect("http://groupbuy.7fshop.com/top/groupbuy/groupbuy_imag.aspx?id=" + context.Request.QueryString["id"].ToString() + "&typ=" + context.Request.QueryString["typ"].ToString() + "&isok=1");
+        context.Response.Redirect("http://groupbuy.7fshop.com/top/groupbuy/groupbuy_imag.aspx?id=" + context.Request.QueryString["id"].ToString() + "&typ=" + context.Request.QueryString["typ"].ToString() + "&isok=1");
         
         //context.Response.ContentType = "image/gif";
         //context.Response.Clear();
@@ -93,7 +93,7 @@ public class GetData : IHttpHandler {
         info.VisitUserAgent = dataHelper.GetUserAgent();
         info.VisitBrower = dataHelper.GetBrower();
         info.VisitOSLanguage = dataHelper.GetOSLanguage();
-        info.VisitShopId = "234543534";// context.Request.QueryString["nick"];
+        info.VisitShopId = context.Request.QueryString["nick"];  // "234543534"
         
         return info;
     }
