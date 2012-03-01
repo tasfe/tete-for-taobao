@@ -64,7 +64,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
     private void BindData()
     {
         //数据绑定
-        DataTable dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_Coupon WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY startdate DESC");
+        DataTable dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_CouponCrm WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY startdate DESC");
         couponstr = "<select name='couponid'>";
         for (int i = 0; i < dtCoupon.Rows.Count; i++)
         {
