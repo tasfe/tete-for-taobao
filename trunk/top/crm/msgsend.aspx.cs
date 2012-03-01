@@ -87,7 +87,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
         string sql = string.Empty;
 
         string couponid = utils.NewRequest("couponid", utils.RequestType.Form);
-        string buynick = this.txtBuyerNick.Text;
+        string buynick = "";// this.txtBuyerNick.Text;
 
         //获取淘宝优惠券ID
         sql = "SELECT guid FROM TCS_Coupon WHERE taobaocouponid = '" + couponid + "'";

@@ -27,22 +27,7 @@
   </div>
     <div id="main-content">
     
-    请选择发送的会员组：
-    <select name="typ">
-        <option value="all">所有会员</option>
-        <optgroup label="按购买次数区别">
-            <option value="0">未成功购买的会员</option>
-            <option value="1">购买过一次的会员</option>
-            <option value="2">购买过多次的会员</option>
-        </optgroup>
-        <optgroup label="按用户组区别">
-            <option value="a">未购买</option>
-            <option value="b">普通会员</option>
-            <option value="c">高级会员</option>
-            <option value="d">VIP会员</option>
-            <option value="e">至尊VIP会员</option>
-        </optgroup>
-    </select>
+    请输入买家昵称：<asp:TextBox ID="search" runat="server"></asp:TextBox>
     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="搜索" />
     
     <hr />
