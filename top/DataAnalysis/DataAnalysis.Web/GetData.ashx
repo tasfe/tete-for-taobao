@@ -120,7 +120,7 @@ public class GetData : IHttpHandler {
         Regex regex = new Regex("(\\?id=\\d+)|(&id=\\d+)", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
        string idstr = regex.Match(url).Value;
        string pid = idstr.Replace("?id=", "").Replace("&id=", "");
-
+       vinfo.GoodsId = pid;
        if (context.Cache["GoodsList"] != null && ((IList<GoodsInfo>)context.Cache["GoodsList"]).Where(o=>o.num_iid==pid).ToList().Count>0)
        {
            return;
@@ -139,6 +139,7 @@ public class GetData : IHttpHandler {
             if (context.Cache["GoodsList"] == null)
             {
                 IList<GoodsInfo> list = new List<GoodsInfo>();
+                vinfo.GoodsName = info.title;
                 list.Add(info);
                 context.Cache.Insert("GoodsList", list, null, DateTime.Now.AddDays(1), System.Web.Caching.Cache.NoSlidingExpiration);
             }
@@ -147,6 +148,7 @@ public class GetData : IHttpHandler {
                 IList<GoodsInfo> list = ((IList<GoodsInfo>)context.Cache["GoodsList"]);
                 if (!list.Contains(info))
                 {
+                    vinfo.GoodsName = info.title;
                     list.Add(info);
                 }
             }
