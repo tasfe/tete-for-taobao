@@ -68,7 +68,7 @@ SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FRO
 group by VisitIP,VisitBrower,VisitUserAgent
 ) d";
 
-    const string SQL_INDEX_TOP_ONLINECUSTOMER = "SELECT TOP @topNum VisitID,VisitIP,VisitTime,FROM @tableName WHERE  VisitTime BETWEEN @start AND @ end ORDER BY VisitTime DESC ";
+    const string SQL_INDEX_TOP_ONLINECUSTOMER = "SELECT TOP @topNum VisitID,VisitIP,VisitTime FROM @tableName WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC ";
 
     /// <summary>
     /// 用户订购获取代码时生成一张表
@@ -197,10 +197,10 @@ group by VisitIP,VisitBrower,VisitUserAgent
 
     public IList<TopVisitInfo> GetIndexOnlineCustomer(string nickNo, int topNum,DateTime start,DateTime end)
     {
-        string sql = SQL_INDEX_TOP_ONLINECUSTOMER.Replace("@tableName", GetRealTable(nickNo));
+        string sql = SQL_INDEX_TOP_ONLINECUSTOMER.Replace("@tableName", GetRealTable(nickNo)).Replace("@topNum",topNum.ToString());
+        
         SqlParameter[] param = new[]
         {
-            new SqlParameter("@topNum",topNum),
             new SqlParameter("@start",start),
             new SqlParameter("@end",end)
         };
