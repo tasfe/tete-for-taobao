@@ -375,6 +375,18 @@ public partial class top_container : System.Web.UI.Page
                 {
                     cookie.setCookie("act", "1", 999999);
                 }
+
+                //CRM客户端收费
+                if (match[i].Groups[1].ToString() == "service-0-22762-4")
+                {
+                    cookie.setCookie("iscrm", "1", 999999);
+                }
+
+                //特特统计收费
+                if (match[i].Groups[1].ToString() == "service-0-22762-8")
+                {
+                    cookie.setCookie("istongji", "1", 999999);
+                }
             }
             catch { }
         }
