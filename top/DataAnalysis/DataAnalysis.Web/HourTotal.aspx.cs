@@ -43,7 +43,10 @@ public partial class HourPVTotal : System.Web.UI.Page
         string iptotal = ",{name:'IP量',data:[";
         string avg = ",{name:'人均浏览次数',data:[";
         DateText = "[";
-        for (int h = 0; h <= DateTime.Now.Hour; h++)
+        int nowhour = 23;
+        if (date.Day == DateTime.Now.Day)
+            nowhour = date.Hour;
+        for (int h = 0; h <= nowhour; h++)
         {
             DateText += "'" + h + "',";
             IList<HourTotalInfo> thisInfo = list.Where(o => o.Hour == h).ToList();
