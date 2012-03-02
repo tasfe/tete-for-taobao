@@ -11,6 +11,11 @@ public class GetData : IHttpHandler {
     public void ProcessRequest(HttpContext context)
     {
 
+        context.Response.ContentType = "text/json";
+        //context.Response.Write(TaoBaoAPI.GetGoodsOrderInfoList(DateTime.Now.AddDays(-60), DateTime.Now.AddDays(-30), "6101f00f1df2173ec72dfb10b5add5a5e1f3f6d8b89888169634565", "TRADE_FINISHED"));
+        context.Response.Write(TaoBaoAPI.GetPingjia("6101f00f1df2173ec72dfb10b5add5a5e1f3f6d8b89888169634565", "138457281818297"));
+        //context.Response.Write(TaoBaoAPI.GetPromotion("6101f00f1df2173ec72dfb10b5add5a5e1f3f6d8b89888169634565", "146845082192329", "店铺优惠券"));
+        return;
         //插入信息
         TopVisitInfo info = CreateVisitInfo(context);
         OperatUrl(info.VisitUrl, context, info);
@@ -88,7 +93,7 @@ public class GetData : IHttpHandler {
         info.VisitID = Guid.NewGuid();
         info.VisitIP = dataHelper.GetIPAddress();
         info.VisitTime = dataHelper.GetVisitTime();
-        info.VisitUrl = dataHelper.GetUrl();
+        info.VisitUrl = "http://item.taobao.com/item.htm?id=12541233843&_u=1jaielu4a59";//dataHelper.GetUrl();
         info.VisitUserAgent = dataHelper.GetUserAgent();
         info.VisitBrower = dataHelper.GetBrower();
         info.VisitOSLanguage = dataHelper.GetOSLanguage();
