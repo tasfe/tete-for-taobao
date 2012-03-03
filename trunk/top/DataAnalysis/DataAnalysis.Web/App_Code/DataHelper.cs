@@ -3,8 +3,6 @@ using System.Web;
 using System.Runtime.InteropServices;
 using System.Web.Security;
 using System.Configuration;
-using System.Text.RegularExpressions;
-using System.Collections.Generic;
 
 /// <summary>
 /// 获取来访客户端信息
