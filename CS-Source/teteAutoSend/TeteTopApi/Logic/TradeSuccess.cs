@@ -10,7 +10,6 @@ namespace TeteTopApi.Logic
 {
     public class TradeSuccess
     {
-        private static object padlock3 = new object();
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -148,8 +147,8 @@ namespace TeteTopApi.Logic
 
 
             //发送短信-上LOCK锁定
-            lock (padlock3)
-            {
+            //lock (padlock3)
+            //{
                 //判断是否符合赠送条件
                 if (CheckCouponSend(shop, tradeRate, trade))
                 {
@@ -202,7 +201,7 @@ namespace TeteTopApi.Logic
                         }
                     }
                 }
-            }
+            //}
         }
         
 

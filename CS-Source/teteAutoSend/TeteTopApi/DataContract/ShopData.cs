@@ -83,7 +83,47 @@ namespace TeteTopApi.DataContract
         /// <returns></returns>
         public List<ShopInfo> GetShopInfoListCouponExpired()
         {
-            string sql = "SELECT * FROM TCS_ShopConfig r WITH (NOLOCK) INNER JOIN TCS_ShopSession s WITH (NOLOCK) ON s.nick = r.nick WHERE r.couponid IN (SELECT guid FROM TCS_Coupon WHERE enddate < GETDATE()) AND phone IS NOT NULL AND iscoupon = 1 AND couponid IS NOT NULL AND isdel = 0";
+            string sql = "SELECT * FROM TCS_ShopConfig r WITH (NOLOCK) INNER JOIN TCS_ShopSession s WITH (NOLOCK) ON s.nick = r.nick AND couponid IS NOT NULL AND LEN(couponid) > 10 INNER JOIN TCS_Coupon c ON CAST(C.guid as Nvarchar(40)) = CAST(r.couponid as Nvarchar(40)) WHERE c.enddate < GETDATE() AND phone IS NOT NULL AND iscoupon = 1 AND couponid IS NOT NULL AND r.isdel = 0";
+            Console.Write(sql + "\r\n");
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                return FormatDataList(dt);
+            }
+            else
+            {
+                return new List<ShopInfo>();
+            }
+        }
+
+
+        /// <summary>
+        /// 获取账户里面赠送优惠券到期的客户并提醒他们重新创建优惠券
+        /// </summary>
+        /// <returns></returns>
+        public List<ShopInfo> GetShopInfoListMsgZero()
+        {
+            string sql = "SELECT * FROM TCS_ShopConfig r WITH (NOLOCK) INNER JOIN TCS_ShopSession s WITH (NOLOCK) ON s.nick = r.nick WHERE isdel = 0 AND phone IS NOT NULL AND total < =0 AND used > 0";
+            Console.Write(sql + "\r\n");
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                return FormatDataList(dt);
+            }
+            else
+            {
+                return new List<ShopInfo>();
+            }
+        }
+
+
+        /// <summary>
+        /// 获取账户里面赠送优惠券到期的客户并提醒他们重新创建优惠券
+        /// </summary>
+        /// <returns></returns>
+        public List<ShopInfo> GetShopInfoListCouponExpiredMax()
+        {
+            string sql = "SELECT * FROM TCS_ShopConfig r WITH (NOLOCK) INNER JOIN TCS_ShopSession s WITH (NOLOCK) ON s.nick = r.nick AND couponid IS NOT NULL AND LEN(couponid) > 10 INNER JOIN TCS_Coupon c ON CAST(C.guid as Nvarchar(40)) = CAST(r.couponid as Nvarchar(40)) WHERE c.count <= c.used AND phone IS NOT NULL AND iscoupon = 1 AND couponid IS NOT NULL AND r.isdel = 0";
             Console.Write(sql + "\r\n");
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count != 0)
@@ -116,12 +156,12 @@ namespace TeteTopApi.DataContract
         }
 
         /// <summary>
-        /// 获取正常使用且有手机提醒的店铺
+        /// 获取正常使用且有手机提醒的店铺而且最近7天内没有同类型提醒消息的
         /// </summary>
         /// <returns></returns>
         public List<ShopInfo> GetShopInfoNormalUsed()
         {
-            string sql = "SELECT * FROM TCS_ShopConfig r WITH (NOLOCK) INNER JOIN TCS_ShopSession s WITH (NOLOCK) ON s.nick = r.nick WHERE phone IS NOT NULL AND iscoupon = 1 AND couponid IS NOT NULL AND isdel = 0";
+            string sql = "SELECT * FROM TCS_ShopConfig r WITH (NOLOCK) INNER JOIN TCS_ShopSession s WITH (NOLOCK) ON s.nick = r.nick WHERE phone IS NOT NULL AND iscoupon = 1 AND couponid IS NOT NULL AND isdel = 0 AND r.nick NOT IN (SELECT nick FROM TCS_MsgSendShop WHERE typ = 'status' AND DATEDIFF(d, adddate, GETDATE()) < 7)";
             Console.Write(sql + "\r\n");
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count != 0)
@@ -225,6 +265,7 @@ namespace TeteTopApi.DataContract
             info.IsCancelAuto = dt.Rows[0]["IsCancelAuto"].ToString();
             info.Keyword = dt.Rows[0]["Keyword"].ToString();
             info.WordCount = dt.Rows[0]["WordCount"].ToString();
+            info.IsKeyword = dt.Rows[0]["IsKeyword"].ToString();
             info.IsCoupon = dt.Rows[0]["IsCoupon"].ToString();
             info.Mobile = dt.Rows[0]["phone"].ToString();
 
@@ -266,6 +307,7 @@ namespace TeteTopApi.DataContract
                 info.Session = dt.Rows[i]["session"].ToString();
                 info.Version = dt.Rows[i]["version"].ToString();
                 info.IsCancelAuto = dt.Rows[i]["IsCancelAuto"].ToString();
+                info.IsKeyword = dt.Rows[0]["IsKeyword"].ToString();
                 info.Keyword = dt.Rows[i]["Keyword"].ToString();
                 info.WordCount = dt.Rows[i]["WordCount"].ToString();
                 info.IsCoupon = dt.Rows[i]["IsCoupon"].ToString();

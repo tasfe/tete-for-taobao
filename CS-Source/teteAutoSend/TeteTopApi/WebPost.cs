@@ -264,7 +264,7 @@ namespace TeteTopApi
                             Trade trade = utils.GetTrade(resultNew);
                             dbLog.InsertMsgLogInfo(trade.Nick, trade.Status, resultNew);
 
-                            ThreadPool.QueueUserWorkItem(new WaitCallback(StartReceiveMessage), resultNew);
+                            //ThreadPool.QueueUserWorkItem(new WaitCallback(StartReceiveMessage), resultNew);
                         }
                     }
                 }
