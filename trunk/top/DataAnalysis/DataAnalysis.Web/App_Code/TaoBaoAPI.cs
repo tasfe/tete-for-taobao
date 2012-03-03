@@ -152,7 +152,7 @@ public class TaoBaoAPI
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("num_iid", pid);
-        dic.Add("fields", "num_iid,title,nick");
+        dic.Add("fields", "num_iid,title,nick,price");
         string text = Post("taobao.item.get", "", dic, DataType.json);
         GoodsInfo info = null;
         if (!string.IsNullOrEmpty(text))
