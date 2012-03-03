@@ -32,9 +32,9 @@ public partial class CreateCode : BasePage
             {
                 Page.RegisterStartupScript("error", "<script>alert('非法用户!');</script>");
             }
-            Rijndael_ encode = new Rijndael_("tetesoft");
-            //解密得到真实nick
-            string realNickNo = encode.Encrypt(nickNo);
+            //Rijndael_ encode = new Rijndael_("tetesoft");
+            ////解密得到真实nick
+            //string realNickNo = encode.Encrypt(nickNo);
             string name = FUp_Img.FileName;
             string type = name.Substring(name.LastIndexOf(".") + 1).ToLower();
 
@@ -43,7 +43,7 @@ public partial class CreateCode : BasePage
                 try
                 {
                     //图片名称统一用md5加密后的，后缀为jpg格式
-                    String ReName = DataHelper.Encrypt(realNickNo) + ".jpg";//图片重命名
+                    String ReName = DataHelper.Encrypt(nickNo) + ".jpg";//图片重命名
 
                     String Ipath = Server.MapPath("~/Images/nickimgs") + "\\" + ReName;//文件实际路径
                     FUp_Img.SaveAs(Ipath);//上传到图片目录
