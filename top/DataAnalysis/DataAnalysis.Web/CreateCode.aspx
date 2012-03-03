@@ -11,11 +11,9 @@
     <div>
        <asp:FileUpload ID="FUp_Img" Width="400" runat="server" />
         <asp:Button ID="Btn_Upload" runat="server" Text="确定上传"  onclick="Btn_Upload_Click" />
-        
+       <br />
         统计代码：
-        <asp:TextBox ID="TB_Code" runat="server">
-        
-        </asp:TextBox>
+        <asp:TextBox Height="103px" Width="337px" ID="TB_Code" runat="server"></asp:TextBox>
     </div>
     </form>
 </body>
