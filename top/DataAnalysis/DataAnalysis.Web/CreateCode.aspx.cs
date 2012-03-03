@@ -26,8 +26,9 @@ public partial class CreateCode : BasePage
         //try
         //{
             //获取cookie
+
             string nickNo = Request.Cookies["nick"].Value;
-            string topsession = Request.Cookies["session"].Value;
+            string topsession = Request.Cookies["nicksession"].Value;
             if (string.IsNullOrEmpty(nickNo))
             {
                 Page.RegisterStartupScript("error", "<script>alert('非法用户!');</script>");
