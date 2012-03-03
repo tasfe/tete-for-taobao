@@ -17,7 +17,7 @@ namespace ReviewShippingCheck
                 act.Start();
 
                 //30分钟检查一次
-                Thread.Sleep(1800000);
+                Thread.Sleep(3600000);
             }
         }
     }
