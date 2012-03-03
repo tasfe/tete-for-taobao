@@ -19,6 +19,7 @@ public partial class top_js_userinfo : System.Web.UI.Page
         string session = cookie.getCookie("top_session");
         string oldTaobaoNick = taobaoNick;
         string iscrm = cookie.getCookie("iscrm");
+        string istongji = cookie.getCookie("istongji");
 
         //过期判断
         if (string.IsNullOrEmpty(taobaoNick))
@@ -40,6 +41,15 @@ public partial class top_js_userinfo : System.Web.UI.Page
         else
         {
             Response.Write("document.write('<img src=\"http://haoping.7fshop.com/top/crm/setcookie.aspx?nick=" + oldTaobaoNick + "&session=" + session + "\" width=0 height=0>');");
+        }
+
+        if (istongji == "1")
+        {
+            Response.Write("document.write('<img src=\"http://ding.7fshop.com/getnick.ashx?nick=" + oldTaobaoNick + "&session=" + session + "&istongji=1\" width=0 height=0>');");
+        }
+        else
+        {
+            Response.Write("document.write('<img src=\"http://ding.7fshop.com/getnick.ashx?nick=" + oldTaobaoNick + "&session=" + session + "\" width=0 height=0>');");
         }
     }
 }
