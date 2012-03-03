@@ -44,7 +44,7 @@ public partial class CreateCode : BasePage
                 try
                 {
                     //图片名称统一用md5加密后的，后缀为jpg格式
-                    String ReName = DataHelper.Encrypt(nickNo) + ".jpg";//图片重命名
+                    String ReName = DataHelper.Encrypt(HttpUtility.UrlDecode(nickNo)) + ".jpg";//图片重命名
 
                     String Ipath = Server.MapPath("~/Images/nickimgs") + "\\" + ReName;//文件实际路径
 
@@ -65,9 +65,7 @@ public partial class CreateCode : BasePage
                     Page.RegisterStartupScript("error", "<script>alert('图片上传失败,请重试!" + ex.Message.ToString() + "');</script>");
                 }
 
-                TB_Code.Text = "<img src=\"" + DataHelper.GetAppSetings("hostname") + "GetData.ashx?nick=" + HttpUtility.UrlEncode(nickNo) + "\" border=\"0\" />";
-
-                Page.RegisterStartupScript("error", "<script>alert('" + HttpUtility.UrlEncode(nickNo) + "!');</script>");
+                TB_Code.Text = "<img src=\"" + DataHelper.GetAppSetings("hostname") + "GetData.ashx?nick=" + nickNo + "\" border=\"0\" />";
 
             }
             else
