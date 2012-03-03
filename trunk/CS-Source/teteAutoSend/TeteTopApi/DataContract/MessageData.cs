@@ -50,7 +50,7 @@ namespace TeteTopApi.DataContract
         /// <returns></returns>
         public bool IsSendMsgNearDays(ShopInfo shop, string typ)
         {
-            string sql = "SELECT cguid FROM TCS_MsgSendShop WHERE nick = '" + shop.Nick + "' AND typ = '" + typ + "' AND DATEDIFF(d, adddate, GETDATE()) < 14";
+            string sql = "SELECT cguid FROM TCS_MsgSendShop WHERE nick = '" + shop.Nick + "' AND typ = '" + typ + "' AND DATEDIFF(d, adddate, GETDATE()) < 7";
             Console.Write(sql + "\r\n");
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count == 0)

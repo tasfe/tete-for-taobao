@@ -71,6 +71,63 @@ namespace TeteTopApi.Logic
             }
         }
 
+
+        /// <summary>
+        /// 充值过短信但是现在短信为0的客户清单并给出提示
+        /// </summary>
+        public void StartMsgZero()
+        {
+            //获取账户里面有1周前未审核评价的卖家
+            ShopData dbShop = new ShopData();
+            List<ShopInfo> list = dbShop.GetShopInfoListMsgZero();
+
+            MessageData dbMessage = new MessageData();
+            string typ = "msgzero";
+
+            //循环获取这些卖家的未审核订单
+            for (int i = 0; i < list.Count; i++)
+            {
+                ShopInfo shop = list[i];
+                //告之这些卖家他们的优惠券已经过期，需要重新设置
+                string msg = "好评有礼:亲爱的" + shop.Nick + "，您的短信已用完，请尽快充值以免影响正常使用，3月短信特惠一律8折详情请联系客户人员";
+
+                //如果7天内已经发送过类似短信的话则不再提醒
+                if (!dbMessage.IsSendMsgNearDays(shop, typ))
+                {
+                    string msgResult = Message.Send(shop.Mobile, msg);
+                    dbMessage.InsertShopAlertMsgLog(shop, msg, msgResult, typ);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 检查优惠券已经赠送完毕的卖家并给出提示
+        /// </summary>
+        public void StartCouponExpiredMax()
+        {
+            //获取账户里面有1周前未审核评价的卖家
+            ShopData dbShop = new ShopData();
+            List<ShopInfo> list = dbShop.GetShopInfoListCouponExpiredMax();
+
+            MessageData dbMessage = new MessageData();
+            string typ = "couponmax";
+
+            //循环获取这些卖家的未审核订单
+            for (int i = 0; i < list.Count; i++)
+            {
+                ShopInfo shop = list[i];
+                //告之这些卖家他们的优惠券已经过期，需要重新设置
+                string msg = "好评有礼:亲爱的" + shop.Nick + ",您设置赠送的优惠券已经达到了最大赠送数量,您可以到服务里面的\"优惠券\"创建新的优惠券并在\"基本设置\"中重新保存";
+
+                //如果7天内已经发送过类似短信的话则不再提醒
+                if (!dbMessage.IsSendMsgNearDays(shop, typ))
+                {
+                    string msgResult = Message.Send(shop.Mobile, msg);
+                    dbMessage.InsertShopAlertMsgLog(shop, msg, msgResult, typ);
+                }
+            }
+        }
+
         /// <summary>
         /// 检查优惠券已经送完的卖家并给出提示
         /// </summary>
@@ -173,11 +230,13 @@ namespace TeteTopApi.Logic
                     //获取未审核的评价并发送消息
                     string result = api.GetCouponTradeTotalByNick(listTrade[j]);
 
-                    string couponid = new Regex(@"<promotion_detail><discount_fee>[^\<]*</discount_fee><id>([0-9]*)</id><promotion_name>店铺优惠券</promotion_name>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                    string couponid = new Regex(@"<promotion_id>([^\<]*)</promotion_id><promotion_name>店铺优惠券", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
                     string price = new Regex(@"<total_fee>([^\<]*)</total_fee>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-
+                    Console.Write(".");
                     if (couponid != "")
                     {
+                        Console.Write("\r\n"+couponid + "...........................................................\r\n");
+                        Console.Write(price + "...........................................................\r\n");
                         couponOrderCount++;
                         couponOrderPrice += decimal.Parse(price);
                     }
@@ -190,7 +249,7 @@ namespace TeteTopApi.Logic
                 }
 
                 string msg = "好评有礼:" + shop.Nick + ",最近14天共赠送了" + sendcount + "张优惠券," + couponOrderCount.ToString() + "个客户使用优惠券产生了二次购买总额" + couponOrderPrice + "元";
-
+                Console.Write(msg + "...........................................................\r\n");
                 //如果14天内已经发送过类似短信的话则不再提醒
                 if (!dbMessage.IsSendMsgNearDays(shop, typ))
                 {
@@ -241,6 +300,12 @@ namespace TeteTopApi.Logic
                         for (int j = 0; j < match.Count; j++)
                         {
                             shop.Version = match[j].Groups[1].ToString().Replace("service-0-22904-", "");
+
+                            if (shop.Version == "9")
+                            {
+                                shop.Version = "3";
+                            }
+
                             if (int.Parse(shop.Version) <= 3)
                             {
                                 isok = 1;

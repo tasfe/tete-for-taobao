@@ -16,7 +16,7 @@ namespace TeteTopApi.Logic
         {
             //获取目前正在使用的卖家(需要改成全部卖家，否则物流状态无法获取)
             ShopData dbShop = new ShopData();
-            List<ShopInfo> list = dbShop.GetShopInfoListShippingAlert();
+            List<ShopInfo> list = dbShop.GetShopInfoNormalUsedAll();
 
             //循环判定这些卖家的订单是否物流到货
             for (int i = 0; i < list.Count; i++)
