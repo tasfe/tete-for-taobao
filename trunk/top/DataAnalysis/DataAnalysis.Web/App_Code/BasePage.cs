@@ -7,7 +7,7 @@ public class BasePage : System.Web.UI.Page
 {
     protected override void InitializeCulture()
     {
-        if (Request.QueryString["istongji"] != "1")
+        if (Request.Cookies["nick"] == null || Request.QueryString["istongji"] != "1")
         {
             string nick = Request.Cookies["nick"].Value;
 
