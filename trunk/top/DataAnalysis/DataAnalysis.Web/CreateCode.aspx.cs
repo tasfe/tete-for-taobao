@@ -26,8 +26,8 @@ public partial class CreateCode : BasePage
         try
         {
             //获取cookie
-            string nickNo = Request.QueryString["nick"];
-            string topsession = Request.QueryString["session"];
+            string nickNo = Session["nick"].ToString();
+            string topsession = Session["session"].ToString();
             if (string.IsNullOrEmpty(nickNo))
             {
                 Page.RegisterStartupScript("error", "<script>alert('非法用户!');</script>");
@@ -53,7 +53,7 @@ public partial class CreateCode : BasePage
                     info.NickState = true;
                     info.JoinDate = DateTime.Now;
                     info.Session = topsession;
-                    new NickSessionService().AddSession(info);
+                    //new NickSessionService().AddSession(info);
                 }
                 catch (Exception ex)
                 {
