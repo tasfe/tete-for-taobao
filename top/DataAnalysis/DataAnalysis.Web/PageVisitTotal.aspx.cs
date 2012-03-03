@@ -32,7 +32,7 @@ public partial class PageVisitTotal : BasePage
         }
         catch { }
 
-        IList<PageVisitInfoTotal> list = visitDal.GetAllVisitPageInfoList(DataHelper.Encrypt(Session["nick"].ToString()), start, end, page, 20);
+        IList<PageVisitInfoTotal> list = visitDal.GetAllVisitPageInfoList(DataHelper.Encrypt(Request.Cookies["nick"].ToString()), start, end, page, 20);
         TotalCount = list.Count;
         pds.DataSource = list;
         pds.AllowPaging = true;
