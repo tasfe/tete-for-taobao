@@ -23,8 +23,8 @@ public partial class CreateCode : BasePage
 
     protected void Btn_Upload_Click(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             //获取cookie
             string nickNo = Request.Cookies["nick"].Value;
             string topsession = Request.Cookies["session"].Value;
@@ -66,11 +66,11 @@ public partial class CreateCode : BasePage
             {
                 Page.RegisterStartupScript("error", "<script>alert('图片格式不对!');</script>");
             }
-        }
-        catch(Exception ex)
-        {
-            Page.RegisterStartupScript("error", "<script>alert('图片上传失败,请重试"+ex.Message+"!');</script>");
-        }
+        //}
+        //catch(Exception ex)
+        //{
+        //    Page.RegisterStartupScript("error", "<script>alert('图片上传失败,请重试"+ex.Message+"!');</script>");
+        //}
     }
 
     public string ParametersName(String top_parameters)
