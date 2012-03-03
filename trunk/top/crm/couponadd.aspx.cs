@@ -43,7 +43,7 @@ public partial class top_review_couponadd : System.Web.UI.Page
         //过期判断
         if (iscrm != "1")
         {
-            string msg = "尊敬的" + nick + "，非常抱歉的告诉您，您尚未订购该功能，如需继续使用请购买该服务:<br><br>19元/月 (赠送短信100条) <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:1;' target='_blank'><img src='images/buynow.jpg' border=0></a><br><br><a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:3;' target='_blank'>购买54元/季</a><br><br><a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:6;' target='_blank'>购买99元/半年</a><br><br><a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:12;' target='_blank'>购买188元/年</a><br>";
+            string msg = "尊敬的" + nick + "，非常抱歉的告诉您，您尚未订购该功能，如需继续使用请购买该服务:<br><br>19元/月 (赠送短信50条) <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:1;' target='_blank'><img src='images/buynow.jpg' border=0></a><br><br>54元/季 (赠送短信150条) <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:3;' target='_blank'><img src='images/buynow.jpg' border=0></a><br><br>99元/半年 (赠送短信300条)<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:6;' target='_blank'><img src='images/buynow.jpg' border=0></a><br><br>188元/年 (赠送短信600条)<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-4:12;' target='_blank'><img src='images/buynow.jpg' border=0></a><br>";
             Response.Redirect("buy.aspx?msg=" + HttpUtility.UrlEncode(msg));
             Response.End();
             return;
