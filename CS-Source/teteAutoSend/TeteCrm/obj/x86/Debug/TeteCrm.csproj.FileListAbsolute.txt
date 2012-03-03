@@ -1,0 +1,10 @@
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteCrm\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteCrm\obj\x86\Debug\TeteCrm.Form1.resources
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteCrm\obj\x86\Debug\TeteCrm.Properties.Resources.resources
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteCrm\bin\Debug\TeteCrm.exe.config
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteCrm\bin\Debug\TeteCrm.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteCrm\bin\Debug\TeteCrm.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteCrm\obj\x86\Debug\TeteCrm.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteCrm\obj\x86\Debug\TeteCrm.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteCrm\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteCrm\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
