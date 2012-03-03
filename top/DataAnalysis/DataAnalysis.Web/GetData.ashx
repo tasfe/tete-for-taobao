@@ -92,7 +92,7 @@ public class GetData : IHttpHandler {
         info.VisitUserAgent = dataHelper.GetUserAgent();
         info.VisitBrower = dataHelper.GetBrower();
         info.VisitOSLanguage = dataHelper.GetOSLanguage();
-        info.VisitShopId = DataHelper.Encrypt(HttpUtility.UrlDecode(context.Request.QueryString["nick"]));  // "234543534"
+        info.VisitShopId = HttpUtility.UrlDecode(context.Request.QueryString["nick"]);  // "234543534"
         
         info.GoodsId = "";
         info.GoodsClassId = "";
