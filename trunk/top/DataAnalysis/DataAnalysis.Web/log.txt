@@ -622,3 +622,78 @@ Log Entry : 2012/3/2 19:14:37 获取订单转换出错 传入的对象无效，�
 
 Log Entry : 2012/3/2 20:40:24 获取信息出错 无效的 JSON 基元: 。
 -------------------------------
+
+Log Entry : 2012/3/3 13:38:50 SELECT * FROM(  
+select COUNT(*) as gcount,goodsid,ROW_NUMBER() OVER(ORDER BY COUNT(*) DESC) as RowNum
+from (select goodsid from TopVisitInfo_2343b8b01bbe00cfa404d1fc993819ae
+where visittime between @start and @end and GoodsId<>''
+) a group by goodsid) B WHERE  RowNum between @snum and @enum 必须声明标量变量 "@snum"。
+-------------------------------
+
+Log Entry : 2012/3/3 13:38:51 SELECT * FROM(  
+select COUNT(*) as gcount,goodsid,ROW_NUMBER() OVER(ORDER BY COUNT(*) DESC) as RowNum
+from (select goodsid from TopVisitInfo_2343b8b01bbe00cfa404d1fc993819ae
+where visittime between @start and @end and GoodsId<>''
+) a group by goodsid) B WHERE  RowNum between @snum and @enum 列名 'GoodsId' 无效。
+列名 'goodsid' 无效。
+-------------------------------
+
+Log Entry : 2012/3/3 13:40:25 SELECT * FROM(  
+select COUNT(*) as gcount,goodsid,ROW_NUMBER() OVER(ORDER BY COUNT(*) DESC) as RowNum
+from (select goodsid from TopVisitInfo_2343b8b01bbe00cfa404d1fc993819ae
+where visittime between @start and @end and GoodsId<>''
+) a group by goodsid) B WHERE  RowNum between @snum and @enum 必须声明标量变量 "@snum"。
+-------------------------------
+
+Log Entry : 2012/3/3 13:40:25 SELECT * FROM(  
+select COUNT(*) as gcount,goodsid,ROW_NUMBER() OVER(ORDER BY COUNT(*) DESC) as RowNum
+from (select goodsid from TopVisitInfo_2343b8b01bbe00cfa404d1fc993819ae
+where visittime between @start and @end and GoodsId<>''
+) a group by goodsid) B WHERE  RowNum between @snum and @enum 列名 'GoodsId' 无效。
+列名 'goodsid' 无效。
+-------------------------------
+
+Log Entry : 2012/3/3 13:41:07 SELECT * FROM(  
+select COUNT(*) as gcount,goodsid,ROW_NUMBER() OVER(ORDER BY COUNT(*) DESC) as RowNum
+from (select goodsid from TopVisitInfo_2343b8b01bbe00cfa404d1fc993819ae
+where visittime between @start and @end and GoodsId<>''
+) a group by goodsid) B WHERE  RowNum between @snum and @enum 必须声明标量变量 "@snum"。
+-------------------------------
+
+Log Entry : 2012/3/3 13:41:07 SELECT * FROM(  
+select COUNT(*) as gcount,goodsid,ROW_NUMBER() OVER(ORDER BY COUNT(*) DESC) as RowNum
+from (select goodsid from TopVisitInfo_2343b8b01bbe00cfa404d1fc993819ae
+where visittime between @start and @end and GoodsId<>''
+) a group by goodsid) B WHERE  RowNum between @snum and @enum 列名 'GoodsId' 无效。
+列名 'goodsid' 无效。
+-------------------------------
+
+Log Entry : 2012/3/3 13:41:30 SELECT COUNT(*) FROM(  
+select COUNT(*) as gcount,goodsid
+from (select goodsid from TopVisitInfo_2343b8b01bbe00cfa404d1fc993819ae where visittime between @start and @end and GoodsId<>''
+) a group by goodsid) b 列名 'GoodsId' 无效。
+列名 'goodsid' 无效。
+-------------------------------
+
+Log Entry : 2012/3/3 13:41:31 SELECT * FROM(  
+select COUNT(*) as gcount,goodsid,ROW_NUMBER() OVER(ORDER BY COUNT(*) DESC) as RowNum
+from (select goodsid from TopVisitInfo_2343b8b01bbe00cfa404d1fc993819ae
+where visittime between @start and @end and GoodsId<>''
+) a group by goodsid) B WHERE  RowNum between @snum and @enum 列名 'GoodsId' 无效。
+列名 'goodsid' 无效。
+-------------------------------
+
+Log Entry : 2012/3/3 13:42:05 SELECT COUNT(*) FROM(  
+select COUNT(*) as gcount,goodsid
+from (select goodsid from TopVisitInfo_2343b8b01bbe00cfa404d1fc993819ae where visittime between @start and @end and GoodsId<>''
+) a group by goodsid) b 列名 'GoodsId' 无效。
+列名 'goodsid' 无效。
+-------------------------------
+
+Log Entry : 2012/3/3 13:42:23 SELECT * FROM(  
+select COUNT(*) as gcount,goodsid,ROW_NUMBER() OVER(ORDER BY COUNT(*) DESC) as RowNum
+from (select goodsid from TopVisitInfo_2343b8b01bbe00cfa404d1fc993819ae
+where visittime between @start and @end and GoodsId<>''
+) a group by goodsid) B WHERE  RowNum between @snum and @enum 列名 'GoodsId' 无效。
+列名 'goodsid' 无效。
+-------------------------------
