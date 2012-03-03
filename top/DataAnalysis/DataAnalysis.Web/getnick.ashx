@@ -27,16 +27,19 @@ public class getnick : IHttpHandler {
             
             context.Response.Cookies.Add(cookie);
             context.Response.Cookies.Add(cooksession);
+            if (string.IsNullOrEmpty(context.Request.QueryString["istongji"]))
+            {
+                DateTime now = DateTime.Now;
+                TopNickSessionInfo info = new TopNickSessionInfo();
+                info.Nick = nick;
+                info.Session = session;
+                info.NickState = true;
+                info.JoinDate = now;
+                info.LastGetOrderTime = now;
+                new NickSessionService().AddSession(info);
 
-            DateTime now = DateTime.Now;
-            TopNickSessionInfo info = new TopNickSessionInfo();
-            info.Nick = nick;
-            info.Session = session;
-            info.NickState = true;
-            info.JoinDate = now;
-            info.LastGetOrderTime = now;
-            new NickSessionService().AddSession(info);
-            TaoBaoAPI.GetGoodsOrderInfoList(now.AddDays(-7), now, session, "TRADE_FINISHED");
+                InsertGoodsOrder(TaoBaoAPI.GetGoodsOrderInfoList(now.AddDays(-7), now, session, "TRADE_FINISHED"), session, nick);
+            }
         }
         //context.Response.ContentType = "text/plain";
         //context.Response.Write("Hello World");

@@ -32,7 +32,7 @@ public class GetData : IHttpHandler {
 
         //}
 
-        System.Drawing.Image img = System.Drawing.Image.FromFile(context.Server.MapPath("~/Images/nickimgs/" + info.VisitShopId + ".jpg"));
+        System.Drawing.Image img = System.Drawing.Image.FromFile(context.Server.MapPath("~/Images/nickimgs/" + DataHelper.Encrypt(info.VisitShopId) + ".jpg"));
         img.Save(context.Response.OutputStream, System.Drawing.Imaging.ImageFormat.Jpeg);
         context.Response.End();
         ////context.Response.ContentType = "text/plain";
