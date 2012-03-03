@@ -10,22 +10,17 @@ public class GetData : IHttpHandler {
 
     public void ProcessRequest(HttpContext context)
     {
-
-        context.Response.ContentType = "text/json";
-        //context.Response.Write(TaoBaoAPI.GetGoodsOrderInfoList(DateTime.Now.AddDays(-60), DateTime.Now.AddDays(-30), "6101f00f1df2173ec72dfb10b5add5a5e1f3f6d8b89888169634565", "TRADE_FINISHED"));
-        context.Response.Write(TaoBaoAPI.GetPingjia("6101f00f1df2173ec72dfb10b5add5a5e1f3f6d8b89888169634565", "138457281818297"));
-        //context.Response.Write(TaoBaoAPI.GetPromotion("6101f00f1df2173ec72dfb10b5add5a5e1f3f6d8b89888169634565", "146845082192329", "店铺优惠券"));
-        return;
         //插入信息
         TopVisitInfo info = CreateVisitInfo(context);
+        if (string.IsNullOrEmpty(info.VisitUrl)) return;
         OperatUrl(info.VisitUrl, context, info);
         InsertInfo(info);
         
-        context.Response.Redirect("http://groupbuy.7fshop.com/top/groupbuy/groupbuy_imag.aspx?id=" + context.Request.QueryString["id"].ToString() + "&typ=" + context.Request.QueryString["typ"].ToString() + "&isok=1");
+        //context.Response.Redirect("http://groupbuy.7fshop.com/top/groupbuy/groupbuy_imag.aspx?id=" + context.Request.QueryString["id"].ToString() + "&typ=" + context.Request.QueryString["typ"].ToString() + "&isok=1");
 
-        //context.Response.ContentType = "image/jpeg";
-        //context.Response.Clear();
-        //context.Response.BufferOutput = true;
+        context.Response.ContentType = "image/jpeg";
+        context.Response.Clear();
+        context.Response.BufferOutput = true;
 
 
         //if (SetCookie(context, info.VisitIP))
@@ -37,9 +32,9 @@ public class GetData : IHttpHandler {
 
         //}
 
-        //System.Drawing.Image img = System.Drawing.Image.FromFile(context.Server.MapPath("~/Images/nickimgs/" + info.VisitShopId + ".jpg"));
-        //img.Save(context.Response.OutputStream, System.Drawing.Imaging.ImageFormat.Jpeg);
-        //context.Response.End();
+        System.Drawing.Image img = System.Drawing.Image.FromFile(context.Server.MapPath("~/Images/nickimgs/" + info.VisitShopId + ".jpg"));
+        img.Save(context.Response.OutputStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+        context.Response.End();
         ////context.Response.ContentType = "text/plain";
         ////context.Response.Write("Hello World");
     }
@@ -93,16 +88,14 @@ public class GetData : IHttpHandler {
         info.VisitID = Guid.NewGuid();
         info.VisitIP = dataHelper.GetIPAddress();
         info.VisitTime = dataHelper.GetVisitTime();
-        info.VisitUrl = "http://item.taobao.com/item.htm?id=12541233843&_u=1jaielu4a59";//dataHelper.GetUrl();
+        info.VisitUrl =dataHelper.GetUrl();
         info.VisitUserAgent = dataHelper.GetUserAgent();
         info.VisitBrower = dataHelper.GetBrower();
         info.VisitOSLanguage = dataHelper.GetOSLanguage();
         info.VisitShopId = context.Request.QueryString["nick"];  // "234543534"
         
         info.GoodsId = "";
-        info.GoodsName = "";
         info.GoodsClassId = "";
-        info.GoodsClassName = "";
         
         return info;
     }
@@ -111,102 +104,29 @@ public class GetData : IHttpHandler {
     {
         if (url.Contains("?id=") || url.Contains("&id="))
         {
-            AddGoodsInfoToCache(url, context, info);
+            InitGoodsId(url, context, info);
         }
         if (url.Contains("?scid=") && url.Contains("?scid="))
         {
-            AddGoodsClassInfoToCache(url, context, info);
+            InitGoodsClassId(url, context, info);
         }
 
     }
 
-    private static void AddGoodsInfoToCache(string url,HttpContext context,TopVisitInfo vinfo)
+    private static void InitGoodsId(string url, HttpContext context, TopVisitInfo vinfo)
     {
         Regex regex = new Regex("(\\?id=\\d+)|(&id=\\d+)", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-       string idstr = regex.Match(url).Value;
-       string pid = idstr.Replace("?id=", "").Replace("&id=", "");
-       vinfo.GoodsId = pid;
-       if (context.Cache["GoodsList"] != null && ((IList<GoodsInfo>)context.Cache["GoodsList"]).Where(o=>o.num_iid==pid).ToList().Count>0)
-       {
-           return;
-       }
-        
-        Dictionary<string, string> dic = new Dictionary<string, string>();
-        dic.Add("num_iid", pid);
-        dic.Add("fields", "num_iid,title,nick");
-        string text = TaoBaoAPI.Post("taobao.item.get", "", dic, DataType.json);
-        if (!string.IsNullOrEmpty(text))
-        {
-            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
-            text = text.Replace("{\"item_get_response\":{\"item\":", "").Replace("}}", "");
-            GoodsInfo info = js.Deserialize<GoodsInfo>(text);
-            
-            if (context.Cache["GoodsList"] == null)
-            {
-                IList<GoodsInfo> list = new List<GoodsInfo>();
-                vinfo.GoodsName = info.title;
-                list.Add(info);
-                context.Cache.Insert("GoodsList", list, null, DateTime.Now.AddDays(1), System.Web.Caching.Cache.NoSlidingExpiration);
-            }
-            else
-            {
-                IList<GoodsInfo> list = ((IList<GoodsInfo>)context.Cache["GoodsList"]);
-                if (!list.Contains(info))
-                {
-                    vinfo.GoodsName = info.title;
-                    list.Add(info);
-                }
-            }
-        }
+        string idstr = regex.Match(url).Value;
+        string pid = idstr.Replace("?id=", "").Replace("&id=", "");
+        vinfo.GoodsId = pid;
     }
 
-    private static void AddGoodsClassInfoToCache(string url, HttpContext context, TopVisitInfo vinfo)
+    private static void InitGoodsClassId(string url, HttpContext context, TopVisitInfo vinfo)
     {
         Regex regex = new Regex("(\\?scid=\\d+)|(&id=\\d+)", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
         string idstr = regex.Match(url).Value;
         string cid = idstr.Replace("?scid=", "").Replace("&scid=", "");
-
         vinfo.GoodsClassId = cid;
-        if (context.Cache["GoodsClass"] != null && ((IList<GoodsClassInfo>)context.Cache["GoodsClass"]).Where(o => o.cid == cid).ToList().Count > 0)
-        {
-            vinfo.GoodsClassName = ((IList<GoodsClassInfo>)context.Cache["GoodsClass"]).Where(o => o.cid == cid).ToList()[0].name;
-            return;
-        }
-
-        Dictionary<string, string> dic = new Dictionary<string, string>();
-        dic.Add("nick", vinfo.VisitShopId);
-        string text = TaoBaoAPI.Post("taobao.sellercats.list.get", "", dic, DataType.json);
-        if (!string.IsNullOrEmpty(text))
-        {
-            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
-            text = text.Replace("{\"sellercats_list_get_response\":{\"seller_cats\":{\"seller_cat\":", "").Replace("]}}}", "") + "]";
-            IList<GoodsClassInfo> classList = js.Deserialize<List<GoodsClassInfo>>(text);
-
-            if (context.Cache["GoodsClass"] == null)
-            {
-                IList<GoodsClassInfo> list = new List<GoodsClassInfo>();
-                foreach (GoodsClassInfo info in classList)
-                {
-                    if (info.cid == cid)
-                        vinfo.GoodsClassName = info.name;
-                    list.Add(info);
-                }
-                context.Cache.Insert("GoodsClass", list, null, DateTime.Now.AddDays(1), System.Web.Caching.Cache.NoSlidingExpiration);
-            }
-            else
-            {
-                IList<GoodsClassInfo> list = ((IList<GoodsClassInfo>)context.Cache["GoodsClass"]);
-                foreach (GoodsClassInfo info in classList)
-                {
-                    if (!list.Contains(info))
-                    {
-                        if (info.cid == cid)
-                            vinfo.GoodsClassName = info.name;
-                        list.Add(info);
-                    }
-                }
-            }
-        }
     }
     
     public bool IsReusable {

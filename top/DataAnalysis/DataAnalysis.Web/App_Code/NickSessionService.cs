@@ -16,7 +16,7 @@ using System.Data.SqlClient;
 /// </summary>
 public class NickSessionService
 {
-    const string SQL_INSERT = "INSERT TopNickSession(nick,session,JoinDate,NickState) VALUES(@nick,@session,@JoinDate,@NickState)";
+    const string SQL_INSERT = "INSERT TopNickSession(nick,session,JoinDate,NickState,LastGetOrderTime) VALUES(@nick,@session,@JoinDate,@NickState,@LastGetOrderTime)";
 
     const string SQL_SELECT = "SELECT nick,NickState,LastGetOrderTime FROM TopNickSession WHERE session=@session";
 
@@ -35,7 +35,8 @@ public class NickSessionService
             new SqlParameter("@nick",sessionInfo.Nick),
             new SqlParameter("@session",sessionInfo.Session),
             new SqlParameter("@JoinDate",sessionInfo.JoinDate),
-            new SqlParameter("@NickState",sessionInfo.NickState)
+            new SqlParameter("@NickState",sessionInfo.NickState),
+            new SqlParameter("@LastGetOrderTime", sessionInfo.LastGetOrderTime)
         };
         return param;
     }

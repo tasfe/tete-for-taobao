@@ -22,7 +22,7 @@ public partial class TopGoods : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
-            ViewState["count"] = taoGoodsService.GetTopGoodsCount("2343b8b01bbe00cfa404d1fc993819ae",darray[0], darray[1]);
+            ViewState["count"] = taoGoodsService.GetTopGoodsCount(DataHelper.Encrypt(Session["nick"].ToString()), darray[0], darray[1]);
             try
             {
                 darray[0] = DateTime.Parse(Request.QueryString["start"]);
@@ -53,7 +53,7 @@ public partial class TopGoods : System.Web.UI.Page
         }
         catch { }
 
-        IList<GoodsInfo> list = taoGoodsService.GetTopGoods("2343b8b01bbe00cfa404d1fc993819ae", start, end, page, 10);
+        IList<GoodsInfo> list = taoGoodsService.GetTopGoods(DataHelper.Encrypt(Session["nick"].ToString()), start, end, page, 10);
 
         for (int i = 0; i < list.Count; i++)
         {
@@ -96,7 +96,7 @@ public partial class TopGoods : System.Web.UI.Page
             TB_Start.Text = start.ToString("yyyy-MM-dd");
             TB_End.Text = endtime.ToString("yyyy-MM-dd");
         }
-        ViewState["count"] = taoGoodsService.GetTopGoodsCount("2343b8b01bbe00cfa404d1fc993819ae", start, endtime);
+        ViewState["count"] = taoGoodsService.GetTopGoodsCount(DataHelper.Encrypt(Session["nick"].ToString()), start, endtime);
         ViewState["page"] = "1";
         Bind(start, endtime, int.Parse(ViewState["count"].ToString()), 10);
     }
