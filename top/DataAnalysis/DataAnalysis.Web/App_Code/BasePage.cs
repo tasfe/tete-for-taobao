@@ -15,10 +15,10 @@ public class BasePage : System.Web.UI.Page
             Response.Redirect("buy.aspx?msg=" + msg);
 
         }
-        else
-        {
-            Session["nick"] = Request.Cookies["nick"].Value;
-            Session["session"] = Request.Cookies["session"].Value;
-        }
+        //else
+        //{
+        //    Session["nick"] = Request.Cookies["nick"].Value;
+        //    Session["session"] = Request.Cookies["session"].Value;
+        //}
     }
 }
