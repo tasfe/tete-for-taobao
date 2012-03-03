@@ -17,7 +17,8 @@ public class BasePage : System.Web.UI.Page
         }
         else
         {
-
+            if (Request.Cookies["nick"] == null || string.IsNullOrEmpty(Request.Cookies["nick"].Value))
+                return;
         }
         //else
         //{
