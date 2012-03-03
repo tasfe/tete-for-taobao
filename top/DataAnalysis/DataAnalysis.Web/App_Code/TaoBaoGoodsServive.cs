@@ -30,6 +30,24 @@ select COUNT(*) as gcount,goodsid
 from (select goodsid from @tableName where visittime between @start and @end and GoodsId<>''
 ) a group by goodsid) b";
 
+    const string SQL_SELECT_TOP_BUY= @"select *  from
+(
+select num_iid,SUM(num) as bcount,ROW_NUMBER() OVER(ORDER BY sum(num) DESC) as rownum
+from(
+  select od.num_iid,od.num from [TopTaoBaoGoodsOrderInfo] o 
+  inner join TopTaoBaoOrderGoodsList od on o.tid=od.tid and o.created between @start
+   and @end and od.status='TRADE_FINISHED' and 
+   o.seller_nick=@nick) a group by num_iid
+)  a where rownum between @snum and @enum";
+
+    const string SQL_SELECT_TOP_BUY_COUNT = @"select COUNT(*) from
+    (select SUM(num) as buycount,num_iid
+from(select od.num_iid,od.num from [TopTaoBaoGoodsOrderInfo] o 
+  inner join TopTaoBaoOrderGoodsList od on o.tid=od.tid and o.created between @start
+   and @end and od.status='TRADE_FINISHED' and 
+   o.seller_nick=@nick) a group by num_iid
+   ) b";
+
     public void InsertTaoBaoGoodsInfo(GoodsInfo info)
     {
         SqlParameter[] param = new[]
@@ -76,7 +94,45 @@ from (select goodsid from @tableName where visittime between @start and @end and
             info.Count = int.Parse(dr["gcount"].ToString());
             list.Add(info);
         }
-
         return list;
     }
+
+    public IList<GoodsInfo> GetTopBuyGoods(string nick, DateTime start, DateTime end, int page, int count)
+    {
+        int snum = 1;
+        if (page != 1)
+            snum = (page - 1) * count + 1;
+        int endnum = page * count;
+        SqlParameter[] param = new[]
+        {
+            new SqlParameter("@start",start),
+            new SqlParameter("@end",end),
+            new SqlParameter("@snum",snum),
+            new SqlParameter("@enum",endnum),
+            new SqlParameter("@nick",nick)
+        };
+
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_TOP_BUY, param);
+        IList<GoodsInfo> list = new List<GoodsInfo>();
+        foreach (DataRow dr in dt.Rows)
+        {
+            GoodsInfo info = new GoodsInfo();
+            info.num_iid = dr["num_iid"].ToString();
+            info.Count = int.Parse(dr["bcount"].ToString());
+            list.Add(info);
+        }
+        return list;
+    }
+
+    public int GetTopGoodsBuyCount(string nick, DateTime start, DateTime end)
+    {
+        SqlParameter[] param = new[]
+        {
+            new SqlParameter("@start",start),
+            new SqlParameter("@end",end),
+            new SqlParameter("@nick",nick)
+        };
+        return DBHelper.ExecuteScalar(SQL_SELECT_TOP_BUY_COUNT, param);
+    }
+
 }
