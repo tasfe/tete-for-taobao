@@ -67,9 +67,9 @@ public partial class CreateCode : BasePage
                 Page.RegisterStartupScript("error", "<script>alert('图片格式不对!');</script>");
             }
         }
-        catch
+        catch(Exception ex)
         {
-            Page.RegisterStartupScript("error", "<script>alert('图片上传失败,请重试!');</script>");
+            Page.RegisterStartupScript("error", "<script>alert('图片上传失败,请重试"+ex.Message+"!');</script>");
         }
     }
 
