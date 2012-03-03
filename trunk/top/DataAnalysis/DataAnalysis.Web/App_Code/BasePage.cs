@@ -15,6 +15,10 @@ public class BasePage : System.Web.UI.Page
             Response.Redirect("buy.aspx?msg=" + msg);
 
         }
+        else
+        {
+
+        }
         //else
         //{
         //    Session["nick"] = Request.Cookies["nick"].Value;
