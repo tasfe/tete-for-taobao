@@ -40,7 +40,7 @@ public class VisitService
    // [GoodsName] [nvarchar](100) NULL,
 
     //指定表插入
-    const string SQL_INSERT_TABLE = "INSERT @tableName(VisitID,VisitIP,VisitUrl,VisitTime,VisitUserAgent,VisitBrower,VisitOSLanguage,GoodsId,GoodsName,GoodsClassId,GoodsClassName) VALUES(@VisitID,@VisitIP,@VisitUrl,@VisitTime,@VisitUserAgent,@VisitBrower,@VisitOSLanguage,@GoodsId,@GoodsName,@GoodsClassId,@GoodsClassName)";
+    const string SQL_INSERT_TABLE = "INSERT @tableName(VisitID,VisitIP,VisitUrl,VisitTime,VisitUserAgent,VisitBrower,VisitOSLanguage,GoodsId,GoodsClassId) VALUES(@VisitID,@VisitIP,@VisitUrl,@VisitTime,@VisitUserAgent,@VisitBrower,@VisitOSLanguage,@GoodsId,@GoodsClassId)";
 
     //统计小时PV流量(指定表/订购用户)
     const string SQL_HOUR_PVTOTAL_TABLE = "SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM @tableName GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  ";//ORDER BY PVHour
@@ -228,9 +228,7 @@ group by VisitIP,VisitBrower,VisitUserAgent
             new SqlParameter("@VisitBrower", info.VisitBrower),
             new SqlParameter("@VisitOSLanguage",info.VisitOSLanguage),
             new SqlParameter("@GoodsId",info.GoodsId),
-            new SqlParameter("@GoodsName",info.GoodsName),
-            new SqlParameter("@GoodsClassId",info.GoodsClassId),
-            new SqlParameter("@GoodsClassName",info.GoodsClassName)
+            new SqlParameter("@GoodsClassId",info.GoodsClassId)
         };
 
         return param;
