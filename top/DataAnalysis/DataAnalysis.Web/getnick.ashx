@@ -11,7 +11,7 @@ public class getnick : IHttpHandler {
             return;
         if(string.IsNullOrEmpty(context.Request.QueryString["session"]))
             return ;
-        string nick = context.Request.QueryString["nick"];
+        string nick = HttpUtility.UrlDecode(context.Request.QueryString["nick"]);
         string session = context.Request.QueryString["session"];
         if (context.Session == null || context.Session["nick"] == null)
         {
