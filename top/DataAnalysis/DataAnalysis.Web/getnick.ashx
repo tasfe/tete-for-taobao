@@ -16,7 +16,7 @@ public class getnick : IHttpHandler {
         if (context.Session == null || context.Session["nick"] == null)
         {
             HttpCookie cookie = new HttpCookie("nick", nick);
-            HttpCookie cooksession = new HttpCookie("session", session);
+            HttpCookie cooksession = new HttpCookie("nicksession", session);
             cookie.Expires = DateTime.Now.AddDays(15);
             cooksession.Expires = DateTime.Now.AddDays(15);
             //cookie.Domain = ".test.7fshop.com";
