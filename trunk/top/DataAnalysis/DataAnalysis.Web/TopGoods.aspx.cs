@@ -62,20 +62,14 @@ public partial class TopGoods : System.Web.UI.Page
             list[i].price = rinfo.price;
         }
 
-        int CurPage;
-        if (Request.QueryString["Page"] != null)
-            CurPage = Convert.ToInt32(Request.QueryString["Page"]);
-        else
-            CurPage = 1;
-
-        lblCurrentPage.Text = "共" + totalCount.ToString() + "条记录 当前页：" + CurPage.ToString() + "/" + TotalPage;
+        lblCurrentPage.Text = "共" + totalCount.ToString() + "条记录 当前页：" + page + "/" + TotalPage;
 
         lnkFrist.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=1&" + "start=" + start.ToShortDateString() + "&end=" + end.ToShortDateString();
-        if (CurPage > 1)
-            lnkPrev.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(CurPage - 1) + "&" + "start=" + start.ToShortDateString() + "&end=" + end.ToShortDateString(); 
+        if (page > 1)
+            lnkPrev.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(page - 1) + "&" + "start=" + start.ToShortDateString() + "&end=" + end.ToShortDateString();
 
-        if (CurPage != TotalPage && TotalPage != 0)
-            lnkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(CurPage + 1) + "&" + "start=" + start.ToShortDateString() + "&end=" + end.ToShortDateString();
+        if (page != TotalPage && TotalPage != 0)
+            lnkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(page + 1) + "&" + "start=" + start.ToShortDateString() + "&end=" + end.ToShortDateString();
         lnkEnd.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + (TotalPage == 0 ? 1 : TotalPage) + "&" + "start=" + start.ToShortDateString() + "&end=" + end.ToShortDateString(); 
 
         Rpt_PageVisit.DataSource = list;
