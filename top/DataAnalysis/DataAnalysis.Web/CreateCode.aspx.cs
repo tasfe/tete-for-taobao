@@ -14,7 +14,7 @@ using System.Security.Cryptography;
 using Common;
 using System.Collections.Generic;
 
-public partial class CreateCode : System.Web.UI.Page
+public partial class CreateCode : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
