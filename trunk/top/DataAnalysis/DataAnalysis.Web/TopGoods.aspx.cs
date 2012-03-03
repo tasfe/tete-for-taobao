@@ -44,6 +44,12 @@ public partial class TopGoods : System.Web.UI.Page
         try
         {
             page = int.Parse(Request.QueryString["Page"]);
+            if (ViewState["page"] != null)
+            {
+                page = int.Parse(ViewState["page"].ToString());
+                ViewState["page"] = null;
+            }
+
         }
         catch { }
 
@@ -97,6 +103,7 @@ public partial class TopGoods : System.Web.UI.Page
             TB_End.Text = endtime.ToString("yyyy-MM-dd");
         }
         ViewState["count"] = taoGoodsService.GetTopGoodsCount("2343b8b01bbe00cfa404d1fc993819ae", start, endtime);
+        ViewState["page"] = "1";
         Bind(start, endtime, int.Parse(ViewState["count"].ToString()), 10);
     }
 }
