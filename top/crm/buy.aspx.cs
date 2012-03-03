@@ -12,5 +12,6 @@ public partial class top_groupbuy_buy : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         msg = utils.NewRequest("msg", utils.RequestType.QueryString).Replace("''", "'");
+        msg = msg.Replace("|", ".");
     }
 }
