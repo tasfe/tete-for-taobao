@@ -24,13 +24,16 @@ public partial class top_crm_setcookie : System.Web.UI.Page
         nick = encode.Decrypt(nick);
 
         //写入数据库
-        string sql = "SELECT COUNT(*) FROM TCS_CrmConfig WHERE nick = '" + nick + "'";
-        string count = utils.ExecuteString(sql);
-        if (count == "0")
+        if (iscrm == "1")
         {
-            sql = "INSERT INTO TCS_CrmConfig (nick, session, updatedate) VALUES ('" + nick + "','" + top_session + "','" + DateTime.Now.AddMonths(-3).ToString() + "')";
-            Response.Write(sql);
-            utils.ExecuteNonQuery(sql);
+            string sql = "SELECT COUNT(*) FROM TCS_CrmConfig WHERE nick = '" + nick + "'";
+            string count = utils.ExecuteString(sql);
+            if (count == "0")
+            {
+                sql = "INSERT INTO TCS_CrmConfig (nick, session, updatedate) VALUES ('" + nick + "','" + top_session + "','" + DateTime.Now.AddMonths(-3).ToString() + "')";
+                Response.Write(sql);
+                utils.ExecuteNonQuery(sql);
+            }
         }
     }
 }
