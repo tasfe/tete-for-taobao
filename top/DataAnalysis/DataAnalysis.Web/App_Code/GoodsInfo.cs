@@ -29,6 +29,10 @@ public class GoodsInfo
 
     public string nick { set; get; }
 
+    public decimal price { set; get; }
+
+    public int Count { set; get; }
+
     public override bool Equals(object obj)
     {
         if (obj is GoodsInfo)

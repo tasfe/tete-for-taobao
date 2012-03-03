@@ -109,13 +109,14 @@ public class DBHelper
     /// </summary>
     /// <param name="dbstring">SQL语句</param>
     /// <returns>是否成功，0失败，1成功</returns>
-    public static int ExecuteScalar(string dbstring)
+    public static int ExecuteScalar(string dbstring, params SqlParameter[] sqlparam)
     {
         // dbstring = RewriteQueryInMultiLangMode(dbstring);
 
         Database db = DatabaseFactory.CreateDatabase();
         dbstring = ReplaceSQL(dbstring);
         DbCommand dbCommand = db.GetSqlStringCommand(dbstring);
+        dbCommand.Parameters.AddRange(sqlparam);
         try
         {
             return Convert.ToInt32(db.ExecuteScalar(dbCommand));
@@ -140,5 +141,10 @@ public class DBHelper
         str = Regex.Replace(str, "@@Fetch_Status", "", RegexOptions.IgnoreCase);
 
         return str;
+    }
+    //一个订购用户一张表
+    public static string GetRealTable(string nickNo)
+    {
+        return "TopVisitInfo_" + nickNo;
     }
 }

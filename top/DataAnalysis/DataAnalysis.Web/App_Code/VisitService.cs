@@ -23,9 +23,7 @@ public class VisitService
 	[VisitBrower] [varchar](50) NULL,
 	[VisitOSLanguage] [varchar](50) NULL,
     [GoodsId] [varchar](50) NULL,
-    [GoodsName] [nvarchar](100) NULL,
     [GoodsClassId] [varchar](50) NULL,
-    [GoodsClassName] [nvarchar](60) NULL,
  CONSTRAINT @pk PRIMARY KEY CLUSTERED 
 (
 	[VisitID] ASC
@@ -33,9 +31,13 @@ public class VisitService
 ) ON [PRIMARY]
  CREATE INDEX index_@tableName_VisitTime ON @tableName([VisitTime])
  CREATE INDEX index_@tableName_GoodsId ON @tableName([GoodsId])
- CREATE INDEX index_@tableName_GoodsName ON @tableName([GoodsName])
+
  CREATE INDEX index_@tableName_GoodsClassId ON @tableName([GoodsClassId])
- CREATE INDEX index_@tableName_GoodsClassName ON @tableName([GoodsClassName])";
+";
+    // CREATE INDEX index_@tableName_GoodsName ON @tableName([GoodsName])
+    // CREATE INDEX index_@tableName_GoodsClassName ON @tableName([GoodsClassName])     
+   // [GoodsClassName] [nvarchar](60) NULL,
+   // [GoodsName] [nvarchar](100) NULL,
 
     //指定表插入
     const string SQL_INSERT_TABLE = "INSERT @tableName(VisitID,VisitIP,VisitUrl,VisitTime,VisitUserAgent,VisitBrower,VisitOSLanguage,GoodsId,GoodsName,GoodsClassId,GoodsClassName) VALUES(@VisitID,@VisitIP,@VisitUrl,@VisitTime,@VisitUserAgent,@VisitBrower,@VisitOSLanguage,@GoodsId,@GoodsName,@GoodsClassId,@GoodsClassName)";
