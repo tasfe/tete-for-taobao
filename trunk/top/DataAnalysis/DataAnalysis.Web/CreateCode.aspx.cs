@@ -61,7 +61,7 @@ public partial class CreateCode : BasePage
                     Page.RegisterStartupScript("error", "<script>alert('图片上传失败,请重试!" + ex.Message.ToString() + "');</script>");
                 }
 
-                TB_Code.Text = "<img src=\"" + DataHelper.GetAppSetings("hostname") + "GetData.ashx?nick=" + nickNo + "\" border=\"0\" />";
+                TB_Code.Text = "<img src=\"" + DataHelper.GetAppSetings("hostname") + "GetData.ashx?nick=" + HttpUtility.UrlEncode(nickNo) + "\" border=\"0\" />";
             }
             else
             {
