@@ -23,7 +23,7 @@ public partial class BackTotal : BasePage
             return;
         }
         TaoBaoGoodsOrderService orderDal = new TaoBaoGoodsOrderService();
-        IList<BackTotalInfo> list = orderDal.GetAllBackTotalList(start, end, Session["nick"].ToString());
+        IList<BackTotalInfo> list = orderDal.GetAllBackTotalList(start, end, Request.Cookies["nick"].ToString());
 
         SeriseText = "[{name:'完成订单量', data:[";
         string iptotal = ",{name:'回头客数量',data:[";
