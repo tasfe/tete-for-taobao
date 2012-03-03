@@ -47,6 +47,10 @@ public partial class CreateCode : BasePage
                     String ReName = DataHelper.Encrypt(nickNo) + ".jpg";//图片重命名
 
                     String Ipath = Server.MapPath("~/Images/nickimgs") + "\\" + ReName;//文件实际路径
+
+
+                    Page.RegisterStartupScript("error", "<script>alert('"+nickNo+"!');</script>");
+
                     FUp_Img.SaveAs(Ipath);//上传到图片目录
 
                     TopNickSessionInfo info = new TopNickSessionInfo();
@@ -62,6 +66,9 @@ public partial class CreateCode : BasePage
                 }
 
                 TB_Code.Text = "<img src=\"" + DataHelper.GetAppSetings("hostname") + "GetData.ashx?nick=" + HttpUtility.UrlEncode(nickNo) + "\" border=\"0\" />";
+
+                Page.RegisterStartupScript("error", "<script>alert('" + HttpUtility.UrlEncode(nickNo) + "!');</script>");
+
             }
             else
             {
