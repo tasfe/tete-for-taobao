@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Web.UI;
 using System.Collections.Generic;
+using System.Web;
 
 public partial class GoodsBuyTotal : BasePage
 {
@@ -13,9 +14,9 @@ public partial class GoodsBuyTotal : BasePage
         if (!Page.IsPostBack)
         {
             DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
-            ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(Request.Cookies["nick"].ToString(), darray[0], darray[1]);
+            ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].ToString()), darray[0], darray[1]);
             try
-            {
+            { 
                 darray[0] = DateTime.Parse(Request.QueryString["start"]);
                 darray[1] = DateTime.Parse(Request.QueryString["end"]);
             }

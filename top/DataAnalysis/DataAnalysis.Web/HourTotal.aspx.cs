@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
+using System.Web;
 
 public partial class HourPVTotal : BasePage
 {
@@ -33,8 +34,8 @@ public partial class HourPVTotal : BasePage
             return;
         }
         VisitService visitDal = new VisitService();
-        IList<HourTotalInfo> list = visitDal.GetHourPVTotal(DataHelper.Encrypt(Request.Cookies["nick"].ToString()), date);
-        IList<HourTotalInfo> ipList = visitDal.GetHourIPTotal(DataHelper.Encrypt(Request.Cookies["nick"].ToString()), date);
+        IList<HourTotalInfo> list = visitDal.GetHourPVTotal(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].ToString())), date);
+        IList<HourTotalInfo> ipList = visitDal.GetHourIPTotal(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].ToString())), date);
 
         SeriseText = "[{name:'PV量', data:[";
         string iptotal = ",{name:'IP量',data:[";

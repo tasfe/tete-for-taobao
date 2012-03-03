@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Web.UI;
 using System.Collections.Generic;
+using System.Web;
 
 public partial class TopGoods : BasePage
 {
@@ -87,7 +88,7 @@ public partial class TopGoods : BasePage
             TB_Start.Text = start.ToString("yyyy-MM-dd");
             TB_End.Text = endtime.ToString("yyyy-MM-dd");
         }
-        ViewState["count"] = taoGoodsService.GetTopGoodsCount(DataHelper.Encrypt(Request.Cookies["nick"].ToString()), start, endtime);
+        ViewState["count"] = taoGoodsService.GetTopGoodsCount(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].ToString())), start, endtime);
         ViewState["page"] = "1";
         Bind(start, endtime, int.Parse(ViewState["count"].ToString()), 10);
     }
