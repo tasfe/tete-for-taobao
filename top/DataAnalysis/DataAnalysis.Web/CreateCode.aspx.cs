@@ -12,6 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Security.Cryptography;
 using Common;
+using System.Collections.Generic;
 
 public partial class CreateCode : System.Web.UI.Page
 {
@@ -20,13 +21,13 @@ public partial class CreateCode : System.Web.UI.Page
 
     }
 
-
     protected void Btn_Upload_Click(object sender, EventArgs e)
     {
         try
         {
             //获取cookie
-            string nickNo = Request.Cookies["nick"].Value;
+            string nickNo = Request.QueryString["nick"];
+            string topsession = Request.QueryString["session"];
             if (string.IsNullOrEmpty(nickNo))
             {
                 Page.RegisterStartupScript("error", "<script>alert('非法用户!');</script>");
@@ -46,6 +47,13 @@ public partial class CreateCode : System.Web.UI.Page
 
                     String Ipath = Server.MapPath("~/Images/nickimgs") + "\\" + ReName;//文件实际路径
                     FUp_Img.SaveAs(Ipath);//上传到图片目录
+
+                    TopNickSessionInfo info = new TopNickSessionInfo();
+                    info.Nick = nickNo;
+                    info.NickState = true;
+                    info.JoinDate = DateTime.Now;
+                    info.Session = topsession;
+                    new NickSessionService().AddSession(info);
                 }
                 catch (Exception ex)
                 {
@@ -63,5 +71,37 @@ public partial class CreateCode : System.Web.UI.Page
         {
             Page.RegisterStartupScript("error", "<script>alert('图片上传失败,请重试!');</script>");
         }
+    }
+
+    public string ParametersName(String top_parameters)
+    {
+        string nick = null;
+        Dictionary<string, string> dic = convertBase64StringtoDic(top_parameters);
+        foreach (KeyValuePair<string, string> kvp in dic)
+        {
+            if (kvp.Key == "visitor_nick")
+            {
+                nick = kvp.Value;
+            }
+        }
+        return nick;
+    }
+
+    private static Dictionary<string, string> convertBase64StringtoDic(string str)
+    {
+        if (str == null)
+            return null;
+        String keyvalues = null;
+        keyvalues = HttpUtility.HtmlDecode(str);
+        String[] keyvalueArray = keyvalues.Split('&');
+        Dictionary<string, string> dic = new Dictionary<string, string>();
+        foreach (string keyvalue in keyvalueArray)
+        {
+            string[] s = keyvalue.Split('=');
+            if (s == null || s.Length != 2)
+                return null;
+            dic.Add(s[0], s[1]);
+        }
+        return dic;
     }
 }
