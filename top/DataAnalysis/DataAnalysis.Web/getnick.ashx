@@ -13,10 +13,12 @@ public class getnick : IHttpHandler {
             return ;
         string nick = context.Request.QueryString["nick"];
         string session = context.Request.QueryString["session"];
-        if (context.Session["nick"] == null)
+        if (context.Session == null || context.Session["nick"] == null)
         {
-            context.Session["nick"] = nick;
-            context.Session["session"] = session;
+            HttpCookie cookie = new HttpCookie("nick", nick);
+            cookie.Expires = DateTime.Now.AddDays(15);
+            //cookie.Domain = ".test.7fshop.com";
+            context.Response.Cookies.Add(cookie);
 
             DateTime now = DateTime.Now;
             TopNickSessionInfo info = new TopNickSessionInfo();
