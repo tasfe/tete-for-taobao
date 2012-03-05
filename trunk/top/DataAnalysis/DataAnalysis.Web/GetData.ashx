@@ -14,8 +14,12 @@ public class GetData : IHttpHandler {
         //TaoBaoAPI.GetGoodsOrderInfoList(DateTime.Now.AddDays(-3), DateTime.Now, "6100e23a702a52ce6854e530696b0921af8113ea15cd6ea734922027", "TRADE_FINISHED");
         //return;
         
-        //插入信息
+        //创建信息
         TopVisitInfo info = CreateVisitInfo(context);
+        //该用户未订购
+        if (!BasePage.CheckNick(info.VisitShopId))
+            return;
+            
         if (string.IsNullOrEmpty(info.VisitUrl)) return;
         OperatUrl(info.VisitUrl, context, info);
         InsertInfo(info);
