@@ -21,9 +21,9 @@ public partial class CreateCode : BasePage
     {
         if (!IsPostBack)
         {
-            TB_Code.Text = "<img src=\"" + DataHelper.GetAppSetings("hostname") + "GetData.ashx?nick=" + Request.Cookies["nikc"].Value + "\" border=\"0\" />";
+            TB_Code.Text = "<img src=\"" + DataHelper.GetAppSetings("hostname") + "GetData.ashx?nick=" + Request.Cookies["nick"].Value + "\" border=\"0\" />";
 
-            if (File.Exists(Server.MapPath("~/Images/nickimgs/" + DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nikc"].Value + ".jpg")))))
+            if (File.Exists(Server.MapPath("~/Images/nickimgs/" + DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value + ".jpg")))))
             {
                 UserImage = "/Images/nickimgs/" + Request.Cookies["nikc"].Value + ".jpg";
             }
