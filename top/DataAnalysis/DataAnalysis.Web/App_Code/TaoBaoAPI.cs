@@ -11,6 +11,8 @@ using System.Security.Cryptography;
 /// </summary>
 public class TaoBaoAPI
 {
+    private readonly static string appkey = System.Configuration.ConfigurationManager.AppSettings["appkey"];
+    private readonly static string appSecret = System.Configuration.ConfigurationManager.AppSettings["appSecret"];
 
     #region TOP API
     /// <summary> 
@@ -95,8 +97,8 @@ public class TaoBaoAPI
         //string appSecret = "d3486dac8198ef01000e7bd4504601a4";//"614e40bfdb96e9063031d1a9e56fbed5";
 
         //免费版
-        string appkey = "12132145";
-        string appSecret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
+        //string appkey = "12132145";
+        //string appSecret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
 
         param.Add("app_key", appkey);
         param.Add("method", method);
