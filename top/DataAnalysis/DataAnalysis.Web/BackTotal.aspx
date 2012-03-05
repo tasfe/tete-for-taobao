@@ -70,7 +70,7 @@
             <asp:TextBox ID="TB_End" runat="server" Width="120px" class="Wdate" onFocus="WdatePicker({minDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})"></asp:TextBox>
        <asp:Button ID="Btn_Select" runat="server" Text="检索"  onclick="Btn_Select_Click" />
      </div>  
-        <div id="container" style="width: 800px; height: 400px; margin: 0 auto">
+        <div id="container" style="width: 750px; height: 400px; margin: 0 auto">
         </div>
     </div>
     </form>

@@ -14,6 +14,11 @@
        <br />
         统计代码：
         <asp:TextBox Height="103px" Width="337px" ID="TB_Code" runat="server"></asp:TextBox>
+        <%
+              if(true){
+             %>
+                 <img src="<%=UserImage %>"  />
+             <%} %>
     </div>
     </form>
 </body>

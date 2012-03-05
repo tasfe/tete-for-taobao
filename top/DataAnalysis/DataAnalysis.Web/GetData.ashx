@@ -39,8 +39,13 @@ public class GetData : IHttpHandler {
         //{
 
         //}
+        string path = context.Server.MapPath("~/Images/nickimgs/" + DataHelper.Encrypt(info.VisitShopId) + ".jpg");
+        if (System.IO.File.Exists(path))
+        {
+            path = context.Server.MapPath("~/Images/nickimgs/newlogo1.jpg");
+        }
 
-        System.Drawing.Image img = System.Drawing.Image.FromFile(context.Server.MapPath("~/Images/nickimgs/" + DataHelper.Encrypt(info.VisitShopId) + ".jpg"));
+        System.Drawing.Image img = System.Drawing.Image.FromFile(path);
         img.Save(context.Response.OutputStream, System.Drawing.Imaging.ImageFormat.Jpeg);
         context.Response.End();
         ////context.Response.ContentType = "text/plain";
