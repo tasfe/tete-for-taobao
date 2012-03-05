@@ -33,7 +33,9 @@
                 <ItemTemplate>
                     <tr>
                         <td height="35">
+                           <a href='http://item.taobao.com/item.htm?id=<%#Eval("num_iid") %>' target="_blank">
                             <%#Eval("title")%>
+                          </a>  
                         </td>
                          <td height="35">
                             <%#Eval("price")%>
