@@ -59,7 +59,7 @@ public class DBHelper
         dbstring = ReplaceSQL(dbstring);
         DbCommand dbCommand = db.GetSqlStringCommand(dbstring);
         dbCommand.Parameters.AddRange(sqlparam);
-        DataTable dt = null;
+        DataTable dt = new DataTable();
 
 
         try

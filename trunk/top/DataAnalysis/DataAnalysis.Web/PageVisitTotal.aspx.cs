@@ -3,6 +3,7 @@ using System.Collections;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Collections.Generic;
+using System.Web;
 
 public partial class PageVisitTotal : BasePage
 {
@@ -32,7 +33,7 @@ public partial class PageVisitTotal : BasePage
         }
         catch { }
 
-        IList<PageVisitInfoTotal> list = visitDal.GetAllVisitPageInfoList(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].ToString())), start, end, page, 20);
+        IList<PageVisitInfoTotal> list = visitDal.GetAllVisitPageInfoList(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)), start, end, page, 20);
         TotalCount = list.Count;
         pds.DataSource = list;
         pds.AllowPaging = true;

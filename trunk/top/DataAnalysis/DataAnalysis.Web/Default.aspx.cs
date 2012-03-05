@@ -6,12 +6,13 @@ public partial class _Default : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            string nickNo = DataHelper.Encrypt(Request.Cookies["nick"].Value);
             VisitService vistitDal = new VisitService();
             DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
-            Rpt_IpPV.DataSource = vistitDal.GetIndexTotalInfoList(DataHelper.Encrypt(Session["nick"].ToString()), darray[0], darray[1]);
+            Rpt_IpPV.DataSource = vistitDal.GetIndexTotalInfoList(nickNo, darray[0], darray[1]);
             Rpt_IpPV.DataBind();
 
-            Rpt_OnlineCustomer.DataSource = vistitDal.GetIndexOnlineCustomer(DataHelper.Encrypt(Session["nick"].ToString()), 3, darray[0], darray[1]);
+            Rpt_OnlineCustomer.DataSource = vistitDal.GetIndexOnlineCustomer(nickNo, 3, darray[0], darray[1]);
             Rpt_OnlineCustomer.DataBind();
         }
     }
