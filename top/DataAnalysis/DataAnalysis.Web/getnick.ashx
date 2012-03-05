@@ -26,7 +26,7 @@ public class getnick : IHttpHandler {
 
         context.Response.Cookies.Add(cookie);
         context.Response.Cookies.Add(cooksession);
-        if (string.IsNullOrEmpty(context.Request.QueryString["istongji"]))
+        if (!string.IsNullOrEmpty(context.Request.QueryString["istongji"]))
         {
             DateTime now = DateTime.Now;
             TopNickSessionInfo info = new TopNickSessionInfo();
