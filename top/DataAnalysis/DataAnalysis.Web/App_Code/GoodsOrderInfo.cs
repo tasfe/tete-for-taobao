@@ -24,7 +24,7 @@ public class GoodsOrderInfo
     /// <summary>
     /// 交易佣金
     /// </summary>
-    public string commission_fee { set; get; } //decimal
+    public decimal commission_fee { set; get; } //decimal
 
     /// <summary>
     /// 实际金额
