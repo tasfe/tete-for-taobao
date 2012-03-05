@@ -3,6 +3,7 @@
 using System;
 using System.Web;
 using System.Collections.Generic;
+using System.Linq;
 
 public class getnick : IHttpHandler {
 
@@ -28,16 +29,37 @@ public class getnick : IHttpHandler {
         context.Response.Cookies.Add(cooksession);
         if (!string.IsNullOrEmpty(context.Request.QueryString["istongji"]))
         {
+            IList<TopNickSessionInfo> list = CacheCollection.GetNickSessionList().Where(o => o.Nick == nick).ToList();
             DateTime now = DateTime.Now;
-            TopNickSessionInfo info = new TopNickSessionInfo();
-            info.Nick = nick;
-            info.Session = session;
-            info.NickState = true;
-            info.JoinDate = now;
-            info.LastGetOrderTime = now;
-            new NickSessionService().AddSession(info);
+            if (list.Count == 0)
+            {
+                TopNickSessionInfo info = new TopNickSessionInfo();
+                info.Nick = nick;
+                info.Session = session;
+                info.NickState = true;
+                info.JoinDate = now;
+                info.LastGetOrderTime = now;
+                new NickSessionService().InsertSerssion(info);
 
-            InsertGoodsOrder(TaoBaoAPI.GetGoodsOrderInfoList(now.AddDays(-7), now, session, "TRADE_FINISHED"), session, nick);
+                InsertGoodsOrder(TaoBaoAPI.GetGoodsOrderInfoList(now.AddDays(-7), now, session, "TRADE_FINISHED"), session, nick);
+                CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLNICKSESSIONINFO);
+            }
+            else
+            {
+                if (!list[0].NickState)
+                {
+                    DateTime start = now.AddDays(-15);
+                    if (now.AddDays(-15) < list[0].LastGetOrderTime)
+                        start = list[0].LastGetOrderTime;
+
+                    list[0].NickState = true;
+                    list[0].JoinDate = now;
+                    list[0].LastGetOrderTime = now;
+                    new NickSessionService().UpdateSession(list[0]);
+                    
+                    InsertGoodsOrder(TaoBaoAPI.GetGoodsOrderInfoList(start, now, session, "TRADE_FINISHED"), session, nick);
+                }
+            }
         }
 
         //context.Response.ContentType = "text/plain";
