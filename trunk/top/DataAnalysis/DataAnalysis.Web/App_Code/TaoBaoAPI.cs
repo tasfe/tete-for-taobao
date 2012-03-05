@@ -198,7 +198,7 @@ public class TaoBaoAPI
             dic.Add("page_size", "100");
             dic.Add("page_no", page_no.ToString());
             dic.Add("status", orderState);//"TRADE_FINISHED");
-            dic.Add("fields", "total_fee,receiver_state,receiver_city,commission_fee,payment,cod_fee,end_time,pay_time,created,post_fee,tid,commission_fee,seller_nick,orders.num_iid,orders.num,orders.status");
+            dic.Add("fields", "total_fee,receiver_state,receiver_city,commission_fee,payment,cod_fee,end_time,pay_time,created,post_fee,tid,commission_fee,seller_nick,buyer_nick,orders.num_iid,orders.num,orders.status");
             string text = Post("taobao.trades.sold.get", session, dic, DataType.json);
             if (!string.IsNullOrEmpty(text))
             {
@@ -264,7 +264,7 @@ public class TaoBaoAPI
     public static PingJiaInfo GetPingjia(string session, string tid)
     {
         IDictionary<string, string> param = new Dictionary<string, string>();
-        param.Add("fields", "content,created,nick,result");
+        param.Add("fields", "content,created,result");
         param.Add("rate_type", "get");
         param.Add("role", "buyer");
         param.Add("tid", tid);
