@@ -21,7 +21,7 @@ public partial class CreateCode : BasePage
     {
         if (!IsPostBack)
         {
-            TB_Code.Text = "<img src=\"" + DataHelper.GetAppSetings("hostname") + "GetData.ashx?nick=" + Request.Cookies["nick"].Value + "\" border=\"0\" />";
+            TB_Code.Text = "<img src=\"" + DataHelper.GetAppSetings("hostname") + "GetData.ashx?\nnick=" + Request.Cookies["nick"].Value + "\" border=\"0\" />";
 
             if (File.Exists(Server.MapPath("~/Images/nickimgs/" + DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)) + ".jpg")))
             {
@@ -75,7 +75,7 @@ public partial class CreateCode : BasePage
                     Page.RegisterStartupScript("error", "<script>alert('图片上传失败,请重试!" + ex.Message.ToString() + "');</script>");
                 }
 
-                TB_Code.Text = "<img src=\"" + DataHelper.GetAppSetings("hostname") + "GetData.ashx?nick=" + nickNo + "\" border=\"0\" />";
+                TB_Code.Text = "<img src=\"" + DataHelper.GetAppSetings("hostname") + "GetData.ashx?\nnick=" + nickNo + "\" border=\"0\" />";
 
             }
             else
