@@ -1,8 +1,11 @@
 ﻿
-/// <summary>
-/// Summary description for BasePage
-/// </summary>
 using System.Web;
+using System.Collections.Generic;
+using System.Linq;
+
+/// <summary>
+/// 控制合法查看
+/// </summary>
 public class BasePage : System.Web.UI.Page
 {
     protected override void InitializeCulture()
@@ -17,11 +20,26 @@ public class BasePage : System.Web.UI.Page
         {
             if (Request.Cookies["nick"] == null || string.IsNullOrEmpty(Request.Cookies["nick"].Value))
                 return;
+            else
+            {
+                if (!CheckNick(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)))
+                    return;
+            }
         }
         //else
         //{
         //    Session["nick"] = Request.Cookies["nick"].Value;
         //    Session["session"] = Request.Cookies["session"].Value;
         //}
+    }
+
+    public static bool CheckNick(string nick)
+    {
+        IList<TopNickSessionInfo> list = CacheCollection.GetNickSessionList().Where(o => o.Nick == nick).ToList();
+        if (list.Count == 0)
+            return false;
+        if (!list[0].NickState)
+            return false;
+        return true;
     }
 }
