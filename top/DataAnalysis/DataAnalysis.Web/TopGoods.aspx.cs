@@ -14,7 +14,7 @@ public partial class TopGoods : BasePage
         if (!Page.IsPostBack)
         {
             DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
-            ViewState["count"] = taoGoodsService.GetTopGoodsCount(DataHelper.Encrypt(Request.Cookies["nick"].Value), darray[0], darray[1]);
+            ViewState["count"] = taoGoodsService.GetTopGoodsCount(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)), darray[0], darray[1]);
             try
             {
                 darray[0] = DateTime.Parse(Request.QueryString["start"]);
@@ -45,7 +45,7 @@ public partial class TopGoods : BasePage
         }
         catch { }
 
-        IList<GoodsInfo> list = taoGoodsService.GetTopGoods(DataHelper.Encrypt(Request.Cookies["nick"].Value), start, end, page, 10);
+        IList<GoodsInfo> list = taoGoodsService.GetTopGoods(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)), start, end, page, 10);
 
         for (int i = 0; i < list.Count; i++)
         {
