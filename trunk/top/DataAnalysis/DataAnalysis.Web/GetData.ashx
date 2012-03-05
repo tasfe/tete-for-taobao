@@ -40,7 +40,7 @@ public class GetData : IHttpHandler {
 
         //}
         string path = context.Server.MapPath("~/Images/nickimgs/" + DataHelper.Encrypt(info.VisitShopId) + ".jpg");
-        if (System.IO.File.Exists(path))
+        if (!System.IO.File.Exists(path))
         {
             path = context.Server.MapPath("~/Images/nickimgs/newlogo1.jpg");
         }

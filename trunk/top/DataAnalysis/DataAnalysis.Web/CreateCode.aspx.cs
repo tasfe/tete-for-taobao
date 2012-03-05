@@ -23,7 +23,7 @@ public partial class CreateCode : BasePage
         {
             TB_Code.Text = "<img src=\"" + DataHelper.GetAppSetings("hostname") + "GetData.ashx?nick=" + Request.Cookies["nick"].Value + "\" border=\"0\" />";
 
-            if (File.Exists(Server.MapPath("~/Images/nickimgs/" + DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value + ".jpg")))))
+            if (File.Exists(Server.MapPath("~/Images/nickimgs/" + DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)) + ".jpg")))
             {
                 UserImage = "/Images/nickimgs/" + Request.Cookies["nikc"].Value + ".jpg";
             }
