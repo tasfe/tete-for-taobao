@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -6,7 +7,7 @@ public partial class _Default : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            string nickNo = DataHelper.Encrypt(Request.Cookies["nick"].Value);
+            string nickNo = DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value));
             VisitService vistitDal = new VisitService();
             DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
             Rpt_IpPV.DataSource = vistitDal.GetIndexTotalInfoList(nickNo, darray[0], darray[1]);
