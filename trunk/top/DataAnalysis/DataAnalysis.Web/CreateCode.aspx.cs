@@ -25,7 +25,7 @@ public partial class CreateCode : BasePage
 
             if (File.Exists(Server.MapPath("~/Images/nickimgs/" + DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)) + ".jpg")))
             {
-                UserImage = "/Images/nickimgs/" + Request.Cookies["nikc"].Value + ".jpg";
+                UserImage = "/Images/nickimgs/" + Request.Cookies["nick"].Value + ".jpg";
             }
             else
             {
