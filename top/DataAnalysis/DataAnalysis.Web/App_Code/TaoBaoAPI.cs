@@ -91,8 +91,13 @@ public class TaoBaoAPI
         #region -----API系统参数----
 
         string url = "http://gw.api.taobao.com/router/rest";
-        string appkey = "12287381";//"12159997";
-        string appSecret = "d3486dac8198ef01000e7bd4504601a4";//"614e40bfdb96e9063031d1a9e56fbed5";
+        //string appkey = "12287381";//"12159997";
+        //string appSecret = "d3486dac8198ef01000e7bd4504601a4";//"614e40bfdb96e9063031d1a9e56fbed5";
+
+        //免费版
+        string appkey = "12132145";
+        string appSecret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
+
         param.Add("app_key", appkey);
         param.Add("method", method);
         param.Add("session", session);

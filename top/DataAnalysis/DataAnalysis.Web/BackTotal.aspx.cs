@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using System.Web.UI;
 using System.Collections.Generic;
+using System.Web;
 
 public partial class BackTotal : BasePage
 {
@@ -23,7 +24,7 @@ public partial class BackTotal : BasePage
             return;
         }
         TaoBaoGoodsOrderService orderDal = new TaoBaoGoodsOrderService();
-        IList<BackTotalInfo> list = orderDal.GetAllBackTotalList(start, end, Request.Cookies["nick"].ToString());
+        IList<BackTotalInfo> list = orderDal.GetAllBackTotalList(start, end, HttpUtility.UrlDecode(Request.Cookies["nick"].Value));
 
         SeriseText = "[{name:'完成订单量', data:[";
         string iptotal = ",{name:'回头客数量',data:[";

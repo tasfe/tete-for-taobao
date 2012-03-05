@@ -34,8 +34,8 @@ public partial class HourPVTotal : BasePage
             return;
         }
         VisitService visitDal = new VisitService();
-        IList<HourTotalInfo> list = visitDal.GetHourPVTotal(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].ToString())), date);
-        IList<HourTotalInfo> ipList = visitDal.GetHourIPTotal(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].ToString())), date);
+        IList<HourTotalInfo> list = visitDal.GetHourPVTotal(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)), date);
+        IList<HourTotalInfo> ipList = visitDal.GetHourIPTotal(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)), date);
 
         SeriseText = "[{name:'PV量', data:[";
         string iptotal = ",{name:'IP量',data:[";

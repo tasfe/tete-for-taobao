@@ -14,7 +14,7 @@ public partial class GoodsBuyTotal : BasePage
         if (!Page.IsPostBack)
         {
             DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
-            ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].ToString()), darray[0], darray[1]);
+            ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), darray[0], darray[1]);
             try
             { 
                 darray[0] = DateTime.Parse(Request.QueryString["start"]);
@@ -45,7 +45,7 @@ public partial class GoodsBuyTotal : BasePage
         }
         catch { }
 
-        IList<GoodsInfo> list = taoGoodsService.GetTopBuyGoods(Request.Cookies["nick"].ToString(), start, end, page, 10);
+        IList<GoodsInfo> list = taoGoodsService.GetTopBuyGoods(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), start, end, page, 10);
 
         for (int i = 0; i < list.Count; i++)
         {
@@ -88,7 +88,7 @@ public partial class GoodsBuyTotal : BasePage
             TB_Start.Text = start.ToString("yyyy-MM-dd");
             TB_End.Text = endtime.ToString("yyyy-MM-dd");
         }
-        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(Request.Cookies["nick"].ToString(), start, endtime);
+        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), start, endtime);
         ViewState["page"] = "1";
         Bind(start, endtime, int.Parse(ViewState["count"].ToString()), 10);
     }

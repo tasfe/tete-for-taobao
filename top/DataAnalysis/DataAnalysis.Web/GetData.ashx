@@ -10,6 +10,10 @@ public class GetData : IHttpHandler {
 
     public void ProcessRequest(HttpContext context)
     {
+        //test
+        //TaoBaoAPI.GetGoodsOrderInfoList(DateTime.Now.AddDays(-3), DateTime.Now, "6100e23a702a52ce6854e530696b0921af8113ea15cd6ea734922027", "TRADE_FINISHED");
+        //return;
+        
         //插入信息
         TopVisitInfo info = CreateVisitInfo(context);
         if (string.IsNullOrEmpty(info.VisitUrl)) return;
