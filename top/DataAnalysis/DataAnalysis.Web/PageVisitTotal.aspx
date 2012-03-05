@@ -32,7 +32,9 @@
                 <ItemTemplate>
                     <tr>
                         <td height="35">
+                           <a href='<%#Eval("VisitURL")%>' target="_blank">
                             <%#Eval("VisitURL")%>
+                           </a>
                         </td>
                         <td align="center">
                             <%#Eval("VisitCount")%>
