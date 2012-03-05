@@ -21,15 +21,17 @@ public partial class CreateCode : BasePage
     {
         if (!IsPostBack)
         {
-            TB_Code.Text = "<img src=\"" + DataHelper.GetAppSetings("hostname") + "GetData.ashx?\nnick=" + Request.Cookies["nick"].Value + "\" border=\"0\" />";
+            TA_Code.Value = "<img src=\"" + DataHelper.GetAppSetings("hostname") + "GetData.ashx?\nnick=" + Request.Cookies["nick"].Value + "\" border=\"0\" />";
 
             if (File.Exists(Server.MapPath("~/Images/nickimgs/" + DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)) + ".jpg")))
             {
                 UserImage = "/Images/nickimgs/" + DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)) + ".jpg";
+                HasImg = true;
             }
             else
             {
                 UserImage = "/Images/nickimgs/newlogo1.jpg";
+                HasImg = false;
             }
         }
     }
@@ -75,7 +77,7 @@ public partial class CreateCode : BasePage
                     Page.RegisterStartupScript("error", "<script>alert('图片上传失败,请重试!" + ex.Message.ToString() + "');</script>");
                 }
 
-                TB_Code.Text = "<img src=\"" + DataHelper.GetAppSetings("hostname") + "GetData.ashx?\nnick=" + nickNo + "\" border=\"0\" />";
+                TA_Code.Value = "<img src=\"" + DataHelper.GetAppSetings("hostname") + "GetData.ashx?\nnick=" + nickNo + "\" border=\"0\" />";
 
             }
             else
@@ -93,6 +95,12 @@ public partial class CreateCode : BasePage
     {
         get { return ViewState["uimg"].ToString(); }
         set { ViewState["uimg"] = value; }
+    }
+
+    protected bool HasImg
+    {
+        get { return (bool)ViewState["HasImg"]; }
+        set { ViewState["HasImg"] = value; }
     }
 
     public string ParametersName(String top_parameters)

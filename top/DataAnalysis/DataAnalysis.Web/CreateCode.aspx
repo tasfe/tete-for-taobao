@@ -13,11 +13,12 @@
         <asp:Button ID="Btn_Upload" runat="server" Text="确定上传"  onclick="Btn_Upload_Click" />
        <br />
         统计代码：
-        <asp:TextBox Height="103px" Width="337px" ID="TB_Code" runat="server"></asp:TextBox>
+    
+        <textarea id="TA_Code" runat="server" cols="70" rows="3" />
         <%
               if(true){
              %>
-                 <img src="<%=UserImage %>"  />
+                 <img src="<%=HasImg %>"  />
              <%} %>
     </div>
     </form>
