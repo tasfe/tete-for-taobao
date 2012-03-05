@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 
 /// <summary>
 /// Summary description for NickSessionService
@@ -13,10 +14,29 @@ public class NickSessionService
 
     const string SQL_UPDATE = "UPDATE TopNickSession SET NickState=@NickState,session=@session,JoinDate=@JoinDate";
 
-    private int InsertSerssion(TopNickSessionInfo sessionInfo)
+    const string SQL_SELECT_NICKNO = "SELECT nick,session,NickState,LastGetOrderTime FROM TopNickSession";
+
+    public int InsertSerssion(TopNickSessionInfo sessionInfo)
     {
         SqlParameter[] param = Getparameter(sessionInfo);
         return DBHelper.ExecuteNonQuery(SQL_INSERT, param);
+    }
+
+    public IList<TopNickSessionInfo> GetAllNickSession()
+    {
+        IList<TopNickSessionInfo> list = new List<TopNickSessionInfo>();
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_NICKNO);
+        foreach (DataRow dr in dt.Rows)
+        {
+            TopNickSessionInfo info = new TopNickSessionInfo();
+            info.Nick = dr["nick"].ToString();
+            info.Session = dr["session"].ToString();
+            info.NickState = (bool)dr["NickState"];
+            info.LastGetOrderTime = dr["LastGetOrderTime"] == DBNull.Value ? DateTime.MinValue : DateTime.Parse(dr["LastGetOrderTime"].ToString());
+            list.Add(info);
+        }
+
+        return list;
     }
 
     private static SqlParameter[] Getparameter(TopNickSessionInfo sessionInfo)
@@ -47,7 +67,7 @@ public class NickSessionService
         return info;
     }
 
-    private int UpdateSession(TopNickSessionInfo sessionInfo)
+    public int UpdateSession(TopNickSessionInfo sessionInfo)
     {
         SqlParameter[] param = Getparameter(sessionInfo);
 
@@ -57,24 +77,5 @@ public class NickSessionService
         sql += " WEHRE nick=@nick";
 
         return DBHelper.ExecuteNonQuery(sql, param);
-    }
-
-    public int AddSession(TopNickSessionInfo sessionInfo)
-    {
-        int count = 0;
-        TopNickSessionInfo info = GetSessionInfo(sessionInfo.Session);
-        if (info == null)
-        {
-          count =  InsertSerssion(sessionInfo);
-        }
-        else
-        {
-            if (DateTime.Now.AddDays(-15) > info.LastGetOrderTime)
-            {
-                sessionInfo.LastGetOrderTime = DateTime.Now.AddDays(-15);
-            }
-            count = UpdateSession(sessionInfo);
-        }
-        return count;
     }
 }
