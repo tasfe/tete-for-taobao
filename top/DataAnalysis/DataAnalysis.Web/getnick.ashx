@@ -41,7 +41,7 @@ public class getnick : IHttpHandler {
                 info.LastGetOrderTime = now;
                 new NickSessionService().InsertSerssion(info);
 
-                InsertGoodsOrder(TaoBaoAPI.GetGoodsOrderInfoList(now.AddDays(-7), now, session, "TRADE_FINISHED"), session, nick);
+                InsertGoodsOrder(now.AddDays(-7), now, session, nick);
                 CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLNICKSESSIONINFO);
             }
             else
@@ -56,8 +56,9 @@ public class getnick : IHttpHandler {
                     list[0].JoinDate = now;
                     list[0].LastGetOrderTime = now;
                     new NickSessionService().UpdateSession(list[0]);
-                    
-                    InsertGoodsOrder(TaoBaoAPI.GetGoodsOrderInfoList(start, now, session, "TRADE_FINISHED"), session, nick);
+
+                    //二次订购
+                    InsertGoodsOrder(start, now, session, nick);
                 }
             }
         }
@@ -66,11 +67,25 @@ public class getnick : IHttpHandler {
         //context.Response.Write("Hello World");
     }
 
-    public void InsertGoodsOrder(IList<GoodsOrderInfo> goodsOrderList,string session,string nick)
+    private void InsertGoodsOrder(DateTime start, DateTime end, string session, string nick)
     {
+        TaoBaoGoodsOrderService tbgo = new TaoBaoGoodsOrderService();
+        //等待卖家发货,即:买家已付款
+        InsertGoodsOrderByState(start, end, "WAIT_SELLER_SEND_GOODS", session, nick, tbgo);
+        //等待买家确认收货,即:卖家已发货
+        InsertGoodsOrderByState(start, end, "WAIT_BUYER_CONFIRM_GOODS", session, nick, tbgo);
+        //买家已签收,货到付款专用
+        InsertGoodsOrderByState(start, end, "TRADE_BUYER_SIGNED", session, nick, tbgo);
+        //交易成功
+        InsertGoodsOrderByState(start, end, "TRADE_FINISHED", session, nick, tbgo);
+    }
+
+    private void InsertGoodsOrderByState(DateTime start, DateTime end, string orderState, string session, string nick, TaoBaoGoodsOrderService tbgoDal)
+    {
+        IList<GoodsOrderInfo> goodsOrderList = TaoBaoAPI.GetGoodsOrderInfoList(start, end, session, orderState);
         if (goodsOrderList == null)
         {
-            LogInfo.WriteLog("订购时获取订单错误","参数错误");
+            LogInfo.WriteLog("订购时获取订单错误", "参数错误");
             System.Threading.Thread.Sleep(10 * 60);
         }
         else
@@ -83,14 +98,13 @@ public class getnick : IHttpHandler {
                 {
                     goodsOrderList[i].PingInfo = new PingJiaInfo
                     {
-                        nick = "",
                         content = "",
                         created = DateTime.Parse("1990-1-1"),
                         result = ""
                     };
                 }
-                new TaoBaoGoodsOrderService().InsertTaoBaoGoodsOrder(goodsOrderList[i]);
-                new TaoBaoGoodsOrderService().InsertChildOrderInfo(goodsOrderList[i].orders, goodsOrderList[i].tid);
+                tbgoDal.InsertTaoBaoGoodsOrder(goodsOrderList[i]);
+                tbgoDal.InsertChildOrderInfo(goodsOrderList[i].orders, goodsOrderList[i].tid);
             }
         }
     }
@@ -100,5 +114,4 @@ public class getnick : IHttpHandler {
             return false;
         }
     }
-
 }

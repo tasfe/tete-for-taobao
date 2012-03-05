@@ -64,14 +64,14 @@ public class TaoBaoGoodsOrderService
                     new SqlParameter("@commission_fee",info.commission_fee),
                     new SqlParameter("@created",info.created),
                     new SqlParameter("@pay_time",info.pay_time),
-                    new SqlParameter("@end_time",info.end_time),
+                    new SqlParameter("@end_time",info.end_time==DateTime.MinValue?DateTime.Parse("1990-1-1"):info.end_time),
                     new SqlParameter("@receiver_state",info.receiver_state),
                     new SqlParameter("@receiver_city",info.receiver_city),
                     new SqlParameter("@UsePromotion",info.UsePromotion),
                     new SqlParameter("@pingjiacreated",info.PingInfo.created),
                     new SqlParameter("@result",info.PingInfo.result),
                     new SqlParameter("@pingjiacontent",info.PingInfo.content),
-                    new SqlParameter("@buy_nick",info.PingInfo.nick)
+                    new SqlParameter("@buy_nick",info.buyer_nick)
               };
         return DBHelper.ExecuteNonQuery(SQL_ORDER_INSERT, param);
     }

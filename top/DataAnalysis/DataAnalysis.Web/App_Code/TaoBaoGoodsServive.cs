@@ -27,7 +27,7 @@ select num_iid,SUM(num) as bcount,ROW_NUMBER() OVER(ORDER BY sum(num) DESC) as r
 from(
   select od.num_iid,od.num from [TopTaoBaoGoodsOrderInfo] o 
   inner join TopTaoBaoOrderGoodsList od on o.tid=od.tid and o.created between @start
-   and @end and od.status='TRADE_FINISHED' and 
+   and @end and od.status in('TRADE_FINISHED','TRADE_BUYER_SIGNED','WAIT_BUYER_CONFIRM_GOODS','WAIT_SELLER_SEND_GOODS') and 
    o.seller_nick=@nick) a group by num_iid
 )  a where rownum between @snum and @enum";
 
@@ -35,7 +35,7 @@ from(
     (select SUM(num) as buycount,num_iid
 from(select od.num_iid,od.num from [TopTaoBaoGoodsOrderInfo] o 
   inner join TopTaoBaoOrderGoodsList od on o.tid=od.tid and o.created between @start
-   and @end and od.status='TRADE_FINISHED' and 
+   and @end and od.status in('TRADE_FINISHED','TRADE_BUYER_SIGNED','WAIT_BUYER_CONFIRM_GOODS','WAIT_SELLER_SEND_GOODS') and 
    o.seller_nick=@nick) a group by num_iid
    ) b";
 

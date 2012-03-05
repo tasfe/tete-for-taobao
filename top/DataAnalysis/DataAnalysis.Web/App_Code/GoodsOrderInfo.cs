@@ -81,7 +81,10 @@ public class GoodsOrderInfo
     /// </summary>
     public string seller_nick { set; get; }
 
-    //public string orders { set; get; }
+    /// <summary>
+    /// 买家nickNo
+    /// </summary>
+    public string buyer_nick { set; get; }
 
     public List<ChildOrderInfo> orders { set; get; }
 
@@ -117,10 +120,7 @@ public class PingJiaInfo
     /// </summary>
     public DateTime created { set; get; }
 
-    /// <summary>
-    /// 评价人
-    /// </summary>
-    public string nick { set; get; }
+    public string tid { set; get; }
 
     /// <summary>
     ///  评价内容
