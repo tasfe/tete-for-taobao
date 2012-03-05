@@ -16,10 +16,10 @@
     
         <textarea id="TA_Code" runat="server" cols="70" rows="3" />
         <%
-              if(true){
-             %>
-                 <img src="<%=HasImg %>"  />
-             <%} %>
+              if(HasImg){
+        %>
+                 <img src="<%=UserImage %>"  />
+        <%} %>
     </div>
     </form>
 </body>
