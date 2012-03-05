@@ -79,7 +79,7 @@
        <asp:HiddenField ID="HF_Date" runat="server" />
                <br />
     </div>
-    <div id="container" style="width: 800px; height: 400px; margin: 0 auto">
+    <div id="container" style="width: 750px; height: 400px; margin: 0 auto">
     </div>
     </form>
 </body>

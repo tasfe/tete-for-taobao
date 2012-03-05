@@ -13,12 +13,25 @@ using System.Xml.Linq;
 using System.Security.Cryptography;
 using Common;
 using System.Collections.Generic;
+using System.IO;
 
 public partial class CreateCode : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack)
+        {
+            TB_Code.Text = "<img src=\"" + DataHelper.GetAppSetings("hostname") + "GetData.ashx?nick=" + Request.Cookies["nikc"].Value + "\" border=\"0\" />";
 
+            if (File.Exists(Server.MapPath("~/Images/nickimgs/" + DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nikc"].Value + ".jpg")))))
+            {
+                UserImage = "/Images/nickimgs/" + Request.Cookies["nikc"].Value + ".jpg";
+            }
+            else
+            {
+                UserImage = "/Images/nickimgs/newlogo1.jpg";
+            }
+        }
     }
 
     protected void Btn_Upload_Click(object sender, EventArgs e)
@@ -74,6 +87,12 @@ public partial class CreateCode : BasePage
         //{
         //    Page.RegisterStartupScript("error", "<script>alert('图片上传失败,请重试"+ex.Message+"!');</script>");
         //}
+    }
+
+    protected string UserImage
+    {
+        get { return ViewState["uimg"].ToString(); }
+        set { ViewState["uimg"] = value; }
     }
 
     public string ParametersName(String top_parameters)
