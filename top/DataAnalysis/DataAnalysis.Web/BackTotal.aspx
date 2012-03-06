@@ -22,11 +22,11 @@
                         marginBottom: 25
                     },
                     title: {
-                        text: '测试',
+                        text: '回头客统计',
                         x: -20 //center
                     },
                     subtitle: {
-                        text: '测试test',
+                        text: '二次购买率',
                         x: -20
                     },
                     xAxis: {
