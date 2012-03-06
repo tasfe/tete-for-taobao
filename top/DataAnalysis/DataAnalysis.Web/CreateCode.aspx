@@ -33,6 +33,8 @@
                 </ul>
             </div>
             <div id="main-content">
+                <asp:Button ID="Btn_AddCId" runat="server" Text="一键添加统计代码" OnClick="Btn_AddCId_Click" />
+                <br />
                 <asp:FileUpload ID="FUp_Img" Width="400" runat="server" />
                 <asp:Button ID="Btn_Upload" runat="server" Text="确定上传" OnClick="Btn_Upload_Click" />
                 <br />

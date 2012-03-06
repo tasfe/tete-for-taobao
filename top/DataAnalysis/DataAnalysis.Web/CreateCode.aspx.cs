@@ -127,4 +127,15 @@ public partial class CreateCode : BasePage
         }
         return dic;
     }
+    protected void Btn_AddCId_Click(object sender, EventArgs e)
+    {
+        if (TaoBaoAPI.AddCID(HttpUtility.UrlDecode(Request.Cookies["nicksession"].Value), Request.Cookies["nicksession"].Value))
+        {
+            Page.RegisterStartupScript("恭喜", "<script>alert('添加成功!');</script>");
+        }
+        else
+        {
+            Page.RegisterStartupScript("抱歉", "<script>alert('添加失败!');</script>");
+        }
+    }
 }
