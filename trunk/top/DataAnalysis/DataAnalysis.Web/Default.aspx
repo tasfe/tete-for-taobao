@@ -63,12 +63,24 @@
                
                <table>
                   <tr>
-                    <td>在线客户</td>
+                    <td colspan="4">在线客户</td>
+                  </tr>
+                  <tr>
+                      <td>来访者IP</td>
+                      <td>来访者时间</td>
+                      <td>来访者所在地区</td>
+                      <td>来访者网络提供商</td>
                   </tr>
                   <asp:Repeater ID="Rpt_OnlineCustomer" runat="server">
                       <ItemTemplate>
                          <tr>
                             <td>
+                              <%#Eval("VisitIP")%>
+                            </td>
+                            <td>
+                              <%#Eval("VisitTime")%>
+                            </td>
+                               <td>
                               <%#Eval("VisitIP")%>
                             </td>
                             <td>
