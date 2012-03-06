@@ -5,12 +5,12 @@
 /// </summary>
 public class TopVisitInfo
 {
-	public TopVisitInfo()
-	{
-		//
-		// TODO: Add constructor logic here
-		//
-	}
+    public TopVisitInfo()
+    {
+        //
+        // TODO: Add constructor logic here
+        //
+    }
 
     /// <summary>
     /// 唯一ID
@@ -59,6 +59,10 @@ public class TopVisitInfo
     public string GoodsClassId { set; get; }
 
     public string GoodsClassName { set; get; }
+
+    public string IPLocation { get { return IPSearch.GetIPLocation(VisitIP).country; } }
+
+    public string NetWork { get { return IPSearch.GetIPLocation(VisitIP).area; } }
 }
 
 /// <summary>
