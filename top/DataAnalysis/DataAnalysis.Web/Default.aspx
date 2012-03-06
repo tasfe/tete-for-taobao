@@ -11,13 +11,13 @@
         a{color:Blue; text-decoration:none;}
     </style>
 </head>
-<body>
+<body style="margin:0px; padding:0px;">
     <form id="form1" runat="server">
     <div>
 
     <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="javascript:;" class="nolink">特特CRM_客户关系营销</a> 添加优惠券 </div>
+  <div class="crumbs"><a href="javascript:;" class="nolink">特特店铺销售分析</a> 店铺统计总览 </div>
   <div class="absright">
     <ul>
       <li>
