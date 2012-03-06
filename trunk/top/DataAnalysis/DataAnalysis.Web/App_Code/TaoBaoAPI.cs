@@ -220,6 +220,8 @@ public class TaoBaoAPI
 
                 text = text.Replace("{\"order\":", "");
                 text = text.Replace("},\"pay_time", ",\"pay_time");
+                //货到付情况下
+                text = text.Replace("},\"payment\"", ",\"payment\"");
 
                 text = text.Replace(index, "");
                 text = "[" + text.Substring(0, text.Length - 1);

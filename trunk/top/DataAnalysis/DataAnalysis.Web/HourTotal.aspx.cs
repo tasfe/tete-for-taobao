@@ -10,6 +10,7 @@ public partial class HourPVTotal : BasePage
     {
         if (!IsPostBack)
         {
+
             //int day = 1;
             //try
             //{
@@ -19,7 +20,6 @@ public partial class HourPVTotal : BasePage
             //    }
             //}
             //catch { }
-
 
             ShowChart(DateTime.Now);
         }

@@ -63,7 +63,7 @@ public class TaoBaoGoodsOrderService
                     new SqlParameter("@cod_fee",info.cod_fee),
                     new SqlParameter("@commission_fee",info.commission_fee),
                     new SqlParameter("@created",info.created),
-                    new SqlParameter("@pay_time",info.pay_time),
+                    new SqlParameter("@pay_time",info.pay_time==DateTime.MinValue?DateTime.Parse("1990-1-1"):info.pay_time),
                     new SqlParameter("@end_time",info.end_time==DateTime.MinValue?DateTime.Parse("1990-1-1"):info.end_time),
                     new SqlParameter("@receiver_state",info.receiver_state),
                     new SqlParameter("@receiver_city",info.receiver_city),
