@@ -5,6 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Untitled Page</title>
+    <link href="css/common.css" rel="stylesheet" />
+<style>
+    td{font-size:12px;}
+    a{color:Blue; text-decoration:none;}
+</style>
     <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 </head>
