@@ -38,6 +38,8 @@
                 <br />
                 统计代码：
                 <textarea id="TA_Code" runat="server" cols="70" rows="3" />
+                上面是可以直接放到您的网页中显示图片的代码，您也可以复制下面的路径覆盖到您用于统计的图片地址
+                <asp:Label runat="server" ID="Lb_Url" runat="server" />
                 <img src="<%=UserImage %>" />
             </div>
         </div>
