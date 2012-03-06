@@ -13,10 +13,30 @@
       }
     
     </script>
+    <link href="css/common.css" rel="stylesheet" />
+<style>
+    td{font-size:12px;}
+    a{color:Blue; text-decoration:none;}
+</style>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
+
+            <div class="navigation" style="height:600px;">
+
+  <div class="crumbs"><a href="javascript:;" class="nolink">特特店铺销售分析</a> 店铺浏览统计 </div>
+  <div class="absright">
+    <ul>
+      <li>
+        <div class="msg">
+            
+        </div>
+      </li>
+    </ul>
+  </div>
+    <div id="main-content">
+
        <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
         
         <script type="text/javascript">
@@ -80,6 +100,10 @@
                <br />
     </div>
     <div id="container" style="width: 750px; height: 400px; margin: 0 auto">
+    </div>
+
+                </div>
+    </div>
     </div>
     </form>
 </body>
