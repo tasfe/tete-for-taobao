@@ -26,12 +26,10 @@ public partial class CreateCode : BasePage
             if (File.Exists(Server.MapPath("~/Images/nickimgs/" + DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)) + ".jpg")))
             {
                 UserImage = "/Images/nickimgs/" + DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)) + ".jpg";
-                HasImg = true;
             }
             else
             {
                 UserImage = "/Images/nickimgs/newlogo1.jpg";
-                HasImg = false;
             }
         }
     }
@@ -95,12 +93,6 @@ public partial class CreateCode : BasePage
     {
         get { return ViewState["uimg"].ToString(); }
         set { ViewState["uimg"] = value; }
-    }
-
-    protected bool HasImg
-    {
-        get { return (bool)ViewState["HasImg"]; }
-        set { ViewState["HasImg"] = value; }
     }
 
     public string ParametersName(String top_parameters)
