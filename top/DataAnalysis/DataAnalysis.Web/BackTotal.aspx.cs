@@ -96,4 +96,17 @@ public partial class BackTotal : BasePage
         }
         ShowChart(start, end);
     }
+
+    protected void Btn_3Days_Click(object sender, EventArgs e)
+    {
+        ShowChart(DateTime.Parse (DateTime.Now.AddDays(-2).ToShortDateString()),DateTime.Now);
+    }
+    protected void Btn_7Days_Click(object sender, EventArgs e)
+    {
+        ShowChart(DateTime.Parse(DateTime.Now.AddDays(-6).ToShortDateString()), DateTime.Now);
+    }
+    protected void Btn_30Days_Click(object sender, EventArgs e)
+    {
+        ShowChart(DateTime.Parse(DateTime.Now.AddDays(-29).ToShortDateString()), DateTime.Now);
+    }
 }
