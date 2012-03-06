@@ -29,62 +29,62 @@
   </div>
     <div id="main-content">
  <asp:Button ID="Btn_AddCId" runat="server" Text="一键添加统计代码" Font-Size="14" Height="50" Width="400" OnClick="Btn_AddCId_Click" />
-          <div id="title">统计概括</div>
+          <div id="title" style="font-weight:bold; font-size:16px; color:blue">统计概括</div>
               <table cellspacing="0" cellpadding="0" width="40%" border="1">
                   <tr>
-                    <td colspan="2">
+                    <td colspan="2" style="background-color:#abcabc; font-weight:bold; color:Blue">
                        今日流量
                     </td>
                   </tr>
                   <asp:Repeater ID="Rpt_IpPV" runat="server">
                      <ItemTemplate>
                          <tr>
-                           <td><%#Eval("Key")%></td>
-                           <td><%#Eval("Value")%></td>
+                           <td align="center"><%#Eval("Key")%></td>
+                           <td align="center"><%#Eval("Value")%></td>
                          </tr>
                      </ItemTemplate>
                   </asp:Repeater>
-              </table>
-              <table>
-                 <tr><td colspan="2">宝贝订购排行</td></tr>
+              </table><br />
+              <table width="60%">
+                 <tr><td colspan="2" style="background-color:#abcabc; font-weight:bold; color:Blue">宝贝订购排行</td></tr>
                  <asp:Repeater runat="server" ID="Rpt_GoodsSellTop">
                     <ItemTemplate>
                        <tr>
-                            <td>
+                            <td align="center">
                               <%# Container.ItemIndex + 1%>
                             </td>
-                          <td>
+                          <td align="center">
                                 <%#Eval("GoodsName")%>
                           </td>
                        </tr>
                     </ItemTemplate>
                  </asp:Repeater>
                </table>
-               
-               <table>
+               <br />
+               <table width="60%">
                   <tr>
-                    <td colspan="4">在线客户</td>
+                    <td colspan="4" style="background-color:#abcabc; font-weight:bold; color:Blue">在线客户</td>
                   </tr>
                   <tr>
-                      <td>来访者IP</td>
-                      <td>来访者时间</td>
-                      <td>来访者所在地区</td>
-                      <td>来访者网络提供商</td>
+                      <td align="center">来访者IP</td>
+                      <td align="center">来访者时间</td>
+                      <td align="center">来访者所在地区</td>
+                      <td align="center">来访者网络提供商</td>
                   </tr>
                   <asp:Repeater ID="Rpt_OnlineCustomer" runat="server">
                       <ItemTemplate>
                          <tr>
-                            <td>
+                            <td align="center">
                               <%#Eval("VisitIP")%>
                             </td>
-                            <td>
+                            <td align="center">
                               <%#Eval("VisitTime")%>
                             </td>
-                               <td>
-                              <%#Eval("VisitIP")%>
+                               <td align="center">
+                              <%#Eval("IPLocation")%>
                             </td>
-                            <td>
-                              <%#Eval("VisitTime")%>
+                            <td align="center">
+                              <%#Eval("NetWork")%>
                             </td>
                          </tr>
                       </ItemTemplate>
