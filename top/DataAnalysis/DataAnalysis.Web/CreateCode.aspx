@@ -36,10 +36,19 @@
                 <asp:FileUpload ID="FUp_Img" Width="400" runat="server" />
                 <asp:Button ID="Btn_Upload" runat="server" Text="确定上传" OnClick="Btn_Upload_Click" />
                 <br />
-                统计代码：
-                <textarea id="TA_Code" runat="server" cols="70" rows="3" />
+                <table border="0">
+                <tr>
+                       <td style="vertical-align:text-top">统计代码：</td>
+                       <td><textarea id="TA_Code" runat="server" cols="70" rows="3" /></td>
+                </tr>
+                </table>
+                <br />
                 上面是可以直接放到您的网页中显示图片的代码，您也可以复制下面的路径覆盖到您用于统计的图片地址
+                <br />
                 <asp:Label runat="server" ID="Lb_Url" runat="server" />
+                <p>
+                以下是您输出的图片,您也可以选择一张图片上传,作为您显示的图片
+                <br />
                 <img src="<%=UserImage %>" />
             </div>
         </div>
