@@ -20,7 +20,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Btn_AddCId_Click(object sender, EventArgs e)
     {
-        if (TaoBaoAPI.AddCID(HttpUtility.UrlDecode(Request.Cookies["nicksession"].Value), Request.Cookies["nicksession"].Value))
+        if (TaoBaoAPI.AddCID(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), Request.Cookies["nicksession"].Value))
         {
             Page.RegisterStartupScript("恭喜", "<script>alert('添加成功!');</script>");
         }
