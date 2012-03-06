@@ -5,10 +5,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>主页</title>
+    <link href="css/common.css" rel="stylesheet" />
+    <style>
+        td{font-size:12px;}
+        a{color:Blue; text-decoration:none;}
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
+
+    <div class="navigation" style="height:600px;">
+
+  <div class="crumbs"><a href="javascript:;" class="nolink">特特CRM_客户关系营销</a> 添加优惠券 </div>
+  <div class="absright">
+    <ul>
+      <li>
+        <div class="msg">
+            
+        </div>
+      </li>
+    </ul>
+  </div>
+    <div id="main-content">
+
           <div id="title">统计概括</div>
               <table cellspacing="0" cellpadding="0" width="40%" border="1">
                   <tr>
@@ -59,6 +79,10 @@
                   </asp:Repeater>
                </table>
                
+    </div>
+    </div>
+
+
     </div>
     </form>
 </body>
