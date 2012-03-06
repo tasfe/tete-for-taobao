@@ -5,11 +5,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Untitled Page</title>
-         <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+         <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>    <link href="css/common.css" rel="stylesheet" />
+<style>
+    td{font-size:12px;}
+    a{color:Blue; text-decoration:none;}
+</style>
 </head>
-<body>
+<body style="padding:0px; margin:0px;">
     <form id="form1" runat="server">
     <div>
+         <div class="navigation" style="height:600px;">
+
+  <div class="crumbs"><a href="javascript:;" class="nolink">特特店铺销售分析</a> 宝贝浏览分析 </div>
+  <div class="absright">
+    <ul>
+      <li>
+        <div class="msg">
+            
+        </div>
+      </li>
+    </ul>
+  </div>
+    <div id="main-content">
+
      <div>
        <asp:TextBox 
                 ID="TB_Start" runat="server" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})" class="Wdate" Width="120px"></asp:TextBox> 至 
@@ -56,6 +74,10 @@
             <asp:HyperLink id="lnkEnd" runat="server">尾页</asp:HyperLink>
         </div>
     </div>
+
+    </div>
+    </div>
+    
     </form>
 </body>
 </html>
