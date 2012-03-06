@@ -175,6 +175,11 @@ public class TaoBaoAPI
         IList<GoodsClassInfo> classList = null;
         if (!string.IsNullOrEmpty(text))
         {
+            if (text.Contains("error_response"))
+            {
+                LogInfo.Add("添加商品销售分类出错", text);
+                return null;
+            }
             System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
             text = text.Replace("{\"sellercats_list_get_response\":{\"seller_cats\":{\"seller_cat\":", "").Replace("]}}}", "") + "]";
             classList = js.Deserialize<List<GoodsClassInfo>>(text);
@@ -299,6 +304,11 @@ public class TaoBaoAPI
     public static bool AddCID(string nick, string session)
     {
         List<GoodsClassInfo> list = (List<GoodsClassInfo>)GetGoodsClassInfoList(nick, session);
+        if (list == null)
+        {
+            return false;
+        }
+
         //判断该店铺是否增加过该分类
         string cname = "销售分析_特特营销";
         List<GoodsClassInfo> mylist = list.Where(o => o.name == cname).ToList();
