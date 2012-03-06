@@ -8,9 +8,24 @@
     <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 </head>
-<body>
+<body style="padding:0px; margin:0px;">
     <form id="form1" runat="server">
     <div>
+
+     <div class="navigation" style="height:600px;">
+
+  <div class="crumbs"><a href="javascript:;" class="nolink">特特店铺销售分析</a> 二次销售分析 </div>
+  <div class="absright">
+    <ul>
+      <li>
+        <div class="msg">
+            
+        </div>
+      </li>
+    </ul>
+  </div>
+    <div id="main-content">
+
     <script type="text/javascript">
             var chart;
             $(document).ready(function() {
@@ -73,6 +88,10 @@
         <div id="container" style="width: 750px; height: 400px; margin: 0 auto">
         </div>
     </div>
+
+    </div>
+    </div>
+    
     </form>
 </body>
 </html>

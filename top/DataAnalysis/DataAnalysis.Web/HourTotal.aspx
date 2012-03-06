@@ -19,7 +19,7 @@
     a{color:Blue; text-decoration:none;}
 </style>
 </head>
-<body>
+<body style="padding:0px; margin:0px;">
     <form id="form1" runat="server">
     <div>
 
