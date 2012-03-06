@@ -30,11 +30,11 @@
                         marginBottom: 25
                     },
                     title: {
-                        text: '测试',
+                        text: '店铺浏览统计',
                         x: -20 //center
                     },
                     subtitle: {
-                        text: '测试test',
+                        text: 'pv/ip',
                         x: -20
                     },
                     xAxis: {
