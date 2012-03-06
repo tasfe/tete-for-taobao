@@ -54,7 +54,7 @@ public partial class GoodsBuyTotal : BasePage
             list[i].price = rinfo.price;
         }
 
-        lblCurrentPage.Text = "共" + totalCount.ToString() + "条记录 当前页：" + page + "/" + TotalPage;
+        lblCurrentPage.Text = "共" + totalCount.ToString() + "条记录 当前页：" + page + "/" + (TotalPage == 0 ? 1 : TotalPage);
 
         lnkFrist.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=1&" + "start=" + start.ToShortDateString() + "&end=" + end.ToShortDateString();
         if (page > 1)

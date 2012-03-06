@@ -27,6 +27,9 @@ public partial class HourPVTotal : BasePage
 
     private void ShowChart(DateTime date)
     {
+
+        if (date.ToShortDateString() != DateTime.Now.ToShortDateString())
+            Btn_Totay.Visible = true;
         //大于今天
         if (DateTime.Parse(date.ToShortDateString()) > DateTime.Parse(DateTime.Now.ToShortDateString()))
         {
@@ -102,5 +105,13 @@ public partial class HourPVTotal : BasePage
         }
         catch { TB_Start.Text = now.ToShortDateString(); }
         ShowChart(now);
+    }
+    protected void Btn_LastDays_Click(object sender, EventArgs e)
+    {
+        ShowChart(DateTime.Now.AddDays(-1));
+    }
+    protected void Btn_Totay_Click(object sender, EventArgs e)
+    {
+        ShowChart(DateTime.Now);
     }
 }
