@@ -28,7 +28,7 @@
     </ul>
   </div>
     <div id="main-content">
-
+ <asp:Button ID="Btn_AddCId" runat="server" Text="一键添加统计代码" Height="50" Width="400" OnClick="Btn_AddCId_Click" />
           <div id="title">统计概括</div>
               <table cellspacing="0" cellpadding="0" width="40%" border="1">
                   <tr>
