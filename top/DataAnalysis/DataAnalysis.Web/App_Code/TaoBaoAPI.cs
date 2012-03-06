@@ -5,6 +5,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Net;
 using System.Security.Cryptography;
+using System.Linq; 
 
 /// <summary>
 /// Summary description for TaoBaoAPI
@@ -166,7 +167,7 @@ public class TaoBaoAPI
     /// </summary>
     /// <param name="nickNo">用户nick</param>
     /// <returns></returns>
-    public static IList<GoodsClassInfo> GetGoodsClassInfoList(string nickNo)
+    public static IList<GoodsClassInfo> GetGoodsClassInfoList(string nickNo, string session)
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("nick", nickNo);
@@ -245,7 +246,7 @@ public class TaoBaoAPI
         return list;
     }
 
-    public static bool GetPromotion(string session, string tid,string regex)
+    public static bool GetPromotion(string session, string tid, string regex)
     {
         IDictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("fields", "receiver_mobile, orders.num_iid, created, consign_time, total_fee, promotion_details");
@@ -294,6 +295,28 @@ public class TaoBaoAPI
     }
 
     #endregion
+
+    public static bool AddCID(string nick, string session)
+    {
+        List<GoodsClassInfo> list = (List<GoodsClassInfo>)GetGoodsClassInfoList(nick, session);
+        //判断该店铺是否增加过该分类
+        string cname = "销售分析_特特营销";
+        List<GoodsClassInfo> mylist = list.Where(o => o.name == cname).ToList();
+        if (mylist.Count == 0)
+        {
+            Dictionary<string, string> param = new Dictionary<string, string>();
+            param.Add("name", cname);
+            param.Add("pict_url", DataHelper.GetAppSetings("hostname") + "/Images/nickimgs/newlogo1.jpg");
+            param.Add("sort_order", (list.Count + 1).ToString());
+
+            string result = Post("taobao.sellercats.list.add", session, param, DataType.json);
+            if (result.Contains("error_response"))
+                return false;
+            return true;
+        }
+
+        return true;
+    }
 }
 
 
@@ -302,3 +325,4 @@ public enum DataType
     xml,
     json
 }
+
