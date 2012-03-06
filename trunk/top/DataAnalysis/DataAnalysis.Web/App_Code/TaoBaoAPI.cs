@@ -171,7 +171,7 @@ public class TaoBaoAPI
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("nick", nickNo);
-        string text = Post("taobao.sellercats.list.get", "", dic, DataType.json);
+        string text = Post("taobao.sellercats.list.get", session, dic, DataType.json);
         IList<GoodsClassInfo> classList = null;
         if (!string.IsNullOrEmpty(text))
         {
