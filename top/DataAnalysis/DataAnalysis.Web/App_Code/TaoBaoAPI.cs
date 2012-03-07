@@ -324,7 +324,8 @@ public class TaoBaoAPI
             Dictionary<string, string> param = new Dictionary<string, string>();
             param.Add("name", cname);
             param.Add("pict_url", DataHelper.GetAppSetings("hostname") + "GetData.ashx?nick=" + HttpUtility.UrlEncode(nick));
-            int order = int.Parse(list.Max(o => o.sort_order));
+
+            int order = list.Max(o => o.sort_order);
             param.Add("sort_order", (order + 1).ToString());
 
             string result = Post("taobao.sellercats.list.add", session, param, DataType.json);
