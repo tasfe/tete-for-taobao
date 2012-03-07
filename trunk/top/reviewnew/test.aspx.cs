@@ -16,14 +16,20 @@ public partial class crm_test : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //string top_session = "6102b21db4b39e9aaec471c5d6f3217531c5f8ee2c7bd4b13009583";
-        //IDictionary<string, string> param = new Dictionary<string, string>();
-        //string result = Post("http://gw.api.taobao.com/router/rest", "12159997", "614e40bfdb96e9063031d1a9e56fbed5", "taobao.increment.customer.permit", top_session, param);
+        string top_session = "61002252369d90f555f6c8ec36cafcd14166d166d4918b357567997";
+        IDictionary<string, string> param = new Dictionary<string, string>();
+//        4482101
+//4624057
+//4513219
+////4500796
+//        param.Add("coupon_id", "4624057");
+//        param.Add("buyer_nick", "微酸的糖");
+        string result = Post("http://gw.api.taobao.com/router/rest", "12159997", "614e40bfdb96e9063031d1a9e56fbed5", "taobao.promotion.activity.get", top_session, param);
 
-        //Response.Write("<html>" + result + "</html>");
-        //Response.End();
+        Response.Write("<html>" + result + "</html>");
+        Response.End();
 
-        SendMessage("13816190083", "+心怡yy+:亲，您购买的货物已经发出,5分满分好评+优质评价,即可获赠掌上游戏机一个和优惠券喔,是要全部5分才有喔&!");
+        //SendMessage("13816190083", "+心怡yy+:亲，您购买的货物已经发出,5分满分好评+优质评价,即可获赠掌上游戏机一个和优惠券喔,是要全部5分才有喔&!");
     }
 
     public static string UrlEncode(string str)
