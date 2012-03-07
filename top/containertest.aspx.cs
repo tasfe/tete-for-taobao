@@ -204,6 +204,8 @@ public partial class top_containertest : System.Web.UI.Page
         Cookie cookie = new Cookie();
         cookie.setCookie("top_session", session, 999999);
         cookie.setCookie("nick", nick, 999999);
+        cookie.setCookie("iscrm", "1", 999999);
+        cookie.setCookie("istongji", "1", 999999);
 
         Response.Redirect("index.html");
     }
