@@ -168,9 +168,20 @@ public partial class top_containerblog : System.Web.UI.Page
                            " '" + nick + "'" +
                      ") ";
             utils.ExecuteNonQuery(sql);*/
-
             //更新登录次数和最近登陆时间
             string sql = "UPDATE TCS_ShopSession SET session='" + top_session + "',version='" + versionNo + "' WHERE nick = '" + nick + "'";
+
+            //Response.Write(sql);
+            //Response.End();
+            utils.ExecuteNonQuery(sql);
+
+
+
+            //特殊用户处理
+            sql = "UPDATE TCS_ShopSession SET version = 3 WHERE nick = '四川中青旅锦华分社'";
+            utils.ExecuteNonQuery(sql);
+
+            sql = "UPDATE TCS_ShopConfig SET isdel = 1 WHERE nick = '紫竹a恋'";
             utils.ExecuteNonQuery(sql);
         }
         else
@@ -269,6 +280,9 @@ public partial class top_containerblog : System.Web.UI.Page
                        " '" + top_session + "' " +
                  ") ";
 
+        //Response.Write(sql);
+        //Response.End();
+
         utils.ExecuteNonQuery(sql);
 
 
@@ -316,6 +330,7 @@ public partial class top_containerblog : System.Web.UI.Page
     private bool CheckUserExits(string nick)
     {
         string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "'";
+
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count == 0)
         {
@@ -521,6 +536,16 @@ public partial class top_containerblog : System.Web.UI.Page
                             sql = "UPDATE TCS_ShopConfig SET total = total + 10500 WHERE nick = '" + nick + "'";
                             utils.ExecuteNonQuery(sql);
                         }
+                    }
+
+
+                    //活动连接
+                    if (match[i].Groups[1].ToString() == "service-0-22904-9")
+                    {
+                        //更新短信条数
+                        sql = "UPDATE TCS_ShopSession SET version='3' WHERE nick = '" + nick + "'";
+
+                        utils.ExecuteNonQuery(sql);
                     }
                 }
                 catch { }
