@@ -156,9 +156,23 @@ public class TaoBaoAPI
         GoodsInfo info = null;
         if (!string.IsNullOrEmpty(text))
         {
+            if (text.Contains("error_response"))
+            {
+                LogInfo.Add("获取一个商品信息出错", text);
+                return null;
+            }
             System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
             text = text.Replace("{\"item_get_response\":{\"item\":", "").Replace("}}", "");
-            info = js.Deserialize<GoodsInfo>(text);
+            
+            try
+            {
+                info = js.Deserialize<GoodsInfo>(text);
+            }
+            catch(Exception ex)
+            {
+                info = new GoodsInfo();
+                LogInfo.WriteLog("返回json转化为一个商品信息出错,商品id:" + pid, text + ex.Message);
+            }
         }
         return info;
     }
@@ -172,18 +186,29 @@ public class TaoBaoAPI
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("nick", nickNo);
+        dic.Add("fields", "cid,name,parent_cid,sort_order");
         string text = Post("taobao.sellercats.list.get", session, dic, DataType.json);
+         
         IList<GoodsClassInfo> classList = null;
         if (!string.IsNullOrEmpty(text))
         {
             if (text.Contains("error_response"))
             {
-                LogInfo.Add("添加商品销售分类出错", text);
+                LogInfo.Add("查找商品销售分类出错", text);
                 return null;
             }
             System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
             text = text.Replace("{\"sellercats_list_get_response\":{\"seller_cats\":{\"seller_cat\":", "").Replace("]}}}", "") + "]";
-            classList = js.Deserialize<List<GoodsClassInfo>>(text);
+
+            try
+            {
+                classList = js.Deserialize<List<GoodsClassInfo>>(text);
+            }
+            catch (Exception ex)
+            {
+                LogInfo.Add("返回json转化为一个商品销售分类出错", text + ex.Message);
+                return null;
+            }
         }
         return classList;
     }
@@ -248,7 +273,7 @@ public class TaoBaoAPI
                 }
                 catch (Exception ex)
                 {
-                    LogInfo.WriteLog("获取订单转换出错", ex.Message);
+                    LogInfo.WriteLog("获取订单转换出错", text + ex.Message);
                 }
             }
         }
@@ -300,7 +325,7 @@ public class TaoBaoAPI
             }
             catch (Exception ex)
             {
-                LogInfo.WriteLog("获取信息出错", ex.Message);
+                LogInfo.WriteLog("获取评价信息转换出错", text + ex.Message);
             }
         }
         return list[0];
@@ -321,11 +346,12 @@ public class TaoBaoAPI
         List<GoodsClassInfo> mylist = list.Where(o => o.name == cname).ToList();
         if (mylist.Count == 0)
         {
+            mylist = list.Where(o => o.parent_cid == "0").ToList();
             Dictionary<string, string> param = new Dictionary<string, string>();
             param.Add("name", cname);
             param.Add("pict_url", DataHelper.GetAppSetings("hostname") + "GetData.ashx?nick=" + HttpUtility.UrlEncode(nick));
 
-            int order = list.Max(o => o.sort_order) + 1;
+            int order = mylist.Max(o => o.sort_order) + 1;
             param.Add("sort_order", order.ToString());
 
             string result = Post("taobao.sellercats.list.add", session, param, DataType.json);

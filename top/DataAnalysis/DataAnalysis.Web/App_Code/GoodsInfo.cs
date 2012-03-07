@@ -51,5 +51,12 @@ public class GoodsClassInfo
 
     public int sort_order { set; get; }
 
+    /// <summary>
+    /// 父类目ID=0时，代表的是一级的类目
+    /// </summary>
+    public string parent_cid { set; get; }
+
+    public string status { set; get; }
+
     public string type { set; get; }
 }
