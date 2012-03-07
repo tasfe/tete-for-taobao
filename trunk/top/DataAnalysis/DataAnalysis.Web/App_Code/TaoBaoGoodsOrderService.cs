@@ -27,6 +27,13 @@ public class TaoBaoGoodsOrderService
 
     const string SQL_ORDERGOODS_INSERT = "INSERT TopTaoBaoOrderGoodsList(id,tid,status,num_iid,num) VALUES(@id,@tid,@status,@num_iid,@num)";
 
+    const string SQL_SELECT_ORDERPINGJIATOTAL = @"select COUNT(*) allcount,CONVERT(varchar(12),created,112) pdate,result from
+ (
+ select * from TopTaoBaoGoodsOrderInfo where created between 
+@start and @end and seller_nick=@nick
+  ) a
+ group by CONVERT(varchar(12),created,112),result";
+
     public IList<BackTotalInfo> GetAllBackTotalList(DateTime start, DateTime end, string nick)
     {
         SqlParameter[] param = new[]
@@ -90,6 +97,30 @@ public class TaoBaoGoodsOrderService
               };
             DBHelper.ExecuteNonQuery(SQL_ORDERGOODS_INSERT, param);
         }
+    }
+
+    public IList<PingJiaInfo> GetPingjiaTotal(DateTime start, DateTime end, string nick)
+    {
+        SqlParameter[] param = new[]
+            {
+                new SqlParameter("@start", start),
+                new SqlParameter("@end",end),
+                new SqlParameter("@nick",nick)
+            };
+
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_BACK_TOTAL, param);
+        IList<PingJiaInfo> list = new List<PingJiaInfo>();
+        foreach (DataRow dr in dt.Rows)
+        {
+            PingJiaInfo info = new PingJiaInfo();
+            info.pcount = int.Parse(dr["allcount"].ToString());
+            info.pdate = dr["pdate"].ToString();
+            info.result = dr["result"].ToString();
+            list.Add(info);
+        }
+        IList<PingJiaInfo> rlist = list.OrderBy(o => o.created).ToList();
+
+        return rlist;
     }
 }
 
