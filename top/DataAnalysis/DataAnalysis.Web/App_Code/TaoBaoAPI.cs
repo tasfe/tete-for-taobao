@@ -5,7 +5,8 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Net;
 using System.Security.Cryptography;
-using System.Linq; 
+using System.Linq;
+using System.Web; 
 
 /// <summary>
 /// Summary description for TaoBaoAPI
@@ -322,7 +323,7 @@ public class TaoBaoAPI
         {
             Dictionary<string, string> param = new Dictionary<string, string>();
             param.Add("name", cname);
-            param.Add("pict_url", DataHelper.GetAppSetings("hostname") + "/Images/nickimgs/newlogo1.jpg");
+            param.Add("pict_url", DataHelper.GetAppSetings("hostname") + "GetData.ashx?nick=" + HttpUtility.UrlEncode(nick));
             int order = int.Parse(list.Max(o => o.sort_order));
             param.Add("sort_order", (order + 1).ToString());
 
