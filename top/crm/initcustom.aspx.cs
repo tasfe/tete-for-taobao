@@ -25,7 +25,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
-        session = cookie.getCookie("top_sessiongroupbuy");
+        session = cookie.getCookie("top_session");
         string iscrm = cookie.getCookie("iscrm");
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
@@ -74,7 +74,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
             string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.crm.members.search", session, param);
             Regex reg = new Regex(@"<crm_member>([\s\S]*?)</crm_member>", RegexOptions.IgnoreCase);
             MatchCollection match = reg.Matches(result);
-            //Response.Write(match.Count.ToString() + "<hr>");
+            Response.Write(result + "<hr>");
             for (int i = 0; i < match.Count; i++)
             {
                 string str = match[i].Groups[0].ToString();
