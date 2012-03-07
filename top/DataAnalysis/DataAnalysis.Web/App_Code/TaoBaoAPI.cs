@@ -325,8 +325,8 @@ public class TaoBaoAPI
             param.Add("name", cname);
             param.Add("pict_url", DataHelper.GetAppSetings("hostname") + "GetData.ashx?nick=" + HttpUtility.UrlEncode(nick));
 
-            int order = list.Max(o => o.sort_order);
-            param.Add("sort_order", (order + 1).ToString());
+            int order = list.Max(o => o.sort_order) + 1;
+            param.Add("sort_order", order.ToString());
 
             string result = Post("taobao.sellercats.list.add", session, param, DataType.json);
             if (result.Contains("error_response"))
