@@ -31,7 +31,7 @@ public partial class PingjiaTotal : System.Web.UI.Page
             return;
         }
         TaoBaoGoodsOrderService tboDal = new TaoBaoGoodsOrderService();
-        IList<PingJiaInfo> list = tboDal.GetPingjiaTotal(start, end,"美杜莎之心" );//HttpUtility.UrlDecode(Request.Cookies["nick"].Value));
+        IList<PingJiaInfo> list = tboDal.GetPingjiaTotal(start, end, HttpUtility.UrlDecode(Request.Cookies["nick"].Value));
 
         SeriseText = "[{name:'好评', data:[";
         string zhong = ",{name:'中评',data:[";
