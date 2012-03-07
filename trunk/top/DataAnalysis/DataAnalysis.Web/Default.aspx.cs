@@ -8,7 +8,7 @@ public partial class _Default : System.Web.UI.Page
         if (!IsPostBack)
         {
             if (Request.Cookies["nick1"] == null)
-                System.Threading.Thread.Sleep(1000 * 10);
+                System.Threading.Thread.Sleep(1000 * 6);
             string nickNo = DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value));
             VisitService vistitDal = new VisitService();
             DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
