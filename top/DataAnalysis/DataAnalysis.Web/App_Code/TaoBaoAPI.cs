@@ -209,7 +209,10 @@ public class TaoBaoAPI
             if (!string.IsNullOrEmpty(text))
             {
                 if (text.Contains("error_response"))
+                {
+                    LogInfo.WriteLog("获取订单参数错误" + session, text);
                     return null;
+                }
                 string index = "{\"trades_sold_get_response\":{\"has_next\":true,\"trades\":{\"trade\":[";
                 if (!text.Contains(index))
                 {
@@ -282,7 +285,10 @@ public class TaoBaoAPI
         if (!string.IsNullOrEmpty(text))
         {
             if (text.Contains("error_response"))
+            {
+                LogInfo.WriteLog("获取评价参数错误：" + "session:" + session + "订单：" + tid, text);
                 return null;
+            }
             Regex regex = new Regex("},\"total_results\":\\d+}}", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
             text = regex.Replace(text, "");
             text = text.Replace("{\"traderates_get_response\":{\"trade_rates\":{\"trade_rate\":", "");
