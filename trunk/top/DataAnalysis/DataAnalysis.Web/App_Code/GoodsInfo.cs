@@ -49,7 +49,7 @@ public class GoodsClassInfo
 
     public string pic_url { set; get; }
 
-    public string sort_order { set; get; }
+    public int sort_order { set; get; }
 
     public string type { set; get; }
 }
