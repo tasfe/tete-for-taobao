@@ -103,7 +103,7 @@
 
                 <div style="text-align: center">
                     <asp:Button ID="Btn_LastDays" runat="server" OnClick="Btn_LastDays_Click" Text="昨天" />&nbsp;
-                    <asp:Button ID="Btn_Totay" runat="server" OnClick="Btn_Totay_Click" Text="近天"  Visible="false" />&nbsp;
+                    <asp:Button ID="Btn_Totay" runat="server" OnClick="Btn_Totay_Click" Text="今天"  Visible="false" />&nbsp;
                     
                     <asp:TextBox ID="TB_Start" runat="server" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})"
                         class="Wdate" Width="120px"></asp:TextBox>&nbsp;

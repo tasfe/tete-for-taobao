@@ -10,7 +10,6 @@ public partial class HourPVTotal : BasePage
     {
         if (!IsPostBack)
         {
-           
             //int day = 1;
             //try
             //{
