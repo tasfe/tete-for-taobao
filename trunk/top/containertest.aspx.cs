@@ -197,6 +197,12 @@ public partial class top_containertest : System.Web.UI.Page
             session = dt.Rows[0]["session"].ToString();
         }
 
+        if (session == "")
+        {
+            Response.Write("该用户未登录过服务！！session为空");
+            Response.End();
+        }
+
         //加密NICK
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Encrypt(nick);
