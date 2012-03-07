@@ -327,7 +327,10 @@ public class TaoBaoAPI
 
             string result = Post("taobao.sellercats.list.add", session, param, DataType.json);
             if (result.Contains("error_response"))
+            {
+                LogInfo.WriteLog("添加分类出错：" + "session:" + session + "nick：" + nick, result);
                 return false;
+            }
             return true;
         }
 
