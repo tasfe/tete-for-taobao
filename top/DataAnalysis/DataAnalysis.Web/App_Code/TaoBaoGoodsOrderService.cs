@@ -108,7 +108,7 @@ public class TaoBaoGoodsOrderService
                 new SqlParameter("@nick",nick)
             };
 
-        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_BACK_TOTAL, param);
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_ORDERPINGJIATOTAL, param);
         IList<PingJiaInfo> list = new List<PingJiaInfo>();
         foreach (DataRow dr in dt.Rows)
         {
