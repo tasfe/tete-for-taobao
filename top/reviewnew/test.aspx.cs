@@ -22,9 +22,9 @@ public partial class crm_test : System.Web.UI.Page
 //4624057
 //4513219
 ////4500796
-//        param.Add("coupon_id", "4624057");
-//        param.Add("buyer_nick", "微酸的糖");
-        string result = Post("http://gw.api.taobao.com/router/rest", "12159997", "614e40bfdb96e9063031d1a9e56fbed5", "taobao.promotion.activity.get", top_session, param);
+        param.Add("coupon_id", "4624057");
+        param.Add("buyer_nick", "微酸的糖");
+        string result = Post("http://gw.api.taobao.com/router/rest", "12159997", "614e40bfdb96e9063031d1a9e56fbed5", "taobao.promotion.coupon.send", top_session, param);
 
         Response.Write("<html>" + result + "</html>");
         Response.End();

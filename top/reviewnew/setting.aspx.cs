@@ -204,6 +204,7 @@ public partial class top_review_setting : System.Web.UI.Page
                         "maxdate, " +
                         "iscancelauto, " +
                         "iskeyword, " +
+                        "sessionold, " +
                         "issendmsg " +
                     " ) VALUES ( " +
                         " '" + nick + "', " +
@@ -214,6 +215,7 @@ public partial class top_review_setting : System.Web.UI.Page
                         " '" + utils.NewRequest("maxdate", utils.RequestType.Form) + "', " +
                         " '" + utils.NewRequest("iscancelauto", utils.RequestType.Form) + "', " +
                         " '" + utils.NewRequest("iskeyword", utils.RequestType.Form) + "', " +
+                        " '" + session + "', " +
                         " '" + utils.NewRequest("issendmsg", utils.RequestType.Form) + "' " +
                     ") ";
             utils.ExecuteNonQuery(sql);
@@ -229,6 +231,7 @@ public partial class top_review_setting : System.Web.UI.Page
                         "updatedate = GETDATE(), " +
                         "iscancelauto = '" + utils.NewRequest("iscancelauto", utils.RequestType.Form) + "', " +
                         "iskeyword = '" + utils.NewRequest("iskeyword", utils.RequestType.Form) + "', " +
+                        "sessionold = '" + session + "', " +
                         "issendmsg = '" + utils.NewRequest("issendmsg", utils.RequestType.Form) + "' " +
                     "WHERE nick = '" + nick + "'";
             //Response.Write(sql);
