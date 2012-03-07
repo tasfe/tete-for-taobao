@@ -131,4 +131,14 @@ public class PingJiaInfo
     ///  好中差评good(好评),neutral(中评),bad(差评)
     /// </summary>
     public string result { set; get; }
+
+    /// <summary>
+    /// 该类型评价总数
+    /// </summary>
+    public int pcount { set; get; }
+
+    /// <summary>
+    /// 哪一年哪一天
+    /// </summary>
+    public string pdate { set; get; } 
 }
