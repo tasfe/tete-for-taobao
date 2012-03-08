@@ -60,7 +60,7 @@ public partial class top_groupbuy_build : System.Web.UI.Page
         {
             string appkey = "12159997";
             string secret = "614e40bfdb96e9063031d1a9e56fbed5";
-            string version = string.Empty;
+            string version = "0";
             IDictionary<string, string> param = new Dictionary<string, string>();
             param.Add("article_code", "service-0-22904");
             param.Add("nick", nick);
@@ -89,8 +89,6 @@ public partial class top_groupbuy_build : System.Web.UI.Page
                 //重新给客户插入session
                 sql = "INSERT INTO TCS_ShopSession (sid, nick, typ, version, session ) VALUES ( '0', '" + nick + "', 'taobao', '" + version + "', '" + session + "' )";
                 utils.ExecuteNonQuery(sql);
-                Response.Write(sql);
-                Response.End();
             }
         }
     }
