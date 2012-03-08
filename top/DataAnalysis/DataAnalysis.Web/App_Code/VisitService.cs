@@ -17,7 +17,7 @@ public class VisitService
     const string SQL_CREATE_TABLE = @"CREATE TABLE @tableName(
 	[VisitID] [uniqueidentifier] NOT NULL,
 	[VisitIP] [varchar](50) NULL,
-	[VisitUrl] [varchar](250) NULL,
+	[VisitUrl] [varchar](500) NULL,
 	[VisitTime] [datetime] NULL,
 	[VisitUserAgent] [varchar](50) NULL,
 	[VisitBrower] [varchar](50) NULL,
