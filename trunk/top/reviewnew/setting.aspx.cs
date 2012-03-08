@@ -188,6 +188,13 @@ public partial class top_review_setting : System.Web.UI.Page
                     return;
                 }
             }
+
+            if (utils.NewRequest("iskefu", utils.RequestType.Form) == "1" && utils.NewRequest("iskeyword", utils.RequestType.Form) == "1")
+            {
+                Response.Write("<script>alert('尊敬的" + nick + "，非常抱歉的告诉您，您不能同时开启【好评自动判定】和【评价手动审核】功能，请选择其中的一项开启！');window.location.href='setting.aspx';</script>");
+                Response.End();
+                return;
+            }
         }
 
         //先判断是否有记录
