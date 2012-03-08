@@ -89,8 +89,7 @@ public partial class top_groupbuy_build : System.Web.UI.Page
                 //重新给客户插入session
                 sql = "INSERT INTO TCS_ShopSession (sid, nick, typ, version, session ) VALUES ( '0', '" + nick + "', 'taobao', '" + version + "', '" + session + "' )";
                 utils.ExecuteNonQuery(sql);
-                Response.Write(result);
-                Response.End();
+                Response.Redirect("msgbuy.aspx");
             }
         }
     }
