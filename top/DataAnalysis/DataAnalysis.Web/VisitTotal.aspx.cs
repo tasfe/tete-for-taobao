@@ -5,7 +5,7 @@ using System.Web.UI;
 using System.Collections.Generic;
 using System.Web;
 
-public partial class VisitTotal : System.Web.UI.Page
+public partial class VisitTotal : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
