@@ -27,17 +27,6 @@ public partial class top_containerblog : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        Response.AddHeader("P3P", "CP=CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR");
-        /*
-         * http://www.7fshop.com/top/container.aspx
-         * ?top_appkey=12132145
-         * &top_parameters=aWZyYW1lPTEmdHM9MTI4NTg3MTY5Nzg0OSZ2aWV3X21vZGU9ZnVsbCZ2aWV3X3dpZHRoPTAmdmlzaXRvcl9pZD0xNzMyMzIwMCZ2aXNpdG9yX25pY2s90ra2+cvmx+W35w==
-         * &top_session=23200857b2aa0ca62d3d0d9c78a750df07300
-         * &top_sign=52sdJ6lvJPeaBef7rwcoSw==
-         * &agreement=true
-         * &agreementsign=12132145-21431194-D1A5A27626CB119D69F0D5438423A99A
-         * &y=13
-         * &x=36*/
         //签名验证
         string top_appkey = "12159997";
         string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString).Replace(" ", "+");
@@ -74,8 +63,6 @@ public partial class top_containerblog : System.Web.UI.Page
             versionNo = "1";
         }
 
-        //Response.Write("!!!通过");
-        //Response.End();
         nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["visitor_nick"];
         if (nick == null || nick == "")
         {
@@ -83,7 +70,6 @@ public partial class top_containerblog : System.Web.UI.Page
             Response.End();
             return;
         }
-
 
         if (agreementsign != "")
         {
@@ -100,11 +86,9 @@ public partial class top_containerblog : System.Web.UI.Page
             return;
         }
 
-
         //判断跳转
         GetData(nick);
     }
-
 
     private bool VersionVerify(string app_secret, string top_sign, string appkey, string leaseId, string timestamp, string versionNo)
     {
@@ -131,25 +115,8 @@ public partial class top_containerblog : System.Web.UI.Page
     private void GetData(string nick)
     {
         string session = top_session;
-        //string session = "23200d282b335fc82ee9466c363c14f7e1b03";
 
         TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12159997", "614e40bfdb96e9063031d1a9e56fbed5");
-
-        //通过获取当前会话客户的在销商品来获取用户NICK
-        //ItemsOnsaleGetRequest request1 = new ItemsOnsaleGetRequest();
-        //request1.PageSize = 1;
-        //request1.Fields = "nick";
-        //PageList<Item> item = client.ItemsOnsaleGet(request1, session);
-        //if (item.Content.Count == 0)
-        //{
-        //    Response.Write("请您先在店铺里添加商品 <a href='http://i.taobao.com/my_taobao.htm'>我的淘宝</a>");
-        //    Response.End();
-        //    return;
-        //}
-        //else
-        //{
-        //    nick = item.Content[0].Nick;
-        //}
 
         //获取店铺基本信息
         UserGetRequest request = new UserGetRequest();
@@ -159,23 +126,9 @@ public partial class top_containerblog : System.Web.UI.Page
 
         if (CheckUserExits(nick))
         {
-            //更新该会员的店铺信息
-            //string ip = Request.UserHostAddress;
-            //记录2次登录日志
-            /*string sql = "INSERT INTO TopLoginLog (" +
-                           "nick " +
-                       " ) VALUES ( " +
-                           " '" + nick + "'" +
-                     ") ";
-            utils.ExecuteNonQuery(sql);*/
             //更新登录次数和最近登陆时间
             string sql = "UPDATE TCS_ShopSession SET session='" + top_session + "',version='" + versionNo + "' WHERE nick = '" + nick + "'";
-
-            //Response.Write(sql);
-            //Response.End();
             utils.ExecuteNonQuery(sql);
-
-
 
             //特殊用户处理
             sql = "UPDATE TCS_ShopSession SET version = 3 WHERE nick = '四川中青旅锦华分社'";
@@ -232,41 +185,39 @@ public partial class top_containerblog : System.Web.UI.Page
             Response.End();
             return;
         }
+
+        //获取版本号
+        string appkey = "12159997";
+        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+        string version = "9";
+        IDictionary<string, string> param = new Dictionary<string, string>();
+        param.Add("article_code", "service-0-22904");
+        param.Add("nick", nick);
+
+        string result = PostJson("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.vas.subscribe.get", top_session, param);
+        if (result.IndexOf("\"article_user_subscribes\":{}") == -1)
+        {
+            Regex reg = new Regex(@"""item_code"":""([^""]*)""", RegexOptions.IgnoreCase);
+            //更新店铺的版本号
+            MatchCollection match = reg.Matches(result);
+            for (int j = 0; j < match.Count; j++)
+            {
+                version = match[j].Groups[1].ToString().Replace("service-0-22904-", "");
+
+                if (version == "9")
+                {
+                    version = "3";
+                }
+
+                if (int.Parse(version) <= 3)
+                {
+                    break;
+                }
+            }
+        }
+
         //记录到本地数据库
-        string sql = "INSERT INTO TopTaobaoShop (" +
-                        "sid, " +
-                        "cid, " +
-                        "title, " +
-                        "nick, " +
-                        "[desc], " +
-                        "bulletin, " +
-                        "pic_path, " +
-                        "created, " +
-                        "modified, " +
-                        "shop_score, " +
-                        "versionNo, " +
-                        "sessionblog, " +
-                        "ip, " +
-                        "remain_count " +
-                    " ) VALUES ( " +
-                        " '" + shop.Sid + "', " +
-                        " '" + shop.Cid + "', " +
-                        " '" + shop.Title + "', " +
-                        " '" + shop.Nick + "', " +
-                        " '" + shop.Desc + "', " +
-                        " '" + shop.Bulletin + "', " +
-                        " '" + shop.PicPath + "', " +
-                        " '" + shop.Created + "', " +
-                        " '" + shop.Modified + "', " +
-                        " '" + shop.ShopScore + "', " +
-                        " '" + versionNo + "', " +
-                        " '" + top_session + "', " +
-                        " '" + ip + "', " +
-                        " '" + shop.RemainCount + "' " +
-                  ") ";
-
-
-        sql = "INSERT INTO TCS_ShopSession (" +
+        string sql = "INSERT INTO TCS_ShopSession (" +
                        "sid, " +
                        "nick, " +
                        "typ, " +
@@ -276,50 +227,11 @@ public partial class top_containerblog : System.Web.UI.Page
                        " '" + shop.Sid + "', " +
                        " '" + shop.Nick + "', " +
                        " 'taobao', " +
-                       " '" + versionNo + "', " +
+                       " '" + version + "', " +
                        " '" + top_session + "' " +
                  ") ";
 
-        //Response.Write(sql);
-        //Response.End();
-
         utils.ExecuteNonQuery(sql);
-
-
-
-
-        //记录店铺分类信息
-        /*SellercatsListGetRequest request1 = new SellercatsListGetRequest();
-        request1.Fields = "cid,parent_cid,name,is_parent";
-        request1.Nick = nick;
-        PageList<SellerCat> cat = client.SellercatsListGet(request1);
-
-        for (int i = 0; i < cat.Content.Count; i++)
-        {
-            sql = "INSERT INTO TopTaobaoShopCat (" +
-                            "cid, " +
-                            "parent_cid, " +
-                            "name, " +
-                            "pic_url, " +
-                            "sort_order, " +
-                            "created, " +
-                            "nick, " +
-                            "modified " +
-                        " ) VALUES ( " +
-                            " '" + cat.Content[i].Cid + "', " +
-                            " '" + cat.Content[i].ParentCid + "', " +
-                            " '" + cat.Content[i].Name + "', " +
-                            " '" + cat.Content[i].PicUrl + "', " +
-                            " '" + cat.Content[i].SortOrder + "', " +
-                            " '" + cat.Content[i].Created + "', " +
-                            " '" + nick + "', " +
-                            " '" + cat.Content[i].Modified + "' " +
-                      ") ";
-            utils.ExecuteNonQuery(sql);
-        }
-*/
-
-        //记录店铺所有商品信息-暂不记录
     }
 
     /// <summary>
@@ -342,41 +254,16 @@ public partial class top_containerblog : System.Web.UI.Page
         }
     }
 
-
-
-
-
-
-
-    /// <summary>
-    /// ////////////////////////////////////////////
-    /// </summary>
-    /// <param name="t"></param>
-    /// <param name="u"></param>
-
-
-
     private void CheckUser(string t, string u)
     {
         string appkey = "12159997";
         string secret = "614e40bfdb96e9063031d1a9e56fbed5";
-
-
-
 
         //判断该店铺是B店还是C店
         IDictionary<string, string> param = new Dictionary<string, string>();
         param.Add("fields", "type");
         param.Add("nick", u);
         string result1 = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.user.get", top_session, param);
-
-        /*try
-        {
-            string typ = new Regex(@"<type>([^<]*)</type>", RegexOptions.IgnoreCase).Match(result1).Groups[1].ToString();
-            string sql1 = "UPDATE TopTaobaoShop SET typ = '" + typ + "' WHERE nick = '" + u + "'";
-            utils.ExecuteNonQuery(sql1);
-        }
-        catch { }*/
 
         string sql = string.Empty;
         //判断短信购买及充值情况
@@ -390,7 +277,7 @@ public partial class top_containerblog : System.Web.UI.Page
         }
         else
         {
-            Regex reg = new Regex(@"<article_user_subscribe><item_code>([^<]*)</item_code><deadline>([^<]*)</deadline></article_user_subscribe>", RegexOptions.IgnoreCase);
+            Regex reg = new Regex(@"<item_code>([^<]*)</item_code><deadline>([^<]*)</deadline>", RegexOptions.IgnoreCase);
             //更新日期
             MatchCollection match = reg.Matches(resultnew);
             for (int i = 0; i < match.Count; i++)
@@ -551,60 +438,9 @@ public partial class top_containerblog : System.Web.UI.Page
                 catch { }
             }
         }
-
-        /*
-                param = new Dictionary<string, string>();
-                param.Add("nick", u);
-                if (t == "0")
-                {
-                    appkey = "12159997";
-                    secret = "614e40bfdb96e9063031d1a9e56fbed5";
-                    param.Add("lease_id", "161220");
-                }
-                else
-                {
-                    param.Add("lease_id", "133368");
-                }
-                string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.appstore.subscribe.get", "", param);
-
-                string enddate = string.Empty;
-                string version = string.Empty;
-                sql = string.Empty;
-
-                if (result.IndexOf("invali") != -1)
-                {
-                    //到期了
-                    if (t == "0")
-                    {
-                        sql = "UPDATE TopTaobaoShop SET isoverblog = 1,enddateBlog = GETDATE() WHERE nick = '" + u + "'";
-                    }
-                    else
-                    {
-                        sql = "UPDATE TopTaobaoShop SET isover = 1,enddate = GETDATE() WHERE nick = '" + u + "'";
-                    }
-                    utils.ExecuteNonQuery(sql);
-                }
-                else
-                {
-                    //更新日期
-                    enddate = new Regex(@"<end_date>([^<]*)</end_date>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-                    version = new Regex(@"<version_no>([^<]*)</version_no>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-
-                    if (t == "0")
-                    {
-                        sql = "UPDATE TopTaobaoShop SET enddateBlog = '" + enddate + "',versionNoBlog = '" + version + "' WHERE nick = '" + u + "'";
-                    }
-                    else
-                    {
-                        sql = "UPDATE TopTaobaoShop SET enddate = '" + enddate + "',versionNo = '" + version + "' WHERE nick = '" + u + "'";
-                    }
-                    utils.ExecuteNonQuery(sql);
-                }
-                //Response.Write(sql + "<br>");
-
-        */
     }
 
+    #region top api
     /// <summary> 
     /// 给TOP请求签名 API v2.0 
     /// </summary> 
@@ -717,4 +553,43 @@ public partial class top_containerblog : System.Web.UI.Page
         #endregion
         return Regex.Replace(result, @"[\x00-\x08\x0b-\x0c\x0e-\x1f]", "");
     }
+
+    public static string PostJson(string url, string appkey, string appSecret, string method, string session,
+    IDictionary<string, string> param)
+    {
+        #region -----API系统参数----
+        param.Add("app_key", appkey);
+        param.Add("method", method);
+        param.Add("session", session);
+        param.Add("timestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+        param.Add("format", "json");
+        param.Add("v", "2.0");
+        param.Add("sign_method", "md5");
+        param.Add("sign", CreateSign(param, appSecret));
+        #endregion
+        string result = string.Empty;
+        #region ---- 完成 HTTP POST 请求----
+        HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+        req.Method = "POST";
+        req.KeepAlive = true;
+        req.Timeout = 300000;
+        req.ContentType = "application/x-www-form-urlencoded;charset=utf-8";
+        byte[] postData = Encoding.UTF8.GetBytes(PostData(param));
+        Stream reqStream = req.GetRequestStream();
+        reqStream.Write(postData, 0, postData.Length);
+        reqStream.Close();
+        HttpWebResponse rsp = (HttpWebResponse)req.GetResponse();
+        Encoding encoding = Encoding.GetEncoding(rsp.CharacterSet);
+        Stream stream = null;
+        StreamReader reader = null;
+        stream = rsp.GetResponseStream();
+        reader = new StreamReader(stream, encoding);
+        result = reader.ReadToEnd();
+        if (reader != null) reader.Close();
+        if (stream != null) stream.Close();
+        if (rsp != null) rsp.Close();
+        #endregion
+        return Regex.Replace(result, @"[\x00-\x08\x0b-\x0c\x0e-\x1f]", "");
+    }
+    #endregion
 }
