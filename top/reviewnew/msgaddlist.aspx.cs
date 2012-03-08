@@ -52,6 +52,11 @@ public partial class top_review_msgaddlist : System.Web.UI.Page
                 return;
             }
         }
+        else
+        {
+            Response.Write("<script>alert('请先在基本设置页保存设置');window.location.href='setting.aspx'</script>");
+            Response.End();
+        }
 
         BindData();
     }
