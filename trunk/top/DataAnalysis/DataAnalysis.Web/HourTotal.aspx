@@ -79,8 +79,7 @@
                         },
                         tooltip: {
                             formatter: function() {
-                                return '<b>' + this.series.name + '</b><br/>' +
-					this.x + '： ' + this.y;
+                                return  '<b>' + this.series.name + '</b>：' + this.y;
                             }
                         },
                         legend: {
@@ -102,6 +101,7 @@
                 <script type="text/javascript" src="js/modules/exporting.js"></script>
 
                 <div style="text-align: center">
+                    <asp:HyperLink NavigateUrl="VisitTotal.aspx" runat="server" Text="按天查看" />
                     <asp:Button ID="Btn_LastDays" runat="server" OnClick="Btn_LastDays_Click" Text="昨天" />&nbsp;
                     <asp:Button ID="Btn_Totay" runat="server" OnClick="Btn_Totay_Click" Text="今天"  Visible="false" />&nbsp;
                     
