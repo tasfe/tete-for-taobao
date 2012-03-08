@@ -70,6 +70,42 @@ public partial class top_review_setting : System.Web.UI.Page
                 return;
             }
         }
+        else
+        {
+            string appkey = "12159997";
+            string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+            string version = "0";
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            param.Add("article_code", "service-0-22904");
+            param.Add("nick", nick);
+
+            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.vas.subscribe.get", session, param);
+            if (result.IndexOf("\"article_user_subscribes\":{}") == -1)
+            {
+                Regex reg = new Regex(@"""item_code"":""([^""]*)""", RegexOptions.IgnoreCase);
+                //更新店铺的版本号
+                MatchCollection match = reg.Matches(result);
+                for (int j = 0; j < match.Count; j++)
+                {
+                    version = match[j].Groups[1].ToString().Replace("service-0-22904-", "");
+
+                    if (version == "9")
+                    {
+                        version = "3";
+                    }
+
+                    if (int.Parse(version) <= 3)
+                    {
+                        break;
+                    }
+                }
+
+                //重新给客户插入session
+                sql = "INSERT INTO TCS_ShopSession (sid, nick, typ, version, session ) VALUES ( '0', '" + nick + "', 'taobao', '" + version + "', '" + session + "' )";
+                utils.ExecuteNonQuery(sql);
+                Response.Redirect("setting.aspx");
+            }
+        }
 
         BindData();
     }
@@ -350,7 +386,7 @@ public partial class top_review_setting : System.Web.UI.Page
         param.Add("method", method);
         param.Add("session", session);
         param.Add("timestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-        param.Add("format", "xml");
+        param.Add("format", "json");
         param.Add("v", "2.0");
         param.Add("sign_method", "md5");
         param.Add("sign", CreateSign(param, appSecret));
