@@ -98,8 +98,8 @@ public partial class top_review_setting : System.Web.UI.Page
             //设置默认值
             mindate = "3";
             maxdate = "6";
-            iscoupon = "0";
-            issendmsg = "0";
+            iscoupon = "1";
+            issendmsg = "1";
             iscancelauto = "1";
             iskeyword = "0";
             
