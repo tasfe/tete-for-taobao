@@ -89,6 +89,8 @@ public partial class top_groupbuy_build : System.Web.UI.Page
                 //重新给客户插入session
                 sql = "INSERT INTO TCS_ShopSession (sid, nick, typ, version, session ) VALUES ( '0', '" + nick + "', 'taobao', '" + version + "', '" + session + "' )";
                 utils.ExecuteNonQuery(sql);
+                Response.Write(result);
+                Response.End();
             }
         }
     }
@@ -178,7 +180,7 @@ public partial class top_groupbuy_build : System.Web.UI.Page
         param.Add("method", method);
         param.Add("session", session);
         param.Add("timestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-        param.Add("format", "xml");
+        param.Add("format", "json");
         param.Add("v", "2.0");
         param.Add("sign_method", "md5");
         param.Add("sign", CreateSign(param, appSecret));
