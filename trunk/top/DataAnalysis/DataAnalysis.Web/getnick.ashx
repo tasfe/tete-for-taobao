@@ -40,9 +40,9 @@ public class getnick : IHttpHandler {
                 info.JoinDate = now;
                 info.LastGetOrderTime = now;
                 new NickSessionService().InsertSerssion(info);
+                CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLNICKSESSIONINFO);
 
                 InsertGoodsOrder(now.AddDays(-7), now, session, nick);
-                CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLNICKSESSIONINFO);
             }
             else
             {
