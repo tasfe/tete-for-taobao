@@ -58,7 +58,7 @@
                             <%#Eval("VisitUrl")%>
                            </a>
                         </td>
-                        <td align="center">
+                        <td>
                             <%#Eval("VisitTime")%>
                         </td>
                         <td align="center">
