@@ -55,7 +55,7 @@
                             <%#Eval("title")%>
                           </a>  
                         </td>
-                         <td height="35">
+                         <td height="35" align="center">
                             <%#Eval("price")%>
                         </td>
                         <td align="center">
