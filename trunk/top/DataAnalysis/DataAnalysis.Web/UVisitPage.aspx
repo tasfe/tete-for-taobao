@@ -51,6 +51,9 @@
                 </td>
             </tr>
             <asp:Repeater ID="Rpt_PageVisit" runat="server">
+                <SeparatorTemplate>
+                  <hr />
+                </SeparatorTemplate>
                 <ItemTemplate>
                     <tr>
                         <td height="35">
