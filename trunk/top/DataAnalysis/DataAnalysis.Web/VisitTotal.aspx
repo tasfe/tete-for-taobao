@@ -19,7 +19,7 @@
 
      <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="javascript:;" class="nolink">特特店铺销售分析</a> 订单分析 </div>
+  <div class="crumbs"><a href="javascript:;" class="nolink">特特店铺销售分析</a> 店铺浏览统计(天) </div>
   <div class="absright">
     <ul>
       <li>
