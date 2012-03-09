@@ -53,7 +53,7 @@
             <asp:Repeater ID="Rpt_PageVisit" runat="server">
                 <ItemTemplate>
                     <tr>
-                        <td height="35">
+                        <td height="35" align="center">
                             <%#Eval("receiver_state")%>
                         </td>
                         <td align="center">
