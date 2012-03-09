@@ -87,6 +87,13 @@ group by VisitIP,VisitBrower,VisitUserAgent
         }
     }
 
+    public static bool CheckTable(string nickNo)
+    {
+        string sql = SQL_SELECT_TABLE_EXISTS.Replace("@tableName", GetRealTable(nickNo));
+        int drow = DBHelper.ExecuteScalar(sql);
+        return drow == 0 ? false : true;
+    }
+
     //指定表插入一条浏览记录
     public void InsertVisitInfo(TopVisitInfo info, string nickNo)
     {
