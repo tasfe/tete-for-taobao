@@ -47,7 +47,7 @@ public partial class PingjiaTotal : System.Web.UI.Page
             {
                 if (mylist.Where(o => o.result == "good").ToList().Count > 0)
                 {
-                    SeriseText += mylist[0].pcount + ",";
+                    SeriseText += mylist.Where(o => o.result == "good").ToList()[0].pcount + ",";
                 }
                 else
                 {
@@ -55,7 +55,7 @@ public partial class PingjiaTotal : System.Web.UI.Page
                 }
                 if (mylist.Where(o => o.result == "neutral").ToList().Count > 0)
                 {
-                    zhong += mylist[0].pcount + ",";
+                    zhong += mylist.Where(o => o.result == "neutral").ToList()[0].pcount + ",";
                 }
                 else
                 {
@@ -63,7 +63,7 @@ public partial class PingjiaTotal : System.Web.UI.Page
                 }
                 if (mylist.Where(o => o.result == "bad").ToList().Count > 0)
                 {
-                    cha += mylist[0].pcount + ",";
+                    cha += mylist.Where(o => o.result == "bad").ToList()[0].pcount + ",";
                 }
                 else
                 {
@@ -71,7 +71,7 @@ public partial class PingjiaTotal : System.Web.UI.Page
                 }
                 if (mylist.Where(o => o.result == "").ToList().Count > 0)
                 {
-                    nop += mylist[0].pcount + ",";
+                    nop += mylist.Where(o => o.result == "").ToList()[0].pcount + ",";
                 }
                 else
                 {
