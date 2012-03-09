@@ -34,6 +34,13 @@ public class TaoBaoGoodsOrderService
   ) a
  group by CONVERT(varchar(12),created,112),result";
 
+    const string SQL_SELECT_SELLCITY = @"select SUM(payment) as paytotal,COUNT(*) as ototal,receiver_state,receiver_city                from
+            (
+            select * from TopTaoBaoGoodsOrderInfo where seller_nick=@nick 
+            and created between @start and @end
+            ) a 
+            group by receiver_state,receiver_city";
+
     public IList<BackTotalInfo> GetAllBackTotalList(DateTime start, DateTime end, string nick)
     {
         SqlParameter[] param = new[]
@@ -120,6 +127,29 @@ public class TaoBaoGoodsOrderService
         }
         IList<PingJiaInfo> rlist = list.OrderBy(o => o.created).ToList();
 
+        return rlist;
+    }
+
+    public IList<GoodsOrderInfo> GetSellCityTop(DateTime start, DateTime end, string nick)
+    {
+        SqlParameter[] param = new[]
+            {
+                new SqlParameter("@start", start),
+                new SqlParameter("@end",end),
+                new SqlParameter("@nick",nick)
+            };
+        IList<GoodsOrderInfo> list = new List<GoodsOrderInfo>();
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_SELLCITY, param);
+        foreach (DataRow dr in dt.Rows)
+        {
+            GoodsOrderInfo info = new GoodsOrderInfo();
+            info.payment = decimal.Parse(dr["paytotal"].ToString());
+            info.OrderTotal = int.Parse(dr["ototal"].ToString());
+            info.receiver_state = dr["receiver_state"].ToString();
+            info.receiver_city = dr["receiver_city"].ToString();
+            list.Add(info);
+        }
+        IList<GoodsOrderInfo> rlist = list.OrderBy(o => o.OrderTotal).ToList();
         return rlist;
     }
 }
