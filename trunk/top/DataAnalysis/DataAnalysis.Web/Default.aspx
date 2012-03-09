@@ -54,7 +54,7 @@
                               <%# Container.ItemIndex + 1%>
                             </td>
                           <td align="center">
-                                <%#Eval("GoodsName")%>
+                                <%#Eval("title")%>
                           </td>
                        </tr>
                     </ItemTemplate>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using System.Collections.Generic;
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -20,7 +21,16 @@ public partial class _Default : System.Web.UI.Page
 
             TaoBaoGoodsServive taoGoodsService = new TaoBaoGoodsServive();
 
-            Rpt_GoodsSellTop.DataSource = taoGoodsService.GetTopBuyGoods(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), darray[0], darray[1], 1, 3);
+            IList<GoodsInfo> list = taoGoodsService.GetTopBuyGoods(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), darray[0], darray[1], 1, 3);
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                GoodsInfo rinfo = TaoBaoAPI.GetGoodsInfo(list[i].num_iid);
+                list[i].title = rinfo.title;
+                list[i].price = rinfo.price;
+            }
+
+            Rpt_GoodsSellTop.DataSource = list;
             Rpt_GoodsSellTop.DataBind();
         }
     }
