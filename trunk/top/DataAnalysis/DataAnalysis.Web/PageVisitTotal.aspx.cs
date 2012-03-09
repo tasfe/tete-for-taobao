@@ -67,6 +67,8 @@ public partial class PageVisitTotal : BasePage
 
         Rpt_PageVisit.DataSource = pds;
         Rpt_PageVisit.DataBind();
+        TB_Start.Text = start.ToString("yyyy-MM-dd HH");
+        TB_End.Text = end.ToString("yyyy-MM-dd HH");
     }
 
     protected void Btn_Select_Click(object sender, EventArgs e)
