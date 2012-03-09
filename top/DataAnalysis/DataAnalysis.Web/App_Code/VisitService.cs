@@ -69,6 +69,8 @@ group by VisitIP,VisitBrower,VisitUserAgent
 
     const string SQL_INDEX_TOP_ONLINECUSTOMER = "SELECT DISTINCT TOP @topNum VisitIP,VisitTime FROM @tableName WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC ";
 
+    const string SQL_SELECT_VISITINFO_BYIP = "SELECT VisitUrl,VisitTime,GoodsId,GoodsClassId FROM @tableName WHERE VisitIP=@VisitIP AND VisitTime BETWEEN @start AND @end";
+
     /// <summary>
     /// 用户订购获取代码时生成一张表
     /// </summary>
@@ -213,6 +215,30 @@ group by VisitIP,VisitBrower,VisitUserAgent
             list.Add(info);
         }
         IList<TopVisitInfo> rlist = list.OrderByDescending(o => o.VisitTime).ToList();
+        return rlist;
+    }
+
+    public IList<TopVisitInfo> GetVisitInfoByIp(string nickNo,string ip, DateTime start, DateTime end)
+    {
+        string sql = SQL_SELECT_VISITINFO_BYIP.Replace("@tableName", GetRealTable(nickNo));
+        SqlParameter[] param = new[]
+        {
+            new SqlParameter("@start",start),
+            new SqlParameter("@end",end),
+            new SqlParameter("@VisitIP",ip)
+        };
+        DataTable dt = DBHelper.ExecuteDataTable(sql, param);
+        IList<TopVisitInfo> list = new List<TopVisitInfo>();
+        foreach (DataRow dr in dt.Rows)
+        {
+            TopVisitInfo info = new TopVisitInfo();
+            info.VisitUrl = dr["VisitUrl"].ToString();
+            info.VisitTime = DateTime.Parse(dr["VisitTime"].ToString());
+            info.GoodsId = dr["GoodsId"].ToString();
+            info.GoodsClassId = dr["GoodsClassId"].ToString();
+            list.Add(info);
+        }
+        IList<TopVisitInfo> rlist = list.OrderBy(o => o.VisitTime).ToList();
         return rlist;
     }
 
