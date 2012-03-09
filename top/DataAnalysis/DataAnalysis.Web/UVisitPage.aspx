@@ -56,22 +56,28 @@
                 </SeparatorTemplate>
                 <ItemTemplate>
                     <tr>
-                        <td height="35">
+                        <td height="35" valign="top">
                            <a href='<%#Eval("VisitURL")%>' target="_blank">
                             <%#Eval("VisitUrl")%>
                            </a>
                         </td>
-                        <td align="center">
+                        <td align="center" valign="top">
                             <%#Eval("VisitTime")%>
                         </td>
-                        <td>
+                        <td valign="top">
                             <%#Eval("GoodsName")%>
                         </td>
-                        <td align="center">
+                        <td align="center" valign="top">
                             <%#Eval("GoodsClassName")%>
                         </td>
                     </tr>
                 </ItemTemplate>
+                <SeparatorTemplate> 
+                      <tr> 
+                           <td colspan="4"><hr /></td> 
+                      </tr> 
+                 </SeparatorTemplate> 
+
             </asp:Repeater>
         </table>
        

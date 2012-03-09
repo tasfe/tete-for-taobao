@@ -19,8 +19,13 @@ public partial class HourPVTotal : BasePage
             //    }
             //}
             //catch { }
-
-            ShowChart(DateTime.Now);
+            if (!VisitService.CheckTable(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value))))
+            {
+                Response.Write("<script>alert('抱歉,您还没有添加统计代码!');</script>");
+                Response.End();
+            }
+            else
+                ShowChart(DateTime.Now);
         }
     }
 

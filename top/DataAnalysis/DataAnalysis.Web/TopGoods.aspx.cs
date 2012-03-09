@@ -13,18 +13,26 @@ public partial class TopGoods : BasePage
 
         if (!Page.IsPostBack)
         {
-            DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
-            ViewState["count"] = taoGoodsService.GetTopGoodsCount(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)), darray[0], darray[1]);
-            try
+            if (!VisitService.CheckTable(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value))))
             {
-                darray[0] = DateTime.Parse(Request.QueryString["start"]);
-                darray[1] = DateTime.Parse(Request.QueryString["end"]);
+                Response.Write("<script>alert('抱歉,您还没有添加统计代码!');</script>");
+                Response.End();
             }
-            catch
+            else
             {
-            }
+                DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
+                ViewState["count"] = taoGoodsService.GetTopGoodsCount(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)), darray[0], darray[1]);
+                try
+                {
+                    darray[0] = DateTime.Parse(Request.QueryString["start"]);
+                    darray[1] = DateTime.Parse(Request.QueryString["end"]);
+                }
+                catch
+                {
+                }
 
-            Bind(darray[0], darray[1], int.Parse(ViewState["count"].ToString()), 10);
+                Bind(darray[0], darray[1], int.Parse(ViewState["count"].ToString()), 10);
+            }
         }
     }
 

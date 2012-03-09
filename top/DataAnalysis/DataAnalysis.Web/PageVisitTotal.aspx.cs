@@ -15,9 +15,17 @@ public partial class PageVisitTotal : BasePage
     {
         if (!Page.IsPostBack)
         {
-            DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
+            if (!VisitService.CheckTable(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value))))
+            {
+                Response.Write("<script>alert('抱歉,您还没有添加统计代码!');</script>");
+                Response.End();
+            }
+            else
+            {
+                DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
 
-            Bind(darray[0], darray[1]);
+                Bind(darray[0], darray[1]);
+            }
         }
     }
 
