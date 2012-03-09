@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -13,7 +14,7 @@ public partial class _Default : System.Web.UI.Page
             string nickNo = DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value));
             VisitService vistitDal = new VisitService();
             DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
-            Rpt_IpPV.DataSource = vistitDal.GetIndexTotalInfoList(nickNo, darray[0], darray[1]);
+            Rpt_IpPV.DataSource = vistitDal.GetIndexTotalInfoList(nickNo, darray[0], darray[1]).OrderByDescending(o => o.Value).ToList();
             Rpt_IpPV.DataBind();
 
             Rpt_OnlineCustomer.DataSource = vistitDal.GetIndexOnlineCustomer(nickNo, 3, darray[0], darray[1]);
@@ -32,6 +33,11 @@ public partial class _Default : System.Web.UI.Page
 
             Rpt_GoodsSellTop.DataSource = list;
             Rpt_GoodsSellTop.DataBind();
+
+            SiteTotalService siteTotalDal = new SiteTotalService();
+            //IList<TopSiteTotalInfo> 
+            Rpt_OrderTotal.DataSource = siteTotalDal.GetNickOrderTotal(darray[0], darray[1], HttpUtility.UrlDecode(Request.Cookies["nick"].Value));
+            Rpt_OrderTotal.DataBind();
         }
     }
 
