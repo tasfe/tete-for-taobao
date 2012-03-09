@@ -94,6 +94,11 @@ public class GoodsOrderInfo
     public bool UsePromotion { set; get; }
 
     public PingJiaInfo PingInfo { set; get; }
+
+    /// <summary>
+    /// 订单总数(统计销售地区排行用)
+    /// </summary>
+    public int OrderTotal { set; get; }
 }
 
 /// <summary>
