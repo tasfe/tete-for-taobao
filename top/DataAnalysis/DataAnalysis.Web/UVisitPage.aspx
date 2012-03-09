@@ -37,16 +37,16 @@
         </div>
         <table cellpadding="0" cellspacing="0" width="100%">
             <tr>
-                <td align="center">
+                <td align="center" width="40%">
                     <b>访问页面</b>
                 </td>
-                <td width="220" align="center">
+                <td align="center" width="20%">
                     <b>访问时间</b>
                 </td>
-                <td align="center" width="110">
+                <td align="center" width="20%">
                     <b>宝贝名(是宝贝页显示)</b>
                 </td>
-                <td align="center" width="110">
+                <td align="center" width="20%">
                     <b>分类名(是分类页显示)</b>
                 </td>
             </tr>
@@ -58,10 +58,10 @@
                             <%#Eval("VisitUrl")%>
                            </a>
                         </td>
-                        <td>
+                        <td align="center">
                             <%#Eval("VisitTime")%>
                         </td>
-                        <td align="center">
+                        <td>
                             <%#Eval("GoodsName")%>
                         </td>
                         <td align="center">
