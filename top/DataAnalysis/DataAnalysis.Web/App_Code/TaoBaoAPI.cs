@@ -153,13 +153,13 @@ public class TaoBaoAPI
         dic.Add("num_iid", pid);
         dic.Add("fields", "num_iid,title,nick,price");
         string text = Post("taobao.item.get", "", dic, DataType.json);
-        GoodsInfo info = null;
+        GoodsInfo info = new GoodsInfo();
         if (!string.IsNullOrEmpty(text))
         {
             if (text.Contains("error_response"))
             {
                 LogInfo.Add("获取一个商品信息出错", text);
-                return null;
+                return info;
             }
             System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
             text = text.Replace("{\"item_get_response\":{\"item\":", "").Replace("}}", "");
@@ -170,7 +170,6 @@ public class TaoBaoAPI
             }
             catch(Exception ex)
             {
-                info = new GoodsInfo();
                 LogInfo.WriteLog("返回json转化为一个商品信息出错,商品id:" + pid, text + ex.Message);
             }
         }
