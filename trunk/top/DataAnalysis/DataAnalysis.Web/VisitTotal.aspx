@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>Untitled Page</title>
+    <title>店铺浏览统计(天)</title>
     <link href="css/common.css" rel="stylesheet" />
 <style>
     td{font-size:12px;}
