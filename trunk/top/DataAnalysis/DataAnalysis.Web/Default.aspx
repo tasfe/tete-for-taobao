@@ -45,12 +45,12 @@
                      </ItemTemplate>
                      <FooterTemplate>
                         <tr>
-                          <td colspan="2"><a href="HourTotal.aspx">查看详细</a></td>
+                          <td colspan="2" align="right"><a href="HourTotal.aspx">查看详细</a></td>
                         </tr>
                      </FooterTemplate>
                   </asp:Repeater>
               </table><br />
-              <table width="60%">
+              <table width="80%">
                  <tr><td colspan="3" style="background-color:#abcabc;font-weight:bold;color:#211511">今天宝贝订购排行</td></tr>
                  <asp:Repeater runat="server" ID="Rpt_GoodsSellTop">
                     <ItemTemplate>
@@ -70,13 +70,13 @@
                     </ItemTemplate>
                     <FooterTemplate>
                         <tr>
-                          <td colspan="3"><a href="GoodsBuyTotal.aspx">查看更多</a></td>
+                          <td colspan="3" align="right"><a href="GoodsBuyTotal.aspx">查看更多</a></td>
                         </tr>
                      </FooterTemplate>
                  </asp:Repeater>
                </table>
                <br />
-               <table width="60%">
+               <table width="80%">
                   <tr>
                     <td colspan="5" style="background-color:#abcabc;font-weight:bold;color:#211511">最近在线客户</td>
                   </tr>
@@ -104,13 +104,14 @@
                             </td>
                             <td align="center">
                                <a href='UVisitPage.aspx?visitip=<%#Eval("VisitIP")%>' style="color:Black">
+                                查看
                                </a>   
                             </td>
                          </tr>
                       </ItemTemplate>
                       <FooterTemplate>
                          <tr>
-                           <td colspan="5">
+                           <td colspan="5" align="right">
                                <a href="PageVisitTotal.aspx">查看页面访问排行</a>
                            </td>
                          </tr>
@@ -133,7 +134,7 @@
                       <ItemTemplate>
                          <tr>
                             <td align="center">
-                              <%#Eval("SiteTotalDate")%>
+                              <%#Eval("SiteOrderCount")%>
                             </td>
                             <td align="center">
                               <%#Eval("SiteOrderPay")%>
@@ -151,7 +152,7 @@
                       </ItemTemplate>
                       <FooterTemplate>
                          <tr>
-                           <td colspan="5">
+                           <td colspan="5" align="right">
                                <a href="OrderTotal.aspx">查看更多订单统计</a>
                            </td>
                          </tr>
