@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.Configuration;
-using System.Data;
 using System.Linq;
 using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
 using System.Collections.Generic;
 
 public partial class UVisitPage : BasePage
@@ -42,7 +35,7 @@ public partial class UVisitPage : BasePage
         }
         catch { }
 
-        IList<TopVisitInfo> list = visitDal.GetVisitInfoByIp(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), ip, start, end);
+        IList<TopVisitInfo> list = visitDal.GetVisitInfoByIp(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)), ip, start, end);
         for (int i = 0; i < list.Count; i++)
         {
             if (!string.IsNullOrEmpty(list[i].GoodsId))
