@@ -43,10 +43,10 @@
                 <td width="220" align="center">
                     <b>访问时间</b>
                 </td>
-                <td align="center">
+                <td align="center" width="110">
                     <b>宝贝名(是宝贝页显示)</b>
                 </td>
-                <td align="center">
+                <td align="center" width="110">
                     <b>分类名(是分类页显示)</b>
                 </td>
             </tr>
