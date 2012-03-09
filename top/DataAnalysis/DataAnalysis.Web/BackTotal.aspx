@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Untitled Page</title>
+    <title>二次销售分析</title>
     <link href="css/common.css" rel="stylesheet" />
 <style>
     td{font-size:12px;}
