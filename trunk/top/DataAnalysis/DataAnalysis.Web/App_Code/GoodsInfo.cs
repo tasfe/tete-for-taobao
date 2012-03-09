@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System;
 
 /// <summary>
 /// Summary description for GoodsInfo
@@ -41,6 +42,7 @@ public class GoodsInfo
     }
 }
 
+[Serializable]
 public class GoodsClassInfo
 {
     public string cid { set; get; }
