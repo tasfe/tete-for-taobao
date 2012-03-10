@@ -24,7 +24,14 @@ public partial class PageVisitTotal : BasePage
             else
             {
                 DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
-
+                try
+                {
+                    darray[0] = DateTime.Parse(Request.QueryString["start"]);
+                    darray[1] = DateTime.Parse(Request.QueryString["end"]);
+                }
+                catch
+                {
+                }
                 Bind(darray[0], darray[1]);
             }
         }
