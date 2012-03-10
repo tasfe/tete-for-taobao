@@ -453,6 +453,39 @@ name="mainframe5" src="http://haoping.7fshop.com/top/crm/customlist.aspx" frameb
 </div>
 </div>
 <div class="noprint"> 
+
+
+<script>
+    function showArea() {
+        document.getElementById("divBackground").style.display = "block";
+        document.getElementById("divBackground").style.filter = "alpha(opacity=50)";
+        document.getElementById("ggArea").style.display = "block";
+
+        setTimeout('closeArea()', 20000);
+    }
+
+    function closeArea() {
+        document.getElementById("divBackground").style.display = "none";
+        document.getElementById("ggArea").style.display = "none";
+    }
+
+    setTimeout('showArea()', 3000);
+
+    selectTab();
+
+    function selectTab() {
+        var url = document.URL;
+        if (url.indexOf("t=1") != -1) {
+            document.getElementById("tabCot_product_1").style.display = "none";
+            document.getElementById("tabCot_product_3").style.display = "";
+            document.getElementById("tab3").className = "currentBtn";
+        } else {
+            document.getElementById("tab1").className = "currentBtn";
+        }
+    }
+</script>
+
+
 <script type="text/javascript" language="jscript">
     function tab(o, s, cb, ev) {//tab切换类
         var $ = function (o) { return document.getElementById(o) };
@@ -540,35 +573,6 @@ align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=%E7%BE%8E%E6
 8E%8E%E4%B9%8B%E5%BF%83&site=cntaobao&s=1&charset=utf-8" alt="联系客服" /></a></span>
 </div>
 
-<script>
-    function showArea() {
-        document.getElementById("divBackground").style.display = "block";
-        document.getElementById("divBackground").style.filter = "alpha(opacity=50)";
-        document.getElementById("ggArea").style.display = "block";
-
-        setTimeout('closeArea()', 20000);
-    }
-
-    function closeArea() {
-        document.getElementById("divBackground").style.display = "none";
-        document.getElementById("ggArea").style.display = "none";
-    }
-
-    setTimeout('showArea()', 3000);
-
-    selectTab();
-
-    function selectTab() {
-        var url = document.URL;
-        if (url.indexOf("t=1") != -1) {
-            document.getElementById("tabCot_product_1").style.display = "none";
-            document.getElementById("tabCot_product_3").style.display = "";
-            document.getElementById("tab3").className = "currentBtn";
-        } else {
-            document.getElementById("tab1").className = "currentBtn";
-        }
-    }
-</script>
 
 </body>
 </html>
