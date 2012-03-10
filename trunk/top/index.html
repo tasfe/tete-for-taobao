@@ -416,7 +416,7 @@ name="mainframe5" src="http://haoping.7fshop.com/top/crm/customlist.aspx" frameb
         </div>
         
         <div style="width:780px; margin-left:10px; float:left; height:1220px;">
-                <iframe style="overflow:scroll; width: 100%; height:1220px; padding:0px;" name="mainframe6" src="http://ding.7fshop.com/tijian/index.html" frameborder="0" scrolling="no"></iframe>
+                <iframe style="overflow:scroll; width: 100%; height:1220px; padding:0px;" id="mainframe6id" name="mainframe6" src="http://ding.7fshop.com/tijian/index.html" frameborder="0" scrolling="no"></iframe>
         </div>
     </div>
 </div>
@@ -504,6 +504,20 @@ name="mainframe5" src="http://haoping.7fshop.com/top/crm/customlist.aspx" frameb
             document.getElementById("tab1").className = "currentBtn";
         }
     }
+
+    function initTongji() {
+        document.getElementById("tabCot_product_1").style.display = "none";
+        document.getElementById("tabCot_product_2").style.display = "none";
+        document.getElementById("tabCot_product_3").style.display = "none";
+        document.getElementById("tabCot_product_6").style.display = "";
+
+        document.getElementById("tab1").className = "";
+        document.getElementById("tab2").className = "";
+        document.getElementById("tab3").className = "";
+        document.getElementById("tab6").className = "currentBtn";
+
+        document.getElementById("mainframe6id").src = "http://ding.7fshop.com/tongji/index,html";
+    }
 </script>
 
 
@@ -584,7 +598,7 @@ language="JavaScript"></script>
 <div id="ggArea" style="display:none; position: absolute; display:none; top: 220px; left: 400px;  z-index: 10003; background-color:white; padding:5px">
     <a href='javascript:closeArea();' style="font-size:16px; font-weight:bold; color:black">关闭窗口</a> 20秒后窗口自动关闭.. <br>
 <span style="font-size:18px; font-weight:bold; color:red;">用数据深入剖析营销活动背后的效果，让您的每一分钱都物有所值！</span><br>
-<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-8:1' target='_blank'><img src='images/tan.jpg' border=0></a><br>
+<a href='javascript:initTongji()'><img src='images/tan.jpg' border=0></a><br>
 <span style="font-size:16px;">具体情况请联系客服 <a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid=%E7%BE%8E%
 
 E6%9D%9C%E8%8E%8E%E4%B9%8B%E5%BF%83&site=cntaobao&s=1&charset=utf-8" ><img border="0" 
