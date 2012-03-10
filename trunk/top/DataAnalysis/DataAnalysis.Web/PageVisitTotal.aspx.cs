@@ -26,8 +26,10 @@ public partial class PageVisitTotal : BasePage
                 DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
                 try
                 {
-                    darray[0] = DateTime.Parse(HttpUtility.UrlDecode(Request.QueryString["start"]));
-                    darray[1] = DateTime.Parse(HttpUtility.UrlDecode(Request.QueryString["end"]));
+                    string start = HttpUtility.UrlDecode(Request.QueryString["start"]);
+                    string end = HttpUtility.UrlDecode(Request.QueryString["end"]);
+                    darray[0] = DateTime.Parse(start.Substring(0, start.LastIndexOf('-')) + " " + start.Substring(start.LastIndexOf('-') + 1, 2));
+                    darray[1] = DateTime.Parse(end.Substring(0, end.LastIndexOf('-')) + " " + end.Substring(end.LastIndexOf('-') + 1, 2));
                 }
                 catch
                 {
@@ -54,7 +56,7 @@ public partial class PageVisitTotal : BasePage
         }
         catch { }
 
-        IList<PageVisitInfoTotal> list = visitDal.GetAllVisitPageInfoList(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)), start, end, page, 20);
+        IList<PageVisitInfoTotal> list = visitDal.GetAllVisitPageInfoList(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)), start, end);
         TotalCount = list.Count;
         pds.DataSource = list;
         pds.AllowPaging = true;
@@ -70,8 +72,8 @@ public partial class PageVisitTotal : BasePage
                 TotalPage = TotalCount / pds.PageSize + 1;
         }
 
-        string startstr = HttpUtility.UrlEncode(start.ToString("yyyy-MM-dd HH"));
-        string endstr = HttpUtility.UrlEncode(end.ToString("yyyy-MM-dd HH"));
+        string startstr = HttpUtility.UrlEncode(start.ToString("yyyy-MM-dd-HH"));
+        string endstr = HttpUtility.UrlEncode(end.ToString("yyyy-MM-dd-HH"));
 
         pds.CurrentPageIndex = page - 1;
         lblCurrentPage.Text = "共" + TotalCount.ToString() + "条记录 当前页：" + page + "/" + TotalPage;
