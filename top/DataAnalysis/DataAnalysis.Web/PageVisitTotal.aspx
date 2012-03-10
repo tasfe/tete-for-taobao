@@ -52,7 +52,7 @@
                     <tr>
                         <td valign="top">
                            <a href='<%#Eval("VisitURL")%>' target="_blank">
-                            <%#Eval("VisitURL")%>
+                            <%# GetSubUrl(Eval("VisitURL").ToString()) %>
                            </a>
                         </td>
                         <td align="center" valign="top">

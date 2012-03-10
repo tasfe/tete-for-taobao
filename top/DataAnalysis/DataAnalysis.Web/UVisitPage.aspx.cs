@@ -145,4 +145,9 @@ public partial class UVisitPage : BasePage
         ViewState["page"] = "1";
         Bind(start, endtime);
     }
+
+    protected string GetSubUrl(string url)
+    {
+        return url.Length > 60 ? url.Substring(0, 60) + "..." : url;
+    }
 }
