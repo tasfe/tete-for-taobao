@@ -5,7 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Collections.Generic;
 
-public partial class SellCityTop : System.Web.UI.Page
+public partial class SellCityTop : BasePage
 {
     readonly TaoBaoGoodsOrderService orderDal = new TaoBaoGoodsOrderService();
     PagedDataSource pds = new PagedDataSource();

@@ -12,7 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Collections.Generic;
 
-public partial class PingjiaTotal : System.Web.UI.Page
+public partial class PingjiaTotal : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
