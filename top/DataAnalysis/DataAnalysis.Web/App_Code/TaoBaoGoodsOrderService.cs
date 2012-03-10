@@ -149,7 +149,7 @@ public class TaoBaoGoodsOrderService
             info.receiver_city = dr["receiver_city"].ToString();
             list.Add(info);
         }
-        IList<GoodsOrderInfo> rlist = list.OrderBy(o => o.OrderTotal).ToList();
+        IList<GoodsOrderInfo> rlist = list.OrderByDescending(o => o.OrderTotal).ToList();
         return rlist;
     }
 }
