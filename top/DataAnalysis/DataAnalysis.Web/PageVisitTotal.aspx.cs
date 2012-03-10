@@ -59,11 +59,6 @@ public partial class PageVisitTotal : BasePage
         pds.DataSource = list;
         pds.AllowPaging = true;
         pds.PageSize = 20;
-        int CurPage;
-        if (Request.QueryString["Page"] != null)
-            CurPage = Convert.ToInt32(Request.QueryString["Page"]);
-        else
-            CurPage = 1;
 
         if (TotalCount == 0)
             TotalPage = 1;
@@ -75,15 +70,15 @@ public partial class PageVisitTotal : BasePage
                 TotalPage = TotalCount / pds.PageSize + 1;
         }
 
-        pds.CurrentPageIndex = CurPage - 1;
-        lblCurrentPage.Text = "共" + TotalCount.ToString() + "条记录 当前页：" + CurPage.ToString() + "/" + TotalPage;
+        pds.CurrentPageIndex = page - 1;
+        lblCurrentPage.Text = "共" + TotalCount.ToString() + "条记录 当前页：" + page + "/" + TotalPage;
 
         lnkFrist.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=1" + "&start=" + start.ToString("yyyy-MM-dd HH") + "&end=" + end.ToString("yyyy-MM-dd HH");
         if (!pds.IsFirstPage)
-            lnkPrev.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(CurPage - 1) + "&start=" + start.ToString("yyyy-MM-dd HH") + "&end=" + end.ToString("yyyy-MM-dd HH");
+            lnkPrev.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(page - 1) + "&start=" + start.ToString("yyyy-MM-dd HH") + "&end=" + end.ToString("yyyy-MM-dd HH");
 
         if (!pds.IsLastPage)
-            lnkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(CurPage + 1) + "&start=" + start.ToString("yyyy-MM-dd HH") + "&end=" + end.ToString("yyyy-MM-dd HH"); ;
+            lnkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(page + 1) + "&start=" + start.ToString("yyyy-MM-dd HH") + "&end=" + end.ToString("yyyy-MM-dd HH"); ;
         lnkEnd.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + TotalPage + "&start=" + start.ToString("yyyy-MM-dd HH") + "&end=" + end.ToString("yyyy-MM-dd HH");
 
         Rpt_PageVisit.DataSource = pds;
