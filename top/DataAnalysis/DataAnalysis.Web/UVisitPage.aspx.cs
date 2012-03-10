@@ -36,12 +36,26 @@ public partial class UVisitPage : BasePage
         catch { }
 
         IList<TopVisitInfo> list = visitDal.GetVisitInfoByIp(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)), ip, start, end);
+        List<GoodsInfo> cachegoods = new List<GoodsInfo>();
+        if (Cache["taobaogoodslist"] != null)
+            cachegoods = (List<GoodsInfo>)Cache["taobaogoodslist"];
         for (int i = 0; i < list.Count; i++)
         {
             if (!string.IsNullOrEmpty(list[i].GoodsId))
             {
-                GoodsInfo rinfo = TaoBaoAPI.GetGoodsInfo(list[i].GoodsId);
-                list[i].GoodsName = rinfo.title;
+                List<GoodsInfo> mylist = cachegoods.Where(o => o.num_iid == list[i].GoodsId).ToList();
+                if (mylist.Count == 0)
+                {
+                    GoodsInfo rinfo = TaoBaoAPI.GetGoodsInfo(list[i].GoodsId);
+                    list[i].GoodsName = rinfo.title;
+                    cachegoods.Add(rinfo);
+                    if (Cache["taobaogoodslist"] == null)
+                        Cache.Insert("taobaogoodslist", cachegoods, null, DateTime.Now.AddHours(12), System.Web.Caching.Cache.NoSlidingExpiration);
+                }
+                else
+                {
+                    list[i].GoodsName = mylist[0].title;
+                }
             }
 
             if (!string.IsNullOrEmpty(list[i].GoodsClassId))
