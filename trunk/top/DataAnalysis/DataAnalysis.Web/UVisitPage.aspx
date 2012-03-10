@@ -54,8 +54,8 @@
                 <ItemTemplate>
                     <tr>
                         <td height="35" valign="top">
-                           <a href='<%#Eval("VisitURL")%>' target="_blank">
-                            <%#Eval("VisitUrl")%>
+                           <a href='<%# Eval("VisitURL")%>' target="_blank">
+                            <%# GetSubUrl(Eval("VisitUrl").ToString())%>
                            </a>
                         </td>
                         <td align="center" valign="top">
