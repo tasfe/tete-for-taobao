@@ -15,10 +15,19 @@ public partial class UVisitPage : BasePage
     {
         if (!IsPostBack)
         {
-            if (!string.IsNullOrEmpty( Request.QueryString["visitip"]))
+            if (!string.IsNullOrEmpty(Request.QueryString["visitip"]))
             {
-                DateTime[] darray = DataHelper.GetDateTime(DateTime.Now,1);
-                GoodsClassList = TaoBaoAPI.GetGoodsClassInfoList(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), Request.Cookies["nicksession"].Value);
+                DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
+                try
+                {
+                    darray[0] = DateTime.Parse(Request.QueryString["start"]);
+                    darray[1] = DateTime.Parse(Request.QueryString["end"]);
+                }
+                catch
+                {
+                }
+                if (ViewState["GoodsClassList"] == null)
+                    GoodsClassList = TaoBaoAPI.GetGoodsClassInfoList(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), Request.Cookies["nicksession"].Value);
                 Bind(darray[0], darray[1]);
             }
         }
