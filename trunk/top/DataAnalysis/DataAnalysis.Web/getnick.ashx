@@ -21,9 +21,9 @@ public class getnick : IHttpHandler {
         cooksession.Expires = DateTime.Now.AddDays(15);
         //cookie.Domain = ".test.7fshop.com";
         //正式可不用
-        HttpCookie cookietongji = new HttpCookie("istongji", "1");
-        cookietongji.Expires = DateTime.Now.AddDays(15);
-        context.Response.Cookies.Add(cookietongji);
+        //HttpCookie cookietongji = new HttpCookie("istongji", "1");
+        //cookietongji.Expires = DateTime.Now.AddDays(15);
+        //context.Response.Cookies.Add(cookietongji);
 
         context.Response.Cookies.Add(cookie);
         context.Response.Cookies.Add(cooksession);
