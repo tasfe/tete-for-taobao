@@ -21,13 +21,13 @@ public partial class top_js_userinfo : System.Web.UI.Page
         string iscrm = cookie.getCookie("iscrm");
         string istongji = cookie.getCookie("istongji");
 
-        //过期判断
-        if (string.IsNullOrEmpty(taobaoNick))
-        {
-            Response.Write("window.location.href='http://container.open.taobao.com/container?appkey=12132145'");
-            Response.End();
-            return;
-        }
+        ////过期判断
+        //if (string.IsNullOrEmpty(taobaoNick))
+        //{
+        //    Response.Write("window.location.href='http://container.open.taobao.com/container?appkey=12132145'");
+        //    Response.End();
+        //    return;
+        //}
 
         Rijndael_ encode = new Rijndael_("tetesoft");
         taobaoNick = encode.Decrypt(taobaoNick);
