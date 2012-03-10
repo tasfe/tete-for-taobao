@@ -10,7 +10,6 @@ public partial class HourPVTotal : BasePage
     {
         if (!IsPostBack)
         {
-            TaoBaoAPI.GetGoodsInfoList("12246611718");
             //int day = 1;
             //try
             //{
