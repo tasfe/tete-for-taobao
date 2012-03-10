@@ -21,12 +21,12 @@ public partial class top_reviewnew_setcookie : System.Web.UI.Page
             Rijndael_ encode = new Rijndael_("tetesoft");
             nick = encode.Encrypt(nick);
 
-            cookie.setCookie("top_sessiongroupbuy", dt.Rows[0]["session"].ToString(), 999999);
+            cookie.setCookie("top_sessionblog", dt.Rows[0]["session"].ToString(), 999999);
             cookie.setCookie("nick", nick, 999999);
         }
         else
         {
-            cookie.delCookie("top_sessiongroupbuy");
+            cookie.delCookie("top_sessionblog");
             cookie.delCookie("nick");
         }
     }
