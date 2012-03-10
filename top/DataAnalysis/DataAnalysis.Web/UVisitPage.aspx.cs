@@ -22,8 +22,8 @@ public partial class UVisitPage : BasePage
                 {
                     string start = HttpUtility.UrlDecode(Request.QueryString["start"]);
                     string end = HttpUtility.UrlDecode(Request.QueryString["end"]);
-                    darray[0] = DateTime.Parse(start.Substring(0, start.LastIndexOf('-')) + " " + start.Substring(start.LastIndexOf('-') + 1, 2));
-                    darray[1] = DateTime.Parse(end.Substring(0, end.LastIndexOf('-')) + " " + end.Substring(end.LastIndexOf('-') + 1, 2));
+                    darray[0] = DateTime.Parse(start.Substring(0, start.LastIndexOf('-')) + " " + start.Substring(start.LastIndexOf('-') + 1, 2) + ":0:0");
+                    darray[1] = DateTime.Parse(end.Substring(0, end.LastIndexOf('-')) + " " + end.Substring(end.LastIndexOf('-') + 1, 2) + ":0:0");
                 }
                 catch
                 {
