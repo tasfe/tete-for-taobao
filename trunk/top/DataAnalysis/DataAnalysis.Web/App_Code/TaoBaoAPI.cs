@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using System.Net;
 using System.Security.Cryptography;
 using System.Linq;
-using System.Web; 
+using System.Web;
 
 /// <summary>
 /// Summary description for TaoBaoAPI
@@ -163,17 +163,46 @@ public class TaoBaoAPI
             }
             System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
             text = text.Replace("{\"item_get_response\":{\"item\":", "").Replace("}}", "");
-            
+
             try
             {
                 info = js.Deserialize<GoodsInfo>(text);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 LogInfo.WriteLog("返回json转化为一个商品信息出错,商品id:" + pid, text + ex.Message);
             }
         }
         return info;
+    }
+
+    public static List<GoodsInfo> GetGoodsInfoList(string pids)
+    {
+        Dictionary<string, string> dic = new Dictionary<string, string>();
+        dic.Add("num_iids", pids);
+        dic.Add("fields", "num_iid,title,nick,price");
+        string text = Post("taobao.items.list.get", "", dic, DataType.json);
+        List<GoodsInfo> list = new List<GoodsInfo>();
+        if (!string.IsNullOrEmpty(text))
+        {
+            if (text.Contains("error_response"))
+            {
+                LogInfo.Add("批量获取商品信息出错", text);
+                return list;
+            }
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            text = text.Replace("{\"items_list_get_response\":{\"items\":{\"item\":", "").Replace("}}}", "");
+
+            try
+            {
+                list = js.Deserialize<List<GoodsInfo>>(text);
+            }
+            catch (Exception ex)
+            {
+                LogInfo.WriteLog("返回json转化为商品信息集合出错,商品id:" + pids, text + ex.Message);
+            }
+        }
+        return list;
     }
 
     /// <summary>
