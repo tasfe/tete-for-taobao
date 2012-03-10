@@ -23,10 +23,10 @@ public class SiteTotalService
     {
         IList<TopSiteTotalInfo> list = new List<TopSiteTotalInfo>();
 
-        SqlParameter[] param = new []
+        SqlParameter[] param = new[]
         {
-            new SqlParameter("@start",start),
-            new SqlParameter("@end",end),
+            new SqlParameter("@start",start.ToString("yyyyMMdd")),
+            new SqlParameter("@end",end.ToString("yyyyMMdd")),
             new SqlParameter("@SiteNick",nick)
         };
         DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_ORDER_BYDAY, param);
@@ -45,5 +45,29 @@ public class SiteTotalService
         }
 
         return list;
+    }
+
+    public TopSiteTotalInfo GetOrderTotalInfo(string date, string nick)
+    {
+        TopSiteTotalInfo info = null;
+        SqlParameter[] param = new[]
+        {
+            new SqlParameter("@start",date),
+            new SqlParameter("@SiteNick",nick)
+        };
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_ORDER_BYDAY, param);
+
+        foreach (DataRow dr in dt.Rows)
+        {
+            info = new TopSiteTotalInfo();
+            info.SiteTotalDate = dr["SiteTotalDate"].ToString();
+            info.SitePVCount = int.Parse(dr["SitePVCount"].ToString());
+
+            info.SiteUVCount = int.Parse(dr["SiteUVCount"].ToString());
+            info.SiteOrderCount = int.Parse(dr["SiteOrderCount"].ToString());
+            info.SiteOrderPay = decimal.Parse(dr["SiteOrderPay"].ToString());
+            info.SiteUVBack = int.Parse(dr["SiteUVBack"].ToString());
+        }
+        return info;
     }
 }
