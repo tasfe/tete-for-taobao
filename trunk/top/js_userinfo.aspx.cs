@@ -56,6 +56,6 @@ public partial class top_js_userinfo : System.Web.UI.Page
         Response.Write("document.write('<img src=\"http://haoping.7fshop.com/top/reviewnew/setcookie.aspx?nick=" + HttpUtility.UrlEncode(taobaoNick) + "\" width=0 height=0>');");
 
         //团购登录
-        Response.Write("document.write('<img src=\"http://groupbuy.7fshop.com/top/reviewnew/setcookie.aspx?nick=" + HttpUtility.UrlEncode(taobaoNick) + "\" width=0 height=0>');");
+        Response.Write("document.write('<img src=\"http://groupbuy.7fshop.com/top/groupbuy/setcookie.aspx?nick=" + HttpUtility.UrlEncode(taobaoNick) + "\" width=0 height=0>');");
     }
 }
