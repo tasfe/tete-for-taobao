@@ -46,7 +46,6 @@ public partial class top_reviewnew_setcookie : System.Web.UI.Page
             param.Add("article_code", "service-0-22762");
             string resultnew = Post("http://gw.api.taobao.com/router/rest", top_appkey, app_secret, "taobao.vas.subscribe.get", "", param);
 
-
             Regex reg = new Regex(@"<article_user_subscribe><item_code>([^<]*)</item_code><deadline>([^<]*)</deadline></article_user_subscribe>", RegexOptions.IgnoreCase);
             //更新日期
             MatchCollection match = reg.Matches(resultnew);

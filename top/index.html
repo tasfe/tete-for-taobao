@@ -464,12 +464,29 @@ name="mainframe5" src="http://haoping.7fshop.com/top/crm/customlist.aspx" frameb
         setTimeout('closeArea()', 20000);
     }
 
+    function showArea1() {
+        document.getElementById("divBackground").style.display = "block";
+        document.getElementById("divBackground").style.filter = "alpha(opacity=50)";
+        document.getElementById("ggArea1").style.display = "block";
+
+        setTimeout('closeArea1()', 20000);
+    }
+
     function closeArea() {
         document.getElementById("divBackground").style.display = "none";
         document.getElementById("ggArea").style.display = "none";
     }
 
-    setTimeout('showArea()', 3000);
+    function closeArea1() {
+        document.getElementById("divBackground").style.display = "none";
+        document.getElementById("ggArea1").style.display = "none";
+    }
+
+    if (1 == 1) {
+        setTimeout('showArea()', 3000);
+    } else {
+        setTimeout('showArea1()', 3000);
+    }
 
     selectTab();
 
@@ -562,8 +579,22 @@ name="mainframe5" src="http://haoping.7fshop.com/top/crm/customlist.aspx" frameb
 
 language="JavaScript"></script>
 </div>
+
 <div id="divBackground" style="position: absolute; display:none; top: 0pt; left: 0pt; background: none repeat scroll 0% 0% rgb(153, 153, 153); opacity: 0.4; width: 100%; height: 2184px; z-index: 10002;"></div>
 <div id="ggArea" style="display:none; position: absolute; display:none; top: 220px; left: 400px;  z-index: 10003; background-color:white; padding:5px">
+    <a href='javascript:closeArea();' style="font-size:16px; font-weight:bold; color:black">关闭窗口</a> 20秒后窗口自动关闭.. <br>
+<span style="font-size:18px; font-weight:bold; color:red;">用数据深入剖析营销活动背后的效果，让您的每一分钱都物有所值！</span><br>
+<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-8:1' target='_blank'><img src='images/tan.jpg' border=0></a><br>
+<span style="font-size:16px;">具体情况请联系客服 <a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid=%E7%BE%8E%
+
+E6%9D%9C%E8%8E%8E%E4%B9%8B%E5%BF%83&site=cntaobao&s=1&charset=utf-8" ><img border="0" 
+
+align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=%E7%BE%8E%E6%9D%9C%E8%
+
+8E%8E%E4%B9%8B%E5%BF%83&site=cntaobao&s=1&charset=utf-8" alt="联系客服" /></a></span>
+</div>
+
+<div id="ggArea1" style="display:none; position: absolute; display:none; top: 220px; left: 400px;  z-index: 10003; background-color:white; padding:5px">
     <a href='javascript:closeArea();' style="font-size:16px; font-weight:bold; color:black">关闭窗口</a> 20秒后窗口自动关闭.. <br>
 <span style="font-size:18px; font-weight:bold; color:red;">新年送大礼，手机客户端最低只要9元<br>让您的网店直入驻买家手机</span><br>
 <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-7:1' target='_blank'><img src='images/gg1.jpg' border=0></a>
