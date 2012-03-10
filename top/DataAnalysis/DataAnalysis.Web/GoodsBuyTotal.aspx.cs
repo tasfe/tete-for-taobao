@@ -24,7 +24,7 @@ public partial class GoodsBuyTotal : BasePage
             {
             }
             ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), darray[0], darray[1]);
-            Bind(darray[0], darray[1], int.Parse(ViewState["count"].ToString()), 10);
+            Bind(darray[0], darray[1], int.Parse(ViewState["count"].ToString()), 20);
         }
     }
 
@@ -45,7 +45,7 @@ public partial class GoodsBuyTotal : BasePage
         }
         catch { }
 
-        IList<GoodsInfo> list = taoGoodsService.GetTopBuyGoods(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), start, end, page, 20);
+        IList<GoodsInfo> list = taoGoodsService.GetTopBuyGoods(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), start, end, page, recordCount);
 
         if (list.Count > 0)
         {
@@ -123,6 +123,6 @@ public partial class GoodsBuyTotal : BasePage
         }
         ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), start, endtime);
         ViewState["page"] = "1";
-        Bind(start, endtime, int.Parse(ViewState["count"].ToString()), 10);
+        Bind(start, endtime, int.Parse(ViewState["count"].ToString()), 20);
     }
 }
