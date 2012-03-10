@@ -22,7 +22,7 @@ public partial class top_reviewnew_setcookie : System.Web.UI.Page
         cookie.setCookie("nick", nick, 999999);
 
         //查询是否订购了免费版
-        string sql = "SELECT * FROM TopTaobaoShop WHERE nick = " + nick;
+        string sql = "SELECT * FROM TopTaobaoShop WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
