@@ -134,4 +134,20 @@ public partial class TopGoods : BasePage
         ViewState["page"] = "1";
         Bind(start, endtime, int.Parse(ViewState["count"].ToString()), 20);
     }
+
+    protected void Btn_3Days_Click(object sender, EventArgs e)
+    {
+        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), DateTime.Now.AddDays(-2), DateTime.Now);
+        Bind(DateTime.Now.AddDays(-2), DateTime.Now, int.Parse(ViewState["count"].ToString()), 20);
+    }
+    protected void Btn_7Days_Click(object sender, EventArgs e)
+    {
+        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), DateTime.Now.AddDays(-6), DateTime.Now);
+        Bind(DateTime.Now.AddDays(-6), DateTime.Now, int.Parse(ViewState["count"].ToString()), 20);
+    }
+    protected void Btn_30Days_Click(object sender, EventArgs e)
+    {
+        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), DateTime.Now.AddDays(-29), DateTime.Now);
+        Bind(DateTime.Now.AddDays(-29), DateTime.Now, int.Parse(ViewState["count"].ToString()), 20);
+    }
 }

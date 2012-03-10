@@ -95,4 +95,17 @@ public partial class SellCityTop : BasePage
         ViewState["page"] = "1";
         Bind(start, endtime);
     }
+
+    protected void Btn_3Days_Click(object sender, EventArgs e)
+    {
+        Bind(DateTime.Now.AddDays(-2), DateTime.Now);
+    }
+    protected void Btn_7Days_Click(object sender, EventArgs e)
+    {
+        Bind(DateTime.Now.AddDays(-6), DateTime.Now);
+    }
+    protected void Btn_30Days_Click(object sender, EventArgs e)
+    {
+        Bind(DateTime.Now.AddDays(-29), DateTime.Now);
+    }
 }
