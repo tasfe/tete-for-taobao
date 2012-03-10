@@ -20,9 +20,11 @@ public partial class top_reviewnew_setcookie : System.Web.UI.Page
 
         Common.Cookie cookie = new Common.Cookie();
         cookie.setCookie("nick", nick, 999999);
+        Rijndael_ encode = new Rijndael_("tetesoft");
+        string taobaoNick = encode.Decrypt(nick);
 
         //查询是否订购了免费版
-        string sql = "SELECT * FROM TopTaobaoShop WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TopTaobaoShop WHERE nick = '" + taobaoNick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
@@ -31,7 +33,7 @@ public partial class top_reviewnew_setcookie : System.Web.UI.Page
             string app_secret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
 
             IDictionary<string, string> param = new Dictionary<string, string>();
-            param.Add("nick", nick);
+            param.Add("nick", taobaoNick);
             param.Add("article_code", "service-0-22762");
             string resultnew = Post("http://gw.api.taobao.com/router/rest", top_appkey, app_secret, "taobao.vas.subscribe.get", "", param);
 
