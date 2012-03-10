@@ -41,6 +41,11 @@ public partial class UVisitPage : BasePage
         try
         {
             page = int.Parse(Request.QueryString["Page"]);
+            if (ViewState["page"] != null)
+            {
+                page = int.Parse(ViewState["page"].ToString());
+                ViewState["page"] = null;
+            }
         }
         catch { }
 
@@ -79,11 +84,6 @@ public partial class UVisitPage : BasePage
         pds.DataSource = list;
         pds.AllowPaging = true;
         pds.PageSize = 20;
-        int CurPage;
-        if (Request.QueryString["Page"] != null)
-            CurPage = Convert.ToInt32(Request.QueryString["Page"]);
-        else
-            CurPage = 1;
 
         if (TotalCount == 0)
             TotalPage = 1;
@@ -95,15 +95,15 @@ public partial class UVisitPage : BasePage
                 TotalPage = TotalCount / pds.PageSize + 1;
         }
 
-        pds.CurrentPageIndex = CurPage - 1;
-        lblCurrentPage.Text = "共" + TotalCount.ToString() + "条记录 当前页：" + CurPage.ToString() + "/" + TotalPage;
+        pds.CurrentPageIndex = page - 1;
+        lblCurrentPage.Text = "共" + TotalCount.ToString() + "条记录 当前页：" + page + "/" + TotalPage;
 
         lnkFrist.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=1&visitip=" + ip + "&start=" + start.ToString("yyyy-MM-dd HH") + "&end=" + end.ToString("yyyy-MM-dd HH");
         if (!pds.IsFirstPage)
-            lnkPrev.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(CurPage - 1) + "&visitip=" + ip + "&start=" + start.ToString("yyyy-MM-dd HH") + "&end=" + end.ToString("yyyy-MM-dd HH");
+            lnkPrev.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + (page - 1) + "&visitip=" + ip + "&start=" + start.ToString("yyyy-MM-dd HH") + "&end=" + end.ToString("yyyy-MM-dd HH");
 
         if (!pds.IsLastPage)
-            lnkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(CurPage + 1) + "&visitip=" + ip + "&start=" + start.ToString("yyyy-MM-dd HH") + "&end=" + end.ToString("yyyy-MM-dd HH");
+            lnkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + (page + 1) + "&visitip=" + ip + "&start=" + start.ToString("yyyy-MM-dd HH") + "&end=" + end.ToString("yyyy-MM-dd HH");
         lnkEnd.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + TotalPage + "&visitip=" + ip + "&start=" + start.ToString("yyyy-MM-dd HH") + "&end=" + end.ToString("yyyy-MM-dd HH");
 
         Rpt_PageVisit.DataSource = pds;
@@ -137,7 +137,7 @@ public partial class UVisitPage : BasePage
             TB_Start.Text = start.ToString("yyyy-MM-dd HH");
             TB_End.Text = endtime.ToString("yyyy-MM-dd HH");
         }
-
+        ViewState["page"] = "1";
         Bind(start, endtime);
     }
 }
