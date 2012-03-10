@@ -27,7 +27,7 @@ public partial class top_containergroupbuy : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-	Response.AddHeader("P3P", "CP=CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR");
+        Response.AddHeader("P3P", "CP=CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR");
         /*
          * http://www.7fshop.com/top/container.aspx
          * ?top_appkey=12132145
@@ -39,7 +39,7 @@ public partial class top_containergroupbuy : System.Web.UI.Page
          * &y=13
          * &x=36*/
         //签名验证
-    string top_appkey = "12287381";
+        string top_appkey = "12287381";
         string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString);
         top_session = utils.NewRequest("top_session", utils.RequestType.QueryString);
         string app_secret = "d3486dac8198ef01000e7bd4504601a4";
@@ -49,14 +49,14 @@ public partial class top_containergroupbuy : System.Web.UI.Page
         versionNo = utils.NewRequest("versionNo", utils.RequestType.QueryString);
         string leaseId = utils.NewRequest("leaseId", utils.RequestType.QueryString); ;//可以从 QueryString 来获取,也可以固定 
         string timestamp = utils.NewRequest("timestamp", utils.RequestType.QueryString); ;//可以从 QueryString 来获取 
-	string agreementsign = utils.NewRequest("agreementsign", utils.RequestType.QueryString);
+        string agreementsign = utils.NewRequest("agreementsign", utils.RequestType.QueryString);
 
 
-	if(agreementsign == "")
-	{
-		Response.Redirect("http://container.api.taobao.com/container?appkey=12287381&scope=promotion");
-		return;
-	}
+        if (agreementsign == "")
+        {
+            Response.Redirect("http://container.api.taobao.com/container?appkey=12287381&scope=promotion");
+            return;
+        }
 
 
         if (!Taobao.Top.Api.Util.TopUtils.VerifyTopResponse(top_parameters, top_session, top_sign, top_appkey, app_secret))
@@ -134,14 +134,14 @@ public partial class top_containergroupbuy : System.Web.UI.Page
         //{
         //    nick = item.Content[0].Nick;
         //}
-        
+
         //获取店铺基本信息
         UserGetRequest request = new UserGetRequest();
         request.Fields = "user_id,nick,seller_credit";
         request.Nick = nick;
         //User user = client.UserGet(request, session);
 
-        if(CheckUserExits(nick))
+        if (CheckUserExits(nick))
         {
             //更新该会员的店铺信息
             //记录2次登录日志
@@ -164,7 +164,7 @@ public partial class top_containergroupbuy : System.Web.UI.Page
 
         //更新用户订购信息
         CheckUser("0", nick);
-        
+
         //加密NICK
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Encrypt(nick);
@@ -173,7 +173,7 @@ public partial class top_containergroupbuy : System.Web.UI.Page
         cookie.setCookie("top_sessiongroupbuy", top_session, 999999);
         cookie.setCookie("nick", nick, 999999);
 
-        Response.Redirect("indexgroup.html");
+        Response.Redirect("http://www.7fshop.com/top/index.html?t=2");
     }
 
 
@@ -283,7 +283,7 @@ public partial class top_containergroupbuy : System.Web.UI.Page
             return false;
         }
         else
-        { 
+        {
             return true;
         }
     }
