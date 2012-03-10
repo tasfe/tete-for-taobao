@@ -561,6 +561,8 @@ align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=%E7%BE%8E%E6
     function selectTab() {
         var url = document.URL;
         if (url.indexOf("t=1") != -1) {
+            document.getElementById("tabCot_product_1").style.display = "none";
+            document.getElementById("tabCot_product_3").style.display = "";
             document.getElementById("tab3").className = "currentBtn";
         } else {
             document.getElementById("tab1").className = "currentBtn";
