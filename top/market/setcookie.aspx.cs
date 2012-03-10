@@ -19,6 +19,14 @@ public partial class top_reviewnew_setcookie : System.Web.UI.Page
         string t = utils.NewRequest("t", utils.RequestType.QueryString);
 
         Common.Cookie cookie = new Common.Cookie();
+
+        //清理之前的COOKIE
+        cookie.delCookie("mircoblog");
+        cookie.delCookie("act");
+        cookie.delCookie("iscrm");
+        cookie.delCookie("istongji");
+        cookie.delCookie("istongji");
+
         cookie.setCookie("nick", nick, 999999);
         Rijndael_ encode = new Rijndael_("tetesoft");
         string taobaoNick = encode.Decrypt(nick);
@@ -29,6 +37,7 @@ public partial class top_reviewnew_setcookie : System.Web.UI.Page
         if (dt.Rows.Count != 0)
         {
             string session = dt.Rows[0]["session"].ToString();
+            cookie.setCookie("top_session", session, 999999);
             string top_appkey = "12132145";
             string app_secret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
 
@@ -36,6 +45,7 @@ public partial class top_reviewnew_setcookie : System.Web.UI.Page
             param.Add("nick", taobaoNick);
             param.Add("article_code", "service-0-22762");
             string resultnew = Post("http://gw.api.taobao.com/router/rest", top_appkey, app_secret, "taobao.vas.subscribe.get", "", param);
+
 
             Regex reg = new Regex(@"<article_user_subscribe><item_code>([^<]*)</item_code><deadline>([^<]*)</deadline></article_user_subscribe>", RegexOptions.IgnoreCase);
             //更新日期
