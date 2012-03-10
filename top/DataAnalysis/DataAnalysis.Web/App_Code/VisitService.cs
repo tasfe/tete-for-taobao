@@ -149,8 +149,8 @@ group by VisitIP,VisitBrower,VisitUserAgent
         string sql = SQL_SELECT_ALL_BYDATE.Replace("@tableName", GetRealTable(nickNo));
         SqlParameter[] param = new[]
             {
-                new SqlParameter("@sdate",start),
-                new SqlParameter("@edate",end)
+                new SqlParameter("@start",start),
+                new SqlParameter("@end",end)
             };
         DataTable dt = DBHelper.ExecuteDataTable(sql, param);
         IList<PageVisitInfoTotal> list = new List<PageVisitInfoTotal>();
