@@ -13,7 +13,7 @@ public class CacheCollection
     public const string KEY_ALLNICKSESSIONINFO = "CacheKey_NickSessionList";
 
     /// <summary>
-    ///  所有员工信息(员工ID和真实姓名)缓存12小时更新一次
+    ///  所有订购用户信息缓存(12小时更新一次)
     /// </summary>
     /// <returns></returns>
     public static IList<TopNickSessionInfo> GetNickSessionList()
