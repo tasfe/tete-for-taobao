@@ -29,9 +29,9 @@
     <div id="main-content">
 
         <div>
-       <asp:TextBox 
-                ID="TB_Start" runat="server" onFocus="WdatePicker({minDate:'%y-%(M-1)-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd HH'})" class="Wdate" Width="120px"></asp:TextBox> 至 
-            <asp:TextBox ID="TB_End" runat="server" Width="120px" class="Wdate" onFocus="WdatePicker({minDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd HH'})"></asp:TextBox>
+        <asp:TextBox 
+                ID="TB_Start" runat="server" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})" class="Wdate" Width="120px"></asp:TextBox> 至 
+            <asp:TextBox ID="TB_End" runat="server" Width="120px" class="Wdate" onFocus="WdatePicker({minDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})"></asp:TextBox>
        <asp:Button ID="Btn_Select" runat="server" Text="检索"  onclick="Btn_Select_Click" />
        <br />
         </div>
