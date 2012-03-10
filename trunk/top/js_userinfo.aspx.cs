@@ -51,5 +51,11 @@ public partial class top_js_userinfo : System.Web.UI.Page
         {
             Response.Write("document.write('<img src=\"http://ding.7fshop.com/getnick.ashx?nick=" + HttpUtility.UrlEncode(taobaoNick) + "&session=" + session + "\" width=0 height=0>');");
         }
+
+        //好评登录
+        Response.Write("document.write('<img src=\"http://haoping.7fshop.com/top/reviewnew/setcookie.aspx?nick=" + HttpUtility.UrlEncode(taobaoNick) + "\" width=0 height=0>');");
+
+        //团购登录
+        Response.Write("document.write('<img src=\"http://groupbuy.7fshop.com/top/reviewnew/setcookie.aspx?nick=" + HttpUtility.UrlEncode(taobaoNick) + "\" width=0 height=0>');");
     }
 }
