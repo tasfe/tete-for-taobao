@@ -12,7 +12,7 @@ public partial class top_reviewnew_setcookie : System.Web.UI.Page
     {
         string nick = utils.NewRequest("nick", utils.RequestType.QueryString);
 
-        string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "' AND version > 0 AND version < 4";
         Common.Cookie cookie = new Common.Cookie();
 
         DataTable dt = utils.ExecuteDataTable(sql);
