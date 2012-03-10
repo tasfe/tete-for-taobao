@@ -3,6 +3,7 @@ using System.Collections;
 using System.Web.UI;
 using System.Collections.Generic;
 using System.Web;
+using System.Linq;
 
 public partial class TopGoods : BasePage
 {
@@ -54,13 +55,46 @@ public partial class TopGoods : BasePage
         }
         catch { }
 
-        IList<GoodsInfo> list = taoGoodsService.GetTopGoods(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)), start, end, page, 10);
+        IList<GoodsInfo> list = taoGoodsService.GetTopGoods(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)), start, end, page, 20);
 
-        for (int i = 0; i < list.Count; i++)
+        if (list.Count > 0)
         {
-            GoodsInfo rinfo = TaoBaoAPI.GetGoodsInfo(list[i].num_iid);
-            list[i].title = rinfo.title;
-            list[i].price = rinfo.price;
+            string pids = "";
+            List<GoodsInfo> cachegoods = new List<GoodsInfo>();
+            if (Cache["taobaogoodslist"] != null)
+                cachegoods = (List<GoodsInfo>)Cache["taobaogoodslist"];
+            foreach (GoodsInfo info in list)
+            {
+                if (!cachegoods.Contains(info))
+                    pids += info.num_iid + ",";
+            }
+
+            if (pids != "")
+            {
+                List<GoodsInfo> goodsinfoList = TaoBaoAPI.GetGoodsInfoList(pids.Substring(0, pids.Length - 1));
+
+                if (Cache["taobaogoodslist"] == null)
+                    Cache.Insert("taobaogoodslist", goodsinfoList, null, DateTime.Now.AddHours(12), System.Web.Caching.Cache.NoSlidingExpiration);
+                else
+                    cachegoods.AddRange(goodsinfoList);
+
+            }
+            for (int i = 0; i < list.Count; i++)
+            {
+                IList<GoodsInfo> thislist = cachegoods.Where(o => o.num_iid == list[i].num_iid).ToList();
+                if (thislist.Count > 0)
+                {
+                    list[i].title = thislist[0].title;
+                    list[i].price = thislist[0].price;
+                }
+            }
+
+            //for (int i = 0; i < list.Count; i++)
+            //{
+            //    GoodsInfo rinfo = TaoBaoAPI.GetGoodsInfo(list[i].num_iid);
+            //    list[i].title = rinfo.title;
+            //    list[i].price = rinfo.price;
+            //}
         }
 
         lblCurrentPage.Text = "共" + totalCount.ToString() + "条记录 当前页：" + page + "/" + (TotalPage == 0 ? 1 : TotalPage);
