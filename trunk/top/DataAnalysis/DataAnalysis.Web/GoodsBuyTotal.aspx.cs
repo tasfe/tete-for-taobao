@@ -16,7 +16,7 @@ public partial class GoodsBuyTotal : BasePage
         {
             DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
             try
-            { 
+            {
                 darray[0] = DateTime.Parse(Request.QueryString["start"]);
                 darray[1] = DateTime.Parse(Request.QueryString["end"]);
             }
@@ -52,7 +52,7 @@ public partial class GoodsBuyTotal : BasePage
             string pids = "";
             List<GoodsInfo> cachegoods = new List<GoodsInfo>();
             if (Cache["taobaogoodslist"] != null)
-                 cachegoods = (List<GoodsInfo>)Cache["taobaogoodslist"];
+                cachegoods = (List<GoodsInfo>)Cache["taobaogoodslist"];
             foreach (GoodsInfo info in list)
             {
                 if (!cachegoods.Contains(info))
@@ -124,5 +124,21 @@ public partial class GoodsBuyTotal : BasePage
         ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), start, endtime);
         ViewState["page"] = "1";
         Bind(start, endtime, int.Parse(ViewState["count"].ToString()), 20);
+    }
+
+    protected void Btn_3Days_Click(object sender, EventArgs e)
+    {
+        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), DateTime.Now.AddDays(-2), DateTime.Now);
+        Bind(DateTime.Now.AddDays(-2), DateTime.Now, int.Parse(ViewState["count"].ToString()), 20);
+    }
+    protected void Btn_7Days_Click(object sender, EventArgs e)
+    {
+        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), DateTime.Now.AddDays(-6), DateTime.Now);
+        Bind(DateTime.Now.AddDays(-6), DateTime.Now, int.Parse(ViewState["count"].ToString()), 20);
+    }
+    protected void Btn_30Days_Click(object sender, EventArgs e)
+    {
+        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), DateTime.Now.AddDays(-29), DateTime.Now);
+        Bind(DateTime.Now.AddDays(-29), DateTime.Now, int.Parse(ViewState["count"].ToString()), 20);
     }
 }
