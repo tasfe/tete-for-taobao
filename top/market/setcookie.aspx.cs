@@ -18,11 +18,11 @@ public partial class top_reviewnew_setcookie : System.Web.UI.Page
 
         if (t != "")
         {
-            Response.Redirect("index.html?t=" + t);
+            Response.Redirect("../index.html?t=" + t);
         }
         else
         {
-            Response.Redirect("index.html");
+            Response.Redirect("../index.html");
         }
     }
 }
