@@ -15,6 +15,14 @@ public partial class SellCityTop : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
+            try
+            {
+                darray[0] = DateTime.Parse(Request.QueryString["start"]);
+                darray[1] = DateTime.Parse(Request.QueryString["end"]);
+            }
+            catch
+            {
+            }
             Bind(darray[0], darray[1]);
         }
     }
@@ -28,6 +36,11 @@ public partial class SellCityTop : System.Web.UI.Page
         try
         {
             page = int.Parse(Request.QueryString["Page"]);
+            if (ViewState["page"] != null)
+            {
+                page = int.Parse(ViewState["page"].ToString());
+                ViewState["page"] = null;
+            }
         }
         catch { }
 
@@ -36,12 +49,6 @@ public partial class SellCityTop : System.Web.UI.Page
         pds.DataSource = list;
         pds.AllowPaging = true;
         pds.PageSize = 20;
-        int CurPage;
-        if (Request.QueryString["Page"] != null)
-            CurPage = Convert.ToInt32(Request.QueryString["Page"]);
-        else
-            CurPage = 1;
-
         if (TotalCount == 0)
             TotalPage = 1;
         else
@@ -52,16 +59,16 @@ public partial class SellCityTop : System.Web.UI.Page
                 TotalPage = TotalCount / pds.PageSize + 1;
         }
 
-        pds.CurrentPageIndex = CurPage - 1;
-        lblCurrentPage.Text = "共" + TotalCount.ToString() + "条记录 当前页：" + CurPage.ToString() + "/" + TotalPage;
+        pds.CurrentPageIndex = page - 1;
+        lblCurrentPage.Text = "共" + TotalCount.ToString() + "条记录 当前页：" + page + "/" + TotalPage;
 
-        lnkFrist.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=1";
+        lnkFrist.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=1&" + "start=" + start.ToShortDateString() + "&end=" + end.ToShortDateString();
         if (!pds.IsFirstPage)
-            lnkPrev.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(CurPage - 1);
+            lnkPrev.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(page - 1) + "&" + "start=" + start.ToShortDateString() + "&end=" + end.ToShortDateString();
 
         if (!pds.IsLastPage)
-            lnkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(CurPage + 1);
-        lnkEnd.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + TotalPage;
+            lnkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(page + 1) + "&" + "start=" + start.ToShortDateString() + "&end=" + end.ToShortDateString();
+        lnkEnd.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + TotalPage + "&" + "start=" + start.ToShortDateString() + "&end=" + end.ToShortDateString();
 
         Rpt_PageVisit.DataSource = pds;
         Rpt_PageVisit.DataBind();
@@ -85,6 +92,7 @@ public partial class SellCityTop : System.Web.UI.Page
             TB_Start.Text = start.ToString("yyyy-MM-dd");
             TB_End.Text = endtime.ToString("yyyy-MM-dd");
         }
+        ViewState["page"] = "1";
         Bind(start, endtime);
     }
 }

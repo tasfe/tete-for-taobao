@@ -46,6 +46,11 @@ public partial class PageVisitTotal : BasePage
         try
         {
             page = int.Parse(Request.QueryString["Page"]);
+            if (ViewState["page"] != null)
+            {
+                page = int.Parse(ViewState["page"].ToString());
+                ViewState["page"] = null;
+            }
         }
         catch { }
 
@@ -73,13 +78,13 @@ public partial class PageVisitTotal : BasePage
         pds.CurrentPageIndex = CurPage - 1;
         lblCurrentPage.Text = "共" + TotalCount.ToString() + "条记录 当前页：" + CurPage.ToString() + "/" + TotalPage;
 
-        lnkFrist.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=1" + "&start=" + start.ToString("yyyy-MM-dd HH") + "&end=" + end.ToString("yyyy-MM-dd HH"); ;
+        lnkFrist.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=1" + "&start=" + start.ToString("yyyy-MM-dd HH") + "&end=" + end.ToString("yyyy-MM-dd HH");
         if (!pds.IsFirstPage)
-            lnkPrev.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(CurPage - 1) + "&start=" + start.ToString("yyyy-MM-dd HH") + "&end=" + end.ToString("yyyy-MM-dd HH"); ;
+            lnkPrev.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(CurPage - 1) + "&start=" + start.ToString("yyyy-MM-dd HH") + "&end=" + end.ToString("yyyy-MM-dd HH");
 
         if (!pds.IsLastPage)
             lnkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(CurPage + 1) + "&start=" + start.ToString("yyyy-MM-dd HH") + "&end=" + end.ToString("yyyy-MM-dd HH"); ;
-        lnkEnd.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + TotalPage + "&start=" + start.ToString("yyyy-MM-dd HH") + "&end=" + end.ToString("yyyy-MM-dd HH"); ;
+        lnkEnd.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + TotalPage + "&start=" + start.ToString("yyyy-MM-dd HH") + "&end=" + end.ToString("yyyy-MM-dd HH");
 
         Rpt_PageVisit.DataSource = pds;
         Rpt_PageVisit.DataBind();
@@ -103,6 +108,7 @@ public partial class PageVisitTotal : BasePage
             TB_Start.Text = start.ToString("yyyy-MM-dd HH");
             TB_End.Text = endtime.ToString("yyyy-MM-dd HH");
         }
+        ViewState["page"] = "1";
         Bind(start, endtime);
     }
 }
