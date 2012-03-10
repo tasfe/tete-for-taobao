@@ -65,8 +65,8 @@ public partial class SellCityTop : System.Web.UI.Page
 
         Rpt_PageVisit.DataSource = pds;
         Rpt_PageVisit.DataBind();
-        TB_Start.Text = start.ToString("yyyy-MM-dd HH");
-        TB_End.Text = end.ToString("yyyy-MM-dd HH");
+        TB_Start.Text = start.ToString("yyyy-MM-dd");
+        TB_End.Text = end.ToString("yyyy-MM-dd");
     }
 
     protected void Btn_Select_Click(object sender, EventArgs e)
@@ -77,13 +77,13 @@ public partial class SellCityTop : System.Web.UI.Page
         DateTime endtime = new DateTime(end.Year, end.Month, end.Day);
         try
         {
-            start = DateTime.Parse(TB_Start.Text + ":0:0");
-            endtime = DateTime.Parse(TB_End.Text + ":0:0");
+            start = DateTime.Parse(TB_Start.Text);
+            endtime = DateTime.Parse(TB_End.Text);
         }
         catch
         {
-            TB_Start.Text = start.ToString("yyyy-MM-dd HH");
-            TB_End.Text = endtime.ToString("yyyy-MM-dd HH");
+            TB_Start.Text = start.ToString("yyyy-MM-dd");
+            TB_End.Text = endtime.ToString("yyyy-MM-dd");
         }
         Bind(start, endtime);
     }
