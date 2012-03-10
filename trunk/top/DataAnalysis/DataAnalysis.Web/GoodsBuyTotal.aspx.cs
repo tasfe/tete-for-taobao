@@ -15,7 +15,6 @@ public partial class GoodsBuyTotal : BasePage
         if (!Page.IsPostBack)
         {
             DateTime[] darray = DataHelper.GetDateTime(DateTime.Now, 1);
-            ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), darray[0], darray[1]);
             try
             { 
                 darray[0] = DateTime.Parse(Request.QueryString["start"]);
@@ -24,7 +23,7 @@ public partial class GoodsBuyTotal : BasePage
             catch
             {
             }
-
+            ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), darray[0], darray[1]);
             Bind(darray[0], darray[1], int.Parse(ViewState["count"].ToString()), 10);
         }
     }
