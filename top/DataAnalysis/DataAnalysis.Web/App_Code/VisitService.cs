@@ -49,7 +49,10 @@ public class VisitService
     const string SQL_HOUR_IPTOTAL_TABLE = "SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM @tableName GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5) ";//ORDER BY IPHour";
 
     //查找流水
-    const string SQL_SELECT_ALL_BYDATE = "SELECT * FROM(SELECT  VisitUrl,VisitIP, COUNT(*) AS VCount,ROW_NUMBER() OVER(ORDER BY VisitUrl ASC, VisitIP ASC) as RowNum FROM (SELECT *  FROM @tableName WHERE  VisitTime BETWEEN @sdate AND @edate AND VisitUrl<>'') a GROUP BY VisitUrl,visitIP )  b  WHERE RowNum BETWEEN @srecode AND @erecode";
+    const string SQL_SELECT_ALL_BYDATE = @"SELECT VisitUrl,VisitIP,COUNT(*) AS VCount
+                                           FROM (SELECT *  FROM @tableName
+                                           WHERE VisitTime BETWEEN @start AND @end AND VisitUrl<>'') a 
+                                           GROUP BY VisitUrl,visitIP";
 
     const string SQL_SELECT_IPTOTAL_TABLE_BYDATE="";
 
@@ -141,17 +144,13 @@ group by VisitIP,VisitBrower,VisitUserAgent
         return rlist;
     }
 
-    public IList<PageVisitInfoTotal> GetAllVisitPageInfoList(string nickNo, DateTime start, DateTime end, int pcount, int recordCount)
+    public IList<PageVisitInfoTotal> GetAllVisitPageInfoList(string nickNo, DateTime start, DateTime end)
     {
         string sql = SQL_SELECT_ALL_BYDATE.Replace("@tableName", GetRealTable(nickNo));
-        int srecode = 0;//recordCount * (pcount - 1) + 1;
-        int erecode = 2000;//recordCount * pcount;
         SqlParameter[] param = new[]
             {
                 new SqlParameter("@sdate",start),
-                new SqlParameter("@edate",end),
-                new SqlParameter("@srecode",srecode),
-                new SqlParameter("@erecode",erecode)
+                new SqlParameter("@edate",end)
             };
         DataTable dt = DBHelper.ExecuteDataTable(sql, param);
         IList<PageVisitInfoTotal> list = new List<PageVisitInfoTotal>();
