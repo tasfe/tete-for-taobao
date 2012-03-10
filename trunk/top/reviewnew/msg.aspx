@@ -55,7 +55,7 @@
             </tr>
             <tr>
                 <td align="left" width="250">
-                    开启动礼品赠送短信提示 <input id="giftflag" name="giftflag" type="checkbox" value="1" onclick="showArea(this)" />
+                    开启优惠券赠送短信提示 <input id="giftflag" name="giftflag" type="checkbox" value="1" onclick="showArea(this)" />
                 </td>
             </tr>
             <tr id="Area1">
