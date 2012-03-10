@@ -37,28 +37,28 @@
         </div>
         <table cellpadding="0" cellspacing="0" width="100%">
             <tr>
-                <td align="center">
+                <td align="center" width="50%">
                     <b>受访页面</b>
                 </td>
-                <td width="220" align="center">
+                <td align="center" width="25%">
                     <b>浏览次数</b>
                 </td>
-                <td width="220" align="center">
+                <td align="center" width="25%">
                     <b>人均浏览次数 </b>
                 </td>
             </tr>
             <asp:Repeater ID="Rpt_PageVisit" runat="server">
                 <ItemTemplate>
                     <tr>
-                        <td height="35">
+                        <td height="35" valign="top">
                            <a href='<%#Eval("VisitURL")%>' target="_blank">
                             <%#Eval("VisitURL")%>
                            </a>
                         </td>
-                        <td align="center">
+                        <td align="center" valign="top">
                             <%#Eval("VisitCount")%>
                         </td>
-                        <td align="center">
+                        <td align="center" valign="top">
                             <%#Eval("VisitAvg")%>
                         </td>
                     </tr>
