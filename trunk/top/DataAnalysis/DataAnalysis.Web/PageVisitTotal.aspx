@@ -50,7 +50,7 @@
             <asp:Repeater ID="Rpt_PageVisit" runat="server">
                 <ItemTemplate>
                     <tr>
-                        <td height="35" valign="top">
+                        <td valign="top">
                            <a href='<%#Eval("VisitURL")%>' target="_blank">
                             <%#Eval("VisitURL")%>
                            </a>
@@ -63,6 +63,12 @@
                         </td>
                     </tr>
                 </ItemTemplate>
+                
+                 <SeparatorTemplate> 
+                     <tr> 
+                           <td colspan="3"><hr /></td> 
+                      </tr> 
+                 </SeparatorTemplate> 
             </asp:Repeater>
         </table>
        
