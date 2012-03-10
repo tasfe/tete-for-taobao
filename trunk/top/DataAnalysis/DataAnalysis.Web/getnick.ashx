@@ -29,6 +29,9 @@ public class getnick : IHttpHandler {
         context.Response.Cookies.Add(cooksession);
         if (!string.IsNullOrEmpty(context.Request.QueryString["istongji"]))
         {
+            HttpCookie cookietongji = new HttpCookie("istongji", "1");
+            cookietongji.Expires = DateTime.Now.AddDays(15);
+            context.Response.Cookies.Add(cookietongji);
             IList<TopNickSessionInfo> list = CacheCollection.GetNickSessionList().Where(o => o.Nick == nick).ToList();
             DateTime now = DateTime.Now;
             if (list.Count == 0)
