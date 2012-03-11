@@ -155,7 +155,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
                 string number = match[0].Groups[1].ToString();
 
                 //赠送优惠券
-                sql = "INSERT INTO TCS_CouponSendCrm (" +
+                sql = "INSERT INTO TCS_CouponSend (" +
                                     "nick, " +
                                     "guid, " +
                                     "buynick, " +
