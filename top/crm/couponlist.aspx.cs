@@ -78,7 +78,7 @@ public partial class top_review_couponlist : System.Web.UI.Page
         string session = cookie.getCookie("top_sessiongroupbuy");
 
         //通过数据库查询获取活动ID
-        string sql = "UPDATE TCS_CouponCrm SET isdel = 1 WHERE guid = '" + id + "'";
+        string sql = "UPDATE TCS_Coupon SET isdel = 1 WHERE guid = '" + id + "'";
         utils.ExecuteNonQuery(sql);
 
         Response.Write("<script>alert('取消成功！');window.location.href='couponlist.aspx';</script>");
@@ -86,7 +86,7 @@ public partial class top_review_couponlist : System.Web.UI.Page
 
     private void BindData()
     {
-        string sql = "SELECT * FROM TCS_CouponCrm WHERE nick = '" + nick + "' AND isdel = 0";
+        string sql = "SELECT * FROM TCS_Coupon WHERE nick = '" + nick + "' AND isdel = 0";
         DataTable dt = utils.ExecuteDataTable(sql);
 
         rptArticle.DataSource = dt;
