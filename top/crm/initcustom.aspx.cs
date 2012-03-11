@@ -52,12 +52,25 @@ public partial class top_crm_initcustom : System.Web.UI.Page
     protected void Button1_Click1(object sender, EventArgs e)
     {
         int index = 0;
+        //执行优惠券赠送行为
+        string appkey = "12132145";
+        string secret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
+
+        string sql = "SELECT session FROM TCS_CrmConfig WHERE nick = '" + nick + "'";
+        string session = utils.ExecuteString(sql);
+
+        //判断如果客户订购过好评有礼的服务则调用好评的SESSION
+        sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "' AND isdel = 0";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        if (dt.Rows.Count != 0)
+        {
+            appkey = "12159997";
+            secret = "614e40bfdb96e9063031d1a9e56fbed5";
+            session = dt.Rows[0]["session"].ToString();
+        }
 
         for (int j = 1; j < 9999; j++)
         {
-            //执行优惠券赠送行为
-            string appkey = "12132145";
-            string secret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
             IDictionary<string, string> param = new Dictionary<string, string>();
             param.Add("min_last_trade_time", DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd") + " 00:00:00");
             param.Add("max_last_trade_time", DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
@@ -66,8 +79,6 @@ public partial class top_crm_initcustom : System.Web.UI.Page
 
             //Response.Write(DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd") + " 00:00:00<br>");
 
-            string sql = "SELECT session FROM TCS_CrmConfig WHERE nick = '" + nick + "'";
-            string session = utils.ExecuteString(sql);
 
             //nick = this.TextBox1.Text;
 
