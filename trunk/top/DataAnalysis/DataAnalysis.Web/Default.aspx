@@ -33,7 +33,7 @@
     </asp:Panel>
 
     <div>
-        <h3>销售数据统计</h3>
+        <div style="font-size:18px; font-weight:bold;">销售数据统计</div>
         <hr />
         <div>
             <table width="740" cellpadding="0" cellspacing="0">
@@ -47,7 +47,7 @@
                     <td width="100"><b>每单商品数</b></td>
                 </tr>
                 <tr>
-                    <td height="25">今日</td>
+                    <td height="25" style="font-size:16px; font-weight:bold;">今 日</td>
                     <td>12000</td>
                     <td>100</td>
                     <td>12</td>
@@ -56,7 +56,7 @@
                     <td>1.5</td>
                 </tr>
                 <tr>
-                    <td height="25">昨日</td>
+                    <td height="25" style="font-size:16px; font-weight:bold;">昨 日</td>
                     <td>11000</td>
                     <td>100</td>
                     <td>12</td>
@@ -71,7 +71,7 @@
     <asp:Panel ID="Panel2" runat="server">
         <table cellspacing="0" cellpadding="0" width="740" style="margin-top:10px;">
             <tr>
-                <td width="50%" style="padding:2px;>
+                <td width="50%" style="padding:2px;">
                     <table cellspacing="0" cellpadding="0" width="98%">
                       <tr>
                         <td colspan="2" style="background-color:#abcabc;font-weight:bold;color:#211511">
