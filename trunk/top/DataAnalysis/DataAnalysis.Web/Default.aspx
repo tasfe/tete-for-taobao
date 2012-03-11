@@ -69,6 +69,15 @@
                     <td>80</td>
                     <td>1.5</td>
                 </tr>
+                <tr>
+                    <td height="25" style="font-size:16px; font-weight:bold;">最近一周走势</td>
+                    <td><span style="color:Red">↑8.33%</span></td>
+                    <td><span style="color:green">↓8.33%</span></td>
+                    <td><span style="color:green">↓12.22%</span></td>
+                    <td><span style="color:green">↓11.44%</span></td>
+                    <td><span style="color:Red">↑8.65%</span></td>
+                    <td><span style="color:Red">↑1.52%</span></td>
+                </tr>
             </table>
         </div>
     </div>
