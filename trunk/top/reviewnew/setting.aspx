@@ -234,7 +234,7 @@
 
     function handleStateChangeCat() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-            alert('联系方式保存成功，谢谢您的合作！');
+            alert('保存成功，谢谢您的合作，请联系客服人员验证联系方式并获取短信奖励！');
             closeArea11();
         }
     }
