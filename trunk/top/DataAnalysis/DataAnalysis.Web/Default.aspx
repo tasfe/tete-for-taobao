@@ -70,13 +70,14 @@
 
     <asp:Panel ID="Panel2" runat="server">
 
-        <div>
-        <div style="font-size:18px; font-weight:bold;">销售数据统计</div>
+        <div style="padding-top:10px;">
+        <div style="font-size:18px; font-weight:bold;">爆款宝贝排行</div>
         <hr />
         <div>
             <table width="740" cellpadding="0" cellspacing="0">
                 <tr>
                     <td width="70"></td>
+                    <td width="120"><b>图片</b></td>
                     <td width="220"><b>宝贝名称</b></td>
                     <td width="120"><b>价格</b></td>
                     <td width="120"><b>购买数量</b></td>
@@ -86,6 +87,11 @@
                     <tr>
                         <td align="center">
                             NO.<%# Container.ItemIndex + 1%>
+                        </td>
+                        <td align="center">
+                            <a href='http://item.taobao.com/item.htm?id=<%#Eval("num_iid") %>' style="color:Black" target="_blank">
+                            <img src='' width="100" height="100" border="0" />
+                            </a>
                         </td>
                         <td align="center">
                             <a href='http://item.taobao.com/item.htm?id=<%#Eval("num_iid") %>' style="color:Black" target="_blank">
