@@ -175,7 +175,7 @@ public class TaoBaoGoodsOrderService
         foreach (DataRow dr in dt.Rows)
         {
             GoodsOrderInfo info = new GoodsOrderInfo();
-            info.payment = decimal.Parse(dr["OrderTotal"].ToString());
+            info.payment = decimal.Parse(dr["OrderCount"].ToString());
             info.OrderTotal = int.Parse(dr["chour"].ToString());
             list.Add(info);
         }
