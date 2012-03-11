@@ -115,7 +115,7 @@ public partial class top_review_couponlist : System.Web.UI.Page
             qrCodeEncoder.QRCodeErrorCorrect = QRCodeEncoder.ERROR_CORRECTION.H;
 
         System.Drawing.Image image;
-        string data = "{\"url\":\"http://iphone.tetesoft.com/down/wbl/mshop.apk\"}";
+        string data = "{\"url\":\"iphone.tetesoft.com/down/wbl/mshop.apk\"}";
         image = qrCodeEncoder.Encode(data);
         data = "qrcode/test";
 
