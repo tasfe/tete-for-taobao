@@ -38,7 +38,7 @@
         <div>
             <table width="740" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td width="100"></td>
+                    <td width="70"></td>
                     <td width="120"><b>销售额</b></td>
                     <td width="120"><b>订单数</b></td>
                     <td width="120"><b>回头订单数</b></td>
@@ -48,21 +48,21 @@
                 </tr>
                 <tr>
                     <td height="25" style="font-size:16px; font-weight:bold;">今 日</td>
-                    <td align="center">12000</td>
-                    <td align="center">100</td>
-                    <td align="center">12</td>
-                    <td align="center">120</td>
-                    <td align="center">80</td>
-                    <td align="center">1.5</td>
+                    <td>12000</td>
+                    <td>100</td>
+                    <td>12</td>
+                    <td>120</td>
+                    <td>80</td>
+                    <td>1.5</td>
                 </tr>
                 <tr>
                     <td height="25" style="font-size:16px; font-weight:bold;">昨 日</td>
-                    <td align="center">11000</td>
-                    <td align="center">100</td>
-                    <td align="center">12</td>
-                    <td align="center">110</td>
-                    <td align="center">80</td>
-                    <td align="center">1.5</td>
+                    <td>11000</td>
+                    <td>100</td>
+                    <td>12</td>
+                    <td>110</td>
+                    <td>80</td>
+                    <td>1.5</td>
                 </tr>
             </table>
         </div>
@@ -93,8 +93,6 @@
                       </asp:Repeater>
                   </table>
                 </td>
-                </tr>
-                <tr>
                 <td width="50%">
                     <table width="98%">
                  <tr><td colspan="3" style="background-color:#abcabc;font-weight:bold;color:#211511">今天宝贝订购排行</td></tr>
@@ -123,6 +121,9 @@
                </table>
                 </td>
             </tr>
+            </table>
+
+       <table cellspacing="0" cellpadding="0" width="740" style="margin-top:10px;">
             <tr>
                 <td>
                     <table width="98%">
