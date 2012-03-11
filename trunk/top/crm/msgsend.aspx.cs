@@ -64,7 +64,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
     private void BindData()
     {
         //数据绑定
-        DataTable dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_CouponCrm WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY startdate DESC");
+        DataTable dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_Coupon WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY startdate DESC");
 
         if (dtCoupon.Rows.Count <= 0)
         {
@@ -96,7 +96,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
         string buynick = "";// this.txtBuyerNick.Text;
 
         //获取淘宝优惠券ID
-        sql = "SELECT guid FROM TCS_CouponCrm WHERE taobaocouponid = '" + couponid + "'";
+        sql = "SELECT guid FROM TCS_Coupon WHERE taobaocouponid = '" + couponid + "'";
         string guid = utils.ExecuteString(sql);
 
         string typ = utils.NewRequest("typ", utils.RequestType.Form);
