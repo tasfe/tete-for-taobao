@@ -151,7 +151,7 @@ public class TaoBaoAPI
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("num_iid", pid);
-        dic.Add("fields", "num_iid,title,nick,price");
+        dic.Add("fields", "num_iid,title,nick,price,pic_url");
         string text = Post("taobao.item.get", "", dic, DataType.json);
         GoodsInfo info = new GoodsInfo();
         if (!string.IsNullOrEmpty(text))
@@ -180,7 +180,7 @@ public class TaoBaoAPI
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("num_iids", pids);
-        dic.Add("fields", "num_iid,title,nick,price");
+        dic.Add("fields", "num_iid,title,nick,price,pic_url");
         string text = Post("taobao.items.list.get", "", dic, DataType.json);
         List<GoodsInfo> list = new List<GoodsInfo>();
         if (!string.IsNullOrEmpty(text))
