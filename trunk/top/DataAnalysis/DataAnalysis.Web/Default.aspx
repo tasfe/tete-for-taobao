@@ -43,7 +43,7 @@
         <div>
             <table width="740" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td width="70"></td>
+                    <td width="120"></td>
                     <td width="120"><b>销售额</b></td>
                     <td width="120"><b>订单数</b></td>
                     <td width="120"><b>回头订单数</b></td>
@@ -70,7 +70,7 @@
                     <td>1.5</td>
                 </tr>
                 <tr>
-                    <td height="25" style="font-size:16px; font-weight:bold;">最近一周走势</td>
+                    <td height="25" style="font-size:16px; font-weight:bold;">最近7天走势</td>
                     <td><span style="color:Red">↑8.33%</span></td>
                     <td><span style="color:green">↓8.33%</span></td>
                     <td><span style="color:green">↓12.22%</span></td>
