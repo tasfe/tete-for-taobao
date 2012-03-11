@@ -235,7 +235,7 @@
     function handleStateChangeCat() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             alert('联系方式保存成功，谢谢您的合作！');
-            closeArea();
+            closeArea11();
         }
     }
 </script>
@@ -246,9 +246,9 @@
 background: none repeat scroll 0% 0% rgb(153, 153, 153); opacity: 0.4; width: 100%; height: 
 
 2184px; z-index: 10002;"></div>
-<div id="div2" style="display:none; position: absolute; display:none; top: 220px; left: 
+<div id="div2" style="display:none; position: absolute; display:none; top: 50px; left: 
 
-300px;  z-index: 10003;">
+100px;  z-index: 10003;">
     <a href='javascript:closeArea11();' style="font-size:16px; font-weight:bold; color:white">关闭窗口</a> 60秒后窗口自动关闭.. <br>
     <div style="BACKGROUND-COLOR:#fff; width:350px; height:120px;  padding:10px;">
     <span style="font-size:14px; font-weight:bold;">请您填写下QQ号码和手机号码，这样如果您的优惠券快到期或者送完的时候我们会有消息提醒您及时进行调整...</span><br />
