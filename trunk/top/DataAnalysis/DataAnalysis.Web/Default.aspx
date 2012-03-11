@@ -68,9 +68,8 @@
         </div>
     </div>
 
-    <asp:Panel ID="Panel2" runat="server">
 
-        <div style="padding-top:10px;">
+    <div style="padding-top:20px;">
         <div style="font-size:18px; font-weight:bold;">爆款宝贝排行</div>
         <hr />
         <div>
@@ -111,6 +110,9 @@
         </div>
     </div>
 
+
+    
+    <asp:Panel ID="Panel2" runat="server" Visible="false">
         <table cellspacing="0" cellpadding="0" width="740" style="margin-top:10px;">
             <tr>
                 <td width="50%" style="padding:2px;">
