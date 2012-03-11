@@ -192,7 +192,81 @@
     
     showArea(<%=iscoupon %>);
     //showArea1(<%=isfree %>);
+
+    function showAreaPhone() {
+        document.getElementById("div1").style.display = "block";
+        document.getElementById("div1").style.filter = "alpha(opacity=50)";
+        document.getElementById("div2").style.display = "block";
+
+        setTimeout('closeArea11()', 60000);
+    }
+
+    function closeArea11() {
+        document.getElementById("div1").style.display = "none";
+        document.getElementById("div2").style.display = "none";
+    }
+
+    function savephone() {
+        var phone = document.getElementById("phone").value;
+        var qq = document.getElementById("qq").value;
+
+        var reg = /^0{0,1}(13[0-9]|14[0-9]|15[0-9]|18[0-9])[0-9]{8}$/;
+        if (!reg.test(phone)) {
+            alert('请输入正确的手机号码，谢谢您的合作！');
+            document.getElementById('phone').focus();
+            return false;
+        }
+
+        if (!isNaN(qq)){
+            alert('请输入正确的QQ号码，谢谢您的合作！');
+            document.getElementById('qq').focus();
+            return false;
+        }
+
+        var url = "http://haoping.7fshop.com/top/reviewnew/setting.aspx?act=savephone&phone=" + phone +"&qq=" + qq;
+
+        createxmlHttpRequest();
+        var queryString = url + "&t=" + new Date().getTime();
+        xmlHttp.open("GET", queryString);
+        xmlHttp.onreadystatechange = handleStateChangeCat;
+        xmlHttp.send(null);
+    }
+
+    function handleStateChangeCat() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            alert('联系方式保存成功，谢谢您的合作！');
+            closeArea();
+        }
+    }
 </script>
+
+
+<div id="div1" style="position: absolute; display:none; top: 0pt; left: 0pt; 
+
+background: none repeat scroll 0% 0% rgb(153, 153, 153); opacity: 0.4; width: 100%; height: 
+
+2184px; z-index: 10002;"></div>
+<div id="div2" style="display:none; position: absolute; display:none; top: 220px; left: 
+
+300px;  z-index: 10003;">
+    <a href='javascript:closeArea11();' style="font-size:16px; font-weight:bold; color:white">关闭窗口</a> 60秒后窗口自动关闭.. <br>
+    <div style="BACKGROUND-COLOR:#fff; width:350px; height:120px;  padding:10px;">
+    <span style="font-size:14px; font-weight:bold;">请您填写下QQ号码和手机号码，这样如果您的优惠券快到期或者送完的时候我们会有消息提醒您及时进行调整...</span><br />
+    <span style="font-size:13px; font-weight:bold; color:red">将以下资料补充完毕者并验证通过后，可以联系客服获得我们送出的100条短信 ：）</span><br />
+    <br />
+    请输入您的手机号码：
+    <br />
+    <input type="text" id="phone" name="phone" style="height:20px; width:150px;" /> 
+    
+    <br />
+    请输入您的QQ号码：
+    <br />
+    <input type="text" id="qq" name="qq" style="height:20px; width:150px;" />  <input type="button" onclick="savephone()" style="width:60px; height:24px;" value="马上提交" />
+
+    </div>
+</div>
+
+<script language="javascript" src="reviewnew/js_isshow.aspx" type="text/javascript"></script>
 
 </body>
 </html>

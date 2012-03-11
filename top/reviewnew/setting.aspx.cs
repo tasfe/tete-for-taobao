@@ -50,9 +50,10 @@ public partial class top_review_setting : System.Web.UI.Page
 
         string act = utils.NewRequest("act", utils.RequestType.QueryString);
         string phone = utils.NewRequest("phone", utils.RequestType.QueryString);
+        string qq = utils.NewRequest("qq", utils.RequestType.QueryString);
         if (act == "savephone")
         {
-            string newsql = "UPDATE TCS_ShopConfig SET phone = '" + phone + "' WHERE nick =  '" + nick + "'";
+            string newsql = "UPDATE TCS_ShopConfig SET phone = '" + phone + "',qq = '" + qq + "' WHERE nick =  '" + nick + "'";
             utils.ExecuteNonQuery(newsql);
             return;
         }
