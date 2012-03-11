@@ -16,13 +16,14 @@ public partial class top_review_js_isshow : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         taobaoNick = encode.Decrypt(taobaoNick);
 
-        string sql = "SELECT phone FROM TCS_ShopConfig WHERE nick = '" + taobaoNick + "'";
+        string sql = "SELECT phone,qq FROM TCS_ShopConfig WHERE nick = '" + taobaoNick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
             string phone = dt.Rows[0][0].ToString();
+            string qq = dt.Rows[0][0].ToString();
 
-            if (phone.Length == 0)
+            if (phone.Length == 0 || qq.Length == 0)
             {
                 Response.Write("setTimeout('showAreaPhone()', 3000);");
             }
