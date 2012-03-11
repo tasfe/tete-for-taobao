@@ -118,41 +118,39 @@
 
     
     <div style="padding-top:30px;">
-        <div style="font-size:18px; font-weight:bold;">爆款宝贝排行</div>
+        <div style="font-size:18px; font-weight:bold;">店铺浏览统计</div>
         <hr />
         <div>
             <table width="740" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td width="70"></td>
-                    <td width="120"><b>图片</b></td>
-                    <td width="220"><b>宝贝名称</b></td>
-                    <td width="120"><b>价格</b></td>
-                    <td width="120"><b>购买数量</b></td>
+                    <td width="120"><b>来访者IP</b></td>
+                    <td width="120"><b>来访者时间</b></td>
+                    <td width="120"><b>来访者所在地区</b></td>
+                    <td width="120"><b>来访者网络提供商</b></td>
+                    <td width="120"><b>查看访问轨迹</b></td>
                 </tr>
-                <asp:Repeater runat="server" ID="Repeater1">
-                <ItemTemplate>
-                    <tr>
-                        <td align="center">
-                            NO.<%# Container.ItemIndex + 1%>
-                        </td>
-                        <td align="center">
-                            <a href='http://item.taobao.com/item.htm?id=<%#Eval("num_iid") %>' style="color:Black" target="_blank">
-                            <img src='' width="100" height="100" border="0" />
-                            </a>
-                        </td>
-                        <td align="center">
-                            <a href='http://item.taobao.com/item.htm?id=<%#Eval("num_iid") %>' style="color:Black" target="_blank">
-                            <%#Eval("title")%>
-                            </a>
-                        </td>
-                        <td align="center">
-                            ￥<%#Eval("price")%>
-                        </td>
-                        <td align="center">
-                            <%#Eval("price")%>
-                        </td>
-                    </tr>
-                </ItemTemplate>
+                <asp:Repeater ID="Repeater1" runat="server">
+                      <ItemTemplate>
+                         <tr>
+                            <td align="center">
+                              <%#Eval("VisitIP")%>
+                            </td>
+                            <td align="center">
+                              <%#Eval("VisitTime")%>
+                            </td>
+                               <td align="center">
+                              <%#Eval("IPLocation")%>
+                            </td>
+                            <td align="center">
+                              <%#Eval("NetWork")%>
+                            </td>
+                            <td align="center">
+                               <a href='UVisitPage.aspx?visitip=<%#Eval("VisitIP")%>' style="color:Black">
+                                查看
+                               </a>   
+                            </td>
+                         </tr>
+                      </ItemTemplate>
                 </asp:Repeater>
             </table>
         </div>
@@ -285,9 +283,7 @@
             </tr>
         </table>
               
-              
-              
-           </div>
+             
     </asp:Panel>
 
 
