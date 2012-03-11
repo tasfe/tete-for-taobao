@@ -69,10 +69,14 @@ public partial class top_crm_initcustom : System.Web.UI.Page
             session = dt.Rows[0]["session"].ToString();
         }
 
+        sql = "SELECT updatedate FROM TCS_CrmConfig WHERE nick = '" + nick + "'";
+        string lastdate = utils.ExecuteString(sql);
+
+
         for (int j = 1; j < 9999; j++)
         {
             IDictionary<string, string> param = new Dictionary<string, string>();
-            param.Add("min_last_trade_time", DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd") + " 00:00:00");
+            param.Add("min_last_trade_time", lastdate);
             param.Add("max_last_trade_time", DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
             param.Add("page_size", "100");
             param.Add("current_page", j.ToString());
