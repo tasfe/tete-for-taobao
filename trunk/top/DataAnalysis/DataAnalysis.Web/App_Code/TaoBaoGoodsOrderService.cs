@@ -41,6 +41,15 @@ public class TaoBaoGoodsOrderService
             ) a 
             group by receiver_state,receiver_city";
 
+    const string SQL_SELECT_ORDERTOTAL_BYHOUR = @"SELECT Count(*) AS OrderCount,DatePart(hh,created) AS chour FROM 
+                                     (
+                                     SELECT created FROM 
+                                     TopTaoBaoGoodsOrderInfo WHERE 
+                                     seller_nick=@nick and
+                                     created BETWEEN @start AND @end 
+                                     ) a
+                                     GROUP BY DatePart(hh,created)";
+
     public IList<BackTotalInfo> GetAllBackTotalList(DateTime start, DateTime end, string nick)
     {
         SqlParameter[] param = new[]
@@ -151,6 +160,27 @@ public class TaoBaoGoodsOrderService
         }
         IList<GoodsOrderInfo> rlist = list.OrderByDescending(o => o.OrderTotal).ToList();
         return rlist;
+    }
+
+    public List<GoodsOrderInfo> GetHourOrderTotal(DateTime start, DateTime end, string nick)
+    {
+        SqlParameter[] param = new[]
+            {
+                new SqlParameter("@start", start),
+                new SqlParameter("@end",end),
+                new SqlParameter("@nick",nick)
+            };
+        List<GoodsOrderInfo> list = new List<GoodsOrderInfo>();
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_ORDERTOTAL_BYHOUR, param);
+        foreach (DataRow dr in dt.Rows)
+        {
+            GoodsOrderInfo info = new GoodsOrderInfo();
+            info.payment = decimal.Parse(dr["OrderTotal"].ToString());
+            info.OrderTotal = int.Parse(dr["chour"].ToString());
+            list.Add(info);
+        }
+
+        return list;
     }
 }
 
