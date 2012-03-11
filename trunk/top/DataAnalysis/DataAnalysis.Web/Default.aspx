@@ -28,29 +28,72 @@
     </ul>
   </div>
     <div id="main-content">
- <asp:Button ID="Btn_AddCId" runat="server" Text="一键添加统计代码" Font-Size="14" Height="50" Width="400" OnClick="Btn_AddCId_Click" />
-          <div id="title" style="font-weight:bold;font-size:16px;color:#211511">统计概括</div>
-              <table cellspacing="0" cellpadding="0" width="40%" border="1">
-                  <tr>
-                    <td colspan="2" style="background-color:#abcabc;font-weight:bold;color:#211511">
-                       今天流量
-                    </td>
-                  </tr>
-                  <asp:Repeater ID="Rpt_IpPV" runat="server">
-                     <ItemTemplate>
-                         <tr>
-                           <td align="center"><%#Eval("Key")%></td>
-                           <td align="center"><%#Eval("Value")%></td>
-                         </tr>
-                     </ItemTemplate>
-                     <FooterTemplate>
-                        <tr>
-                          <td colspan="2" align="right"><a href="HourTotal.aspx">查看详细</a></td>
-                        </tr>
-                     </FooterTemplate>
-                  </asp:Repeater>
-              </table><br />
-              <table width="80%">
+    <asp:Panel ID="Panel1" runat="server" Visible="false">
+        <asp:Button ID="Btn_AddCId" runat="server" Text="一键添加统计代码" Font-Size="14" Height="50" Width="400" OnClick="Btn_AddCId_Click" />
+    </asp:Panel>
+
+    <div>
+        <h3>销售数据统计</h3>
+        <div>
+            <table width="740" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="100"></td>
+                    <td width="120"><b>销售额</b></td>
+                    <td width="120"><b>订单数</b></td>
+                    <td width="120"><b>回头订单数</b></td>
+                    <td width="100"><b>客单价</b></td>
+                    <td width="100"><b>销售单价</b></td>
+                    <td width="100"><b>每单商品数</b></td>
+                </tr>
+                <tr>
+                    <td height="25">今日</td>
+                    <td>12000</td>
+                    <td>100</td>
+                    <td>12</td>
+                    <td>120</td>
+                    <td>80</td>
+                    <td>1.5</td>
+                </tr>
+                <tr>
+                    <td height="25">昨日</td>
+                    <td>11000</td>
+                    <td>100</td>
+                    <td>12</td>
+                    <td>110</td>
+                    <td>80</td>
+                    <td>1.5</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <asp:Panel ID="Panel2" runat="server">
+        <table cellspacing="0" cellpadding="0" width="740">
+            <tr>
+                <td width="50%">
+                    <table cellspacing="0" cellpadding="0" width="100%" border="1">
+                      <tr>
+                        <td colspan="2" style="background-color:#abcabc;font-weight:bold;color:#211511">
+                           今天流量
+                        </td>
+                      </tr>
+                      <asp:Repeater ID="Rpt_IpPV" runat="server">
+                         <ItemTemplate>
+                             <tr>
+                               <td align="center"><%#Eval("Key")%></td>
+                               <td align="center"><%#Eval("Value")%></td>
+                             </tr>
+                         </ItemTemplate>
+                         <FooterTemplate>
+                            <tr>
+                              <td colspan="2" align="right"><a href="HourTotal.aspx">查看详细</a></td>
+                            </tr>
+                         </FooterTemplate>
+                      </asp:Repeater>
+                  </table>
+                </td>
+                <td width="50%">
+                    <table width="100%">
                  <tr><td colspan="3" style="background-color:#abcabc;font-weight:bold;color:#211511">今天宝贝订购排行</td></tr>
                  <asp:Repeater runat="server" ID="Rpt_GoodsSellTop">
                     <ItemTemplate>
@@ -75,8 +118,11 @@
                      </FooterTemplate>
                  </asp:Repeater>
                </table>
-               <br />
-               <table width="80%">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table width="100%">
                   <tr>
                     <td colspan="5" style="background-color:#abcabc;font-weight:bold;color:#211511">最近在线客户</td>
                   </tr>
@@ -118,8 +164,9 @@
                       </FooterTemplate>
                   </asp:Repeater>
                </table>
-               
-               <table  width="60%">
+                </td>
+                <td>
+                <table  width="100%">
                   <tr>
                     <td colspan="5" style="background-color:#abcabc;font-weight:bold;color:#211511">店铺当天统计</td>
                     </tr>
@@ -160,7 +207,16 @@
                   </asp:Repeater>
                   
                </table>
-    </div>
+                </td>
+            </tr>
+        </table>
+              
+              
+              
+           </div>
+    </asp:Panel>
+
+
     </div>
 
 
