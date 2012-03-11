@@ -23,6 +23,8 @@ public class GoodsInfo
 
     public int Count { set; get; }
 
+    public string pic_url { set; get; }
+
     public override bool Equals(object obj)
     {
         if (obj is GoodsInfo)
