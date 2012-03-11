@@ -60,7 +60,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
         string session = utils.ExecuteString(sql);
 
         //判断如果客户订购过好评有礼的服务则调用好评的SESSION
-        sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "' AND isdel = 0";
+        sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
