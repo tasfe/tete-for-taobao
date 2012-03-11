@@ -52,7 +52,7 @@
                     <td width="100"><b>每单商品数</b></td>
                 </tr>
                 <tr>
-                    <td height="25" style="font-size:16px; font-weight:bold;">今 日</td>
+                    <td height="25" style="font-size:14px; font-weight:bold;">今 日</td>
                     <td>12000</td>
                     <td>100</td>
                     <td>12</td>
@@ -61,7 +61,7 @@
                     <td>1.5</td>
                 </tr>
                 <tr>
-                    <td height="25" style="font-size:16px; font-weight:bold;">昨 日</td>
+                    <td height="25" style="font-size:14px; font-weight:bold;">昨 日</td>
                     <td>11000</td>
                     <td>100</td>
                     <td>12</td>
@@ -70,7 +70,7 @@
                     <td>1.5</td>
                 </tr>
                 <tr>
-                    <td height="25" style="font-size:16px; font-weight:bold;">最近7天走势</td>
+                    <td height="25" style="font-size:14px; font-weight:bold;">最近7天走势</td>
                     <td><span style="color:Red">↑8.33%</span></td>
                     <td><span style="color:green">↓8.33%</span></td>
                     <td><span style="color:green">↓12.22%</span></td>
