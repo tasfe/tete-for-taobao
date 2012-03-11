@@ -33,7 +33,12 @@
     </asp:Panel>
 
     <div>
-        <div style="font-size:18px; font-weight:bold;">销售数据统计</div>
+        <div style="font-size:18px; font-weight:bold;">销售数据统计 - （今日
+        <asp:Repeater ID="Rpt_IpPV" runat="server">
+                         <ItemTemplate>
+                         <%#Eval("Key")%>-<%#Eval("Value")%>
+                         </ItemTemplate>
+        </asp:Repeater>）</div>
         <hr />
         <div>
             <table width="740" cellpadding="0" cellspacing="0">
@@ -112,6 +117,49 @@
 
 
     
+    <div style="padding-top:30px;">
+        <div style="font-size:18px; font-weight:bold;">爆款宝贝排行</div>
+        <hr />
+        <div>
+            <table width="740" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="70"></td>
+                    <td width="120"><b>图片</b></td>
+                    <td width="220"><b>宝贝名称</b></td>
+                    <td width="120"><b>价格</b></td>
+                    <td width="120"><b>购买数量</b></td>
+                </tr>
+                <asp:Repeater runat="server" ID="Repeater1">
+                <ItemTemplate>
+                    <tr>
+                        <td align="center">
+                            NO.<%# Container.ItemIndex + 1%>
+                        </td>
+                        <td align="center">
+                            <a href='http://item.taobao.com/item.htm?id=<%#Eval("num_iid") %>' style="color:Black" target="_blank">
+                            <img src='' width="100" height="100" border="0" />
+                            </a>
+                        </td>
+                        <td align="center">
+                            <a href='http://item.taobao.com/item.htm?id=<%#Eval("num_iid") %>' style="color:Black" target="_blank">
+                            <%#Eval("title")%>
+                            </a>
+                        </td>
+                        <td align="center">
+                            ￥<%#Eval("price")%>
+                        </td>
+                        <td align="center">
+                            <%#Eval("price")%>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+                </asp:Repeater>
+            </table>
+        </div>
+    </div>
+
+
+    
     <asp:Panel ID="Panel2" runat="server" Visible="false">
         <table cellspacing="0" cellpadding="0" width="740" style="margin-top:10px;">
             <tr>
@@ -122,19 +170,11 @@
                            今天流量
                         </td>
                       </tr>
-                      <asp:Repeater ID="Rpt_IpPV" runat="server">
-                         <ItemTemplate>
-                             <tr>
-                               <td align="center"><%#Eval("Key")%></td>
-                               <td align="center"><%#Eval("Value")%></td>
-                             </tr>
-                         </ItemTemplate>
-                         <FooterTemplate>
+                      
                             <tr>
                               <td colspan="2" align="right"><a href="HourTotal.aspx">查看详细</a></td>
                             </tr>
-                         </FooterTemplate>
-                      </asp:Repeater>
+
                   </table>
                 </td>
                 <td width="50%">
@@ -142,12 +182,10 @@
                  <tr><td colspan="3" style="background-color:#abcabc;font-weight:bold;color:#211511">今天宝贝订购排行</td></tr>
                  
                     
-                    <FooterTemplate>
                         <tr>
                           <td colspan="3" align="right"><a href="GoodsBuyTotal.aspx">查看更多</a></td>
                         </tr>
-                     </FooterTemplate>
-                 </asp:Repeater>
+
                </table>
                 </td>
             </tr>
