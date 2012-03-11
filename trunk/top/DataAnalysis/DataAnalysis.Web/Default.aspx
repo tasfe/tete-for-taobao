@@ -83,7 +83,7 @@
     </div>
 
 
-    <div style="padding-top:50px;">
+    <div style="padding-top:40px;">
         <div style="font-size:18px; font-weight:bold;">爆款宝贝排行</div>
         <hr />
         <div>
@@ -126,7 +126,7 @@
 
 
     
-    <div style="padding-top:50px;">
+    <div style="padding-top:40px;">
         <div style="font-size:18px; font-weight:bold;">店铺浏览统计</div>
         <hr />
         <div>
