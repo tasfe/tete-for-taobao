@@ -34,6 +34,7 @@
 
     <div>
         <h3>销售数据统计</h3>
+        <hr />
         <div>
             <table width="740" cellpadding="0" cellspacing="0">
                 <tr>
@@ -68,10 +69,10 @@
     </div>
 
     <asp:Panel ID="Panel2" runat="server">
-        <table cellspacing="0" cellpadding="0" width="740">
+        <table cellspacing="0" cellpadding="0" width="740" style="margin-top:10px;">
             <tr>
-                <td width="50%">
-                    <table cellspacing="0" cellpadding="0" width="100%" border="1">
+                <td width="50%" style="padding:2px;>
+                    <table cellspacing="0" cellpadding="0" width="98%">
                       <tr>
                         <td colspan="2" style="background-color:#abcabc;font-weight:bold;color:#211511">
                            今天流量
@@ -93,7 +94,7 @@
                   </table>
                 </td>
                 <td width="50%">
-                    <table width="100%">
+                    <table width="98%">
                  <tr><td colspan="3" style="background-color:#abcabc;font-weight:bold;color:#211511">今天宝贝订购排行</td></tr>
                  <asp:Repeater runat="server" ID="Rpt_GoodsSellTop">
                     <ItemTemplate>
@@ -122,7 +123,7 @@
             </tr>
             <tr>
                 <td>
-                    <table width="100%">
+                    <table width="98%">
                   <tr>
                     <td colspan="5" style="background-color:#abcabc;font-weight:bold;color:#211511">最近在线客户</td>
                   </tr>
@@ -166,7 +167,7 @@
                </table>
                 </td>
                 <td>
-                <table  width="100%">
+                <table width="98%">
                   <tr>
                     <td colspan="5" style="background-color:#abcabc;font-weight:bold;color:#211511">店铺当天统计</td>
                     </tr>
