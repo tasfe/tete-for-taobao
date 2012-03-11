@@ -60,7 +60,7 @@ public partial class HourOrdersTotal : BasePage
                 SeriseText += (int)thisInfo[0].payment + ",";
         }
         SeriseText = SeriseText.Substring(0, SeriseText.Length - 1);
-        SeriseText += "]}";
+        SeriseText += "]}]";
 
         DateText = DateText.Substring(0, DateText.Length - 1);
         DateText += "]";
