@@ -50,7 +50,10 @@
                 <td><%#Eval("enddate")%></td>
                 <td><%#Eval("condition")%></td>
                 <td><%#Eval("count")%> / <%#Eval("used")%></td>
-                <td><a href='couponlist.aspx?act=del&id=<%#Eval("guid")%>' onclick="return confirm('您确定要删除吗，该操作不可恢复？')">删除</a></td>
+                <td>
+                    <a href='couponlist.aspx?act=del&id=<%#Eval("guid")%>' onclick="return confirm('您确定要删除吗，该操作不可恢复？')">删除</a> | 
+                    <a href='couponlist.aspx?act=create&id=<%#Eval("guid")%>' target="_blank">生成二维码</a>
+                </td>
             </tr>
             </ItemTemplate>
         </asp:Repeater>

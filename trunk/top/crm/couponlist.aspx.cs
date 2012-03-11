@@ -13,6 +13,7 @@ using System.Text;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
+using ThoughtWorks.QRCode.Codec;
 
 public partial class top_review_couponlist : System.Web.UI.Page
 {
@@ -55,7 +56,72 @@ public partial class top_review_couponlist : System.Web.UI.Page
             return;
         }
 
+        if (act == "create")
+        {
+            CreateCode(id);
+            return;
+        }
+
         BindData();
+    }
+
+    /// <summary>
+    /// 生成二维码图片
+    /// </summary>
+    private void CreateCode(string couponid)
+    {
+        QRCodeEncoder qrCodeEncoder = new QRCodeEncoder();
+        String encoding = "Byte";
+        if (encoding == "Byte")
+        {
+            qrCodeEncoder.QRCodeEncodeMode = QRCodeEncoder.ENCODE_MODE.BYTE;
+        }
+        else if (encoding == "AlphaNumeric")
+        {
+            qrCodeEncoder.QRCodeEncodeMode = QRCodeEncoder.ENCODE_MODE.ALPHA_NUMERIC;
+        }
+        else if (encoding == "Numeric")
+        {
+            qrCodeEncoder.QRCodeEncodeMode = QRCodeEncoder.ENCODE_MODE.NUMERIC;
+        }
+        try
+        {
+            int scale = Convert.ToInt16("4");
+            qrCodeEncoder.QRCodeScale = scale;
+        }
+        catch (Exception ex)
+        {
+            //MessageBox.Show("Invalid size!");
+            return;
+        }
+        try
+        {
+            int version = Convert.ToInt16("3");
+            qrCodeEncoder.QRCodeVersion = version;
+        }
+        catch (Exception ex)
+        {
+            //MessageBox.Show("Invalid version !");
+        }
+
+        string errorCorrect = "L";
+        if (errorCorrect == "L")
+            qrCodeEncoder.QRCodeErrorCorrect = QRCodeEncoder.ERROR_CORRECTION.L;
+        else if (errorCorrect == "M")
+            qrCodeEncoder.QRCodeErrorCorrect = QRCodeEncoder.ERROR_CORRECTION.M;
+        else if (errorCorrect == "Q")
+            qrCodeEncoder.QRCodeErrorCorrect = QRCodeEncoder.ERROR_CORRECTION.Q;
+        else if (errorCorrect == "H")
+            qrCodeEncoder.QRCodeErrorCorrect = QRCodeEncoder.ERROR_CORRECTION.H;
+
+        System.Drawing.Image image;
+        String data = "{\"coupon\":\"" + couponid + "\"}";
+        image = qrCodeEncoder.Encode(data);
+        data = "qrcode/" + couponid;
+
+        image.Save(Server.MapPath(data + ".jpg"));
+
+        Response.Redirect(data + ".jpg");
     }
 
     /// <summary>
