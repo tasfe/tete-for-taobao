@@ -40,13 +40,13 @@
                 </asp:Panel>
                 <div>
                     <div style="font-size: 18px; font-weight: bold;">
-                        销售数据统计 - <span style="font-size: 14px; font-weight: normal; color: #333333">（今日
+                        销售数据统计 - <span style="font-size: 14px; font-weight: normal; color: #333333">今日
                             <asp:Repeater ID="Rpt_IpPV" runat="server">
                                 <ItemTemplate>
-                                    【<%#Eval("Key")%>-<%#Eval("Value")%>】
+                                    【<%#Eval("Key")%>-<font color='green'><%#Eval("Value")%>】</font>
                                 </ItemTemplate>
                             </asp:Repeater>
-                            )</span></div>
+                            </span></div>
                     <hr />
                     <div>
                         <table width="740" cellpadding="0" cellspacing="0">
