@@ -195,19 +195,19 @@ public partial class top_review_setting : System.Web.UI.Page
 
 
         dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_Alipay WHERE nick = '" + nick + "' AND isdel = 0");
-        couponstr = "<select name='alipayid'>";
+        string alipaystr = "<select name='alipayid'>";
         for (int i = 0; i < dtCoupon.Rows.Count; i++)
         {
             if (dtCoupon.Rows[i]["guid"].ToString().Trim() == couponid.Trim())
             {
-                couponstr += "<option value='" + dtCoupon.Rows[i]["guid"].ToString() + "' selected>" + dtCoupon.Rows[i]["name"].ToString() + " - " + dtCoupon.Rows[i]["num"].ToString() + "元</option>";
+                alipaystr += "<option value='" + dtCoupon.Rows[i]["guid"].ToString() + "' selected>" + dtCoupon.Rows[i]["name"].ToString() + " - " + dtCoupon.Rows[i]["num"].ToString() + "元</option>";
             }
             else
             {
-                couponstr += "<option value='" + dtCoupon.Rows[i]["guid"].ToString() + "'>" + dtCoupon.Rows[i]["name"].ToString() + " - " + dtCoupon.Rows[i]["num"].ToString() + "元</option>";
+                alipaystr += "<option value='" + dtCoupon.Rows[i]["guid"].ToString() + "'>" + dtCoupon.Rows[i]["name"].ToString() + " - " + dtCoupon.Rows[i]["num"].ToString() + "元</option>";
             }
         }
-        couponstr += "</select>";
+        alipaystr += "</select>";
     }
 
     public static string check(string str, string val)
