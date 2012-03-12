@@ -119,23 +119,26 @@ public partial class _Default : BasePage
 
     #region 7天走势
 
-    protected string SevenSitePay()
+    protected string SevenSitePay
     {
-        TopSiteTotalInfo linfo = (TopSiteTotalInfo)ViewState["lastweek"];
-        TopSiteTotalInfo llinfo = (TopSiteTotalInfo)ViewState["llastweek"];
-
-        if (llinfo.SiteOrderPay == 0)
+        get
         {
-            if (linfo.SiteOrderPay == 0)
-                return "0";
-            return "<font color='green'>↑" + linfo.SiteOrderPay * 100 + "%</font>";
+            TopSiteTotalInfo linfo = (TopSiteTotalInfo)ViewState["lastweek"];
+            TopSiteTotalInfo llinfo = (TopSiteTotalInfo)ViewState["llastweek"];
+
+            if (llinfo.SiteOrderPay == 0)
+            {
+                if (linfo.SiteOrderPay == 0)
+                    return "0";
+                return "<font color='green'>↑" + linfo.SiteOrderPay * 100 + "%</font>";
+            }
+
+            decimal pay = linfo.SiteOrderPay / llinfo.SiteOrderPay;
+            if (pay > 1)
+                return "<font color='green'>↑" + (pay - 1).ToString(".00") + "%</font>";
+
+            return "<font color='red'>↓" + (1 - pay).ToString(".00") + "%</font>";
         }
-
-        decimal pay = linfo.SiteOrderPay / llinfo.SiteOrderPay;
-        if (pay > 1)
-            return "<font color='green'>↑" + (pay - 1).ToString(".00") + "%</font>";
-
-        return "<font color='red'>↓" + (1 - pay).ToString(".00") + "%</font>";
     }
 
     protected string SevenSiteOrderCount()
