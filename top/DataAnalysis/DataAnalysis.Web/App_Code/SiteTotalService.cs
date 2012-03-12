@@ -59,7 +59,7 @@ public class SiteTotalService
 
     public TopSiteTotalInfo GetOrderTotalInfo(DateTime start, DateTime end, string nick)
     {
-        TopSiteTotalInfo info = null;
+        TopSiteTotalInfo info = new TopSiteTotalInfo();
         SqlParameter[] param = new[]
         {
             new SqlParameter("@start",start),
@@ -70,7 +70,6 @@ public class SiteTotalService
         DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_SUM_SITETOTAL, param);
         foreach (DataRow dr in dt.Rows)
         {
-            info = new TopSiteTotalInfo();
             info.SiteTotalDate = dr["sSiteTotalDate"].ToString();
             info.SitePVCount = int.Parse(dr["sSitePVCount"].ToString());
 
