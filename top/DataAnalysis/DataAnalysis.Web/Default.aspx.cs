@@ -102,19 +102,19 @@ public partial class _Default : BasePage
     protected string GetCusOne(object siteOrderPay, object siteBuyCustomTotal)
     {
         if (siteBuyCustomTotal.ToString() == "0") return "0";
-        return ((double)siteOrderPay / (double)siteBuyCustomTotal).ToString(".00");
+        return ((decimal)siteOrderPay / (decimal)siteBuyCustomTotal).ToString();//".00");
     }
 
     protected string GetSellOne(object siteOrderPay, object goodsCount)
     {
         if (goodsCount.ToString() == "0") return "0";
-        return ((double)siteOrderPay / (double)goodsCount).ToString(".00");
+        return ((decimal)siteOrderPay / (decimal)goodsCount).ToString();//".00");
     }
 
     protected string GetEval(object siteOrderPay, object siteBuyCustomTotal, object goodsCount)
     {
         if (siteBuyCustomTotal.ToString() == "0" || goodsCount.ToString() == "0") return "0";
-        return (((double)siteOrderPay / (double)siteBuyCustomTotal) / ((double)siteOrderPay / (double)goodsCount)).ToString(".00");
+        return (((decimal)siteOrderPay / (decimal)siteBuyCustomTotal) / ((decimal)siteOrderPay / (decimal)goodsCount)).ToString(".00");
     }
 
     #region 7天走势
@@ -131,7 +131,7 @@ public partial class _Default : BasePage
             return "<font color='green'>↑" + linfo.SiteOrderPay * 100 + "%</font>";
         }
 
-        double pay = (double)(linfo.SiteOrderPay / llinfo.SiteOrderPay);
+        decimal pay = linfo.SiteOrderPay / llinfo.SiteOrderPay;
         if (pay > 1)
             return "<font color='green'>↑" + (pay - 1).ToString(".00") + "%</font>";
 
@@ -150,7 +150,7 @@ public partial class _Default : BasePage
             return "<font color='green'>↑" + linfo.SiteOrderCount * 100 + "%</font>";
         }
 
-        double pay = linfo.SiteOrderCount / llinfo.SiteOrderCount;
+        decimal pay = linfo.SiteOrderCount / llinfo.SiteOrderCount;
         if (pay > 1)
             return "<font color='green'>↑" + (pay - 1).ToString(".00") + "%</font>";
 
@@ -169,7 +169,7 @@ public partial class _Default : BasePage
             return "<font color='green'>↑" + linfo.SiteSecondBuy * 100 + "%</font>";
         }
 
-        double pay = linfo.SiteSecondBuy / llinfo.SiteSecondBuy;
+        decimal pay = linfo.SiteSecondBuy / llinfo.SiteSecondBuy;
         if (pay > 1)
             return "<font color='green'>↑" + (pay - 1).ToString(".00") + "%</font>";
 
@@ -191,7 +191,7 @@ public partial class _Default : BasePage
             return "<font color='green'>↑" + (linfo.SiteOrderPay / linfo.SiteBuyCustomTotal) * 100 + "%</font>";
         }
 
-        double pay = (double)((linfo.SiteOrderPay / linfo.SiteBuyCustomTotal) / (llinfo.SiteOrderPay / llinfo.SiteBuyCustomTotal));
+        decimal pay = (linfo.SiteOrderPay / linfo.SiteBuyCustomTotal) / (llinfo.SiteOrderPay / llinfo.SiteBuyCustomTotal);
         if (pay > 1)
             return "<font color='green'>↑" + (pay - 1).ToString(".00") + "%</font>";
 
@@ -213,7 +213,7 @@ public partial class _Default : BasePage
             return "<font color='green'>↑" + (linfo.SiteOrderPay / linfo.GoodsCount) * 100 + "%</font>";
         }
 
-        double pay = (double)((linfo.SiteOrderPay / linfo.GoodsCount) / (llinfo.SiteOrderPay / llinfo.GoodsCount));
+        decimal pay = (linfo.SiteOrderPay / linfo.GoodsCount) / (llinfo.SiteOrderPay / llinfo.GoodsCount);
         if (pay > 1)
             return "<font color='green'>↑" + (pay - 1).ToString(".00") + "%</font>";
 
@@ -235,7 +235,7 @@ public partial class _Default : BasePage
             return "<font color='green'>↑" + (linfo.SiteOrderPay / linfo.GoodsCount) * 100 + "%</font>";
         }
 
-        double pay = (double)(((linfo.SiteOrderPay / linfo.SiteBuyCustomTotal) / (llinfo.SiteOrderPay / llinfo.SiteBuyCustomTotal)) / ((linfo.SiteOrderPay / linfo.GoodsCount) / (llinfo.SiteOrderPay / llinfo.GoodsCount)));
+        decimal pay = ((linfo.SiteOrderPay / linfo.SiteBuyCustomTotal) / (llinfo.SiteOrderPay / llinfo.SiteBuyCustomTotal)) / ((linfo.SiteOrderPay / linfo.GoodsCount) / (llinfo.SiteOrderPay / llinfo.GoodsCount));
         if (pay > 1)
             return "<font color='green'>↑" + (pay - 1).ToString(".00") + "%</font>";
 
