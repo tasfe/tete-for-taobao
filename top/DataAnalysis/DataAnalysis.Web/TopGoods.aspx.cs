@@ -85,6 +85,7 @@ public partial class TopGoods : BasePage
                 {
                     list[i].title = thislist[0].title;
                     list[i].price = thislist[0].price;
+                    list[i].pic_url = thislist[0].pic_url;
                 }
             }
 

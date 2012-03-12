@@ -43,6 +43,9 @@
                     <b>商品名</b>
                 </td>
                 <td align="center">
+                    <b>商品图片</b>
+                </td>
+                <td align="center">
                     <b>商品价格</b>
                 </td>
                 <td width="220" align="center">
@@ -57,6 +60,12 @@
                             <%#Eval("title")%>
                           </a>  
                         </td>
+                        <td align="center">
+                            <a href='http://item.taobao.com/item.htm?id=<%#Eval("num_iid") %>' style="color: Black"
+                                target="_blank">
+                                <img src='<%# Eval("pic_url") %>_80x80.jpg' border="0" alt='<%#Eval("title")%>' />
+                            </a>
+                         </td>
                          <td height="35" align="center">
                             <%#Eval("price")%>
                         </td>
