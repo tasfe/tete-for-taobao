@@ -10,4 +10,9 @@ public partial class top_reviewnew_alipayadd : System.Web.UI.Page
     {
 
     }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+
+    }
 }
