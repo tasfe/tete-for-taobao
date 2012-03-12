@@ -49,6 +49,21 @@
                 </td>
             </tr>
             <tr>
+                <td align="left" width="180" height="30">是否开启按时好评送支付宝红包：</td>
+                <td>
+                    开启<input name="isalipay" id="Radio1" type="radio" value="1" <%=check(isalipay, "1") %> onclick="showAreaAli(1)" />
+                    不开启<input name="isalipay" id="Radio2" type="radio" value="0" <%=check(isalipay, "0") %> onclick="showAreaAli(0)" />
+                </td>
+            </tr>
+            <tr id="aliArea">
+                <td align="left" height="30">选择赠送的支付宝红包：</td>
+                <td>
+                    <%=alipaystr%>
+                    <a href="alipayadd.aspx">导入支付宝红包</a>
+                    <a href="alipay.aspx">查看支付宝红包赠送记录</a>
+                </td>
+            </tr>
+            <tr>
                 <td align="left" height="30">淘宝提供物流跟踪订单最短评价时间：</td>
                 <td>
                     <input id="mindate" name="mindate" type="text" value="<%=mindate %>" size="2" /> 天 
@@ -101,6 +116,14 @@
             document.getElementById("couponArea").style.display = "none";
         }else if(str == 1){
             document.getElementById("couponArea").style.display = "block";
+        }
+    }
+
+    function showAreaAli(str) {
+        if (str == 0) { 
+            document.getElementById("aliArea").style.display = "none";
+        }else if(str == 1){
+            document.getElementById("aliArea").style.display = "block";
         }
     }
 
@@ -197,7 +220,7 @@
     }*/
     
     showArea(<%=iscoupon %>);
-    //showArea1(<%=isfree %>);
+    showAreaAli(<%=isalipay %>);
 
     function showAreaPhone() {
         document.getElementById("div1").style.display = "block";

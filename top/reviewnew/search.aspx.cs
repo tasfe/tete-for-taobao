@@ -27,4 +27,12 @@ public partial class top_reviewnew_search : System.Web.UI.Page
             Response.Write("该客户的手机号是" + dt.Rows[0]["phone"].ToString() + "，QQ号码是" + dt.Rows[0]["qq"].ToString());
         }
     }
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        if (TextBox5.Text != "xiaoman")
+        {
+            return;
+        }
+    }
 }
