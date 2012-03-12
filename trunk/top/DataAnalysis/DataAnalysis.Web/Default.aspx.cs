@@ -53,6 +53,7 @@ public partial class _Default : BasePage
                     {
                         list[i].title = thislist[0].title;
                         list[i].price = thislist[0].price;
+                        list[i].pic_url = thislist[0].pic_url;
                     }
                 }
             }
@@ -77,7 +78,7 @@ public partial class _Default : BasePage
         today.SiteNick = "今天";
 
         TopSiteTotalInfo yesterday = siteTotalDal.GetOrderTotalInfo(DateTime.Now.AddDays(-1), DateTime.Now, nickNo);
-        today.SiteNick = "昨天";
+        yesterday.SiteNick = "昨天";
 
         list.Add(today);
         list.Add(yesterday);

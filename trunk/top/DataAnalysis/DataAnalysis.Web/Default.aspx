@@ -184,19 +184,19 @@
                     <div>
                         <table width="740" cellpadding="0" cellspacing="0">
                             <tr>
-                                <td width="120">
+                                <td width="120" align="center">
                                     <b>来访者IP</b>
                                 </td>
-                                <td width="120">
+                                <td width="120" align="center">
                                     <b>来访者时间</b>
                                 </td>
-                                <td width="120">
+                                <td width="120" align="center">
                                     <b>来访者所在地区</b>
                                 </td>
-                                <td width="120">
+                                <td width="120" align="center">
                                     <b>来访者网络提供商</b>
                                 </td>
-                                <td width="120">
+                                <td width="120" align="center">
                                     <b>查看访问轨迹</b>
                                 </td>
                             </tr>
