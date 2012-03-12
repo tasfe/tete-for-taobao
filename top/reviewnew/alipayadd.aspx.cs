@@ -20,9 +20,12 @@ public partial class top_reviewnew_alipayadd : System.Web.UI.Page
         //先判断支付宝红包格式是否合法
         string guid = Guid.NewGuid().ToString();
 
-        Response.Write(fuAlipay.PostedFile.ContentType);
-        Response.End();
-        return;
+        if (fuAlipay.PostedFile.ContentType != "text/plain" && fuAlipay.PostedFile.FileName.IndexOf(".txt") == -1)
+        {
+            Response.Write("<script>alert('您上传的文件格式不正确！');history.go(-1);</script>");
+            Response.End();
+            return;
+        }
 
         string filename = Server.MapPath("alipay/" + guid + ".txt");
         fuAlipay.PostedFile.SaveAs(filename);
@@ -32,6 +35,7 @@ public partial class top_reviewnew_alipayadd : System.Web.UI.Page
         {
             Response.Write("<script>alert('您上传的文件格式不正确！');history.go(-1);</script>");
             Response.End();
+            return;
         }
 
         string[] arr = Regex.Split(content, "\r\n");
@@ -39,6 +43,7 @@ public partial class top_reviewnew_alipayadd : System.Web.UI.Page
         {
             Response.Write("<script>alert('您上传的文件格式不正确！');history.go(-1);</script>");
             Response.End();
+            return;
         }
 
         string sql = "INSERT INTO ";
