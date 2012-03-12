@@ -35,7 +35,7 @@ public partial class OrderTotal : BasePage
 
         SeriseText = "[{name:'订单量', data:[";
         string orderPay = ",{name:'订单金额',data:[";
-        string cusPay = ",{name:'客单价',data:[";
+        string cusPay = ",{name:'每单均价',data:[";
         DateText = "[";
         for (DateTime i = start; i <= end; i = i.AddDays(1))
         {
