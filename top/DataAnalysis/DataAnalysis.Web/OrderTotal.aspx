@@ -84,7 +84,8 @@
     <script type="text/javascript" src="js/highcharts.js"></script>
     <script type="text/javascript" src="js/modules/exporting.js"></script>
      <div style="text-align:center">
-     
+      <asp:Button ID="Btn_Month" runat="server" OnClick="Btn_Month_Click" Text="按月" />&nbsp;
+       <asp:Button ID="Btn_Year" runat="server" OnClick="Btn_Year_Click" Text="按年" />&nbsp;
      <asp:Button ID="Btn_3Days" runat="server" OnClick="Btn_3Days_Click" Text="最近3天" />&nbsp;
      <asp:Button ID="Btn_7Days" runat="server" OnClick="Btn_7Days_Click" Text="最近7天" />&nbsp;
      <asp:Button ID="Btn_30Days" runat="server" OnClick="Btn_30Days_Click" Text="最近30天" />&nbsp;

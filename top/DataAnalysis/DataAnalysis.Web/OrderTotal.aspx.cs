@@ -118,4 +118,94 @@ public partial class OrderTotal : BasePage
         }
         ShowChart(start, end);
     }
+    protected void Btn_Month_Click(object sender, EventArgs e)
+    {
+        SiteTotalService stDal = new SiteTotalService();
+        IList<TopSiteTotalInfo> list = stDal.GetMonthOrderTotalInfoList(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), DateTime.Now.Year.ToString());
+
+        SeriseText = "[{name:'订单量', data:[";
+        string orderPay = ",{name:'订单金额',data:[";
+        DateText = "[";
+        for (int i = 1; i <= DateTime.Now.Month; i++)
+        {
+            DateText += "'" + i + "',";
+            bool notfind = true;
+            foreach (TopSiteTotalInfo info in list)
+            {
+                if (info.SiteTotalDate.Substring(4) == "0")
+                {
+                    if (i.ToString() == info.SiteTotalDate.Substring(5))
+                    {
+                        SeriseText += info.SiteOrderCount + ",";
+                        orderPay += info.SiteOrderPay + ",";
+                        notfind = false;
+                        break;
+                    }
+
+                }
+                else
+                {
+                    if (i.ToString() == info.SiteTotalDate.Substring(4))
+                    {
+                        SeriseText += info.SiteOrderCount + ",";
+                        orderPay += info.SiteOrderPay + ",";
+                        notfind = false;
+                        break;
+                    }
+                }
+            }
+            if (notfind)
+            {
+                orderPay += "0,";
+                SeriseText += "0,";
+            }
+        }
+
+        SeriseText = SeriseText.Substring(0, SeriseText.Length - 1);
+        SeriseText += "]}";
+        orderPay = orderPay.Substring(0, orderPay.Length - 1);
+        orderPay += "]}";
+        SeriseText += orderPay + "]}]";
+
+        DateText = DateText.Substring(0, DateText.Length - 1);
+        DateText += "]";
+    }
+    protected void Btn_Year_Click(object sender, EventArgs e)
+    {
+        SiteTotalService stDal = new SiteTotalService();
+        IList<TopSiteTotalInfo> list = stDal.GetYearOrderTotalInfoList(HttpUtility.UrlDecode(Request.Cookies["nick"].Value));
+
+        SeriseText = "[{name:'订单量', data:[";
+        string orderPay = ",{name:'订单金额',data:[";
+        DateText = "[";
+        for (int i = 2012; i <= DateTime.Now.Year; i++)
+        {
+            DateText += "'" + i + "',";
+            bool notfind = true;
+            foreach (TopSiteTotalInfo info in list)
+            {
+                if (i.ToString() == info.SiteTotalDate)
+                {
+                    SeriseText += info.SiteOrderCount + ",";
+                    orderPay += info.SiteOrderPay + ",";
+                    notfind = false;
+                    break;
+                }
+            }
+            if (notfind)
+            {
+                orderPay += "0,";
+                SeriseText += "0,";
+            }
+        }
+
+        SeriseText = SeriseText.Substring(0, SeriseText.Length - 1);
+        SeriseText += "]}";
+        orderPay = orderPay.Substring(0, orderPay.Length - 1);
+        orderPay += "]}";
+        SeriseText += orderPay + "]}]";
+
+        DateText = DateText.Substring(0, DateText.Length - 1);
+        DateText += "]";
+    }
 }
