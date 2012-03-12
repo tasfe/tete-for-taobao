@@ -104,22 +104,22 @@
                                             最近7天走势
                                         </td>
                                         <td align="center">
-                                            <%=SevenSitePay() %>
+                                            <%# SevenSitePay() %>
                                         </td>
                                         <td align="center">
-                                            <%=SevenSiteOrderCount()%>
+                                            <%# SevenSiteOrderCount()%>
                                         </td>
                                         <td align="center">
-                                           <%=SevenSiteBackOrder()%>
+                                           <%# SevenSiteBackOrder()%>
                                         </td>
                                         <td align="center">
-                                           <%=SevenSiteOnePay()%>
+                                           <%# SevenSiteOnePay()%>
                                         </td>
                                         <td align="center">
-                                           <%=SevenSiteSellOnePay()%>
+                                           <%# SevenSiteSellOnePay()%>
                                         </td>
                                         <td align="center">
-                                           <%=SevenSiteSellWith()%>
+                                           <%# SevenSiteSellWith()%>
                                         </td>
                                     </tr>
                         </table>
