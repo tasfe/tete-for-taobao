@@ -50,9 +50,9 @@
                 </td>
             </tr>
             <tr>
-                <td align="left" height="30">红包截至日期：</td>
+                <td align="left" height="30">红包有效天数：</td>
                 <td>
-                    <input name="end_time" type="text" value="<%=enddate %>" /> 日期格式：2011-01-01
+                    <input name="end_time" type="text" value="7" /> 请填写您刚才创建红包时写的有效天数
                 </td>
             </tr>
             <tr>
