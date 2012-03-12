@@ -13,6 +13,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Data;
+using System.Web.Security;
 
 public partial class top_groupbuy_msgsend : System.Web.UI.Page
 {
@@ -143,6 +144,9 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
                 //Response.End();
                 utils.ExecuteNonQuery(sql);
 
+                //发送短信
+                SendCouponMsg(buynick);
+
                 //更新优惠券已经赠送数量
                 sql = "UPDATE TCS_Coupon SET used = used + 1 WHERE guid = " + couponid;
                 utils.ExecuteNonQuery(sql);
@@ -151,7 +155,176 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
         }
     }
 
+    private void SendCouponMsg(string buynick)
+    {
+        string sql = string.Empty;
+        string giftflag = string.Empty;
+        string giftcontent = string.Empty;
+        string shopname = string.Empty;
+        string phone = string.Empty;
 
+        sql = "SELECT * FROM TCS_ShopConfig WITH (NOLOCK) WHERE nick = '" + nick + "'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        if (dt.Rows.Count != 0)
+        {
+            giftflag = dt.Rows[0]["giftflag"].ToString();
+            giftcontent = dt.Rows[0]["giftcontent"].ToString();
+            shopname = dt.Rows[0]["shopname"].ToString();
+        }
+        else
+        {
+            return;
+        }
+
+        //发送短信
+        if (1 == 1) //短信测试中
+        {
+            //判断是否开启该短信发送节点
+            if (giftflag == "1")
+            {
+                //判断是否还有短信可发
+                sql = "SELECT total FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
+                string total = utils.ExecuteString(sql);
+
+                sql = "SELECT * FROM TCS_Trade WITH (NOLOCK) WHERE buynick = '" + buynick + "'";
+                dt = utils.ExecuteDataTable(sql);
+                if (dt.Rows.Count != 0)
+                {
+                    phone = dt.Rows[0]["mobile"].ToString();
+                }
+                else
+                {
+                    return;
+                }
+
+                if (int.Parse(total) > 0)
+                {
+                    //每张物流订单最多提示一次
+                    sql = "SELECT COUNT(*) FROM TCS_MsgSend WITH (NOLOCK) WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND  buynick = '" + buynick + "' AND typ = 'gift'";
+                    string giftCount = utils.ExecuteString(sql);
+
+                    if (giftCount == "0")
+                    {
+                        //开始发送
+                        string msg = GetMsg(giftcontent, shopname, buynick);
+
+                        //强行截取
+                        if (msg.Length > 66)
+                        {
+                            msg = msg.Substring(0, 66);
+                        }
+
+                        string result = SendMessage(phone, msg);
+
+                        if (result != "0")
+                        {
+                            string number = "1";
+
+                            //如果内容超过70个字则算2条
+                            if (msg.Length > 66)
+                            {
+                                number = "2";
+                            }
+
+                            //记录短信发送记录
+                            sql = "INSERT INTO TCS_MsgSend (" +
+                                                "nick, " +
+                                                "buynick, " +
+                                                "mobile, " +
+                                                "[content], " +
+                                                "yiweiid, " +
+                                                "num, " +
+                                                "typ " +
+                                            " ) VALUES ( " +
+                                                " '" + nick + "', " +
+                                                " '" + buynick + "', " +
+                                                " '" + phone + "', " +
+                                                " '" + msg.Replace("'", "''") + "', " +
+                                                " '" + result + "', " +
+                                                " '" + number + "', " +
+                                                " 'gift' " +
+                                            ") ";
+                            utils.ExecuteNonQuery(sql);
+
+                            //更新短信数量
+                            sql = "UPDATE TCS_ShopConfig SET used = used + " + number + ",total = total-" + number + " WHERE nick = '" + nick + "'";
+                            utils.ExecuteNonQuery(sql);
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private string GetMsg(string giftcontent, string shopname, string buynick)
+    {
+        string giftstr = "优惠券";
+
+        giftcontent = giftcontent.Replace("[shopname]", shopname);
+        giftcontent = giftcontent.Replace("[buynick]", buynick);
+        giftcontent = giftcontent.Replace("[gift]", giftstr);//.Replace("[buynick]", buynick);
+
+        return giftcontent;
+    }
+
+    public static string UrlEncode(string str)
+    {
+        StringBuilder sb = new StringBuilder();
+        byte[] byStr = System.Text.Encoding.Default.GetBytes(str);
+        for (int i = 0; i < byStr.Length; i++)
+        {
+            sb.Append(@"%" + Convert.ToString(byStr[i], 16));
+        }
+
+        return (sb.ToString());
+    }
+
+    public static string MD5AAA(string str)
+    {
+        return FormsAuthentication.HashPasswordForStoringInConfigFile(str, "MD5");
+    }
+
+
+    public static string SendMessage(string phone, string msg)
+    {
+        string uid = "ZXHD-SDK-0107-XNYFLX";
+        string pass = MD5AAA("WEGXBEPY").ToLower();
+
+        msg = UrlEncode(msg);
+
+        string param = "regcode=" + uid + "&pwd=" + pass + "&phone=" + phone + "&CONTENT=" + msg + "&extnum=11&level=1&schtime=null&reportflag=1&url=&smstype=0&key=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+        byte[] bs = Encoding.ASCII.GetBytes(param);
+
+        HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://sms.pica.com:8082/zqhdServer/sendSMS.jsp" + "?" + param);
+
+        req.Method = "GET";
+
+        using (HttpWebResponse myResponse = (HttpWebResponse)req.GetResponse())
+        {
+            using (StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.GetEncoding("GB2312")))
+            {
+                string content = reader.ReadToEnd();
+
+                if (content.IndexOf("<result>0</result>") == -1)
+                {
+                    //发送失败
+                    return content;
+                }
+                else
+                {
+                    //发送成功
+                    Regex reg = new Regex(@"<sid>([^<]*)</sid>", RegexOptions.IgnoreCase);
+                    MatchCollection match = reg.Matches(content);
+                    string number = "888888";// match[0].Groups[1].ToString();
+                    return number;
+                }
+            }
+        }
+    }
 
     #region TOP API
     /// <summary> 
