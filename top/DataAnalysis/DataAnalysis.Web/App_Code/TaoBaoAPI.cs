@@ -343,6 +343,9 @@ public class TaoBaoAPI
                 LogInfo.WriteLog("获取评价参数错误：" + "session:" + session + "订单：" + tid, text);
                 return null;
             }
+
+            if (text.Contains("\"total_results\":0"))
+                return null;
             Regex regex = new Regex("},\"total_results\":\\d+}}", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
             text = regex.Replace(text, "");
             text = text.Replace("{\"traderates_get_response\":{\"trade_rates\":{\"trade_rate\":", "");
@@ -356,16 +359,7 @@ public class TaoBaoAPI
                 LogInfo.WriteLog("获取评价信息转换出错", text + ex.Message);
             }
         }
-        try
-        {
-            return list[0];
-            
-        }
-        catch(Exception ex)
-        {
-            LogInfo.WriteLog("获取评价信息转换出错", text + ex.Message);
-        }
-        return null;
+        return list[0];
     }
 
     #endregion
