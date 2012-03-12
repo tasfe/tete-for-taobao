@@ -21,7 +21,7 @@ public partial class top_review_js_isshow : System.Web.UI.Page
         if (dt.Rows.Count != 0)
         {
             string phone = dt.Rows[0][0].ToString();
-            string qq = dt.Rows[0][0].ToString();
+            string qq = dt.Rows[0][1].ToString();
 
             if (phone.Length == 0 || qq.Length == 0)
             {
