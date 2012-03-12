@@ -40,14 +40,15 @@
             <tr>
                 <td align="left" width="120" height="30">包含关键字：</td>
                 <td>
-                    <textarea name="keyword" rows="8" cols="50"><%=keyword %></textarea> 
-                    <br /> 只有包含了以上关键字的才算好评，多个关键字请用回车分开
+                <span style="font-size:16px; color:Red">只有包含了以下关键字的才算好评，多个关键字请用<b>回车</b>分开</span><br /> 
+                    <textarea id="key" name="keyword" rows="8" cols="50"><%=keyword %></textarea> 
+                    
                 </td>
             </tr>
             
             <tr>
                 <td align="left" colspan="2">
-                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" />
+                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" OnClientClick="return check()" />
                     <input type="button" value="返回基本设置" onclick="window.location.href='setting.aspx'" />
                 </td>
             </tr>
@@ -55,5 +56,16 @@
     </div>
 </div>
 </form>
+
+<script>
+    function check() {
+        var value = document.getElementById("key").value;
+
+        if (value.indexOf("\r\n") == -1 && value.length > 6) { 
+            return confirm("");
+        }
+    }
+</script>
+
 </body>
 </html>
