@@ -12,7 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Collections.Generic;
 
-public partial class OrderTotal : BasePage
+public partial class OrderTotal : Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -132,7 +132,7 @@ public partial class OrderTotal : BasePage
             bool notfind = true;
             foreach (TopSiteTotalInfo info in list)
             {
-                if (info.SiteTotalDate.Substring(4) == "0")
+                if (info.SiteTotalDate.Substring(4, 1) == "0")
                 {
                     if (i.ToString() == info.SiteTotalDate.Substring(5))
                     {
@@ -165,7 +165,7 @@ public partial class OrderTotal : BasePage
         SeriseText += "]}";
         orderPay = orderPay.Substring(0, orderPay.Length - 1);
         orderPay += "]}";
-        SeriseText += orderPay + "]}]";
+        SeriseText += orderPay + "]";
 
         DateText = DateText.Substring(0, DateText.Length - 1);
         DateText += "]";
@@ -203,7 +203,7 @@ public partial class OrderTotal : BasePage
         SeriseText += "]}";
         orderPay = orderPay.Substring(0, orderPay.Length - 1);
         orderPay += "]}";
-        SeriseText += orderPay + "]}]";
+        SeriseText += orderPay + "]";
 
         DateText = DateText.Substring(0, DateText.Length - 1);
         DateText += "]";
