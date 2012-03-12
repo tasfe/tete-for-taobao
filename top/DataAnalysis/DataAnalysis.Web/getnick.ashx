@@ -50,6 +50,13 @@ public class getnick : IHttpHandler {
                 CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLNICKSESSIONINFO);
 
                 InsertGoodsOrder(DateTime.Parse(now.AddDays(-7).ToShortDateString()), now, session, nick);
+                //添加统计数据
+                SiteTotalService taoDal = new SiteTotalService();
+                for (DateTime i = DateTime.Parse(now.AddDays(-7).ToShortDateString()); i <= now; i = i.AddDays(1))
+                {
+                    UpdateSiteTotal(nick, i, taoDal);
+                }
+                
             }
             else
             {
@@ -66,6 +73,13 @@ public class getnick : IHttpHandler {
 
                     //二次订购
                     InsertGoodsOrder(start, now, session, nick);
+
+                    //添加统计数据
+                    SiteTotalService taoDal = new SiteTotalService();
+                    for (DateTime i = DateTime.Parse(start.ToShortDateString()); i <= now; i = i.AddDays(1))
+                    {
+                        UpdateSiteTotal(nick, i, taoDal);
+                    }
                 }
             }
         }
@@ -115,7 +129,64 @@ public class getnick : IHttpHandler {
             }
         }
     }
- 
+
+    public void UpdateSiteTotal(string nick, DateTime now, SiteTotalService taoDal)
+    {
+
+        //所有有订单的用户
+        TopSiteTotalInfo stinfo = taoDal.GetOrderTotalPay(DateTime.Parse(now.ToShortDateString()), DateTime.Parse(now.AddDays(1).ToShortDateString()), nick);
+        //所有表名(添加过统计代码到网页的)
+        List<string> tableList = taoDal.GetTableName();
+        string tablename = GetTableName(nick);
+        List<string> mytablelist = tableList.Where(o => o == tablename).ToList();
+
+        TopSiteTotalInfo addup = new TopSiteTotalInfo();
+        addup.SiteNick = nick;
+        addup.SiteTotalDate = now.ToString("yyyyMMdd");
+        //有添加统计代码
+        if (mytablelist.Count > 0)
+        {
+            //有订单
+            if (stinfo != null)
+            {
+                addup.SiteOrderCount = stinfo.SiteOrderCount;
+                addup.SiteOrderPay = stinfo.SiteOrderPay;
+                addup.PostFee = stinfo.PostFee;
+                addup.SiteBuyCustomTotal = stinfo.SiteBuyCustomTotal;
+                addup.SiteSecondBuy = taoDal.GetSecondBuyTotal(DateTime.Parse(now.ToShortDateString()), DateTime.Parse(now.AddDays(1).ToShortDateString()), nick);
+            }
+            TopSiteTotalInfo puvinfo = taoDal.GetPvUvTotal(DateTime.Parse(now.ToShortDateString()), DateTime.Parse(now.AddDays(1).ToShortDateString()), tablename);
+            addup.SiteUVCount = puvinfo.SiteUVCount;
+            addup.SitePVCount = puvinfo.SitePVCount;
+
+            addup.SiteUVBack = taoDal.GetBackTotal(DateTime.Parse(now.ToShortDateString()), DateTime.Parse(now.AddDays(1).ToShortDateString()), tablename);
+        }
+        else
+        {
+            //有订单
+            if (stinfo != null)
+            {
+                addup.SiteOrderCount = stinfo.SiteOrderCount;
+                addup.SiteOrderPay = stinfo.SiteOrderPay;
+                addup.PostFee = stinfo.PostFee;
+                addup.SiteBuyCustomTotal = stinfo.SiteBuyCustomTotal;
+                addup.SiteSecondBuy = taoDal.GetSecondBuyTotal(DateTime.Parse(now.ToShortDateString()), DateTime.Parse(now.AddDays(1).ToShortDateString()), nick);
+            }
+        }
+
+        IList<string> tidList = taoDal.GetOrderIds(DateTime.Parse(now.ToShortDateString()), DateTime.Parse(now.AddDays(1).ToShortDateString()), nick);
+        if (tidList.Count > 0)
+            addup.GoodsCount = taoDal.GetGoodsCount(tidList);
+
+        taoDal.AddOrUp(addup);
+
+    }
+
+    private string GetTableName(string nick)
+    {
+        return "TopVisitInfo_" + DataHelper.Encrypt(nick);
+    }
+    
     public bool IsReusable {
         get {
             return false;
