@@ -252,7 +252,10 @@ background: none repeat scroll 0% 0% rgb(153, 153, 153); opacity: 0.4; width: 10
     <a href='javascript:closeArea11();' style="font-size:16px; font-weight:bold; color:white">关闭窗口</a> 60秒后窗口自动关闭.. <br>
     <div style="BACKGROUND-COLOR:#fff; width:350px; height:120px;  padding:10px;">
     <span style="font-size:14px; font-weight:bold;">请您填写下QQ号码和手机号码，这样如果您的优惠券快到期或者送完的时候我们会有消息提醒您及时进行调整...</span><br />
+    <%if (versionpub == "2" || versionpub == "3")
+      { %>
     <span style="font-size:13px; font-weight:bold; color:red">将以下资料补充完毕者并验证通过后，可以联系客服获得我们送出的100条短信 ：）</span><br />
+    <%} %>
     请输入您的手机号码：
     <br />
     <input type="text" id="phone" name="phone" style="height:20px; width:150px;" /> 

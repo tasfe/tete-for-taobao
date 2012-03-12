@@ -30,6 +30,7 @@ public partial class top_review_setting : System.Web.UI.Page
     public string iskefu = string.Empty;
     public string iscancelauto = string.Empty;
     public string iskeyword = string.Empty;
+    public string versionpub = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -63,7 +64,8 @@ public partial class top_review_setting : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            string flag = dt.Rows[0]["session"].ToString();
+            string flag = dt.Rows[0]["version"].ToString();
+            versionpub = flag;
             if (flag == "0")
             {
                 Response.Redirect("xufei.aspx");
