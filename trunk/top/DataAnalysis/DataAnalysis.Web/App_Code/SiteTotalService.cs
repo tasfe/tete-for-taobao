@@ -71,17 +71,17 @@ public class SiteTotalService
         foreach (DataRow dr in dt.Rows)
         {
             //info.SiteTotalDate = dr["sSiteTotalDate"].ToString();
-            info.SitePVCount = int.Parse(dr["sSitePVCount"].ToString());
+            info.SitePVCount = dr["sSitePVCount"] == DBNull.Value ? 0 : int.Parse(dr["sSitePVCount"].ToString());
 
-            info.SiteUVCount = int.Parse(dr["sSiteUVCount"].ToString());
-            info.SiteOrderCount = int.Parse(dr["sSiteOrderCount"].ToString());
-            info.SiteOrderPay = decimal.Parse(dr["sSiteOrderPay"].ToString());
-            info.SiteUVBack = int.Parse(dr["sSiteUVBack"].ToString());
+            info.SiteUVCount = dr["sSiteUVCount"] == DBNull.Value ? 0 : int.Parse(dr["sSiteUVCount"].ToString());
+            info.SiteOrderCount = dr["sSiteOrderCount"] == DBNull.Value ? 0 : int.Parse(dr["sSiteOrderCount"].ToString());
+            info.SiteOrderPay = dr["sSiteOrderPay"] == DBNull.Value ? 0 : decimal.Parse(dr["sSiteOrderPay"].ToString());
+            info.SiteUVBack = dr["sSiteUVBack"] == DBNull.Value ? 0 : int.Parse(dr["sSiteUVBack"].ToString());
 
-            info.SiteSecondBuy = int.Parse(dr["sSiteSecondBuy"].ToString());
-            info.PostFee = decimal.Parse(dr["sSitePostFee"].ToString());
-            info.GoodsCount = int.Parse(dr["sSiteGoodsCount"].ToString());
-            info.SiteBuyCustomTotal = int.Parse(dr["sSiteBuyCustomTotal"].ToString());
+            info.SiteSecondBuy = dr["sSiteSecondBuy"] == DBNull.Value ? 0 : int.Parse(dr["sSiteSecondBuy"].ToString());
+            info.PostFee = dr["sSitePostFee"] == DBNull.Value ? 0 : decimal.Parse(dr["sSitePostFee"].ToString());
+            info.GoodsCount = dr["sSiteGoodsCount"] == DBNull.Value ? 0 : int.Parse(dr["sSiteGoodsCount"].ToString());
+            info.SiteBuyCustomTotal = dr["sSiteBuyCustomTotal"] == DBNull.Value ? 0 : int.Parse(dr["sSiteBuyCustomTotal"].ToString());
         }
         return info;
     }
