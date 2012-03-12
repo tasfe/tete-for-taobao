@@ -40,11 +40,11 @@
             <tr>
                 <td align="left" height="30">红包金额：</td>
                 <td>
-                    <input name="num" type="text" value="1" />
+                    <input name="num" type="text" value="1" size="4" />
                 </td>
             </tr>
             <tr>
-                <td align="left" height="30">红包：</td>
+                <td align="left" height="30">红包TXT文件：</td>
                 <td>
                     <asp:FileUpload ID="fuAlipay" runat="server" /> 请上传支付宝生成的红包TXT文件，如：1331522192414.txt
                 </td>
@@ -52,13 +52,13 @@
             <tr>
                 <td align="left" height="30">红包有效天数：</td>
                 <td>
-                    <input name="end_time" type="text" value="7" /> 请填写您刚才创建红包时写的有效天数
+                    <input name="end_time" type="text" value="7" size="4" /> 请填写您刚才创建红包时写的有效天数
                 </td>
             </tr>
             <tr>
                 <td align="left" height="30">总数量：</td>
                 <td>
-                    <input name="total" type="text" value="2000" />
+                    <input name="total" type="text" value="2000" size="8" />
                 </td>
             </tr>
             <tr>
@@ -69,7 +69,7 @@
                         <option value="4">4</option>
                         <option value="3">3</option>
                         <option value="2">2</option>
-                        <option value="1">1</option>
+                        <option value="1" selected>1</option>
                     </select>
                 </td>
             </tr>
