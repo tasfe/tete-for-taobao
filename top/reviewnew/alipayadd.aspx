@@ -32,15 +32,9 @@
 
         <table width="100%">
             <tr>
-                <td align="left" width="120">红包名称：</td>
-                <td>
-                    <input name="name" type="text" />
-                </td>
-            </tr>
-            <tr>
                 <td align="left" height="30">红包金额：</td>
                 <td>
-                    <input name="num" type="text" value="1" size="4" />
+                    <input name="num" type="text" value="1" size="2" />
                 </td>
             </tr>
             <tr>
@@ -52,13 +46,7 @@
             <tr>
                 <td align="left" height="30">红包有效天数：</td>
                 <td>
-                    <input name="end_time" type="text" value="7" size="4" /> 请填写您刚才创建红包时写的有效天数
-                </td>
-            </tr>
-            <tr>
-                <td align="left" height="30">总数量：</td>
-                <td>
-                    <input name="total" type="text" value="2000" size="8" />
+                    <input name="end_time" type="text" value="7" size="2" /> 请填写您刚才创建红包时写的有效天数
                 </td>
             </tr>
             <tr>
@@ -75,7 +63,7 @@
             </tr>
             <tr>
                 <td align="left" height="30" colspan="2">
-                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="创建优惠券" />
+                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="创建支付宝红包" />
                 </td>
             </tr>
         </table>
