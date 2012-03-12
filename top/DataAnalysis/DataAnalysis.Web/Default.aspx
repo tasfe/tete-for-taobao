@@ -88,13 +88,13 @@
                                            <%# Eval("SiteSecondBuy")%>
                                         </td>
                                         <td align="center">
-                                            <%# GetCusOne(Eval("SiteOrderPay"), Eval("SiteBuyCustomTotal")) %>
+                                            <%# GetCusOne(Eval("SiteOrderPay").ToString(), Eval("SiteBuyCustomTotal").ToString()) %>
                                         </td>
                                         <td align="center">
-                                            <%# GetSellOne(Eval("SiteOrderPay"), Eval("GoodsCount"))%>
+                                            <%# GetSellOne(Eval("SiteOrderPay").ToString(), Eval("GoodsCount").ToString())%>
                                         </td>
                                         <td align="center">
-                                            <%# GetEval(Eval("SiteOrderPay"), Eval("SiteBuyCustomTotal"), Eval("GoodsCount"))%>
+                                            <%# GetEval(Eval("SiteOrderPay").ToString(), Eval("SiteBuyCustomTotal").ToString(), Eval("GoodsCount").ToString())%>
                                         </td>
                                     </tr>
                                 </ItemTemplate>
@@ -105,8 +105,8 @@
                                         </td>
                                         <td align="center">
                                             <%=SevenSitePay() %>
-                                        </td align="center">
-                                        <td>
+                                        </td>
+                                        <td align="center">
                                             <%=SevenSiteOrderCount()%>
                                         </td>
                                         <td align="center">
@@ -114,10 +114,10 @@
                                         </td>
                                         <td align="center">
                                            <%=SevenSiteOnePay()%>
-                                        </td align="center">
+                                        </td>
                                         <td align="center">
                                            <%=SevenSiteSellOnePay()%>
-                                        </td align="center">
+                                        </td>
                                         <td align="center">
                                            <%=SevenSiteSellWith()%>
                                         </td>

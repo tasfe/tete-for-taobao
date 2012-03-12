@@ -99,22 +99,22 @@ public partial class _Default : BasePage
         }
     }
 
-    protected string GetCusOne(object siteOrderPay, object siteBuyCustomTotal)
+    protected string GetCusOne(string siteOrderPay, string siteBuyCustomTotal)
     {
         if (siteBuyCustomTotal.ToString() == "0") return "0";
-        return ((decimal)siteOrderPay / (decimal)siteBuyCustomTotal).ToString();//".00");
+        return (decimal.Parse(siteOrderPay) / decimal.Parse(siteBuyCustomTotal)).ToString(".00");
     }
 
-    protected string GetSellOne(object siteOrderPay, object goodsCount)
+    protected string GetSellOne(string siteOrderPay, string goodsCount)
     {
         if (goodsCount.ToString() == "0") return "0";
-        return ((decimal)siteOrderPay / (decimal)goodsCount).ToString();//".00");
+        return (decimal.Parse(siteOrderPay) / decimal.Parse(goodsCount)).ToString(".00");
     }
 
-    protected string GetEval(object siteOrderPay, object siteBuyCustomTotal, object goodsCount)
+    protected string GetEval(string siteOrderPay, string siteBuyCustomTotal, string goodsCount)
     {
         if (siteBuyCustomTotal.ToString() == "0" || goodsCount.ToString() == "0") return "0";
-        return (((decimal)siteOrderPay / (decimal)siteBuyCustomTotal) / ((decimal)siteOrderPay / (decimal)goodsCount)).ToString(".00");
+        return ((decimal.Parse(siteOrderPay) / decimal.Parse(siteBuyCustomTotal)) / (decimal.Parse(siteOrderPay) / decimal.Parse(goodsCount))).ToString(".00");
     }
 
     #region 7天走势
