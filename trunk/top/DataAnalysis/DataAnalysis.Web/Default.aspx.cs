@@ -64,7 +64,7 @@ public partial class _Default : BasePage
             SiteTotalService siteTotalDal = new SiteTotalService();
             BindRpt_OrderTotal(siteTotalDal);
             TopSiteTotalInfo lastweek = siteTotalDal.GetOrderTotalInfo(DateTime.Now.AddDays(-7), DateTime.Now, nickNo);
-            TopSiteTotalInfo llastweek = siteTotalDal.GetOrderTotalInfo(DateTime.Now.AddDays(-14), DateTime.Now.AddDays(-7), nickNo);
+            TopSiteTotalInfo llastweek = siteTotalDal.GetOrderTotalInfo(DateTime.Now.AddDays(-14), DateTime.Now.AddDays(-8), nickNo);
             ViewState["lastweek"] = lastweek;
             ViewState["llastweek"] = llastweek;
         }
@@ -74,10 +74,10 @@ public partial class _Default : BasePage
     {
         string nickNo = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         List<TopSiteTotalInfo> list = new List<TopSiteTotalInfo>();
-        TopSiteTotalInfo today = siteTotalDal.GetOrderTotalInfo(DateTime.Now, DateTime.Now.AddDays(1), nickNo);
+        TopSiteTotalInfo today = siteTotalDal.GetOrderTotalInfo(DateTime.Now, DateTime.Now, nickNo);
         today.SiteNick = "今天";
 
-        TopSiteTotalInfo yesterday = siteTotalDal.GetOrderTotalInfo(DateTime.Now.AddDays(-1), DateTime.Now, nickNo);
+        TopSiteTotalInfo yesterday = siteTotalDal.GetOrderTotalInfo(DateTime.Now.AddDays(-1), DateTime.Now.AddDays(-1), nickNo);
         yesterday.SiteNick = "昨天";
 
         list.Add(today);
