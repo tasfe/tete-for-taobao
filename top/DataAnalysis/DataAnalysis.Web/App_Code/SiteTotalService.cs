@@ -70,7 +70,7 @@ public class SiteTotalService
         DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_SUM_SITETOTAL, param);
         foreach (DataRow dr in dt.Rows)
         {
-            info.SiteTotalDate = dr["sSiteTotalDate"].ToString();
+            //info.SiteTotalDate = dr["sSiteTotalDate"].ToString();
             info.SitePVCount = int.Parse(dr["sSitePVCount"].ToString());
 
             info.SiteUVCount = int.Parse(dr["sSiteUVCount"].ToString());
