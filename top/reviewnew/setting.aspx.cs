@@ -274,6 +274,8 @@ public partial class top_review_setting : System.Web.UI.Page
                         "iscancelauto, " +
                         "iskeyword, " +
                         "sessionold, " +
+                        "isalipay, " +
+                        "alipayid, " +
                         "issendmsg " +
                     " ) VALUES ( " +
                         " '" + nick + "', " +
@@ -285,6 +287,8 @@ public partial class top_review_setting : System.Web.UI.Page
                         " '" + utils.NewRequest("iscancelauto", utils.RequestType.Form) + "', " +
                         " '" + utils.NewRequest("iskeyword", utils.RequestType.Form) + "', " +
                         " '" + session + "', " +
+                        " '" + utils.NewRequest("isalipay", utils.RequestType.Form) + "', " +
+                        " '" + utils.NewRequest("alipayid", utils.RequestType.Form) + "', " +
                         " '" + utils.NewRequest("issendmsg", utils.RequestType.Form) + "' " +
                     ") ";
             utils.ExecuteNonQuery(sql);
@@ -300,6 +304,8 @@ public partial class top_review_setting : System.Web.UI.Page
                         "updatedate = GETDATE(), " +
                         "iscancelauto = '" + utils.NewRequest("iscancelauto", utils.RequestType.Form) + "', " +
                         "iskeyword = '" + utils.NewRequest("iskeyword", utils.RequestType.Form) + "', " +
+                        "isalipay = '" + utils.NewRequest("isalipay", utils.RequestType.Form) + "', " +
+                        "alipayid = '" + utils.NewRequest("alipayid", utils.RequestType.Form) + "', " +
                         "sessionold = '" + session + "', " +
                         "issendmsg = '" + utils.NewRequest("issendmsg", utils.RequestType.Form) + "' " +
                     "WHERE nick = '" + nick + "'";
