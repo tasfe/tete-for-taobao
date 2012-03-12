@@ -17,7 +17,11 @@ using System.Data.SqlClient;
 /// </summary>
 public class SiteTotalService
 {
-    const string SQL_SELECT_ORDER_BYDAY = "SELECT SiteTotalDate,SitePVCount,SiteUVCount,SiteOrderCount,SiteOrderPay,SiteUVBack FROM TopSiteTotal WHERE SiteNick=@SiteNick AND SiteTotalDate BETWEEN @start AND @end";
+    const string SQL_SELECT_ORDER_BYDAY = "SELECT SiteTotalDate,SitePVCount,SiteUVCount,SiteOrderCount,SiteOrderPay,SiteUVBack,SiteGoodsCount,SitePostFee,SiteSecondBuy,SiteBuyCustomTotal FROM TopSiteTotal WHERE SiteNick=@SiteNick AND SiteTotalDate BETWEEN @start AND @end";
+
+    const string SQL_SELECT_SUM_SITETOTAL = @"SELECT sum(SitePVCount) AS sSitePVCount,sum(SiteUVCount) as sSiteUVCount,sum(SiteOrderCount) as sSiteOrderCount,sum(SiteOrderPay) as sSiteOrderPay,sum(SiteUVBack) as sSiteUVBack,sum(SiteGoodsCount) as sSiteGoodsCount,sum(SitePostFee) as sSitePostFee,sum(SiteSecondBuy) as sSiteSecondBuy,sum(SiteBuyCustomTotal) as sSiteBuyCustomTotal FROM 
+  (select * from TopSiteTotal where SiteNick=@nick AND 
+  SiteTotalDate BETWEEN @start AND @end) a";
 
     public IList<TopSiteTotalInfo> GetNickOrderTotal(DateTime start,DateTime end, string nick)
     {
@@ -41,32 +45,44 @@ public class SiteTotalService
             info.SiteOrderCount = int.Parse(dr["SiteOrderCount"].ToString());
             info.SiteOrderPay = decimal.Parse(dr["SiteOrderPay"].ToString());
             info.SiteUVBack = int.Parse(dr["SiteUVBack"].ToString());
+            
+            info.SiteSecondBuy = int.Parse(dr["SiteSecondBuy"].ToString());
+            info.PostFee =decimal.Parse(dr["SitePostFee"].ToString());
+            info.GoodsCount = int.Parse(dr["SiteGoodsCount"].ToString());
+            info.SiteBuyCustomTotal = int.Parse(dr["SiteBuyCustomTotal"].ToString());
+
             list.Add(info);
         }
 
         return list;
     }
 
-    public TopSiteTotalInfo GetOrderTotalInfo(string date, string nick)
+    public TopSiteTotalInfo GetOrderTotalInfo(DateTime start, DateTime end, string nick)
     {
         TopSiteTotalInfo info = null;
         SqlParameter[] param = new[]
         {
-            new SqlParameter("@start",date),
-            new SqlParameter("@SiteNick",nick)
+            new SqlParameter("@start",start),
+            new SqlParameter("@start",end),
+            new SqlParameter("@nick",nick)
         };
-        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_ORDER_BYDAY, param);
 
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_SUM_SITETOTAL, param);
         foreach (DataRow dr in dt.Rows)
         {
             info = new TopSiteTotalInfo();
-            info.SiteTotalDate = dr["SiteTotalDate"].ToString();
-            info.SitePVCount = int.Parse(dr["SitePVCount"].ToString());
+            info.SiteTotalDate = dr["sSiteTotalDate"].ToString();
+            info.SitePVCount = int.Parse(dr["sSitePVCount"].ToString());
 
-            info.SiteUVCount = int.Parse(dr["SiteUVCount"].ToString());
-            info.SiteOrderCount = int.Parse(dr["SiteOrderCount"].ToString());
-            info.SiteOrderPay = decimal.Parse(dr["SiteOrderPay"].ToString());
-            info.SiteUVBack = int.Parse(dr["SiteUVBack"].ToString());
+            info.SiteUVCount = int.Parse(dr["sSiteUVCount"].ToString());
+            info.SiteOrderCount = int.Parse(dr["sSiteOrderCount"].ToString());
+            info.SiteOrderPay = decimal.Parse(dr["sSiteOrderPay"].ToString());
+            info.SiteUVBack = int.Parse(dr["sSiteUVBack"].ToString());
+
+            info.SiteSecondBuy = int.Parse(dr["sSiteSecondBuy"].ToString());
+            info.PostFee = decimal.Parse(dr["sSitePostFee"].ToString());
+            info.GoodsCount = int.Parse(dr["sSiteGoodsCount"].ToString());
+            info.SiteBuyCustomTotal = int.Parse(dr["sSiteBuyCustomTotal"].ToString());
         }
         return info;
     }
