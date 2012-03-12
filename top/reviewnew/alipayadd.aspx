@@ -32,6 +32,12 @@
 
         <table width="100%">
             <tr>
+                <td align="left" height="30">红包名称：</td>
+                <td>
+                    <input name="name" type="text" value="支付宝红包" />
+                </td>
+            </tr>
+            <tr>
                 <td align="left" height="30">红包金额：</td>
                 <td>
                     <input name="num" type="text" value="1" size="2" />
