@@ -61,8 +61,9 @@
     function check() {
         var value = document.getElementById("key").value;
 
-        if (value.indexOf("\r\n") == -1 && value.length > 6) { 
-            return confirm("您确认多个关键字之间是用回车分开的吗，否则可能会无法正常判定好评哦");
+        if (value.indexOf("\r\n") == -1 && value.length > 6) {
+            alert("请用回车将您设置的多个关键字分开，否则将无法正常判定好评！");
+            return false;
         }
     }
 </script>
