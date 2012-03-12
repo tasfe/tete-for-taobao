@@ -30,7 +30,7 @@
     如何使用支付宝的红包功能 <a href='http://seller.taobao.com/fuwu/service.htm?service_id=6831' target="_blank">查看教程</a>
 </div>
 
-        <table width="100%">
+        <table width="700">
             <tr>
                 <td align="left" height="30">红包名称：</td>
                 <td>
