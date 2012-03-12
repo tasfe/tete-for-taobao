@@ -45,13 +45,13 @@ public class getnick : IHttpHandler {
                 new NickSessionService().InsertSerssion(info);
                 CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLNICKSESSIONINFO);
 
-                InsertGoodsOrder(now.AddDays(-7), now, session, nick);
+                InsertGoodsOrder(DateTime.Parse(now.AddDays(-7).ToShortDateString()), now, session, nick);
             }
             else
             {
                 if (!list[0].NickState)
                 {
-                    DateTime start = now.AddDays(-15);
+                    DateTime start = DateTime.Parse(now.AddDays(-15).ToShortDateString());
                     if (now.AddDays(-15) < list[0].LastGetOrderTime)
                         start = list[0].LastGetOrderTime;
 
