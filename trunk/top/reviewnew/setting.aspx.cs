@@ -31,6 +31,9 @@ public partial class top_review_setting : System.Web.UI.Page
     public string iscancelauto = string.Empty;
     public string iskeyword = string.Empty;
     public string versionpub = string.Empty;
+    public string isalipay = string.Empty;
+    public string alipaystr = string.Empty;
+    public string alipayid = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -131,6 +134,8 @@ public partial class top_review_setting : System.Web.UI.Page
             iscancelauto = dt.Rows[0]["iscancelauto"].ToString();
             iskeyword = dt.Rows[0]["iskeyword"].ToString();
             couponid = dt.Rows[0]["couponid"].ToString();
+            isalipay = dt.Rows[0]["isalipay"].ToString();
+            alipayid = dt.Rows[0]["alipayid"].ToString();
         }
         else
         { 
@@ -141,6 +146,7 @@ public partial class top_review_setting : System.Web.UI.Page
             issendmsg = "1";
             iscancelauto = "1";
             iskeyword = "0";
+            isalipay = "0";
             
             ////默认B店开启审核
             //string typ = utils.ExecuteString("SELECT typ FROM TCS_ShopConfig WHERE nick = '" + nick + "'");
@@ -173,6 +179,23 @@ public partial class top_review_setting : System.Web.UI.Page
         //数据绑定
         DataTable dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_Coupon WHERE nick = '" + nick + "' AND isdel = 0");
         couponstr = "<select name='couponid'>";
+        for (int i = 0; i < dtCoupon.Rows.Count; i++)
+        {
+            if (dtCoupon.Rows[i]["guid"].ToString().Trim() == couponid.Trim())
+            {
+                couponstr += "<option value='" + dtCoupon.Rows[i]["guid"].ToString() + "' selected>" + dtCoupon.Rows[i]["name"].ToString() + " - " + dtCoupon.Rows[i]["num"].ToString() + "元</option>";
+            }
+            else
+            {
+                couponstr += "<option value='" + dtCoupon.Rows[i]["guid"].ToString() + "'>" + dtCoupon.Rows[i]["name"].ToString() + " - " + dtCoupon.Rows[i]["num"].ToString() + "元</option>";
+            }
+        }
+        couponstr += "</select>";
+
+
+
+        dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_Alipay WHERE nick = '" + nick + "' AND isdel = 0");
+        couponstr = "<select name='alipayid'>";
         for (int i = 0; i < dtCoupon.Rows.Count; i++)
         {
             if (dtCoupon.Rows[i]["guid"].ToString().Trim() == couponid.Trim())

@@ -12,8 +12,13 @@
         
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
         <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
-        <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Button" />
+        <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="查询客户详细资料" />
+        <hr />
         
+        <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox5" runat="server"></asp:TextBox>
+        <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Text="给客户增加短信" />
     </div>
     </form>
 </body>
