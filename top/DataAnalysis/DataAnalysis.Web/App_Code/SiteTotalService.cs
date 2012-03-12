@@ -24,15 +24,15 @@ public class SiteTotalService
   SiteTotalDate BETWEEN @start AND @end) a";
 
     const string SQL_SELECT_OTOTAL_MONTH = @"select sum(SitePVCount) as sSitePVCount,sum(SiteUVCount) as sSiteUVCount,sum(SiteOrderCount) as sSiteOrderCount,sum(SiteGoodsCount) as sSiteGoodsCount,
-            sum(SiteOrderPay) as aSiteOrderPay,sum(SitePostFee) as sSitePostFee,sum(SiteUVBack) as sSiteUVBack,sum(SiteSecondBuy) as sSiteSecondBuy,sum(SiteBuyCustomTotal) as sSiteBuyCustomTotal,
+            sum(SiteOrderPay) as sSiteOrderPay,sum(SitePostFee) as sSitePostFee,sum(SiteUVBack) as sSiteUVBack,sum(SiteSecondBuy) as sSiteSecondBuy,sum(SiteBuyCustomTotal) as sSiteBuyCustomTotal,
             substring(SiteTotalDate,0,7) as stdate from
             (
             select * from TopSiteTotal 
             where sitenick=@sitenick and substring(SiteTotalDate,0,5)=@year
             ) a group by substring(SiteTotalDate,0,7)";
 
-                const string SQL_SELECT_OTOTAL_YEAR = @"select sum(SitePVCount),sum(SiteUVCount),sum(SiteOrderCount),sum(SiteGoodsCount),
-            sum(SiteOrderPay),sum(SitePostFee),sum(SiteUVBack),sum(SiteSecondBuy),sum(SiteBuyCustomTotal),
+    const string SQL_SELECT_OTOTAL_YEAR = @"select sum(SitePVCount) as sSitePVCount,sum(SiteUVCount) as sSiteUVCount,sum(SiteOrderCount) as sSiteOrderCount,sum(SiteGoodsCount) as sSiteGoodsCount,
+            sum(SiteOrderPay) as sSiteOrderPay,sum(SitePostFee) as sSitePostFee,sum(SiteUVBack) as sSiteUVBack,sum(SiteSecondBuy) as sSiteSecondBuy,sum(SiteBuyCustomTotal) as sSiteBuyCustomTotal,
             substring(SiteTotalDate,0,5) as stdate from
             (
             select * from dbo.TopSiteTotal 
