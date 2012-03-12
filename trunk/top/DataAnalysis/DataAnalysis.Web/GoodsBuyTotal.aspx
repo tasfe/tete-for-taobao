@@ -35,7 +35,7 @@
                     </li>
                 </ul>
             </div>
-            <div id="main-content">
+            <div id="main-content" style="height:1000px;overflow:scroll">
                 <div>
                 <asp:Button ID="Btn_3Days" runat="server" OnClick="Btn_3Days_Click" Text="最近3天" />&nbsp;
      <asp:Button ID="Btn_7Days" runat="server" OnClick="Btn_7Days_Click" Text="最近7天" />&nbsp;
@@ -53,7 +53,7 @@
                          <td align="center">
                             <b>商品图片</b>
                         </td>
-                        <td align="center">
+                        <td align="center" width="220px">
                             <b>商品名</b>
                         </td>
                         <td align="center">
@@ -87,7 +87,7 @@
                             </tr>
                         </ItemTemplate>
                          <SeparatorTemplate>
-                 <tr><td colspan="4><hr /></td></tr>
+                 <tr><td colspan="4"><hr /></td></tr>
                 </SeparatorTemplate>
                     </asp:Repeater>
                 </table>
