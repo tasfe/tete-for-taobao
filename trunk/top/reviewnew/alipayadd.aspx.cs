@@ -19,6 +19,11 @@ public partial class top_reviewnew_alipayadd : System.Web.UI.Page
     {
         //先判断支付宝红包格式是否合法
         string guid = Guid.NewGuid().ToString();
+
+        Response.Write(fuAlipay.PostedFile.ContentType);
+        Response.End();
+        return;
+
         string filename = Server.MapPath("alipay/" + guid + ".txt");
         fuAlipay.PostedFile.SaveAs(filename);
 
