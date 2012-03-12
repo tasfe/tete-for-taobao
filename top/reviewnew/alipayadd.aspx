@@ -1,0 +1,66 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="alipayadd.aspx.cs" Inherits="top_reviewnew_alipayadd" %>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>好评有礼</title>
+    <link href="../css/common.css" rel="stylesheet" />
+    <style>
+        td{font-size:12px;}
+        a{color:Blue; text-decoration:none;}
+    </style>
+</head>
+<body style="padding:0px; margin:0px;">
+    <form id="form1" runat="server">
+    <div id="main-content">
+
+<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
+    如何使用支付宝的红包功能 <a href='http://seller.taobao.com/fuwu/service.htm?service_id=6831' target="_blank">查看教程</a>
+</div>
+
+        <table width="100%">
+            <tr>
+                <td align="left" width="120">红包名称：</td>
+                <td>
+                    <input name="name" type="text" />
+                </td>
+            </tr>
+            <tr>
+                <td align="left" height="30">红包金额：</td>
+                <td>
+                    <input name="num" type="text" value="1" />
+                </td>
+            </tr>
+            <tr>
+                <td align="left" height="30">红包截至日期：</td>
+                <td>
+                    <input name="end_time" type="text" value="<%=enddate %>" /> 日期格式：2011-01-01
+                </td>
+            </tr>
+            <tr>
+                <td align="left" height="30">总数量：</td>
+                <td>
+                    <input name="total" type="text" value="2000" />
+                </td>
+            </tr>
+            <tr>
+                <td align="left" height="30">每人限领数量：</td>
+                <td>
+                    <select name="per">
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" height="30" colspan="2">
+                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="创建优惠券" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</body>
+</html>
