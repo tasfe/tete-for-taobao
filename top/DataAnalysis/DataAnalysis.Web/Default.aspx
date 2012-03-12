@@ -51,74 +51,74 @@
                     <div>
                         <table width="740" cellpadding="0" cellspacing="0">
                             <tr>
-                                <td width="120">
+                                <td width="120" align="center">
                                 </td>
-                                <td width="120">
+                                <td width="120" align="center">
                                     <b>销售额</b>
                                 </td>
-                                <td width="120">
+                                <td width="120" align="center">
                                     <b>订单数</b>
                                 </td>
-                                <td width="120">
+                                <td width="120" align="center">
                                     <b>回头订单数</b>
                                 </td>
-                                <td width="100">
+                                <td width="100" align="center">
                                     <b>客单价</b>
                                 </td>
-                                <td width="100">
+                                <td width="100" align="center">
                                     <b>销售单价</b>
                                 </td>
-                                <td width="100">
+                                <td width="100" align="center">
                                     <b>销售关联数</b>
                                 </td>
                             </tr>
                             <asp:Repeater ID="Rpt_OrderTotal" runat="server">
                                 <ItemTemplate>
                                     <tr>
-                                        <td height="25" style="font-size: 14px; font-weight: bold;">
+                                        <td height="25" style="font-size: 14px; font-weight: bold;" align="center">
                                             <%# Eval("SiteNick")%>
                                         </td>
-                                        <td>
+                                        <td align="center">
                                            <%# Eval("SiteOrderPay")%>
                                         </td>
-                                        <td>
+                                        <td align="center">
                                             <%# Eval("SiteOrderCount") %>
                                         </td>
-                                        <td>
+                                        <td align="center">
                                            <%# Eval("SiteSecondBuy")%>
                                         </td>
-                                        <td>
+                                        <td align="center">
                                             <%# GetCusOne(Eval("SiteOrderPay"), Eval("SiteBuyCustomTotal")) %>
                                         </td>
-                                        <td>
+                                        <td align="center">
                                             <%# GetSellOne(Eval("SiteOrderPay"), Eval("GoodsCount"))%>
                                         </td>
-                                        <td>
+                                        <td align="center">
                                             <%# GetEval(Eval("SiteOrderPay"), Eval("SiteBuyCustomTotal"), Eval("GoodsCount"))%>
                                         </td>
                                     </tr>
                                 </ItemTemplate>
                             </asp:Repeater>
                             <tr>
-                                        <td height="25" style="font-size: 14px; font-weight: bold;">
+                                        <td height="25" style="font-size: 14px; font-weight: bold;" align="center">
                                             最近7天走势
                                         </td>
-                                        <td>
+                                        <td align="center">
                                             <%=SevenSitePay() %>
-                                        </td>
+                                        </td align="center">
                                         <td>
                                             <%=SevenSiteOrderCount()%>
                                         </td>
-                                        <td>
+                                        <td align="center">
                                            <%=SevenSiteBackOrder()%>
                                         </td>
-                                        <td>
+                                        <td align="center">
                                            <%=SevenSiteOnePay()%>
-                                        </td>
-                                        <td>
+                                        </td align="center">
+                                        <td align="center">
                                            <%=SevenSiteSellOnePay()%>
-                                        </td>
-                                        <td>
+                                        </td align="center">
+                                        <td align="center">
                                            <%=SevenSiteSellWith()%>
                                         </td>
                                     </tr>
