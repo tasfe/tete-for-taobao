@@ -356,7 +356,16 @@ public class TaoBaoAPI
                 LogInfo.WriteLog("获取评价信息转换出错", text + ex.Message);
             }
         }
-        return list[0];
+        try
+        {
+            return list[0];
+            
+        }
+        catch(Exception ex)
+        {
+            LogInfo.WriteLog("获取评价信息转换出错", text + ex.Message);
+        }
+        return null;
     }
 
     #endregion
