@@ -156,7 +156,7 @@
                                         <td align="center">
                                             <a href='http://item.taobao.com/item.htm?id=<%#Eval("num_iid") %>' style="color: Black"
                                                 target="_blank">
-                                                <img src='<%# Eval("pic_url") %>' width="100" height="100" border="0" alt='<%#Eval("title")%>' />
+                                                <img src='<%# Eval("pic_url") %>_80x80.jpg' border="0" alt='<%#Eval("title")%>' />
                                             </a>
                                         </td>
                                         <td>
