@@ -1,14 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Configuration;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
@@ -105,7 +96,6 @@ public class SiteTotalService
 
     public List<TopSiteTotalInfo> GetMonthOrderTotalInfoList(string nick, string year)
     {
-        TopSiteTotalInfo info = new TopSiteTotalInfo();
         SqlParameter[] param = new[]
         {
             new SqlParameter("@year",year),
@@ -115,6 +105,7 @@ public class SiteTotalService
         DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_OTOTAL_MONTH, param);
         foreach (DataRow dr in dt.Rows)
         {
+            TopSiteTotalInfo info = new TopSiteTotalInfo();
             info.SiteTotalDate = dr["stdate"].ToString();
             info.SitePVCount = dr["sSitePVCount"] == DBNull.Value ? 0 : int.Parse(dr["sSitePVCount"].ToString());
 
@@ -134,7 +125,6 @@ public class SiteTotalService
 
     public List<TopSiteTotalInfo> GetYearOrderTotalInfoList(string nick)
     {
-        TopSiteTotalInfo info = new TopSiteTotalInfo();
         SqlParameter[] param = new[]
         {
             new SqlParameter("@sitenick",nick)
@@ -143,6 +133,7 @@ public class SiteTotalService
         DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_OTOTAL_YEAR, param);
         foreach (DataRow dr in dt.Rows)
         {
+            TopSiteTotalInfo info = new TopSiteTotalInfo();
             info.SiteTotalDate = dr["stdate"].ToString();
             info.SitePVCount = dr["sSitePVCount"] == DBNull.Value ? 0 : int.Parse(dr["sSitePVCount"].ToString());
 
