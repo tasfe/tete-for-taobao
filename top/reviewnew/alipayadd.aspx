@@ -44,6 +44,12 @@
                 </td>
             </tr>
             <tr>
+                <td align="left" height="30">红包：</td>
+                <td>
+                    <asp:FileUpload ID="fuAlipay" runat="server" /> 请上传支付宝生成的红包TXT文件，如：1331522192414.txt
+                </td>
+            </tr>
+            <tr>
                 <td align="left" height="30">红包截至日期：</td>
                 <td>
                     <input name="end_time" type="text" value="<%=enddate %>" /> 日期格式：2011-01-01
