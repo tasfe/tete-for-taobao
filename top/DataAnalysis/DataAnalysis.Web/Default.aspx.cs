@@ -63,8 +63,8 @@ public partial class _Default : BasePage
 
             SiteTotalService siteTotalDal = new SiteTotalService();
             BindRpt_OrderTotal(siteTotalDal);
-            TopSiteTotalInfo lastweek = siteTotalDal.GetOrderTotalInfo(DateTime.Now.AddDays(-7), DateTime.Now, nickNo);
-            TopSiteTotalInfo llastweek = siteTotalDal.GetOrderTotalInfo(DateTime.Now.AddDays(-14), DateTime.Now.AddDays(-8), nickNo);
+            TopSiteTotalInfo lastweek = siteTotalDal.GetOrderTotalInfo(DateTime.Now.AddDays(-7), DateTime.Now, HttpUtility.UrlDecode(Request.Cookies["nick"].Value));
+            TopSiteTotalInfo llastweek = siteTotalDal.GetOrderTotalInfo(DateTime.Now.AddDays(-14), DateTime.Now.AddDays(-8), HttpUtility.UrlDecode(Request.Cookies["nick"].Value));
             ViewState["lastweek"] = lastweek;
             ViewState["llastweek"] = llastweek;
         }
