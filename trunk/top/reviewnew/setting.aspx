@@ -36,8 +36,8 @@
             <tr>
                 <td align="left" width="180" height="30">是否开启按时好评送优惠券：</td>
                 <td>
-                    开启<input name="iscoupon" type="radio" value="1" <%=check(iscoupon, "1") %> onclick="showArea(1)" />
-                    不开启<input name="iscoupon" type="radio" value="0" <%=check(iscoupon, "0") %> onclick="showArea(0)" />
+                    开启<input name="iscoupon" id="coupon1" type="radio" value="1" <%=check(iscoupon, "1") %> onclick="showArea(1)" />
+                    不开启<input name="iscoupon" id="coupon2" type="radio" value="0" <%=check(iscoupon, "0") %> onclick="showArea(0)" />
                 </td>
             </tr>
             <tr id="couponArea">
@@ -79,8 +79,8 @@
             <tr>
                 <td align="left" height="30">是否开启评价审核：</td>
                 <td>
-                    开启<input name="iskefu" type="radio" value="1" <%=check(iskefu, "1") %> />
-                    不开启<input name="iskefu" type="radio" value="0" <%=check(iskefu, "0") %> />
+                    开启<input name="iskefu" id="kefu1" type="radio" value="1" <%=check(iskefu, "1") %> />
+                    不开启<input name="iskefu" id="kefu2" type="radio" value="0" <%=check(iskefu, "0") %> />
                     <a href="kefulist.aspx">查看待审核列表</a>
                 </td>
             </tr>
@@ -128,6 +128,18 @@
             alert("不可查询物流评价时间");
             document.getElementById("maxdate").focus();
             return false;
+        }
+
+        return checkConfirm();
+    }
+
+    function checkConfirm(){
+        if(document.getElementById("coupon2").checked == true){
+            return confirm('您选择了不自动赠送优惠券，系统将无法自动帮您赠送优惠券，您确定吗？');
+        }
+
+        if(document.getElementById("kefu1").checked == true){
+            return confirm('您开启了评价客服审核，所有的评价都需要您手动进入我们服务审核才会自动赠送优惠券，您确定吗？');
         }
 
         return true;
