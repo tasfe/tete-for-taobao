@@ -25,7 +25,7 @@ public partial class top_review_js_isshow : System.Web.UI.Page
 
             if (phone.Length == 0 || qq.Length == 0)
             {
-                Response.Write("setTimeout('showAreaPhone()', 3000);");
+                Response.Write("setTimeout('showAreaPhone()', 6000);");
             }
         }
     }
