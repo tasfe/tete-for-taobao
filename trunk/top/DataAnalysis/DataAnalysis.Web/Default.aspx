@@ -43,7 +43,7 @@
                         销售数据统计 - <span style="font-size: 14px; font-weight: normal; color: #333333">今日
                             <asp:Repeater ID="Rpt_IpPV" runat="server">
                                 <ItemTemplate>
-                                    【<%#Eval("Key")%>-<font color='green'><%#Eval("Value")%>】</font>
+                                    【<%#Eval("Key")%>-<font color='green'><%#Eval("Value")%></font>】
                                 </ItemTemplate>
                             </asp:Repeater>
                             </span></div>
