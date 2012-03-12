@@ -86,7 +86,7 @@
     function handleStateChangeCat() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             result = decodeURI(xmlHttp.responseText);
-            ary = eval(result);
+            ary = result.replace("{", "").replace("}", "").split(",");
 
             start();
         }
@@ -117,6 +117,7 @@
         strArr = str.split(",");
         document.getElementById("nowcount").innerHTML = i + 1;
         document.getElementById("nowdetail").innerHTML = strArr[i];
+        
         if (ary[i] == 0) {
             document.getElementById("noarea").innerHTML += "<li>" + strArr[i] + "</li>";
             document.getElementById("score").innerHTML = document.getElementById("score").innerHTML - 10;
