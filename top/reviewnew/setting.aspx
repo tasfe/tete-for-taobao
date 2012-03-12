@@ -113,11 +113,6 @@
     }
 
     function check() {
-        if (document.getElementsByName("isfree")[0].checked && document.getElementById("productArea").innerHTML == "") {
-            alert("请选择免费赠送的礼品");
-            return false;
-        }
-        
         if (document.getElementById("mindate").value == "") {
             alert("请填写可查询物流评价时间");
             document.getElementById("mindate").focus();
@@ -129,7 +124,6 @@
             document.getElementById("maxdate").focus();
             return false;
         }
-
         return checkConfirm();
     }
 
