@@ -83,6 +83,11 @@ if (result.IndexOf("Insufficient session permissions") != -1)
             }
 
             string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+            if (err.Length == 0)
+            {
+                err = "淘宝系统错误，请稍后重试！";
+            }
+
             Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + err + "</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
             Response.End();
             return;
