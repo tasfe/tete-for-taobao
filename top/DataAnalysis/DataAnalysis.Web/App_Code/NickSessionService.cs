@@ -74,7 +74,7 @@ public class NickSessionService
         string sql = SQL_UPDATE;
         if (sessionInfo.LastGetOrderTime != DateTime.MinValue)
             sql += ",LastGetOrderTime='" + sessionInfo.LastGetOrderTime + "'";
-        sql += " WEHRE nick=@nick";
+        sql += " WHERE nick=@nick";
 
         return DBHelper.ExecuteNonQuery(sql, param);
     }
