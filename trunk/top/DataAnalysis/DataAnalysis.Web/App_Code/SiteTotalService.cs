@@ -62,8 +62,8 @@ public class SiteTotalService
         TopSiteTotalInfo info = new TopSiteTotalInfo();
         SqlParameter[] param = new[]
         {
-            new SqlParameter("@start",start),
-            new SqlParameter("@start",end),
+            new SqlParameter("@start",start.ToString("yyyyMMdd")),
+            new SqlParameter("@start",end.ToString("yyyyMMdd")),
             new SqlParameter("@nick",nick)
         };
 
