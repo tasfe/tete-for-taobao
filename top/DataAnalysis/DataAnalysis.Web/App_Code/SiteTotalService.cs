@@ -63,7 +63,7 @@ public class SiteTotalService
         SqlParameter[] param = new[]
         {
             new SqlParameter("@start",start.ToString("yyyyMMdd")),
-            new SqlParameter("@start",end.ToString("yyyyMMdd")),
+            new SqlParameter("@end",end.ToString("yyyyMMdd")),
             new SqlParameter("@nick",nick)
         };
 
