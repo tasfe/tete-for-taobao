@@ -11,6 +11,19 @@
 </head>
 <body style="padding:0px; margin:0px;">
     <form id="form1" runat="server">
+<div class="navigation" style="height:600px;">
+
+  <div class="crumbs"><a href="javascript:;" class="nolink">好评有礼</a> 支付宝红包 </div>
+  <div class="absright">
+    <ul>
+      <li>
+        <div class="msg">
+            
+        </div>
+      </li>
+    </ul>
+  </div>
+
     <div id="main-content">
 
 <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
@@ -61,6 +74,8 @@
             </tr>
         </table>
     </div>
+
+</div>
     </form>
 </body>
 </html>
