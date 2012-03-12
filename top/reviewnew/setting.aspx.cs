@@ -195,7 +195,7 @@ public partial class top_review_setting : System.Web.UI.Page
 
 
         dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_Alipay WHERE nick = '" + nick + "' AND isdel = 0");
-        string alipaystr = "<select name='alipayid'>";
+        alipaystr = "<select name='alipayid'>";
         for (int i = 0; i < dtCoupon.Rows.Count; i++)
         {
             if (dtCoupon.Rows[i]["guid"].ToString().Trim() == couponid.Trim())
