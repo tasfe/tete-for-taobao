@@ -50,11 +50,11 @@
                 </div>
                 <table cellpadding="0" cellspacing="0" width="100%">
                     <tr>
-                        <td align="center">
-                            <b>商品名</b>
-                        </td>
                          <td align="center">
                             <b>商品图片</b>
+                        </td>
+                        <td align="center">
+                            <b>商品名</b>
                         </td>
                         <td align="center">
                             <b>商品价格</b>
@@ -65,26 +65,30 @@
                     </tr>
                     <asp:Repeater ID="Rpt_PageVisit" runat="server">
                         <ItemTemplate>
-                            <tr>
-                                <td height="35">
-                                    <a href='http://item.taobao.com/item.htm?id=<%#Eval("num_iid") %>' target="_blank">
-                                        <%#Eval("title")%>
-                                    </a>
-                                </td>
-                                <td align="center">
+                            <tr>  
+                            <td align="center">
                                     <a href='http://item.taobao.com/item.htm?id=<%#Eval("num_iid") %>' style="color: Black"
                                         target="_blank">
                                         <img src='<%# Eval("pic_url") %>_80x80.jpg' border="0" alt='<%#Eval("title")%>' />
                                     </a>
                                 </td>
-                                <td height="35" align="center">
+                                <td height="35" valign="top">
+                                    <a href='http://item.taobao.com/item.htm?id=<%#Eval("num_iid") %>' target="_blank">
+                                        <%#Eval("title")%>
+                                    </a>
+                                </td>
+                              
+                                <td height="35" align="center" valign="top">
                                     <%#Eval("price")%>
                                 </td>
-                                <td align="center">
+                                <td align="center" valign="top">
                                     <%#Eval("Count")%>
                                 </td>
                             </tr>
                         </ItemTemplate>
+                         <SeparatorTemplate>
+                 <tr><td colspan="4><hr /></td></tr>
+                </SeparatorTemplate>
                     </asp:Repeater>
                 </table>
                 <div style="background-color: #dedede; margin-top: 15px">
