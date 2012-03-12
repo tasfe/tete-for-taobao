@@ -34,7 +34,7 @@ public partial class top_review_couponsend : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            string flag = dt.Rows[0]["session"].ToString();
+            string flag = dt.Rows[0]["version"].ToString();
             if (flag == "0")
             {
                 Response.Redirect("xufei.aspx");
