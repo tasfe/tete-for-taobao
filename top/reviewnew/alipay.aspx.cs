@@ -10,10 +10,11 @@ public partial class top_reviewnew_alipay : System.Web.UI.Page
 {
     public string session = string.Empty;
     public string nick = string.Empty;
+    public string id = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        string id = utils.NewRequest("id", utils.RequestType.QueryString);
+        id = utils.NewRequest("id", utils.RequestType.QueryString);
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
         session = cookie.getCookie("top_sessiongroupbuy");
@@ -55,7 +56,11 @@ public partial class top_reviewnew_alipay : System.Web.UI.Page
 
     private void DeleteGroup()
     {
+        //通过数据库查询获取活动ID
+        string sql = "UPDATE TCS_Alipay SET isdel = 1 WHERE guid = '" + id + "'";
+        utils.ExecuteNonQuery(sql);
 
+        Response.Write("<script>alert('取消成功！');window.location.href='alipay.aspx';</script>");
     }
 
     private void BindData()
