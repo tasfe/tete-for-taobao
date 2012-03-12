@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -29,7 +29,7 @@
         	<div class="jindu">
             	<div class="fl"><img src="images/jindul.jpg" /></div>
             	<div class="fl" style="background:url(images/jindum.jpg); width:380px; height:10px;">
-                	<img id="jinduimg" src="images/initm.jpg" width="0" height="8" style="padding-top:1px;" /><img id="jindutou" src="images/init.jpg" style="padding-top:1px;" />
+                	<img id="jinduimg" src="images/initm.jpg" width="0" height="8" style="margin-top:-11px;" /><img id="jindutou" src="images/init.jpg" style="margin-top:-11px;" />
                 </div>
             	<div class="fl"><img id="jinduwei" src="images/jindur.jpg" /></div>
             </div>
@@ -63,79 +63,78 @@
 </body>
 
 <script language="javascript">
-
     var xmlHttp;
     var itemsStr;
     var itemsStrTxt;
-    function createxmlHttpRequest()
-    {
-        if(window.ActiveXObject)
+    var ary;
+
+    function createxmlHttpRequest() {
+        if (window.ActiveXObject)
             xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-        else if(window.XMLHttpRequest)
+        else if (window.XMLHttpRequest)
             xmlHttp = new XMLHttpRequest();
     }
-    
-    function updateCat(){
+
+    function updateCat() {
         createxmlHttpRequest();
-        var queryString = "http://www.7fshop.com/top/market/taobaoitem.aspx?act=getCat&t="+new Date().getTime();
-        xmlHttp.open("GET",queryString);
+        var queryString = "http://ding.7fshop.com/CheckShopBody.ashx?t=" + new Date().getTime();
+        xmlHttp.open("GET", queryString);
         xmlHttp.onreadystatechange = handleStateChangeCat;
-        xmlHttp.send(null); 
+        xmlHttp.send(null);
     }
-	
-	function handleStateChangeCat()
-    {
-        if(xmlHttp.readyState==4 && xmlHttp.status == 200)
-        {
-            var catHTML = document.getElementById("catHTML");
-            catHTML.innerHTML = decodeURI(xmlHttp.responseText);
+
+    function handleStateChangeCat() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            result = decodeURI(xmlHttp.responseText);
+            ary = eval(result);
+
+            start();
         }
     }
 
+    function showjindu() {
+        document.getElementById("jinduimg").width = document.getElementById("jinduimg").width + 1;
 
-	function showjindu(){
-		document.getElementById("jinduimg").width = document.getElementById("jinduimg").width + 1;
-		
-		if(document.getElementById("jinduimg").width < 380){
-			setTimeout('showjindu()',25);
-		}else{
-			document.getElementById("jindutou").style.display = "none";
-			document.getElementById("jinduwei").src = "images/jinduro.jpg";
-		}
-	}
-	
-	function startall(){
-		showjindu();	
-		start();
-	}
+        if (document.getElementById("jinduimg").width < 380) {
+            setTimeout('showjindu()', 25);
+        } else {
+            document.getElementById("jindutou").style.display = "none";
+            document.getElementById("jinduwei").src = "images/jinduro.jpg";
+        }
+    }
 
-	i = 0;
-	yes = 0;
-	no = 0;
-	
-	function start(){
-		var str = "检查店铺客户浏览比率是否健康,检查最近7天销售客单价是否健康,检查店铺浏览转换率是否健康,检查店铺浏览回头率是否健康,检查店铺二次购买率是否健康,检查店铺页面访问深度是否健康,检查爆款商品购买率是否健康";
-		strArr = str.split(",");
-		document.getElementById("nowcount").innerHTML = i+1;
-		document.getElementById("nowdetail").innerHTML = strArr[i];
-		if(i % 2 == 0){
-			document.getElementById("noarea").innerHTML += "<li>"+strArr[i]+"</li>";
-			document.getElementById("score").innerHTML = document.getElementById("score").innerHTML - 10;
-			no++;
-			document.getElementById("nocount").innerHTML = no;
-		}else{
-			document.getElementById("yesarea").innerHTML += "<li>"+strArr[i]+"</li>";	
-			yes++;
-			document.getElementById("yescount").innerHTML = yes;
-		}
-		i++;
-		if(i < 7){
-			setTimeout('start()',1900);
-		}else{
-			document.getElementById("buttonstart").style.display = "none";
-			document.getElementById("buttonmodify").style.display = "";
-		}
-	}
+    function startall() {
+        showjindu();
+        updateCat();
+    }
+
+    i = 0;
+    yes = 0;
+    no = 0;
+
+    function start() {
+        var str = "检查店铺客户浏览比率是否健康,检查最近7天销售客单价是否健康,检查店铺浏览转换率是否健康,检查店铺浏览回头率是否健康,检查店铺二次购买率是否健康,检查店铺页面访问深度是否健康,检查爆款商品购买率是否健康";
+        strArr = str.split(",");
+        document.getElementById("nowcount").innerHTML = i + 1;
+        document.getElementById("nowdetail").innerHTML = strArr[i];
+        if (ary[i] == 0) {
+            document.getElementById("noarea").innerHTML += "<li>" + strArr[i] + "</li>";
+            document.getElementById("score").innerHTML = document.getElementById("score").innerHTML - 10;
+            no++;
+            document.getElementById("nocount").innerHTML = no;
+        } else {
+            document.getElementById("yesarea").innerHTML += "<li>" + strArr[i] + "</li>";
+            yes++;
+            document.getElementById("yescount").innerHTML = yes;
+        }
+        i++;
+        if (i < 7) {
+            setTimeout('start()', 1900);
+        } else {
+            document.getElementById("buttonstart").style.display = "none";
+            document.getElementById("buttonmodify").style.display = "";
+        }
+    }
 </script>
 
 </html>
