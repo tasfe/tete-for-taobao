@@ -32,9 +32,9 @@
         <tr>
                 <td width="140"><b>红包名称</b></td>
                 <td width="80"><b>红包金额</b></td>
-                <td width="40"><b>最大领取数量</b></td>
+                <td width="100"><b>最大领取数量</b></td>
                 <td width="120"><b>红包截止日期</b> </b></td>
-                <td width="100"><b>总领用量/已领用</b> </td>
+                <td width="140"><b>总领用量/已领用</b> </td>
                 <td width="60"><b>操作</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
