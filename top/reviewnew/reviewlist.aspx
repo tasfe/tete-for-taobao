@@ -48,7 +48,7 @@
                 <td><img src='<%#getimg(Eval("result").ToString())%>' /></td>
                 <td><%#left(Eval("content").ToString())%></td>
                 <td><%#Eval("reviewdate") %></td>
-                <td><a href="http://item.tmall.com/item.htm?id=<%#Eval("itemid") %>" target="_blank">查看宝贝</a></td>
+                <td><a href="http://item.tmall.com/item.htm?id=<%#Eval("itemid") %>" title='<%#Eval("sendresult") %>' target="_blank">查看宝贝</a></td>
             </tr>
             </ItemTemplate>
         </asp:Repeater>
