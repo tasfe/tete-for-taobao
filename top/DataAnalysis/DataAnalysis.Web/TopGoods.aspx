@@ -26,7 +26,7 @@
       </li>
     </ul>
   </div>
-    <div id="main-content">
+    <div id="main-content" style="height:1000px;overflow:scroll">
 
      <div>
      <asp:Button ID="Btn_3Days" runat="server" OnClick="Btn_3Days_Click" Text="最近3天" />&nbsp;
@@ -76,7 +76,7 @@
                     </tr>
                 </ItemTemplate>
                 <SeparatorTemplate>
-                 <tr><td colspan="4><hr /></td></tr>
+                 <tr><td colspan="4"><hr /></td></tr>
                 </SeparatorTemplate>
             </asp:Repeater>
         </table>
