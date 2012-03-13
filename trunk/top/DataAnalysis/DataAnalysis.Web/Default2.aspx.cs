@@ -20,14 +20,14 @@ public partial class Default2 : BasePage
         {
 
             DateTime now = DateTime.Parse(DateTime.Now.ToShortDateString());
-            List<TotalDateInfo> datelist = new List<TotalDateInfo>();
+            //List<TotalDateInfo> datelist = new List<TotalDateInfo>();
 
-            for (DateTime i = now; i > now.AddDays(-14); i = now.AddDays(-1))
-            {
-                TotalDateInfo info = new TotalDateInfo();
-                info.TotalDate = i.Day.ToString();
-                datelist.Add(info);
-            }
+            //for (DateTime i = now; i > now.AddDays(-14); i = now.AddDays(-1))
+            //{
+            //    TotalDateInfo info = new TotalDateInfo();
+            //    info.TotalDate = i.Day.ToString();
+            //    datelist.Add(info);
+            //}
 
             //Rpt_Date.DataSource = datelist;
             //Rpt_Date.DataBind();
