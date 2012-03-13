@@ -33,13 +33,13 @@
 
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
-                <td width="140"><b>优惠券名称</b></td>
+                <td width="90"><b>优惠券名称</b></td>
                 <td width="40"><b>金额</b></td>
                 <td width="70"><b>领取数量</b></td>
                 <td width="100"><b>发送截至日期</b></td>
                 <td width="100"><b>有效日期</b></td>
                 <td width="60"><b>使用条件</b> </td>
-                <td width="80"><b>总领用量/已领用</b> </td>
+                <td width="90"><b>总量/已领用</b> </td>
                 <td width="40"><b>操作</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
