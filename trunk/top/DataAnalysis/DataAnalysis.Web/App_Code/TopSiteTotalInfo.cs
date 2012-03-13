@@ -51,16 +51,16 @@ public class TopSiteTotalInfo
     /// <summary>
     /// 销售单价
     /// </summary>
-    public decimal SellAvg
+    public string SellAvg
     {
         get
         {
             if (GoodsCount == 0 || SiteOrderCount == 0)
             {
-                return 0;
+                return "0";
             }
 
-            return (SiteOrderPay / SiteOrderCount) / (SiteOrderPay / GoodsCount);
+            return ((SiteOrderPay / SiteOrderCount) / (SiteOrderPay / GoodsCount)).ToString(".00");
         }
     }
 
@@ -92,26 +92,26 @@ public class TopSiteTotalInfo
     /// <summary>
     /// 单均价
     /// </summary>
-    public decimal OneOrderPrice
+    public string OneOrderPrice
     {
         get
         {
             if (SiteOrderCount == 0)
-                return 0;
-            return SiteOrderPay / SiteOrderCount;
+                return "0";
+            return (SiteOrderPay / SiteOrderCount).ToString(".00");
         }
     }
 
     /// <summary>
     /// 客单价
     /// </summary>
-    public decimal OneCustomerPrice
+    public string OneCustomerPrice
     {
         get
         {
             if (SiteUVCount == 0)
-                return 0;
-            return SiteOrderPay / SiteUVCount;
+                return "0";
+            return (SiteOrderPay / SiteUVCount).ToString(".00");
         }
     }
 
@@ -168,26 +168,26 @@ public class TopSiteTotalInfo
     /// <summary>
     /// 浏览回头率
     /// </summary>
-    public decimal BackSee
+    public string BackSee
     {
         get
         {
             if (SiteUVBack == 0)
-                return 0;
-            return SiteUVCount / SiteUVBack;
+                return "0";
+            return ((decimal)SiteUVCount / SiteUVBack).ToString(".00");
         }
     }
 
     /// <summary>
     /// 平均访问深度
     /// </summary>
-    public decimal SeeDeepAVG
+    public string SeeDeepAVG
     {
         get
         {
             if (SiteUVCount == 0)
-                return 0;
-            return (decimal)SitePVCount / SiteUVCount;
+                return "0";
+            return ((decimal)SitePVCount / SiteUVCount).ToString(".00");
         }
     }
 
