@@ -22,7 +22,8 @@ public class getnick : IHttpHandler {
         //cookie.Domain = ".test.7fshop.com";
 
 
-        if (CacheCollection.GetNickSessionList().Where(o => o.Nick == nick).ToList().Count > 0)
+        //nick == "上宫庄健客专卖店"免费测试
+        if (CacheCollection.GetNickSessionList().Where(o => o.Nick == nick || nick == "上宫庄健客专卖店").ToList().Count > 0)
         {
             //正式可不用
             HttpCookie cookietongji = new HttpCookie("istongji", "1");
@@ -31,7 +32,7 @@ public class getnick : IHttpHandler {
         }
         context.Response.Cookies.Add(cookie);
         context.Response.Cookies.Add(cooksession);
-        if (!string.IsNullOrEmpty(context.Request.QueryString["istongji"]))
+        if (!string.IsNullOrEmpty(context.Request.QueryString["istongji"]) || nick == "上宫庄健客专卖店")
         {
             HttpCookie cookietongji = new HttpCookie("istongji", "1");
             cookietongji.Expires = DateTime.Now.AddDays(1);
