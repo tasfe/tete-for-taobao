@@ -33,24 +33,24 @@ public partial class Default2 : BasePage
             //Rpt_Date.DataBind();
 
             string nickNo = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
-            SiteTotalList = new SiteTotalService().GetNickOrderTotal(now.AddDays(-13), now, nickNo);
-            Rpt_TotalList.DataSource = SiteTotalList;
+            IList<TopSiteTotalInfo> siteTotalList = new SiteTotalService().GetNickOrderTotal(now.AddDays(-13), now, nickNo);
+            Rpt_TotalList.DataSource = siteTotalList;
             Rpt_TotalList.DataBind();
 
             //InsertName();
-             
+
         }
     }
 
-    protected IList<TopSiteTotalInfo> SiteTotalList
-    {
-        set { ViewState["SiteTotalList"] = value; }
+    //protected IList<TopSiteTotalInfo> SiteTotalList
+    //{
+    //    set { ViewState["SiteTotalList"] = value; }
 
-        get
-        {
-            return (IList<TopSiteTotalInfo>)ViewState["SiteTotalList"];
-        }
-    }
+    //    get
+    //    {
+    //        return (IList<TopSiteTotalInfo>)ViewState["SiteTotalList"];
+    //    }
+    //}
 
     private void InsertName()
     {
