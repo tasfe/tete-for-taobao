@@ -55,13 +55,13 @@
             <tr>
                 <td align="left" height="30">发送截至日期：</td>
                 <td>
-                    <input name="endsenddate" type="text" value="<%=endsenddate %>" /> 日期格式：2012-01-01 (系统在这个时间以后就不赠送优惠券)
+                    <input name="endsenddate" type="text" value="<%=endsenddate %>" style="width:90px" /> 日期格式：2012-01-01 (系统在这个时间以后就不赠送优惠券)
                 </td>
             </tr>
             <tr>
                 <td align="left" height="30">优惠券有效日期：</td>
                 <td>
-                    <input name="end_time" type="text" value="<%=enddate %>" /> 日期格式：2012-01-01 (客户收到的优惠券在这个时间后会过期)
+                    <input name="end_time" type="text" value="<%=enddate %>" style="width:90px" /> 日期格式：2012-01-01 (客户收到的优惠券在这个时间后会过期)
                 </td>
             </tr>
             <tr>
