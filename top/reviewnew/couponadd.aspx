@@ -53,7 +53,13 @@
                 </td>
             </tr>
             <tr>
-                <td align="left" height="30">优惠券截至日期：</td>
+                <td align="left" height="30">发送截至日期：</td>
+                <td>
+                    <input name="endsenddate" type="text" value="<%=endsenddate %>" /> 日期格式：2011-01-01
+                </td>
+            </tr>
+            <tr>
+                <td align="left" height="30">优惠券有效日期：</td>
                 <td>
                     <input name="end_time" type="text" value="<%=enddate %>" /> 日期格式：2011-01-01
                 </td>

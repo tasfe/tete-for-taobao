@@ -15,6 +15,7 @@ public partial class top_review_couponadd : System.Web.UI.Page
 {
     public string session = string.Empty;
     public string nick = string.Empty;
+    public string endsenddate = string.Empty;
     public string enddate = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -26,7 +27,8 @@ public partial class top_review_couponadd : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
-        enddate = DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd");
+        endsenddate = DateTime.Now.AddMonths(2).ToString("yyyy-MM-dd");
+        enddate = DateTime.Now.AddMonths(3).ToString("yyyy-MM-dd");
 
         if (id != "")
         {
@@ -50,7 +52,9 @@ public partial class top_review_couponadd : System.Web.UI.Page
 
         string price = utils.NewRequest("price", utils.RequestType.Form);
         string condition = utils.NewRequest("condition", utils.RequestType.Form);
-        string end_time = utils.NewRequest("end_time", utils.RequestType.Form);
+        //反过来获取，不用修改主程序
+        string end_time = utils.NewRequest("endsenddate", utils.RequestType.Form);
+        string endsenddate = utils.NewRequest("end_time", utils.RequestType.Form);
         string coupon_name = utils.NewRequest("coupon_name", utils.RequestType.Form);
         string total = utils.NewRequest("total", utils.RequestType.Form);
         string per = utils.NewRequest("per", utils.RequestType.Form);
@@ -66,7 +70,7 @@ public partial class top_review_couponadd : System.Web.UI.Page
         //Response.Write(result + "<br><br>" + price + "<br><br>" + condition + "<br><br>" + end_time + "<br><br>" + coupon_name);
 //Insufficient session permissions
 
-if (result.IndexOf("Insufficient session permissions") != -1)
+        if (result.IndexOf("Insufficient session permissions") != -1)
         {
             Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12159997&scope=promotion' target='_parent'>重新授权</a>");
             	Response.End();
@@ -101,6 +105,7 @@ if (result.IndexOf("Insufficient session permissions") != -1)
                         "taobaocouponid, " +
                         "num, " +
                         "enddate, " +
+                        "endsenddate, " +
                         "count, " +
                         "per, " +
                         "guid, " +
@@ -112,6 +117,7 @@ if (result.IndexOf("Insufficient session permissions") != -1)
                         " '" + coupon_id + "', " +
                         " '" + price + "', " +
                         " '" + end_time + "', " +
+                        " '" + endsenddate + "', " +
                         " '" + total + "', " +
                         " '" + per + "', " +
                         " '" + guid + "', " +
@@ -119,7 +125,7 @@ if (result.IndexOf("Insufficient session permissions") != -1)
                         " '" + condition + "' " +
                     ") ";
         utils.ExecuteNonQuery(sql);
-        Response.Write("<br><br>" + sql);
+        //Response.Write("<br><br>" + sql);
 
         sql = "UPDATE TCS_ShopConfig SET couponid = '" + guid + "' WHERE nick = '" + nick + "'";
         utils.ExecuteNonQuery(sql);
