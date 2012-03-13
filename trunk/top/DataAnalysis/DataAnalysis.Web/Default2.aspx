@@ -7,11 +7,11 @@
     <style type="text/css">
         .all
         {
-            width: 500px;
+            width: 900px;
         }
         .detail
         {
-            width: 240px;
+            width: 60px;
             float: left;
         }
     </style>
@@ -20,6 +20,67 @@
     <form id="form1" runat="server">
     <div>
         <div class="all">
+        
+        <div class="detail">
+                        <div>
+                            
+                        </div>
+                        <div>
+                           PV
+                        </div>
+                        <div>
+                           UV
+                        </div>
+                        <div>
+                            直通车
+                        </div>
+                        <div>
+                           CPC
+                        </div>
+                        <div>
+                           询单数
+                        </div>
+                        <div>
+                           丢单率
+                        </div>
+                        <div>
+                            订单数
+                        </div>
+                        <div>
+                           订单总价
+                        </div>
+                        <div>
+                            每单均价
+                        </div>
+                        <div>
+                            客户均价
+                        </div>
+                        <div>
+                            转化率
+                        </div>
+                        <div>
+                           二次浏览用户数
+                        </div>
+                        <div>
+                            浏览回头率
+                        </div>
+                        <div>
+                           退款率
+                        </div>
+                        <div>
+                            平均访问深度
+                        </div>
+                        <div>
+                            浏览排行
+                        </div>
+                        <div>
+                           销售排行
+                        </div>
+                        <div>
+                           收藏量
+                        </div>
+                    </div>
+        
             <asp:Repeater runat="server" ID="Rpt_TotalList">
                 <ItemTemplate>
                     <div class="detail">
