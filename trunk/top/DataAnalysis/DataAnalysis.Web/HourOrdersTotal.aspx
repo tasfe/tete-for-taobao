@@ -61,7 +61,7 @@
                         x: -20 //center
                     },
                     subtitle: {
-                        text: 'pv/ip',
+                        text: '订单数量',
                         x: -20
                     },
                     xAxis: {
