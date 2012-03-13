@@ -30,9 +30,20 @@ public partial class top_reviewnew_search : System.Web.UI.Page
 
     protected void Button2_Click(object sender, EventArgs e)
     {
-        if (TextBox5.Text != "xiaoman")
+        if (TextBox6.Text != "xiaoman")
         {
             return;
         }
+
+        string sql = "INSERT INTO [TeteCrmSaas].[dbo].[TCS_PayLog]([typ],[adddate],[nextdate],[enddate],[nick],[mouth],[count])VALUES('" + TextBox5.Text + "',GETDATE(),GETDATE(),GETDATE(),'" + TextBox3.Text + "',12," + TextBox4.Text + ")";
+        utils.ExecuteNonQuery(sql);
+
+        sql = "UPDATE TCS_ShopConfig SET total = total + " + TextBox4.Text + " WHERE nick = '" + TextBox3.Text + "'";
+        utils.ExecuteNonQuery(sql);
+
+        sql = "SELECT total FROM TCS_ShopConfig WHERE nick = '" + TextBox3.Text + "'";
+        string count = utils.ExecuteString(sql);
+
+        Response.Write("该客户短信剩余条数为【" + count + "】条");
     }
 }
