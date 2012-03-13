@@ -36,7 +36,7 @@ public partial class top_reviewnew_setcookie : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            string session = dt.Rows[0]["session"].ToString();
+            string session = dt.Rows[0]["sessionmarket"].ToString();
             cookie.setCookie("top_session", session, 999999);
             string top_appkey = "12132145";
             string app_secret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
