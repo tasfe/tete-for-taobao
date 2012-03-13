@@ -183,7 +183,7 @@ group by VisitBrower,VisitIP,VisitUserAgent
 
     const string SQL_SELECT_CREATETABLE = "select name from sysobjects where xtype='U' and CHARINDEX('TopVisitInfo',name)>0";
 
-    const string SQL_SELECT_GOODSCOUNT = "SELECT SUM(num) FROM TopTaoBaoOrderGoodsList WHERE status in('WAIT_SELLER_SEND_GOODS','TRADE_FINISHED') AND tid in(@tids)";
+    const string SQL_SELECT_GOODSCOUNT = "SELECT SUM(num) FROM TopTaoBaoOrderGoodsList WHERE status in('WAIT_SELLER_SEND_GOODS','TRADE_FINISHED','WAIT_BUYER_CONFIRM_GOODS','TRADE_BUYER_SIGNED') AND tid in(@tids)";
 
     const string SQL_SELECT_SECONDBUY = @"select COUNT(*) as backtotal from (
         select distinct buy_nick from TopTaoBaoGoodsOrderInfo where 
