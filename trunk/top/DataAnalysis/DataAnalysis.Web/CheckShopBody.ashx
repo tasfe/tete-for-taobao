@@ -63,7 +63,7 @@ public class CheckShopBody : IHttpHandler {
             //购买
             IList<GoodsInfo> glist = taoGoodsService.GetTopBuyGoods(nickNo, DateTime.Parse(DateTime.Now.AddDays(-1).ToShortDateString()), DateTime.Parse(DateTime.Now.ToShortDateString()), 1, 1);
             //浏览
-            IList<GoodsInfo> gllist = taoGoodsService.GetTopGoods(nickNo, DateTime.Parse(DateTime.Now.AddDays(-1).ToShortDateString()), DateTime.Parse(DateTime.Now.ToShortDateString()), 1, 1);
+            IList<GoodsInfo> gllist = taoGoodsService.GetTopGoods(DataHelper.Encrypt(nickNo), DateTime.Parse(DateTime.Now.AddDays(-1).ToShortDateString()), DateTime.Parse(DateTime.Now.ToShortDateString()), 1, 1);
             if (glist.Count > 0 && gllist.Count > 0)
             {
                 if ((double)glist[0].Count / gllist[0].Count >= 0.3)
