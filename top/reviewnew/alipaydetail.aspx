@@ -24,6 +24,11 @@
     </ul>
   </div>
     <div id="main-content">
+
+ <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
+    此处的赠送成功是指客户已经接受到包含您支付红包卡号密码的短信
+</div>
+
                 <input type="button" value="返回列表" onclick="window.location.href='alipay.aspx'" />
     
     <hr />
