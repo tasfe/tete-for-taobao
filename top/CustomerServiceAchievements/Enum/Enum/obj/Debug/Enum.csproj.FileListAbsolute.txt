@@ -1,0 +1,5 @@
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\Enum\Enum\bin\Debug\Enum.dll
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\Enum\Enum\bin\Debug\Enum.pdb
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\Enum\Enum\obj\Debug\ResolveAssemblyReference.cache
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\Enum\Enum\obj\Debug\Enum.dll
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\Enum\Enum\obj\Debug\Enum.pdb

@@ -1,0 +1,5 @@
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\Model\Model\bin\Release\Model.dll
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\Model\Model\bin\Release\Model.pdb
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\Model\Model\obj\Release\ResolveAssemblyReference.cache
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\Model\Model\obj\Release\Model.dll
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\Model\Model\obj\Release\Model.pdb

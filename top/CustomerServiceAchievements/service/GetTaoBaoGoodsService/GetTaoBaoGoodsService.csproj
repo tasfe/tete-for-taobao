@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{14287866-5EA4-49EA-B685-5B9562D00CF5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GetTaoBaoGoodsService</RootNamespace>
+    <AssemblyName>GetTaoBaoGoodsService</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collection.cs" />
+    <Compile Include="GetTaoBaoGoodsService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GetTaoBaoGoodsService.Designer.cs">
+      <DependentUpon>GetTaoBaoGoodsService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaoBaoGoods.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\DataAnalysis\LogHelper\LogHelper.csproj">
+      <Project>{AE5B07AD-D19E-4D4E-8C35-A09BA3DD9A1D}</Project>
+      <Name>LogHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\DataAnalysis\TaoBaoAPIHelper\TaoBaoAPIHelper.csproj">
+      <Project>{4689A71B-6D0E-4AE0-975C-60C099F1196D}</Project>
+      <Name>TaoBaoAPIHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CusServiceAchievements.DAL\CusServiceAchievements.DAL\CusServiceAchievements.DAL.csproj">
+      <Project>{74C2D229-4770-404E-8CE3-A32B4221D8FC}</Project>
+      <Name>CusServiceAchievements.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Enum\Enum\Enum.csproj">
+      <Project>{037F179B-3F2F-4E59-BA64-143018B4E1B6}</Project>
+      <Name>Enum</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Model\Model\Model.csproj">
+      <Project>{2B2EC8BB-6183-4E75-8DBB-633C52FD3F33}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="GetTaoBaoGoodsService.resx">
+      <DependentUpon>GetTaoBaoGoodsService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
