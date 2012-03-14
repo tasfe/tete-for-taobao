@@ -49,7 +49,7 @@ public partial class top_reviewnew_alipay : System.Web.UI.Page
 
     private void BindData()
     {
-        string sql = "SELECT * FROM TCS_AlipayDetail WHERE nick = '" + nick + "' AND id = '" + id + "' AND issend = 1 ORDER BY senddate DESC";
+        string sql = "SELECT * FROM TCS_AlipayDetail WHERE nick = '" + nick + "' AND id = '" + id + "' AND issend = 1 AND senddate IS NOT NULL ORDER BY senddate DESC";
         DataTable dt = utils.ExecuteDataTable(sql);
 
         rptArticle.DataSource = dt;
