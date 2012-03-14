@@ -1,8 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default2.aspx.cs" Inherits="Default2" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
     <title>Untitled Page</title>
     <style type="text/css">
         .all
@@ -14,78 +15,90 @@
             width: 60px;
             float: left;
         }
+        .detail div
+        {
+            font-size: 12px;
+            height: 20px;
+        }
+        .detail1
+        {
+            width: 90px;
+            float: left;
+        }
+        .detail1 div
+        {
+            font-size: 12px;
+            height: 20px;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
         <div class="all">
-        
-        <div class="detail">
-                        <div>
-                            
-                        </div>
-                        <div>
-                           PV
-                        </div>
-                        <div>
-                           UV
-                        </div>
-                        <div>
-                            直通车
-                        </div>
-                        <div>
-                           CPC
-                        </div>
-                        <div>
-                           询单数
-                        </div>
-                        <div>
-                           丢单率
-                        </div>
-                        <div>
-                            订单数
-                        </div>
-                        <div>
-                           订单总价
-                        </div>
-                        <div>
-                            每单均价
-                        </div>
-                        <div>
-                            客户均价
-                        </div>
-                        <div>
-                            转化率
-                        </div>
-                        <div>
-                           二次浏览用户数
-                        </div>
-                        <div>
-                            浏览回头率
-                        </div>
-                        <div>
-                           退款率
-                        </div>
-                        <div>
-                            平均访问深度
-                        </div>
-                        <div>
-                            浏览排行
-                        </div>
-                        <div>
-                           销售排行
-                        </div>
-                        <div>
-                           收藏量
-                        </div>
-                    </div>
-        
+            <div class="detail1">
+                <div>
+                </div>
+                <div>
+                    PV
+                </div>
+                <div>
+                    UV
+                </div>
+                <div>
+                    直通车
+                </div>
+                <div>
+                    CPC
+                </div>
+                <div>
+                    询单数
+                </div>
+                <div>
+                    丢单率
+                </div>
+                <div>
+                    订单数
+                </div>
+                <div>
+                    订单总价
+                </div>
+                <div>
+                    每单均价
+                </div>
+                <div>
+                    客单价
+                </div>
+                <div>
+                    转化率
+                </div>
+                <div>
+                    二次浏览用户数
+                </div>
+                <div>
+                    浏览回头率
+                </div>
+                <div>
+                    退款率
+                </div>
+                <div>
+                    平均访问深度
+                </div>
+                <div>
+                    浏览排行
+                </div>
+                <div>
+                    销售排行
+                </div>
+                <div>
+                    收藏量
+                </div>
+            </div>
             <asp:Repeater runat="server" ID="Rpt_TotalList">
                 <ItemTemplate>
                     <div class="detail">
                         <div>
-                            <%# Eval("SiteTotalDate")%>
+                            <%# GetMonthDay(Eval("SiteTotalDate").ToString()) %>
                         </div>
                         <div>
                             <%# Eval("SitePVCount")%>
@@ -145,42 +158,7 @@
                 </ItemTemplate>
             </asp:Repeater>
         </div>
-        <%--<table>
-      
-       <tr>
-           <td></td>
-           <asp:Repeater ID="Rpt_Date" runat="server">
-               <ItemTemplate>
-                     <td><%# Eval("TotalDate") %></td>
-               </ItemTemplate>
-           </asp:Repeater> 
-       </tr>
-       
-       <tr>
-          <asp:Repeater ID="Rpt_Data" runat="server">
-           <ItemTemplate>
-                <td>
-                   <%# Eval("TotalName")%>
-                </td>
-              
-           </ItemTemplate>
-       </asp:Repeater>
-      
-       <%
-           DateTime now = DateTime.Parse(DateTime.Now.ToShortDateString());
-           for (DateTime i = now; i > now.AddDays(-14); i = now.AddDays(-1))
-           {
-               foreach (TopSiteTotalInfo info in SiteTotalList)
-               { 
-                   
-                   %>
-                
-       
-       <%}
-           } %>
-        </tr>
-      
-      </table>--%>
+        
     </div>
     </form>
 </body>
