@@ -22,7 +22,7 @@ public partial class Default2 : BasePage
 
     protected string GetMonthDay(string date)
     {
-        string s = date.Substring(0);
+        string s = date.Substring(4);
 
         if (s.Substring(0, 1) == "0")
         {
