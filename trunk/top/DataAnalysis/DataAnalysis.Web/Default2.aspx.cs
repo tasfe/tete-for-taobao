@@ -1,15 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Configuration;
-using System.Data;
-using System.Linq;
 using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
 using System.Collections.Generic;
 
 public partial class Default2 : BasePage
@@ -20,37 +11,34 @@ public partial class Default2 : BasePage
         {
 
             DateTime now = DateTime.Parse(DateTime.Now.ToShortDateString());
-            //List<TotalDateInfo> datelist = new List<TotalDateInfo>();
-
-            //for (DateTime i = now; i > now.AddDays(-14); i = now.AddDays(-1))
-            //{
-            //    TotalDateInfo info = new TotalDateInfo();
-            //    info.TotalDate = i.Day.ToString();
-            //    datelist.Add(info);
-            //}
-
-            //Rpt_Date.DataSource = datelist;
-            //Rpt_Date.DataBind();
 
             string nickNo = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
             IList<TopSiteTotalInfo> siteTotalList = new SiteTotalService().GetNickOrderTotal(now.AddDays(-13), now, nickNo);
             Rpt_TotalList.DataSource = siteTotalList;
             Rpt_TotalList.DataBind();
 
-            //InsertName();
-
         }
     }
 
-    //protected IList<TopSiteTotalInfo> SiteTotalList
-    //{
-    //    set { ViewState["SiteTotalList"] = value; }
+    protected string GetMonthDay(string date)
+    {
+        string s = date.Substring(0);
 
-    //    get
-    //    {
-    //        return (IList<TopSiteTotalInfo>)ViewState["SiteTotalList"];
-    //    }
-    //}
+        if (s.Substring(0, 1) == "0")
+        {
+            if (s.Substring(2, 1) == "0")
+                return s.Substring(1, 1) + "/" + s.Substring(3);
+            else
+                return s.Substring(1, 1) + "/" + s.Substring(2);
+        }
+        else
+        {
+            if (s.Substring(2, 1) == "0")
+                return s.Substring(0, 2) + "/" + s.Substring(3);
+            else
+                return s.Substring(0, 2) + "/" + s.Substring(2);
+        }
+    }
 
     private void InsertName()
     {
@@ -79,11 +67,6 @@ public partial class Default2 : BasePage
         //Rpt_Data.DataSource = list;
         //Rpt_Data.DataBind();
     }
-}
-
-public class TotalDateInfo
-{
-    public string TotalDate { set; get; }
 }
 
 public class TotalNameInfo
