@@ -282,6 +282,10 @@ public partial class top_review_msglist : System.Web.UI.Page
         {
             newstr = "<font color=blue>发货通知</font>";
         }
+        else if (str == "alipay")
+        {
+            newstr = "<font color=orange>支付宝红包</font>";
+        }
         else
         {
             newstr = "<font color=red>赠送礼品</font>";
