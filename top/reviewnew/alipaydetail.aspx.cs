@@ -72,7 +72,7 @@ public partial class top_reviewnew_alipay : System.Web.UI.Page
         sqlNew = "SELECT COUNT(*) FROM TCS_AlipayDetail WITH (NOLOCK) WHERE nick = '" + nick + "' AND guid = '" + id + "' AND issend = 1 AND senddate IS NOT NULL";
         int totalCount = int.Parse(utils.ExecuteString(sqlNew));
 
-        lbPage.Text = InitPageStr(totalCount, "alipaydetail.aspx");
+        lbPage.Text = InitPageStr(totalCount, "alipaydetail.aspx?id=" + id);
     }
 
 
@@ -136,7 +136,7 @@ public partial class top_reviewnew_alipay : System.Web.UI.Page
             }
             else
             {
-                str += "<a href='" + url + "?page=" + i.ToString() + "'>[" + i.ToString() + "]</a> ";
+                str += "<a href='" + url + "&page=" + i.ToString() + "'>[" + i.ToString() + "]</a> ";
             }
         }
 
