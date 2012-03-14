@@ -109,20 +109,22 @@ public class TopSiteTotalInfo
     {
         get
         {
-            if (SiteUVCount == 0)
+            if (SiteBuyCustomTotal == 0)
                 return "0";
-            return (SiteOrderPay / SiteUVCount).ToString(".00");
+            return (SiteOrderPay / SiteBuyCustomTotal).ToString(".00");
         }
     }
 
     /// <summary>
     /// 平均转化率
     /// </summary>
-    public decimal CreateAVG
+    public string CreateAVG
     {
         get
         {
-            return 0;
+            if (SiteUVCount == 0)
+                return "0";
+            return ((decimal)SiteBuyCustomTotal / SiteUVCount).ToString(".00");
         }
     }
 
@@ -150,7 +152,9 @@ public class TopSiteTotalInfo
     {
         get
         {
-            return "";
+            DateTime start = DateTime.Parse(SiteTotalDate.Substring(0, 4) + "-" + SiteTotalDate.Substring(4, 2) + "-" + SiteTotalDate.Substring(6));
+            IList<GoodsInfo> list = new TaoBaoGoodsServive().GetTopGoods(SiteNick, start, start.AddDays(1), 1, 1);
+            return list.Count == 0 ? "" : list[0].num_iid;
         }
     }
 
@@ -161,7 +165,9 @@ public class TopSiteTotalInfo
     {
         get
         {
-            return "";
+            DateTime start = DateTime.Parse(SiteTotalDate.Substring(0,4)+"-"+SiteTotalDate.Substring(4,2)+"-"+SiteTotalDate.Substring(6));
+            IList<GoodsInfo> list = new TaoBaoGoodsServive().GetTopBuyGoods(SiteNick, start, start.AddDays(1), 1, 1);
+            return list.Count == 0 ? "" : list[0].num_iid;
         }
     }
 
@@ -174,7 +180,7 @@ public class TopSiteTotalInfo
         {
             if (SiteUVBack == 0)
                 return "0";
-            return ((decimal)SiteUVCount / SiteUVBack).ToString(".00");
+            return ((decimal)SiteUVBack / SiteUVCount).ToString(".00");
         }
     }
 
@@ -190,6 +196,7 @@ public class TopSiteTotalInfo
             return ((decimal)SitePVCount / SiteUVCount).ToString(".00");
         }
     }
+    
 
     #endregion
 
