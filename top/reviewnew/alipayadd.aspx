@@ -25,11 +25,13 @@
   </div>
 
     <div id="main-content">
-<!--
+
 <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
-    如何使用支付宝的红包功能 <a href='http://seller.taobao.com/fuwu/service.htm?service_id=6831' target="_blank">查看教程</a>
+    支付宝是通过短信将卡号密码发送到客户手机上的，如果您账户中的短信数量为0，则无法赠送支付宝红包
 </div>
--->
+                <input type="button" value="返回列表" onclick="window.location.href='alipay.aspx'" />
+    
+    <hr />
         <table width="700">
             <tr>
                 <td align="left" height="30">红包名称：</td>
