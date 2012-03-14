@@ -55,9 +55,9 @@ namespace GetTaoBaoGoodsService
                 }
 
                 TaoBaoGoods taogoods = new TaoBaoGoods();
-                LogHelper.ServiceLog.RecodeLog("正在执行获取订单...");
+                LogHelper.ServiceLog.RecodeLog("正在执行获取商品...");
                 taogoods.GetTaoBaoGoods();
-                LogHelper.ServiceLog.RecodeLog("执行获取订单结束.");
+                LogHelper.ServiceLog.RecodeLog("执行获取商品结束.");
                 Thread.Sleep(hour * 3600 * 1000);
             }
         }
