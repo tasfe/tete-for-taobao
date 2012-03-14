@@ -1,0 +1,11 @@
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\DBHelp\DBHelp\bin\Release\DBHelp.dll
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\DBHelp\DBHelp\bin\Release\DBHelp.pdb
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\DBHelp\DBHelp\bin\Release\LogHelper.dll
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\DBHelp\DBHelp\bin\Release\Microsoft.Practices.EnterpriseLibrary.Caching.dll
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\DBHelp\DBHelp\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\DBHelp\DBHelp\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\DBHelp\DBHelp\bin\Release\Microsoft.Practices.ObjectBuilder.dll
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\DBHelp\DBHelp\bin\Release\LogHelper.pdb
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\DBHelp\DBHelp\obj\Release\ResolveAssemblyReference.cache
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\DBHelp\DBHelp\obj\Release\DBHelp.dll
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\DBHelp\DBHelp\obj\Release\DBHelp.pdb
