@@ -18,13 +18,13 @@ public partial class top_review_addpermit : System.Web.UI.Page
         string appkey = "12159997";
         string secret = "614e40bfdb96e9063031d1a9e56fbed5";
 
-        string sql = "SELECT session FROM TCS_ShopSession r INNER JOIN TCS_ShopConfig s ON s.nick = r.nick WHERE s.isdel = 0";
+        string sql = "SELECT session,r.nick FROM TCS_ShopSession r INNER JOIN TCS_ShopConfig s ON s.nick = r.nick WHERE s.isdel = 0";
         DataTable dt = utils.ExecuteDataTable(sql);
         for (int i = 0; i < dt.Rows.Count; i++)
         {
             IDictionary<string, string> param = new Dictionary<string, string>();
-            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.increment.customer.permit", dt.Rows[0][0].ToString(), param);
-            Response.Write(result);
+            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.increment.customer.permit", dt.Rows[i][0].ToString(), param);
+            Response.Write(result + "-" + dt.Rows[i][1].ToString() + "<br>");
         }
     }
 
