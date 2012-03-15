@@ -28,13 +28,15 @@ public partial class UVisitPage : BasePage
                 catch
                 {
                 }
+
+                string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
                 if (ViewState["GoodsClassList"] == null)
-                    GoodsClassList = TaoBaoAPI.GetGoodsClassInfoList(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), Request.Cookies["nicksession"].Value);
-                Bind(darray[0], darray[1]);
+                    GoodsClassList = TaoBaoAPI.GetGoodsClassInfoList(nick, Request.Cookies["nicksession"].Value);
+                Bind(nick, darray[0], darray[1]);
             }
         }
     }
-    private void Bind(DateTime start, DateTime end)
+    private void Bind(string nick,DateTime start, DateTime end)
     {
         int TotalCount = 0;//总记录数
         int TotalPage = 1; //总页数
@@ -62,7 +64,7 @@ public partial class UVisitPage : BasePage
                 List<GoodsInfo> mylist = cachegoods.Where(o => o.num_iid == list[i].GoodsId).ToList();
                 if (mylist.Count == 0)
                 {
-                    GoodsInfo rinfo = TaoBaoAPI.GetGoodsInfo(list[i].GoodsId);
+                    GoodsInfo rinfo = TaoBaoAPI.GetGoodsInfo(nick, list[i].GoodsId);
                     list[i].GoodsName = rinfo.title;
                     cachegoods.Add(rinfo);
                     if (Cache["taobaogoodslist"] == null)
@@ -143,7 +145,8 @@ public partial class UVisitPage : BasePage
             TB_End.Text = endtime.ToString("yyyy-MM-dd HH");
         }
         ViewState["page"] = "1";
-        Bind(start, endtime);
+        string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+        Bind(nick, start, endtime);
     }
 
     protected string GetSubUrl(string url)
