@@ -28,10 +28,6 @@
   </div>
     <div id="main-content">
 
-<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
-    因为淘宝政策调整，优惠接口目前最多优惠到7折，所以取消1分钱礼品的相关设置，<A href='http://dev.open.taobao.com/bbs/read.php?tid=22210' target="_blank">点击查看详情</A>
-</div>
-
         <table width="700">
             <tr>
                 <td align="left" width="180" height="30">是否开启按时好评送优惠券：</td>
