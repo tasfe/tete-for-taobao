@@ -30,11 +30,13 @@ public partial class FetchOrderTotal : System.Web.UI.Page
                     DataHelper.UpdateSiteTotal(nick, i, taoDal);
                 }
 
-                Response.Write("true"); Response.End();
+                Response.Write("true"); 
+                Response.End();
             }
             else
             {
-                Response.Write("false"); Response.End();
+                Response.Write("false" + CacheCollection.GetNickSessionList().Count);
+                Response.End();
             }
         }
     }
