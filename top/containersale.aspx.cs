@@ -24,18 +24,22 @@ public partial class top_containersale : System.Web.UI.Page
     public string top_session = string.Empty;
     public string nick = string.Empty;
     public string versionNo = string.Empty;
+    public string top_appkey = string.Empty;
+    public string app_secret = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
         //签名验证
-        string top_appkey = "12159997";
+        top_appkey = "12450498";
+        app_secret = "38c892fcaa5a971aec7a9effd105c7ba";
+
+
+
         string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString).Replace(" ", "+");
         top_session = utils.NewRequest("top_session", utils.RequestType.QueryString).Replace(" ", "+");
-        string app_secret = "614e40bfdb96e9063031d1a9e56fbed5";
+        versionNo = utils.NewRequest("versionNo", utils.RequestType.QueryString);
         string top_sign = utils.NewRequest("top_sign", utils.RequestType.QueryString).Replace(" ", "+"); //字符串中的+在获取后会被替换成空格，要再替换回来
         string sign = utils.NewRequest("sign", utils.RequestType.QueryString).Replace(" ", "+");
-
-        versionNo = utils.NewRequest("versionNo", utils.RequestType.QueryString);
         string leaseId = utils.NewRequest("leaseId", utils.RequestType.QueryString).Replace(" ", "+"); //可以从 QueryString 来获取,也可以固定 
         string timestamp = utils.NewRequest("timestamp", utils.RequestType.QueryString).Replace(" ", "+"); //可以从 QueryString 来获取 
         string agreementsign = utils.NewRequest("agreementsign", utils.RequestType.QueryString).Replace(" ", "+");
@@ -73,17 +77,17 @@ public partial class top_containersale : System.Web.UI.Page
 
         if (agreementsign != "")
         {
-            //加密NICK
-            Rijndael_ encode = new Rijndael_("tetesoft");
-            nick = encode.Encrypt(nick);
+            ////加密NICK
+            //Rijndael_ encode = new Rijndael_("tetesoft");
+            //nick = encode.Encrypt(nick);
 
-            Common.Cookie cookie = new Common.Cookie();
-            cookie.setCookie("top_sessionblog", top_session, 999999);
-            cookie.setCookie("top_sessiongroupbuy", top_session, 999999);
-            cookie.setCookie("nick", nick, 999999);
+            //Common.Cookie cookie = new Common.Cookie();
+            //cookie.setCookie("top_sessionblog", top_session, 999999);
+            //cookie.setCookie("top_sessiongroupbuy", top_session, 999999);
+            //cookie.setCookie("nick", nick, 999999);
 
-            Response.Redirect("indexnew.html");
-            return;
+            //Response.Redirect("indexnew.html");
+            //return;
         }
 
         //判断跳转
@@ -116,7 +120,7 @@ public partial class top_containersale : System.Web.UI.Page
     {
         string session = top_session;
 
-        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12159997", "614e40bfdb96e9063031d1a9e56fbed5");
+        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", top_appkey, app_secret);
 
         //获取店铺基本信息
         UserGetRequest request = new UserGetRequest();
@@ -130,13 +134,6 @@ public partial class top_containersale : System.Web.UI.Page
             //更新登录次数和最近登陆时间
             string sql = "UPDATE TCS_ShopSession SET session='" + top_session + "',version='" + versionNo + "' WHERE nick = '" + nick + "'";
             utils.ExecuteNonQuery(sql);
-
-            //特殊用户处理
-            sql = "UPDATE TCS_ShopSession SET version = 3 WHERE nick = '四川中青旅锦华分社'";
-            utils.ExecuteNonQuery(sql);
-
-            sql = "UPDATE TCS_ShopConfig SET isdel = 1 WHERE nick = '紫竹a恋'";
-            utils.ExecuteNonQuery(sql);
         }
         else
         {
@@ -144,9 +141,8 @@ public partial class top_containersale : System.Web.UI.Page
             InsertUserInfo(nick);
         }
 
-
         IDictionary<string, string> param = new Dictionary<string, string>();
-        string result = Post("http://gw.api.taobao.com/router/rest", "12159997", "614e40bfdb96e9063031d1a9e56fbed5", "taobao.increment.customer.permit", top_session, param);
+        string result = Post("http://gw.api.taobao.com/router/rest", top_appkey, app_secret, "taobao.increment.customer.permit", top_session, param);
 
         //更新用户订购信息
         CheckUser("0", nick);
@@ -156,11 +152,10 @@ public partial class top_containersale : System.Web.UI.Page
         nick = encode.Encrypt(nick);
 
         Common.Cookie cookie = new Common.Cookie();
-        cookie.setCookie("top_sessionblog", top_session, 999999);
-        cookie.setCookie("top_sessiongroupbuy", top_session, 999999);
+        cookie.setCookie("top_sessionsale", top_session, 999999);
         cookie.setCookie("nick", nick, 999999);
 
-        Response.Redirect("http://www.7fshop.com/top/market/setcookie.aspx?t=1&nick=" + HttpUtility.UrlEncode(nick));
+        Response.Redirect("indexsale.html");
     }
 
 
@@ -169,7 +164,7 @@ public partial class top_containersale : System.Web.UI.Page
     /// </summary>
     private void InsertUserInfo(string nick)
     {
-        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12159997", "614e40bfdb96e9063031d1a9e56fbed5");
+        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", top_appkey, app_secret);
         //记录店铺基本信息
         string ip = Request.UserHostAddress;
         ShopGetRequest request = new ShopGetRequest();
@@ -188,34 +183,32 @@ public partial class top_containersale : System.Web.UI.Page
         }
 
         //获取版本号
-        string appkey = "12159997";
-        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
         string version = "9";
-        IDictionary<string, string> param = new Dictionary<string, string>();
-        param.Add("article_code", "service-0-22904");
-        param.Add("nick", nick);
+        //IDictionary<string, string> param = new Dictionary<string, string>();
+        //param.Add("article_code", "service-0-22904");
+        //param.Add("nick", nick);
 
-        string result = PostJson("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.vas.subscribe.get", top_session, param);
-        if (result.IndexOf("\"article_user_subscribes\":{}") == -1)
-        {
-            Regex reg = new Regex(@"""item_code"":""([^""]*)""", RegexOptions.IgnoreCase);
-            //更新店铺的版本号
-            MatchCollection match = reg.Matches(result);
-            for (int j = 0; j < match.Count; j++)
-            {
-                version = match[j].Groups[1].ToString().Replace("service-0-22904-", "");
+        //string result = PostJson("http://gw.api.taobao.com/router/rest", top_appkey, app_secret, "taobao.vas.subscribe.get", top_session, param);
+        //if (result.IndexOf("\"article_user_subscribes\":{}") == -1)
+        //{
+        //    Regex reg = new Regex(@"""item_code"":""([^""]*)""", RegexOptions.IgnoreCase);
+        //    //更新店铺的版本号
+        //    MatchCollection match = reg.Matches(result);
+        //    for (int j = 0; j < match.Count; j++)
+        //    {
+        //        version = match[j].Groups[1].ToString().Replace("service-0-22904-", "");
 
-                if (version == "9")
-                {
-                    version = "3";
-                }
+        //        if (version == "9")
+        //        {
+        //            version = "3";
+        //        }
 
-                if (int.Parse(version) <= 3)
-                {
-                    break;
-                }
-            }
-        }
+        //        if (int.Parse(version) <= 3)
+        //        {
+        //            break;
+        //        }
+        //    }
+        //}
 
         //记录到本地数据库
         string sql = "INSERT INTO TCS_ShopSession (" +
@@ -257,188 +250,7 @@ public partial class top_containersale : System.Web.UI.Page
 
     private void CheckUser(string t, string u)
     {
-        string appkey = "12159997";
-        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
-
-        //判断该店铺是B店还是C店
-        IDictionary<string, string> param = new Dictionary<string, string>();
-        param.Add("fields", "type");
-        param.Add("nick", u);
-        string result1 = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.user.get", top_session, param);
-
-        string sql = string.Empty;
-        //判断短信购买及充值情况
-        param = new Dictionary<string, string>();
-        param.Add("nick", u);
-        param.Add("article_code", "service-0-22904");
-        string resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.vas.subscribe.get", "", param);
-        if (resultnew.IndexOf("invali") != -1)
-        {
-            //到期了
-        }
-        else
-        {
-            Regex reg = new Regex(@"<item_code>([^<]*)</item_code><deadline>([^<]*)</deadline>", RegexOptions.IgnoreCase);
-            //更新日期
-            MatchCollection match = reg.Matches(resultnew);
-            for (int i = 0; i < match.Count; i++)
-            {
-                try
-                {
-                    //10元
-                    if (match[i].Groups[1].ToString() == "service-0-22904-4")
-                    {
-                        //判断当月是否加过短信，如果没加过
-                        sql = "SELECT COUNT(*) FROM TCS_PayLog WHERE nick = '" + nick + "' AND typ = 'service-0-22904-4' AND enddate = '" + match[i].Groups[2].ToString() + "'";
-                        string count = utils.ExecuteString(sql);
-                        if (count == "0")
-                        {
-                            //插入充值记录并更新短信条数
-                            sql = "INSERT INTO TCS_PayLog (" +
-                                            "typ, " +
-                                            "enddate, " +
-                                            "nick, " +
-                                            "count " +
-                                        " ) VALUES ( " +
-                                            " '" + match[i].Groups[1].ToString() + "', " +
-                                            " '" + match[i].Groups[2].ToString() + "', " +
-                                            " '" + nick + "', " +
-                                            " '100' " +
-                                      ") ";
-                            utils.ExecuteNonQuery(sql);
-
-                            //更新短信条数
-                            sql = "UPDATE TCS_ShopConfig SET total = total + 100 WHERE nick = '" + nick + "'";
-                            utils.ExecuteNonQuery(sql);
-                        }
-                    }
-
-                    //50元
-                    if (match[i].Groups[1].ToString() == "service-0-22904-5")
-                    {
-                        //判断当月是否加过短信，如果没加过
-                        sql = "SELECT COUNT(*) FROM TCS_PayLog WHERE nick = '" + nick + "' AND typ = 'service-0-22904-5' AND enddate = '" + match[i].Groups[2].ToString() + "'";
-                        string count = utils.ExecuteString(sql);
-                        if (count == "0")
-                        {
-                            //插入充值记录并更新短信条数
-                            sql = "INSERT INTO TCS_PayLog (" +
-                                            "typ, " +
-                                            "enddate, " +
-                                            "nick, " +
-                                            "count " +
-                                        " ) VALUES ( " +
-                                            " '" + match[i].Groups[1].ToString() + "', " +
-                                            " '" + match[i].Groups[2].ToString() + "', " +
-                                            " '" + nick + "', " +
-                                            " '510' " +
-                                      ") ";
-                            utils.ExecuteNonQuery(sql);
-
-                            //更新短信条数
-                            sql = "UPDATE TCS_ShopConfig SET total = total + 510 WHERE nick = '" + nick + "'";
-                            utils.ExecuteNonQuery(sql);
-                        }
-                    }
-
-                    //100元
-                    if (match[i].Groups[1].ToString() == "service-0-22904-6")
-                    {
-                        //判断当月是否加过短信，如果没加过
-                        sql = "SELECT COUNT(*) FROM TCS_PayLog WHERE nick = '" + nick + "' AND typ = 'service-0-22904-6' AND enddate = '" + match[i].Groups[2].ToString() + "'";
-                        string count = utils.ExecuteString(sql);
-                        if (count == "0")
-                        {
-                            //插入充值记录并更新短信条数
-                            sql = "INSERT INTO TCS_PayLog (" +
-                                            "typ, " +
-                                            "enddate, " +
-                                            "nick, " +
-                                            "count " +
-                                        " ) VALUES ( " +
-                                            " '" + match[i].Groups[1].ToString() + "', " +
-                                            " '" + match[i].Groups[2].ToString() + "', " +
-                                            " '" + nick + "', " +
-                                            " '1030' " +
-                                      ") ";
-                            utils.ExecuteNonQuery(sql);
-
-                            //更新短信条数
-                            sql = "UPDATE TCS_ShopConfig SET total = total + 1030 WHERE nick = '" + nick + "'";
-                            utils.ExecuteNonQuery(sql);
-                        }
-                    }
-
-                    //100元
-                    if (match[i].Groups[1].ToString() == "service-0-22904-7")
-                    {
-                        //判断当月是否加过短信，如果没加过
-                        sql = "SELECT COUNT(*) FROM TCS_PayLog WHERE nick = '" + nick + "' AND typ = 'service-0-22904-7' AND enddate = '" + match[i].Groups[2].ToString() + "'";
-                        string count = utils.ExecuteString(sql);
-                        if (count == "0")
-                        {
-                            //插入充值记录并更新短信条数
-                            sql = "INSERT INTO TCS_PayLog (" +
-                                            "typ, " +
-                                            "enddate, " +
-                                            "nick, " +
-                                            "count " +
-                                        " ) VALUES ( " +
-                                            " '" + match[i].Groups[1].ToString() + "', " +
-                                            " '" + match[i].Groups[2].ToString() + "', " +
-                                            " '" + nick + "', " +
-                                            " '5200' " +
-                                      ") ";
-                            utils.ExecuteNonQuery(sql);
-
-                            //更新短信条数
-                            sql = "UPDATE TCS_ShopConfig SET total = total + 5200 WHERE nick = '" + nick + "'";
-                            utils.ExecuteNonQuery(sql);
-                        }
-                    }
-
-
-                    //1000元
-                    if (match[i].Groups[1].ToString() == "service-0-22904-8")
-                    {
-                        //判断当月是否加过短信，如果没加过
-                        sql = "SELECT COUNT(*) FROM TCS_PayLog WHERE nick = '" + nick + "' AND typ = 'service-0-22904-8' AND enddate = '" + match[i].Groups[2].ToString() + "'";
-                        string count = utils.ExecuteString(sql);
-                        if (count == "0")
-                        {
-                            //插入充值记录并更新短信条数
-                            sql = "INSERT INTO TCS_PayLog (" +
-                                            "typ, " +
-                                            "enddate, " +
-                                            "nick, " +
-                                            "count " +
-                                        " ) VALUES ( " +
-                                            " '" + match[i].Groups[1].ToString() + "', " +
-                                            " '" + match[i].Groups[2].ToString() + "', " +
-                                            " '" + nick + "', " +
-                                            " '10500' " +
-                                      ") ";
-                            utils.ExecuteNonQuery(sql);
-
-                            //更新短信条数
-                            sql = "UPDATE TCS_ShopConfig SET total = total + 10500 WHERE nick = '" + nick + "'";
-                            utils.ExecuteNonQuery(sql);
-                        }
-                    }
-
-
-                    //活动连接
-                    if (match[i].Groups[1].ToString() == "service-0-22904-9")
-                    {
-                        //更新短信条数
-                        sql = "UPDATE TCS_ShopSession SET version='3' WHERE nick = '" + nick + "'";
-
-                        utils.ExecuteNonQuery(sql);
-                    }
-                }
-                catch { }
-            }
-        }
+        
     }
 
     #region top api
