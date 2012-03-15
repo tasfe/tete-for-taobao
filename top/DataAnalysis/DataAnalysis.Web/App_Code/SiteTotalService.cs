@@ -58,7 +58,7 @@ public class SiteTotalService
             info.PostFee =decimal.Parse(dr["SitePostFee"].ToString());
             info.GoodsCount = int.Parse(dr["SiteGoodsCount"].ToString());
             info.SiteBuyCustomTotal = int.Parse(dr["SiteBuyCustomTotal"].ToString());
-            info.ZhiTongFlow = int.Parse(dr["SiteZhiTongTotal"].ToString());
+            info.ZhiTongFlow = dr["SiteZhiTongTotal"] == DBNull.Value ? 0 : int.Parse(dr["SiteZhiTongTotal"].ToString());
 
             list.Add(info);
         }
