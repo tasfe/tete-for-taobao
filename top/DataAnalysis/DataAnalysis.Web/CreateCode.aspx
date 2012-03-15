@@ -22,7 +22,7 @@
     <div>
         <div class="navigation" style="height: 600px;">
             <div class="crumbs">
-                <a href="javascript:;" class="nolink">特特店铺销售分析</a> 获取统计代码
+                <a href="javascript:;" class="nolink">营销决策</a> 获取统计代码
             </div>
             <div class="absright">
                 <ul>
