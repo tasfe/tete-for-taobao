@@ -23,12 +23,13 @@ public partial class GoodsBuyTotal : BasePage
             catch
             {
             }
-            ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), darray[0], darray[1]);
-            Bind(darray[0], darray[1], int.Parse(ViewState["count"].ToString()), 20);
+            string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+            ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(nick, darray[0], darray[1]);
+            Bind(nick, darray[0], darray[1], int.Parse(ViewState["count"].ToString()), 20);
         }
     }
 
-    private void Bind(DateTime start, DateTime end, int totalCount, int recordCount)
+    private void Bind(string nick,DateTime start, DateTime end, int totalCount, int recordCount)
     {
         int TotalPage = totalCount % recordCount != 0 ? (totalCount / recordCount) + 1 : totalCount / recordCount; //总页数
 
@@ -61,7 +62,7 @@ public partial class GoodsBuyTotal : BasePage
 
             if (pids != "")
             {
-                List<GoodsInfo> goodsinfoList = TaoBaoAPI.GetGoodsInfoList(pids.Substring(0, pids.Length - 1));
+                List<GoodsInfo> goodsinfoList = TaoBaoAPI.GetGoodsInfoList(nick, pids.Substring(0, pids.Length - 1));
 
                 if (Cache["taobaogoodslist"] == null)
                     Cache.Insert("taobaogoodslist", goodsinfoList, null, DateTime.Now.AddHours(12), System.Web.Caching.Cache.NoSlidingExpiration);
@@ -122,24 +123,29 @@ public partial class GoodsBuyTotal : BasePage
             TB_Start.Text = start.ToString("yyyy-MM-dd");
             TB_End.Text = endtime.ToString("yyyy-MM-dd");
         }
-        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), start, endtime);
+
+        string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(nick, start, endtime);
         ViewState["page"] = "1";
-        Bind(start, endtime, int.Parse(ViewState["count"].ToString()), 20);
+        Bind(nick,start, endtime, int.Parse(ViewState["count"].ToString()), 20);
     }
 
     protected void Btn_3Days_Click(object sender, EventArgs e)
     {
-        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), DateTime.Now.AddDays(-2), DateTime.Now);
-        Bind(DateTime.Now.AddDays(-2), DateTime.Now, int.Parse(ViewState["count"].ToString()), 20);
+        string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(nick, DateTime.Now.AddDays(-2), DateTime.Now);
+        Bind(nick, DateTime.Now.AddDays(-2), DateTime.Now, int.Parse(ViewState["count"].ToString()), 20);
     }
     protected void Btn_7Days_Click(object sender, EventArgs e)
     {
-        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), DateTime.Now.AddDays(-6), DateTime.Now);
-        Bind(DateTime.Now.AddDays(-6), DateTime.Now, int.Parse(ViewState["count"].ToString()), 20);
+        string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(nick, DateTime.Now.AddDays(-6), DateTime.Now);
+        Bind(nick, DateTime.Now.AddDays(-6), DateTime.Now, int.Parse(ViewState["count"].ToString()), 20);
     }
     protected void Btn_30Days_Click(object sender, EventArgs e)
     {
-        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), DateTime.Now.AddDays(-29), DateTime.Now);
-        Bind(DateTime.Now.AddDays(-29), DateTime.Now, int.Parse(ViewState["count"].ToString()), 20);
+        string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(nick, DateTime.Now.AddDays(-29), DateTime.Now);
+        Bind(nick, DateTime.Now.AddDays(-29), DateTime.Now, int.Parse(ViewState["count"].ToString()), 20);
     }
 }
