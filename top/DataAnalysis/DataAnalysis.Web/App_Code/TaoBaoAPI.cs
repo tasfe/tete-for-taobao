@@ -411,4 +411,21 @@ public class TaoBaoAPI
 
         return true;
     }
+
+    public static string GetShopInfo(string nick)
+    {
+        Dictionary<string, string> param = new Dictionary<string, string>();
+
+        param.Add("fields", "sid");
+        param.Add("nick", nick);//美杜莎之心
+        //6102b061e6fe4c1b437274d442350197c9fb5846db06ca8204200856
+        string text = Post(nick,"taobao.shop.get", "", param, DataFormatType.json);
+        if (text.Contains("error_response"))
+        {
+            LogHelper.LogInfo.WriteLog("获取用户店铺信息出错", text);
+            return "";
+        }
+        Regex regex = new Regex("\\d+");
+        return regex.Match(text).Value;
+    }
 }

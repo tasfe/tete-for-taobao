@@ -38,7 +38,7 @@ public class NickSessionService
         plist.Add(new SqlParameter("@ServiceID", (int)sessionInfo.ServiceId));
         plist.Add(new SqlParameter("@ShopId", sessionInfo.ShopId));
 
-        return DBHelper.ExecuteNonQuery(SQL_INSERT, plist.ToArray());
+        return DBHelper.ExecuteNonQuery(SQL_INSERT_NEW, plist.ToArray());
     }
 
     public IList<TopNickSessionInfo> GetAllNickSession()
