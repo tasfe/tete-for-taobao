@@ -145,6 +145,6 @@ public partial class PingjiaTotal : BasePage
             TB_Start.Text = start.ToString("yyyy-MM-dd");
             TB_End.Text = endtime.ToString("yyyy-MM-dd");
         }
-        ShowChart(start, end);
+        ShowChart(start, endtime);
     }
 }
