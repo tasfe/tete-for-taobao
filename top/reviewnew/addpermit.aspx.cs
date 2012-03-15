@@ -18,7 +18,7 @@ public partial class top_review_addpermit : System.Web.UI.Page
         string appkey = "12159997";
         string secret = "614e40bfdb96e9063031d1a9e56fbed5";
 
-        string sql = "SELECT session FROM TCS_ShopSession r INNER JOIN TCS_ShopConfig s ON s.nick = r.nick WHERE r.isdel = 0";
+        string sql = "SELECT session FROM TCS_ShopSession r INNER JOIN TCS_ShopConfig s ON s.nick = r.nick WHERE s.isdel = 0";
         DataTable dt = utils.ExecuteDataTable(sql);
         for (int i = 0; i < dt.Rows.Count; i++)
         {
