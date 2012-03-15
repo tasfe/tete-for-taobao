@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>好评有礼</title>
+    <title>二次销售魔方</title>
 <link href="../css/common.css" rel="stylesheet" />
 <style>
     td{font-size:12px;}
@@ -17,7 +17,7 @@
     <input type="hidden" name="t" id="t" value="" />
 <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="javascript:;" class="nolink">好评有礼</a> 好评自动判定规则 </div>
+  <div class="crumbs"><a href="javascript:;" class="nolink">二次销售魔方</a> 好评自动判定规则 </div>
   <div class="absright">
     <ul>
       <li>
