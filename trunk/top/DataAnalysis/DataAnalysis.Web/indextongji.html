@@ -73,7 +73,7 @@
                     if (XMLHttpReq.responseText == "true")
                         document.getElementById("mainframe6id").src = "Default.aspx";
                     else
-                        alert("请登录");
+                        alert(XMLHttpReq.responseText);
                 } else { //页面不正常
                     window.alert("您所请求的页面有异常。");
                 }
