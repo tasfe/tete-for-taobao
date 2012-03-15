@@ -71,7 +71,7 @@ public partial class container : System.Web.UI.Page
         DateTime now = DateTime.Now;
         info.JoinDate = now;
         info.LastGetOrderTime = now;
-        info.ShopId = TaoBaoAPIHelper.TaoBaoAPI.GetShopInfo(nick);
+        info.ShopId = TaoBaoAPI.GetShopInfo(nick);
         info.ServiceId = Enum.TopTaoBaoService.YingXiaoJueCe;
         new NickSessionService().InsertSerssionNew(info);
         CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLNICKSESSIONINFO);
