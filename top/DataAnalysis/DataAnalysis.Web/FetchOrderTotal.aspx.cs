@@ -15,7 +15,7 @@ public partial class FetchOrderTotal : System.Web.UI.Page
                 Response.End();
                 return;
             }
-            string nick = HttpUtility.UrlEncode(Request.Cookies["nick"].Value);
+            string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
             string session = Request.Cookies["nicksession"].Value;
 
             if (CacheCollection.GetNickSessionList().Where(o => o.Nick == nick).ToList().Count > 0)
@@ -35,7 +35,7 @@ public partial class FetchOrderTotal : System.Web.UI.Page
             }
             else
             {
-                Response.Write("false" + CacheCollection.GetNickSessionList().Count);
+                Response.Write("false");
                 Response.End();
             }
         }
