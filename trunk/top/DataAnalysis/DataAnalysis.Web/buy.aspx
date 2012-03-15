@@ -2,8 +2,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>营销推广</title>
-<link href="../css/common.css" rel="stylesheet" />
+    <title>营销决策</title>
+<link href="css/common.css" rel="stylesheet" />
 <style>
     td{font-size:12px;}
     a{color:Blue; text-decoration:none;font-size:14px;}
@@ -17,7 +17,7 @@
     <input type="hidden" name="t" id="t" value="" />
 <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="javascript:;" class="nolink">营销推广</a> 版本升级提示 </div>
+  <div class="crumbs"><a href="javascript:;" class="nolink">营销决策</a> 版本升级提示 </div>
   <div class="absright">
     <ul>
       <li>
