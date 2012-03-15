@@ -7,6 +7,7 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Linq;
 using System.Web;
+using Enum;
 
 /// <summary>
 /// Summary description for TaoBaoAPI
@@ -15,6 +16,9 @@ public class TaoBaoAPI
 {
     private readonly static string appkey = System.Configuration.ConfigurationManager.AppSettings["appkey"];
     private readonly static string appSecret = System.Configuration.ConfigurationManager.AppSettings["appSecret"];
+
+    private readonly static string newAppkey = System.Configuration.ConfigurationManager.AppSettings["realappkey"];
+    private readonly static string newAppSecret = System.Configuration.ConfigurationManager.AppSettings["realappSecret"];
 
     #region TOP API
     /// <summary> 
@@ -90,7 +94,7 @@ public class TaoBaoAPI
     /// <param name="param">请求参数</param> 
     /// <param name="dataType">淘宝返回数据格式</param>
     /// <returns>返回字符串</returns> 
-    public static string Post(string method, string session, IDictionary<string, string> param, DataType dataType)
+    public static string Post(string nick, string method, string session, IDictionary<string, string> param, DataFormatType dataType)
     {
         #region -----API系统参数----
 
@@ -102,14 +106,26 @@ public class TaoBaoAPI
         //string appkey = "12132145";
         //string appSecret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
 
-        param.Add("app_key", appkey);
+        List<TopNickSessionInfo> nicks = CacheCollection.GetNickSessionList().Where(o => o.Nick == nick).ToList();
+        if (nicks.Count > 0)
+        {
+            if (nicks[0].ServiceId == Enum.TopTaoBaoService.YingXiaoJueCe)
+            {
+                param.Add("app_key", newAppkey);
+                param.Add("sign", CreateSign(param, newAppSecret));
+            }
+        }
+        else
+        {
+            param.Add("app_key", appkey);
+            param.Add("sign", CreateSign(param, appSecret));
+        }
         param.Add("method", method);
         param.Add("session", session);
         param.Add("timestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
         param.Add("format", dataType.ToString());
         param.Add("v", "2.0");
         param.Add("sign_method", "md5");
-        param.Add("sign", CreateSign(param, appSecret));
 
         #endregion
 
@@ -147,12 +163,12 @@ public class TaoBaoAPI
     /// </summary>
     /// <param name="pid">淘宝商品ID</param>
     /// <returns></returns>
-    public static GoodsInfo GetGoodsInfo(string pid)
+    public static GoodsInfo GetGoodsInfo(string pid, string nick)
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("num_iid", pid);
         dic.Add("fields", "num_iid,title,nick,price,pic_url");
-        string text = Post("taobao.item.get", "", dic, DataType.json);
+        string text = Post(nick, "taobao.item.get", "", dic, DataFormatType.json);
         GoodsInfo info = new GoodsInfo();
         if (!string.IsNullOrEmpty(text))
         {
@@ -176,12 +192,12 @@ public class TaoBaoAPI
         return info;
     }
 
-    public static List<GoodsInfo> GetGoodsInfoList(string pids)
+    public static List<GoodsInfo> GetGoodsInfoList(string nick, string pids)
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("num_iids", pids);
         dic.Add("fields", "num_iid,title,nick,price,pic_url");
-        string text = Post("taobao.items.list.get", "", dic, DataType.json);
+        string text = Post(nick, "taobao.items.list.get", "", dic, DataFormatType.json);
         List<GoodsInfo> list = new List<GoodsInfo>();
         if (!string.IsNullOrEmpty(text))
         {
@@ -210,13 +226,13 @@ public class TaoBaoAPI
     /// </summary>
     /// <param name="nickNo">用户nick</param>
     /// <returns></returns>
-    public static IList<GoodsClassInfo> GetGoodsClassInfoList(string nickNo, string session)
+    public static IList<GoodsClassInfo> GetGoodsClassInfoList(string nick, string session)
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
-        dic.Add("nick", nickNo);
+        dic.Add("nick", nick);
         dic.Add("fields", "cid,name,parent_cid,sort_order");
-        string text = Post("taobao.sellercats.list.get", session, dic, DataType.json);
-         
+        string text = Post(nick, "taobao.sellercats.list.get", session, dic, DataFormatType.json);
+
         IList<GoodsClassInfo> classList = null;
         if (!string.IsNullOrEmpty(text))
         {
@@ -241,7 +257,7 @@ public class TaoBaoAPI
         return classList;
     }
 
-    public static IList<GoodsOrderInfo> GetGoodsOrderInfoList(DateTime start, DateTime end, string session, string orderState)
+    public static IList<GoodsOrderInfo> GetGoodsOrderInfoList(string nick, DateTime start, DateTime end, string session, string orderState)
     {
         bool notlast = true;
         int page_no = 0;
@@ -259,7 +275,7 @@ public class TaoBaoAPI
             dic.Add("page_no", page_no.ToString());
             dic.Add("status", orderState);//"TRADE_FINISHED");
             dic.Add("fields", "total_fee,receiver_state,receiver_city,commission_fee,payment,cod_fee,end_time,pay_time,created,post_fee,tid,commission_fee,seller_nick,buyer_nick,orders.num_iid,orders.num,orders.status");
-            string text = Post("taobao.trades.sold.get", session, dic, DataType.json);
+            string text = Post(nick, "taobao.trades.sold.get", session, dic, DataFormatType.json);
             if (!string.IsNullOrEmpty(text))
             {
                 if (text.Contains("error_response"))
@@ -308,12 +324,12 @@ public class TaoBaoAPI
         return list;
     }
 
-    public static bool GetPromotion(string session, string tid, string regex)
+    public static bool GetPromotion(string nick, string session, string tid, string regex)
     {
         IDictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("fields", "receiver_mobile, orders.num_iid, created, consign_time, total_fee, promotion_details");
         dic.Add("tid", tid);
-        string text = Post("taobao.trade.fullinfo.get", session, dic, DataType.json);
+        string text = Post(nick, "taobao.trade.fullinfo.get", session, dic, DataFormatType.json);
         if (!string.IsNullOrEmpty(text))
         {
             if (text.Contains("error_response"))
@@ -326,7 +342,7 @@ public class TaoBaoAPI
         return false;
     }
 
-    public static PingJiaInfo GetPingjia(string session, string tid)
+    public static PingJiaInfo GetPingjia(string nick, string session, string tid)
     {
         IDictionary<string, string> param = new Dictionary<string, string>();
         param.Add("fields", "content,created,result");
@@ -334,7 +350,7 @@ public class TaoBaoAPI
         param.Add("role", "buyer");
         param.Add("tid", tid);
 
-        string text = Post("taobao.traderates.get", session, param, DataType.json);
+        string text = Post(nick, "taobao.traderates.get", session, param, DataFormatType.json);
         IList<PingJiaInfo> list = new List<PingJiaInfo>();
         if (!string.IsNullOrEmpty(text))
         {
@@ -385,7 +401,7 @@ public class TaoBaoAPI
             int order = mylist.Max(o => o.sort_order) + 1;
             param.Add("sort_order", order.ToString());
 
-            string result = Post("taobao.sellercats.list.add", session, param, DataType.json);
+            string result = Post(nick, "taobao.sellercats.list.add", session, param, DataFormatType.json);
             if (result.Contains("error_response"))
             {
                 LogInfo.WriteLog("添加分类出错：" + "session:" + session + "nick：" + nick, result);
@@ -397,11 +413,3 @@ public class TaoBaoAPI
         return true;
     }
 }
-
-
-public enum DataType
-{
-    xml,
-    json
-}
-

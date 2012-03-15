@@ -3,6 +3,8 @@ using System.Web;
 using System.Runtime.InteropServices;
 using System.Web.Security;
 using System.Configuration;
+using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 /// 获取来访客户端信息
@@ -203,6 +205,109 @@ public class DataHelper
             LogInfo.Add("获取mac", err.Message);
             return err.Message;
         }
+    }
+
+    #endregion
+
+    #region 用户订购后立即获取能获取到的数据
+
+    public static void InsertGoodsOrder(DateTime start, DateTime end, string session, string nick)
+    {
+        TaoBaoGoodsOrderService tbgo = new TaoBaoGoodsOrderService();
+        //等待卖家发货,即:买家已付款
+        InsertGoodsOrderByState(start, end, "WAIT_SELLER_SEND_GOODS", session, nick, tbgo);
+        //等待买家确认收货,即:卖家已发货
+        InsertGoodsOrderByState(start, end, "WAIT_BUYER_CONFIRM_GOODS", session, nick, tbgo);
+        //买家已签收,货到付款专用
+        InsertGoodsOrderByState(start, end, "TRADE_BUYER_SIGNED", session, nick, tbgo);
+        //交易成功
+        InsertGoodsOrderByState(start, end, "TRADE_FINISHED", session, nick, tbgo);
+    }
+
+    private static void InsertGoodsOrderByState(DateTime start, DateTime end, string orderState, string session, string nick, TaoBaoGoodsOrderService tbgoDal)
+    {
+        IList<GoodsOrderInfo> goodsOrderList = TaoBaoAPI.GetGoodsOrderInfoList(nick,start, end, session, orderState);
+        if (goodsOrderList == null)
+        {
+            LogInfo.WriteLog("订购时获取订单错误", "参数错误");
+            System.Threading.Thread.Sleep(10 * 60);
+        }
+        else
+        {
+            for (int i = 0; i < goodsOrderList.Count; i++)
+            {
+                goodsOrderList[i].UsePromotion = TaoBaoAPI.GetPromotion(nick,session, goodsOrderList[i].tid, "店铺优惠券");
+                goodsOrderList[i].PingInfo = TaoBaoAPI.GetPingjia(nick,session, goodsOrderList[i].tid);
+                if (goodsOrderList[i].PingInfo == null)
+                {
+                    goodsOrderList[i].PingInfo = new PingJiaInfo
+                    {
+                        content = "",
+                        created = DateTime.Parse("1990-1-1"),
+                        result = ""
+                    };
+                }
+                tbgoDal.InsertTaoBaoGoodsOrder(goodsOrderList[i]);
+                tbgoDal.InsertChildOrderInfo(goodsOrderList[i].orders, goodsOrderList[i].tid);
+            }
+        }
+    }
+
+    public static void UpdateSiteTotal(string nick, DateTime now, SiteTotalService taoDal)
+    {
+
+        //所有有订单的用户
+        TopSiteTotalInfo stinfo = taoDal.GetOrderTotalPay(DateTime.Parse(now.ToShortDateString()), DateTime.Parse(now.AddDays(1).ToShortDateString()), nick);
+        //所有表名(添加过统计代码到网页的)
+        List<string> tableList = taoDal.GetTableName();
+        string tablename = GetTableName(nick);
+        List<string> mytablelist = tableList.Where(o => o == tablename).ToList();
+
+        TopSiteTotalInfo addup = new TopSiteTotalInfo();
+        addup.SiteNick = nick;
+        addup.SiteTotalDate = now.ToString("yyyyMMdd");
+        //有添加统计代码
+        if (mytablelist.Count > 0)
+        {
+            //有订单
+            if (stinfo != null)
+            {
+                addup.SiteOrderCount = stinfo.SiteOrderCount;
+                addup.SiteOrderPay = stinfo.SiteOrderPay;
+                addup.PostFee = stinfo.PostFee;
+                addup.SiteBuyCustomTotal = stinfo.SiteBuyCustomTotal;
+                addup.SiteSecondBuy = taoDal.GetSecondBuyTotal(DateTime.Parse(now.ToShortDateString()), DateTime.Parse(now.AddDays(1).ToShortDateString()), nick);
+            }
+            TopSiteTotalInfo puvinfo = taoDal.GetPvUvTotal(DateTime.Parse(now.ToShortDateString()), DateTime.Parse(now.AddDays(1).ToShortDateString()), tablename);
+            addup.SiteUVCount = puvinfo.SiteUVCount;
+            addup.SitePVCount = puvinfo.SitePVCount;
+
+            addup.SiteUVBack = taoDal.GetBackTotal(DateTime.Parse(now.ToShortDateString()), DateTime.Parse(now.AddDays(1).ToShortDateString()), tablename);
+        }
+        else
+        {
+            //有订单
+            if (stinfo != null)
+            {
+                addup.SiteOrderCount = stinfo.SiteOrderCount;
+                addup.SiteOrderPay = stinfo.SiteOrderPay;
+                addup.PostFee = stinfo.PostFee;
+                addup.SiteBuyCustomTotal = stinfo.SiteBuyCustomTotal;
+                addup.SiteSecondBuy = taoDal.GetSecondBuyTotal(DateTime.Parse(now.ToShortDateString()), DateTime.Parse(now.AddDays(1).ToShortDateString()), nick);
+            }
+        }
+
+        IList<string> tidList = taoDal.GetOrderIds(DateTime.Parse(now.ToShortDateString()), DateTime.Parse(now.AddDays(1).ToShortDateString()), nick);
+        if (tidList.Count > 0)
+            addup.GoodsCount = taoDal.GetGoodsCount(tidList);
+
+        taoDal.AddOrUp(addup);
+
+    }
+
+    private static string GetTableName(string nick)
+    {
+        return "TopVisitInfo_" + DataHelper.Encrypt(nick);
     }
 
     #endregion

@@ -10,16 +10,35 @@ public class NickSessionService
 {
     const string SQL_INSERT = "INSERT TopNickSession(nick,session,JoinDate,NickState,LastGetOrderTime) VALUES(@nick,@session,@JoinDate,@NickState,@LastGetOrderTime)";
 
+    const string SQL_INSERT_NEW = "INSERT TopNickSession(nick,session,JoinDate,NickState,LastGetOrderTime,ServiceID,ShopId) VALUES(@nick,@session,@JoinDate,@NickState,@LastGetOrderTime,@ServiceID,@ShopId)";
+
     const string SQL_SELECT = "SELECT nick,NickState,LastGetOrderTime FROM TopNickSession WHERE session=@session";
 
     const string SQL_UPDATE = "UPDATE TopNickSession SET NickState=@NickState,session=@session,JoinDate=@JoinDate";
 
-    const string SQL_SELECT_NICKNO = "SELECT nick,session,NickState,LastGetOrderTime FROM TopNickSession";
+    const string SQL_SELECT_NICKNO = "SELECT nick,session,NickState,LastGetOrderTime,ServiceID,ShopId FROM TopNickSession";
 
-    public int InsertSerssion(TopNickSessionInfo sessionInfo)
+    //public int InsertSerssion(TopNickSessionInfo sessionInfo)
+    //{
+    //    SqlParameter[] param = Getparameter(sessionInfo);
+    //    return DBHelper.ExecuteNonQuery(SQL_INSERT, param);
+    //}
+
+    /// <summary>
+    /// 正式使用的插入用户信息
+    /// </summary>
+    /// <param name="sessionInfo"></param>
+    /// <returns></returns>
+    public int InsertSerssionNew(TopNickSessionInfo sessionInfo)
     {
         SqlParameter[] param = Getparameter(sessionInfo);
-        return DBHelper.ExecuteNonQuery(SQL_INSERT, param);
+        List<SqlParameter> plist = new List<SqlParameter>();
+        foreach (SqlParameter p in param)
+            plist.Add(p);
+        plist.Add(new SqlParameter("@ServiceID", (int)sessionInfo.ServiceId));
+        plist.Add(new SqlParameter("@ShopId", sessionInfo.ShopId));
+
+        return DBHelper.ExecuteNonQuery(SQL_INSERT, plist.ToArray());
     }
 
     public IList<TopNickSessionInfo> GetAllNickSession()
@@ -33,6 +52,11 @@ public class NickSessionService
             info.Session = dr["session"].ToString();
             info.NickState = (bool)dr["NickState"];
             info.LastGetOrderTime = dr["LastGetOrderTime"] == DBNull.Value ? DateTime.MinValue : DateTime.Parse(dr["LastGetOrderTime"].ToString());
+
+            info.ServiceId = (Enum.TopTaoBaoService)int.Parse(dr["ServiceID"].ToString());
+            //没啥用,暂不取
+            //info.ShopId = dr["ShopId"].ToString();
+
             list.Add(info);
         }
 
