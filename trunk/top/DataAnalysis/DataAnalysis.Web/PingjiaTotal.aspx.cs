@@ -98,8 +98,8 @@ public partial class PingjiaTotal : BasePage
 
         DateText = DateText.Substring(0, DateText.Length - 1);
         DateText += "]";
-        TB_Start.Text = start.ToShortDateString();
-        TB_End.Text = end.ToShortDateString();
+        TB_Start.Text = start.ToString("yyyy-MM-dd");
+        TB_End.Text = end.ToString("yyyy-MM-dd");
     }
 
     protected string DateText
@@ -129,7 +129,7 @@ public partial class PingjiaTotal : BasePage
 
     protected void Btn_Select_Click(object sender, EventArgs e)
     {
-       DateTime now = DateTime.Now;
+        DateTime now = DateTime.Now;
         DateTime end = now.AddDays(1);
         DateTime start = new DateTime(now.Year, now.Month, now.Day);
         DateTime endtime = new DateTime(end.Year, end.Month, end.Day);

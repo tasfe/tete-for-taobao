@@ -80,6 +80,10 @@ public partial class container : System.Web.UI.Page
         HttpCookie cooksession = new HttpCookie("nicksession", top_session);
         HttpCookie cookietongji = new HttpCookie("istongji", "1");
 
+        cookie.Expires = DateTime.Now.AddDays(1);
+        cooksession.Expires = DateTime.Now.AddDays(1);
+        cookietongji.Expires = DateTime.Now.AddDays(1);
+
         Response.Cookies.Add(cookie);
         Response.Cookies.Add(cooksession);
         Response.Cookies.Add(cookietongji);
