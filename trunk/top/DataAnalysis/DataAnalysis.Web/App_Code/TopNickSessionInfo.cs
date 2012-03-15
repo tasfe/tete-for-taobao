@@ -5,6 +5,11 @@ using System.Text;
 
 public class TopNickSessionInfo
 {
+    /// <summary>
+    /// 服务ID
+    /// </summary>
+    public Enum.TopTaoBaoService ServiceId { set; get; }
+
     public string Nick { get; set; }
 
     public string Session { set; get; }
@@ -14,4 +19,9 @@ public class TopNickSessionInfo
     public bool NickState { set; get; }
 
     public DateTime JoinDate { set; get; }
+
+    /// <summary>
+    /// 店铺ID
+    /// </summary>
+    public string ShopId { set; get; }
 }
