@@ -3,36 +3,19 @@ using System.Collections.Generic;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
 using Common;
-using Taobao.Top.Api;
-using Taobao.Top.Api.Request;
-using Taobao.Top.Api.Domain;
+using System.Data;
 using System.Net;
-using System.Text;
 using System.IO;
+using System.Text;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
-using System.Xml;
 
-public partial class top_review_msg : System.Web.UI.Page
+
+public partial class top_review_msglist : System.Web.UI.Page
 {
     public string session = string.Empty;
     public string nick = string.Empty;
-    public string used = string.Empty;
-    public string total = string.Empty;
-
-    public string giftflag = string.Empty;
-    public string giftcontent = string.Empty;
-    public string shippingflag = string.Empty;
-    public string shippingcontent = string.Empty;
-    public string reviewflag = string.Empty;
-    public string reviewcontent = string.Empty;
-    public string fahuoflag = string.Empty;
-    public string fahuocontent = string.Empty;
-    public string reviewtime = string.Empty;
-    public string oldshopname = string.Empty;
-    public string shopname = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -164,86 +147,148 @@ public partial class top_review_msg : System.Web.UI.Page
     }
     #endregion
 
-    /// <summary>
-    /// 数据绑定
-    /// </summary>
-    private void BindData()
-    {
-
-        //获取相关短信设置
-        string sql = "SELECT * FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
-        DataTable dt = utils.ExecuteDataTable(sql);
-        if (dt.Rows.Count != 0)
-        {
-            used = dt.Rows[0]["used"].ToString();
-            total = dt.Rows[0]["total"].ToString();
-            giftflag = dt.Rows[0]["giftflag"].ToString();
-            giftcontent = dt.Rows[0]["giftcontent"].ToString();
-            shippingflag = dt.Rows[0]["shippingflag"].ToString();
-            shippingcontent = dt.Rows[0]["shippingcontent"].ToString();
-            reviewflag = dt.Rows[0]["reviewflag"].ToString();
-            reviewcontent = dt.Rows[0]["reviewcontent"].ToString();
-            fahuoflag = dt.Rows[0]["fahuoflag"].ToString();
-            fahuocontent = dt.Rows[0]["fahuocontent"].ToString();
-            shopname = dt.Rows[0]["shopname"].ToString();
-            reviewtime = dt.Rows[0]["reviewtime"].ToString();
-
-            //增加默认值
-            if (giftcontent.Length == 0)
-            {
-                giftcontent = "[shopname]:亲爱的[buynick],恭喜您获得我店[gift],感谢您的及时优质评价";
-            }
-            if (shippingcontent.Length == 0)
-            {
-                shippingcontent = "[shopname]:亲爱的[buynick],您的宝贝已到达,满分好评+优质评价即可获赠[gift]";
-            }
-            if (reviewcontent.Length == 0)
-            {
-                reviewcontent = "[shopname]:亲爱的[buynick],您购买的宝贝已经收到很多天了,请帮忙确认,满分好评+优质评价,即可获赠[gift]";
-            }
-            if (fahuocontent.Length == 0)
-            {
-                fahuocontent = "[shopname]:[buynick],您购买的宝贝已发出,[shiptyp]+[shipnumber],请您签收后满分好评即可获赠[gift]";
-            }
-            if (shopname.Length == 0)
-            {
-                shopname = oldshopname;
-            }
-        }
-    }
-
-    
-    /// <summary>
-    /// 保存设置
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
     protected void Button1_Click(object sender, EventArgs e)
     {
-        string giftflag = utils.NewRequest("giftflag", utils.RequestType.Form) == "1" ? "1" : "0";
-        string shippingflag = utils.NewRequest("shippingflag", utils.RequestType.Form) == "1" ? "1" : "0";
-        string reviewflag = utils.NewRequest("reviewflag", utils.RequestType.Form) == "1" ? "1" : "0";
-        string fahuoflag = utils.NewRequest("fahuoflag", utils.RequestType.Form) == "1" ? "1" : "0";
-        string reviewtime = utils.NewRequest("reviewtime", utils.RequestType.Form);
+        if (search.Text.Trim() == "")
+        {
+            Response.Redirect("msglist.aspx");
+            return;
+        }
 
-        string sql = "UPDATE TCS_ShopConfig SET " +
-            "giftflag = '" + giftflag + "', " +
-            "giftcontent = '" + utils.NewRequest("giftcontent", utils.RequestType.Form) + "', " +
-            "shippingflag = '" + shippingflag + "', " +
-            "shippingcontent = '" + utils.NewRequest("shippingcontent", utils.RequestType.Form) + "', " +
-            "reviewflag = '" + reviewflag + "', " +
-            "shopname = '" + utils.NewRequest("shopname", utils.RequestType.Form) + "', " +
-            "fahuoflag = '" + fahuoflag + "', " +
-            "fahuocontent = '" + utils.NewRequest("fahuocontent", utils.RequestType.Form) + "', " +
-            "reviewtime = '" + utils.NewRequest("reviewtime", utils.RequestType.Form) + "', " +
-            "reviewcontent = '" + utils.NewRequest("reviewcontent", utils.RequestType.Form) + "' " +
-        "WHERE nick = '" + nick + "'";
+        string sqlNew = "SELECT b.* FROM TCS_MsgSend b WITH (NOLOCK) WHERE b.nick = '" + nick + "' AND b.buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
+        DataTable dt = utils.ExecuteDataTable(sqlNew);
 
-        //Response.Write(sql);
-        utils.ExecuteNonQuery(sql);
+        rptArticle.DataSource = dt;
+        rptArticle.DataBind();
 
-        Response.Write("<script>alert('保存成功！');window.location.href='msg.aspx';</script>");
-        Response.End();
-        return;
+        lbPage.Text = "";
+    }
+
+    private void BindData()
+    {
+        string page = utils.NewRequest("page", utils.RequestType.QueryString);
+        int pageNow = 1;
+        if (page == "")
+        {
+            pageNow = 1;
+        }
+        else
+        {
+            pageNow = int.Parse(page);
+        }
+        int pageCount = 10;
+        int dataCount = (pageNow - 1) * pageCount;
+
+        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT b.*,ROW_NUMBER() OVER (ORDER BY b.adddate DESC) AS rownumber FROM TCS_MsgSend b WITH (NOLOCK) WHERE b.nick = '" + nick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY adddate DESC";
+        DataTable dt = utils.ExecuteDataTable(sqlNew);
+
+        rptArticle.DataSource = dt;
+        rptArticle.DataBind();
+
+        //分页数据初始化
+        sqlNew = "SELECT COUNT(*) FROM TCS_MsgSend WITH (NOLOCK) WHERE nick = '" + nick + "'";
+        int totalCount = int.Parse(utils.ExecuteString(sqlNew));
+
+        lbPage.Text = InitPageStr(totalCount, "msglist.aspx");
+    }
+
+    /// <summary>
+    /// 短信类型
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
+    public static string message(string str)
+    {
+        //detail = Regex.Replace(detail, @"<[^>]*>", "");
+
+        string newstr = string.Empty;
+        if (str == "shipping")
+        {
+            newstr = "<font color=green>物流签收</font>";
+        }
+        else if (str == "review")
+        {
+            newstr = "过期未评价";
+        }
+        else if (str == "fahuo")
+        {
+            newstr = "<font color=blue>发货通知</font>";
+        }
+        else if (str == "alipay")
+        {
+            newstr = "<font color=orange>支付宝红包</font>";
+        }
+        else
+        {
+            newstr = "<font color=red>赠送礼品</font>";
+        }
+        return newstr;
+    }
+
+    private string InitPageStr(int total, string url)
+    {
+        //分页数据初始化
+        string str = string.Empty;
+        int pageCount = 10;
+        int pageSize = 0;
+        int pageNow = 1;
+        string page = utils.NewRequest("page", utils.RequestType.QueryString);
+        if (page == "")
+        {
+            pageNow = 1;
+        }
+        else
+        {
+            pageNow = int.Parse(page);
+        }
+
+        //取总分页数
+        if (total % pageCount == 0)
+        {
+            pageSize = total / pageCount;
+        }
+        else
+        {
+            pageSize = total / pageCount + 1;
+        }
+
+        //如果总页面大于20，则最大页面差不超过20
+        int start = 1;
+        int end = 20;
+
+        if (pageSize < end)
+        {
+            end = pageSize;
+        }
+        else
+        {
+            if (pageNow > 15)
+            {
+                start = pageNow - 10;
+
+                if (pageNow < (total - 10))
+                {
+                    end = pageNow + 10;
+                }
+                else
+                {
+                    end = total;
+                }
+            }
+        }
+
+        for (int i = start; i <= end; i++)
+        {
+            if (i.ToString() == pageNow.ToString())
+            {
+                str += i.ToString() + " ";
+            }
+            else
+            {
+                str += "<a href='" + url + "?page=" + i.ToString() + "'>[" + i.ToString() + "]</a> ";
+            }
+        }
+
+        return str;
     }
 }
