@@ -114,11 +114,11 @@ public class TaoBaoAPI
                 param.Add("app_key", newAppkey);
                 param.Add("sign", CreateSign(param, newAppSecret));
             }
-        }
-        else
-        {
-            param.Add("app_key", appkey);
-            param.Add("sign", CreateSign(param, appSecret));
+            else
+            {
+                param.Add("app_key", appkey);
+                param.Add("sign", CreateSign(param, appSecret));
+            }
         }
         param.Add("method", method);
         param.Add("session", session);
