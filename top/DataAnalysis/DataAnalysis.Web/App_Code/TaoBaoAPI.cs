@@ -105,7 +105,13 @@ public class TaoBaoAPI
         //免费版
         //string appkey = "12132145";
         //string appSecret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
-
+        
+        param.Add("method", method);
+        param.Add("session", session);
+        param.Add("timestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+        param.Add("format", dataType.ToString());
+        param.Add("v", "2.0");
+        param.Add("sign_method", "md5");
         List<TopNickSessionInfo> nicks = CacheCollection.GetNickSessionList().Where(o => o.Nick == nick).ToList();
         if (nicks.Count > 0)
         {
@@ -120,13 +126,6 @@ public class TaoBaoAPI
                 param.Add("sign", CreateSign(param, appSecret));
             }
         }
-        param.Add("method", method);
-        param.Add("session", session);
-        param.Add("timestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-        param.Add("format", dataType.ToString());
-        param.Add("v", "2.0");
-        param.Add("sign_method", "md5");
-
         #endregion
 
         string result = string.Empty;
