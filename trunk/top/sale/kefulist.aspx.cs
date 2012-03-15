@@ -120,7 +120,6 @@ public partial class top_review_kefulist : System.Web.UI.Page
         }
         else
         {
-
             //获取该订单关联会员
             sql = "SELECT * FROM TCS_Trade WITH (NOLOCK) WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
             dt = utils.ExecuteDataTable(sql);
