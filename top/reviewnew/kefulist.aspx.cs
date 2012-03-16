@@ -177,6 +177,80 @@ public partial class top_review_kefulist : System.Web.UI.Page
                 }
             }
 
+
+
+
+            #region 赠送支付宝红包
+            //先看还有没有短信了
+            sql = "SELECT total FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
+            string totalAlipay = utils.ExecuteString(sql);
+            if (int.Parse(totalAlipay) > 0)
+            {
+                //如果有短信再开始判断
+                sql = "SELECT isalipay,alipayid FROM TCS_ShopConfig WITH (NOLOCK) WHERE nick = '" + nick + "'";
+                DataTable dtAlipay = utils.ExecuteDataTable(sql);
+                if (dtAlipay.Rows.Count != 0)
+                {
+                    //看看卖家是否开启了支付宝红包赠送
+                    if (dtAlipay.Rows[0][0].ToString() == "1")
+                    {
+                        //判断红包是否有效
+                        sql = "SELECT * FROM TCS_Alipay WITH (NOLOCK) WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND DATEDIFF(d, GETDATE(), enddate) > 0 AND used < count";
+                        DataTable dtAlipayDetail = utils.ExecuteDataTable(sql);
+                        if (dtAlipayDetail.Rows.Count != 0)
+                        {
+                            //判断用户获取的优惠券是否超过了每人的最大领取数量
+                            sql = "SELECT COUNT(*) FROM TCS_AlipayDetail WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND buynick = '" + buynick + "'";
+                            string alipayCount = utils.ExecuteString(sql);
+                            if (int.Parse(alipayCount) < int.Parse(dtAlipayDetail.Rows[0]["per"].ToString()))
+                            {
+                                //赠送支付宝红包
+                                sql = "SELECT TOP 1 * FROM TCS_AlipayDetail WITH (NOLOCK) WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND issend = 0";
+                                DataTable dtAlipayDetailList = utils.ExecuteDataTable(sql);
+                                if (dtAlipayDetailList.Rows.Count != 0)
+                                {
+                                    string msgAlipay = "亲，" + shopname + "赠送您支付宝红包，卡号" + dtAlipayDetailList.Rows[0]["card"].ToString() + "密码" + dtAlipayDetailList.Rows[0]["pass"].ToString() + "，您可以到支付宝绑定使用。";
+                                    //强行截取
+                                    if (msgAlipay.Length > 66)
+                                    {
+                                        msgAlipay = msgAlipay.Substring(0, 66);
+                                    }
+
+                                    string result = SendMessage(phone, msgAlipay);
+                                    //记录短信发送记录
+                                    sql = "INSERT INTO TCS_MsgSend (" +
+                                                        "nick, " +
+                                                        "buynick, " +
+                                                        "mobile, " +
+                                                        "[content], " +
+                                                        "yiweiid, " +
+                                                        "num, " +
+                                                        "typ " +
+                                                    " ) VALUES ( " +
+                                                        " '" + nick + "', " +
+                                                        " '" + buynick + "', " +
+                                                        " '" + phone + "', " +
+                                                        " '" + msgAlipay + "', " +
+                                                        " '" + result + "', " +
+                                                        " '1', " +
+                                                        " 'alipay' " +
+                                                    ") ";
+                                    utils.ExecuteNonQuery(sql);
+
+                                    //更新短信数量
+                                    sql = "UPDATE TCS_ShopConfig SET used = used + 1,total = total-1 WHERE nick = '" + nick + "'";
+                                    utils.ExecuteNonQuery(sql);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            #endregion
+
+
+
+
             //获取淘宝优惠券ID
             sql = "SELECT taobaocouponid FROM TCS_Coupon WHERE guid = '" + couponid + "'";
             string taobaocouponid = utils.ExecuteString(sql);
@@ -208,7 +282,10 @@ public partial class top_review_kefulist : System.Web.UI.Page
                 if (!reg.IsMatch(result))
                 {
                     string err = new Regex(@"<msg>([^<]*)</msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-                    //Response.Write("<script>alert('【系统错误】：" + err + "，请稍后再试或者联系客服人员！');window.location.href='kefulist.aspx';</script>");
+                    string errnew = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                    Response.Write("<script>alert('【系统错误】：" + id + " - " + err + " - " + errnew + "，请稍后再试或者联系客服人员！');window.location.href='kefulist.aspx';</script>");
+                    Response.End();
+                    return;
                 }
                 else
                 {
@@ -444,7 +521,10 @@ public partial class top_review_kefulist : System.Web.UI.Page
                     if (!reg.IsMatch(result))
                     {
                         string err = new Regex(@"<msg>([^<]*)</msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-                        //Response.Write("<script>alert('【系统错误】：" + err + "，请稍后再试或者联系客服人员！');window.location.href='kefulist.aspx';</script>");
+                        string errnew = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                        Response.Write("<script>alert('【系统错误】：" + err + " - " + errnew + "，请稍后再试或者联系客服人员！');window.location.href='kefulist.aspx';</script>");
+                        Response.End();
+                        return;
                     }
                     else
                     {
