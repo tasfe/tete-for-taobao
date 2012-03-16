@@ -52,9 +52,9 @@
                 </td>
             </tr>
             <tr>
-                <td align="left" height="30">红包有效天数：</td>
+                <td align="left" height="30">红包赠送截至天数：</td>
                 <td>
-                    <input name="end_time" type="text" value="7" size="2" /> 请填写您刚才创建红包时写的有效天数
+                    <input name="end_time" type="text" value="7" size="2" /> 此处指您的红包赠送的截至天数，一般此天数小于红包有效期
                 </td>
             </tr>
             <tr>
