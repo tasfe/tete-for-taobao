@@ -160,7 +160,7 @@ public partial class top_review_setting : System.Web.UI.Page
             //}
 
             //如果订购的不是VIP版，则默认将审核关闭
-                sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "'";
+            sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "'";
             DataTable dtTest = utils.ExecuteDataTable(sql);
             if (dtTest.Rows.Count != 0)
             {
@@ -200,11 +200,11 @@ public partial class top_review_setting : System.Web.UI.Page
         {
             if (dtCoupon.Rows[i]["guid"].ToString().Trim() == couponid.Trim())
             {
-                alipaystr += "<option value='" + dtCoupon.Rows[i]["guid"].ToString() + "' selected>" + dtCoupon.Rows[i]["name"].ToString() + " - " + dtCoupon.Rows[i]["num"].ToString() + "元</option>";
+                alipaystr += "<option value='" + dtCoupon.Rows[i]["guid"].ToString() + "' selected>" + dtCoupon.Rows[i]["name"].ToString() + " " + dtCoupon.Rows[i]["adddate"].ToString() + " - " + dtCoupon.Rows[i]["num"].ToString() + "元</option>";
             }
             else
             {
-                alipaystr += "<option value='" + dtCoupon.Rows[i]["guid"].ToString() + "'>" + dtCoupon.Rows[i]["name"].ToString() + " - " + dtCoupon.Rows[i]["num"].ToString() + "元</option>";
+                alipaystr += "<option value='" + dtCoupon.Rows[i]["guid"].ToString() + "'>" + dtCoupon.Rows[i]["name"].ToString() + " " + dtCoupon.Rows[i]["adddate"].ToString() + " - " + dtCoupon.Rows[i]["num"].ToString() + "元</option>";
             }
         }
         alipaystr += "</select>";

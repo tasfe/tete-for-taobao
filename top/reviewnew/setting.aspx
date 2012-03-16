@@ -60,7 +60,7 @@
                 <td>
                     <%=alipaystr%>
                     <a href="alipayadd.aspx">导入支付宝红包</a>
-                    <a href="alipay.aspx">查看支付宝红包赠送记录</a>
+                    <a href="alipay.aspx">查看赠送记录</a>
                 </td>
             </tr>
             <tr>

@@ -73,6 +73,10 @@ public partial class top_reviewnew_alipayadd : System.Web.UI.Page
             utils.ExecuteNonQuery(sql);
         }
 
+        //更新基本设置里面的红包为此红包
+        sql = "UPDATE TCS_Alipay SET alipayid = '" + guid + "' WHERE nick = '" + nick + "'";
+        utils.ExecuteNonQuery(sql);
+
         Response.Redirect("alipay.aspx");
         Response.End();
     }
