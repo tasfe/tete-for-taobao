@@ -241,11 +241,24 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                                         " '1', " +
                                                         " 'alipay' " +
                                                     ") ";
-                                    utils.ExecuteNonQuery(sql);
 
-                                    //更新短信数量
-                                    sql = "UPDATE TCS_ShopConfig SET used = used + 1,total = total-1 WHERE nick = '" + nick + "'";
-                                    utils.ExecuteNonQuery(sql);
+                                    if (phone.Length != 0)
+                                    {
+                                        //记录支付宝红包发送成功
+                                        utils.ExecuteNonQuery(sql);
+
+                                        sql = "UPDATE TCS_Alipay SET used = used + 1 WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "'";
+                                        utils.ExecuteNonQuery(sql);
+
+                                        //更新优惠券已经赠送数量
+                                        sql = "UPDATE TCS_AlipayDetail SET issend = 1,buynick = '" + buynick + "',senddate = GETDATE(), orderid = '" + id + "' WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND card = '" + dtAlipayDetailList.Rows[0]["card"].ToString() + "'";
+                                        utils.ExecuteNonQuery(sql);
+
+                                        
+                                        //更新短信数量
+                                        sql = "UPDATE TCS_ShopConfig SET used = used + 1,total = total-1 WHERE nick = '" + nick + "'";
+                                        utils.ExecuteNonQuery(sql);
+                                    }
                                 }
                             }
                         }
@@ -384,7 +397,11 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                                     " '" + number + "', " +
                                                     " 'gift' " +
                                                 ") ";
-                                utils.ExecuteNonQuery(sql);
+
+                                if (phone.Length != 0)
+                                {
+                                    utils.ExecuteNonQuery(sql);
+                                }
 
                                 ////更新状态
                                 //sql = "UPDATE TopOrder SET isgiftmsg = 1 WHERE orderid = '" + id + "'";
@@ -482,6 +499,33 @@ public partial class top_review_kefulist : System.Web.UI.Page
             else
             {
 
+
+
+                //获取该订单关联会员
+                sql = "SELECT * FROM TCS_Trade WITH (NOLOCK) WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
+                dt = utils.ExecuteDataTable(sql);
+                if (dt.Rows.Count != 0)
+                {
+                    buynick = dt.Rows[0]["buynick"].ToString();
+                    phone = dt.Rows[0]["mobile"].ToString();
+                }
+                else
+                {
+                    sql = "SELECT * FROM TCS_TradeRateCheck WITH (NOLOCK) WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
+                    dt = utils.ExecuteDataTable(sql);
+                    if (dt.Rows.Count != 0)
+                    {
+                        buynick = dt.Rows[0]["buynick"].ToString();
+                        //phone = dt.Rows[0]["mobile"].ToString();
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('【系统错误】：找不到该订单【" + id + "】关联的淘宝会员，请联系客服人员！');window.location.href='kefulist.aspx';</script>");
+                        return;
+                    }
+                }
+
+
                 #region 赠送支付宝红包
                 //先看还有没有短信了
                 sql = "SELECT total FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
@@ -537,11 +581,24 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                                             " '1', " +
                                                             " 'alipay' " +
                                                         ") ";
-                                        utils.ExecuteNonQuery(sql);
 
-                                        //更新短信数量
-                                        sql = "UPDATE TCS_ShopConfig SET used = used + 1,total = total-1 WHERE nick = '" + nick + "'";
-                                        utils.ExecuteNonQuery(sql);
+                                        if (phone.Length != 0)
+                                        {
+                                            //记录支付宝红包发送成功
+                                            utils.ExecuteNonQuery(sql);
+
+                                            sql = "UPDATE TCS_Alipay SET used = used + 1 WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "'";
+                                            utils.ExecuteNonQuery(sql);
+
+                                            //更新优惠券已经赠送数量
+                                            sql = "UPDATE TCS_AlipayDetail SET issend = 1,buynick = '" + buynick + "',senddate = GETDATE(), orderid = '" + id + "' WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND card = '" + dtAlipayDetailList.Rows[0]["card"].ToString() + "'";
+                                            utils.ExecuteNonQuery(sql);
+
+
+                                            //更新短信数量
+                                            sql = "UPDATE TCS_ShopConfig SET used = used + 1,total = total-1 WHERE nick = '" + nick + "'";
+                                            utils.ExecuteNonQuery(sql);
+                                        }
                                     }
                                 }
                             }
@@ -555,30 +612,6 @@ public partial class top_review_kefulist : System.Web.UI.Page
                 }
                 else
                 {
-                    //获取该订单关联会员
-                    sql = "SELECT * FROM TCS_Trade WITH (NOLOCK) WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
-                    dt = utils.ExecuteDataTable(sql);
-                    if (dt.Rows.Count != 0)
-                    {
-                        buynick = dt.Rows[0]["buynick"].ToString();
-                        phone = dt.Rows[0]["mobile"].ToString();
-                    }
-                    else
-                    {
-                        sql = "SELECT * FROM TCS_TradeRateCheck WITH (NOLOCK) WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
-                        dt = utils.ExecuteDataTable(sql);
-                        if (dt.Rows.Count != 0)
-                        {
-                            buynick = dt.Rows[0]["buynick"].ToString();
-                            //phone = dt.Rows[0]["mobile"].ToString();
-                        }
-                        else
-                        {
-                            Response.Write("<script>alert('【系统错误】：找不到该订单【" + id + "】关联的淘宝会员，请联系客服人员！');window.location.href='kefulist.aspx';</script>");
-                            return;
-                        }
-                    }
-
                     //获取淘宝优惠券ID
                     sql = "SELECT taobaocouponid FROM TCS_Coupon WHERE guid = '" + couponid + "'";
                     string taobaocouponid = utils.ExecuteString(sql);
@@ -702,8 +735,10 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                                         " 'gift' " +
                                                     ") ";
                                     //Response.Write(sql + "<br>");
-                                    utils.ExecuteNonQuery(sql);
-
+                                    if (phone.Length != 0)
+                                    {
+                                        utils.ExecuteNonQuery(sql);
+                                    }
                                     ////更新状态
                                     //sql = "UPDATE TopOrder SET isgiftmsg = 1 WHERE orderid = '" + id + "'";
                                     //utils.ExecuteNonQuery(sql);
