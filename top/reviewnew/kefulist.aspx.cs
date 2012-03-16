@@ -127,6 +127,9 @@ public partial class top_review_kefulist : System.Web.UI.Page
         string giftcontent = string.Empty;
         string shopname = string.Empty;
 
+        string isalipay = string.Empty;
+        string alipayid = string.Empty;
+
         //获取优惠券信息
         sql = "SELECT * FROM TCS_ShopConfig WITH (NOLOCK) WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
@@ -137,6 +140,9 @@ public partial class top_review_kefulist : System.Web.UI.Page
             giftflag = dt.Rows[0]["giftflag"].ToString();
             giftcontent = dt.Rows[0]["giftcontent"].ToString();
             shopname = dt.Rows[0]["shopname"].ToString();
+
+            isalipay = dt.Rows[0]["isalipay"].ToString();
+            alipayid = dt.Rows[0]["alipayid"].ToString();
         }
         else
         {
@@ -145,9 +151,9 @@ public partial class top_review_kefulist : System.Web.UI.Page
         }
 
         //如果没有赠送优惠券或者优惠券为空则放弃
-        if (iscoupon == "0" || iscoupon.Trim() == "")
+        if ((iscoupon == "0" || iscoupon.Trim() == "") && (isalipay == "0" || alipayid.Trim() == ""))
         {
-            Response.Write("<script>alert('您没有设置赠送优惠券或者礼品！');window.location.href='kefulist.aspx';</script>");
+            Response.Write("<script>alert('您没有设置赠送优惠券或者支付宝红包！');window.location.href='kefulist.aspx';</script>");
             return;
         }
         else
