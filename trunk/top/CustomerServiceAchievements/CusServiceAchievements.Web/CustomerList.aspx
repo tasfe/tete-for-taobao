@@ -5,6 +5,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Untitled Page</title>
+    <style type="text/css">
+      td{text-align:center}
+      th{text-align:center}
+    </style>
     <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
 </head>
 <body>
@@ -17,10 +21,10 @@
                     <table>
                     <tr>
                        <th>序号</th>
-                       <th>买家</th>
-                       <th>接待人</th>
-                       <th>接待时间</th>
-                       <th>接待时长</th>
+                       <th width="150px">买家</th>
+                       <th width="220px">接待人</th>
+                       <th width="150px">接待时间</th>
+                       <th width="220px">接待时长</th>
                        <th>交易</th>
                     </tr>
                     <asp:Repeater ID="Rpt_CustomerList" runat="server">
