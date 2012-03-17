@@ -1,0 +1,9 @@
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuyRemove\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuyRemove\bin\Debug\tetegroupbuyRemove.exe.config
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuyRemove\bin\Debug\tetegroupbuyRemove.exe
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuyRemove\bin\Debug\tetegroupbuyRemove.pdb
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuyRemove\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuyRemove\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuyRemove\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuyRemove\obj\x86\Debug\tetegroupbuyRemove.exe
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\tetegroupbuyRemove\obj\x86\Debug\tetegroupbuyRemove.pdb
