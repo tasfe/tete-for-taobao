@@ -37,7 +37,7 @@ public partial class CustomerList : System.Web.UI.Page
         }
     }
 
-    private void Bind(DateTime start, DateTime end, string nick, int totalCount)
+    private void Bind(DateTime start, DateTime end, string nick, int totalCount,params int[] tid)
     {
         int recordCount = 20;
         int TotalPage = totalCount % recordCount != 0 ? (totalCount / recordCount) + 1 : totalCount / recordCount; //总页数
@@ -67,6 +67,9 @@ public partial class CustomerList : System.Web.UI.Page
                 }
             }
         }
+
+        if (tid != null && tid.Length > 0)
+            list = list.Where(o => !string.IsNullOrEmpty(o.tid)).ToList();
 
         lblCurrentPage.Text = "共" + totalCount.ToString() + "条记录 当前页：" + page + "/" + (TotalPage == 0 ? 1 : TotalPage);
 
@@ -112,5 +115,26 @@ public partial class CustomerList : System.Web.UI.Page
         int totalcount = trDal.GetCustomerListCount(start, endtime, nick);
         ViewState["page"] = "1";
         Bind(start, endtime, nick, totalcount);
+    }
+
+    protected void Btn_Success_Click(object sender, EventArgs e)
+    {
+        DateTime now = DateTime.Now;
+        DateTime end = now.AddDays(1);
+        DateTime start = new DateTime(now.Year, now.Month, now.Day);
+        DateTime endtime = new DateTime(end.Year, end.Month, end.Day);
+        try
+        {
+            start = DateTime.Parse(TB_Start.Text);
+            endtime = start.AddDays(1);
+        }
+        catch
+        {
+            TB_Start.Text = start.ToString("yyyy-MM-dd");
+        }
+        string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+        int totalcount = trDal.GetCustomerListCount(start, endtime, nick);
+        ViewState["page"] = "1";
+        Bind(start, endtime, nick, totalcount, new[] { 1 });
     }
 }

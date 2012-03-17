@@ -18,6 +18,8 @@
                         class="Wdate" Width="120px"></asp:TextBox>&nbsp;
                     <asp:Button ID="Btn_Select" runat="server" Text="查 看" OnClick="Btn_Select_Click" />
                     
+                     <asp:Button ID="Btn_Success" runat="server" Text="查看成功" OnClick="Btn_Success_Click" />
+                    
                     <table>
                     <tr>
                        <th>序号</th>
