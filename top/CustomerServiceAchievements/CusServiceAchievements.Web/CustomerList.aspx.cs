@@ -21,6 +21,15 @@ public partial class CustomerList : System.Web.UI.Page
 
             DateTime[] dateArr = DataHelper.GetDateTime(DateTime.Now, 1);
 
+            try
+            {
+                dateArr[0] = DateTime.Parse(Request.QueryString["start"]);
+                dateArr[1] = DateTime.Parse(Request.QueryString["end"]);
+            }
+            catch
+            {
+            }
+
             GoodsOrderService goDal = new GoodsOrderService();
             GoodsOrderList = goDal.GetCustomerList(nick, dateArr[0], dateArr[1]);
             int totalcount = trDal.GetCustomerListCount(dateArr[0], dateArr[1], nick);
