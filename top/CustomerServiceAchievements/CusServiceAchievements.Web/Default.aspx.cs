@@ -14,15 +14,15 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string s = HttpUtility.UrlEncode("上宫庄健客专卖店");
-        Response.Write(s);
+        if (!IsPostBack)
+        {
 
-        //TaoBaoAPIHelper.TaoBaoAPI.GetGoodsInfoListByNick("luckyfish8800", "6101312587cbdace711a1e26d5877064329a4dd05d9c96326907498");
-        //TaoBaoAPIHelper.TaoBaoAPI.GetGoodsInfoListByNick("上宫庄健客专卖店", "610242312a8c4906036867f3ce62e7516cbe073aadea77b667819556");
-
-        //TaoBaoAPIHelper.TaoBaoAPI.GetNickGroupList("luckyfish8800:售后", "6101312587cbdace711a1e26d5877064329a4dd05d9c96326907498");
-
-        //string s = TaoBaoAPIHelper.TaoBaoAPI.GetShopInfo("上宫庄健客专卖店");
-        //return;
+        }
+    }
+    protected void Btn_JoinNick_Click(object sender, EventArgs e)
+    {
+        HttpCookie cookie = new HttpCookie("nick", HttpUtility.UrlEncode(TB_Nick.Text));
+        cookie.Expires = DateTime.Now.AddDays(1);
+        Response.Cookies.Add(cookie);
     }
 }
