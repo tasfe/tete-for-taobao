@@ -48,8 +48,8 @@
                 <td><a href='http://item.taobao.com/item.htm?id=<%#Eval("itemid").ToString() %>' target="_blank"><img style="border:solid 1px #000;" width="80" height="80" src='<%#Eval("groupbuypic").ToString() %>_80x80.jpg' alt='<%#Eval("groupbuyname").ToString() %>' border="0" /></a></td>
                 <td><%#typ(Eval("typ").ToString())%></td>
                 <td style="color:Red; font-weight:bold; font-size:14px"><%#Eval("total").ToString() %></td>
-                <td><%#Eval("success").ToString() %></td>
-                <td><%#Eval("fail").ToString() %></td>
+                <td><a href="ErrLog/<%#typSuccess(Eval("typ").ToString())%><%#typSTRfile(Eval("groupbuyid").ToString())%>"><%#Eval("success").ToString() %></a></td>
+                <td><a href="ErrLog/<%#typErr(Eval("typ").ToString())%><%#typSTRfile(Eval("groupbuyid").ToString())%>"> <%#Eval("fail").ToString() %></a></td>
                 <td><%#Eval("startdate").ToString() %></td>
                 <td><%#result(Eval("isok").ToString())%></td>
             </tr>

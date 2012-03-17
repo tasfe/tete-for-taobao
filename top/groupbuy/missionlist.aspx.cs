@@ -90,6 +90,36 @@ public partial class top_groupbuy_missionlist : System.Web.UI.Page
         }
     }
 
+    public static string typSuccess(string msg)
+    {
+        if (msg == "write")
+        {
+            return "Write" + DateTime.Now.ToString("yyyyMMdd") + "/";   
+        }
+        else
+        {
+            return "Write" + DateTime.Now.ToString("yyyyMMdd") + "/Delete";  
+        }
+    }
+
+    public static string typErr(string msg)
+    {
+        if (msg == "write")
+        {
+            return "Write" + DateTime.Now.ToString("yyyyMMdd")+"/Err";     
+        }
+        else
+        {
+            return "Write" + DateTime.Now.ToString("yyyyMMdd") + "/DeleteErr";  
+        }
+    }
+
+    public static string typSTRfile(string groupbuyID)
+    {
+            return groupbuyID + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+ 
+    }
+    
     private string InitPageStr(int total, string url)
     {
         //分页数据初始化
