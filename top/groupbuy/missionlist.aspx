@@ -40,6 +40,7 @@
                 <td width="60"><b>失败数</b></td>
                 <td width="60"><b>开始时间</b></td>
                 <td width="60"><b>状态</b></td>
+                <td width="60"><b>日志</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
@@ -48,10 +49,14 @@
                 <td><a href='http://item.taobao.com/item.htm?id=<%#Eval("itemid").ToString() %>' target="_blank"><img style="border:solid 1px #000;" width="80" height="80" src='<%#Eval("groupbuypic").ToString() %>_80x80.jpg' alt='<%#Eval("groupbuyname").ToString() %>' border="0" /></a></td>
                 <td><%#typ(Eval("typ").ToString())%></td>
                 <td style="color:Red; font-weight:bold; font-size:14px"><%#Eval("total").ToString() %></td>
-                <td><a target="_blank" href="ErrLog/<%#typSuccess(Eval("typ").ToString())%><%#typSTRfile(Eval("groupbuyid").ToString())%>"><%#Eval("success").ToString() %></a></td>
-                <td><a target="_blank" href="ErrLog/<%#typErr(Eval("typ").ToString())%><%#typSTRfile(Eval("groupbuyid").ToString())%>"> <%#Eval("fail").ToString() %></a></td>
+                <td> <%#Eval("success").ToString() %> </td>
+                <td>  <%#Eval("fail").ToString() %> </td>
                 <td><%#Eval("startdate").ToString() %></td>
                 <td><%#result(Eval("isok").ToString())%></td>
+                <td>
+                    <a target="_blank" href="ErrLog/<%#typSuccess(Eval("typ").ToString())%><%#typSTRfile(Eval("groupbuyid").ToString())%>">查看成功日志</a>
+                <br /><a target="_blank" href="ErrLog/<%#typErr(Eval("typ").ToString())%><%#typSTRfile(Eval("groupbuyid").ToString())%>"> 查看错误日志</a>
+                </td>
             </tr>
             </ItemTemplate>
         </asp:Repeater>
