@@ -9,7 +9,9 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    
+      <asp:TextBox ID="TB_Nick" runat="server">&nbsp;
+      </asp:TextBox><asp:Button ID="Btn_JoinNick" runat="server" Text="添加cookie" 
+            onclick="Btn_JoinNick_Click" />
     </div>
     </form>
 </body>
