@@ -80,7 +80,7 @@ public partial class CustomerList : System.Web.UI.Page
         set { ViewState["GoodsOrderList"] = value; }
         get
         {
-            return (List<GoodsOrderInfo>)ViewState["GoodsOrderList"];
+            return ViewState["GoodsOrderList"] == null ? new List<GoodsOrderInfo>() : (List<GoodsOrderInfo>)ViewState["GoodsOrderList"];
         }
     }
 
