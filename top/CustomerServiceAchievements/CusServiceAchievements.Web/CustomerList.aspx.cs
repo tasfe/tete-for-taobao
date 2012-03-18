@@ -34,7 +34,10 @@ public partial class CustomerList : System.Web.UI.Page
 
             GoodsOrderService goDal = new GoodsOrderService();
             GoodsOrderList = goDal.GetCustomerList(nick, dateArr[0], dateArr[1]);
-            Bind(dateArr[0], dateArr[1], nick);
+            if (Request.QueryString["suc"] == "0")
+                Bind(dateArr[0], dateArr[1], nick);
+            else
+                Bind(dateArr[0], dateArr[1], nick, new[] { 1 });
         }
     }
 
@@ -69,8 +72,12 @@ public partial class CustomerList : System.Web.UI.Page
             }
         }
 
+        int suc = 0;
         if (tid != null && tid.Length > 0)
+        {
             list = list.Where(o => !string.IsNullOrEmpty(o.tid)).ToList();
+            suc = 1;
+        }
 
         TotalCount = list.Count;
         pds.DataSource = list;
@@ -90,13 +97,13 @@ public partial class CustomerList : System.Web.UI.Page
         pds.CurrentPageIndex = page - 1;
         lblCurrentPage.Text = "共" + TotalCount.ToString() + "条记录 当前页：" + page + "/" + TotalPage;
 
-        lnkFrist.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=1" + "&start=" + start.ToShortDateString();
+        lnkFrist.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=1" + "&start=" + start.ToShortDateString() + "&suc=" + suc;
         if (!pds.IsFirstPage)
-            lnkPrev.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + (page - 1) + "&start=" + start.ToShortDateString();
+            lnkPrev.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + (page - 1) + "&start=" + start.ToShortDateString() + "&suc=" + suc;
 
         if (!pds.IsLastPage)
-            lnkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + (page + 1) + "&start=" + start.ToShortDateString();
-        lnkEnd.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + TotalPage + "&start=" + start.ToShortDateString();
+            lnkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + (page + 1) + "&start=" + start.ToShortDateString() + "&suc=" + suc;
+        lnkEnd.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + TotalPage + "&start=" + start.ToShortDateString() + "&suc=" + suc;
 
         Rpt_CustomerList.DataSource = pds;
         Rpt_CustomerList.DataBind();
