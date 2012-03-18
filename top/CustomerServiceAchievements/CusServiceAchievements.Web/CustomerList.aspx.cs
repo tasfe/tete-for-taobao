@@ -7,11 +7,13 @@ using DBHelp;
 using TaoBaoAPIHelper;
 using System.Collections.Generic;
 using Model;
+using System.Web.UI.WebControls;
 
 public partial class CustomerList : System.Web.UI.Page
 {
 
     TalkRecodService trDal = new TalkRecodService();
+    PagedDataSource pds = new PagedDataSource();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -32,15 +34,14 @@ public partial class CustomerList : System.Web.UI.Page
 
             GoodsOrderService goDal = new GoodsOrderService();
             GoodsOrderList = goDal.GetCustomerList(nick, dateArr[0], dateArr[1]);
-            int totalcount = trDal.GetCustomerListCount(dateArr[0], dateArr[1], nick);
-            Bind(dateArr[0], dateArr[1], nick, totalcount);
+            Bind(dateArr[0], dateArr[1], nick);
         }
     }
 
-    private void Bind(DateTime start, DateTime end, string nick, int totalCount,params int[] tid)
+    private void Bind(DateTime start, DateTime end, string nick,params int[] tid)
     {
-        int recordCount = 20;
-        int TotalPage = totalCount % recordCount != 0 ? (totalCount / recordCount) + 1 : totalCount / recordCount; //总页数
+        int TotalCount = 0;//总记录数
+        int TotalPage = 1; //总页数
 
         int page = 1;
         try
@@ -54,7 +55,7 @@ public partial class CustomerList : System.Web.UI.Page
         }
         catch { }
 
-        IList<CustomerInfo> list = trDal.GetCustomerList(start, end, nick, page, recordCount);
+        IList<CustomerInfo> list = trDal.GetCustomerList(start, end, nick);
 
         if (list.Count > 0)
         {
@@ -71,17 +72,33 @@ public partial class CustomerList : System.Web.UI.Page
         if (tid != null && tid.Length > 0)
             list = list.Where(o => !string.IsNullOrEmpty(o.tid)).ToList();
 
-        lblCurrentPage.Text = "共" + totalCount.ToString() + "条记录 当前页：" + page + "/" + (TotalPage == 0 ? 1 : TotalPage);
+        TotalCount = list.Count;
+        pds.DataSource = list;
+        pds.AllowPaging = true;
+        pds.PageSize = 20;
 
-        lnkFrist.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=1&" + "start=" + start.ToShortDateString() + "&end=" + end.ToShortDateString();
-        if (page > 1)
-            lnkPrev.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(page - 1) + "&" + "start=" + start.ToShortDateString() + "&end=" + end.ToShortDateString();
+        if (TotalCount == 0)
+            TotalPage = 1;
+        else
+        {
+            if (TotalCount % pds.PageSize == 0)
+                TotalPage = TotalCount / pds.PageSize;
+            else
+                TotalPage = TotalCount / pds.PageSize + 1;
+        }
 
-        if (page != TotalPage && TotalPage != 0)
-            lnkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + Convert.ToString(page + 1) + "&" + "start=" + start.ToShortDateString() + "&end=" + end.ToShortDateString();
-        lnkEnd.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + (TotalPage == 0 ? 1 : TotalPage) + "&" + "start=" + start.ToShortDateString() + "&end=" + end.ToShortDateString();
+        pds.CurrentPageIndex = page - 1;
+        lblCurrentPage.Text = "共" + TotalCount.ToString() + "条记录 当前页：" + page + "/" + TotalPage;
 
-        Rpt_CustomerList.DataSource = list;
+        lnkFrist.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=1" + "&start=" + start.ToShortDateString();
+        if (!pds.IsFirstPage)
+            lnkPrev.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + (page - 1) + "&start=" + start.ToShortDateString();
+
+        if (!pds.IsLastPage)
+            lnkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + (page + 1) + "&start=" + start.ToShortDateString();
+        lnkEnd.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + TotalPage + "&start=" + start.ToShortDateString();
+
+        Rpt_CustomerList.DataSource = pds;
         Rpt_CustomerList.DataBind();
         TB_Start.Text = start.ToString("yyyy-MM-dd");
 
@@ -112,9 +129,8 @@ public partial class CustomerList : System.Web.UI.Page
             TB_Start.Text = start.ToString("yyyy-MM-dd");
         }
         string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
-        int totalcount = trDal.GetCustomerListCount(start, endtime, nick);
         ViewState["page"] = "1";
-        Bind(start, endtime, nick, totalcount);
+        Bind(start, endtime, nick);
     }
 
     protected void Btn_Success_Click(object sender, EventArgs e)
@@ -133,8 +149,7 @@ public partial class CustomerList : System.Web.UI.Page
             TB_Start.Text = start.ToString("yyyy-MM-dd");
         }
         string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
-        int totalcount = trDal.GetCustomerListCount(start, endtime, nick);
         ViewState["page"] = "1";
-        Bind(start, endtime, nick, totalcount, new[] { 1 });
+        Bind(start, endtime, nick, new[] { 1 });
     }
 }
