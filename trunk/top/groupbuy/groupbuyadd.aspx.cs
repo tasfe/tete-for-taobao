@@ -87,9 +87,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         string session = cookie.getCookie("top_sessiongroupbuy");
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
-
-        //判断人群数不得超过4个
-
+ 
         string sql = "SELECT * FROM TopGroupBuy WHERE nick = '" + nick + "' WHERE  isdelete=0 ORDER BY ID DESC";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt != null && dt.Rows.Count > 10)
@@ -118,6 +116,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         string mintime = utils.NewRequest("mintime", utils.RequestType.Form);
         string isfromflash = utils.NewRequest("isfromflash", utils.RequestType.Form);
         string rcount = utils.NewRequest("rcount", utils.RequestType.Form);
+        string template1 = utils.NewRequest("templateID", utils.RequestType.Form);
       
 
 

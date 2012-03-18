@@ -147,8 +147,7 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
             //更新总数量
             string sql = "UPDATE TopMission SET total = '" + itemcount + "' WHERE id = " + missionid;
             utils.ExecuteNonQuery(sql);
-
-            missID.Value = missionid;
+         
  
             //更新任务
             DoMyJob(missionid);
@@ -335,13 +334,13 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
                             param.Add("num_iid", dtWrite.Rows[j]["itemid"].ToString());
                             param.Add("desc", newContent);
                             string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update ", session, param);
-
+                            //插入宝贝错误日志
                             if (resultpro.IndexOf("ITEM_PROPERTIES_ERROR") != -1)
                             {
-                                WriteLog("更新宝贝描述：宝贝ID：" + dtWrite.Rows[j]["itemid"].ToString() + "返回的错误信息" + resultpro, "", dt.Rows[i]["nick"].ToString());
-                                //插入宝贝错误日志
-                                sql = "insert TopMissionErrDetail (TopMissionID,itemid,nick,ErrDetail) values('" + dt.Rows[i]["id"].ToString() + "','" + dtWrite.Rows[j]["itemid"].ToString() + "','" + dt.Rows[i]["nick"].ToString() + "','" + resultpro + "')";
-                                utils.ExecuteNonQuery(sql);
+                                //WriteLog("更新宝贝描述：宝贝ID：" + dtWrite.Rows[j]["itemid"].ToString() + "返回的错误信息" + resultpro, "", dt.Rows[i]["nick"].ToString());
+                                ////插入宝贝错误日志
+                                //sql = "insert TopMissionErrDetail (TopMissionID,itemid,nick,ErrDetail) values('" + dt.Rows[i]["id"].ToString() + "','" + dtWrite.Rows[j]["itemid"].ToString() + "','" + dt.Rows[i]["nick"].ToString() + "','" + resultpro + "')";
+                                //utils.ExecuteNonQuery(sql);
                                 //更新宝贝错误数
                                 sql = "UPDATE TopMission SET fail = fail + 1,isok = -1  WHERE id = " + dt.Rows[i]["id"].ToString();
                                 utils.ExecuteNonQuery(sql);
@@ -418,6 +417,8 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
         }
 
     }
+
+ 
  
 
     
