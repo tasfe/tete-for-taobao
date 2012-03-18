@@ -15,6 +15,8 @@ public partial class CustomerList : System.Web.UI.Page
     TalkRecodService trDal = new TalkRecodService();
     PagedDataSource pds = new PagedDataSource();
 
+    GoodsOrderService goDal = new GoodsOrderService();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -31,9 +33,6 @@ public partial class CustomerList : System.Web.UI.Page
             catch
             {
             }
-
-            GoodsOrderService goDal = new GoodsOrderService();
-            GoodsOrderList = goDal.GetCustomerList(nick, dateArr[0], dateArr[1]);
             if (Request.QueryString["suc"] == "0")
                 Bind(dateArr[0], dateArr[1], nick);
             else
@@ -58,13 +57,15 @@ public partial class CustomerList : System.Web.UI.Page
         }
         catch { }
 
+        List<GoodsOrderInfo>  goodsOrderList = goDal.GetCustomerList(nick, start, end);
+
         IList<CustomerInfo> list = trDal.GetCustomerList(start, end, nick);
 
         if (list.Count > 0)
         {
             for (int i = 0; i < list.Count; i++)
             {
-                IList<GoodsOrderInfo> thislist = GoodsOrderList.Where(o => o.buyer_nick == list[i].CustomerNick).ToList();
+                IList<GoodsOrderInfo> thislist = goodsOrderList.Where(o => o.buyer_nick == list[i].CustomerNick).ToList();
                 if (thislist.Count > 0)
                 {
                     list[i].tid = thislist[0].tid;
@@ -109,15 +110,6 @@ public partial class CustomerList : System.Web.UI.Page
         Rpt_CustomerList.DataBind();
         TB_Start.Text = start.ToString("yyyy-MM-dd");
 
-    }
-
-    protected List<GoodsOrderInfo> GoodsOrderList
-    {
-        set { ViewState["GoodsOrderList"] = value; }
-        get
-        {
-            return ViewState["GoodsOrderList"] == null ? new List<GoodsOrderInfo>() : (List<GoodsOrderInfo>)ViewState["GoodsOrderList"];
-        }
     }
 
     protected void Btn_Select_Click(object sender, EventArgs e)
