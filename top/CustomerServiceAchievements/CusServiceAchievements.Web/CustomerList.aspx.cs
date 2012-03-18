@@ -26,7 +26,7 @@ public partial class CustomerList : System.Web.UI.Page
             try
             {
                 dateArr[0] = DateTime.Parse(Request.QueryString["start"]);
-                dateArr[1] = DateTime.Parse(Request.QueryString["end"]);
+                dateArr[1] = dateArr[0].AddDays(1);
             }
             catch
             {
