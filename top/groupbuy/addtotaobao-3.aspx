@@ -25,7 +25,7 @@
                 else {
                     $('#jd').html("100%");
                     $('#lpc').attr("width", 500);
-                    location.href = "missionlist.aspx";
+                    //location.href = "missionlist.aspx";
                 }
 
             }
@@ -72,7 +72,7 @@
                 </td>
             </tr>
      </table>
-     <input type=hidden id=missID value="" runat=server />
+
   </div>
      <script type="text/javascript">
          showNumber('LoadAjax.aspx?date=' + new Date() + "&mid=" + $('#missID').val());

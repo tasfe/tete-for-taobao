@@ -150,6 +150,8 @@
         	                </select>
         	                <input name="q" id="querySearch" /> 
         	                <input type="button" value="搜索" onclick="getTaobaoItem()" />
+
+                                    	                <input type="button" value="提交" onclick="InitAreaAll()" />
                         </td>
                       </tr>
                       <tr>
@@ -168,7 +170,7 @@
      
     </table>
 
-
+        	<input type="hidden" name="itemsStrValues" id="itemsStrValues" value="" />
 
     </form>
 
@@ -180,6 +182,17 @@
     <script language="javascript" type="text/javascript">
         function InitArea(obj) {
             getResultStr(obj.value);
+        }
+
+        //保存选中商品
+        function SetInitArea(obj)
+        {
+            document.getElementById("itemsStrValues").value=document.getElementById("itemsStrValues").value+","+obj.value;
+        }
+
+        //提交返回选中商品
+        function InitAreaAll() {
+            getResultStr(document..getElementById("itemsStrValues").value);
         }
 
 

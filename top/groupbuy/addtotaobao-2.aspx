@@ -20,6 +20,31 @@
   </div>
   <div id="main-content">
     <div style="width:750px; height:400px; overflow:scroll;" id="lbView" runat="server" visible="false">
+<%--    <script type="text/javascript">
+
+
+        function showNumber(dateStr) {
+
+            $.ajax({
+                url: dateStr,
+                success: function (data) {
+                    $('#Span1').html(data + "%");
+                    $('#Table1').attr("width", data * 5);
+                    if (data < 100) {
+
+                        setTimeout("showNumber('LoadAjax.aspx?date=" + new Date() + "&mid=" + $('#missID').val() + "')", 2000);
+                    }
+                    else {
+                        $('#Span1').html("100%");
+                        $('#Table1').attr("width", 500);
+                        location.href = "missionlist.aspx";
+                    }
+
+                }
+            });
+
+        }
+ </script>--%>
          
     </div>
      正在更新到淘宝描述,请等待........
@@ -48,8 +73,8 @@
         <input name="ads" value="<%=ads %>" type="hidden" />
       <tr>
         <td>
-        	<input type="button" value="上一步" onclick="history.go(-1)" />
-        	<input type="submit" value="下一步" />
+        	<!--<input type="button" value="上一步" onclick="history.go(-1)" />
+        	<input type="submit" value="下一步"  />-->
         </td>
         <td></td>
       </tr>

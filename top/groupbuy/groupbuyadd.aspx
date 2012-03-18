@@ -128,7 +128,7 @@
             <br />
             <b style="font-size:20px">2、选择宝贝</b>
             <br />
-            <div id="area2" style="display:none">
+            <div id="area2" >
                 <input type="button" value="选择宝贝" onclick="OpenDialogLable('dialogProduct.aspx',650,560);" /> <br />
                 <div id="productArea"></div>
                 <br />
@@ -137,14 +137,23 @@
             <br />
             <b style="font-size:20px">3、设置团购折扣及限制数量</b>
             <br />
-            <div id="area3" style="display:none">
+            <div id="area3" >
+                选择模板：
+                <div>
+                     <input type='radio' name='templateID' id="templateID1" value='1' />
+                     默认模板
+                     <span>(750宽)</span>
+                     <input type='radio' name='templateID' id="templateID2" value='2' />
+                     一大三小
+                     <span>(750宽)</span>
+                </div>
                 商品原价：<span id="oldprice"></span>
                 <br />
                 团 购 价：<input type="text" id="zhekou" name="zhekou" />  <span id="errmsg2" style="color:Red"></span>
                 <font color='red'>团购价必须大于原价的7折并且小于原价.(淘宝营销平台对所有优惠做最低七折折扣限制)</font>
                 <br />          
                 已参团人数：<input type="text" name="rcount" value="300" />
-                
+               
                <br /> <!--
                 团 购 价：<span id="newprice"></span> <input type="hidden" name="groupbuyprice" id="groupbuyprice" />-->
                <div style="display:none"> <br />
