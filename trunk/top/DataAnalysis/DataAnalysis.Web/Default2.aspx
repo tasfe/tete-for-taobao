@@ -146,8 +146,8 @@
                             <%# Eval("SeeDeepAVG")%>
                         </div>
                         <div>
-                           <a href='<%# Eval("SeeTop") %>'>
-                            <%# GetGoodsName(Eval("SeeTop").ToString())%></a>
+                           <img  src="" alt='<%# Eval("SeeTop"%>' width="1" height="1"/>
+                            <%# GetGoodsName(Eval("SeeTop").ToString())%>
                         </div>
                         <div> <a href='<%# Eval("SellTop") %>'>
                             <%# GetGoodsName(Eval("SellTop").ToString())%></a>
