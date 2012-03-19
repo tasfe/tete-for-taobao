@@ -296,6 +296,7 @@ public partial class top_review_msg : System.Web.UI.Page
         param.Add("nick", nick);
         param.Add("article_code", "service-0-22904");
         string resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.vas.subscribe.get", "", param);
+        Response.Write(resultnew);
         if (resultnew.IndexOf("invali") != -1)
         {
             //到期了
@@ -307,8 +308,8 @@ public partial class top_review_msg : System.Web.UI.Page
             MatchCollection match = reg.Matches(resultnew);
             for (int i = 0; i < match.Count; i++)
             {
-                try
-                {
+                //try
+                //{
                     //10元
                     if (match[i].Groups[1].ToString() == "service-0-22904-4")
                     {
@@ -459,8 +460,8 @@ public partial class top_review_msg : System.Web.UI.Page
 
                         utils.ExecuteNonQuery(sql);
                     }
-                }
-                catch { }
+                //}
+                //catch { }
             }
         }
     }
