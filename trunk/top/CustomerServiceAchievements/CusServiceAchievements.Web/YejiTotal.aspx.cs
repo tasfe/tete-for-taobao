@@ -50,4 +50,12 @@ public partial class YejiTotal : System.Web.UI.Page
         Rpt_KefuTotal.DataSource = list;
         Rpt_KefuTotal.DataBind();
     }
+    protected void Btn_LastMonth_Click(object sender, EventArgs e)
+    {
+        DateTime lastmonth = DateTime.Now.AddMonths(-1);
+        DateTime start = new DateTime(lastmonth.Year,lastmonth.Month,1);
+        IList<TopKefuTotalInfo> list = kftDal.GetTotalinfoList(start, start.AddMonths(1).AddDays(-1));
+        Rpt_KefuTotal.DataSource = list;
+        Rpt_KefuTotal.DataBind();
+    }
 }
