@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CusServiceAchievements.DAL;
 
 [Serializable]
 public class TopSiteTotalInfo
@@ -141,8 +142,10 @@ public class TopSiteTotalInfo
     /// </summary>
     public int Collection
     {
-        set;
-        get;
+        get
+        {
+            return new ShopCollectionService().GetShopCollection(CacheCollection.GetNickSessionList().Where(o => o.Nick == SiteNick).ToArray()[0].ShopId, SiteTotalDate);
+        }
     }
 
     /// <summary>
@@ -154,7 +157,12 @@ public class TopSiteTotalInfo
         {
             DateTime start = DateTime.Parse(SiteTotalDate.Substring(0, 4) + "-" + SiteTotalDate.Substring(4, 2) + "-" + SiteTotalDate.Substring(6));
             IList<GoodsInfo> list = new TaoBaoGoodsServive().GetTopGoods(SiteNick, start, start.AddDays(1), 1, 1);
-            return list.Count == 0 ? "" : list[0].num_iid;
+            if (list.Count == 0) return "";
+
+            GoodsService goodsDal = new GoodsService();
+            string goodsName = goodsDal.GetGoodsInfo(list[0].num_iid, SiteNick);
+
+            return goodsName == "" ? "" : goodsName;
         }
     }
 
@@ -165,9 +173,14 @@ public class TopSiteTotalInfo
     {
         get
         {
-            DateTime start = DateTime.Parse(SiteTotalDate.Substring(0,4)+"-"+SiteTotalDate.Substring(4,2)+"-"+SiteTotalDate.Substring(6));
+            DateTime start = DateTime.Parse(SiteTotalDate.Substring(0, 4) + "-" + SiteTotalDate.Substring(4, 2) + "-" + SiteTotalDate.Substring(6));
             IList<GoodsInfo> list = new TaoBaoGoodsServive().GetTopBuyGoods(SiteNick, start, start.AddDays(1), 1, 1);
-            return list.Count == 0 ? "" : list[0].num_iid;
+            if (list.Count == 0) return "";
+
+            GoodsService goodsDal = new GoodsService();
+            string goodsName = goodsDal.GetGoodsInfo(list[0].num_iid, SiteNick);
+
+            return goodsName == "" ? "" : goodsName;
         }
     }
 
