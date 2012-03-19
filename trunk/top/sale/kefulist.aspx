@@ -35,9 +35,7 @@
 
     请输入买家昵称：<asp:TextBox ID="search" runat="server"></asp:TextBox>
     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="搜索" />
-
-    <input type="button" value="查看历史处理结果" onclick="window.location.href='oldkefulist.aspx'" />
-    
+  
     <hr />
     <div style="margin-bottom:10px;">
         <input type="checkbox" onclick="selectAll()" />

@@ -39,14 +39,14 @@ public partial class top_reviewnew_alipay : System.Web.UI.Page
         int pageCount = 10;
         int dataCount = (pageNow - 1) * pageCount;
 
-        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT b.*,ROW_NUMBER() OVER (ORDER BY b.senddate DESC) AS rownumber FROM TCS_AlipayDetail b WITH (NOLOCK) WHERE b.nick = '" + nick + "' AND b.guid = '" + id + "' AND b.issend = 1 AND b.senddate IS NOT NULL) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY senddate DESC";
+        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT b.*,ROW_NUMBER() OVER (ORDER BY b.senddate DESC) AS rownumber FROM TCS_AlipayDetail b WITH (NOLOCK) WHERE b.nick = '" + nick + "' AND b.issend = 1 AND b.senddate IS NOT NULL) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY senddate DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
         rptArticle.DataBind();
 
         //分页数据初始化
-        sqlNew = "SELECT COUNT(*) FROM TCS_AlipayDetail WITH (NOLOCK) WHERE nick = '" + nick + "' AND guid = '" + id + "' AND issend = 1 AND senddate IS NOT NULL";
+        sqlNew = "SELECT COUNT(*) FROM TCS_AlipayDetail WITH (NOLOCK) WHERE nick = '" + nick + "' AND issend = 1 AND senddate IS NOT NULL";
         int totalCount = int.Parse(utils.ExecuteString(sqlNew));
 
         lbPage.Text = InitPageStr(totalCount, "alipaydetail.aspx?id=" + id);
