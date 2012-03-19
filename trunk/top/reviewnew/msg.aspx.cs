@@ -232,6 +232,43 @@ public partial class top_review_msg : System.Web.UI.Page
         #endregion
         return Regex.Replace(result, @"[\x00-\x08\x0b-\x0c\x0e-\x1f]", "");
     }
+    public static string PostXml(string url, string appkey, string appSecret, string method, string session,
+    IDictionary<string, string> param)
+    {
+        #region -----API系统参数----
+        param.Add("app_key", appkey);
+        param.Add("method", method);
+        param.Add("session", session);
+        param.Add("timestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+        param.Add("format", "xml");
+        param.Add("v", "2.0");
+        param.Add("sign_method", "md5");
+        param.Add("sign", CreateSign(param, appSecret));
+        #endregion
+        string result = string.Empty;
+        #region ---- 完成 HTTP POST 请求----
+        HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+        req.Method = "POST";
+        req.KeepAlive = true;
+        req.Timeout = 300000;
+        req.ContentType = "application/x-www-form-urlencoded;charset=gb2312";
+        byte[] postData = Encoding.UTF8.GetBytes(PostData(param));
+        Stream reqStream = req.GetRequestStream();
+        reqStream.Write(postData, 0, postData.Length);
+        reqStream.Close();
+        HttpWebResponse rsp = (HttpWebResponse)req.GetResponse();
+        Encoding encoding = Encoding.GetEncoding(rsp.CharacterSet);
+        Stream stream = null;
+        StreamReader reader = null;
+        stream = rsp.GetResponseStream();
+        reader = new StreamReader(stream, encoding);
+        result = reader.ReadToEnd();
+        if (reader != null) reader.Close();
+        if (stream != null) stream.Close();
+        if (rsp != null) rsp.Close();
+        #endregion
+        return Regex.Replace(result, @"[\x00-\x08\x0b-\x0c\x0e-\x1f]", "");
+    }
     #endregion
 
     /// <summary>
@@ -302,9 +339,9 @@ public partial class top_review_msg : System.Web.UI.Page
         param = new Dictionary<string, string>();
         param.Add("nick", nick.Trim());
         param.Add("article_code", "service-0-22904");
-        string resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.vas.subscribe.get", "", param);
-        Response.Write(resultnew);
-        Response.Write(nick);
+        string resultnew = PostXml("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.vas.subscribe.get", "", param);
+        //Response.Write(resultnew);
+        //Response.Write(nick);
         if (resultnew.IndexOf("invali") != -1)
         {
             //到期了
