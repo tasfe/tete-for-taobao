@@ -304,7 +304,7 @@ public partial class top_review_msg : System.Web.UI.Page
         param.Add("article_code", "service-0-22904");
         string resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.vas.subscribe.get", "", param);
         Response.Write(resultnew);
-        Response.Write(taobaoNick);
+        Response.Write(nick);
         if (resultnew.IndexOf("invali") != -1)
         {
             //到期了
