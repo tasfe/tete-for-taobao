@@ -29,7 +29,7 @@
     <div id="main-content">
 
         <table width="700">
-            <tr>
+            <!--<tr>
                 <td align="left" width="180" height="30">是否开启按时好评送优惠券：</td>
                 <td>
                     开启<input name="iscoupon" id="coupon1" type="radio" value="1" <%=check(iscoupon, "1") %> onclick="showArea(1)" />
@@ -43,7 +43,7 @@
                     <a href="couponadd.aspx">创建优惠券</a>
                     <a href="couponsend.aspx">查看优惠券赠送记录</a>
                 </td>
-            </tr>
+            </tr>-->
             <tr>
                 <td align="left" width="180" height="30">是否开启按时好评送支付宝红包：</td>
                 <td>
@@ -146,12 +146,8 @@
     }
 
     function checkConfirm(){
-        if(document.getElementById("coupon2").checked == true){
-            return confirm('您选择了不自动赠送优惠券，系统将无法自动帮您赠送优惠券，您确定吗？');
-        }
-
         if(document.getElementById("kefu1").checked == true){
-            return confirm('您开启了评价客服审核，所有的评价都需要您手动进入我们服务审核才会自动赠送优惠券，您确定吗？');
+            return confirm('您开启了评价客服审核，所有的评价都需要您手动进入我们服务审核才会自动赠送红包，您确定吗？');
         }
 
         return true;
