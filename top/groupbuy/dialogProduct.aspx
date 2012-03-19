@@ -252,9 +252,8 @@
     }
 
     function spreadStat(pageid)
-    {
-        alert(pageid);
-        return;
+    { 
+        
         var q = document.getElementById("querySearch").value;
         var catObj = document.getElementById("Select1");
         var catid = catObj.options[catObj.options.selectedIndex].value;
@@ -411,7 +410,7 @@
         }
     }
 
-    spreadStat(1);
+    //spreadStat(1);
 </script>
 
 
