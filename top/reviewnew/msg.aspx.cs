@@ -471,7 +471,7 @@ public partial class top_review_msg : System.Web.UI.Page
             }
         }
 
-        Response.Redirect("msg.aspx");
+        //Response.Redirect("msg.aspx");
     }
 
     
