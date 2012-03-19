@@ -54,8 +54,8 @@ public class NickSessionService
             info.LastGetOrderTime = dr["LastGetOrderTime"] == DBNull.Value ? DateTime.MinValue : DateTime.Parse(dr["LastGetOrderTime"].ToString());
 
             info.ServiceId = (Enum.TopTaoBaoService)int.Parse(dr["ServiceID"].ToString());
-            //没啥用,暂不取
-            //info.ShopId = dr["ShopId"].ToString();
+           
+            info.ShopId = dr["ShopId"].ToString();
 
             list.Add(info);
         }
