@@ -67,6 +67,13 @@ public partial class Default2 : BasePage
         //Rpt_Data.DataSource = list;
         //Rpt_Data.DataBind();
     }
+
+    protected string GetGoodsName(string goodsName)
+    {
+        if (goodsName.Length > 4)
+            return goodsName.Substring(0, 4) + "...";
+        return goodsName;
+    }
 }
 
 public class TotalNameInfo
