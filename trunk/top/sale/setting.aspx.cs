@@ -172,6 +172,7 @@ public partial class top_review_setting : System.Web.UI.Page
                         "sessionold, " +
                         "isalipay, " +
                         "alipayid, " +
+                        "total, " +
                         "issendmsg " +
                     " ) VALUES ( " +
                         " '" + nick + "', " +
@@ -185,6 +186,7 @@ public partial class top_review_setting : System.Web.UI.Page
                         " '" + session + "', " +
                         " '" + utils.NewRequest("isalipay", utils.RequestType.Form) + "', " +
                         " '" + utils.NewRequest("alipayid", utils.RequestType.Form) + "', " +
+                        " '100', " +
                         " '" + utils.NewRequest("issendmsg", utils.RequestType.Form) + "' " +
                     ") ";
             utils.ExecuteNonQuery(sql);
