@@ -29,6 +29,7 @@ public partial class top_blog_dialogProduct : System.Web.UI.Page
         taobaoNick = encode.Decrypt(taobaoNick);
 
         string sql = "SELECT * FROM TopTaobaoShopCat WHERE nick = '" + taobaoNick + "'";
+        Response.Write(sql);
         DataTable dt = utils.ExecuteDataTable(sql);
 
         Repeater1.DataSource = dt;
