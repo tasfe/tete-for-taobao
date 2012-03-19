@@ -33,10 +33,10 @@ public partial class CustomerList : System.Web.UI.Page
             catch
             {
             }
-            if (Request.QueryString["suc"] == "0")
-                Bind(dateArr[0], dateArr[1], nick);
-            else
+            if (Request.QueryString["suc"] == "1")
                 Bind(dateArr[0], dateArr[1], nick, new[] { 1 });
+            else
+                Bind(dateArr[0], dateArr[1], nick);
         }
     }
 
