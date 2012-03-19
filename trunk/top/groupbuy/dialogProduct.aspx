@@ -187,12 +187,12 @@
         //保存选中商品
         function SetInitArea(obj)
         {
-            //document.getElementById("itemsStrValues").value=document.getElementById("itemsStrValues").value+","+obj.value;
+            document.getElementById("itemsStrValues").value=document.getElementById("itemsStrValues").value+","+obj.value;
         }
 
         //提交返回选中商品
         function InitAreaAll() {
-            getResultStr(document..getElementById("itemsStrValues").value);
+            getResultStr(document.getElementById("itemsStrValues").value);
         }
 
 
