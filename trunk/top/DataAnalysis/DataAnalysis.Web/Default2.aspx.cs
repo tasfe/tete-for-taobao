@@ -70,8 +70,8 @@ public partial class Default2 : BasePage
 
     protected string GetGoodsName(string goodsName)
     {
-        if (goodsName.Length > 4)
-            return goodsName.Substring(0, 4) + "...";
+        if (goodsName.Length > 2)
+            return goodsName.Substring(0, 2) + "...";
         return goodsName;
     }
 }
