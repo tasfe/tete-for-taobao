@@ -55,7 +55,7 @@ public partial class top_reviewnew_alipayadd : System.Web.UI.Page
         }
 
         string[] arr = Regex.Split(content, "\r\n");
-        if (arr.Length == 2)
+        if (arr.Length == 1)
         {
             Response.Write("<script>alert('您上传的文件格式不正确！');history.go(-1);</script>");
             Response.End();
