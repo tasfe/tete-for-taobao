@@ -14,7 +14,7 @@
     <form id="form1" runat="server">
     <div>
     <asp:Button ID="Btn_LastMonth" runat="server" Text="上 月" 
-            onclick="Btn_LastMonth_Click" />
+            onclick="Btn_LastMonth_Click" />&nbsp;
            <asp:TextBox ID="TB_Start" runat="server" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})" class="Wdate" Width="120px"></asp:TextBox> 至 
             <asp:TextBox ID="TB_End" runat="server" Width="120px" class="Wdate" onFocus="WdatePicker({minDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})"></asp:TextBox>
        &nbsp;<asp:Button ID="Btn_Select" runat="server" Text="检 索"  onclick="Btn_Select_Click" />
@@ -44,6 +44,9 @@
            </tr>
          
          </ItemTemplate>
+         <SeparatorTemplate >
+           <tr><td colspan="8"><hr /></td> </tr>
+         </SeparatorTemplate>
        </asp:Repeater>
        
        </table>
