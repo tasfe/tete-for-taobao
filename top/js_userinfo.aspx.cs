@@ -20,6 +20,7 @@ public partial class top_js_userinfo : System.Web.UI.Page
         string oldTaobaoNick = taobaoNick;
         string iscrm = cookie.getCookie("iscrm");
         string istongji = cookie.getCookie("istongji");
+        string date = DateTime.Now.ToString();
 
         Rijndael_ encode = new Rijndael_("tetesoft");
         taobaoNick = encode.Decrypt(taobaoNick);
@@ -28,26 +29,26 @@ public partial class top_js_userinfo : System.Web.UI.Page
         Response.Write("document.write('您好，" + taobaoNick + "！ <a href=logout.aspx>退出</a>');");
         if (iscrm == "1")
         {
-            Response.Write("document.write('<img src=\"http://haoping.7fshop.com/top/crm/setcookie.aspx?nick=" + HttpUtility.UrlEncode(oldTaobaoNick) + "&session=" + session + "&iscrm=1\" width=0 height=0>');");
+            Response.Write("document.write('<img src=\"http://haoping.7fshop.com/top/crm/setcookie.aspx?nick=" + HttpUtility.UrlEncode(oldTaobaoNick) + "&session=" + session + "&iscrm=1&d=" + date + "\" width=0 height=0>');");
         }
         else
         {
-            Response.Write("document.write('<img src=\"http://haoping.7fshop.com/top/crm/setcookie.aspx?nick=" + HttpUtility.UrlEncode(oldTaobaoNick) + "&session=" + session + "\" width=0 height=0>');");
+            Response.Write("document.write('<img src=\"http://haoping.7fshop.com/top/crm/setcookie.aspx?nick=" + HttpUtility.UrlEncode(oldTaobaoNick) + "&session=" + session + "&d=" + date + "\" width=0 height=0>');");
         }
 
         if (istongji == "1")
         {
-            Response.Write("document.write('<img src=\"http://ding.7fshop.com/getnick.ashx?nick=" + HttpUtility.UrlEncode(taobaoNick) + "&session=" + session + "&istongji=1\" width=0 height=0>');");
+            Response.Write("document.write('<img src=\"http://ding.7fshop.com/getnick.ashx?nick=" + HttpUtility.UrlEncode(taobaoNick) + "&session=" + session + "&istongji=1&d=" + date + "\" width=0 height=0>');");
         }
         else
         {
-            Response.Write("document.write('<img src=\"http://ding.7fshop.com/getnick.ashx?nick=" + HttpUtility.UrlEncode(taobaoNick) + "&session=" + session + "\" width=0 height=0>');");
+            Response.Write("document.write('<img src=\"http://ding.7fshop.com/getnick.ashx?nick=" + HttpUtility.UrlEncode(taobaoNick) + "&session=" + session + "&d=" + date + "\" width=0 height=0>');");
         }
 
         //好评登录
-        Response.Write("document.write('<img src=\"http://haoping.7fshop.com/top/reviewnew/setcookie.aspx?nick=" + HttpUtility.UrlEncode(taobaoNick) + "\" width=0 height=0>');");
+        Response.Write("document.write('<img src=\"http://haoping.7fshop.com/top/reviewnew/setcookie.aspx?nick=" + HttpUtility.UrlEncode(taobaoNick) + "&d=" + date + "\" width=0 height=0>');");
 
         //团购登录
-        Response.Write("document.write('<img src=\"http://groupbuy.7fshop.com/top/groupbuy/setcookie.aspx?nick=" + HttpUtility.UrlEncode(taobaoNick) + "\" width=0 height=0>');");
+        Response.Write("document.write('<img src=\"http://groupbuy.7fshop.com/top/groupbuy/setcookie.aspx?nick=" + HttpUtility.UrlEncode(taobaoNick) + "&d=" + date + "\" width=0 height=0>');");
     }
 }
