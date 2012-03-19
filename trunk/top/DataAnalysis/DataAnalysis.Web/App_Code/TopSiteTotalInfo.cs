@@ -154,7 +154,7 @@ public class TopSiteTotalInfo
         {
             DateTime start = DateTime.Parse(SiteTotalDate.Substring(0, 4) + "-" + SiteTotalDate.Substring(4, 2) + "-" + SiteTotalDate.Substring(6));
             IList<GoodsInfo> list = new TaoBaoGoodsServive().GetTopGoods(SiteNick, start, start.AddDays(1), 1, 1);
-            return list.Count == 0 ? start.ToString() : list[0].num_iid;
+            return list.Count == 0 ? "" : list[0].num_iid;
         }
     }
 
