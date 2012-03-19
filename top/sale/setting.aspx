@@ -210,7 +210,7 @@
         getResultStr("<%=itemid %>");
     }*/
     
-    showArea(<%=iscoupon %>);
+    //showArea(<%=iscoupon %>);
     showAreaAli(<%=isalipay %>);
 
     function showAreaPhone() {

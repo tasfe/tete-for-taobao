@@ -34,7 +34,7 @@
         <hr />
 
         <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
-            内容设置中的[shopname]、[buynick]、[gift]、[shiptyp]、[shipnumber]在短信发送时会被自动替换成您的 店铺名称、买家昵称、优惠券、快递方式和快递单号<br />
+            内容设置中的[shopname]、[buynick]、[gift]、[shiptyp]、[shipnumber]在短信发送时会被自动替换成您的 店铺名称、买家昵称、红包、快递方式和快递单号<br />
             以下短信内容不可修改！！！
         </div>
 
