@@ -240,6 +240,8 @@
         var style = "0";
 
         var queryString = "/top/groupbuy/groupbuy/taobaoitem.aspx?act=getResultStr&isradio=1&style=" + style + "&ids=" + str + "&t=" + new Date().getTime();
+        alert(queryString);
+        return;
         xmlHttp.open("GET", queryString);
         xmlHttp.onreadystatechange = handleStateChangeResultStr;
         xmlHttp.send(null);
