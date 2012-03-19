@@ -300,7 +300,7 @@ public partial class top_review_msg : System.Web.UI.Page
 
         //判断短信购买及充值情况
         param = new Dictionary<string, string>();
-        param.Add("nick", taobaoNick);
+        param.Add("nick", nick);
         param.Add("article_code", "service-0-22904");
         string resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.vas.subscribe.get", "", param);
         Response.Write(resultnew);
