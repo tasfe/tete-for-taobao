@@ -32,6 +32,7 @@
         <a href='msglist.aspx'>查看短信发送情况</a> |
         <a href='msgaddlist.aspx'>查看历史购买记录</a> |
         <a href='msgbuy.aspx'><b style="color:red">短信购买</b></a>
+        <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Text="更新短信数量" />
         </div>
         <hr />
 
