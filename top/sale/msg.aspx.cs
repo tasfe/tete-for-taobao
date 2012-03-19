@@ -207,7 +207,7 @@ public partial class top_review_msg : System.Web.UI.Page
             }
             if (shopname.Length == 0)
             {
-                shopname = oldshopname;
+                shopname = nick;
             }
         }
     }
