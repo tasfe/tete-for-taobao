@@ -282,6 +282,189 @@ public partial class top_review_msg : System.Web.UI.Page
         }
     }
 
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        string appkey = "12159997";
+        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+
+        //判断该店铺是B店还是C店
+        IDictionary<string, string> param = new Dictionary<string, string>();
+        string sql = string.Empty;
+        //判断短信购买及充值情况
+        param = new Dictionary<string, string>();
+        param.Add("nick", nick);
+        param.Add("article_code", "service-0-22904");
+        string resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.vas.subscribe.get", "", param);
+        if (resultnew.IndexOf("invali") != -1)
+        {
+            //到期了
+        }
+        else
+        {
+            Regex reg = new Regex(@"<item_code>([^<]*)</item_code><deadline>([^<]*)</deadline>", RegexOptions.IgnoreCase);
+            //更新日期
+            MatchCollection match = reg.Matches(resultnew);
+            for (int i = 0; i < match.Count; i++)
+            {
+                try
+                {
+                    //10元
+                    if (match[i].Groups[1].ToString() == "service-0-22904-4")
+                    {
+                        //判断当月是否加过短信，如果没加过
+                        sql = "SELECT COUNT(*) FROM TCS_PayLog WHERE nick = '" + nick + "' AND typ = 'service-0-22904-4' AND enddate = '" + match[i].Groups[2].ToString() + "'";
+                        string count = utils.ExecuteString(sql);
+                        if (count == "0")
+                        {
+                            //插入充值记录并更新短信条数
+                            sql = "INSERT INTO TCS_PayLog (" +
+                                            "typ, " +
+                                            "enddate, " +
+                                            "nick, " +
+                                            "count " +
+                                        " ) VALUES ( " +
+                                            " '" + match[i].Groups[1].ToString() + "', " +
+                                            " '" + match[i].Groups[2].ToString() + "', " +
+                                            " '" + nick + "', " +
+                                            " '100' " +
+                                      ") ";
+                            utils.ExecuteNonQuery(sql);
+
+                            //更新短信条数
+                            sql = "UPDATE TCS_ShopConfig SET total = total + 100 WHERE nick = '" + nick + "'";
+                            utils.ExecuteNonQuery(sql);
+                        }
+                    }
+
+                    //50元
+                    if (match[i].Groups[1].ToString() == "service-0-22904-5")
+                    {
+                        //判断当月是否加过短信，如果没加过
+                        sql = "SELECT COUNT(*) FROM TCS_PayLog WHERE nick = '" + nick + "' AND typ = 'service-0-22904-5' AND enddate = '" + match[i].Groups[2].ToString() + "'";
+                        string count = utils.ExecuteString(sql);
+                        if (count == "0")
+                        {
+                            //插入充值记录并更新短信条数
+                            sql = "INSERT INTO TCS_PayLog (" +
+                                            "typ, " +
+                                            "enddate, " +
+                                            "nick, " +
+                                            "count " +
+                                        " ) VALUES ( " +
+                                            " '" + match[i].Groups[1].ToString() + "', " +
+                                            " '" + match[i].Groups[2].ToString() + "', " +
+                                            " '" + nick + "', " +
+                                            " '510' " +
+                                      ") ";
+                            utils.ExecuteNonQuery(sql);
+
+                            //更新短信条数
+                            sql = "UPDATE TCS_ShopConfig SET total = total + 510 WHERE nick = '" + nick + "'";
+                            utils.ExecuteNonQuery(sql);
+                        }
+                    }
+
+                    //100元
+                    if (match[i].Groups[1].ToString() == "service-0-22904-6")
+                    {
+                        //判断当月是否加过短信，如果没加过
+                        sql = "SELECT COUNT(*) FROM TCS_PayLog WHERE nick = '" + nick + "' AND typ = 'service-0-22904-6' AND enddate = '" + match[i].Groups[2].ToString() + "'";
+                        string count = utils.ExecuteString(sql);
+                        if (count == "0")
+                        {
+                            //插入充值记录并更新短信条数
+                            sql = "INSERT INTO TCS_PayLog (" +
+                                            "typ, " +
+                                            "enddate, " +
+                                            "nick, " +
+                                            "count " +
+                                        " ) VALUES ( " +
+                                            " '" + match[i].Groups[1].ToString() + "', " +
+                                            " '" + match[i].Groups[2].ToString() + "', " +
+                                            " '" + nick + "', " +
+                                            " '1030' " +
+                                      ") ";
+                            utils.ExecuteNonQuery(sql);
+
+                            //更新短信条数
+                            sql = "UPDATE TCS_ShopConfig SET total = total + 1030 WHERE nick = '" + nick + "'";
+                            utils.ExecuteNonQuery(sql);
+                        }
+                    }
+
+                    //100元
+                    if (match[i].Groups[1].ToString() == "service-0-22904-7")
+                    {
+                        //判断当月是否加过短信，如果没加过
+                        sql = "SELECT COUNT(*) FROM TCS_PayLog WHERE nick = '" + nick + "' AND typ = 'service-0-22904-7' AND enddate = '" + match[i].Groups[2].ToString() + "'";
+                        string count = utils.ExecuteString(sql);
+                        if (count == "0")
+                        {
+                            //插入充值记录并更新短信条数
+                            sql = "INSERT INTO TCS_PayLog (" +
+                                            "typ, " +
+                                            "enddate, " +
+                                            "nick, " +
+                                            "count " +
+                                        " ) VALUES ( " +
+                                            " '" + match[i].Groups[1].ToString() + "', " +
+                                            " '" + match[i].Groups[2].ToString() + "', " +
+                                            " '" + nick + "', " +
+                                            " '5200' " +
+                                      ") ";
+                            utils.ExecuteNonQuery(sql);
+
+                            //更新短信条数
+                            sql = "UPDATE TCS_ShopConfig SET total = total + 5200 WHERE nick = '" + nick + "'";
+                            utils.ExecuteNonQuery(sql);
+                        }
+                    }
+
+
+                    //1000元
+                    if (match[i].Groups[1].ToString() == "service-0-22904-8")
+                    {
+                        //判断当月是否加过短信，如果没加过
+                        sql = "SELECT COUNT(*) FROM TCS_PayLog WHERE nick = '" + nick + "' AND typ = 'service-0-22904-8' AND enddate = '" + match[i].Groups[2].ToString() + "'";
+                        string count = utils.ExecuteString(sql);
+                        if (count == "0")
+                        {
+                            //插入充值记录并更新短信条数
+                            sql = "INSERT INTO TCS_PayLog (" +
+                                            "typ, " +
+                                            "enddate, " +
+                                            "nick, " +
+                                            "count " +
+                                        " ) VALUES ( " +
+                                            " '" + match[i].Groups[1].ToString() + "', " +
+                                            " '" + match[i].Groups[2].ToString() + "', " +
+                                            " '" + nick + "', " +
+                                            " '10500' " +
+                                      ") ";
+                            utils.ExecuteNonQuery(sql);
+
+                            //更新短信条数
+                            sql = "UPDATE TCS_ShopConfig SET total = total + 10500 WHERE nick = '" + nick + "'";
+                            utils.ExecuteNonQuery(sql);
+                        }
+                    }
+
+
+                    //活动连接
+                    if (match[i].Groups[1].ToString() == "service-0-22904-9")
+                    {
+                        //更新短信条数
+                        sql = "UPDATE TCS_ShopSession SET version='3' WHERE nick = '" + nick + "'";
+
+                        utils.ExecuteNonQuery(sql);
+                    }
+                }
+                catch { }
+            }
+        }
+    }
+
     
     /// <summary>
     /// 保存设置
