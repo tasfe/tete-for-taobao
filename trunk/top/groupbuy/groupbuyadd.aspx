@@ -20,6 +20,9 @@
         });
 
         function ddrivetip(thetext, thecolor, thewidth, imgid, src) {
+            var ie = document.all
+            var ns6 = document.getElementById && !document.all
+            var enabletip = false
             if (ie || ns6)
                 var tipobj = document.all ? document.all["dhtmltooltip"] : document.getElementById ? document.getElementById("dhtmltooltip") : ""
             var tipimg = document.all ? document.all["tipimg"] : document.getElementById ? document.getElementById("tipimg") : "";
@@ -49,6 +52,9 @@
         }
 
         function hideddrivetip() {
+            var ie = document.all
+            var ns6 = document.getElementById && !document.all
+            var enabletip = false
             if (ie || ns6)
                 var tipobj = document.all ? document.all["dhtmltooltip"] : document.getElementById ? document.getElementById("dhtmltooltip") : ""
             var tipimg = document.all ? document.all["tipimg"] : document.getElementById ? document.getElementById("tipimg") : "";
