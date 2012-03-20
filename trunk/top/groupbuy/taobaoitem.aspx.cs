@@ -58,11 +58,11 @@ public partial class top_blog_taobaoitem : System.Web.UI.Page
             {
                 if (isradio == "1")
                 {
-                    Response.Write("<input type='radio' name='items' id='item_" + product.Content[i].NumIid + "' title='" + product.Content[i].Title.Replace("%", "") + "' value='" + product.Content[i].NumIid + "' onclick=\"InitArea(this)\"><label onMouseOver=\"javascript:ddrivetip('<img src=" + product.Content[i].PicUrl + "_80x80.jpg>','#ffffff',100)\" onMouseOut=\"hideddrivetip()\" for='item_" + product.Content[i].NumIid + "'>" + product.Content[i].Title.Replace("%", "") + "</label><br>");
+                    Response.Write("<input type='checkbox' name='items' id='item_" + product.Content[i].NumIid + "' title='" + product.Content[i].Title.Replace("%", "") + "' value='" + product.Content[i].NumIid + "' onclick=\"SetInitArea(this)\"><label onMouseOver=\"javascript:ddrivetip('<img src=" + product.Content[i].PicUrl + "_80x80.jpg>','#ffffff',100)\" onMouseOut=\"hideddrivetip()\" for='item_" + product.Content[i].NumIid + "'>" + product.Content[i].Title.Replace("%", "") + "</label><br>");
                 }
                 else
                 {
-                    Response.Write("<input type='checkbox' name='items' id='item_" + product.Content[i].NumIid + "' title='" + product.Content[i].Title.Replace("%", "") + "' value='" + product.Content[i].NumIid + "' onclick=\"InitArea(this)\"><label onMouseOver=\"javascript:ddrivetip('<img src=" + product.Content[i].PicUrl + "_80x80.jpg>','#ffffff',100)\" onMouseOut=\"hideddrivetip()\" for='item_" + product.Content[i].NumIid + "'>" + product.Content[i].Title.Replace("%", "") + "</label><br>");
+                    Response.Write("<input type='checkbox' name='items' id='item_" + product.Content[i].NumIid + "' title='" + product.Content[i].Title.Replace("%", "") + "' value='" + product.Content[i].NumIid + "' onclick=\"SetInitArea(this)\"><label onMouseOver=\"javascript:ddrivetip('<img src=" + product.Content[i].PicUrl + "_80x80.jpg>','#ffffff',100)\" onMouseOut=\"hideddrivetip()\" for='item_" + product.Content[i].NumIid + "'>" + product.Content[i].Title.Replace("%", "") + "</label><br>");
                 }
             }
             Response.Write("<br>");
