@@ -16,8 +16,43 @@
 
         jQuery(document).ready(function () {
             $('input#starttime').simpleDatepicker({ chosendate: startdatestr, startdate: startdatestr, enddate: enddatestr });
-            $('input#endtime').simpleDatepicker({ chosendate: todatestr, startdate: todatestr, enddate: enddatestr }); 
+            $('input#endtime').simpleDatepicker({ chosendate: todatestr, startdate: todatestr, enddate: enddatestr });
         });
+
+        function ddrivetip(thetext, thecolor, thewidth, imgid, src) {
+            if (ns6 || ie) {
+                if (typeof thewidth != "undefined" && thewidth != "") {
+                    tipobj.style.width = thewidth + "px";
+                }
+                if (typeof thecolor != "undefined" && thecolor != "") {
+                    tipobj.style.backgroundColor = thecolor;
+                }
+
+                if (tipimg) {
+                    tipimg.src = "images/loadimg.gif";
+                    tipimg.src = thetext;
+                } else {
+                    tipobj.innerHTML = thetext;
+                    if (typeof imgid != "undefined" && imgid != "") {
+                        tmpimg = document.getElementById(imgid);
+                        tmpimg.src = "images/loadimg.gif";
+                        tmpimg.src = src;
+                    }
+                }
+                enabletip = true
+                return false
+            }
+        }
+
+        function hideddrivetip() {
+            if (ns6 || ie) {
+                enabletip = false
+                tipobj.style.visibility = "hidden"
+                tipobj.style.left = "-1000px"
+                tipobj.style.backgroundColor = ''
+                tipobj.style.width = ''
+            }
+        }
     </script>
 </head>
 <body style="padding:0px; margin:0px;">
