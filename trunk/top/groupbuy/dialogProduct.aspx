@@ -158,7 +158,7 @@
                         <td colspan=2 id="taobaoitem">
                             <asp:Repeater ID="rptItems" runat="server">
                                 <ItemTemplate>
-        	                        <input name="items" id='item_<%#Eval("NumIid") %>' type="radio" value='<%#Eval("NumIid") %>' title='<%#Eval("title") %>' onclick="InitArea(this)" /> <label for='item_<%#Eval("NumIid") %>'><%#Eval("title") %></label> <br />
+        	                        <input name="items" id='item_<%#Eval("NumIid") %>' type="checkbox" value='<%#Eval("NumIid") %>' title='<%#Eval("title") %>' onclick="SetInitArea(this)" /> <label for='item_<%#Eval("NumIid") %>'><%#Eval("title") %></label> <br />
                                 </ItemTemplate>
                             </asp:Repeater>
                         </td>
