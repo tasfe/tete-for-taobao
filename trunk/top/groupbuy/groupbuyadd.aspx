@@ -20,6 +20,10 @@
         });
 
         function ddrivetip(thetext, thecolor, thewidth, imgid, src) {
+            if (ie || ns6)
+                var tipobj = document.all ? document.all["dhtmltooltip"] : document.getElementById ? document.getElementById("dhtmltooltip") : ""
+            var tipimg = document.all ? document.all["tipimg"] : document.getElementById ? document.getElementById("tipimg") : "";
+            var tmpimg;
             if (ns6 || ie) {
                 if (typeof thewidth != "undefined" && thewidth != "") {
                     tipobj.style.width = thewidth + "px";
@@ -45,6 +49,10 @@
         }
 
         function hideddrivetip() {
+            if (ie || ns6)
+                var tipobj = document.all ? document.all["dhtmltooltip"] : document.getElementById ? document.getElementById("dhtmltooltip") : ""
+            var tipimg = document.all ? document.all["tipimg"] : document.getElementById ? document.getElementById("tipimg") : "";
+            var tmpimg;
             if (ns6 || ie) {
                 enabletip = false
                 tipobj.style.visibility = "hidden"
