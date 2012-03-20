@@ -19,54 +19,7 @@
             $('input#endtime').simpleDatepicker({ chosendate: todatestr, startdate: todatestr, enddate: enddatestr });
         });
 
-        function ddrivetip(thetext, thecolor, thewidth, imgid, src) {
-            var ie = document.all
-            var ns6 = document.getElementById && !document.all
-            var enabletip = false
-            if (ie || ns6)
-                var tipobj = document.all ? document.all["dhtmltooltip"] : document.getElementById ? document.getElementById("dhtmltooltip") : ""
-            var tipimg = document.all ? document.all["tipimg"] : document.getElementById ? document.getElementById("tipimg") : "";
-            var tmpimg;
-            if (ns6 || ie) {
-                if (typeof thewidth != "undefined" && thewidth != "") {
-                    tipobj.style.width = thewidth + "px";
-                }
-                if (typeof thecolor != "undefined" && thecolor != "") {
-                    tipobj.style.backgroundColor = thecolor;
-                }
-
-                if (tipimg) {
-                    tipimg.src = "images/loadimg.gif";
-                    tipimg.src = thetext;
-                } else {
-                    tipobj.innerHTML = thetext;
-                    if (typeof imgid != "undefined" && imgid != "") {
-                        tmpimg = document.getElementById(imgid);
-                        tmpimg.src = "images/loadimg.gif";
-                        tmpimg.src = src;
-                    }
-                }
-                enabletip = true
-                return false
-            }
-        }
-
-        function hideddrivetip() {
-            var ie = document.all
-            var ns6 = document.getElementById && !document.all
-            var enabletip = false
-            if (ie || ns6)
-                var tipobj = document.all ? document.all["dhtmltooltip"] : document.getElementById ? document.getElementById("dhtmltooltip") : ""
-            var tipimg = document.all ? document.all["tipimg"] : document.getElementById ? document.getElementById("tipimg") : "";
-            var tmpimg;
-            if (ns6 || ie) {
-                enabletip = false
-                tipobj.style.visibility = "hidden"
-                tipobj.style.left = "-1000px"
-                tipobj.style.backgroundColor = ''
-                tipobj.style.width = ''
-            }
-        }
+       
     </script>
 </head>
 <body style="padding:0px; margin:0px;">

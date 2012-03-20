@@ -193,8 +193,8 @@ public partial class top_blog_taobaoitem : System.Web.UI.Page
                 {
                     for (int i = 0; i < itemList.Count; i++)
                     {
-                        str += "<a href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><img src=\"" + itemList[i].PicUrl + "\" border=\"0\" /></a><br />";
-                        str += "<a onMouseOver=\"javascript:ddrivetip('<img src=" + itemList[i].PicUrl + "_80x80.jpg>','#ffffff',100)\" onMouseOut=\"hideddrivetip()\" href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\">" + itemList[i].Title + "</a> 售价：" + itemList[i].Price + "元<br><br>";
+                        str += "<a href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><img src=\"" + itemList[i].PicUrl + "_80x80.jpg\" border=\"0\" /></a><br />";
+                        str += "<a   href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\">" + itemList[i].Title + "</a> 售价：" + itemList[i].Price + "元<br><br><input   type=\"hidden\" id=\"productid" + itemList[i].NumIid.ToString() + "\" name=\"productid" + itemList[i].NumIid.ToString() + "\" value=\"" + itemList[i].NumIid.ToString() + "\"><input type=\"hidden\" id=\"price" + itemList[i].NumIid.ToString() + "\" name=\"price" + itemList[i].NumIid.ToString() + "\" value=\"" + itemList[i].Price.ToString() + "\">";
                     }
                 }
             }
