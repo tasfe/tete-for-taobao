@@ -294,9 +294,9 @@
         document.getElementById("area3").style.display = "";
 
         //写价格进去
-        document.getElementById("oldprice").innerHTML = document.getElementById("price").value;
-        document.getElementById("zhekou").value = document.getElementById("price").value;
-        document.getElementById("zhekou").focus();
+        //document.getElementById("oldprice").innerHTML = document.getElementById("price").value;
+        //document.getElementById("zhekou").value = document.getElementById("price").value;
+        //document.getElementById("zhekou").focus();
     }
 
     function modifyArea1() {
