@@ -22,7 +22,7 @@
         }
         .detail1
         {
-            width: 60px;
+            width: 90px;
             float: left;
         }
         .detail1 div
