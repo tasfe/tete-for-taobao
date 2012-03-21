@@ -6,8 +6,8 @@
 <head runat="server">
     <title>Untitled Page</title>
     <style type="text/css">
-      td{text-align:center}
-      th{text-align:center}
+      td{text-align:center; height:20px}
+      th{text-align:center; height:20px}
     </style>
     <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
 </head>
@@ -43,7 +43,9 @@
                            <td><%# Eval("ShowJ")%></td>
                          </tr>
                       </ItemTemplate>
-                    
+                     <SeparatorTemplate >
+                        <tr><td colspan="6"><hr /></td></tr>
+                     </SeparatorTemplate>
                     </asp:Repeater>
                     
                     </table>
