@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CusServiceAchievements.DAL;
+using Model;
 
 [Serializable]
 public class TopSiteTotalInfo
@@ -86,12 +87,26 @@ public class TopSiteTotalInfo
     /// <summary>
     /// 丢单数
     /// </summary>
-    public int LostOrder { set; get; }
+    public int LostOrder
+    {
+        get
+        {
+            TopKefuTotalService tktDal = new TopKefuTotalService();
+            List<TopKefuTotalInfo> list = (List<TopKefuTotalInfo>)tktDal.GetTotalinfoList(SiteTotalDate, SiteNick);
+            return list.Sum(o => o.CustomerCount) - list.Sum(o => o.OrderCount);
+        }
+    }
 
     /// <summary>
     /// 询单数
     /// </summary>
-    public int AskOrder { set; get; }
+    public int AskOrder
+    {
+        get
+        {
+            return new TopKefuTotalService().GetTotalinfoList(SiteTotalDate, SiteNick).Sum(o => o.CustomerCount);
+        }
+    }
 
     public decimal CPC
     {
