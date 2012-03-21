@@ -18,7 +18,7 @@
         .detail div
         {
             font-size: 12px;
-            height: 90px;
+            height: 60px;
         }
         .detail1
         {
@@ -28,7 +28,7 @@
         .detail1 div
         {
             font-size: 12px;
-            height: 20px;
+            height: 60px;
         }
     </style>
 </head>
@@ -146,9 +146,10 @@
                             <%# Eval("SeeDeepAVG")%>
                         </div>
                         <div>
-                           <img src='<%# Eval("SeeTop.pic_url")%>_80x80.jpg' alt='<%# Eval("SeeTop.title")%>' />
+                           <img src='<%# Eval("SeeTop.pic_url")%>_60x60.jpg' alt='<%# Eval("SeeTop.title")%>' />
                         </div>
-                        <div> <img src='<%# Eval("SellTop.pic_url")%>_80x80.jpg' alt='<%# Eval("SellTop.title")%>' />
+                        <div>
+                           <img src='<%# Eval("SellTop.pic_url")%>_60x60.jpg' alt='<%# Eval("SellTop.title")%>' />
                         </div>
                         <div>
                             <%# Eval("Collection")%>
