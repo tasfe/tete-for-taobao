@@ -12,7 +12,7 @@
         }
         .detail
         {
-            width: 90px;
+            width: 60px;
             float: left;
         }
         .detail div
@@ -22,7 +22,7 @@
         }
         .detail1
         {
-            width: 90px;
+            width: 60px;
             float: left;
         }
         .detail1 div
