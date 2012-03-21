@@ -146,11 +146,9 @@
                             <%# Eval("SeeDeepAVG")%>
                         </div>
                         <div>
-                           <img  src="" alt='<%# Eval("SeeTop")%>' width="1" height="1"/>
-                            <%# GetGoodsName(Eval("SeeTop").ToString())%>
+                           <img src='<%# Eval("SeeTop.pic_url")%>_80x80.jpg' alt='<%# Eval("SeeTop.title")%>' />
                         </div>
-                        <div> <img  src="" alt='<%# Eval("SellTop")%>' width="1" height="1"/>
-                            <%# GetGoodsName(Eval("SellTop").ToString())%>
+                        <div> <img src='<%# Eval("SellTop.pic_url")%>_80x80.jpg' alt='<%# Eval("SellTop.title")%>' />
                         </div>
                         <div>
                             <%# Eval("Collection")%>
