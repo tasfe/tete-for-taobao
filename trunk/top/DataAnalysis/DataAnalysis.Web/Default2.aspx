@@ -8,11 +8,11 @@
     <style type="text/css">
         .all
         {
-            width: 900px;
+            width: 1200px;
         }
         .detail
         {
-            width: 60px;
+            width: 90px;
             float: left;
         }
         .detail div
