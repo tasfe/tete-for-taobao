@@ -28,7 +28,7 @@
         .detail1 div
         {
             font-size: 12px;
-            height: 20px;
+            height: 60px;
         }
     </style>
 </head>
