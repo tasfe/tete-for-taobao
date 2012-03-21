@@ -85,15 +85,16 @@ public class TopSiteTotalInfo
     }
 
     /// <summary>
-    /// 丢单数
+    /// 丢单率
     /// </summary>
-    public int LostOrder
+    public string LostOrder
     {
         get
         {
             TopKefuTotalService tktDal = new TopKefuTotalService();
             List<TopKefuTotalInfo> list = (List<TopKefuTotalInfo>)tktDal.GetTotalinfoList(SiteTotalDate, SiteNick);
-            return list.Sum(o => o.CustomerCount) - list.Sum(o => o.OrderCount);
+            if (list.Sum(o => o.CustomerCount) == 0) return "0";
+            return ((decimal)(list.Sum(o => o.CustomerCount) - list.Sum(o => o.OrderCount)) / list.Sum(o => o.CustomerCount) * 100).ToString(".00") + "%";
         }
     }
 
