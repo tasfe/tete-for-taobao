@@ -49,7 +49,7 @@
                     直通车
                 </div>
                 <div>
-                    CPC
+                    钻展流量
                 </div>
                 <div>
                     询单数
@@ -110,7 +110,7 @@
                             <%# Eval("ZhiTongFlow")%>
                         </div>
                         <div>
-                            <%# Eval("CPC")%>
+                            <%# Eval("SiteZuanZhan")%>
                         </div>
                         <div>
                             <%# Eval("AskOrder")%>
@@ -146,10 +146,10 @@
                             <%# Eval("SeeDeepAVG")%>
                         </div>
                         <div>
-                           <img src='<%# Eval("SeeTop.pic_url")%>_60x60.jpg' alt='<%# Eval("SeeTop.title")%>' />
+                           <img src='<%# Eval("SeeTop.pic_url")%>_60x60.jpg' alt='<%# Eval("SeeTop.title")%>' height="50px" />
                         </div>
                         <div>
-                           <img src='<%# Eval("SellTop.pic_url")%>_60x60.jpg' alt='<%# Eval("SellTop.title")%>' />
+                           <img src='<%# Eval("SellTop.pic_url")%>_60x60.jpg' alt='<%# Eval("SellTop.title")%>' height="50px" />
                         </div>
                         <div>
                             <%# Eval("Collection")%>
