@@ -75,6 +75,15 @@ public class TopSiteTotalInfo
     }
 
     /// <summary>
+    /// 钻展流量
+    /// </summary>
+    public int SiteZuanZhan
+    {
+        set;
+        get;
+    }
+
+    /// <summary>
     /// 丢单数
     /// </summary>
     public int LostOrder { set; get; }
@@ -151,36 +160,36 @@ public class TopSiteTotalInfo
     /// <summary>
     /// 浏览第一的商品ID
     /// </summary>
-    public string SeeTop
+    public TaoBaoAPIHelper.GoodsInfo SeeTop
     {
         get
         {
             DateTime start = DateTime.Parse(SiteTotalDate.Substring(0, 4) + "-" + SiteTotalDate.Substring(4, 2) + "-" + SiteTotalDate.Substring(6));
             IList<GoodsInfo> list = new TaoBaoGoodsServive().GetTopGoods(SiteNick, start, start.AddDays(1), 1, 1);
-            if (list.Count == 0) return "";
+            if (list.Count == 0) return new TaoBaoAPIHelper.GoodsInfo();
 
             GoodsService goodsDal = new GoodsService();
-            string goodsName = goodsDal.GetGoodsInfo(list[0].num_iid, SiteNick);
+            return goodsDal.GetGoodsInfo(list[0].num_iid, SiteNick);
 
-            return goodsName == "" ? "" : goodsName;
+            //return goodsName == "" ? "" : goodsName;
         }
     }
 
     /// <summary>
     /// 销售第一的商品ID
     /// </summary>
-    public string SellTop
+    public TaoBaoAPIHelper.GoodsInfo SellTop
     {
         get
         {
             DateTime start = DateTime.Parse(SiteTotalDate.Substring(0, 4) + "-" + SiteTotalDate.Substring(4, 2) + "-" + SiteTotalDate.Substring(6));
             IList<GoodsInfo> list = new TaoBaoGoodsServive().GetTopBuyGoods(SiteNick, start, start.AddDays(1), 1, 1);
-            if (list.Count == 0) return "";
+            if (list.Count == 0) return new TaoBaoAPIHelper.GoodsInfo();
 
             GoodsService goodsDal = new GoodsService();
-            string goodsName = goodsDal.GetGoodsInfo(list[0].num_iid, SiteNick);
+            return goodsDal.GetGoodsInfo(list[0].num_iid, SiteNick);
 
-            return goodsName == "" ? "" : goodsName;
+            //return goodsName == "" ? "" : goodsName;
         }
     }
 
