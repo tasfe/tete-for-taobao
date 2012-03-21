@@ -22,10 +22,13 @@ public partial class YejiTotal : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
             DateTime[] drrArr = DBHelp.DataHelper.GetDateTime(DateTime.Now.AddDays(-29),31);
-            IList<TopKefuTotalInfo> list = kftDal.GetTotalinfoList(drrArr[0], drrArr[1]);
+            IList<TopKefuTotalInfo> list = kftDal.GetTotalinfoList(drrArr[0], drrArr[1], nick);
             Rpt_KefuTotal.DataSource = list;
             Rpt_KefuTotal.DataBind();
+            TB_Start.Text = drrArr[0].ToString("yyyy-MM-dd");
+            TB_End.Text = drrArr[1].ToString("yyyy-MM-dd");
         }
     }
 
@@ -39,14 +42,16 @@ public partial class YejiTotal : System.Web.UI.Page
         {
             start = DateTime.Parse(TB_Start.Text);
             endtime = DateTime.Parse(TB_End.Text);
+            TB_Start.Text = start.ToString("yyyy-MM-dd");
+            TB_End.Text = endtime.ToString("yyyy-MM-dd");
         }
         catch
         {
             TB_Start.Text = start.ToString("yyyy-MM-dd");
             TB_End.Text = endtime.ToString("yyyy-MM-dd");
         }
-
-        IList<TopKefuTotalInfo> list = kftDal.GetTotalinfoList(start, endtime);
+        string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+        IList<TopKefuTotalInfo> list = kftDal.GetTotalinfoList(start, endtime, nick);
         Rpt_KefuTotal.DataSource = list;
         Rpt_KefuTotal.DataBind();
     }
@@ -54,8 +59,11 @@ public partial class YejiTotal : System.Web.UI.Page
     {
         DateTime lastmonth = DateTime.Now.AddMonths(-1);
         DateTime start = new DateTime(lastmonth.Year,lastmonth.Month,1);
-        IList<TopKefuTotalInfo> list = kftDal.GetTotalinfoList(start, start.AddMonths(1).AddDays(-1));
+        string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+        IList<TopKefuTotalInfo> list = kftDal.GetTotalinfoList(start, start.AddMonths(1).AddDays(-1), nick);
         Rpt_KefuTotal.DataSource = list;
         Rpt_KefuTotal.DataBind();
+        TB_Start.Text = start.ToString("yyyy-MM-dd");
+        TB_End.Text = start.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd");
     }
 }
