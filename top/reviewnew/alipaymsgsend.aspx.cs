@@ -15,7 +15,7 @@ using System.Text.RegularExpressions;
 using System.Data;
 using System.Web.Security;
 
-public partial class top_groupbuy_msgsend : System.Web.UI.Page
+public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
 {
     public string couponstr = string.Empty;
     public string session = string.Empty;
@@ -66,7 +66,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
     private void BindData()
     {
         //数据绑定
-        DataTable dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_Coupon WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY startdate DESC");
+        DataTable dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_Alipay WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY startdate DESC");
         couponstr = "<select name='couponid'>";
         for (int i = 0; i < dtCoupon.Rows.Count; i++)
         {
@@ -83,176 +83,113 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         //执行优惠券赠送行为
-        string appkey = "12159997";
-        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
         string sql = string.Empty;
+        string shopname = string.Empty;
+        string phone = string.Empty;
 
         string couponid = utils.NewRequest("couponid", utils.RequestType.Form);
         string buynick = this.txtBuyerNick.Text;
-
-        //获取淘宝优惠券ID
-        sql = "SELECT guid FROM TCS_Coupon WHERE taobaocouponid = '" + couponid + "'";
-        string guid = utils.ExecuteString(sql);
-
-        //判断优惠券赠送限制
-        sql = "SELECT per FROM TCS_Coupon WITH (NOLOCK) WHERE guid = '" + guid + "' ";
-        string max = utils.ExecuteString(sql);
-
-        //判断该用户是否超过了最大赠送
-        sql = "SELECT guid FROM TCS_CouponSend WITH (NOLOCK) WHERE buynick= '" + buynick + "' AND guid = '" + guid + "'";
-        DataTable dtCoupon = utils.ExecuteDataTable(sql);
-        if (dtCoupon.Rows.Count >= int.Parse(max))
-        {
-            //退出    
-            Response.Write("<script>alert('赠送失败，买家获得的优惠券不会超过您设定的每人获取上限！');window.location.href='msgsend.aspx';</script>");
-            Response.End();
-        }
-        else
-        {
-
-            IDictionary<string, string> param = new Dictionary<string, string>();
-            param.Add("coupon_id", couponid);
-            param.Add("buyer_nick", buynick);
-
-            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.send", session, param);
-            Regex reg = new Regex(@"<coupon_number>([^<]*)</coupon_number>", RegexOptions.IgnoreCase);
-            MatchCollection match = reg.Matches(result);
-
-            //如果失败
-            if (!reg.IsMatch(result))
-            {
-                string err = new Regex(@"<reason>([^<]*)</reason>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-                Response.Write("<script>alert('【系统错误】：" + err + "，请稍后再试或者联系客服人员！');window.location.href='msgsend.aspx';</script>");
-            }
-            else
-            {
-                string number = match[0].Groups[1].ToString();
-
-                //赠送优惠券
-                sql = "INSERT INTO TCS_CouponSend (" +
-                                    "nick, " +
-                                    "guid, " +
-                                    "buynick, " +
-                                    "taobaonumber " +
-                                " ) VALUES ( " +
-                                    " '" + nick + "', " +
-                                    " '" + guid + "', " +
-                                    " '" + buynick + "', " +
-                                    " '" + number + "' " +
-                                ") ";
-                //Response.Write(sql);
-                //Response.End();
-                utils.ExecuteNonQuery(sql);
-
-                //发送短信
-                SendCouponMsg(buynick);
-
-                //更新优惠券已经赠送数量
-                sql = "UPDATE TCS_Coupon SET used = used + 1 WHERE guid = " + couponid;
-                utils.ExecuteNonQuery(sql);
-                Response.Write("<script>alert('赠送成功！');window.location.href='msgsend.aspx';</script>");
-            }
-        }
-    }
-
-    private void SendCouponMsg(string buynick)
-    {
-        string sql = string.Empty;
-        string giftflag = string.Empty;
-        string giftcontent = string.Empty;
-        string shopname = string.Empty;
-        string phone = string.Empty;
 
         sql = "SELECT * FROM TCS_ShopConfig WITH (NOLOCK) WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            giftflag = dt.Rows[0]["giftflag"].ToString();
-            giftcontent = dt.Rows[0]["giftcontent"].ToString();
             shopname = dt.Rows[0]["shopname"].ToString();
         }
         else
         {
+            Response.Write("<script>alert('系统错误，请重新登录！');window.location.href='alipaymsgsend.aspx';</script>");
+            Response.End();
             return;
         }
 
-        //发送短信
-        if (1 == 1) //短信测试中
+        //获取该订单关联会员
+        sql = "SELECT * FROM TCS_Trade WITH (NOLOCK) WHERE nick = '" + nick + "' AND buynick = '" + buynick + "' AND mobile <> ''";
+        dt = utils.ExecuteDataTable(sql);
+        if (dt.Rows.Count != 0)
         {
-            //判断是否开启该短信发送节点
-            if (giftflag == "1")
+            phone = dt.Rows[0]["mobile"].ToString();
+        }
+        else
+        {
+            Response.Write("<script>alert('该会员的订单信息中没有记录手机号码，无法发送支付宝红包！');window.location.href='alipaymsgsend.aspx';</script>");
+            Response.End();
+            return;
+        }
+
+        //先看还有没有短信了
+        sql = "SELECT total FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
+        string totalAlipay = utils.ExecuteString(sql);
+        if (int.Parse(totalAlipay) > 0)
+        {
+            //如果有短信再开始判断
+            sql = "SELECT isalipay,alipayid FROM TCS_ShopConfig WITH (NOLOCK) WHERE nick = '" + nick + "'";
+            DataTable dtAlipay = utils.ExecuteDataTable(sql);
+            if (dtAlipay.Rows.Count != 0)
             {
-                //判断是否还有短信可发
-                sql = "SELECT total FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
-                string total = utils.ExecuteString(sql);
-
-                sql = "SELECT * FROM TCS_Trade WITH (NOLOCK) WHERE buynick = '" + buynick + "'";
-                dt = utils.ExecuteDataTable(sql);
-                if (dt.Rows.Count != 0)
+                //看看卖家是否开启了支付宝红包赠送
+                if (dtAlipay.Rows[0][0].ToString() == "1")
                 {
-                    phone = dt.Rows[0]["mobile"].ToString();
-                }
-                else
-                {
-                    return;
-                }
-
-                if (int.Parse(total) > 0)
-                {
-                    //每张物流订单最多提示一次
-                    sql = "SELECT COUNT(*) FROM TCS_MsgSend WITH (NOLOCK) WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND  buynick = '" + buynick + "' AND typ = 'gift'";
-                    string giftCount = utils.ExecuteString(sql);
-
-                    if (giftCount == "0")
+                    //判断红包是否有效
+                    sql = "SELECT * FROM TCS_Alipay WITH (NOLOCK) WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND DATEDIFF(d, GETDATE(), enddate) > 0 AND used < count";
+                    DataTable dtAlipayDetail = utils.ExecuteDataTable(sql);
+                    if (dtAlipayDetail.Rows.Count != 0)
                     {
-                        //开始发送
-                        string msg = GetMsg(giftcontent, shopname, buynick);
-
-                        //强行截取
-                        if (msg.Length > 66)
+                        //判断用户获取的优惠券是否超过了每人的最大领取数量
+                        sql = "SELECT COUNT(*) FROM TCS_AlipayDetail WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND buynick = '" + buynick + "'";
+                        string alipayCount = utils.ExecuteString(sql);
+                        if (int.Parse(alipayCount) < int.Parse(dtAlipayDetail.Rows[0]["per"].ToString()))
                         {
-                            msg = msg.Substring(0, 66);
-                        }
-
-                        string result = SendMessage(phone, msg);
-
-                        if (result != "0")
-                        {
-                            string number = "1";
-
-                            //如果内容超过70个字则算2条
-                            if (msg.Length > 66)
+                            //赠送支付宝红包
+                            sql = "SELECT TOP 1 * FROM TCS_AlipayDetail WITH (NOLOCK) WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND issend = 0";
+                            DataTable dtAlipayDetailList = utils.ExecuteDataTable(sql);
+                            if (dtAlipayDetailList.Rows.Count != 0)
                             {
-                                number = "2";
+                                string msgAlipay = "亲，" + shopname + "赠送您支付宝红包，卡号" + dtAlipayDetailList.Rows[0]["card"].ToString() + "密码" + dtAlipayDetailList.Rows[0]["pass"].ToString() + "，您可以到支付宝绑定使用。";
+                                //强行截取
+                                if (msgAlipay.Length > 66)
+                                {
+                                    msgAlipay = msgAlipay.Substring(0, 66);
+                                }
+
+                                string result = SendMessage(phone, msgAlipay);
+                                //记录短信发送记录
+                                sql = "INSERT INTO TCS_MsgSend (" +
+                                                    "nick, " +
+                                                    "buynick, " +
+                                                    "mobile, " +
+                                                    "[content], " +
+                                                    "yiweiid, " +
+                                                    "num, " +
+                                                    "typ " +
+                                                " ) VALUES ( " +
+                                                    " '" + nick + "', " +
+                                                    " '" + buynick + "', " +
+                                                    " '" + phone + "', " +
+                                                    " '" + msgAlipay + "', " +
+                                                    " '" + result + "', " +
+                                                    " '1', " +
+                                                    " 'alipay' " +
+                                                ") ";
+
+                                if (phone.Length != 0)
+                                {
+                                    //记录支付宝红包发送成功
+                                    utils.ExecuteNonQuery(sql);
+
+                                    sql = "UPDATE TCS_Alipay SET used = used + 1 WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "'";
+                                    utils.ExecuteNonQuery(sql);
+
+                                    //更新优惠券已经赠送数量
+                                    sql = "UPDATE TCS_AlipayDetail SET issend = 1,buynick = '" + buynick + "',senddate = GETDATE(), orderid = '0' WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND card = '" + dtAlipayDetailList.Rows[0]["card"].ToString() + "'";
+                                    utils.ExecuteNonQuery(sql);
+
+
+                                    //更新短信数量
+                                    sql = "UPDATE TCS_ShopConfig SET used = used + 1,total = total-1 WHERE nick = '" + nick + "'";
+                                    utils.ExecuteNonQuery(sql);
+                                }
                             }
-
-                            //记录短信发送记录
-                            sql = "INSERT INTO TCS_MsgSend (" +
-                                                "nick, " +
-                                                "buynick, " +
-                                                "mobile, " +
-                                                "[content], " +
-                                                "yiweiid, " +
-                                                "num, " +
-                                                "typ " +
-                                            " ) VALUES ( " +
-                                                " '" + nick + "', " +
-                                                " '" + buynick + "', " +
-                                                " '" + phone + "', " +
-                                                " '" + msg.Replace("'", "''") + "', " +
-                                                " '" + result + "', " +
-                                                " '" + number + "', " +
-                                                " 'gift' " +
-                                            ") ";
-                            utils.ExecuteNonQuery(sql);
-
-                            //更新短信数量
-                            sql = "UPDATE TCS_ShopConfig SET used = used + " + number + ",total = total-" + number + " WHERE nick = '" + nick + "'";
-                            utils.ExecuteNonQuery(sql);
-                        }
-                        else
-                        {
-
                         }
                     }
                 }
@@ -260,16 +197,9 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
         }
     }
 
-    private string GetMsg(string giftcontent, string shopname, string buynick)
-    {
-        string giftstr = "优惠券";
 
-        giftcontent = giftcontent.Replace("[shopname]", shopname);
-        giftcontent = giftcontent.Replace("[buynick]", buynick);
-        giftcontent = giftcontent.Replace("[gift]", giftstr);//.Replace("[buynick]", buynick);
 
-        return giftcontent;
-    }
+
 
     public static string UrlEncode(string str)
     {
@@ -291,7 +221,6 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
 
     public static string SendMessage(string phone, string msg)
     {
-        //有客户没有手机号也发送短信
         if (phone.Length == 0)
         {
             return "0";
