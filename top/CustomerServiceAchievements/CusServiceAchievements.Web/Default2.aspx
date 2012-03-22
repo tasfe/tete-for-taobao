@@ -59,7 +59,7 @@
                     </p>
                 </div>
                 <div>
-                    <table>
+                    <table width="750px">
                         <tr>
                             <th style="width:15%">
                                 序号
