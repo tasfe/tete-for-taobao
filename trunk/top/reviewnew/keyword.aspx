@@ -38,20 +38,31 @@
                 </td>
             </tr>
             <tr>
-                <td align="left" width="120" height="30">关键字类型：</td>
+                <td align="left" width="120" height="30"></td>
                 <td>
                     <input type=radio name="keywordisbad" checked value="0" id="good" />
-                    <label for="good">包含了以下关键字的才算好评</label>
-                    <br />
-                    <input type=radio name="keywordisbad" value="1" id="bad" />
-                    <label for="bad">包含了以下关键字的就不算好评</label>
+                    <label for="good" style="font-size:16px; color:Red">包含了以下关键字的才算好评</label>
                 </td>
             </tr>
             <tr>
-                <td align="left" width="120" height="30">包含关键字：</td>
+                <td align="left" width="120" height="30">关键字：</td>
                 <td>
                 <span style="font-size:16px; color:Red">多个关键字请用<b>回车</b>分开</span><br /> 
                     <textarea id="key" name="keyword" rows="8" cols="50"><%=keyword %></textarea> 
+                </td>
+            </tr>
+            <tr>
+                <td align="left" width="120" height="30"></td>
+                <td>
+                    <input type=radio name="keywordisbad" value="1" id="bad" />
+                    <label for="bad" style="font-size:16px; color:green">包含了以下关键字的就不算好评</label>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" width="120" height="30">关键字：</td>
+                <td>
+                <span style="font-size:16px; color:green">多个关键字请用<b>回车</b>分开</span><br /> 
+                    <textarea id="keybad" name="keywordbad" rows="8" cols="50"><%=keyword %></textarea> 
                 </td>
             </tr>
             
@@ -69,10 +80,20 @@
 <script>
     function check() {
         var value = document.getElementById("key").value;
+        var badvalue = document.getElementById("keybad").value;
 
-        if (value.indexOf("\r\n") == -1 && value.length > 6) {
-            alert("请用回车将您设置的多个关键字分开，否则将无法正常判定好评！");
-            return false;
+        if (document.getElementById("good").checked) {
+            if (value.indexOf("\r\n") == -1 && value.length > 6) {
+                alert("请用回车将您设置的多个关键字分开，否则将无法正常判定好评！");
+                return false;
+            }
+        }
+
+        if (document.getElementById("bad").checked) {
+            if (badvalue.indexOf("\r\n") == -1 && badvalue.length > 6) {
+                alert("请用回车将您设置的多个关键字分开，否则将无法正常判定好评！");
+                return false;
+            }
         }
     }
 
