@@ -40,6 +40,11 @@
             每月5000条短信可累积  500元/月  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-7:1;' target="_blank">点击购买</a>  (现在购买立即赠送200条短信) <br />
             每月10000条短信可累积  1000元/月  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-8:1;' target="_blank">点击购买</a>  (现在购买立即赠送500条短信) <br /><br />
             <b>购买完毕后请重新从 seller.taobao.com 右上 “我的服务”进入...</b>
+
+             <br> 
+        <br>        <span style="font-size:20px; font-weight:bold; color:red">3月特惠全部短信8折，现在升级版本更赠送短信，具体情况请联系客服人员...</span>
+        <br> 
+        <br> 
             </div>
     </div>
 </div>
