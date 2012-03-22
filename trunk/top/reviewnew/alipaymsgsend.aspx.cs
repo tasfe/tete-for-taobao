@@ -106,8 +106,8 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
         }
 
         //判断VIP版本，只有VIP才能使用此功能
-        string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "'";
-        DataTable dt = utils.ExecuteDataTable(sql);
+        sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "'";
+        dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
             string flag = dt.Rows[0]["version"].ToString();
