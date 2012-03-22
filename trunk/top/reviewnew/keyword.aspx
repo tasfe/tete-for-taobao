@@ -55,7 +55,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <textarea id="keybad" name="keywordbad" rows="8" cols="50"><%=badkeyword%></textarea> 
+                    <textarea id="keybad" name="badkeyword" rows="8" cols="50"><%=badkeyword%></textarea> 
                 </td>
             </tr>
             
