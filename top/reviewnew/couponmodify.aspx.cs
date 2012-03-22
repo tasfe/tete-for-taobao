@@ -89,7 +89,7 @@ public partial class top_review_couponmodify : System.Web.UI.Page
             string guid = Guid.NewGuid().ToString();
             IDictionary<string, string> param = new Dictionary<string, string>();
             param.Add("denominations", price);
-            param.Add("end_time", end_time);
+            param.Add("end_time", endsenddate);
             param.Add("condition", condition);
             string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.add", session, param);
 
