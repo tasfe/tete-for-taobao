@@ -20,6 +20,7 @@ public partial class top_review_keyword : System.Web.UI.Page
     public string nick = string.Empty;
     public string wordcount = string.Empty;
     public string keyword = string.Empty;
+    public string keywordisbad = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -36,6 +37,7 @@ public partial class top_review_keyword : System.Web.UI.Page
             if (dt.Rows.Count != 0)
             {
                 wordcount = dt.Rows[0]["wordcount"].ToString();
+                keywordisbad = dt.Rows[0]["keywordisbad"].ToString();
                 keyword = dt.Rows[0]["keyword"].ToString().Replace("|", "\r\n");
             }
             else
@@ -50,6 +52,7 @@ public partial class top_review_keyword : System.Web.UI.Page
     {
         string sql = "UPDATE TCS_ShopConfig SET " +
                         "wordcount = '" + utils.NewRequest("wordcount", utils.RequestType.Form) + "', " +
+                        "keywordisbad = '" + utils.NewRequest("keywordisbad", utils.RequestType.Form) + "', " +
                         "keyword = '" + utils.NewRequest("keyword", utils.RequestType.Form).Replace("\r\n", "|") + "' " +
                     "WHERE nick = '" + nick + "'";
 

@@ -38,11 +38,20 @@
                 </td>
             </tr>
             <tr>
+                <td align="left" width="120" height="30">好评字数判定：</td>
+                <td>
+                    <input type=radio name="keywordisbad" value="0" id="good" />
+                    <label for="good">包含了以下关键字的才算好评</label>
+                    <br />
+                    <input type=radio name="keywordisbad" value="1" id="bad" />
+                    <label for="bad">包含了以下关键字的才算好评</label>
+                </td>
+            </tr>
+            <tr>
                 <td align="left" width="120" height="30">包含关键字：</td>
                 <td>
-                <span style="font-size:16px; color:Red">只有包含了以下关键字的才算好评，多个关键字请用<b>回车</b>分开</span><br /> 
+                <span style="font-size:16px; color:Red">多个关键字请用<b>回车</b>分开</span><br /> 
                     <textarea id="key" name="keyword" rows="8" cols="50"><%=keyword %></textarea> 
-                    
                 </td>
             </tr>
             
@@ -66,6 +75,12 @@
             return false;
         }
     }
+
+    function initdata() {
+        if()
+    }
+
+    initdata();
 </script>
 
 </body>
