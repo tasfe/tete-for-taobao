@@ -188,6 +188,10 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
                                     //更新短信数量
                                     sql = "UPDATE TCS_ShopConfig SET used = used + 1,total = total-1 WHERE nick = '" + nick + "'";
                                     utils.ExecuteNonQuery(sql);
+
+                                    Response.Write("<script>alert('赠送成功！');history.go(-1);</script>");
+                                    Response.End();
+
                                 }
                             }
                         }
