@@ -58,61 +58,61 @@
                         of <strong>$328.24 profit </strong>
                     </p>
                 </div>
-                
-                <div id="Div1" class="margin-left">
-                        <h3>
-                            Bestsellers</h3>
-                        <table>
-                            <thead>
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                序号
+                            </td>
+                            <td>
+                                买家
+                            </td>
+                            <td>
+                                接待人
+                            </td>
+                            <td>
+                                接待时间
+                            </td>
+                            <td>
+                                接待时长
+                            </td>
+                            <td>
+                                交易
+                            </td>
+                        </tr>
+                        <asp:Repeater ID="Rpt_Jie" runat="server">
+                            <ItemTemplate>
                                 <tr>
-                                    <th>
-                                        序号
-                                    </th>
-                                    <th>
-                                        买家
-                                    </th>
-                                    <th>
-                                        接待人
-                                    </th>
-                                    <th>
-                                        接待时间
-                                    </th>
-                                    <th>
-                                        接待时长
-                                    </th>
-                                    <th>
-                                        交易
-                                    </th>
+                                    <td align="center">
+                                        <%# Container.ItemIndex + 1%>
+                                    </td>
+                                    <td>
+                                        <%# Eval("CustomerNick") %>
+                                    </td>
+                                    <td>
+                                        <%# Eval("FromNick") %>
+                                    </td>
+                                    <td>
+                                        <%# Eval("StartTime")%>
+                                    </td>
+                                    <td>
+                                        <%# Eval("TimeSpan")%>
+                                    </td>
+                                    <td>
+                                        <%# Eval("ShowJ")%>
+                                    </td>
                                 </tr>
-                            </thead>
-                            
-                            <asp:Repeater ID="Rpt_Jie" runat="server">
-                                <ItemTemplate>
-                                
-                                 <tr>
-                           <td align="center">
-                             <%# Container.ItemIndex + 1%>
-                           </td>
-                           <td><%# Eval("CustomerNick") %></td>
-                           <td><%# Eval("FromNick") %></td>
-                           <td><%# Eval("StartTime")%></td>
-                           <td><%# Eval("TimeSpan")%></td>
-                           <td><%# Eval("ShowJ")%></td>
-                         </tr>
-                                </ItemTemplate>
-                            </asp:Repeater>
-                            
-                            
-                        </table>
-                    </div>
-                
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </table>
+                </div>
                 <div id="infowrap">
                     <div id="infobox">
                         <h3>
                             Sales for July</h3>
                         <p>
-                              sss
-                         </p>
+                            sss
+                        </p>
                     </div>
                     <div id="infobox" class="margin-left">
                         <h3>
@@ -196,7 +196,6 @@
                             </tbody>
                         </table>
                     </div>
-                    
                     <div id="infobox">
                         <h3>
                             New Customers</h3>
