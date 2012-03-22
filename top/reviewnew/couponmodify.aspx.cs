@@ -138,11 +138,11 @@ public partial class top_review_couponmodify : System.Web.UI.Page
                         "count = '" + total + "', " +
                         "per = '" + per + "', " +
                         "condition = '" + condition + "' " +
-                    "WHERE guid = '" + id + "'";
-        //utils.ExecuteNonQuery(sql);
+                    "WHERE guid = '" + id + "' AND nick = '" + nick + "'";
+        utils.ExecuteNonQuery(sql);
 
-        Response.Write("<br><br>" + sql);
-        //Response.Redirect("couponlist.aspx");
+        //Response.Write("<br><br>" + sql);
+        Response.Redirect("couponlist.aspx");
     }
 
 
