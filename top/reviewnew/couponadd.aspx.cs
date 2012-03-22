@@ -127,8 +127,44 @@ public partial class top_review_couponadd : System.Web.UI.Page
         utils.ExecuteNonQuery(sql);
         //Response.Write("<br><br>" + sql);
 
-        sql = "UPDATE TCS_ShopConfig SET couponid = '" + guid + "' WHERE nick = '" + nick + "'";
-        utils.ExecuteNonQuery(sql);
+        //先判断是否有记录
+        sql = "SELECT COUNT(*) FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
+        string count = utils.ExecuteString(sql);
+        if (count == "0")
+        {
+            sql = "INSERT INTO TCS_ShopConfig (" +
+                        "nick, " +
+                        "iscoupon, " +
+                        "couponid, " +
+                        "iskefu, " +
+                        "mindate, " +
+                        "maxdate, " +
+                        "iscancelauto, " +
+                        "iskeyword, " +
+                        "sessionold, " +
+                        "isalipay, " +
+                        "alipayid, " +
+                        "issendmsg " +
+                    " ) VALUES ( " +
+                        " '" + nick + "', " +
+                        " '1', " +
+                        " '" + guid + "', " +
+                        " '0', " +
+                        " '3', " +
+                        " '6', " +
+                        " '0', " +
+                        " '0', " +
+                        " '" + session + "', " +
+                        " '0', " +
+                        " '0' " +
+                    ") ";
+            utils.ExecuteNonQuery(sql);
+        }
+        else
+        {
+            sql = "UPDATE TCS_ShopConfig SET couponid = '" + guid + "' WHERE nick = '" + nick + "'";
+            utils.ExecuteNonQuery(sql);
+        }
 
         //Response.Write("<br><br>" + sql);
         Response.Redirect("couponlist.aspx");
