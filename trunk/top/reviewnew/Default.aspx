@@ -17,7 +17,7 @@
   <table width="100%" border="0" align="center" cellpadding="0"
 				cellspacing="1" style="line-height: 25px;">
     <tr>
-      <td style="font: 22px 微软雅黑; border-right: 1px solid #C5DCE7; vertical-align: middle; color: #000000; padding-left: 25px" width="40px"> 好 <br />
+      <td style="font: 22px 微软雅黑; border-right: 1px solid #C5DCE7; vertical-align: middle; color: #000000; padding-left: 18px" width="40px"> 好 <br />
         评 <br />
         有 <br />
         礼 <br />
@@ -31,9 +31,8 @@
                 <div class="title_contents">
                   <h4 style="padding-left: 0px"><img src="images/icon_1.gif" width="32" height="32"
 													style="vertical-align: middle; margin-right: 0px" /><a href="couponadd.aspx">店铺优惠券</a></h4>
-                  <span class="category-pop"><s class="pop-l"></s><a
-												href="#">好评就送店铺优惠券，提升评价又带来2次销售</a><s class="pop-r"></s></span>
-                  <p><img src="img/item_3.png" title="该功能只有高级版用户可以使用！"/>&nbsp;好评就送店铺优惠券，提升评价又带来2次销售</p>
+                  <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
+                  <p>好评就送店铺优惠券，提升评价又带来2次销售</p>
                 </div>
                 <div class="item_list_btn"><a href="couponadd.aspx" target="_blank" class="btn-middle middle-blue">立即使用</a></div>
                 <p style="clear: both; height: 1px;"></p>
@@ -45,7 +44,7 @@
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
                   <p> 好评就送支付宝红包，直达客户手机，到达率100% </p>
                 </div>
-                <div class="item_list_btn"><a href="alipay.aspx" target="_blank" class="btn-middle middle-blue">好评就送支付宝红包，直达客户手机，到达率100%</a></div>
+                <div class="item_list_btn"><a href="alipay.aspx" target="_blank" class="btn-middle middle-blue">立即使用</a></div>
                 <p style="clear: both; height: 1px;"></p>
               </div></td>
           </tr>
@@ -77,7 +76,7 @@
                   <h4 style="padding-left: 0px"><img src="images/icon_5.gif" width="32" height="32"
 													style="vertical-align: middle; margin-right: 0px" /><a href="kefulist.aspx">客服手动审核</a></h4>
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
-                  <p><img src="img/item_3.png" title="该功能只有高级版用户可以使用！"/>&nbsp;自行根据客户评价决定是否赠送优惠券，让真正的好评得到更大的优惠</p>
+                  <p>自行根据客户评价决定是否赠送优惠券，让真正的好评得到更大的优惠</p>
                 </div>
                 <div class="item_list_btn"><a href="kefulist.aspx" target="_blank" class="btn-middle middle-blue">立即使用</a></div>
                 <p style="clear: both; height: 1px;"></p>
