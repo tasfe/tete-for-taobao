@@ -27,8 +27,8 @@
     </ul>
   </div>
     <div id="main-content">
-      <input type="button" value="添加优惠券" onclick="window.location.href='couponlist.aspx'" />
-返回列表页
+      <input type="button" value="返回列表页" onclick="window.location.href='couponlist.aspx'" />
+
     <hr />
 
 <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
