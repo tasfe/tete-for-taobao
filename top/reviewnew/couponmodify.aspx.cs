@@ -52,7 +52,7 @@ public partial class top_review_couponmodify : System.Web.UI.Page
         if (dt.Rows.Count != 0)
         {
             endsenddate = dt.Rows[0]["endsenddate"].ToString();
-            enddate = dt.Rows[0]["end_time"].ToString();
+            enddate = dt.Rows[0]["enddate"].ToString();
             coupon_name = dt.Rows[0]["name"].ToString();
             price = dt.Rows[0]["num"].ToString();
             condition = dt.Rows[0]["condition"].ToString();
