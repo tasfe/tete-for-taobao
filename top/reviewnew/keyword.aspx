@@ -40,11 +40,11 @@
             <tr>
                 <td align="left" width="120" height="30">好评字数判定：</td>
                 <td>
-                    <input type=radio name="keywordisbad" value="0" id="good" />
+                    <input type=radio name="keywordisbad" checked value="0" id="good" />
                     <label for="good">包含了以下关键字的才算好评</label>
                     <br />
                     <input type=radio name="keywordisbad" value="1" id="bad" />
-                    <label for="bad">包含了以下关键字的才算好评</label>
+                    <label for="bad">包含了以下关键字的就不算好评</label>
                 </td>
             </tr>
             <tr>
@@ -77,7 +77,13 @@
     }
 
     function initdata() {
-        if()
+        if ("<%=keywordisbad %>" == "0") {
+            document.getElementById("good").checked = true;
+            document.getElementById("bad").checked = false;
+        } else {
+            document.getElementById("bad").checked = true;
+            document.getElementById("good").checked = false;
+        }
     }
 
     initdata();
