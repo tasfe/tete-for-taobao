@@ -37,7 +37,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="left" height="30">选择赠送的优惠券：</td>
+                <td align="left" height="30">选择赠送的支付宝红包：</td>
                 <td>
                     <%=couponstr%>
                     <a href="alipayadd.aspx">导入支付宝红包</a>
@@ -46,7 +46,7 @@
             </tr>
             <tr>
                 <td align="left" colspan="2">
-                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="赠送优惠券给买家" />
+                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="赠送支付宝红包给买家" />
                 </td>
             </tr>
         </table>
