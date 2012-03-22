@@ -27,6 +27,9 @@
     </ul>
   </div>
     <div id="main-content">
+      <input type="button" value="添加优惠券" onclick="window.location.href='couponlist.aspx'" />
+    
+    <hr />
 
 <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
     需要购买淘宝的“店铺优惠券功能”才能使用优惠券功能 <a href='http://seller.taobao.com/fuwu/service.htm?service_id=6831' target="_blank">马上去购买</a>
