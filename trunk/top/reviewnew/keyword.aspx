@@ -31,8 +31,7 @@
 
         <table width="700">
             <tr>
-                <td align="left" width="120" height="30">好评字数判定：</td>
-                <td>
+                <td colspan="2"  height="40">
                     评价内容的字数必须大于<input 
                         type="text" name="wordcount" value="<%=wordcount %>" style="width: 28px" />字才算好评
                 </td>
