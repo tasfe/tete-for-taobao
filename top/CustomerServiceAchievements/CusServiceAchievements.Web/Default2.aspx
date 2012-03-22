@@ -59,8 +59,11 @@
                     </p>
                 </div>
                 <div>
+                 <p class="youhave">
+                  <a href="CustomerList.aspx">客服今天接待情况</a>
+                 </p>
                     <table style="margin:0; width:740px; margin-top:5px;">
-                      <threed>
+                      <thead>
                         <tr>
                             <th style="width:15%">
                                 序号
@@ -81,7 +84,7 @@
                                 交易
                             </th>
                         </tr>
-                      </threed>
+                      </thead>
                         <asp:Repeater ID="Rpt_Jie" runat="server">
                             <ItemTemplate>
                                 <tr>
@@ -190,100 +193,6 @@
                                     </td>
                                     <td>
                                         1
-                                    </td>
-                                    <td>
-                                        9.95 €
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div id="infobox">
-                        <h3>
-                            New Customers</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Customer
-                                    </th>
-                                    <th>
-                                        Orders
-                                    </th>
-                                    <th>
-                                        Average
-                                    </th>
-                                    <th>
-                                        Total
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <a href="#">Jennifer Kyrnin</a>
-                                    </td>
-                                    <td>
-                                        1
-                                    </td>
-                                    <td>
-                                        5.6€
-                                    </td>
-                                    <td>
-                                        14.95 €
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">Mark Kyrnin</a>
-                                    </td>
-                                    <td>
-                                        2
-                                    </td>
-                                    <td>
-                                        14.97€
-                                    </td>
-                                    <td>
-                                        34.27 €
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">Virgílio Cezar</a>
-                                    </td>
-                                    <td>
-                                        2
-                                    </td>
-                                    <td>
-                                        15.31€
-                                    </td>
-                                    <td>
-                                        61.39 €
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">Todd Simonides</a>
-                                    </td>
-                                    <td>
-                                        5
-                                    </td>
-                                    <td>
-                                        502.61€
-                                    </td>
-                                    <td>
-                                        1472.56 €
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">Carol Elihu</a>
-                                    </td>
-                                    <td>
-                                        1
-                                    </td>
-                                    <td>
-                                        5.1€
                                     </td>
                                     <td>
                                         9.95 €
