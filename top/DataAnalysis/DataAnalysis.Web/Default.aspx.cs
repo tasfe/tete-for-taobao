@@ -48,7 +48,7 @@ public partial class _Default : BasePage
                 }
                 for (int i = 0; i < list.Count; i++)
                 {
-                    IList<GoodsInfo> thislist = cachegoods.Where(o => o.num_iid == list[i].num_iid).ToList();
+                    IList<GoodsInfo> thislist = ((List<GoodsInfo>)Cache["taobaogoodslist"]).Where(o => o.num_iid == list[i].num_iid).ToList();
                     if (thislist.Count > 0)
                     {
                         list[i].title = thislist[0].title;
