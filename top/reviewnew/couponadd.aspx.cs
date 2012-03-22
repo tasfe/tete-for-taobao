@@ -156,6 +156,7 @@ public partial class top_review_couponadd : System.Web.UI.Page
                         " '0', " +
                         " '" + session + "', " +
                         " '0', " +
+                        " '0', " +
                         " '0' " +
                     ") ";
             utils.ExecuteNonQuery(sql);
