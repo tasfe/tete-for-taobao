@@ -833,6 +833,12 @@ public partial class top_review_kefulist : System.Web.UI.Page
 
     public static string SendMessage(string phone, string msg)
     {
+        //有客户没有手机号也发送短信
+        if (phone.Length == 0)
+        {
+            return "0";
+        }
+
         string uid = "ZXHD-SDK-0107-XNYFLX";
         string pass = MD5AAA("WEGXBEPY").ToLower();
 
