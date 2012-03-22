@@ -73,7 +73,7 @@
                     转化率
                 </div>
                 <div>
-                    二次浏览用户数
+                    回头客
                 </div>
                 <div>
                     浏览回头率
@@ -134,7 +134,7 @@
                             <%# Eval("CreateAVG")%>
                         </div>
                         <div>
-                            <%# Eval("SiteUVBack")%>
+                            <%# Eval("SiteSecondBuy")%>
                         </div>
                         <div>
                             <%# Eval("BackSee") %>
