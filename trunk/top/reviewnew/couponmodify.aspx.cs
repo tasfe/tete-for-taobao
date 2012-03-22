@@ -51,8 +51,8 @@ public partial class top_review_couponmodify : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            endsenddate = dt.Rows[0]["enddate"].ToString().Replace(" 0:00:00", "");
-            enddate = dt.Rows[0]["endsenddate"].ToString().Replace(" 0:00:00", "");
+            endsenddate = DateTime.Parse(dt.Rows[0]["enddate"].ToString()).ToString("yy-MM-dd");
+            enddate = DateTime.Parse(dt.Rows[0]["endsenddate"].ToString()).ToString("yy-MM-dd");
             coupon_name = dt.Rows[0]["name"].ToString();
             price = dt.Rows[0]["num"].ToString();
             condition = dt.Rows[0]["condition"].ToString();
