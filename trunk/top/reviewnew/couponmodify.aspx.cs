@@ -139,7 +139,7 @@ public partial class top_review_couponmodify : System.Web.UI.Page
                         "per = '" + per + "', " +
                         "condition = '" + condition + "' " +
                     "WHERE guid = '" + id + "'";
-        utils.ExecuteNonQuery(sql);
+        //utils.ExecuteNonQuery(sql);
 
         Response.Write("<br><br>" + sql);
         //Response.Redirect("couponlist.aspx");
