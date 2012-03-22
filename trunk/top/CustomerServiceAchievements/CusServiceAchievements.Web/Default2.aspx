@@ -59,7 +59,8 @@
                     </p>
                 </div>
                 <div>
-                    <table width="750px" style="margin:0; width:750px">
+                    <table style="margin:0; width:740px; margin-top:5px;">
+                      <threed>
                         <tr>
                             <th style="width:15%">
                                 序号
@@ -80,6 +81,7 @@
                                 交易
                             </th>
                         </tr>
+                      </threed>
                         <asp:Repeater ID="Rpt_Jie" runat="server">
                             <ItemTemplate>
                                 <tr>
