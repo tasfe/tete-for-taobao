@@ -38,7 +38,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="left" width="120" height="30">好评字数判定：</td>
+                <td align="left" width="120" height="30">关键字类型：</td>
                 <td>
                     <input type=radio name="keywordisbad" checked value="0" id="good" />
                     <label for="good">包含了以下关键字的才算好评</label>
