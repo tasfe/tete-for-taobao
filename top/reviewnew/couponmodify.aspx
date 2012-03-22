@@ -42,7 +42,7 @@
             <tr>
                 <td align="left" height="30">优惠券金额：</td>
                 <td>
-                    <select name="price">
+                    <select name="price" id="price">
                         <option value="3">3</option>
                         <option value="5">5</option>
                         <option value="10">10</option>
@@ -80,7 +80,7 @@
             <tr>
                 <td align="left" height="30">每人限领数量：</td>
                 <td>
-                    <select name="per">
+                    <select name="per" id="per">
                         <option value="5">5</option>
                         <option value="4">4</option>
                         <option value="3">3</option>
@@ -98,6 +98,15 @@
     </div>
 </div>
 </form>
+
+<script>
+    function initdata() {
+        document.getElementById("price").value = "<%=price %>";
+        document.getElementById("per").value = "<%=per %>";
+    }
+
+    initdata();
+</script>
 
 </body>
 </html>
