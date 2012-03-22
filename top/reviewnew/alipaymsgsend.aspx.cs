@@ -66,11 +66,11 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
     private void BindData()
     {
         //数据绑定
-        DataTable dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_Alipay WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY startdate DESC");
+        DataTable dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_Alipay WHERE nick = '" + nick + "' AND isdel = 0");
         couponstr = "<select name='couponid'>";
         for (int i = 0; i < dtCoupon.Rows.Count; i++)
         {
-            couponstr += "<option value='" + dtCoupon.Rows[i]["taobaocouponid"].ToString() + "'>" + dtCoupon.Rows[i]["name"].ToString() + " - " + dtCoupon.Rows[i]["num"].ToString() + "元</option>";
+            couponstr += "<option value='" + dtCoupon.Rows[i]["guid"].ToString() + "'>" + dtCoupon.Rows[i]["name"].ToString() + " - " + dtCoupon.Rows[i]["num"].ToString() + "元 已发【" + dtCoupon.Rows[i]["used"].ToString() + "】张</option>";
         }
         couponstr += "</select>";
     }
