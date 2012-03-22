@@ -38,15 +38,13 @@
                 </td>
             </tr>
             <tr>
-                <td align="left" width="120" height="30"></td>
-                <td>
+                <td colspan="2">
                     <input type=radio name="keywordisbad" checked value="0" id="good" />
                     <label for="good" style="font-size:16px; color:Red">包含了以下关键字的才算好评，多个关键字请用<b>回车</b>分开</label>
                 </td>
             </tr>
             <tr>
-                <td align="left" width="120" height="30">关键字：</td>
-                <td>
+                <td colspan="2">
                     <textarea id="key" name="keyword" rows="8" cols="50"><%=keyword %></textarea> 
                 </td>
             </tr>
