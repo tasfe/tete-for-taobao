@@ -77,83 +77,72 @@ public partial class top_review_couponmodify : System.Web.UI.Page
         //反过来获取，不用修改主程序
         string end_time = utils.NewRequest("endsenddate", utils.RequestType.Form);
         string endsenddate = utils.NewRequest("end_time", utils.RequestType.Form);
+        string end_timebak = utils.NewRequest("end_timebak", utils.RequestType.Form);
         string coupon_name = utils.NewRequest("coupon_name", utils.RequestType.Form);
         string total = utils.NewRequest("total", utils.RequestType.Form);
         string per = utils.NewRequest("per", utils.RequestType.Form);
+        string coupon_id = string.Empty;
 
-        //创建活动相关人群
-        string guid = Guid.NewGuid().ToString();
-        IDictionary<string, string> param = new Dictionary<string, string>();
-        param.Add("denominations", price);
-        param.Add("end_time", end_time);
-        param.Add("condition", condition);
-        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.add", session, param);
-
-        //Response.Write(result + "<br><br>" + price + "<br><br>" + condition + "<br><br>" + end_time + "<br><br>" + coupon_name);
-//Insufficient session permissions
-
-        if (result.IndexOf("Insufficient session permissions") != -1)
+        if (endsenddate != end_timebak)
         {
-            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12159997&scope=promotion' target='_parent'>重新授权</a>");
-            Response.End();
-            return;
-        }
+            //创建活动相关人群
+            string guid = Guid.NewGuid().ToString();
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            param.Add("denominations", price);
+            param.Add("end_time", end_time);
+            param.Add("condition", condition);
+            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.add", session, param);
 
-        if (result.IndexOf("error_response") != -1)
-        {
-            if (result.IndexOf("end_time") != -1)
+            if (result.IndexOf("Insufficient session permissions") != -1)
             {
-                Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>错误的日期格式，正确的日期格式为：2011-01-01</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
+                Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12159997&scope=promotion' target='_parent'>重新授权</a>");
                 Response.End();
                 return;
             }
 
-            string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-            if (err.Length == 0)
+            if (result.IndexOf("error_response") != -1)
             {
-                err = "淘宝系统错误，请稍后重试！";
+                if (result.IndexOf("end_time") != -1)
+                {
+                    Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>错误的日期格式，正确的日期格式为：2011-01-01</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
+                    Response.End();
+                    return;
+                }
+
+                string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                if (err.Length == 0)
+                {
+                    err = "淘宝系统错误，请稍后重试！";
+                }
+
+                Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + err + "</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
+                Response.End();
+                return;
             }
 
-            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + err + "</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
-            Response.End();
-            return;
+            coupon_id = new Regex(@"<coupon_id>([^<]*)</coupon_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
         }
 
-        string coupon_id = new Regex(@"<coupon_id>([^<]*)</coupon_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+        string sql = "UPDATE TCS_Coupon SET " +
+                        "name = '" + coupon_name + "', " ;
 
-        string sql = "INSERT INTO TCS_Coupon (" +
-                        "nick, " +
-                        "name, " +
-                        "taobaocouponid, " +
-                        "num, " +
-                        "enddate, " +
-                        "endsenddate, " +
-                        "count, " +
-                        "per, " +
-                        "guid, " +
-                        "typ, " +
-                        "condition " +
-                    " ) VALUES ( " +
-                        " '" + nick + "', " +
-                        " '" + coupon_name + "', " +
-                        " '" + coupon_id + "', " +
-                        " '" + price + "', " +
-                        " '" + end_time + "', " +
-                        " '" + endsenddate + "', " +
-                        " '" + total + "', " +
-                        " '" + per + "', " +
-                        " '" + guid + "', " +
-                        " 'taobao', " +
-                        " '" + condition + "' " +
-                    ") ";
-        utils.ExecuteNonQuery(sql);
-        //Response.Write("<br><br>" + sql);
+                        //如果没修改则不该这条
+                        if (endsenddate != end_timebak)
+                        {
+                            sql += "taobaocouponid = '" + coupon_id + "', ";
+                        }
 
-        sql = "UPDATE TCS_ShopConfig SET couponid = '" + guid + "' WHERE nick = '" + nick + "'";
+                        sql += "num = '" + price + "', " +
+                        "enddate = '" + end_time + "', " +
+                        "endsenddate = '" + endsenddate + "', " +
+                        "count = '" + total + "', " +
+                        "per = '" + per + "', " +
+                        "condition = '" + condition + "' " +
+                    "WHERE guid = '" + id + "'";
         utils.ExecuteNonQuery(sql);
 
-        //Response.Write("<br><br>" + sql);
-        Response.Redirect("couponlist.aspx");
+        Response.Write("<br><br>" + sql);
+        //Response.Redirect("couponlist.aspx");
     }
 
 
