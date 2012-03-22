@@ -198,7 +198,7 @@ public partial class top_review_setting : System.Web.UI.Page
         alipaystr = "<select name='alipayid'>";
         for (int i = 0; i < dtCoupon.Rows.Count; i++)
         {
-            if (dtCoupon.Rows[i]["guid"].ToString().Trim() == couponid.Trim())
+            if (dtCoupon.Rows[i]["guid"].ToString().Trim() == alipayid.Trim())
             {
                 alipaystr += "<option value='" + dtCoupon.Rows[i]["guid"].ToString() + "' selected>" + dtCoupon.Rows[i]["name"].ToString() + " " + dtCoupon.Rows[i]["adddate"].ToString() + " - " + dtCoupon.Rows[i]["num"].ToString() + "元</option>";
             }
