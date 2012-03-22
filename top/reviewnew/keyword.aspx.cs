@@ -20,6 +20,7 @@ public partial class top_review_keyword : System.Web.UI.Page
     public string nick = string.Empty;
     public string wordcount = string.Empty;
     public string keyword = string.Empty;
+    public string badkeyword = string.Empty;
     public string keywordisbad = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -39,6 +40,7 @@ public partial class top_review_keyword : System.Web.UI.Page
                 wordcount = dt.Rows[0]["wordcount"].ToString();
                 keywordisbad = dt.Rows[0]["keywordisbad"].ToString();
                 keyword = dt.Rows[0]["keyword"].ToString().Replace("|", "\r\n");
+                badkeyword = dt.Rows[0]["badkeyword"].ToString().Replace("|", "\r\n");
             }
             else
             {
@@ -54,6 +56,7 @@ public partial class top_review_keyword : System.Web.UI.Page
                         "wordcount = '" + utils.NewRequest("wordcount", utils.RequestType.Form) + "', " +
                         "keywordisbad = '" + utils.NewRequest("keywordisbad", utils.RequestType.Form) + "', " +
                         "keyword = '" + utils.NewRequest("keyword", utils.RequestType.Form).Replace("\r\n", "|") + "' " +
+                        "badkeyword = '" + utils.NewRequest("badkeyword", utils.RequestType.Form).Replace("\r\n", "|") + "' " +
                     "WHERE nick = '" + nick + "'";
 
         utils.ExecuteNonQuery(sql);
