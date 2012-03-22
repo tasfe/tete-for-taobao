@@ -61,24 +61,24 @@
                 <div>
                     <table>
                         <tr>
-                            <td>
+                            <th style="width:15%">
                                 序号
-                            </td>
-                            <td>
+                            </th>
+                            <th style="width:15%">
                                 买家
-                            </td>
-                            <td>
+                            </th>
+                            <th style="width:15%">
                                 接待人
-                            </td>
-                            <td>
+                            </th>
+                            <th style="width:15%">
                                 接待时间
-                            </td>
-                            <td>
+                            </th>
+                            <th style="width:15%">
                                 接待时长
-                            </td>
-                            <td>
+                            </th>
+                            <th style="width:15%">
                                 交易
-                            </td>
+                            </th>
                         </tr>
                         <asp:Repeater ID="Rpt_Jie" runat="server">
                             <ItemTemplate>
