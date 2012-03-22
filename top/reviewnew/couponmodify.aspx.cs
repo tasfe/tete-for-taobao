@@ -71,9 +71,11 @@ public partial class top_review_couponmodify : System.Web.UI.Page
     {
         string appkey = "12159997";
         string secret = "614e40bfdb96e9063031d1a9e56fbed5";
-
+        
         string price = utils.NewRequest("price", utils.RequestType.Form);
+        string pricebak = utils.NewRequest("pricebak", utils.RequestType.Form);
         string condition = utils.NewRequest("condition", utils.RequestType.Form);
+        string conditionbak = utils.NewRequest("conditionbak", utils.RequestType.Form);
         //反过来获取，不用修改主程序
         string end_time = utils.NewRequest("endsenddate", utils.RequestType.Form);
         string endsenddate = utils.NewRequest("end_time", utils.RequestType.Form);
@@ -83,7 +85,7 @@ public partial class top_review_couponmodify : System.Web.UI.Page
         string per = utils.NewRequest("per", utils.RequestType.Form);
         string coupon_id = string.Empty;
 
-        if (endsenddate != end_timebak)
+        if (endsenddate != end_timebak || price != pricebak || condition != conditionbak)
         {
             //创建活动相关人群
             string guid = Guid.NewGuid().ToString();
@@ -127,7 +129,8 @@ public partial class top_review_couponmodify : System.Web.UI.Page
                         "name = '" + coupon_name + "', " ;
 
                         //如果没修改则不该这条
-                        if (endsenddate != end_timebak)
+
+                        if (endsenddate != end_timebak || price != pricebak || condition != conditionbak)
                         {
                             sql += "taobaocouponid = '" + coupon_id + "', ";
                         }

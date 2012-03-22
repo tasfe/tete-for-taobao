@@ -54,6 +54,7 @@
                         <option value="50">50</option>
                         <option value="100">100</option>
                     </select>
+                    <input name="pricebak" type="hidden" value="<%=price %>" /> 
                 </td>
             </tr>
             <tr>
@@ -73,6 +74,7 @@
                 <td align="left" height="30">优惠券使用条件：</td>
                 <td>
                     购物满<input name="condition" type="text" value="<%=condition %>" size="2" />元可以使用，写0则为不限制
+                    <input name="conditionbak" type="hidden" value="<%=condition %>" /> 
                 </td>
             </tr>
             <tr>
