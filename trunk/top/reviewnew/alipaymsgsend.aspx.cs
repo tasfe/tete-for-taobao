@@ -52,6 +52,65 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
         if (dt.Rows.Count != 0)
         {
             string flag = dt.Rows[0]["version"].ToString();
+
+            if (flag == "0")
+            {
+                Response.Redirect("xufei.aspx");
+                Response.End();
+                return;
+            }
+
+            if (flag == "1")
+            {
+                string msg = "尊敬的" + nick + "，非常抱歉的告诉您，只有专业版或者以上版本才能使用【支付宝红包】功能，如需继续使用请<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-2:1;' target='_blank'>购买高级会员服务</a>，谢谢！<br><br> PS：发送的短信需要单独购买，1毛钱1条~";
+                Response.Redirect("buy.aspx?msg=" + HttpUtility.UrlEncode(msg));
+                Response.End();
+                return;
+            }
+        }
+        else
+        {
+            string appkey = "12159997";
+            string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+            string version = "0";
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            param.Add("article_code", "service-0-22904");
+            param.Add("nick", nick);
+
+            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.vas.subscribe.get", session, param);
+            if (result.IndexOf("\"article_user_subscribes\":{}") == -1)
+            {
+                Regex reg = new Regex(@"""item_code"":""([^""]*)""", RegexOptions.IgnoreCase);
+                //更新店铺的版本号
+                MatchCollection match = reg.Matches(result);
+                for (int j = 0; j < match.Count; j++)
+                {
+                    version = match[j].Groups[1].ToString().Replace("service-0-22904-", "");
+
+                    if (version == "9")
+                    {
+                        version = "3";
+                    }
+
+                    if (int.Parse(version) <= 3)
+                    {
+                        break;
+                    }
+                }
+
+                //重新给客户插入session
+                sql = "INSERT INTO TCS_ShopSession (sid, nick, typ, version, session ) VALUES ( '0', '" + nick + "', 'taobao', '" + version + "', '" + session + "' )";
+                utils.ExecuteNonQuery(sql);
+                Response.Redirect("alipay.aspx");
+            }
+        }
+
+        //判断VIP版本，只有VIP才能使用此功能
+        string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        if (dt.Rows.Count != 0)
+        {
+            string flag = dt.Rows[0]["version"].ToString();
             if (flag == "0")
             {
                 Response.Redirect("xufei.aspx");
