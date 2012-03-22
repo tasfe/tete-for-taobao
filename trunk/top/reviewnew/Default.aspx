@@ -13,17 +13,21 @@
     <form id="form2" runat="server">
         <div class="navigation" style="height:600px;">
             <div class="user_box2"
-			style="padding-top: 0px; padding-left: 0px; width: 998px">
+			style="padding-top: 0px; padding-left: 0px; width: 778px">
   <table width="100%" border="0" align="center" cellpadding="0"
 				cellspacing="1" style="line-height: 25px;">
     <tr>
-      <td style="font: 22px 微软雅黑; border-right: 1px solid #C5DCE7; vertical-align: middle; color: #000000; padding-left: 25px" width="50px"> 好 <br />
+      <td style="font: 22px 微软雅黑; border-right: 1px solid #C5DCE7; vertical-align: middle; color: #000000; padding-left: 25px" width="40px"> 好 <br />
         评 <br />
         有 <br />
-        礼 </td>
+        礼 <br />
+        六 <br />
+        大 <br />
+        功 <br />
+        能 </td>
       <td style="vertical-align: top;" valign="top"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
           <tr>
-            <td><div class="item_list item_list_left_bottom">
+            <td width="380"><div class="item_list item_list_left_bottom">
                 <div class="title_contents">
                   <h4 style="padding-left: 0px"><img src="images/icon_1.gif" width="32" height="32"
 													style="vertical-align: middle; margin-right: 0px" /><a href="couponadd.aspx">店铺优惠券</a></h4>
