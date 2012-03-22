@@ -24,7 +24,7 @@
                 My eCommerce Admin area</h2>
             <div id="topmenu">
                 <ul>
-                    <li class="current"><a href="index.html">Dashboard</a></li>
+                    <li class="current"><a href="default.aspx">Dashboard</a></li>
                     <li><a href="#">Orders</a></li>
                     <li><a href="YejiTotal.aspx">Users</a></li>
                     <li><a href="#">Manage</a></li>
@@ -59,7 +59,7 @@
                     </p>
                 </div>
                 <div>
-                    <table width="750px">
+                    <table width="750px" style="margin:0; width:750px">
                         <tr>
                             <th style="width:15%">
                                 序号
