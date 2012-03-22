@@ -58,6 +58,54 @@
                         of <strong>$328.24 profit </strong>
                     </p>
                 </div>
+                
+                <div id="Div1" class="margin-left">
+                        <h3>
+                            Bestsellers</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        序号
+                                    </th>
+                                    <th>
+                                        买家
+                                    </th>
+                                    <th>
+                                        接待人
+                                    </th>
+                                    <th>
+                                        接待时间
+                                    </th>
+                                    <th>
+                                        接待时长
+                                    </th>
+                                    <th>
+                                        交易
+                                    </th>
+                                </tr>
+                            </thead>
+                            
+                            <asp:Repeater ID="Rpt_Jie" runat="server">
+                                <ItemTemplate>
+                                
+                                 <tr>
+                           <td align="center">
+                             <%# Container.ItemIndex + 1%>
+                           </td>
+                           <td><%# Eval("CustomerNick") %></td>
+                           <td><%# Eval("FromNick") %></td>
+                           <td><%# Eval("StartTime")%></td>
+                           <td><%# Eval("TimeSpan")%></td>
+                           <td><%# Eval("ShowJ")%></td>
+                         </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                            
+                            
+                        </table>
+                    </div>
+                
                 <div id="infowrap">
                     <div id="infobox">
                         <h3>
@@ -148,52 +196,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div id="infobox" class="margin-left">
-                        <h3>
-                            Bestsellers</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>
-                                        序号
-                                    </th>
-                                    <th>
-                                        买家
-                                    </th>
-                                    <th>
-                                        接待人
-                                    </th>
-                                    <th>
-                                        接待时间
-                                    </th>
-                                    <th>
-                                        接待时长
-                                    </th>
-                                    <th>
-                                        交易
-                                    </th>
-                                </tr>
-                            </thead>
-                            
-                            <asp:Repeater ID="Rpt_Jie" runat="server">
-                                <ItemTemplate>
-                                
-                                 <tr>
-                           <td align="center">
-                             <%# Container.ItemIndex + 1%>
-                           </td>
-                           <td><%# Eval("CustomerNick") %></td>
-                           <td><%# Eval("FromNick") %></td>
-                           <td><%# Eval("StartTime")%></td>
-                           <td><%# Eval("TimeSpan")%></td>
-                           <td><%# Eval("ShowJ")%></td>
-                         </tr>
-                                </ItemTemplate>
-                            </asp:Repeater>
-                            
-                            
-                        </table>
-                    </div>
+                    
                     <div id="infobox">
                         <h3>
                             New Customers</h3>
