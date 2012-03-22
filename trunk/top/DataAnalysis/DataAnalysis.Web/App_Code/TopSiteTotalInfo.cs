@@ -62,7 +62,7 @@ public class TopSiteTotalInfo
                 return "0";
             }
 
-            return ((SiteOrderPay / SiteOrderCount) / (SiteOrderPay / GoodsCount)).ToString(".00");
+            return (SiteOrderPay / GoodsCount).ToString(".00");
         }
     }
 
