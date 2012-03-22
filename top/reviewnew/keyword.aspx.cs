@@ -55,7 +55,7 @@ public partial class top_review_keyword : System.Web.UI.Page
         string sql = "UPDATE TCS_ShopConfig SET " +
                         "wordcount = '" + utils.NewRequest("wordcount", utils.RequestType.Form) + "', " +
                         "keywordisbad = '" + utils.NewRequest("keywordisbad", utils.RequestType.Form) + "', " +
-                        "keyword = '" + utils.NewRequest("keyword", utils.RequestType.Form).Replace("\r\n", "|") + "' " +
+                        "keyword = '" + utils.NewRequest("keyword", utils.RequestType.Form).Replace("\r\n", "|") + "', " +
                         "badkeyword = '" + utils.NewRequest("badkeyword", utils.RequestType.Form).Replace("\r\n", "|") + "' " +
                     "WHERE nick = '" + nick + "'";
 
