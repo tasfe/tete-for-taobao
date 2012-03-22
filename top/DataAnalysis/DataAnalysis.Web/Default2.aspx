@@ -64,7 +64,7 @@
                     订单总价
                 </div>
                 <div>
-                    每单均价
+                    销售单价
                 </div>
                 <div>
                     客单价
@@ -125,7 +125,7 @@
                             <%# Eval("SiteOrderPay")%>
                         </div>
                         <div>
-                            <%# Eval("OneOrderPrice")%>
+                            <%# Eval("SellAvg")%>
                         </div>
                         <div>
                             <%# Eval("OneCustomerPrice")%>
