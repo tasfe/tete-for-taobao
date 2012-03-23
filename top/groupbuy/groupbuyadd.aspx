@@ -189,7 +189,7 @@
             this.returnAction = function (strResult) {
                 if (strResult != null) {
                     if (strResult != "") {
-                     //   document.getElementById("productArea").innerHTML = document.getElementById("productArea").innerHTML+strResult;
+                        document.getElementById("productArea").innerHTML = document.getElementById("productArea").innerHTML+strResult;
                     }
                 }
             }
@@ -199,7 +199,7 @@
             var GetValue = showModalDialog(url + '?d=' + Date() + "&t=" + escape(editTxt), null, 'dialogWidth:' + w + 'px; dialogHeight:' + h + 'px;')
             if (GetValue != null) {
                 if (GetValue != "") {
-                   // document.getElementById("productArea").innerHTML = document.getElementById("productArea").innerHTML+ GetValue;
+                    document.getElementById("productArea").innerHTML = document.getElementById("productArea").innerHTML+ GetValue;
                     //alert(document.getElementById("html").value);
                 }
             }
@@ -291,14 +291,14 @@
         var productArea = document.getElementById("productArea");
         var errmsg = document.getElementById("errmsg1");
         var productid = document.getElementsByName("productid");
-        alert(productid.length);
+ 
         if (productid.length<1) {
             errmsg.innerHTML = "请选择宝贝";
             return;
         }
 
-        //document.getElementById("area2").style.display = "none";
-        //document.getElementById("area3").style.display = "";
+        document.getElementById("area2").style.display = "none";
+        document.getElementById("area3").style.display = "";
 
         //写价格进去
         //document.getElementById("oldprice").innerHTML = document.getElementById("price").value;
