@@ -19,6 +19,9 @@
             $('input#endtime').simpleDatepicker({ chosendate: todatestr, startdate: todatestr, enddate: enddatestr });
         });
 
+        function deleteDIV(obj) {
+           document.getElementById(obj).innerHTML = "";
+        }
        
     </script>
 </head>
