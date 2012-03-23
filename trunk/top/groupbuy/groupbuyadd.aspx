@@ -21,6 +21,7 @@
 
         function deleteDIV(obj) {
             var ob = document.getElementById(obj);
+
             $(ob).parent().remove();
         }
        
