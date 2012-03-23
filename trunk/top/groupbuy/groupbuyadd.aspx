@@ -154,14 +154,14 @@
                      一大三小
                      <span>(750宽)</span>
                 </div>
-                商品原价：<span id="oldprice"></span>
+               <!-- 商品原价：<span id="oldprice"></span>
                 <br />
                 团 购 价：<input type="text" id="zhekou" name="zhekou" />  <span id="errmsg2" style="color:Red"></span>
                 <font color='red'>团购价必须大于原价的7折并且小于原价.(淘宝营销平台对所有优惠做最低七折折扣限制)</font>
                 <br />          
                 已参团人数：<input type="text" name="rcount" value="300" />
                
-               <br /> <!--
+               <br /> 
                 团 购 价：<span id="newprice"></span> <input type="hidden" name="groupbuyprice" id="groupbuyprice" />-->
                <div style="display:none"> <br />
                 限购数量：<input type="text" name="maxcount" value="20" />
@@ -189,7 +189,7 @@
             this.returnAction = function (strResult) {
                 if (strResult != null) {
                     if (strResult != "") {
-                        document.getElementById("productArea").innerHTML = document.getElementById("productArea").innerHTML+strResult;
+                     //   document.getElementById("productArea").innerHTML = document.getElementById("productArea").innerHTML+strResult;
                     }
                 }
             }
@@ -199,7 +199,7 @@
             var GetValue = showModalDialog(url + '?d=' + Date() + "&t=" + escape(editTxt), null, 'dialogWidth:' + w + 'px; dialogHeight:' + h + 'px;')
             if (GetValue != null) {
                 if (GetValue != "") {
-                    document.getElementById("productArea").innerHTML = document.getElementById("productArea").innerHTML+ GetValue;
+                   // document.getElementById("productArea").innerHTML = document.getElementById("productArea").innerHTML+ GetValue;
                     //alert(document.getElementById("html").value);
                 }
             }
@@ -290,13 +290,15 @@
         //判断商品是否为空
         var productArea = document.getElementById("productArea");
         var errmsg = document.getElementById("errmsg1");
-        if (name.value == "") {
+        var productid = document.getElementsByName("productid");
+        alert(productid.length);
+        if (productid.length<1) {
             errmsg.innerHTML = "请选择宝贝";
             return;
         }
 
-        document.getElementById("area2").style.display = "none";
-        document.getElementById("area3").style.display = "";
+        //document.getElementById("area2").style.display = "none";
+        //document.getElementById("area3").style.display = "";
 
         //写价格进去
         //document.getElementById("oldprice").innerHTML = document.getElementById("price").value;
