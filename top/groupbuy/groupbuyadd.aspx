@@ -189,7 +189,7 @@
             this.returnAction = function (strResult) {
                 if (strResult != null) {
                     if (strResult != "") {
-                        document.getElementById("productArea").innerHTML = strResult;
+                        document.getElementById("productArea").innerHTML = document.getElementById("productArea").innerHTML+strResult;
                     }
                 }
             }
