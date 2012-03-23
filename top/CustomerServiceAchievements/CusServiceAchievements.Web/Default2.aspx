@@ -20,8 +20,7 @@
 <body>
     <div id="container">
         <div id="header">
-            <h2>
-                My eCommerce Admin area</h2>
+            <h2>客服绩效考核</h2>
             <div id="topmenu">
                 <ul>
                     <li class="current"><a href="default.aspx">主页</a></li>
