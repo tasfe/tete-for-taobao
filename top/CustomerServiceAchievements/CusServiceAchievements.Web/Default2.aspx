@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Dashboard - Admin Template</title>
+    <title>客服绩效考核</title>
     <link rel="stylesheet" type="text/css" href="jxkh/css/theme.css" />
     <link rel="stylesheet" type="text/css" href="jxkh/css/style.css" />
 
@@ -24,29 +24,27 @@
                 My eCommerce Admin area</h2>
             <div id="topmenu">
                 <ul>
-                    <li class="current"><a href="default.aspx">Dashboard</a></li>
-                    <li><a href="#">Orders</a></li>
-                    <li><a href="YejiTotal.aspx">Users</a></li>
-                    <li><a href="#">Manage</a></li>
-                    <li><a href="#">CMS</a></li>
-                    <li><a href="#">Statistics</a></li>
-                    <li><a href="#">Settings</a></li>
+                    <li class="current"><a href="default.aspx">主页</a></li>
+                    <li><a href="#">日统计</a></li>
+                    <li><a href="YejiTotal.aspx">业绩统计</a></li>
+                    <li><a href="#">聊天记录</a></li>
+                    <li><a href="#">客服对比</a></li>
                 </ul>
             </div>
         </div>
         <div id="top-panel">
             <div id="panel">
                 <ul>
-                    <li><a href="#" class="report">Sales Report</a></li>
+                   <%-- <li><a href="#" class="report">Sales Report</a></li>
                     <li><a href="#" class="report_seo">SEO Report</a></li>
                     <li><a href="#" class="search">Search</a></li>
-                    <li><a href="#" class="feed">RSS Feed</a></li>
+                    <li><a href="#" class="feed">RSS Feed</a></li>--%>
                 </ul>
             </div>
         </div>
         <div id="wrapper">
             <div id="content">
-                <div id="rightnow">
+                <%--<div id="rightnow">
                     <h3 class="reallynow">
                         <span>Right Now</span> <a href="#" class="add">Add New Product</a> <a href="#" class="app_add">
                             Some Action</a>
@@ -57,7 +55,7 @@
                             5 new reviews</a>, today you made <a href="#">$1523.63 in sales</a> and a total
                         of <strong>$328.24 profit </strong>
                     </p>
-                </div>
+                </div>--%>
                 <div>
                  <p class="youhave">
                   <a href="CustomerList.aspx">客服今天接待情况</a>
@@ -116,40 +114,40 @@
                 <ul>
                     <li>
                         <h3>
-                            <a href="#" class="house">Dashboard</a></h3>
+                            <a href="#" class="house">日统计</a></h3>
                         <ul>
-                            <li><a href="#" class="report">Sales Report</a></li>
-                            <li><a href="#" class="report_seo">SEO Report</a></li>
-                            <li><a href="#" class="search">Search</a></li>
+                            <li><a href="#" class="report">客服</a></li>
+                            <li><a href="#" class="report_seo">客服</a></li>
+                            <li><a href="#" class="search">客服</a></li>
                         </ul>
                     </li>
                     <li>
                         <h3>
-                            <a href="#" class="folder_table">Orders</a></h3>
+                            <a href="#" class="folder_table">业绩统计</a></h3>
                         <ul>
-                            <li><a href="#" class="addorder">New order</a></li>
-                            <li><a href="#" class="shipping">Shipments</a></li>
-                            <li><a href="#" class="invoices">Invoices</a></li>
+                            <li><a href="#" class="addorder">客服</a></li>
+                            <li><a href="#" class="shipping">客服</a></li>
+                            <li><a href="#" class="invoices">客服</a></li>
                         </ul>
                     </li>
                     <li>
                         <h3>
-                            <a href="#" class="manage">Manage</a></h3>
+                            <a href="#" class="manage">聊天记录</a></h3>
                         <ul>
-                            <li><a href="#" class="manage_page">Pages</a></li>
-                            <li><a href="#" class="cart">Products</a></li>
-                            <li><a href="#" class="folder">Product categories</a></li>
-                            <li><a href="#" class="promotions">Promotions</a></li>
+                            <li><a href="#" class="manage_page">客服</a></li>
+                            <li><a href="#" class="cart">客服</a></li>
+                            <li><a href="#" class="folder">客服</a></li>
+                            <li><a href="#" class="promotions">客服</a></li>
                         </ul>
                     </li>
                     <li>
                         <h3>
-                            <a href="#" class="user">Users</a></h3>
+                            <a href="#" class="user">客服对比</a></h3>
                         <ul>
-                            <li><a href="#" class="useradd">Add user</a></li>
-                            <li><a href="#" class="group">User groups</a></li>
-                            <li><a href="#" class="search">Find user</a></li>
-                            <li><a href="#" class="online">Users online</a></li>
+                            <li><a href="#" class="useradd">客服</a></li>
+                            <li><a href="#" class="group">客服s</a></li>
+                            <li><a href="#" class="search">客服</a></li>
+                            <li><a href="#" class="online">客服</a></li>
                         </ul>
                     </li>
                 </ul>
