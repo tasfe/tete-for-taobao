@@ -110,6 +110,7 @@ form#form #button1:hover, form#form #button2:hover {
 }
 #rightnow {
 	border:1px solid #e8e7e1;
+	width: 738px;
 }
 #rightnow .reallynow {
 	background:#f7f6f0;
