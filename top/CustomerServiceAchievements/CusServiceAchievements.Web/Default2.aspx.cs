@@ -64,7 +64,7 @@ public partial class Default2 : System.Web.UI.Page
         }
         catch { }
 
-        List<GoodsOrderInfo> goodsOrderList = goDal.GetCustomerList(nick, start, end);
+        List<GoodsOrderInfo> goodsOrderList =  goDal.GetCustomerList(nick, start, end);
 
         IList<CustomerInfo> list = trDal.GetCustomerList(start, end, nick);
 
@@ -80,17 +80,15 @@ public partial class Default2 : System.Web.UI.Page
             }
         }
 
-        int suc = 0;
         if (tid != null && tid.Length > 0)
         {
             list = list.Where(o => !string.IsNullOrEmpty(o.tid)).ToList();
-            suc = 1;
         }
 
         TotalCount = list.Count;
         pds.DataSource = list;
         pds.AllowPaging = true;
-        pds.PageSize = 20;
+        pds.PageSize = 10;
 
         if (TotalCount == 0)
             TotalPage = 1;
@@ -103,19 +101,9 @@ public partial class Default2 : System.Web.UI.Page
         }
 
         pds.CurrentPageIndex = page - 1;
-        //lblCurrentPage.Text = "共" + TotalCount.ToString() + "条记录 当前页：" + page + "/" + TotalPage;
-
-        //lnkFrist.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=1" + "&start=" + start.ToShortDateString() + "&suc=" + suc;
-        //if (!pds.IsFirstPage)
-        //    lnkPrev.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + (page - 1) + "&start=" + start.ToShortDateString() + "&suc=" + suc;
-
-        //if (!pds.IsLastPage)
-        //    lnkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + (page + 1) + "&start=" + start.ToShortDateString() + "&suc=" + suc;
-        //lnkEnd.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + TotalPage + "&start=" + start.ToShortDateString() + "&suc=" + suc;
 
         Rpt_Jie.DataSource = pds;
         Rpt_Jie.DataBind();
-        //TB_Start.Text = start.ToString("yyyy-MM-dd");
 
     }
 
