@@ -35,6 +35,8 @@
 
         <script>
 
+     
+
             var offsetxpoint = -60
             var offsetypoint = 20
             var ie = document.all
