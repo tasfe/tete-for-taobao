@@ -30,7 +30,7 @@
     <form id="form1" runat="server">
     <div>
             
-                <div id='dhtmltooltip'>
+                <div id='dhtmltooltip' >
         <img src="" /></div>
 
         <script>
