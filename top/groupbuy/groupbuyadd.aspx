@@ -20,9 +20,9 @@
         });
 
         function deleteDIV(obj) {
-            
-
-            $(obj).parent().remove();
+            var ob = document.getElementById(obj);
+         
+            $(ob).parent().remove();
         }
        
     </script>
