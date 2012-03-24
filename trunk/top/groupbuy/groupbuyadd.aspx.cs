@@ -118,13 +118,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         string rcount = utils.NewRequest("rcount", utils.RequestType.Form);//rcount
         string template1 = utils.NewRequest("template", utils.RequestType.Form);//
 
-        Response.Write("groupbuyprice" + groupbuyprice);//商品原价
-        Response.Write("productid" + productid);//商品ID
-        Response.Write("zhekou" + zhekou); //商品折扣价格
-        Response.Write("rcount" + rcount);//商品参与人数
-        Response.Write("template1" + template1);
-        Response.End();
-
+ 
         string[] aryPrice = groupbuyprice.Split(',');
         string[] aryProductid = productid.Split(',');
         string[] aryZhekou = zhekou.Split(',');
