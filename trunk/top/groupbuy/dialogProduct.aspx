@@ -188,7 +188,7 @@
 
         //保存选中商品
         function SetInitArea(obj) {
-            if (document.getElementById("itemsStrValues").value.indexOf(obj.value) = -1) {
+            if (document.getElementById("itemsStrValues").value.indexOf(obj.value) == -1) {
                 document.getElementById("itemsStrValues").value = document.getElementById("itemsStrValues").value + "," + obj.value;
             }
         }
