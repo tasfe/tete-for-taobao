@@ -148,8 +148,8 @@
 		                <td>商品图片</td>
 		                <td>名称</td>
 		                <td  width="100px">售价</td>
+                        <td  width="100px">团购价格</td>
 		                <td  width="100px">参团人数</td>
-		                <td  width="100px">团购价格</td>
 		                <td  width="100px"> </td>
 	                </tr>
                  </table>
@@ -159,7 +159,7 @@
                 <input type="button" value="完成选择" onclick="checkArea2()" /> <span id="errmsg1" style="color:Red"></span>
             </div>
             <br />
-            <b style="font-size:20px">3、设置团购折扣及限制数量</b>
+            <b style="font-size:20px">3、设置团购模板</b>
             <br />
              
             <div id="area3" >
@@ -179,15 +179,7 @@
                         document.getElementById('template').value = document.getElementById(obj).value;
                     }
                 </script>
-               <!-- 商品原价：<span id="oldprice"></span>
-                <br />
-                团 购 价：<input type="text" id="zhekou" name="zhekou" />  <span id="errmsg2" style="color:Red"></span>
-                <font color='red'>团购价必须大于原价的7折并且小于原价.(淘宝营销平台对所有优惠做最低七折折扣限制)</font>
-                <br />          
-                已参团人数：<input type="text" name="rcount" value="300" />
-               
-               <br /> 
-                团 购 价：<span id="newprice"></span> <input type="hidden" name="groupbuyprice" id="groupbuyprice" />-->
+           
                <div style="display:none"> <br />
                 限购数量：<input type="text" name="maxcount" value="20" />
                 <br />
@@ -234,24 +226,38 @@
 
 
     function btnsubmit_Click11() {
-        var zhekou = document.getElementById("zhekou");
-        var rcount = document.getElementById("rcount");
-        if (rcount.value == "") {
-            alert("团购人数不能为空");
-            rcount.focus();
-            return false;
-        }
-        if (isNaN(rcount.value)) {
-            alert("团购人数必须为数字");
-            rcount.focus();
-            return false;
-        }
-        if (zhekou.value == "") {
-            alert("团购名称不能为空");
-            zhekou.focus();
-            return false;
-        }
+     
+        var zhekou = document.getElementsByName("zhekou"); //折扣价
+        var price = document.getElementsByName("price"); //商品价格
+        var rcount = document.getElementsByName("rcount"); //参团人数
 
+        for (var i = 0; i < zhekou.length; i++) {
+            if (zhekou[i].value == "") {
+                alert("折扣价格不能为空");
+                zhekou[i].focus();
+                return false;
+            }
+            if (isNaN(zhekou[i].value)) {
+                alert("折扣价格必须为数字");
+                zhekou[i].focus();
+                return false;
+            }
+            if (Number(zhekou[i].value) < Number(price[i].value) * 0.7) {
+                alert("商品优惠价必须大于原价7折并且小于原价");
+                zhekou[i].focus();
+                return false;
+            }
+            if (rcount[i].value == "") {
+                alert("团购人数不能为空");
+                rcount[i].focus();
+                return false;
+            }
+            if (isNaN(rcount[i].value)) {
+                alert("团购人数必须为数字");
+                rcount[i].focus();
+                return false;
+            }
+        }
         return true;
     }
 
@@ -321,7 +327,10 @@
         if (productid.length<1) {
             errmsg.innerHTML = "请选择宝贝";
             return;
-        }
+        } 
+
+        btnsubmit_Click11();
+         
 
         document.getElementById("area2").style.display = "none";
         document.getElementById("area3").style.display = "";
