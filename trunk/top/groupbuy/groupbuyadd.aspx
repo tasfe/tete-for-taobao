@@ -139,7 +139,11 @@
             <br />
             <div id="area2" >
                 <input type="button" value="选择宝贝" onclick="OpenDialogLable('dialogProduct.aspx',650,560);" /> <br />
-                <table width=700px>
+               
+
+                <div id="productArea">
+                <font color='red'>团购价必须大于原价的7折并且小于原价.(淘宝营销平台对所有优惠做最低七折折扣限制)</font>
+                 <table width="700px">
 	                <tr> 
 		                <td>商品图片</td>
 		                <td>名称</td>
@@ -148,9 +152,9 @@
 		                <td>团购价格</td>
 		                <td></td>
 	                </tr>
-
-                <div id="productArea"></div>
-                </table>
+                 </table>
+                </div>
+                
                 <br />
                 <input type="button" value="完成选择" onclick="checkArea2()" /> <span id="errmsg1" style="color:Red"></span>
             </div>
