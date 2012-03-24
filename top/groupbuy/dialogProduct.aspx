@@ -187,9 +187,10 @@
         }
 
         //保存选中商品
-        function SetInitArea(obj)
-        {
-            document.getElementById("itemsStrValues").value=document.getElementById("itemsStrValues").value+","+obj.value;
+        function SetInitArea(obj) {
+            if (document.getElementById("itemsStrValues").value.indexOf(obj.value) = -1) {
+                document.getElementById("itemsStrValues").value = document.getElementById("itemsStrValues").value + "," + obj.value;
+            }
         }
 
         //提交返回选中商品
