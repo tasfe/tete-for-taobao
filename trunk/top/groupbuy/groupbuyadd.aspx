@@ -137,7 +137,7 @@
             <br />
             <b style="font-size:20px">2、选择宝贝</b>
             <br />
-            <div id="area2" >
+            <div id="area2" style=" display:none;" >
                 <input type="button" value="选择宝贝" onclick="OpenDialogLable('dialogProduct.aspx',650,560);" /> <br />
                
 
@@ -162,7 +162,7 @@
             <b style="font-size:20px">3、设置团购模板</b>
             <br />
              
-            <div id="area3" >
+            <div id="area3"  style=" display:none;" >
                 选择模板：
                 <div>
                      <span onclick="selectRd('templateID1')"   onMouseOver="toolTip('<img width=400px  src=images/groupbuy1.jpg>')" onMouseOut="toolTip()" > <input type='radio' name='templateID' id="templateID1" checked="checked" value='1' />
@@ -171,7 +171,7 @@
                      <span  onclick="selectRd('templateID2')"  onMouseOver="toolTip('<img width=400px  src=images/groupbuy1.jpg>')" onMouseOut="toolTip()"><input type='radio' name='templateID' id="templateID2" value='2'  />
                      一大三小
                     (750宽)</span>
-                    <input type="hidden" id="template" name="template" value"1" />
+                    <input type="hidden" id="template" name="template" value="1" />
                 </div>
                 <script type="text/javascript">
                     function selectRd(obj) {
@@ -189,7 +189,7 @@
                 <br /> <br />
                 </div>   
                 <!--<input type="button" value="完成创建" onclick="checkArea3()" />-->
-                <asp:Button ID="btnsubmit" runat="server" Text="完成创建" onclick="btnsubmit_Click" OnClientClick="return btnsubmit_Click()" />
+                <asp:Button ID="btnsubmit" runat="server" Text="完成创建" onclick="btnsubmit_Click"  />
             </div>
         </div>
     </div>
