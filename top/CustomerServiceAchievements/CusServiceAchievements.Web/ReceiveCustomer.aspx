@@ -1,10 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default2.aspx.cs" Inherits="Default2" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ReceiveCustomer.aspx.cs" Inherits="ReceiveCustomer" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>客服绩效考核</title>
+<head runat="server">
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>接待人次</title>
     <link rel="stylesheet" type="text/css" href="jxkh/css/theme.css" />
     <link rel="stylesheet" type="text/css" href="jxkh/css/style.css" />
 
@@ -18,13 +19,14 @@
 <![endif]-->
 </head>
 <body>
+    <form id="form1" runat="server">
     <div id="container">
         <div id="header">
             <h2>客服绩效考核</h2>
             <div id="topmenu">
                 <ul>
-                    <li class="current"><a href="default.aspx">主页</a></li>
-                    <li><a href="ReceiveCustomer.aspx">日统计</a></li>
+                    <li><a href="default.aspx">主页</a></li>
+                    <li class="current"><a href="#">日统计</a></li>
                     <li><a href="YejiTotal.aspx">业绩统计</a></li>
                     <li><a href="#">聊天记录</a></li>
                     <li><a href="#">客服对比</a></li>
@@ -42,70 +44,60 @@
         </div>
         <div id="wrapper">
             <div id="content">
-                <%--<div id="rightnow">
-                    <h3 class="reallynow">
-                        <span>Right Now</span> <a href="#" class="add">Add New Product</a> <a href="#" class="app_add">
-                            Some Action</a>
-                        <br />
-                    </h3>
-                    <p class="youhave">
-                        You have <a href="#">19 new orders</a>, <a href="#">12 new users</a> and <a href="#">
-                            5 new reviews</a>, today you made <a href="#">$1523.63 in sales</a> and a total
-                        of <strong>$328.24 profit </strong>
-                    </p>
-                </div>--%>
-                <div>
-                 <p class="youhave">
-                  <a href="CustomerList.aspx">客服今天接待情况</a>
-                 </p>
-                    <table style="margin:0; width:740px; margin-top:5px;">
-                      <thead>
-                        <tr>
-                            <th style="width:15%">
-                                序号
-                            </th>
-                            <th style="width:15%">
-                                买家
-                            </th>
-                            <th style="width:15%">
-                                接待人
-                            </th>
-                            <th style="width:15%">
-                                接待时间
-                            </th>
-                            <th style="width:15%">
-                                接待时长
-                            </th>
-                            <th style="width:15%">
-                                交易
-                            </th>
-                        </tr>
-                      </thead>
-                        <asp:Repeater ID="Rpt_Jie" runat="server">
-                            <ItemTemplate>
-                                <tr>
-                                    <td align="center">
-                                        <%# Container.ItemIndex + 1%>
-                                    </td>
-                                    <td>
-                                        <%# Eval("CustomerNick") %>
-                                    </td>
-                                    <td>
-                                        <%# Eval("FromNick") %>
-                                    </td>
-                                    <td>
-                                        <%# Eval("StartTime")%>
-                                    </td>
-                                    <td>
-                                        <%# Eval("TimeSpan")%>
-                                    </td>
-                                    <td>
-                                        <%# Eval("ShowJ")%>
-                                    </td>
-                                </tr>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </table>
+              <script type="text/javascript">
+            var chart;
+            $(document).ready(function() {
+                chart = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'divchart',
+                        defaultSeriesType: 'line',
+                        marginRight: 130,
+                        marginBottom: 25
+                    },
+                    title: {
+                        text: '店铺浏览统计',
+                        x: -20 //center
+                    },
+                    subtitle: {
+                        text: 'pv/ip',
+                        x: -20
+                    },
+                    xAxis: {
+                        categories:<%=DateText %>
+                    },
+                    yAxis: {
+                        title: {
+                            text: '24小时IP/PV量'
+                        },
+                        plotLines: [{
+                            value: 0,
+                            width: 1,
+                            color: '#808080'
+}]
+                        },
+                        tooltip: {
+                            formatter: function() {
+                                return  '<b>' + this.series.name + '</b>：' + this.y;
+                            }
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'top',
+                            x: -10,
+                            y: 100,
+                            borderWidth: 0
+                        },
+                        series:<%=SeriseText %>
+                        });
+                    });
+
+                </script>
+
+                <script type="text/javascript" src="js/highcharts.js"></script>
+
+                <script type="text/javascript" src="js/modules/exporting.js"></script>
+                 <div id="divchart" style="width: 750px; height: 400px; margin: 0 auto">
                 </div>
             </div>
             <div id="sidebar">
@@ -178,5 +170,6 @@
             <br />
         </div>
     </div>
+    </form>
 </body>
 </html>
