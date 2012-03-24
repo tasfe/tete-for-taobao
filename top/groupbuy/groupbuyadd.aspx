@@ -49,7 +49,7 @@
         
   	<!--<img src="images/title.gif" /><br />
     <br />-->
-        <div style="float:left; width:720px; margin:0px 5px 5px 5px;">
+        <div style="float:left; width:800px; margin:0px 5px 5px 5px;">
             <div>
             <b style="font-size:20px">1、设置团购名称和促销时段</b> 
             <span id="area1msg" style="display:none"> 
@@ -147,10 +147,10 @@
 	                <tr> 
 		                <td>商品图片</td>
 		                <td>名称</td>
-		                <td>售价</td>
-		                <td>参团人数</td>
-		                <td>团购价格</td>
-		                <td></td>
+		                <td  width="100px">售价</td>
+		                <td  width="100px">参团人数</td>
+		                <td  width="100px">团购价格</td>
+		                <td  width="100px"> </td>
 	                </tr>
                  </table>
                 </div>
