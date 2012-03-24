@@ -235,30 +235,29 @@
             if (zhekou[i].value == "") {
                 alert("折扣价格不能为空");
                 zhekou[i].focus();
-                return false;
+                return;
             }
             if (isNaN(zhekou[i].value)) {
                 alert("折扣价格必须为数字");
                 zhekou[i].focus();
-                return false;
+                return;
             }
             if (Number(zhekou[i].value) < Number(price[i].value) * 0.7) {
                 alert("商品优惠价必须大于原价7折并且小于原价");
                 zhekou[i].focus();
-                return false;
+                return;
             }
             if (rcount[i].value == "") {
                 alert("团购人数不能为空");
                 rcount[i].focus();
-                return false;
+                return;
             }
             if (isNaN(rcount[i].value)) {
                 alert("团购人数必须为数字");
                 rcount[i].focus();
-                return false;
+                return;
             }
-        }
-        return true;
+        } 
     }
 
     function checkArea1() {
