@@ -193,7 +193,7 @@ public partial class top_blog_taobaoitem : System.Web.UI.Page
                 {
                     for (int i = 0; i < itemList.Count; i++)
                     {
-                        str += "<div id='div" + itemList[i].NumIid.ToString() + "'><tr><td><a href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><img src=\"" + itemList[i].PicUrl + "_80x80.jpg\" border=\"0\" /></a></td>";
+                        str += "<div id='div" + itemList[i].NumIid.ToString() + "'><tr width=\"800px\"><td><a href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><img src=\"" + itemList[i].PicUrl + "_80x80.jpg\" border=\"0\" /></a></td>";
                         str += "<td><a   href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\">" + itemList[i].Title + "</a> </td><td> " + itemList[i].Price + "元 <input   type=\"hidden\" id=\"productid" + itemList[i].NumIid.ToString() + "\" name=\"productid\"  value=\"" + itemList[i].NumIid.ToString() + "\"><input type=\"hidden\" id=\"price" + itemList[i].NumIid.ToString() + "\" name=\"price\" value=\"" + itemList[i].Price.ToString() + "\"></td><td>  <input type=\"text\" name=\"rcount\" value=\"300\" /> </td><td>  <input type=\"text\" id=\"zhekou" + itemList[i].NumIid.ToString() + "\" name=\"zhekou\" />  <span id=\"errmsg" + i + "\" style=\"color:Red\"></span> </td><td><a onclick=\"deleteDIV('del1" + itemList[i].NumIid.ToString() + "')\"  style=\"cursor:hand;\">删除</a></td></tr><input id=\"del1" + itemList[i].NumIid.ToString() + "\" name=\"del\" value='' type=\"hidden\" ></div>";
  
                     }
