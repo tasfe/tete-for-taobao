@@ -8,6 +8,7 @@
     <title>接待人次</title>
     <link rel="stylesheet" type="text/css" href="jxkh/css/theme.css" />
     <link rel="stylesheet" type="text/css" href="jxkh/css/style.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
     <script type="text/javascript">
         var StyleFile = "theme" + document.cookie.charAt(6) + ".css";
@@ -55,11 +56,11 @@
                         marginBottom: 25
                     },
                     title: {
-                        text: '店铺浏览统计',
+                        text: '店铺接待统计(小时)',
                         x: -20 //center
                     },
                     subtitle: {
-                        text: 'pv/ip',
+                        text: '接待人次',
                         x: -20
                     },
                     xAxis: {
@@ -67,7 +68,7 @@
                     },
                     yAxis: {
                         title: {
-                            text: '24小时IP/PV量'
+                            text: '24小时接待人次'
                         },
                         plotLines: [{
                             value: 0,
@@ -95,7 +96,6 @@
                 </script>
 
                 <script type="text/javascript" src="js/highcharts.js"></script>
-
                 <script type="text/javascript" src="js/modules/exporting.js"></script>
                  <div id="divchart" style="width: 750px; height: 400px; margin: 0 auto">
                 </div>
