@@ -10,7 +10,7 @@
     <link href="js/groupbuy.css" rel="stylesheet" />
     <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
     <script type="text/javascript" src="js/cal.js"></script>
-    <script type="text/javascript" src="js/ToolTip.js"></script>
+    
     <script type="text/javascript">
         var startdatestr = '<%=startdate %>';
         var todatestr = '<%=todate %>';
@@ -150,13 +150,20 @@
             <div id="area3" >
                 选择模板：
                 <div>
-                     <input type='radio' name='templateID' id="templateID1" value='1'  onMouseOver="toolTip('<img src=images/groupbuy1.jpg>')" onMouseOut="toolTip()" />
+                     <span onclick="selectRd('templateID1')"> <input type='radio' name='templateID' id="templateID1" value='1'   onMouseOver="toolTip('<img width=400px  src=images/groupbuy1.jpg>')" onMouseOut="toolTip()" />
                      默认模板
-                     <span>(750宽)</span>
-                     <input type='radio' name='templateID' id="templateID2" value='2'  onMouseOver="toolTip('<img src=images/groupbuy1.jpg>')" onMouseOut="toolTip()" />
+                    (750宽)</span>
+                     <span  onclick="selectRd('templateID2')"><input type='radio' name='templateID' id="templateID2" value='2'  onMouseOver="toolTip('<img width=400px  src=images/groupbuy1.jpg>')" onMouseOut="toolTip()" />
                      一大三小
-                     <span>(750宽)</span>
+                    (750宽)</span>
+                    <input type="hidden" id="template" name="template" value"1" />
                 </div>
+                <script type="text/javascript">
+                    function selectRd(obj) {
+                        document.getElementById(obj).checked = true;
+                        document.getElementById('template').value = document.getElementById(obj).value;
+                    }
+                </script>
                <!-- 商品原价：<span id="oldprice"></span>
                 <br />
                 团 购 价：<input type="text" id="zhekou" name="zhekou" />  <span id="errmsg2" style="color:Red"></span>
@@ -332,6 +339,6 @@
         newpricetxt.value = oldprice.innerHTML;
     }
 </script>
-
+<script type="text/javascript" src="js/ToolTip.js"></script>
 </body>
 </html>
