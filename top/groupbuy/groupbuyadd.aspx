@@ -309,6 +309,11 @@
                 zhekou[i].focus();
                 return;
             }
+            if (Number(zhekou[i].value)>=Number(price[i].value)) {
+                alert("商品优惠价必须大于零并且小于原价");
+                zhekou[i].focus();
+                return;
+            }
             if (Number(zhekou[i].value) < Number(price[i].value) * 0.7) {
                 alert("商品优惠价必须大于原价7折并且小于原价");
                 zhekou[i].focus();
