@@ -188,7 +188,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
             //}
 
             //创建活动
-            // param = new Dictionary<string, string>();
+            param = new Dictionary<string, string>();
             param.Add("num_iids", aryProductid[p].ToString());
             param.Add("discount_type", "PRICE");
             param.Add("discount_value", newprice);
@@ -200,7 +200,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
             param.Add("tag_id", tagid);
             string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.add", session, param);
 
-            Response.Write(result + "<br><br>");
+            
             WriteLog("添加代码:" + result, "");
             if (result.IndexOf("error_response") != -1)
             {
@@ -292,8 +292,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
                           " '" + groupbuyGuid+ "'," +
                           " '" + aryZhekou[p].ToString() + "'" +
                     ") ";
-
-            //return;
+ 
             utils.ExecuteNonQuery(sql);
 
 
@@ -318,16 +317,22 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
 
             //更新商品描述关联的广告图片
 
-
-            CreateGroupbuyImg();
-
-            if (DateTime.Now < DateTime.Parse(starttime))
+            try
             {
-                GreateImageGifTG(groupbuyname, "D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/images/newgroupbuy.png", productprice, zhekou, Math.Round((decimal.Parse(productprice) - decimal.Parse(newprice)) / decimal.Parse(productprice) * 10, 1).ToString(), newprice, DateTime.Parse(starttime), DateTime.Parse(endtime), rcount, maxcount, productimg, groupbuyimg);
-            }
-            GreateImageGifTG2(groupbuyname, "D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/images/newgroupbuyin.png", productprice, zhekou, Math.Round((decimal.Parse(productprice) - decimal.Parse(newprice)) / decimal.Parse(productprice) * 10, 1).ToString(), newprice, DateTime.Parse(starttime), DateTime.Parse(endtime), rcount, maxcount, productimg, groupbuyingimg);
+                CreateGroupbuyImg();
 
-            GreateImageGifTG3(groupbuyname, "D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/images/newgroupbuyend.png", productprice, zhekou, Math.Round((decimal.Parse(productprice) - decimal.Parse(newprice)) / decimal.Parse(productprice) * 10, 1).ToString(), newprice, DateTime.Parse(starttime), DateTime.Parse(endtime), rcount, maxcount, productimg, groupbuyendimg);
+                if (DateTime.Now < DateTime.Parse(starttime))
+                {
+                    GreateImageGifTG(groupbuyname, "D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/images/newgroupbuy.png", productprice, zhekou, Math.Round((decimal.Parse(productprice) - decimal.Parse(newprice)) / decimal.Parse(productprice) * 10, 1).ToString(), newprice, DateTime.Parse(starttime), DateTime.Parse(endtime), rcount, maxcount, productimg, groupbuyimg);
+                }
+                GreateImageGifTG2(groupbuyname, "D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/images/newgroupbuyin.png", productprice, zhekou, Math.Round((decimal.Parse(productprice) - decimal.Parse(newprice)) / decimal.Parse(productprice) * 10, 1).ToString(), newprice, DateTime.Parse(starttime), DateTime.Parse(endtime), rcount, maxcount, productimg, groupbuyingimg);
+
+                GreateImageGifTG3(groupbuyname, "D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/images/newgroupbuyend.png", productprice, zhekou, Math.Round((decimal.Parse(productprice) - decimal.Parse(newprice)) / decimal.Parse(productprice) * 10, 1).ToString(), newprice, DateTime.Parse(starttime), DateTime.Parse(endtime), rcount, maxcount, productimg, groupbuyendimg);
+            }
+            catch(Exception ex)
+            {
+                WriteLog("" + ex.Message, "1");
+            }
         }
 
 
@@ -335,7 +340,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         #endregion 
         string groupid = utils.ExecuteString(sql);
 
-        //Response.Redirect("success.aspx?id=" + groupid);
+        Response.Redirect("success.aspx?id=" + groupid);
     }
 
 
