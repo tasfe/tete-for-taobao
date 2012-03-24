@@ -118,198 +118,227 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         string rcount = utils.NewRequest("rcount", utils.RequestType.Form);//rcount
         string template1 = utils.NewRequest("template", utils.RequestType.Form);//
 
-        Response.Write("groupbuyprice" + groupbuyprice);
-        Response.Write("productid" + productid);
-        Response.Write("zhekou" + zhekou);
-        Response.Write("rcount" + rcount);
+        Response.Write("groupbuyprice" + groupbuyprice);//商品原价
+        Response.Write("productid" + productid);//商品ID
+        Response.Write("zhekou" + zhekou); //商品折扣价格
+        Response.Write("rcount" + rcount);//商品参与人数
         Response.Write("template1" + template1);
         Response.End();
-      
 
-
-
-        //通过借口获取淘宝相关数据
-        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12287381", "d3486dac8198ef01000e7bd4504601a4");
-        ItemGetRequest request = new ItemGetRequest();
-        request.Fields = "num_iid,title,price,pic_url";
-        request.NumIid = long.Parse(productid);
-
-        Item product = client.ItemGet(request, session);
-
-        if (decimal.Parse(zhekou) >= decimal.Parse(product.Price))
+        string[] aryPrice = groupbuyprice.Split(',');
+        string[] aryProductid = productid.Split(',');
+        string[] aryZhekou = zhekou.Split(',');
+        string[] aryRcount = rcount.Split(',');
+        string ismuch = "0";//不是多个商品模板
+        string groupbuyGuid = "";
+        if (template1.Trim() != "1")
         {
-            Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>商品优惠价必须大于零并且小于原价</font><br><a href='groupbuyadd.aspx'>重新添加</a>");
-            Response.End();
+            //如果不是单个商品模板
+            ismuch = "1";
+            //如果是多个商品团购模板，设置团购标示
+            groupbuyGuid = Guid.NewGuid().ToString();//团购标示
+        }
+
+
+        if (groupbuyprice == "" || aryPrice.Length < 1)
+        {
+            ShowErr("录入数据不完整");
             return;
         }
 
-        if (decimal.Parse(zhekou) < (decimal.Parse(product.Price)*0.7m))
+
+        for (int p = 0; p < aryPrice.Length; p++)
         {
-            Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>商品优惠价必须大于原价7折并且小于原价</font><br><a href='groupbuyadd.aspx'>重新添加</a>");
-            Response.End();
-            return;
+
+            //通过借口获取淘宝相关数据
+            TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12287381", "d3486dac8198ef01000e7bd4504601a4");
+            ItemGetRequest request = new ItemGetRequest();
+            request.Fields = "num_iid,title,price,pic_url";
+            request.NumIid = long.Parse(aryProductid[p].ToString());
+
+            Item product = client.ItemGet(request, session);
+
+            if (decimal.Parse(aryZhekou[p].ToString()) >= decimal.Parse(product.Price))
+            {
+                Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>" + aryProductid[p].ToString() + "商品优惠价必须大于零并且小于原价</font><br><a href='groupbuyadd.aspx'>重新添加</a>");
+                Response.End();
+                return;
+            }
+
+            if (decimal.Parse(aryZhekou[p].ToString()) < (decimal.Parse(product.Price) * 0.7m))
+            {
+                Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>" + aryProductid[p].ToString() + "商品优惠价必须大于原价7折并且小于原价</font><br><a href='groupbuyadd.aspx'>重新添加</a>");
+                Response.End();
+                return;
+            }
+            string newprice = Math.Round(decimal.Parse(product.Price) - decimal.Parse(aryZhekou[p].ToString()), 2).ToString(); //折扣值
+
+            //创建活动及相关人群
+            string appkey = "12287381";
+            string secret = "d3486dac8198ef01000e7bd4504601a4";
+
+
+
+            //创建活动相关人群
+            string guid = Guid.NewGuid().ToString().Substring(0, 4);
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            // param.Add("tag_name", nick + "_团购人群_" + guid);
+            // param.Add("description", nick + "_团购人群描述_" + guid);
+            // string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.tag.add", session, param);
+            string tagid = "1"; //new Regex(@"<tag_id>([^<]*)</tag_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+            // WriteLog("添加代码:" + result, "");
+            //如果设置的是不需要参团就能购买
+            //if (isfromflash == "0")
+            //{
+            //    tagid = "1";
+            //}
+
+            //创建活动
+            // param = new Dictionary<string, string>();
+            param.Add("num_iids", aryProductid[p].ToString());
+            param.Add("discount_type", "PRICE");
+            param.Add("discount_value", newprice);
+            param.Add("start_date", starttime);
+            param.Add("end_date", endtime);
+            param.Add("promotion_title", "团购打折");
+
+
+            param.Add("tag_id", tagid);
+            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.add", session, param);
+
+            //Response.Write(result + "<br><br>");
+            WriteLog("添加代码:" + result, "");
+            if (result.IndexOf("error_response") != -1)
+            {
+                string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                if (err == "")
+                {
+                    Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12287381&scope=promotion' target='_parent'>重新授权</a>");
+                    Response.End();
+                }
+
+                Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>" + err + "</font><br><a href='groupbuyadd.aspx'>重新添加</a>");
+                Response.End();
+                return;
+            }
+
+            string promotionid = new Regex(@"<promotion_id>([^<]*)</promotion_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+
+
+            string productname = product.Title;
+            string productprice = product.Price;
+            string productimg = product.PicUrl;
+            string producturl = "http://item.taobao.com/item.htm?id=" + aryProductid[p].ToString();
+
+
+            string time = DateTime.Now.ToString("yyyy-MM-dd");
+
+            //创建文件夹 
+            if (!Directory.Exists("D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/pic/" + time + "/"))
+            {
+                Directory.CreateDirectory("D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/pic/" + time + "/");
+            }
+
+            string groupbuyimg = "D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/pic/" + time + "/" + FormsAuthentication.HashPasswordForStoringInConfigFile(productimg, "MD5") + ".GIF";
+            string sitegroupbuyimg = "http://groupbuy.7fshop.com/top/groupbuy/pic/" + time + "/" + FormsAuthentication.HashPasswordForStoringInConfigFile(productimg, "MD5") + ".GIF";
+            string groupbuyingimg = "D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/pic/" + time + "/" + FormsAuthentication.HashPasswordForStoringInConfigFile(productimg, "MD5") + "ing.GIF";
+            string sitegroupbuyingimg = "http://groupbuy.7fshop.com/top/groupbuy/pic/" + time + "/" + FormsAuthentication.HashPasswordForStoringInConfigFile(productimg, "MD5") + "ing.GIF";
+            string groupbuyendimg = "D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/pic/" + time + "/" + FormsAuthentication.HashPasswordForStoringInConfigFile(productimg, "MD5") + "end.GIF";
+            string sitegroupbuyendimg = "http://groupbuy.7fshop.com/top/groupbuy/pic/" + time + "/" + FormsAuthentication.HashPasswordForStoringInConfigFile(productimg, "MD5") + "end.GIF";
+            #region
+
+            sql = "INSERT INTO TopGroupBuy (" +
+                          "name," +
+                          "starttime," +
+                          "endtime," +
+                          "productname," +
+                          "productprice," +
+                          "productimg," +
+                          "producturl," +
+                          "productid," +
+                          "nick," +
+                          "maxcount," +
+                          "buycount," +
+                          "tagid," +
+                          "promotionid," +
+                          "mintime," +
+                          "zhekou," +
+                          "isfromflash," +
+                          "groupbuyImg," +
+                          "groupbuyingImg," +
+                          "groupbuyendImg," +
+                          "groupbyPcount," +
+                          "ismuch," +
+                          "template," +
+                          "groupbuyGuid," +
+                          "groupbuyprice" +
+                      " ) VALUES ( " +
+                          " '" + groupbuyname + "'," +
+                          " '" + starttime + "'," +
+                          " '" + endtime + "'," +
+                          " '" + productname + "'," +
+                          " '" + aryPrice[p].ToString() + "'," +
+                          " '" + productimg + "'," +
+                          " '" + producturl + "'," +
+                          " '" + aryProductid[p].ToString() + "'," +
+                          " '" + nick + "'," +
+                          " '" + maxcount + "'," +
+                          " '0'," +
+                          " '" + tagid + "'," +
+                          " '" + promotionid + "'," +
+                          " '" + mintime + "'," +
+                          " '" + newprice + "'," +
+                          " '" + isfromflash + "'," +
+                          " '" + sitegroupbuyimg + "'," +
+                          " '" + sitegroupbuyingimg + "'," +
+                          " '" + sitegroupbuyendimg + "'," +
+                          " '" + aryRcount[p].ToString() + "'," +
+                          " " + ismuch + "," +
+                          " " + template1 + "," +
+                          " '" + groupbuyGuid+ "'," +
+                          " '" + aryZhekou[p].ToString() + "'" +
+                    ") ";
+
+
+
+            //Response.Write(sql);
+            //Response.End();
+            //return;
+            utils.ExecuteNonQuery(sql);
+
+
+
+            //将测试用户加入该活动关联人群组
+            //IDictionary<string, string> param = new Dictionary<string, string>();
+            //param.Add("tag_id", tagid);
+            //param.Add("nick", "美杜莎之心");
+
+            //string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.taguser.add", session, param);
+
+            //Response.Write(result);
+
+            //查询活动详细
+            //IDictionary<string, string> param = new Dictionary<string, string>();
+            //param.Add("fields", "num_iids,discount_type,discount_value,start_date,end_date,promotion_title,tag_id");
+            //param.Add("num_iid", "7591980225");
+
+            //string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotions.get", session, param);
+
+            //Response.Write(result);
+
+            //更新商品描述关联的广告图片
+
+
+            CreateGroupbuyImg();
+
+            if (DateTime.Now < DateTime.Parse(starttime))
+            {
+                GreateImageGifTG(groupbuyname, "D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/images/newgroupbuy.png", productprice, zhekou, Math.Round((decimal.Parse(productprice) - decimal.Parse(newprice)) / decimal.Parse(productprice) * 10, 1).ToString(), newprice, DateTime.Parse(starttime), DateTime.Parse(endtime), rcount, maxcount, productimg, groupbuyimg);
+            }
+            GreateImageGifTG2(groupbuyname, "D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/images/newgroupbuyin.png", productprice, zhekou, Math.Round((decimal.Parse(productprice) - decimal.Parse(newprice)) / decimal.Parse(productprice) * 10, 1).ToString(), newprice, DateTime.Parse(starttime), DateTime.Parse(endtime), rcount, maxcount, productimg, groupbuyingimg);
+
+            GreateImageGifTG3(groupbuyname, "D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/images/newgroupbuyend.png", productprice, zhekou, Math.Round((decimal.Parse(productprice) - decimal.Parse(newprice)) / decimal.Parse(productprice) * 10, 1).ToString(), newprice, DateTime.Parse(starttime), DateTime.Parse(endtime), rcount, maxcount, productimg, groupbuyendimg);
         }
-        string newprice = Math.Round(decimal.Parse(product.Price) - decimal.Parse(zhekou), 2).ToString();
-
-        //创建活动及相关人群
-        string appkey = "12287381";
-        string secret = "d3486dac8198ef01000e7bd4504601a4";
-
-
-
-        //创建活动相关人群
-        string guid = Guid.NewGuid().ToString().Substring(0, 4);
-        IDictionary<string, string> param = new Dictionary<string, string>();
-       // param.Add("tag_name", nick + "_团购人群_" + guid);
-       // param.Add("description", nick + "_团购人群描述_" + guid);
-       // string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.tag.add", session, param);
-        string tagid = "1"; //new Regex(@"<tag_id>([^<]*)</tag_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-       // WriteLog("添加代码:" + result, "");
-        //如果设置的是不需要参团就能购买
-        //if (isfromflash == "0")
-        //{
-        //    tagid = "1";
-        //}
-
-        //创建活动
-       // param = new Dictionary<string, string>();
-        param.Add("num_iids", productid);
-        param.Add("discount_type", "PRICE");
-        param.Add("discount_value", newprice);
-        param.Add("start_date", starttime);
-        param.Add("end_date", endtime);
-        param.Add("promotion_title", "团购打折");
-         
-
-        param.Add("tag_id", tagid);
-        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.add", session, param);
-
-        //Response.Write(result + "<br><br>");
-        WriteLog("添加代码:" + result, "");
-        if (result.IndexOf("error_response") != -1)
-        {
-            string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-	    if(err == "")
-	    {
-		Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12287381&scope=promotion' target='_parent'>重新授权</a>");
-            	Response.End();
-	    }
-
-            Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>" + err + "</font><br><a href='groupbuyadd.aspx'>重新添加</a>");
-            Response.End();
-            return;
-        }
-
-        string promotionid = new Regex(@"<promotion_id>([^<]*)</promotion_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-
-
-        string productname = product.Title;
-        string productprice = product.Price;
-        string productimg = product.PicUrl;
-        string producturl = "http://item.taobao.com/item.htm?id=" + productid;
-
-
-        string time = DateTime.Now.ToString("yyyy-MM-dd");
-
-        //创建文件夹 
-        if (!Directory.Exists("D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/pic/" + time + "/"))
-        {
-            Directory.CreateDirectory("D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/pic/" + time + "/");
-        }
-
-        string groupbuyimg =    "D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/pic/" + time + "/" + FormsAuthentication.HashPasswordForStoringInConfigFile(productimg, "MD5") + ".GIF";
-        string sitegroupbuyimg = "http://groupbuy.7fshop.com/top/groupbuy/pic/" + time + "/" + FormsAuthentication.HashPasswordForStoringInConfigFile(productimg, "MD5") + ".GIF";
-        string groupbuyingimg = "D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/pic/" + time + "/" + FormsAuthentication.HashPasswordForStoringInConfigFile(productimg, "MD5") + "ing.GIF";
-        string sitegroupbuyingimg = "http://groupbuy.7fshop.com/top/groupbuy/pic/" + time + "/" + FormsAuthentication.HashPasswordForStoringInConfigFile(productimg, "MD5") + "ing.GIF";
-        string groupbuyendimg = "D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/pic/" + time + "/" + FormsAuthentication.HashPasswordForStoringInConfigFile(productimg, "MD5") + "end.GIF";
-        string sitegroupbuyendimg = "http://groupbuy.7fshop.com/top/groupbuy/pic/" + time + "/" + FormsAuthentication.HashPasswordForStoringInConfigFile(productimg, "MD5") + "end.GIF";
-        #region 
-
-         sql = "INSERT INTO TopGroupBuy (" +
-                       "name," +
-                       "starttime," +
-                       "endtime," +
-                       "productname," +
-                       "productprice," +
-                       "productimg," +
-                       "producturl," +
-                       "productid," +
-                       "nick," +
-                       "maxcount," +
-                       "buycount," +
-                       "tagid," +
-                       "promotionid," +
-                       "mintime," +
-                       "zhekou," +
-                       "isfromflash," +
-                       "groupbuyImg," +
-                       "groupbuyingImg," +
-                       "groupbuyendImg," +
-                       "groupbyPcount," +
-                       "groupbuyprice" +
-                   " ) VALUES ( " +
-                       " '" + groupbuyname + "'," +
-                       " '" + starttime + "'," +
-                       " '" + endtime + "'," +
-                       " '" + productname + "'," +
-                       " '" + productprice + "'," +
-                       " '" + productimg + "'," +
-                       " '" + producturl + "'," +
-                       " '" + productid + "'," +
-                       " '" + nick + "'," +
-                       " '" + maxcount + "'," +
-                       " '0'," +
-                       " '" + tagid + "'," +
-                       " '" + promotionid + "'," +
-                       " '" + mintime + "'," +
-                       " '" + newprice + "'," +
-                       " '" + isfromflash + "'," +
-                       " '" + sitegroupbuyimg + "'," +
-                       " '" + sitegroupbuyingimg + "'," +
-                       " '" + sitegroupbuyendimg + "'," +
-                       " '" + rcount + "'," +
-                       " '" + zhekou + "'" +
-                 ") ";
-        
-
-
-        //Response.Write(sql);
-        //Response.End();
-        //return;
-        utils.ExecuteNonQuery(sql);
-
-        
-
-        //将测试用户加入该活动关联人群组
-        //IDictionary<string, string> param = new Dictionary<string, string>();
-        //param.Add("tag_id", tagid);
-        //param.Add("nick", "美杜莎之心");
-
-        //string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.taguser.add", session, param);
-
-        //Response.Write(result);
-
-        //查询活动详细
-        //IDictionary<string, string> param = new Dictionary<string, string>();
-        //param.Add("fields", "num_iids,discount_type,discount_value,start_date,end_date,promotion_title,tag_id");
-        //param.Add("num_iid", "7591980225");
-
-        //string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotions.get", session, param);
-
-        //Response.Write(result);
-
-        //更新商品描述关联的广告图片
-     
-
-        CreateGroupbuyImg();
-
-        if (DateTime.Now < DateTime.Parse(starttime))
-        {
-            GreateImageGifTG(groupbuyname, "D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/images/newgroupbuy.png", productprice, zhekou, Math.Round((decimal.Parse(productprice) - decimal.Parse(newprice)) / decimal.Parse(productprice) * 10, 1).ToString(), newprice, DateTime.Parse(starttime), DateTime.Parse(endtime), rcount, maxcount, productimg, groupbuyimg);
-        }
-        GreateImageGifTG2(groupbuyname, "D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/images/newgroupbuyin.png", productprice, zhekou, Math.Round((decimal.Parse(productprice) - decimal.Parse(newprice)) / decimal.Parse(productprice) * 10, 1).ToString(), newprice, DateTime.Parse(starttime), DateTime.Parse(endtime), rcount, maxcount, productimg, groupbuyingimg);
-
-        GreateImageGifTG3(groupbuyname, "D:\\groupbuy.7fshop.com/wwwroot/top/groupbuy/images/newgroupbuyend.png", productprice, zhekou, Math.Round((decimal.Parse(productprice) - decimal.Parse(newprice)) / decimal.Parse(productprice) * 10, 1).ToString(), newprice, DateTime.Parse(starttime), DateTime.Parse(endtime), rcount, maxcount, productimg, groupbuyendimg);
 
 
         sql = "SELECT TOP 1 ID FROM TopGroupBuy WHERE nick = '" + nick + "' ORDER BY ID DESC";
