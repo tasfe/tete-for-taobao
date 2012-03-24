@@ -49,7 +49,7 @@
         
   	<!--<img src="images/title.gif" /><br />
     <br />-->
-        <div style="float:left; width:520px; margin:0px 5px 5px 5px;">
+        <div style="float:left; width:720px; margin:0px 5px 5px 5px;">
             <div>
             <b style="font-size:20px">1、设置团购名称和促销时段</b> 
             <span id="area1msg" style="display:none"> 
@@ -139,7 +139,18 @@
             <br />
             <div id="area2" >
                 <input type="button" value="选择宝贝" onclick="OpenDialogLable('dialogProduct.aspx',650,560);" /> <br />
+                <table width=700px>
+	                <tr> 
+		                <td>商品图片</td>
+		                <td>名称</td>
+		                <td>售价</td>
+		                <td>参团人数</td>
+		                <td>团购价格</td>
+		                <td></td>
+	                </tr>
+
                 <div id="productArea"></div>
+                </table>
                 <br />
                 <input type="button" value="完成选择" onclick="checkArea2()" /> <span id="errmsg1" style="color:Red"></span>
             </div>
@@ -150,10 +161,10 @@
             <div id="area3" >
                 选择模板：
                 <div>
-                     <span onclick="selectRd('templateID1')"> <input type='radio' name='templateID' id="templateID1" value='1'   onMouseOver="toolTip('<img width=400px  src=images/groupbuy1.jpg>')" onMouseOut="toolTip()" />
+                     <span onclick="selectRd('templateID1')"   onMouseOver="toolTip('<img width=400px  src=images/groupbuy1.jpg>')" onMouseOut="toolTip()" > <input type='radio' name='templateID' id="templateID1" value='1' />
                      默认模板
                     (750宽)</span>
-                     <span  onclick="selectRd('templateID2')"><input type='radio' name='templateID' id="templateID2" value='2'  onMouseOver="toolTip('<img width=400px  src=images/groupbuy1.jpg>')" onMouseOut="toolTip()" />
+                     <span  onclick="selectRd('templateID2')"  onMouseOver="toolTip('<img width=400px  src=images/groupbuy1.jpg>')" onMouseOut="toolTip()"><input type='radio' name='templateID' id="templateID2" value='2'  />
                      一大三小
                     (750宽)</span>
                     <input type="hidden" id="template" name="template" value"1" />
