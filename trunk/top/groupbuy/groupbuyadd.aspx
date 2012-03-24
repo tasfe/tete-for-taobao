@@ -224,41 +224,7 @@
     }
 
 
-
-    function btnsubmit_Click11() {
-     
-        var zhekou = document.getElementsByName("zhekou"); //折扣价
-        var price = document.getElementsByName("price"); //商品价格
-        var rcount = document.getElementsByName("rcount"); //参团人数
-
-        for (var i = 0; i < zhekou.length; i++) {
-            if (zhekou[i].value == "") {
-                alert("折扣价格不能为空");
-                zhekou[i].focus();
-                return;
-            }
-            if (isNaN(zhekou[i].value)) {
-                alert("折扣价格必须为数字");
-                zhekou[i].focus();
-                return;
-            }
-            if (Number(zhekou[i].value) < Number(price[i].value) * 0.7) {
-                alert("商品优惠价必须大于原价7折并且小于原价");
-                zhekou[i].focus();
-                return;
-            }
-            if (rcount[i].value == "") {
-                alert("团购人数不能为空");
-                rcount[i].focus();
-                return;
-            }
-            if (isNaN(rcount[i].value)) {
-                alert("团购人数必须为数字");
-                rcount[i].focus();
-                return;
-            }
-        } 
-    }
+ 
 
     function checkArea1() {
         //判断团购名是否为空
@@ -326,10 +292,39 @@
         if (productid.length<1) {
             errmsg.innerHTML = "请选择宝贝";
             return;
-        } 
+        }
 
-        btnsubmit_Click11();
-         
+        var zhekou = document.getElementsByName("zhekou"); //折扣价
+        var price = document.getElementsByName("price"); //商品价格
+        var rcount = document.getElementsByName("rcount"); //参团人数
+
+        for (var i = 0; i < zhekou.length; i++) {
+            if (zhekou[i].value == "") {
+                alert("折扣价格不能为空");
+                zhekou[i].focus();
+                return;
+            }
+            if (isNaN(zhekou[i].value)) {
+                alert("折扣价格必须为数字");
+                zhekou[i].focus();
+                return;
+            }
+            if (Number(zhekou[i].value) < Number(price[i].value) * 0.7) {
+                alert("商品优惠价必须大于原价7折并且小于原价");
+                zhekou[i].focus();
+                return;
+            }
+            if (rcount[i].value == "") {
+                alert("团购人数不能为空");
+                rcount[i].focus();
+                return;
+            }
+            if (isNaN(rcount[i].value)) {
+                alert("团购人数必须为数字");
+                rcount[i].focus();
+                return;
+            }
+        }    
 
         document.getElementById("area2").style.display = "none";
         document.getElementById("area3").style.display = "";
