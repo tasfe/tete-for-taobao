@@ -295,7 +295,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
 
 
 
-            //Response.Write(sql);
+            Response.Write(sql);
             //Response.End();
             //return;
             utils.ExecuteNonQuery(sql);
@@ -339,7 +339,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         #endregion 
         string groupid = utils.ExecuteString(sql);
 
-        Response.Redirect("success.aspx?id=" + groupid);
+        //Response.Redirect("success.aspx?id=" + groupid);
     }
 
 
