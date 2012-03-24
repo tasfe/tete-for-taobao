@@ -143,7 +143,7 @@
 
                 <div id="productArea">
                 <font color='red'>团购价必须大于原价的7折并且小于原价.(淘宝营销平台对所有优惠做最低七折折扣限制)</font>
-                 <table width="700px">
+                 <table width="800px">
 	                <tr> 
 		                <td>商品图片</td>
 		                <td>名称</td>
