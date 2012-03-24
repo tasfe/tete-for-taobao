@@ -165,7 +165,7 @@
             <div id="area3" >
                 选择模板：
                 <div>
-                     <span onclick="selectRd('templateID1')"   onMouseOver="toolTip('<img width=400px  src=images/groupbuy1.jpg>')" onMouseOut="toolTip()" > <input type='radio' name='templateID' id="templateID1" value='1' />
+                     <span onclick="selectRd('templateID1')"   onMouseOver="toolTip('<img width=400px  src=images/groupbuy1.jpg>')" onMouseOut="toolTip()" > <input type='radio' name='templateID' id="templateID1" checked="checked" value='1' />
                      默认模板
                     (750宽)</span>
                      <span  onclick="selectRd('templateID2')"  onMouseOver="toolTip('<img width=400px  src=images/groupbuy1.jpg>')" onMouseOut="toolTip()"><input type='radio' name='templateID' id="templateID2" value='2'  />
