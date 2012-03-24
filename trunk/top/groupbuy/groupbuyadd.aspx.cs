@@ -125,9 +125,14 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         string[] aryRcount = rcount.Split(',');
         string ismuch = "0";//不是多个商品模板
         string groupbuyGuid = "";
+        if (template1.Trim() == "")
+        {
+            template1 = "1";
+        }
         if (template1.Trim() != "1")
         {
             //如果不是单个商品模板
+
             ismuch = "1";
             //如果是多个商品团购模板，设置团购标示
             groupbuyGuid = Guid.NewGuid().ToString();//团购标示
