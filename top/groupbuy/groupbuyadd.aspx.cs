@@ -109,14 +109,21 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         string groupbuyname = utils.NewRequest("groupbuyname", utils.RequestType.Form).Replace("'", "''");
         string starttime = utils.NewRequest("starttime", utils.RequestType.Form) + " " + utils.NewRequest("startSelect", utils.RequestType.Form).Replace("'", "''") + ":00";
         string endtime = utils.NewRequest("endtime", utils.RequestType.Form) + " " + utils.NewRequest("endSelect", utils.RequestType.Form).Replace("'", "''") + ":00";
-        string groupbuyprice = utils.NewRequest("groupbuyprice", utils.RequestType.Form);
-        string productid = utils.NewRequest("productid", utils.RequestType.Form);
+        string groupbuyprice = utils.NewRequest("groupbuyprice", utils.RequestType.Form);// price
+        string productid = utils.NewRequest("productid", utils.RequestType.Form);//productid
         string maxcount = utils.NewRequest("maxcount", utils.RequestType.Form);
-        string zhekou = utils.NewRequest("zhekou", utils.RequestType.Form);
+        string zhekou = utils.NewRequest("zhekou", utils.RequestType.Form);//zhekou
         string mintime = utils.NewRequest("mintime", utils.RequestType.Form);
         string isfromflash = utils.NewRequest("isfromflash", utils.RequestType.Form);
-        string rcount = utils.NewRequest("rcount", utils.RequestType.Form);
-        string template1 = utils.NewRequest("templateID", utils.RequestType.Form);
+        string rcount = utils.NewRequest("rcount", utils.RequestType.Form);//rcount
+        string template1 = utils.NewRequest("templateID", utils.RequestType.Form);//
+
+        Response.Write("groupbuyprice" + groupbuyprice);
+        Response.Write("productid" + productid);
+        Response.Write("zhekou" + zhekou);
+        Response.Write("rcount" + rcount);
+        Response.Write("template1" + template1);
+        Response.End();
       
 
 

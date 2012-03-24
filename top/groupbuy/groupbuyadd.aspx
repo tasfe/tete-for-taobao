@@ -7,8 +7,10 @@
     <title>我要推广</title>
     <link href="js/common.css" rel="stylesheet" />
     <link href="js/calendar.css" rel="stylesheet" />
+    <link href="js/groupbuy.css" rel="stylesheet" />
     <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
     <script type="text/javascript" src="js/cal.js"></script>
+    <script type="text/javascript" src="js/ToolTip.js"></script>
     <script type="text/javascript">
         var startdatestr = '<%=startdate %>';
         var todatestr = '<%=todate %>';
@@ -144,13 +146,14 @@
             <br />
             <b style="font-size:20px">3、设置团购折扣及限制数量</b>
             <br />
+             
             <div id="area3" >
                 选择模板：
                 <div>
-                     <input type='radio' name='templateID' id="templateID1" value='1' />
+                     <input type='radio' name='templateID' id="templateID1" value='1'  onMouseOver="toolTip('<img src=images/groupbuy1.jpg>')" onMouseOut="toolTip()" />
                      默认模板
                      <span>(750宽)</span>
-                     <input type='radio' name='templateID' id="templateID2" value='2' />
+                     <input type='radio' name='templateID' id="templateID2" value='2'  onMouseOver="toolTip('<img src=images/groupbuy1.jpg>')" onMouseOut="toolTip()" />
                      一大三小
                      <span>(750宽)</span>
                 </div>
@@ -205,6 +208,7 @@
             }
         }
     }
+
 
 
     function btnsubmit_Click11() {
