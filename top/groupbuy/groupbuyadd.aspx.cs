@@ -16,6 +16,7 @@ using System.Drawing;
 using System.Collections;
 using System.Web.Security;
 using System.Data;
+using System.Threading;
 
 public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
 {
@@ -149,6 +150,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         for (int p = 0; p < aryPrice.Length; p++)
         {
 
+            Thread.Sleep(1000);//一秒一次， 太快 淘宝有限制  
             //通过借口获取淘宝相关数据
             TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12287381", "d3486dac8198ef01000e7bd4504601a4");
             ItemGetRequest request = new ItemGetRequest();
