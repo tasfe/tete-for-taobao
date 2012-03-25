@@ -75,6 +75,8 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
             int itemcount = 0;
 
             string act = utils.NewRequest("act", Common.utils.RequestType.Form);
+
+            //创建任务时，判断是否有同类型任务在进行
             if (act == "save" && NoRepeat(id, type))
             {
                 //记录该任务
@@ -154,10 +156,47 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
             //Response.Redirect("missionlist.aspx");
     }
 
-    //判断是否有同类型任务进行中
+    
+    /// <summary>
+    /// 判断是否有同类型任务进行中
+    /// </summary>
+    /// <param name="id">团购ID</param>
+    /// <param name="type">任务类型</param>
+    /// <returns></returns>
     private bool NoRepeat(string id, string type)
     {
-        string sql = "SELECT COUNT(*) FROM TopMission WHERE groupbuyid = " + id + " AND typ='write' AND isok = 0";
+        string sql = "SELECT * FROM TopGroupBuy WHERE id = '" + id + "'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        if (dt == null)
+        {
+            Response.Write("<script>alert('创建任务失败，该团购不存在！');window.location.href='missionlist.aspx';</script>");
+            Response.End();
+            return false;
+        }
+
+        if (dt.Rows[0]["groupbuyGuid"].ToString() != "")
+        {
+            //根据多商品团购标示，检索团购商品列表
+            sql = "SELECT * FROM TopGroupBuy WHERE groupbuyGuid = '" + dt.Rows[0]["groupbuyGuid"].ToString() + "'";
+            dt = utils.ExecuteDataTable(sql);
+            if (dt == null || dt.Rows.Count < 1)
+            {
+                return false;
+            }
+        }
+        //拼接团购列表ID
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            if (i == 0)
+            {
+                id = dt.Rows[i]["id"].ToString();
+            }
+            else {
+                id += "," + dt.Rows[i]["id"].ToString();
+            }
+        }
+
+        sql = "SELECT COUNT(*) FROM TopMission WHERE groupbuyid in (" + id + ") AND typ='write' AND isok = 0";
         string count = utils.ExecuteString(sql);
 
         if (count != "0")
@@ -170,27 +209,82 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
         return true;
     }
 
+    /// <summary>
+    /// 生成团购HTML
+    /// </summary>
+    /// <param name="id">团购ID</param>
+    /// <returns></returns>
     private string CreateGroupbuyHtml(string id)
     {
         string str = string.Empty;
-        string html = File.ReadAllText(Server.MapPath("tpl/style1.html"));
         string sql = "SELECT * FROM TopGroupBuy WHERE id = '" + id + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
-        if (dt.Rows.Count != 0)
+        if (dt == null)
         {
-            str = html;
-            str = str.Replace("{name}", dt.Rows[0]["name"].ToString());
-            str = str.Replace("{oldprice}", dt.Rows[0]["productprice"].ToString());
-            str = str.Replace("{zhekou}", Math.Round((decimal.Parse(dt.Rows[0]["productprice"].ToString()) - decimal.Parse(dt.Rows[0]["zhekou"].ToString())) / decimal.Parse(dt.Rows[0]["productprice"].ToString()) * 10, 1).ToString());
-            str = str.Replace("{leftprice}", (decimal.Parse(dt.Rows[0]["productprice"].ToString()) - decimal.Parse(dt.Rows[0]["zhekou"].ToString())).ToString().Split('.')[0]);
-            str = str.Replace("{rightprice}", (decimal.Parse(dt.Rows[0]["productprice"].ToString()) - decimal.Parse(dt.Rows[0]["zhekou"].ToString())).ToString().Split('.')[1]);
-            str = str.Replace("{newprice}", dt.Rows[0]["zhekou"].ToString());
-            str = str.Replace("{buycount}", dt.Rows[0]["buycount"].ToString());
-            str = str.Replace("{producturl}", dt.Rows[0]["producturl"].ToString());
-            str = str.Replace("{productimg}", dt.Rows[0]["productimg"].ToString());
-            str = str.Replace("{id}", id);
-            str = str.Replace("'", "''");
+            return "";
         }
+        string templatehtmlUrl = "tpl/style1.html";//默认模板
+        string template2htmlUrl = "stylenew2-1.html";//第二套模板（一大三小） 小模板
+        if (dt.Rows[0]["ismuch"].ToString() == "1")
+        {
+            //是多商品团购模板
+            if (dt.Rows[0]["template"].ToString() == "2") 
+            {
+                //第二套模板（一大三小）
+                templatehtmlUrl = "tpl/stylenew2.html";
+            }
+            if (dt.Rows[0]["groupbuyGuid"].ToString() != "")
+            {
+                //根据多商品团购标示，检索商品列表
+                sql = "SELECT * FROM TopGroupBuy WHERE groupbuyGuid = '" + dt.Rows[0]["groupbuyGuid"].ToString() + "'";
+                dt = utils.ExecuteDataTable(sql);
+                if (dt == null || dt.Rows.Count < 1)
+                {
+                    return "";
+                }
+            }
+        }
+        string html = File.ReadAllText(Server.MapPath(templatehtmlUrl));
+        string smailtempStr = string.Empty;//小模板
+        for(int i=0;i<dt.Rows.Count;i++)
+        {
+            if (i == 0)
+            {
+                str = html;
+                str = str.Replace("{name}", dt.Rows[i]["name"].ToString());
+                str = str.Replace("{oldprice}", dt.Rows[i]["productprice"].ToString());
+                str = str.Replace("{zhekou}", Math.Round((decimal.Parse(dt.Rows[i]["productprice"].ToString()) - decimal.Parse(dt.Rows[i]["zhekou"].ToString())) / decimal.Parse(dt.Rows[i]["productprice"].ToString()) * 10, 1).ToString());
+                str = str.Replace("{leftprice}", (decimal.Parse(dt.Rows[i]["productprice"].ToString()) - decimal.Parse(dt.Rows[i]["zhekou"].ToString())).ToString().Split('.')[0]);
+                str = str.Replace("{rightprice}", (decimal.Parse(dt.Rows[i]["productprice"].ToString()) - decimal.Parse(dt.Rows[i]["zhekou"].ToString())).ToString().Split('.')[1]);
+                str = str.Replace("{newprice}", dt.Rows[i]["zhekou"].ToString());
+                str = str.Replace("{buycount}", dt.Rows[i]["buycount"].ToString());
+                str = str.Replace("{producturl}", dt.Rows[i]["producturl"].ToString());
+                str = str.Replace("{productimg}", dt.Rows[i]["productimg"].ToString());
+                str = str.Replace("{id}", id);
+                str = str.Replace("'", "''");
+            }
+            else { 
+                //是多商品团购模板
+                if (dt.Rows[i]["template"].ToString() == "2")
+                {
+                    html = File.ReadAllText(Server.MapPath(template2htmlUrl));
+                    smailtempStr += html;
+                    smailtempStr = smailtempStr.Replace("{name}", dt.Rows[i]["name"].ToString());
+                    smailtempStr = smailtempStr.Replace("{oldprice}", dt.Rows[i]["productprice"].ToString());
+                    smailtempStr = smailtempStr.Replace("{zhekou}", Math.Round((decimal.Parse(dt.Rows[i]["productprice"].ToString()) - decimal.Parse(dt.Rows[i]["zhekou"].ToString())) / decimal.Parse(dt.Rows[i]["productprice"].ToString()) * 10, 1).ToString());
+                    smailtempStr = smailtempStr.Replace("{leftprice}", (decimal.Parse(dt.Rows[i]["productprice"].ToString()) - decimal.Parse(dt.Rows[i]["zhekou"].ToString())).ToString().Split('.')[0]);
+                    smailtempStr = smailtempStr.Replace("{rightprice}", (decimal.Parse(dt.Rows[i]["productprice"].ToString()) - decimal.Parse(dt.Rows[i]["zhekou"].ToString())).ToString().Split('.')[1]);
+                    smailtempStr = smailtempStr.Replace("{newprice}", dt.Rows[i]["zhekou"].ToString());
+                    smailtempStr = smailtempStr.Replace("{buycount}", dt.Rows[i]["buycount"].ToString());
+                    smailtempStr = smailtempStr.Replace("{producturl}", dt.Rows[i]["producturl"].ToString());
+                    smailtempStr = smailtempStr.Replace("{productimg}", dt.Rows[i]["productimg"].ToString());
+                    smailtempStr = smailtempStr.Replace("{id}", id);
+                    smailtempStr = smailtempStr.Replace("'", "''");
+                }
+                
+            }
+        }
+        str = str.Replace("{productlist}", smailtempStr);//一大三小模板，商品列表替换
         return str;
     }
 
@@ -316,15 +410,29 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
                             Item product = client.ItemGet(requestItem, session);
                             string newContent = string.Empty;
                             string groupid = dtWrite.Rows[j]["groupbuyid"].ToString();
+                            string tetegroupbuyGuid = groupid;
+                            string sqltemp = "SELECT * FROM TopGroupBuy WHERE id = '" + groupid + "'";
+                            DataTable dttemp = utils.ExecuteDataTable(sqltemp);
+                            if (dttemp == null)
+                            {
+                                Response.Write("<script>alert('更新宝贝描述失败，该团购不存在！');window.location.href='missionlist.aspx';</script>");
+                                Response.End();
+                                   
+                            }
+                            //判断团购是多模板
+                            if (dttemp.Rows[0]["groupbuyGuid"].ToString() != "")
+                            {
+                                tetegroupbuyGuid = dttemp.Rows[0]["groupbuyGuid"].ToString();
+                            }
 
                             //WriteLog("html:" + styleHtml.Length.ToString(), "");
-                            if (!Regex.IsMatch(product.Desc, @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>"))
+                            if (!Regex.IsMatch(product.Desc, @"<div><a name=""tetesoft-area-start-" + tetegroupbuyGuid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + tetegroupbuyGuid + @"""></a></div>"))
                             {
-                                newContent = @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>" + styleHtml + @"<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>" + product.Desc;
+                                newContent = @"<div><a name=""tetesoft-area-start-" + tetegroupbuyGuid + @"""></a></div>" + styleHtml + @"<div><a name=""tetesoft-area-end-" + tetegroupbuyGuid + @"""></a></div>" + product.Desc;
                             }
                             else
                             {
-                                newContent = Regex.Replace(product.Desc, @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>", @"<div><a name=""tetesoft-area-start-" + groupid + @"""></a></div>" + styleHtml + @"<div><a name=""tetesoft-area-end-" + groupid + @"""></a></div>");
+                                newContent = Regex.Replace(product.Desc, @"<div><a name=""tetesoft-area-start-" + tetegroupbuyGuid + @"""></a></div>([\s\S]*)<div><a name=""tetesoft-area-end-" + tetegroupbuyGuid + @"""></a></div>", @"<div><a name=""tetesoft-area-start-" + tetegroupbuyGuid + @"""></a></div>" + styleHtml + @"<div><a name=""tetesoft-area-end-" + tetegroupbuyGuid + @"""></a></div>");
                             }
                             //WriteLog("html2:" + newContent.Length.ToString(), "");
 
