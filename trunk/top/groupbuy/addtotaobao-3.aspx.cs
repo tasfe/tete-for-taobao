@@ -224,7 +224,7 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
             return "";
         }
         string templatehtmlUrl = "tpl/style1.html";//默认模板
-        string template2htmlUrl = "stylenew2-1.html";//第二套模板（一大三小） 小模板
+        string template2htmlUrl = "tpl/stylenew2-1.html";//第二套模板（一大三小） 小模板
         if (dt.Rows[0]["ismuch"].ToString() == "1")
         {
             //是多商品团购模板
