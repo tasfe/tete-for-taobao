@@ -16,8 +16,8 @@
         $.ajax({
             url: dateStr,
             success: function (data) {
-                $('#jd').html(data + "%");
-                $('#lpc').attr("width", data*5);
+               // $('#jd').html(data + "%");
+               // $('#lpc').attr("width", data*5);
                 if (data < 100) {
                     setTimeout("showNumber('LoadAjax.aspx?date=" + new Date() + "&mid=" + $('#missID').val() + "')", 2000);
                 }
@@ -50,12 +50,12 @@
     </ul>
   </div>
   <div id="main-content">
-  正在更新到淘宝描述,请等待........
+  宝贝描述更新完成
         <table bgcolor="#dddddd" height=20 ALIGN=CENTER BORDER="0" WIDTH="500">
             <tr>
                 <td align=left >
                  <table  id=lpc bgcolor=#98CC00 height=20>
-                     <tr align=center><td ><span id=jd >10%</span></td></tr>
+                     <tr align=center><td ><span id=jd >100%</span></td></tr>
                  </table>
                 </td>
             </tr>
