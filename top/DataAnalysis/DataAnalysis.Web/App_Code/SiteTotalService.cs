@@ -9,7 +9,7 @@ using System.Text;
 /// </summary>
 public class SiteTotalService
 {
-    const string SQL_SELECT_ORDER_BYDAY = "SELECT SiteTotalDate,SitePVCount,SiteUVCount,SiteOrderCount,SiteOrderPay,SiteUVBack,SiteGoodsCount,SitePostFee,SiteSecondBuy,SiteBuyCustomTotal,SiteZhiTongTotal,SiteZuanZhan FROM TopSiteTotal WHERE SiteNick=@SiteNick AND SiteTotalDate BETWEEN @start AND @end";
+    const string SQL_SELECT_ORDER_BYDAY = "SELECT SiteTotalDate,SitePVCount,SiteUVCount,SiteOrderCount,SiteOrderPay,SiteUVBack,SiteGoodsCount,SitePostFee,SiteSecondBuy,SiteBuyCustomTotal,SiteZhiTongTotal,SiteZuanZhan,RefundOrdercount,RefundMoney FROM TopSiteTotal WHERE SiteNick=@SiteNick AND SiteTotalDate BETWEEN @start AND @end";
 
     const string SQL_SELECT_SUM_SITETOTAL = @"SELECT sum(SitePVCount) AS sSitePVCount,sum(SiteUVCount) as sSiteUVCount,sum(SiteOrderCount) as sSiteOrderCount,sum(SiteOrderPay) as sSiteOrderPay,sum(SiteUVBack) as sSiteUVBack,sum(SiteGoodsCount) as sSiteGoodsCount,sum(SitePostFee) as sSitePostFee,sum(SiteSecondBuy) as sSiteSecondBuy,sum(SiteBuyCustomTotal) as sSiteBuyCustomTotal FROM 
   (select * from TopSiteTotal where SiteNick=@nick AND 
@@ -61,6 +61,10 @@ public class SiteTotalService
             info.ZhiTongFlow = dr["SiteZhiTongTotal"] == DBNull.Value ? 0 : int.Parse(dr["SiteZhiTongTotal"].ToString());
 
             info.SiteZuanZhan = dr["SiteZuanZhan"] == DBNull.Value ? 0 : int.Parse(dr["SiteZuanZhan"].ToString());
+
+            info.RefundOrdercount = dr["RefundOrdercount"] == DBNull.Value ? 0 : int.Parse(dr["RefundOrdercount"].ToString());
+            info.RefundMoney = dr["RefundMoney"] == DBNull.Value ? 0 : decimal.Parse(dr["RefundMoney"].ToString());
+
             info.SiteNick = nick;
 
             list.Add(info);

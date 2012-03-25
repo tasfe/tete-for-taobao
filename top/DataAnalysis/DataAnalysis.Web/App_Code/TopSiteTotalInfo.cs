@@ -157,9 +157,13 @@ public class TopSiteTotalInfo
     /// <summary>
     /// 退款率
     /// </summary>
-    public decimal Refund
+    public string Refund
     {
-        get { return 0; }
+        get
+        {
+            if (SiteOrderCount == 0) return "0";
+            return (((decimal)RefundOrdercount / SiteOrderCount) * 100).ToString(".00") + "%";
+        }
     }
 
     /// <summary>
@@ -234,7 +238,10 @@ public class TopSiteTotalInfo
             return ((decimal)SitePVCount / SiteUVCount).ToString(".00");
         }
     }
-    
+
+    public int RefundOrdercount { set; get; }
+
+    public decimal RefundMoney { set; get; }
 
     #endregion
 
