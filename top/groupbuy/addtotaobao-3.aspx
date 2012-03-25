@@ -19,30 +19,18 @@
                 $('#jd').html(data + "%");
                 $('#lpc').attr("width", data*5);
                 if (data < 100) {
- 
                     setTimeout("showNumber('LoadAjax.aspx?date=" + new Date() + "&mid=" + $('#missID').val() + "')", 2000);
                 }
                 else {
                     $('#jd').html("100%");
                     $('#lpc').attr("width", 500);
-                    //location.href = "missionlist.aspx";
+                    location.href = "missionlist.aspx";
                 }
 
             }
         });
 
     }
-
-//    function reqUrl(dateStr2) {
-
-//     
-//    $.get(dateStr2, function(data){
-//  });
-
-
-       
-
-   // }
 
  
 
