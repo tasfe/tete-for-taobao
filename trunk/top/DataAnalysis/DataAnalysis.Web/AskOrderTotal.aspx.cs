@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using CusServiceAchievements.DAL;
 using Model;
 
-public partial class AskOrderTotal : System.Web.UI.Page
+public partial class AskOrderTotal : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
