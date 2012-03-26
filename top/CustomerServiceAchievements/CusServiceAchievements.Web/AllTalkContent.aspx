@@ -48,7 +48,7 @@
             <div id="content">
               <table style="margin:0; width:740px; margin-top:5px;">
                  <tr>
-                 <td>
+                 <td valign="top">
                     <table>
                       <tr><td>
                         全部客服
@@ -62,7 +62,7 @@
                        </asp:Repeater>
                     </table>
                  </td>
-                 <td>
+                 <td valign="top">
                     <table>
                      <tr>
                         <td>接待客户名单</td>
@@ -76,10 +76,10 @@
                        </asp:Repeater>
                     </table>
                  </td>
-                  <td>
+                  <td valign="top">
                     <table>
                       <tr>
-                        <td>对话内容</td>
+                        <td colspan="2">对话内容</td>
                       </tr>
                        <asp:Repeater ID="Rpt_TalkList" runat="server">
                          <ItemTemplate>
