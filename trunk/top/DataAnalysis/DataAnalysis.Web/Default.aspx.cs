@@ -135,9 +135,9 @@ public partial class _Default : BasePage
 
             decimal pay = linfo.SiteOrderPay / llinfo.SiteOrderPay;
             if (pay > 1)
-                return "<font color='green'>↑" + ((pay - 1)*100).ToString("#.00") + "%</font>";
+                return "<font color='green'>↑" + Math.Round((pay - 1) * 100, 2).ToString() + "%</font>";
 
-            return "<font color='red'>↓" + ((1 - pay) * 100).ToString("#.00") + "%</font>";
+            return "<font color='red'>↓" + Math.Round((1 - pay) * 100, 2).ToString() + "%</font>";
         }
     }
 
@@ -155,9 +155,9 @@ public partial class _Default : BasePage
 
         decimal pay = linfo.SiteOrderCount / llinfo.SiteOrderCount;
         if (pay > 1)
-            return "<font color='green'>↑" + ((pay - 1) * 100).ToString("#.00") + "%</font>";
+            return "<font color='green'>↑" + Math.Round((pay - 1) * 100, 2).ToString() + "%</font>";
 
-        return "<font color='red'>↓" + ((1 - pay) * 100).ToString("#.00") + "%</font>";
+        return "<font color='red'>↓" + Math.Round((1 - pay) * 100, 2).ToString() + "%</font>";
     }
 
     protected string SevenSiteBackOrder()
@@ -174,9 +174,9 @@ public partial class _Default : BasePage
 
         decimal pay = linfo.SiteSecondBuy / llinfo.SiteSecondBuy;
         if (pay > 1)
-            return "<font color='green'>↑" + ((pay - 1) * 100).ToString("#.00") + "%</font>";
+            return "<font color='green'>↑" + Math.Round((pay - 1) * 100, 2).ToString() + "%</font>";
 
-        return "<font color='red'>↓" + ((1 - pay) * 100).ToString("#.00") + "%</font>";
+        return "<font color='red'>↓" + Math.Round((1 - pay) * 100, 2).ToString() + "%</font>";
     }
 
     protected string SevenSiteOnePay()
@@ -196,9 +196,9 @@ public partial class _Default : BasePage
 
         decimal pay = (linfo.SiteOrderPay / linfo.SiteBuyCustomTotal) / (llinfo.SiteOrderPay / llinfo.SiteBuyCustomTotal);
         if (pay > 1)
-            return "<font color='green'>↑" + ((pay - 1) * 100).ToString("#.00") + "%</font>";
+            return "<font color='green'>↑" + Math.Round((pay - 1) * 100, 2).ToString() + "%</font>";
 
-        return "<font color='red'>↓" + ((1 - pay) * 100).ToString("#.00") + "%</font>";
+        return "<font color='red'>↓" + Math.Round((1 - pay) * 100, 2).ToString() + "%</font>";
     }
 
     protected string SevenSiteSellOnePay()
@@ -218,9 +218,9 @@ public partial class _Default : BasePage
 
         decimal pay = (linfo.SiteOrderPay / linfo.GoodsCount) / (llinfo.SiteOrderPay / llinfo.GoodsCount);
         if (pay > 1)
-            return "<font color='green'>↑" + ((pay - 1) * 100).ToString("#.00") + "%</font>";
+            return "<font color='green'>↑" + Math.Round((pay - 1) * 100, 2).ToString() + "%</font>";
 
-        return "<font color='red'>↓" + ((1 - pay) * 100).ToString("#.00") + "%</font>";
+        return "<font color='red'>↓" + Math.Round((1 - pay) * 100, 2).ToString() + "%</font>";
     }
 
     protected string SevenSiteSellWith()
@@ -240,9 +240,9 @@ public partial class _Default : BasePage
 
         decimal pay = ((linfo.SiteOrderPay / linfo.SiteBuyCustomTotal) / (llinfo.SiteOrderPay / llinfo.SiteBuyCustomTotal)) / ((linfo.SiteOrderPay / linfo.GoodsCount) / (llinfo.SiteOrderPay / llinfo.GoodsCount));
         if (pay > 1)
-            return "<font color='green'>↑" + ((pay - 1) * 100).ToString("#.00") + "%</font>";
+            return "<font color='green'>↑" + Math.Round((pay - 1) * 100, 2).ToString() + "%</font>";
 
-        return "<font color='red'>↓" + ((1 - pay) * 100).ToString("#.00") + "%</font>";
+        return "<font color='red'>↓" + Math.Round((1 - pay) * 100, 2).ToString() + "%</font>";
     }
 
     #endregion

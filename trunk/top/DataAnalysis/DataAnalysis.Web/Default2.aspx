@@ -18,7 +18,7 @@
         .detail div
         {
             font-size: 12px;
-            height: 20px;
+            height: 30px;
         }
         .detail1
         {
@@ -28,7 +28,7 @@
         .detail1 div
         {
             font-size: 12px;
-            height: 20px;
+            height: 30px;
         }
     </style>
 </head>
