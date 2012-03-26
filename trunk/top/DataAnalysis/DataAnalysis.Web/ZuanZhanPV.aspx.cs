@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Collections.Generic;
 
-public partial class ZuanZhanPV : System.Web.UI.Page
+public partial class ZuanZhanPV : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
