@@ -76,7 +76,7 @@
                        </asp:Repeater>
                     </table>
                  </td>
-                  <td valign="top" style="border:0">
+                  <td valign="top" style="border:0;width:370px">
                     <table width="360px" style="margin:0;padding:0; border:0">
                       <tr>
                         <td style="width:350px;border:0">对话内容</td>
