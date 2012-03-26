@@ -200,6 +200,7 @@
 </form>
 
 <script language="javascript" type="text/javascript">
+   
     //设置折扣价
     function setprice(obj) {
         var str = obj.id.replace("zhekou1", "");
