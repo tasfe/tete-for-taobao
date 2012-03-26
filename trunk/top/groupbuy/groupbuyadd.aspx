@@ -210,13 +210,13 @@
         var price = document.getElementById(str).value; //商品价格
         if (isNaN(obj.value)) {
             alert('请输入正确的折扣');
+            obj.value = 10;
             obj.focus();
-            return;
         }
         else if (obj.value < 7 || obj.value >= 10) {
             alert('折扣只能设置7到10折');
+            obj.value = 10;
             obj.focus();
-            return;
         }
         else {
             var zekprice = obj.value * price * 0.1; //折扣价
@@ -237,19 +237,18 @@
         var price = document.getElementById(str).value; //商品价格
         if (isNaN(obj.value)) {
             alert('请输入正确的折扣价');
+            obj.value = price;
             obj.focus();
-            return;
         }
         else if (obj.value >= price) {
             alert('折扣价不能大于商品售价');
+            obj.value = price;
             obj.focus();
-            return;
         }
         else if (obj.value <= 0) {
             alert('折扣价不能小于等于零');
-
+            obj.value = price;
             obj.focus();
-            return;
         }
         else {
             var zekprice = obj.value / price * 10; //折扣价
