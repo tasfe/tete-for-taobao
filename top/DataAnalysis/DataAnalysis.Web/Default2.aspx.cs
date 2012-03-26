@@ -13,7 +13,7 @@ public partial class Default2 : BasePage
             DateTime now = DateTime.Parse(DateTime.Now.ToShortDateString());
 
             string nickNo = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
-            IList<TopSiteTotalInfo> siteTotalList = new SiteTotalService().GetNickOrderTotal(now.AddDays(-11), now, nickNo);
+            IList<TopSiteTotalInfo> siteTotalList = new SiteTotalService().GetNickOrderTotal(now.AddDays(-10), now, nickNo);
             Rpt_TotalList.DataSource = siteTotalList;
             Rpt_TotalList.DataBind();
 
