@@ -46,7 +46,7 @@
         <div id="wrapper">
         
             <div id="content">
-              <table style="margin:0; width:740px; margin-top:5px; padding:0">
+              <table style="margin:0; width:740px; margin-top:5px; padding:0;border:0">
                  <tr>
                  <td valign="top">
                     <table width="180px" style="margin:0;padding:0; border:0">
@@ -77,7 +77,7 @@
                     </table>
                  </td>
                   <td valign="top" style="border:0;width:370px">
-                    <table width="360px" style="margin:0;padding:0; border:0">
+                    <table width="360px" style="margin:0;padding:0;border:0">
                       <tr>
                         <td style="width:350px;border:0">对话内容</td>
                       </tr>
