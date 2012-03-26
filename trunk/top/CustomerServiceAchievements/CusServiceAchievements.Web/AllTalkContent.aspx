@@ -76,7 +76,7 @@
                        </asp:Repeater>
                     </table>
                  </td>
-                  <td valign="top">
+                  <td valign="top" style="border:0">
                     <table width="360px" style="margin:0;padding:0; border:0">
                       <tr>
                         <td style="width:350px">对话内容</td>
@@ -84,7 +84,7 @@
                        <asp:Repeater ID="Rpt_TalkList" runat="server">
                          <ItemTemplate>
                             <tr>
-                               <td>
+                               <td style=""border:0">
                                  <%# GetNick(Eval("direction").ToString(), Eval("FromNick").ToString(), Eval("ToNick").ToString())%>
                                   &nbsp;<%# Eval("time")%>
                                   <br  />
