@@ -97,14 +97,12 @@ public partial class VisitTotal : BasePage
         {
             start = DateTime.Parse(TB_Start.Text);
             endtime = DateTime.Parse(TB_End.Text);
-            ViewState["start"] = start;
-            ViewState["end"] = end;
         }
         catch
         {
             TB_Start.Text = start.ToString("yyyy-MM-dd");
             TB_End.Text = endtime.ToString("yyyy-MM-dd");
         }
-        ShowChart(start, end);
+        ShowChart(start, endtime);
     }
 }

@@ -43,6 +43,8 @@ public partial class ZhiTongPV : System.Web.UI.Page
 
         DateText = DateText.Substring(0, DateText.Length - 1);
         DateText += "]";
+        TB_Start.Text = start.ToString("yyyy-MM-dd");
+        TB_End.Text = end.ToString("yyyy-MM-dd");
     }
 
     protected string DateText
@@ -80,14 +82,10 @@ public partial class ZhiTongPV : System.Web.UI.Page
         {
             start = DateTime.Parse(TB_Start.Text);
             endtime = DateTime.Parse(TB_End.Text);
-            ViewState["start"] = start;
-            ViewState["end"] = end;
         }
         catch
         {
-            TB_Start.Text = start.ToString("yyyy-MM-dd");
-            TB_End.Text = endtime.ToString("yyyy-MM-dd");
         }
-        ShowChart(start, end);
+        ShowChart(start, endtime);
     }
 }
