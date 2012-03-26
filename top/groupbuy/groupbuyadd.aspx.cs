@@ -119,9 +119,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         string rcount = utils.NewRequest("rcount", utils.RequestType.Form);//rcount
         string template1 = utils.NewRequest("template", utils.RequestType.Form);//
         string xiaogou = utils.NewRequest("xiangou", utils.RequestType.Form);//
-        Response.Write(groupbuyname);
-        Response.Write(xiaogou);
-        Response.End();
+ 
  
         string[] aryPrice = groupbuyprice.Split(',');
         string[] aryProductid = productid.Split(',');
