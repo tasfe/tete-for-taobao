@@ -49,7 +49,7 @@
               <table style="margin:0; width:740px; margin-top:5px;">
                  <tr>
                  <td valign="top">
-                    <table>
+                    <table width="180px">
                       <tr><td>
                         全部客服
                       </td></tr>
@@ -63,7 +63,7 @@
                     </table>
                  </td>
                  <td valign="top">
-                    <table>
+                    <table width="180px">
                      <tr>
                         <td>接待客户名单</td>
                      </tr>
@@ -77,7 +77,7 @@
                     </table>
                  </td>
                   <td valign="top">
-                    <table>
+                    <table width="350px">
                       <tr>
                         <td>对话内容</td>
                       </tr>
@@ -85,7 +85,7 @@
                          <ItemTemplate>
                             <tr>
                                <td>
-                                 <%# GetNick(Eval("direction").ToString(), Eval("FromNick").ToString(), Eval("ToNick").ToString())%>> 
+                                 <%# GetNick(Eval("direction").ToString(), Eval("FromNick").ToString(), Eval("ToNick").ToString())%>
                                   &nbsp;<%# Eval("time")%>
                                   <br />
                                  <%# Eval("content")%>

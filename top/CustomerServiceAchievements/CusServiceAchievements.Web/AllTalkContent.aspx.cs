@@ -72,6 +72,7 @@ public partial class AllTalkContent : System.Web.UI.Page
 
     protected void ShowTalk(object sender, EventArgs e)
     {
+        if (string.IsNullOrEmpty(Hf_User.Value)) return;
         LinkButton lb = (LinkButton)sender;
 
         string tnick = lb.Text;
