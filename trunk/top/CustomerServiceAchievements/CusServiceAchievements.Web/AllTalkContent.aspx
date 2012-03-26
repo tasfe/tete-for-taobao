@@ -33,9 +33,9 @@
             <div id="topmenu">
                 <ul>
                     <li><a href="default2.aspx">主页</a></li>
-                    <li class="ReceiveCustomer.aspx"><a href="#">日统计</a></li>
+                    <li><a href="ReceiveCustomer.aspx">日统计</a></li>
                     <li><a href="YejiTotal.aspx">业绩统计</a></li>
-                    <li><a href="#">聊天记录</a></li>
+                    <li class="current"><a href="#">聊天记录</a></li>
                     <li><a href="#">客服对比</a></li>
                 </ul>
             </div>
@@ -43,9 +43,11 @@
         <div id="top-panel">
             <div id="panel">
                 <ul>
-                   <li><a href="#" class="report">接待人数</a></li>
-                   <li><a href="#" class="report_seo">成功订单</a></li>
-                   <li><a href="#" class="report_seo">付款金额</a></li>
+                   <li><a href="#" class="report">超长响应聊天</a></li>
+                   <li><a href="#" class="report_seo">流失客户聊天</a></li>
+                   <li><a href="#" class="report_seo">成功客户聊天</a></li>
+                   <li><a href="#" class="report_seo">未回复聊天</a></li>
+                   <li><a href="#" class="report_seo">内部聊天</a></li>
                 </ul>
             </div>
         </div>
