@@ -34,7 +34,7 @@ public partial class GroupReceiveCustomer : System.Web.UI.Page
       
         for (int h = 0; h < list.Count; h++)
         {
-            DateText += "'" + list[h].Nick + "',";
+            DateText += "'" + (list[h].Nick.IndexOf(':') >= 0 ? list[h].Nick.Substring(list[h].Nick.IndexOf(':') + 1) : "主旺旺") + "',";
 
             SeriseText += list[h].CustomerCount + ",";
         }
