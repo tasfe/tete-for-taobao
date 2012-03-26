@@ -62,7 +62,7 @@ public class TopSiteTotalInfo
                 return "0";
             }
 
-            return (SiteOrderPay / GoodsCount).ToString(".00");
+            return Math.Round((SiteOrderPay / GoodsCount), 2).ToString();
         }
     }
 
@@ -94,7 +94,7 @@ public class TopSiteTotalInfo
             TopKefuTotalService tktDal = new TopKefuTotalService();
             List<TopKefuTotalInfo> list = (List<TopKefuTotalInfo>)tktDal.GetTotalinfoList(SiteTotalDate, SiteNick);
             if (list.Sum(o => o.CustomerCount) == 0) return "0";
-            return ((decimal)(list.Sum(o => o.CustomerCount) - list.Sum(o => o.OrderCount)) / list.Sum(o => o.CustomerCount) * 100).ToString(".00") + "%";
+            return Math.Round(((decimal)(list.Sum(o => o.CustomerCount) - list.Sum(o => o.OrderCount)) / list.Sum(o => o.CustomerCount) * 100),2).ToString() + "%";
         }
     }
 
@@ -150,7 +150,7 @@ public class TopSiteTotalInfo
         {
             if (SiteUVCount == 0)
                 return "0";
-            return (((decimal)SiteBuyCustomTotal / SiteUVCount) * 100).ToString(".00") + "%";
+            return Math.Round((((decimal)SiteBuyCustomTotal / SiteUVCount) * 100), 2).ToString() + "%";
         }
     }
 
@@ -162,7 +162,7 @@ public class TopSiteTotalInfo
         get
         {
             if (SiteOrderCount == 0) return "0";
-            return (((decimal)RefundOrdercount / SiteOrderCount) * 100).ToString(".00") + "%";
+            return Math.Round((((decimal)RefundOrdercount / SiteOrderCount) * 100), 2).ToString() + "%";
         }
     }
 
