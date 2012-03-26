@@ -50,7 +50,7 @@ public partial class AskOrderTotal : BasePage
         }
 
         SeriseText = SeriseText.Substring(0, SeriseText.Length - 1) + "]}";
-        SeriseText = sucss.Substring(0, sucss.Length - 1) + "]}]";
+        SeriseText = SeriseText + sucss.Substring(0, sucss.Length - 1) + "]}]";
 
         DateText = DateText.Substring(0, DateText.Length - 1);
         DateText += "]";
