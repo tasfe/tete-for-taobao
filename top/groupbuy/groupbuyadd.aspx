@@ -263,7 +263,8 @@
             this.returnAction = function (strResult) {
                 if (strResult != null) {
                     if (strResult != "") {
-                        document.getElementById("productArea").innerHTML = document.getElementById("productArea").innerHTML+strResult;
+                        document.getElementById("productArea").innerHTML = document.getElementById("productArea").innerHTML + strResult;
+                        alert(document.getElementsByName("groupbuylistname").length);
                     }
                 }
             }
@@ -273,8 +274,8 @@
             var GetValue = showModalDialog(url + '?d=' + Date() + "&t=" + escape(editTxt), null, 'dialogWidth:' + w + 'px; dialogHeight:' + h + 'px;')
             if (GetValue != null) {
                 if (GetValue != "") {
-                    document.getElementById("productArea").innerHTML = document.getElementById("productArea").innerHTML+ GetValue;
-                    //alert(document.getElementById("html").value);
+                    document.getElementById("productArea").innerHTML = document.getElementById("productArea").innerHTML + GetValue;
+                    alert(document.getElementsByName("groupbuylistname").length);
                 }
             }
         }
