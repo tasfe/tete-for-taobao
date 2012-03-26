@@ -24,7 +24,7 @@ public partial class ReceiveCustomer : System.Web.UI.Page
         int nowhour = 23;
         if (date.ToShortDateString() == DateTime.Now.ToShortDateString())
             nowhour = date.Hour;
-        for (int h = 0; h <= nowhour; h++)
+        for (int h = 0; h < nowhour; h++)
         {
             DateText += "'" + h + "',";
             List<TalkContent> mylist = list.Where(o => o.time == h.ToString()).ToList();
