@@ -62,7 +62,7 @@ public class TopSiteTotalInfo
                 return "0";
             }
 
-            return Math.Round((SiteOrderPay / GoodsCount), 2).ToString();
+            return (SiteOrderPay / GoodsCount).ToString(".00");
         }
     }
 
@@ -222,7 +222,7 @@ public class TopSiteTotalInfo
         {
             if (SiteUVBack == 0)
                 return "0";
-            return (((decimal)SiteUVBack / SiteUVCount) * 100).ToString(".00") + "%";
+            return Math.Round((((decimal)SiteUVBack / SiteUVCount) * 100), 2).ToString() + "%";
         }
     }
 
