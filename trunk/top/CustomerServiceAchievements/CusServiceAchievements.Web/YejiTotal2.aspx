@@ -18,6 +18,7 @@
 <![endif]-->
 </head>
 <body>
+<form id="form1" runat="server">
     <div id="container">
         <div id="header">
             <h2>客服绩效考核</h2>
@@ -168,5 +169,6 @@
             <br />
         </div>
     </div>
+    </form>
 </body>
 </html>
