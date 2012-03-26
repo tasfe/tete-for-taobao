@@ -76,13 +76,7 @@ public partial class Default2 : BasePage
     }
     protected void Btn_AddCookie_Click(object sender, EventArgs e)
     {
-        HttpCookie cookie = new HttpCookie("nick", HttpUtility.UrlEncode("luckyfish8800"));
-        cookie.Expires = DateTime.Now.AddDays(-1);
-        Request.Cookies.Add(cookie);
-
-        HttpCookie newcookie = new HttpCookie("nick", HttpUtility.UrlEncode("luckyfish8800"));
-        newcookie.Expires = DateTime.Now.AddDays(1);
-        Request.Cookies.Add(newcookie);
+        Request.Cookies["nick"].Value = HttpUtility.UrlEncode("luckyfish8800");
     }
 }
 
