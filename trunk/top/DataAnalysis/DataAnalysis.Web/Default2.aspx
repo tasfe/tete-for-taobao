@@ -35,6 +35,8 @@
 <body>
     <form id="form1" runat="server">
     <div>
+    <asp:Button ID="Btn_AddCookie"  Text="点击查看客户真实数据" runat="server" 
+            onclick="Btn_AddCookie_Click" />此处只是为了让审核人员能够更直观的看到软件真实效果
         <div class="all">
             <div class="detail1">
                 <div>
@@ -90,9 +92,9 @@
                 <div>
                     销售排行
                 </div>
-                <div>
+                <%--<div>
                     收藏量
-                </div>
+                </div>--%>
             </div>
             <asp:Repeater runat="server" ID="Rpt_TotalList">
                 <ItemTemplate>
@@ -151,9 +153,9 @@
                         <div>
                            <img src='<%# Eval("SellTop.pic_url")%>_60x60.jpg' alt='<%# Eval("SellTop.title")%>' height="50px" />
                         </div>
-                        <div>
-                            <%# Eval("Collection")%>
-                        </div>
+                       <%--     <div>
+                                <%# Eval("Collection")%>
+                            </div>--%>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
