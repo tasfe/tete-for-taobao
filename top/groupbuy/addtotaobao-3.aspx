@@ -54,7 +54,7 @@
         <table bgcolor="#dddddd" height=20 ALIGN=CENTER BORDER="0" WIDTH="500">
             <tr>
                 <td align=left >
-                 <table  id=lpc bgcolor=#98CC00 height=20>
+                 <table  id=lpc bgcolor=#98CC00 height=20 width="100%">
                      <tr align=center><td ><span id=jd >100%</span></td></tr>
                  </table>
                 </td>
