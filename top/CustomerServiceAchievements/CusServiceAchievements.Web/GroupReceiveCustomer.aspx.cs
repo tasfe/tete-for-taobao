@@ -28,7 +28,7 @@ public partial class GroupReceiveCustomer : System.Web.UI.Page
     private void ShowChart(DateTime date)
     {
         string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
-        List<TopKefuTotalInfo> list = (List<TopKefuTotalInfo>)new TopKefuTotalService().GetNickCountTotal(date.ToString("yyyyMMdd"));
+        List<TopKefuTotalInfo> list = (List<TopKefuTotalInfo>)new TopKefuTotalService().GetNickCountTotal(date.ToString("yyyyMMdd"), nick);
         SeriseText = "[{name:'接待人次', data:[";
         DateText = "[";
       
