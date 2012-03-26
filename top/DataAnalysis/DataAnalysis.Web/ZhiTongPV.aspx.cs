@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Collections.Generic;
 
-public partial class ZhiTongPV : System.Web.UI.Page
+public partial class ZhiTongPV : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
