@@ -86,10 +86,10 @@
                 <div>
                     平均访问深度
                 </div>
-                <div style="width:60px">
+                <div style="height:60px">
                     浏览排行
                 </div>
-                <div style="width:60px">
+                <div style="height:60px">
                     销售排行
                 </div>
                 <%--<div>
@@ -147,10 +147,10 @@
                         <div>
                             <%# Eval("SeeDeepAVG")%>
                         </div>
-                        <div style="width:60px">
+                        <div style="height:60px">
                            <img src='<%# Eval("SeeTop.pic_url")%>_60x60.jpg' alt='<%# Eval("SeeTop.title")%>' height="50px" />
                         </div>
-                        <div style="width:60px">
+                        <div style="height:60px">
                            <img src='<%# Eval("SellTop.pic_url")%>_60x60.jpg' alt='<%# Eval("SellTop.title")%>' height="50px" />
                         </div>
                        <%--     <div>
