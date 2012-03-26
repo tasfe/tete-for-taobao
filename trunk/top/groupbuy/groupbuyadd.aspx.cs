@@ -205,7 +205,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
             param.Add("start_date", starttime);
             param.Add("end_date", endtime);
             param.Add("promotion_title", "团购打折");
-            //param.Add("decrease_num", aryXiaogou[p].ToString());
+            param.Add("decrease_num", aryXiaogou[p].ToString());
              
 
             param.Add("tag_id", tagid);
