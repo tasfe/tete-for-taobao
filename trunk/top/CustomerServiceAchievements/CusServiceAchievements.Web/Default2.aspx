@@ -23,10 +23,10 @@
             <h2>客服绩效考核</h2>
             <div id="topmenu">
                 <ul>
-                    <li class="current"><a href="default.aspx">主页</a></li>
+                    <li class="current"><a href="default2.aspx">主页</a></li>
                     <li><a href="ReceiveCustomer.aspx">日统计</a></li>
                     <li><a href="YejiTotal.aspx">业绩统计</a></li>
-                    <li><a href="#">聊天记录</a></li>
+                    <li><a href="AllTalkContent.aspx">聊天记录</a></li>
                     <li><a href="#">客服对比</a></li>
                 </ul>
             </div>

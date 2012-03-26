@@ -30,7 +30,7 @@ public partial class AllTalkContent : System.Web.UI.Page
 
             ViewState["start"] = dateArr[0];
             ViewState["end"] = dateArr[1];
-            //ViewState["nick"] = nick;
+            
 
             BindUser(nick, dateArr[0], dateArr[1]);
             BindCustomer(nick, dateArr[0], dateArr[1]);
@@ -67,17 +67,17 @@ public partial class AllTalkContent : System.Web.UI.Page
         List<TalkContent> list = talkDal.GetTalkCustomer(DateTime.Parse(ViewState["start"].ToString()), DateTime.Parse(ViewState["end"].ToString()), fnick, Enum.TalkObjType.All);
         Rpt_CustomerList.DataSource = list;
         Rpt_CustomerList.DataBind();
-        Hf_User.Value = fnick;
+        ViewState["nick"] = fnick;
     }
 
     protected void ShowTalk(object sender, EventArgs e)
     {
-        if (string.IsNullOrEmpty(Hf_User.Value)) return;
+        if (string.IsNullOrEmpty(ViewState["nick"].ToString())) return;
         LinkButton lb = (LinkButton)sender;
 
         string tnick = lb.Text;
 
-        List<TalkContent> list = talkDal.GetAllContentByFromId(Hf_User.Value, tnick, DateTime.Parse(ViewState["start"].ToString()), DateTime.Parse(ViewState["end"].ToString()));
+        List<TalkContent> list = talkDal.GetAllContentByFromId(ViewState["nick"].ToString(), tnick, DateTime.Parse(ViewState["start"].ToString()), DateTime.Parse(ViewState["end"].ToString()));
         Rpt_TalkList.DataSource = list;
         Rpt_TalkList.DataBind();
     }
