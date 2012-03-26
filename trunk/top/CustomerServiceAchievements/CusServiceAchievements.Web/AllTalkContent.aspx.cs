@@ -64,7 +64,7 @@ public partial class AllTalkContent : System.Web.UI.Page
 
         string fnick = lb.Text;
 
-        List<TalkContent> list = talkDal.GetTalkCustomer(DateTime.Parse(ViewState["start"].ToString()), DateTime.Parse(ViewState["end"].ToString()), fnick, Enum.TalkObjType.All);
+        List<TalkContent> list = talkDal.GetTalkCustomer(DateTime.Parse(ViewState["start"].ToString()), DateTime.Parse(ViewState["end"].ToString()), fnick, Enum.TalkObjType.Out);
         Rpt_CustomerList.DataSource = list;
         Rpt_CustomerList.DataBind();
         ViewState["nick"] = fnick;
