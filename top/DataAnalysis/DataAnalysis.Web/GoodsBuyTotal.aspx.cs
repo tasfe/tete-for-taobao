@@ -25,7 +25,7 @@ public partial class GoodsBuyTotal : BasePage
             }
             string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
             ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(nick, darray[0], darray[1]);
-            Bind(nick, darray[0], darray[1], int.Parse(ViewState["count"].ToString()), 10);
+            Bind(nick, darray[0], darray[1], int.Parse(ViewState["count"].ToString()), 20);
         }
     }
 
@@ -127,25 +127,25 @@ public partial class GoodsBuyTotal : BasePage
         string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(nick, start, endtime);
         ViewState["page"] = "1";
-        Bind(nick,start, endtime, int.Parse(ViewState["count"].ToString()), 10);
+        Bind(nick,start, endtime, int.Parse(ViewState["count"].ToString()), 20);
     }
 
     protected void Btn_3Days_Click(object sender, EventArgs e)
     {
         string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(nick, DateTime.Now.AddDays(-2), DateTime.Now);
-        Bind(nick, DateTime.Now.AddDays(-2), DateTime.Now, int.Parse(ViewState["count"].ToString()), 10);
+        Bind(nick, DateTime.Now.AddDays(-2), DateTime.Now, int.Parse(ViewState["count"].ToString()), 20);
     }
     protected void Btn_7Days_Click(object sender, EventArgs e)
     {
         string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(nick, DateTime.Now.AddDays(-6), DateTime.Now);
-        Bind(nick, DateTime.Now.AddDays(-6), DateTime.Now, int.Parse(ViewState["count"].ToString()), 10);
+        Bind(nick, DateTime.Now.AddDays(-6), DateTime.Now, int.Parse(ViewState["count"].ToString()), 20);
     }
     protected void Btn_30Days_Click(object sender, EventArgs e)
     {
         string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(nick, DateTime.Now.AddDays(-29), DateTime.Now);
-        Bind(nick, DateTime.Now.AddDays(-29), DateTime.Now, int.Parse(ViewState["count"].ToString()), 10);
+        Bind(nick, DateTime.Now.AddDays(-29), DateTime.Now, int.Parse(ViewState["count"].ToString()), 20);
     }
 }

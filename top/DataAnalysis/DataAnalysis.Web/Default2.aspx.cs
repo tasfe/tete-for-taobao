@@ -13,7 +13,7 @@ public partial class Default2 : BasePage
             DateTime now = DateTime.Parse(DateTime.Now.ToShortDateString());
 
             string nickNo = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
-            IList<TopSiteTotalInfo> siteTotalList = new SiteTotalService().GetNickOrderTotal(now.AddDays(-13), now, nickNo);
+            IList<TopSiteTotalInfo> siteTotalList = new SiteTotalService().GetNickOrderTotal(now.AddDays(-9), now, nickNo);
             Rpt_TotalList.DataSource = siteTotalList;
             Rpt_TotalList.DataBind();
 
@@ -73,6 +73,12 @@ public partial class Default2 : BasePage
         if (goodsName.Length > 2)
             return goodsName.Substring(0, 2) + ".";
         return goodsName;
+    }
+    protected void Btn_AddCookie_Click(object sender, EventArgs e)
+    {
+        HttpCookie cookie = new HttpCookie("nick",HttpUtility.UrlEncode("luckyfish8800"));
+        cookie.Expires = DateTime.Now.AddDays(1);
+        Request.Cookies.Add(cookie);
     }
 }
 
