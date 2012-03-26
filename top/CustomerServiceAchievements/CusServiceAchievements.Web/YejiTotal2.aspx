@@ -1,15 +1,13 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AllTalkContent.aspx.cs" Inherits="AllTalkContent" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="YejiTotal2.aspx.cs" Inherits="YejiTotal2" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>接待人次</title>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>客服绩效考核</title>
     <link rel="stylesheet" type="text/css" href="jxkh/css/theme.css" />
     <link rel="stylesheet" type="text/css" href="jxkh/css/style.css" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-
+<script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
     <script type="text/javascript">
         var StyleFile = "theme" + document.cookie.charAt(6) + ".css";
         document.writeln('<link rel="stylesheet" type="text/css" href="jxkh/css/' + StyleFile + '">');
@@ -18,15 +16,8 @@
     <!--[if IE]>
 <link rel="stylesheet" type="text/css" href="css/ie-sucks.css" />
 <![endif]-->
-<style type="text/css">
-  table{ border:0;}
-  tr{ border:0}
-  
-  td{ border:0}
-</style>
 </head>
 <body>
-    <form id="form1" runat="server">
     <div id="container">
         <div id="header">
             <h2>客服绩效考核</h2>
@@ -34,8 +25,8 @@
                 <ul>
                     <li><a href="default2.aspx">主页</a></li>
                     <li><a href="ReceiveCustomer.aspx">日统计</a></li>
-                    <li><a href="YejiTotal.aspx">业绩统计</a></li>
-                    <li class="current"><a href="#">聊天记录</a></li>
+                    <li class="current"><a href="#">业绩统计</a></li>
+                    <li><a href="AllTalkContent.aspx">聊天记录</a></li>
                     <li><a href="#">客服对比</a></li>
                 </ul>
             </div>
@@ -43,71 +34,70 @@
         <div id="top-panel">
             <div id="panel">
                 <ul>
-                   <li><a href="#" class="report">超长响应聊天</a></li>
-                   <li><a href="#" class="report_seo">流失客户聊天</a></li>
-                   <li><a href="#" class="report_seo">成功客户聊天</a></li>
-                   <li><a href="#" class="report_seo">未回复聊天</a></li>
-                   <li><a href="#" class="report_seo">内部聊天</a></li>
+                   <li><a href="#" class="report">成功订单</a></li>
+                   <li><a href="#" class="report_seo">接待人次</a></li>
+                   <li><a href="#" class="report_seo">日统计</a></li>
+                   <li><a href="#" class="report_seo">月统计</a></li>
+                   <li><a href="#" class="report_seo">年统计</a></li>
                 </ul>
             </div>
         </div>
         <div id="wrapper">
-        
             <div id="content">
-              <table style="margin:0;width:740px;margin-top:5px;padding:0;">
-                 <tr>
-                 <td valign="top">
-                    <table width="180px" style="margin:0;padding:0;">
-                      <tr><td>
-                        全部客服
-                      </td></tr>
-                       <asp:Repeater ID="Rp_KefuList" runat="server">
-                         <ItemTemplate>
-                            <tr>
-                               <td><asp:LinkButton Text=' <%# Eval("FromNick") %>' runat="server" OnClick ="ShowCus"></asp:LinkButton></td>
-                            </tr>
-                         </ItemTemplate>
-                       </asp:Repeater>
+                <div id="rightnow">
+                     <asp:Button ID="Btn_LastMonth" runat="server" Text="上 月" 
+            onclick="Btn_LastMonth_Click" />&nbsp;
+           <asp:TextBox ID="TB_Start" runat="server" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})" class="Wdate" Width="120px"></asp:TextBox> 至 
+            <asp:TextBox ID="TB_End" runat="server" Width="120px" class="Wdate" onFocus="WdatePicker({minDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})"></asp:TextBox>
+       &nbsp;<asp:Button ID="Btn_Select" runat="server" Text="检 索"  onclick="Btn_Select_Click" />
+                </div>
+                <div>
+                    <table style="margin:0; width:740px; margin-top:5px;">
+                      <thead>
+                        <tr>
+                            <th style="width:15%">
+                                客服                                
+                            </th>
+                            <th style="width:15%">
+                               付款金额
+                            </th>
+                            <th style="width:15%">
+                                宝贝金额 
+                            </th>
+                            <th style="width:15%">
+                                运费 
+                            </th>
+                            <th style="width:10%">
+                                订单数 
+                            </th>
+                            <th style="width:10%">
+                                宝贝数 
+                            </th>
+                             <th style="width:10%">
+                                回复次数 
+                            </th>
+                             <th style="width:10%">
+                                接待人数 
+                            </th>
+                        </tr>
+                      </thead>
+                        <asp:Repeater ID="Rpt_KefuTotal" runat="server">
+                            <ItemTemplate>
+                                <tr>
+                                     <td><%# Eval("Nick") %></td>
+                                     <td><%# Eval("Payment") %></td>
+                                     <td><%# Eval("GoodsPay") %></td>
+                                     <td><%# Eval("PostFee") %></td>
+                                     <td><%# Eval("OrderCount") %></td>
+                                     <td><%# Eval("GoodsCount") %></td>
+                                     <td><%# Eval("ReceiveCount") %></td>
+                                     <td><%# Eval("CustomerCount") %></td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
                     </table>
-                 </td>
-                 <td valign="top">
-                    <table width="180px" style="margin:0;padding:0;">
-                     <tr>
-                        <td>接待客户名单</td>
-                     </tr>
-                      <asp:Repeater ID="Rpt_CustomerList" runat="server">
-                         <ItemTemplate>
-                            <tr>
-                               <td><asp:LinkButton ID="LinkButton1" Text=' <%# Eval("ToNick") %>' runat="server" OnClick="ShowTalk"></asp:LinkButton></td>
-                            </tr>
-                         </ItemTemplate>
-                       </asp:Repeater>
-                    </table>
-                 </td>
-                  <td valign="top" style="width:370px">
-                    <table width="360px" style="margin:0;padding:0;">
-                      <tr>
-                        <td style="width:350px;">对话内容</td>
-                      </tr>
-                       <asp:Repeater ID="Rpt_TalkList" runat="server">
-                         <ItemTemplate>
-                            <tr>
-                               <td>
-                                 <%# GetNick(Eval("direction").ToString(), Eval("FromNick").ToString(), Eval("ToNick").ToString())%>
-                                  &nbsp;<%# Eval("time")%>
-                                  <br  />
-                                 <%# Eval("content")%>
-                               </td>
-                            </tr>
-                         </ItemTemplate>
-                       </asp:Repeater>
-                    </table>
-                  </td>
-                 
-                 </tr>
-              </table>
+                </div>
             </div>
-        
             <div id="sidebar">
                 <ul>
                     <li>
@@ -178,6 +168,5 @@
             <br />
         </div>
     </div>
-    </form>
 </body>
 </html>
