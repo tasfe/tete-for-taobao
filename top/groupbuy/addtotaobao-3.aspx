@@ -50,16 +50,18 @@
     </ul>
   </div>
   <div id="main-content">
-  宝贝描述更新完成
+  宝贝描述更新完成&nbsp;&nbsp;&nbsp;&nbsp;   <a href=missionlist.aspx>返回列表</a>
         <table bgcolor="#dddddd" height=20 ALIGN=CENTER BORDER="0" WIDTH="500">
             <tr>
                 <td align=left >
                  <table  id=lpc bgcolor=#98CC00 height=20 width="100%">
                      <tr align=center><td ><span id=jd >100%</span></td></tr>
+                    
                  </table>
                 </td>
             </tr>
-     </table>
+     </table> <br />
+                     
 
   </div>
      <script type="text/javascript">
