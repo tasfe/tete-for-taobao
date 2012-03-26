@@ -31,6 +31,8 @@ public class SiteTotalService
             where sitenick=@sitenick
             ) a group by substring(SiteTotalDate,0,5)";
 
+    const string SQL_SELECT_ZHITONG = "SELECT SiteZhiTongTotal,SiteTotalDate FROM TopSiteTotal WHERE SiteTotalDate BETWEEN @start AND @end and SiteNick=@nick";
+
     public IList<TopSiteTotalInfo> GetNickOrderTotal(DateTime start,DateTime end, string nick)
     {
         IList<TopSiteTotalInfo> list = new List<TopSiteTotalInfo>();
@@ -156,6 +158,31 @@ public class SiteTotalService
             info.SiteBuyCustomTotal = dr["sSiteBuyCustomTotal"] == DBNull.Value ? 0 : int.Parse(dr["sSiteBuyCustomTotal"].ToString());
             list.Add(info);
         }
+        return list;
+    }
+
+    public List<TopSiteTotalInfo> GetZhiTongTotal(string start, string end, string nick)
+    {
+        List<TopSiteTotalInfo> list = new List<TopSiteTotalInfo>();
+
+        SqlParameter[] param = new[]
+            {
+                new SqlParameter("@start",start),
+                new SqlParameter("@end",end),
+                new SqlParameter("@nick",nick)
+            };
+
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_ZHITONG, param);
+
+        foreach (DataRow dr in dt.Rows)
+        {
+            TopSiteTotalInfo info = new TopSiteTotalInfo();
+            info.ZhiTongFlow = int.Parse(dr["SiteZhiTongTotal"].ToString());
+            info.SiteTotalDate = dr["SiteTotalDate"].ToString();
+
+            list.Add(info);
+        }
+
         return list;
     }
 
