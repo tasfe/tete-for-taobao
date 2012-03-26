@@ -32,7 +32,7 @@ public partial class GroupReceiveCustomer : System.Web.UI.Page
         SeriseText = "[{name:'接待人次', data:[";
         DateText = "[";
       
-        for (int h = 0; h <= list.Count; h++)
+        for (int h = 0; h < list.Count; h++)
         {
             DateText += "'" + list[h].Nick + "',";
 
