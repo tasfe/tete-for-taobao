@@ -74,7 +74,7 @@
                 设置团购名称：<input type="text" name="groupbuyname" id="groupbuyname" size="25" maxlength="30" /> 
 
                 <br />
-
+               
                 团购开始时间：<input type="text" name="starttime" id="starttime" size="13" value="" readonly="readonly" /> 
                 <select id="startSelect" name="startSelect" runat="server">
                     <option>00:00</option>
@@ -145,12 +145,13 @@
                 <font color='red'>团购价必须大于原价的7折并且小于原价.(淘宝营销平台对所有优惠做最低七折折扣限制)</font>
                  <table width="800px">
 	                <tr> 
-		                <td>商品图片</td>
-		                <td>名称</td>
+		                <td  width="90px">商品图片</td>
+		                <td  width="140px">名称</td>
+                        <td  width="200px">活动名称</td>
 		                <td  width="100px">售价</td>
                         <td  width="100px">团购价格</td>
-		                <td  width="100px">参团人数</td>
-		                <td  width="100px"> </td>
+		                <td  width="90px">参团人数</td>
+		                <td  width="80px"> </td>
 	                </tr>
                  </table>
                 </div>
@@ -161,10 +162,7 @@
             <br />
             <b style="font-size:20px">3、设置团购模板</b>
             <br />
-              限购 
-                <select name="xiangou">
-                     <OPTION selected  value=0>否</OPTION> <OPTION  value=1>是</OPTION>
-                </select>
+              
             <div id="area3"  style=" display:none;" >
                 选择模板：  
                
