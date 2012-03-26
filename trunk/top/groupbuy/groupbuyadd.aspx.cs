@@ -107,7 +107,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         }
 
         //插入数据库
-        string groupbuyname = utils.NewRequest("groupbuyname", utils.RequestType.Form).Replace("'", "''");
+        string groupbuyname = utils.NewRequest("groupbuylistname", utils.RequestType.Form).Replace("'", "''");
         string starttime = utils.NewRequest("starttime", utils.RequestType.Form) + " " + utils.NewRequest("startSelect", utils.RequestType.Form).Replace("'", "''") + ":00";
         string endtime = utils.NewRequest("endtime", utils.RequestType.Form) + " " + utils.NewRequest("endSelect", utils.RequestType.Form).Replace("'", "''") + ":00";
         string groupbuyprice = utils.NewRequest("price", utils.RequestType.Form);// price
@@ -118,12 +118,17 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         string isfromflash = utils.NewRequest("isfromflash", utils.RequestType.Form);
         string rcount = utils.NewRequest("rcount", utils.RequestType.Form);//rcount
         string template1 = utils.NewRequest("template", utils.RequestType.Form);//
-
+        string xiaogou = utils.NewRequest("xiangou", utils.RequestType.Form);//
+        Response.Write(groupbuyname);
+        Response.Write(xiaogou);
+        Response.End();
  
         string[] aryPrice = groupbuyprice.Split(',');
         string[] aryProductid = productid.Split(',');
         string[] aryZhekou = zhekou.Split(',');
         string[] aryRcount = rcount.Split(',');
+        string[] aryXiaogou = xiaogou.Split(',');
+        string[] aryGroupbuyname = groupbuyname.Split(',');
         string ismuch = "0";//不是多个商品模板
         string groupbuyGuid = "";
         if (template1.Trim() == "")
@@ -149,7 +154,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
 
         for (int p = 0; p < aryPrice.Length; p++)
         {
-
+            groupbuyname = aryGroupbuyname[p].ToString();
             Thread.Sleep(1000);//一秒一次， 太快 淘宝有限制  
             //通过借口获取淘宝相关数据
             TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12287381", "d3486dac8198ef01000e7bd4504601a4");
@@ -202,7 +207,8 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
             param.Add("start_date", starttime);
             param.Add("end_date", endtime);
             param.Add("promotion_title", "团购打折");
-
+            param.Add("discount_Type", aryXiaogou[p].ToString());
+             
 
             param.Add("tag_id", tagid);
             string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.add", session, param);
