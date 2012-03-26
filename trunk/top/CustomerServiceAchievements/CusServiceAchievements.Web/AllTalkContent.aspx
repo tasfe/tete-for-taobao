@@ -84,8 +84,12 @@
                        <asp:Repeater ID="Rpt_TalkList" runat="server">
                          <ItemTemplate>
                             <tr>
-                               <td><%# Eval("content")%>
-                               &nbsp;<%# Eval("time")%></td>
+                               <td>
+                                 <%# GetNick(Eval("direction").ToString(), Eval("FromNick").ToString(), Eval("ToNick").ToString())%>> 
+                                  &nbsp;<%# Eval("time")%>
+                                  <br />
+                                 <%# Eval("content")%>
+                               </td>
                             </tr>
                          </ItemTemplate>
                        </asp:Repeater>

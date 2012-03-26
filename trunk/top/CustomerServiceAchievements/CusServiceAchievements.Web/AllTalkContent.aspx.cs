@@ -81,4 +81,11 @@ public partial class AllTalkContent : System.Web.UI.Page
         Rpt_TalkList.DataBind();
     }
 
+    protected string GetNick(string dire, string fnic, string tnick)
+    {
+        if (dire == "1")
+            return tnick;
+        return fnic;
+    }
+
 }
