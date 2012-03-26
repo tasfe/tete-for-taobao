@@ -211,7 +211,7 @@
         if (isNaN(obj.value)) {
             alert('请输入正确的折扣');
             obj.focus();
-
+            return;
         }
         else if (obj.value < 7 || obj.value >= 10) {
             alert('折扣只能设置7到10折');
@@ -238,15 +238,18 @@
         if (isNaN(obj.value)) {
             alert('请输入正确的折扣价');
             obj.focus();
+            return;
         }
         else if (obj.value >= price) {
             alert('折扣价不能大于商品售价');
             obj.focus();
+            return;
         }
         else if (obj.value <= 0) {
             alert('折扣价不能小于等于零');
 
             obj.focus();
+            return;
         }
         else {
             var zekprice = obj.value / price * 10; //折扣价
