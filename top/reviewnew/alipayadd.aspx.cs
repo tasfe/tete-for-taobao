@@ -129,7 +129,7 @@ public partial class top_reviewnew_alipayadd : System.Web.UI.Page
             return;
         }
 
-        string sql = "INSERT INTO TCS_Alipay (guid, nick, name, count, num, enddate, per) VALUES ('" + guid + "','" + nick + "','" + utils.NewRequest("name", utils.RequestType.Form) + "','" + (arr.Length -2).ToString() + "','" + utils.NewRequest("num", utils.RequestType.Form) + "','" + DateTime.Now.AddDays(int.Parse(utils.NewRequest("end_time", utils.RequestType.Form))) + "','" + utils.NewRequest("per", utils.RequestType.Form) + "')";
+        string sql = "INSERT INTO TCS_Alipay (guid, nick, name, count, num, enddate, per) VALUES ('" + guid + "','" + nick + "','" + utils.NewRequest("name", utils.RequestType.Form) + "','" + (arr.Length -1).ToString() + "','" + utils.NewRequest("num", utils.RequestType.Form) + "','" + DateTime.Now.AddDays(int.Parse(utils.NewRequest("end_time", utils.RequestType.Form))) + "','" + utils.NewRequest("per", utils.RequestType.Form) + "')";
         utils.ExecuteNonQuery(sql);
 
         for (int i = 1; i < arr.Length; i++)
