@@ -87,7 +87,7 @@
                                <td>
                                  <%# GetNick(Eval("direction").ToString(), Eval("FromNick").ToString(), Eval("ToNick").ToString())%>
                                   &nbsp;<%# Eval("time")%>
-                                  <br />
+                                  <br  />
                                  <%# Eval("content")%>
                                </td>
                             </tr>
