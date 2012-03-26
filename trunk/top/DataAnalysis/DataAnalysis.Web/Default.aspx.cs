@@ -153,7 +153,7 @@ public partial class _Default : BasePage
             return "<font color='green'>↑" + linfo.SiteOrderCount * 100 + "%</font>";
         }
 
-        decimal pay = linfo.SiteOrderCount / llinfo.SiteOrderCount;
+        decimal pay = (decimal)linfo.SiteOrderCount / llinfo.SiteOrderCount;
         if (pay > 1)
             return "<font color='green'>↑" + Math.Round((pay - 1) * 100, 2).ToString() + "%</font>";
 
@@ -172,7 +172,7 @@ public partial class _Default : BasePage
             return "<font color='green'>↑" + linfo.SiteSecondBuy * 100 + "%</font>";
         }
 
-        decimal pay = linfo.SiteSecondBuy / llinfo.SiteSecondBuy;
+        decimal pay = (decimal)linfo.SiteSecondBuy / llinfo.SiteSecondBuy;
         if (pay > 1)
             return "<font color='green'>↑" + Math.Round((pay - 1) * 100, 2).ToString() + "%</font>";
 
