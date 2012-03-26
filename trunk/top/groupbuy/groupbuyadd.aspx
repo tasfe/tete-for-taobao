@@ -264,7 +264,9 @@
                 if (strResult != null) {
                     if (strResult != "") {
                         document.getElementById("productArea").innerHTML = document.getElementById("productArea").innerHTML + strResult;
-                        alert(document.getElementsByName("groupbuylistname").length);
+                        for (var k = 0; k < document.getElementsByName("groupbuylistname").length; k++) {
+                            document.getElementsByName("groupbuylistname").item(k).value = document.getElementById("groupbuyname").value;
+                        }
                     }
                 }
             }
@@ -275,7 +277,9 @@
             if (GetValue != null) {
                 if (GetValue != "") {
                     document.getElementById("productArea").innerHTML = document.getElementById("productArea").innerHTML + GetValue;
-                    alert(document.getElementsByName("groupbuylistname").length);
+                    for (var k = 0; k < document.getElementsByName("groupbuylistname").length; k++) {
+                        document.getElementsByName("groupbuylistname").item(k).value = document.getElementById("groupbuyname").value;
+                    }
                 }
             }
         }
