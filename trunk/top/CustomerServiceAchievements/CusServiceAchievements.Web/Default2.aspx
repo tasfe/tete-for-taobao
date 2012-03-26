@@ -25,7 +25,7 @@
                 <ul>
                     <li class="current"><a href="default2.aspx">主页</a></li>
                     <li><a href="ReceiveCustomer.aspx">日统计</a></li>
-                    <li><a href="YejiTotal.aspx">业绩统计</a></li>
+                    <li><a href="YejiTotal2.aspx">业绩统计</a></li>
                     <li><a href="AllTalkContent.aspx">聊天记录</a></li>
                     <li><a href="#">客服对比</a></li>
                 </ul>
