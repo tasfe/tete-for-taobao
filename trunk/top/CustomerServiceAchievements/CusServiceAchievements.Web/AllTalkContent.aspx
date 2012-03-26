@@ -79,13 +79,13 @@
                   <td valign="top">
                     <table>
                       <tr>
-                        <td colspan="2">对话内容</td>
+                        <td>对话内容</td>
                       </tr>
                        <asp:Repeater ID="Rpt_TalkList" runat="server">
                          <ItemTemplate>
                             <tr>
-                               <td><%# Eval("content")%></td>
-                               <td><%# Eval("time")%></td>
+                               <td><%# Eval("content")%>
+                               &nbsp;<%# Eval("time")%></td>
                             </tr>
                          </ItemTemplate>
                        </asp:Repeater>
