@@ -97,7 +97,7 @@
           <tr>
             <td><div class="item_list item_list_left_bottom">
                 <div class="title_contents">
-                  <h4 style="padding-left: 0px"><img src="images/icon_5.gif" width="32" height="32"
+                  <h4 style="padding-left: 0px"><img src="images/icon_7.gif" width="32" height="32"
 													style="vertical-align: middle; margin-right: 0px" /><a href="html.aspx">一键同步到店铺</a></h4>
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
                   <p>将您的优惠活动一键同步到店铺左侧分类或者宝贝描述里，让更多客户知道您的好评活动</p>
@@ -107,7 +107,7 @@
               </div></td>
             <td><div class="item_list item_list_right_bottom">
                 <div class="title_contents">
-                  <h4 style="padding-left: 0px"><img src="images/icon_6.gif" width="32" height="32"
+                  <h4 style="padding-left: 0px"><img src="images/icon_8.gif" width="32" height="32"
 													style="vertical-align: middle; margin-right: 0px" /><a href="#">客户关系管理</a></h4>
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
                   <p> 管理您的客户，批量赠送优惠券，一键导出客户信息全部搞定</p>
