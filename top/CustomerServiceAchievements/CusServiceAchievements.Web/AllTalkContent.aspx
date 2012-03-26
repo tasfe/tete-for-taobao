@@ -18,6 +18,12 @@
     <!--[if IE]>
 <link rel="stylesheet" type="text/css" href="css/ie-sucks.css" />
 <![endif]-->
+<style type="text/css">
+  table{ border:0;}
+  tr{ border:0}
+  
+  td{ border:0}
+</style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -46,10 +52,10 @@
         <div id="wrapper">
         
             <div id="content">
-              <table style="margin:0; width:740px; margin-top:5px; padding:0;border:0">
+              <table style="margin:0;width:740px;margin-top:5px;padding:0;">
                  <tr>
                  <td valign="top">
-                    <table width="180px" style="margin:0;padding:0; border:0">
+                    <table width="180px" style="margin:0;padding:0;">
                       <tr><td>
                         全部客服
                       </td></tr>
@@ -63,7 +69,7 @@
                     </table>
                  </td>
                  <td valign="top">
-                    <table width="180px" style="margin:0;padding:0; border:0">
+                    <table width="180px" style="margin:0;padding:0;">
                      <tr>
                         <td>接待客户名单</td>
                      </tr>
@@ -76,15 +82,15 @@
                        </asp:Repeater>
                     </table>
                  </td>
-                  <td valign="top" style="border:0;width:370px">
-                    <table width="360px" style="margin:0;padding:0;border:0">
+                  <td valign="top" style="width:370px">
+                    <table width="360px" style="margin:0;padding:0;">
                       <tr>
-                        <td style="width:350px;border:0">对话内容</td>
+                        <td style="width:350px;">对话内容</td>
                       </tr>
                        <asp:Repeater ID="Rpt_TalkList" runat="server">
                          <ItemTemplate>
                             <tr>
-                               <td style="border:0">
+                               <td>
                                  <%# GetNick(Eval("direction").ToString(), Eval("FromNick").ToString(), Eval("ToNick").ToString())%>
                                   &nbsp;<%# Eval("time")%>
                                   <br  />
