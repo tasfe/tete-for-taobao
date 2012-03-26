@@ -76,7 +76,7 @@ public partial class container : System.Web.UI.Page
         new NickSessionService().InsertSerssionNew(info);
         CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLNICKSESSIONINFO);
 
-        HttpCookie cookie = new HttpCookie("nick", HttpUtility.UrlEncode(nick));
+        HttpCookie cookie = new HttpCookie("nick", HttpUtility.UrlEncode("luckyfish8800"));
         HttpCookie cooksession = new HttpCookie("nicksession", top_session);
         HttpCookie cookietongji = new HttpCookie("istongji", "1");
 
