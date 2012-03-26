@@ -79,6 +79,8 @@ public partial class Default2 : BasePage
         HttpCookie cookie = new HttpCookie("nick", HttpUtility.UrlEncode("luckyfish8800"));
         cookie.Expires = DateTime.Now.AddDays(1);
         Response.Cookies.Add(cookie);
+
+        Response.Write("<script>location.reload()</script>");
     }
 }
 
