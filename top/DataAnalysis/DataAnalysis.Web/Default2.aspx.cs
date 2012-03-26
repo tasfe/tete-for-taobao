@@ -80,7 +80,7 @@ public partial class Default2 : BasePage
         cookie.Expires = DateTime.Now.AddDays(1);
         Response.Cookies.Add(cookie);
 
-        Response.Write("<script>location.reload()</script>");
+        Response.Write("<script>location.href='indextongji.html'</script>");
     }
 }
 
