@@ -27,7 +27,7 @@ public partial class AskOrderTotal : BasePage
         }
 
         string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
-        IList<TopKefuTotalInfo> list = new TopKefuTotalService().GetTotalinfoList(start, end, nick);
+        IList<TopKefuTotalInfo> list = new TopKefuTotalService().GetKefuTotalDay(start, end, nick);
         SeriseText = "[{name:'询单数', data:[";
         string sucss = ",{name:'成功下单数', data:[";
 
@@ -44,8 +44,8 @@ public partial class AskOrderTotal : BasePage
             }
             else
             {
-                SeriseText += mylist[0].CustomerCount + ",";
-                sucss += mylist[0].OrderCount + ",";
+                SeriseText += mylist.Sum(o => o.CustomerCount) + ",";
+                sucss += mylist.Sum(o => o.OrderCount) + ",";
             }
         }
 
