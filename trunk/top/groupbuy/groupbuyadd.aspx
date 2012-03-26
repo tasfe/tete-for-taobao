@@ -161,9 +161,13 @@
             <br />
             <b style="font-size:20px">3、设置团购模板</b>
             <br />
-             
+              限购 
+                <select name="xiangou">
+                     <OPTION selected  value=0>否</OPTION> <OPTION  value=1>是</OPTION>
+                </select>
             <div id="area3"  style=" display:none;" >
-                选择模板：
+                选择模板：  
+               
                 <div>
                      <span onclick="selectRd('templateID1')"   onMouseOver="toolTip('<img width=400px  src=images/groupbuy1.jpg>')" onMouseOut="toolTip()" > <input type='radio' name='templateID' id="templateID1" checked="checked" value='1' />
                      默认模板
@@ -198,6 +202,59 @@
 </form>
 
 <script language="javascript" type="text/javascript">
+    //设置折扣价
+    function setprice(obj) {
+        var str = obj.id.replace("zhekou1", "");
+        var zek = str;
+        str = "price" + str;
+        var price = document.getElementById(str).value; //商品价格
+        if (isNaN(obj.value)) {
+            alert('请输入正确的折扣');
+            obj.focus();
+
+        }
+        else if (obj.value >= 7 && obj.value < 10) {
+            alert('折扣只能设置7到10折');
+            obj.focus();
+            return;
+        }
+        else {
+            var zekprice = obj.value * price * 0.1; //折扣价
+            document.getElementById("zhekou" + zek).value = formatFloat(zekprice, 2);
+        }
+    }
+
+    //保留两位小数
+    function formatFloat(src, pos) {
+        return Math.round(src * Math.pow(10, pos)) / Math.pow(10, pos);
+    }
+
+    //设置折扣
+    function setzekou(obj) {
+        var str = obj.id.replace("zhekou", "");
+        var zek = str;
+        str = "price" + str;
+        var price = document.getElementById(str).value; //商品价格
+        if (isNaN(obj.value)) {
+            alert('请输入正确的折扣价');
+            obj.focus();
+        }
+        else if (obj.value >= price) {
+            alert('折扣价不能大于商品售价');
+            obj.focus();
+        }
+        else if (obj.value <= 0) {
+            alert('折扣价不能小于等于零');
+
+            obj.focus();
+        }
+        else {
+            var zekprice = obj.value / price * 10; //折扣价
+            document.getElementById("zhekou1" + zek).value = formatFloat(zekprice, 2);
+        }
+    }
+
+
     function OpenDialogLable(url, w, h, editTxt) {
         if (typeof (editTxt) == "undefined") {
             editTxt = "";
