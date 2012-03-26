@@ -250,7 +250,13 @@
         }
         else {
             var zekprice = obj.value / price * 10; //折扣价
-            document.getElementById("zhekou1" + zek).value = formatFloat(zekprice, 2);
+            var ze = formatFloat(zekprice, 2);
+            if (ze < 7 || ze >= 10) {
+                alert('折扣只能设置7到10折');
+                //obj.value = 10;
+                //obj.focus();
+            }
+            document.getElementById("zhekou1" + zek).value = ze;
         }
     }
 
