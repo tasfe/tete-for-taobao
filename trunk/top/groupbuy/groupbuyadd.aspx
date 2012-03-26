@@ -213,7 +213,7 @@
             obj.focus();
 
         }
-        else if (obj.value >= 7 && obj.value < 10) {
+        else if (obj.value < 7 || obj.value >= 10) {
             alert('折扣只能设置7到10折');
             obj.focus();
             return;
