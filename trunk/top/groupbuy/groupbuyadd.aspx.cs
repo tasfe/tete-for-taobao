@@ -36,7 +36,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
 
         string sql = "select enddate from TopTaobaoShop where nick='" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
-        Response.Write(sql);
+ 
         if (dt != null && dt.Rows.Count > 0)
         {
             shopgroupbuyEnddate.Value = dt.Rows[0]["enddate"].ToString();
