@@ -208,7 +208,7 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                         </div>
                         <div style="height:60px">
                           <a href='TopGoods.aspx?day=<%# Eval("SiteTotalDate") %>' class="numalink">
-                           <img src='<%# Eval("SeeTop.pic_url")%>_60x60.jpg' alt='<%# Eval("SeeTop.title")%>' height="50px" />
+                           <img style="border:0" src='<%# Eval("SeeTop.pic_url")%>_60x60.jpg' alt='<%# Eval("SeeTop.title")%>' height="50px" />
                           </a>
                         </div>
                         <div style="height:60px">
