@@ -95,10 +95,10 @@ public class NickSessionService
     {
         SqlParameter[] param = Getparameter(sessionInfo);
 
-        string sql = SQL_UPDATE;
+        string sql = SQL_UPDATE + ",ShopId='" + sessionInfo.ShopId + "'";
         if (sessionInfo.LastGetOrderTime != DateTime.MinValue)
             sql += ",LastGetOrderTime='" + sessionInfo.LastGetOrderTime + "'";
-        sql += " WHERE nick=@nick";
+        sql += " WHERE nick=@nick AND ServiceId=" + (int)sessionInfo.ServiceId;
 
         return DBHelper.ExecuteNonQuery(sql, param);
     }
