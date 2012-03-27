@@ -115,15 +115,25 @@ public class TaoBaoAPI
         List<TopNickSessionInfo> nicks = CacheCollection.GetNickSessionList().Where(o => o.Nick == nick).ToList();
         if (nicks.Count > 0)
         {
-            if (nicks[0].ServiceId == Enum.TopTaoBaoService.YingXiaoJueCe)
+            //订购多个服务
+            foreach (TopNickSessionInfo ninfo in nicks)
             {
-                param.Add("app_key", newAppkey);
-                param.Add("sign", CreateSign(param, newAppSecret));
-            }
-            else
-            {
-                param.Add("app_key", appkey);
-                param.Add("sign", CreateSign(param, appSecret));
+                //访问的当前服务
+                if (ninfo.Session == session)
+                {
+                    //根据具体调用哪个服务,插入该服务appkey
+                    if (ninfo.ServiceId == Enum.TopTaoBaoService.YingXiaoJueCe)
+                    {
+                        param.Add("app_key", newAppkey);
+                        param.Add("sign", CreateSign(param, newAppSecret));
+                    }
+                    if (ninfo.ServiceId == Enum.TopTaoBaoService.Temporary)
+                    {
+                        param.Add("app_key", appkey);
+                        param.Add("sign", CreateSign(param, appSecret));
+                    }
+                    break; //服务不同,session不可能相同
+                }
             }
         }
         #endregion
