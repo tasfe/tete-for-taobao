@@ -97,7 +97,7 @@
         </div>
         
         <div>
-          <table width="500px" border="1px">
+          <table width="500px" border="1px" cellpadding="0" cellspacing="0">
            <tr><td align="center" style="width:300px">日期</td><td align="center">转化率</td></tr>
            <asp:Repeater ID="Rpt_Zhuan" runat="server">
               <ItemTemplate>
