@@ -231,7 +231,7 @@ public class SiteTotalService
         foreach (DataRow dr in dt.Rows)
         {
             TopSiteTotalInfo info = new TopSiteTotalInfo();
-            info.SiteZuanZhan = int.Parse(dr["SiteGoodsCount"].ToString());
+            info.GoodsCount = int.Parse(dr["SiteGoodsCount"].ToString());
             info.SiteOrderPay = decimal.Parse(dr["SiteOrderPay"].ToString());
             info.SiteTotalDate = dr["SiteTotalDate"].ToString();
 
