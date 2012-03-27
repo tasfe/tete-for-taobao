@@ -53,7 +53,7 @@ public partial class ZhuanHuaTotal : System.Web.UI.Page
             {
                 SeriseText += mylist.Sum(o => o.SiteBuyCustomTotal) + ",";
                 sucss += mylist.Sum(o => o.SiteUVCount) + ",";
-                onesell += Math.Round((decimal)mylist.Sum(o => o.SiteBuyCustomTotal) / mylist.Sum(o => o.SiteUVCount), 2).ToString() + ",";
+                onesell += Math.Round(((decimal)mylist.Sum(o => o.SiteBuyCustomTotal) / mylist.Sum(o => o.SiteUVCount)) * 100, 2).ToString() + "%,";
             }
         }
 
