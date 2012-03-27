@@ -49,7 +49,9 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                 <div>
                 </div>
                 <div>
-                    PV
+                    <a href="VisitTotal.aspx" class="tooltips">PV
+                     <span>店铺浏览页面量</span>
+                     </a>
                 </div>
                 <div>
                     UV
@@ -64,7 +66,7 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                     询单数
                 </div>
                 <div>
-                     <a href="AskOrderTotal.aspx" class="tooltips"> 丢单率
+                     <a href="AskOrderTotal.aspx" class="tooltips">丢单率
                      <span>丢单率等于询问客服人中成功下订单的人数除以询问客服的总人数</span>
                      </a>
                 </div>
