@@ -95,6 +95,24 @@
      </div>  
         <div id="container" style="width: 750px; height: 400px; margin: 0 auto">
         </div>
+        
+        <div>
+          <table>
+           <tr><td>日期</td><td>转化率</td></tr>
+           <asp:Repeater ID="Rpt_Zhuan" runat="server">
+              <ItemTemplate>
+                 <tr>
+                    <td>
+                        <%# GetDate(Eval("SiteTotalDate").ToString()) %>
+                    </td>
+                    <td>
+                        <%# GetZhuan(Eval("SiteBuyCustomTotal").ToString(),Eval("SiteUVCount").ToString()) %>
+                    </td>
+                 </tr>
+              </ItemTemplate>
+           </asp:Repeater>
+           </table>
+        </div>
     </div>
 
     </div>

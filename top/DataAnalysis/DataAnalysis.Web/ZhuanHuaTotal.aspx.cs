@@ -36,7 +36,7 @@ public partial class ZhuanHuaTotal : System.Web.UI.Page
         SeriseText = "[{name:'下单人数', data:[";
         string sucss = ",{name:'访客数', data:[";
         //string onesell = ",{name:'转化率',data:[";
-
+        
         DateText = "[";
 
         for (DateTime i = start; i <= end; i = i.AddDays(1))
@@ -66,6 +66,8 @@ public partial class ZhuanHuaTotal : System.Web.UI.Page
         DateText += "]";
         TB_Start.Text = start.ToString("yyyy-MM-dd");
         TB_End.Text = end.ToString("yyyy-MM-dd");
+        Rpt_Zhuan.DataSource = list;
+        Rpt_Zhuan.DataBind();
     }
 
     protected string DateText
@@ -108,5 +110,16 @@ public partial class ZhuanHuaTotal : System.Web.UI.Page
         {
         }
         ShowChart(start, endtime);
+    }
+
+    protected string GetDate(string date)
+    {
+        return date.Substring(0, 4) + "-" + date.Substring(4, 2) + "-" + date.Substring(6);
+    }
+
+    protected string GetZhuan(string buycount, string seecount)
+    {
+        if (seecount == "0") return "0";
+        return Math.Round((decimal.Parse(buycount) / int.Parse(seecount)) * 100, 2).ToString() + "%";
     }
 }
