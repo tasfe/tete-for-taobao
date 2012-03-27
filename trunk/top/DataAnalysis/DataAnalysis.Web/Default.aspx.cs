@@ -38,7 +38,7 @@ public partial class _Default : BasePage
 
                 if (pids != "")
                 {
-                    List<GoodsInfo> goodsinfoList = TaoBaoAPI.GetGoodsInfoList(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), pids.Substring(0, pids.Length - 1));
+                    List<GoodsInfo> goodsinfoList = TaoBaoAPI.GetGoodsInfoList(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), Request.Cookies["nicksession"].Value, pids.Substring(0, pids.Length - 1));
 
                     if (Cache["taobaogoodslist"] == null)
                         Cache.Insert("taobaogoodslist", goodsinfoList, null, DateTime.Now.AddHours(12), System.Web.Caching.Cache.NoSlidingExpiration);

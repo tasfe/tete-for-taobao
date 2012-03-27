@@ -71,20 +71,27 @@ public partial class container : System.Web.UI.Page
         DateTime now = DateTime.Now;
         info.JoinDate = now;
         info.LastGetOrderTime = now;
-        info.ShopId = TaoBaoAPI.GetShopInfo(nick, top_session);
+        info.ShopId = "";//先赋空值
         info.ServiceId = Enum.TopTaoBaoService.YingXiaoJueCe;
         //有则不添加
         if (CacheCollection.GetNickSessionList().Where(o => o.Nick == nick && o.ServiceId == Enum.TopTaoBaoService.YingXiaoJueCe).ToList().Count == 0)
         {
+            //先添加后删除缓存
             new NickSessionService().InsertSerssionNew(info);
             CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLNICKSESSIONINFO);
         }
         else
         {
-            //更新session
+            //新session赋值
             CacheCollection.GetNickSessionList().Where(o => o.Nick == nick && o.ServiceId == Enum.TopTaoBaoService.YingXiaoJueCe).ToList()[0].Session = top_session;
-            new NickSessionService().UpdateSession(info);
         }
+        //修改缓存后读取店铺信息
+        info.ShopId = TaoBaoAPI.GetShopInfo(nick, top_session);
+        //更新店铺信息
+        new NickSessionService().UpdateSession(info);
+        //更新缓存
+        CacheCollection.GetNickSessionList().Where(o => o.Nick == nick && o.ServiceId == Enum.TopTaoBaoService.YingXiaoJueCe).ToList()[0].ShopId = info.ShopId;
+
         HttpCookie cookie = new HttpCookie("nick", HttpUtility.UrlEncode(nick));
         HttpCookie cooksession = new HttpCookie("nicksession", top_session);
         HttpCookie cookietongji = new HttpCookie("istongji", "1");

@@ -23,21 +23,21 @@ public class getnick : IHttpHandler {
 
 
         //nick == "上宫庄健客专卖店"免费测试
-        if (CacheCollection.GetNickSessionList().Where(o => o.Nick == nick).ToList().Count > 0)
-        {
-            //正式可不用
-            HttpCookie cookietongji = new HttpCookie("istongji", "1");
-            cookietongji.Expires = DateTime.Now.AddDays(1);
-            context.Response.Cookies.Add(cookietongji);
-        }
-        context.Response.Cookies.Add(cookie);
-        context.Response.Cookies.Add(cooksession);
+        //if (CacheCollection.GetNickSessionList().Where(o => o.Nick == nick).ToList().Count > 0)
+        //{
+        //    //正式可不用
+        //    HttpCookie cookietongji = new HttpCookie("istongji", "1");
+        //    cookietongji.Expires = DateTime.Now.AddDays(1);
+        //    context.Response.Cookies.Add(cookietongji);
+        //}
+        //context.Response.Cookies.Add(cookie);
+        //context.Response.Cookies.Add(cooksession);
         if (!string.IsNullOrEmpty(context.Request.QueryString["istongji"]))
         {
             HttpCookie cookietongji = new HttpCookie("istongji", "1");
             cookietongji.Expires = DateTime.Now.AddDays(1);
             context.Response.Cookies.Add(cookietongji);
-            IList<TopNickSessionInfo> list = CacheCollection.GetNickSessionList().Where(o => o.Nick == nick).ToList();
+            IList<TopNickSessionInfo> list = CacheCollection.GetNickSessionList().Where(o => o.Nick == nick && o.ServiceId == Enum.TopTaoBaoService.Temporary).ToList();
             DateTime now = DateTime.Now;
             if (list.Count == 0)
             {
@@ -48,9 +48,14 @@ public class getnick : IHttpHandler {
                 info.JoinDate = now;
                 info.LastGetOrderTime = now;
                 info.ServiceId = Enum.TopTaoBaoService.Temporary;
-                info.ShopId = TaoBaoAPI.GetShopInfo(nick, session);
+                info.ShopId = "";
                 new NickSessionService().InsertSerssionNew(info);
                 CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLNICKSESSIONINFO);
+                info.ShopId = TaoBaoAPI.GetShopInfo(nick, session);
+                //更新店铺信息
+                new NickSessionService().UpdateSession(info);
+                //更新缓存
+                CacheCollection.GetNickSessionList().Where(o => o.Nick == nick && o.ServiceId == Enum.TopTaoBaoService.Temporary).ToList()[0].ShopId = info.ShopId;
 
                 DataHelper.InsertGoodsOrder(DateTime.Parse(now.AddDays(-7).ToShortDateString()), now, session, nick);
                 //添加统计数据
@@ -72,7 +77,11 @@ public class getnick : IHttpHandler {
                     list[0].NickState = true;
                     list[0].JoinDate = now;
                     list[0].LastGetOrderTime = now;
+                    list[0].Session = session; //主要是更新session
                     new NickSessionService().UpdateSession(list[0]);
+
+                    //更新缓存
+                    CacheCollection.GetNickSessionList().Where(o => o.Nick == nick && o.ServiceId == Enum.TopTaoBaoService.Temporary).ToList()[0].Session = session;
 
                     //二次订购
                     DataHelper.InsertGoodsOrder(start, now, session, nick);
