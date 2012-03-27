@@ -97,15 +97,15 @@
         </div>
         
         <div>
-          <table>
-           <tr><td>日期</td><td>转化率</td></tr>
+          <table width="500px" border="1px">
+           <tr><td align="center" style="width:300px">日期</td><td align="center">转化率</td></tr>
            <asp:Repeater ID="Rpt_Zhuan" runat="server">
               <ItemTemplate>
                  <tr>
-                    <td>
+                    <td align="center">
                         <%# GetDate(Eval("SiteTotalDate").ToString()) %>
                     </td>
-                    <td>
+                    <td align="center">
                         <%# GetZhuan(Eval("SiteBuyCustomTotal").ToString(),Eval("SiteUVCount").ToString()) %>
                     </td>
                  </tr>
