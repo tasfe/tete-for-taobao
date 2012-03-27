@@ -64,7 +64,7 @@ public class getnick : IHttpHandler {
                 {
                     DataHelper.UpdateSiteTotal(nick, i, taoDal);
                 }
-                
+
             }
             else
             {
@@ -95,6 +95,14 @@ public class getnick : IHttpHandler {
                 }
             }
         }
+        else
+        {
+            //注销
+            HttpCookie cookietongji = new HttpCookie("istongji", "1");
+            cookietongji.Expires = DateTime.Now.AddDays(-1);
+            context.Response.Cookies.Add(cookietongji);
+        }
+            
 
         //context.Response.ContentType = "text/plain";
         //context.Response.Write("Hello World");
