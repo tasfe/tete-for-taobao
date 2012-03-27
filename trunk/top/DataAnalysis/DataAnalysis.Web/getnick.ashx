@@ -17,10 +17,10 @@ public class getnick : IHttpHandler {
         string session = context.Request.QueryString["session"];
         HttpCookie cookie = new HttpCookie("nick", HttpUtility.UrlEncode(nick));
         HttpCookie cooksession = new HttpCookie("nicksession", session);
-        cookie.Expires = DateTime.Now.AddDays(15);
-        cooksession.Expires = DateTime.Now.AddDays(15);
+        cookie.Expires = DateTime.Now.AddDays(1);
+        cooksession.Expires = DateTime.Now.AddDays(1);
         //cookie.Domain = ".test.7fshop.com";
-
+        
 
         //nick == "上宫庄健客专卖店"免费测试
         //if (CacheCollection.GetNickSessionList().Where(o => o.Nick == nick).ToList().Count > 0)
@@ -30,8 +30,8 @@ public class getnick : IHttpHandler {
         //    cookietongji.Expires = DateTime.Now.AddDays(1);
         //    context.Response.Cookies.Add(cookietongji);
         //}
-        //context.Response.Cookies.Add(cookie);
-        //context.Response.Cookies.Add(cooksession);
+        context.Response.Cookies.Add(cookie);
+        context.Response.Cookies.Add(cooksession);
         if (!string.IsNullOrEmpty(context.Request.QueryString["istongji"]))
         {
             HttpCookie cookietongji = new HttpCookie("istongji", "1");
