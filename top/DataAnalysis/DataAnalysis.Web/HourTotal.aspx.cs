@@ -34,7 +34,7 @@ public partial class HourPVTotal : BasePage
                     date = date.Substring(0, 4) + "-" + date.Substring(4, 2) + "-" + date.Substring(6);
                     now = DateTime.Parse(date);
                 }
-                ShowChart(DateTime.Now);
+                ShowChart(now);
             }
         }
     }
