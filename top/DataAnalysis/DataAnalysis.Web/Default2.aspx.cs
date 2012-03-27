@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Web;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class Default2 : BasePage
 {
@@ -78,7 +79,12 @@ public partial class Default2 : BasePage
     {
         HttpCookie cookie = new HttpCookie("nick", HttpUtility.UrlEncode("luckyfish8800"));
         cookie.Expires = DateTime.Now.AddDays(1);
+
+        HttpCookie session = new HttpCookie("nicksession", CacheCollection.GetNickSessionList().Where(o => o.Nick == "luckyfish8800").ToList()[0].Session);
+        session.Expires = DateTime.Now.AddDays(1);
+
         Response.Cookies.Add(cookie);
+        Response.Cookies.Add(session);
 
         Response.Write("<script>location.href='Default2.aspx'</script>");
     }
