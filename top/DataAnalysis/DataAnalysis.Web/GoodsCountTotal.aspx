@@ -19,7 +19,7 @@
 
      <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="javascript:;" class="nolink">营销决策</a> 询单数 </div>
+  <div class="crumbs"><a href="javascript:;" class="nolink">营销决策</a> 销售单价查看 </div>
   <div class="absright">
     <ul>
       <li>
