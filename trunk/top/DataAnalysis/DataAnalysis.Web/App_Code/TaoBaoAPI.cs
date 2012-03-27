@@ -172,12 +172,12 @@ public class TaoBaoAPI
     /// </summary>
     /// <param name="pid">淘宝商品ID</param>
     /// <returns></returns>
-    public static GoodsInfo GetGoodsInfo(string pid, string nick)
+    public static GoodsInfo GetGoodsInfo(string pid, string nick, string session)
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("num_iid", pid);
         dic.Add("fields", "num_iid,title,nick,price,pic_url");
-        string text = Post(nick, "taobao.item.get", "", dic, DataFormatType.json);
+        string text = Post(nick, "taobao.item.get", session, dic, DataFormatType.json);
         GoodsInfo info = new GoodsInfo();
         if (!string.IsNullOrEmpty(text))
         {
@@ -201,12 +201,12 @@ public class TaoBaoAPI
         return info;
     }
 
-    public static List<GoodsInfo> GetGoodsInfoList(string nick, string pids)
+    public static List<GoodsInfo> GetGoodsInfoList(string nick, string session, string pids)
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
         dic.Add("num_iids", pids);
         dic.Add("fields", "num_iid,title,nick,price,pic_url");
-        string text = Post(nick, "taobao.items.list.get", "", dic, DataFormatType.json);
+        string text = Post(nick, "taobao.items.list.get", session, dic, DataFormatType.json);
         List<GoodsInfo> list = new List<GoodsInfo>();
         if (!string.IsNullOrEmpty(text))
         {
@@ -422,14 +422,14 @@ public class TaoBaoAPI
         return true;
     }
 
-    public static string GetShopInfo(string nick)
+    public static string GetShopInfo(string nick, string session)
     {
         Dictionary<string, string> param = new Dictionary<string, string>();
 
         param.Add("fields", "sid");
         param.Add("nick", nick);//美杜莎之心
         //6102b061e6fe4c1b437274d442350197c9fb5846db06ca8204200856
-        string text = Post(nick,"taobao.shop.get", "", param, DataFormatType.json);
+        string text = Post(nick, "taobao.shop.get", session, param, DataFormatType.json);
         if (text.Contains("error_response"))
         {
             LogHelper.LogInfo.WriteLog("获取用户店铺信息出错", text);
