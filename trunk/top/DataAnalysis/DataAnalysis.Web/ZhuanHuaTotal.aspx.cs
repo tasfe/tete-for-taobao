@@ -12,7 +12,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Collections.Generic;
 
-public partial class ZhuanHuaTotal : System.Web.UI.Page
+public partial class ZhuanHuaTotal : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
