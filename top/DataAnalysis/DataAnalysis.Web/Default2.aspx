@@ -24,7 +24,6 @@
         {
             width: 90px;
             float: left;
-            color:#8B0016;
         }
         .detail1 div
         {
@@ -159,7 +158,7 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
             <asp:Repeater runat="server" ID="Rpt_TotalList">
                 <ItemTemplate>
                     <div class="detail">
-                        <div>
+                        <div style="color:#8B0016;">
                             <%# GetMonthDay(Eval("SiteTotalDate").ToString()) %>
                         </div>
                         <div>
@@ -208,10 +207,14 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                             <%# Eval("SeeDeepAVG")%>
                         </div>
                         <div style="height:60px">
+                          <a href='TopGoods.aspx?day=<%# Eval("SiteTotalDate") %>' class="numalink">
                            <img src='<%# Eval("SeeTop.pic_url")%>_60x60.jpg' alt='<%# Eval("SeeTop.title")%>' height="50px" />
+                          </a>
                         </div>
                         <div style="height:60px">
+                          <a href='GoodsBuyTotal.aspx?day=<%# Eval("SiteTotalDate") %>' class="numalinkZ">
                            <img src='<%# Eval("SellTop.pic_url")%>_60x60.jpg' alt='<%# Eval("SellTop.title")%>' height="50px" />
+                          </a>
                         </div>
                        <%--     <div>
                                 <%# Eval("Collection")%>
