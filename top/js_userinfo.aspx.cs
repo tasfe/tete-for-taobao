@@ -26,7 +26,7 @@ public partial class top_js_userinfo : System.Web.UI.Page
         taobaoNick = encode.Decrypt(taobaoNick);
 
         Response.AddHeader("P3P", "CP=CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR");
-        Response.Write("document.write('您好，" + taobaoNick + "！ <a href=logout.aspx>退出</a>');");
+        Response.Write("document.write('您好，<a title='到期时间'> " + taobaoNick + "！</a> <a href=logout.aspx>退出</a>');");
         if (iscrm == "1")
         {
             Response.Write("document.write('<img src=\"http://haoping.7fshop.com/top/crm/setcookie.aspx?nick=" + HttpUtility.UrlEncode(oldTaobaoNick) + "&session=" + session + "&iscrm=1&d=" + date + "\" width=0 height=0>');");
