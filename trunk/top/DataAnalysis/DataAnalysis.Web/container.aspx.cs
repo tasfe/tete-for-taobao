@@ -73,9 +73,12 @@ public partial class container : System.Web.UI.Page
         info.LastGetOrderTime = now;
         info.ShopId = TaoBaoAPI.GetShopInfo(nick);
         info.ServiceId = Enum.TopTaoBaoService.YingXiaoJueCe;
-        new NickSessionService().InsertSerssionNew(info);
-        CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLNICKSESSIONINFO);
-
+        //有则不添加
+        if (CacheCollection.GetNickSessionList().Where(o => o.Nick == nick && o.ServiceId == Enum.TopTaoBaoService.YingXiaoJueCe).ToList().Count == 0)
+        {
+            new NickSessionService().InsertSerssionNew(info);
+            CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLNICKSESSIONINFO);
+        }
         HttpCookie cookie = new HttpCookie("nick", HttpUtility.UrlEncode(nick));
         HttpCookie cooksession = new HttpCookie("nicksession", top_session);
         HttpCookie cookietongji = new HttpCookie("istongji", "1");
