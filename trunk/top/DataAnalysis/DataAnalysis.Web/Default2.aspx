@@ -32,6 +32,7 @@
         }
         
         a{ color:Black;}
+        .numalink{ text-decoration:none; color:#AF4A92}
         
     </style>
     
@@ -161,10 +162,10 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                             <%# GetMonthDay(Eval("SiteTotalDate").ToString()) %>
                         </div>
                         <div>
-                            <%# Eval("SitePVCount")%>
+                           <a class="numalink" href='HourTotal.aspx?day=<%# Eval("SiteTotalDate") %>'><%# Eval("SitePVCount")%></a>
                         </div>
                         <div>
-                            <%# Eval("SiteUVCount")%>
+                           <a class="numalink" href='HourTotal.aspx?day=<%# Eval("SiteTotalDate") %>'><%# Eval("SiteUVCount")%></a>
                         </div>
                         <div>
                             <%# Eval("ZhiTongFlow")%>
