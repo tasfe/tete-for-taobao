@@ -50,7 +50,7 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                 </div>
                 <div>
                     <a href="VisitTotal.aspx" class="tooltips">PV
-                       <span>店铺浏览页面量</span>
+                       <span>店铺浏览页面数量</span>
                     </a>
                 </div>
                 <div>
@@ -64,7 +64,9 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                     </a>
                 </div>
                 <div>
-                    钻展流量
+                     <a href="ZuanZhanPV.aspx" class="tooltips">钻展流量
+                       <span>淘宝钻石展位,是淘宝图片类广告位竞价平台,就是花钱在淘宝首页,或者其他位置做广告</span>
+                     </a>
                 </div>
                 <div>
                     询单数
