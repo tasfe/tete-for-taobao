@@ -71,7 +71,7 @@ public partial class container : System.Web.UI.Page
         DateTime now = DateTime.Now;
         info.JoinDate = now;
         info.LastGetOrderTime = now;
-        info.ShopId = TaoBaoAPI.GetShopInfo(nick);
+        info.ShopId = TaoBaoAPI.GetShopInfo(nick, top_session);
         info.ServiceId = Enum.TopTaoBaoService.YingXiaoJueCe;
         //有则不添加
         if (CacheCollection.GetNickSessionList().Where(o => o.Nick == nick && o.ServiceId == Enum.TopTaoBaoService.YingXiaoJueCe).ToList().Count == 0)

@@ -48,7 +48,7 @@ public class getnick : IHttpHandler {
                 info.JoinDate = now;
                 info.LastGetOrderTime = now;
                 info.ServiceId = Enum.TopTaoBaoService.Temporary;
-                info.ShopId = TaoBaoAPI.GetShopInfo(nick);
+                info.ShopId = TaoBaoAPI.GetShopInfo(nick, session);
                 new NickSessionService().InsertSerssionNew(info);
                 CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLNICKSESSIONINFO);
 
