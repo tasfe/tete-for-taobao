@@ -132,7 +132,7 @@
                     <option>23:00</option>
                 </select>
                 <br />
-                <input type="button" value="确定" onclick="checkArea1()" /> 
+                <input type="button" value="确定" onclick="checkArea1()" /> <input id="shopgroupbuyEnddate" type="hidden" runat=server name="shopgroupbuyEnddate" value="" />
             </div>
             <br />
             <b style="font-size:20px">2、选择宝贝</b>
@@ -300,8 +300,9 @@
         var name = document.getElementById("groupbuyname");
         var time1 = document.getElementById("starttime");
         var time2 = document.getElementById("endtime");
-
+        var shopgroupbuyEnddate = document.getElementById("shopgroupbuyEnddate").value;
         var errmsg = document.getElementById("errmsg");
+         
         if (name.value == "") {
             errmsg.style.display = "";
             errmsg.innerHTML = "团购名称不能为空";
@@ -319,6 +320,13 @@
             errmsg.style.display = "";
             errmsg.innerHTML = "团购结束时间不能为空";
             return;
+        }
+        if (shopgroupbuyEnddate != "") {
+            if (time2.value > shopgroupbuyEnddate) {
+                errmsg.style.display = "";
+                errmsg.innerHTML = "团购结束时间不能不能大于你的服务使用结束时间" + shopgroupbuyEnddate + "到期！";
+                return;
+            }
         }
 
         if (time2.value == "") {
