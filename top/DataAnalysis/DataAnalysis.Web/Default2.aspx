@@ -72,7 +72,7 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                      </a>
                 </div>
                 <div>
-                   <a href="#" class="tooltips">
+                   <a href="AskOrderTotal.aspx" class="tooltips">
                       询单数
                        <span>通过旺旺询问客服的客户数量</span>
                    </a>
@@ -84,31 +84,31 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                      </a>
                 </div>
                 <div>
-                    <a href="#" class="tooltips">
+                    <a href="OrderTotal.aspx" class="tooltips">
                       订单数
                        <span>成功付款的订单(含货到)数量</span>
                    </a>
                 </div>
                 <div>
-                   <a href="#" class="tooltips">
+                   <a href="OrderTotal.aspx" class="tooltips">
                       订单总价
                        <span>客户为订单支付的总金额(含运费)</span>
                    </a>
                 </div>
                 <div>
-                    <a href="#" class="tooltips">
+                    <a href="GoodsCountTotal.aspx" class="tooltips">
                       销售单价
                        <span>客户为订单支付的总金额(含运费)除以售出的商品总数</span>
                    </a>
                 </div>
                 <div>
-                   <a href="#" class="tooltips">
+                   <a href="CustomerBuyTotal.aspx" class="tooltips">
                       客单价
                        <span>客户为订单支付的总金额(含运费)除以客户总数</span>
                    </a>
                 </div>
                 <div>
-                    <a href="#" class="tooltips">
+                    <a href="ZhuanHuaTotal.aspx" class="tooltips">
                       转化率
                        <span>成功付款的客户总数(含货到)除以浏览网站的总人数</span>
                    </a>
@@ -120,7 +120,7 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                    </a>
                 </div>
                 <div>
-                     <a href="#" class="tooltips">
+                     <a href="VisitTotal.aspx" class="tooltips">
                       浏览回头率
                        <span>不只一天浏览过网站的客户数量</span>
                    </a>
@@ -132,20 +132,20 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                    </a>
                 </div>
                 <div>
-                    <a href="#" class="tooltips">
+                    <a href="VisitTotal.aspx" class="tooltips">
                       平均访问深度
                        <span>浏览页面总数量除以浏览网站用户的总数量</span>
                    </a>
                 </div>
                 <div style="height:60px">
-                <a href="#" class="tooltips">
+                <a href="TopGoods.aspx" class="tooltips">
                       浏览排行
                        <span>被浏览最多的商品</span>
                    </a>
                     
                 </div>
                 <div style="height:60px">
-                     <a href="#" class="tooltips">
+                     <a href="GoodsBuyTotal.aspx" class="tooltips">
                       销售排行
                        <span>销售最多的商品</span>
                    </a>
