@@ -330,6 +330,11 @@ public partial class top_containergroupbuy : System.Web.UI.Page
             {
                 try
                 {
+                    if (match[i].Groups[1].ToString() == "ts-11807-1")
+                    {
+                        sql = "UPDATE TopTaobaoShop SET enddate = '" + match[i].Groups[2].ToString() + "' WHERE nick = '" + u + "'";
+                        utils.ExecuteNonQuery(sql);
+                    }
                     if (match[i].Groups[1].ToString() == "ts-11807-4")
                     {
                         sql = "UPDATE TopTaobaoShop SET pay1 = '" + match[i].Groups[2].ToString() + "' WHERE nick = '" + u + "'";
