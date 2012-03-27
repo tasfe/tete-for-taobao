@@ -43,11 +43,11 @@
         <div id="top-panel">
             <div id="panel">
                 <ul>
-                   <li><a href="#" class="report">超长响应聊天</a></li>
-                   <li><a href="#" class="report_seo">流失客户聊天</a></li>
-                   <li><a href="#" class="report_seo">成功客户聊天</a></li>
-                   <li><a href="#" class="report_seo">未回复聊天</a></li>
-                   <li><a href="#" class="report_seo">内部聊天</a></li>
+                   <li><a href="#" class="invoices">超长响应聊天</a></li>
+                   <li><a href="#" class="invoices">流失客户聊天</a></li>
+                   <li><a href="#" class="invoices">成功客户聊天</a></li>
+                   <li><a href="#" class="invoices">未回复聊天</a></li>
+                   <li><a href="#" class="invoices">内部聊天</a></li>
                 </ul>
             </div>
         </div>
@@ -112,44 +112,44 @@
                 <ul>
                     <li>
                         <h3>
-                            <a href="#" class="house">日统计</a></h3>
+                            <a href="#" class="report">日统计</a></h3>
                         <ul>
                             <li><a href="#" class="report">接待人数</a></li>
-                            <li><a href="#" class="report_seo">成功订单</a></li>
-                            <li><a href="#" class="report_seo">付款金额</a></li>
+                            <li><a href="#" class="report">成功订单</a></li>
+                            <li><a href="#" class="report">付款金额</a></li>
                         </ul>
                     </li>
                     <li>
                         <h3>
                             <a href="#" class="folder_table">业绩统计</a></h3>
                         <ul>
-                            <li><a href="#" class="addorder">成功订单</a></li>
-                            <li><a href="#" class="shipping">接待人次</a></li>
-                            <li><a href="#" class="invoices">日统计</a></li>
-                            <li><a href="#" class="invoices">月统计</a></li>
-                            <li><a href="#" class="invoices">年统计</a></li>
+                            <li><a href="#" class="folder_table">成功订单</a></li>
+                            <li><a href="#" class="folder_table">接待人次</a></li>
+                            <li><a href="#" class="folder_table">日统计</a></li>
+                            <li><a href="#" class="folder_table">月统计</a></li>
+                            <li><a href="#" class="folder_table">年统计</a></li>
                         </ul>
                     </li>
                     <li>
                         <h3>
-                            <a href="#" class="manage">聊天记录</a></h3>
+                            <a href="#" class="invoices">聊天记录</a></h3>
                         <ul>
-                            <li><a href="#" class="manage_page">超长响应聊天</a></li>
-                            <li><a href="#" class="manage_page">流失客户聊天</a></li>
-                            <li><a href="#" class="cart">成功客户聊天</a></li>
-                            <li><a href="#" class="folder">未回复聊天</a></li>
-                            <li><a href="#" class="promotions">内部聊天</a></li>
+                            <li><a href="#" class="invoices">超长响应聊天</a></li>
+                            <li><a href="#" class="invoices">流失客户聊天</a></li>
+                            <li><a href="#" class="invoices">成功客户聊天</a></li>
+                            <li><a href="#" class="invoices">未回复聊天</a></li>
+                            <li><a href="#" class="invoices">内部聊天</a></li>
                         </ul>
                     </li>
                     <li>
                         <h3>
                             <a href="#" class="user">客服对比</a></h3>
                         <ul>
-                            <li><a href="#" class="useradd">接待人数</a></li>
-                            <li><a href="#" class="useradd">平均首次响应速度</a></li>
-                            <li><a href="#" class="group">平均响应速度s</a></li>
-                            <li><a href="#" class="search">未回复人数</a></li>
-                            <li><a href="#" class="online">回复次数</a></li>
+                            <li><a href="#" class="user">接待人数</a></li>
+                            <li><a href="#" class="user">平均首次响应速度</a></li>
+                            <li><a href="#" class="user">平均响应速度s</a></li>
+                            <li><a href="#" class="user">未回复人数</a></li>
+                            <li><a href="#" class="user">回复次数</a></li>
                         </ul>
                     </li>
                 </ul>
