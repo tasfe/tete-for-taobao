@@ -24,6 +24,7 @@
         {
             width: 90px;
             float: left;
+            color:#8B0016;
         }
         .detail1 div
         {
