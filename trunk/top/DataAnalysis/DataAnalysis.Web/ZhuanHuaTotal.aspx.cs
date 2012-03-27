@@ -35,7 +35,7 @@ public partial class ZhuanHuaTotal : System.Web.UI.Page
         IList<TopSiteTotalInfo> list = new SiteTotalService().GetZhuanHuaTotal(start.ToString("yyyyMMdd"), end.ToString("yyyyMMdd"), nick);
         SeriseText = "[{name:'下单人数', data:[";
         string sucss = ",{name:'访客数', data:[";
-        string onesell = ",{name:'转化率',data:[";
+        //string onesell = ",{name:'转化率',data:[";
 
         DateText = "[";
 
@@ -47,19 +47,20 @@ public partial class ZhuanHuaTotal : System.Web.UI.Page
             {
                 SeriseText += "0,";
                 sucss += "0,";
-                onesell += "0,";
+                //onesell += "0,";
             }
             else
             {
                 SeriseText += mylist.Sum(o => o.SiteBuyCustomTotal) + ",";
                 sucss += mylist.Sum(o => o.SiteUVCount) + ",";
-                onesell += Math.Round(((decimal)mylist.Sum(o => o.SiteBuyCustomTotal) / mylist.Sum(o => o.SiteUVCount)) * 100, 2).ToString() + "%,";
+                //onesell += Math.Round(((decimal)mylist.Sum(o => o.SiteBuyCustomTotal) / mylist.Sum(o => o.SiteUVCount)) * 100, 2).ToString() + "%,";
             }
         }
 
         SeriseText = SeriseText.Substring(0, SeriseText.Length - 1) + "]}";
-        onesell = onesell.Substring(0, onesell.Length - 1) + "]}";
-        SeriseText = SeriseText + onesell + sucss.Substring(0, sucss.Length - 1) + "]}]";
+        //onesell = onesell.Substring(0, onesell.Length - 1) + "]}";
+        //SeriseText = SeriseText + onesell + sucss.Substring(0, sucss.Length - 1) + "]}]";
+        SeriseText = SeriseText + sucss.Substring(0, sucss.Length - 1) + "]}]";
 
         DateText = DateText.Substring(0, DateText.Length - 1);
         DateText += "]";
