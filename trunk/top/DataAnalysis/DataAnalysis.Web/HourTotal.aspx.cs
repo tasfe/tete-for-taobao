@@ -26,7 +26,16 @@ public partial class HourPVTotal : BasePage
                 //Response.End();
             }
             else
+            {
+                DateTime now = DateTime.Now;
+                if (!string.IsNullOrEmpty(Request.QueryString["day"]))
+                {
+                    string date = Request.QueryString["day"];
+                    date = date.Substring(0, 4) + "-" + date.Substring(5, 2) + "-" + date.Substring(6);
+                    now = DateTime.Parse(date);
+                }
                 ShowChart(DateTime.Now);
+            }
         }
     }
 
