@@ -30,12 +30,15 @@
             font-size: 12px;
             height: 30px;
         }
+        
+        a{ color:Black;}
+        
     </style>
     
-    <style type="text/css">  /*Tooltips*/
-.tooltips{  position:relative; /*这个是关键*/
-z-index:2;  }  .tooltips:hover{  z-index:3;  background:none; /*没有这个在IE中不可用*/
-}  .tooltips span{  display: none;  }  .tooltips:hover span{ /*span 标签仅在 :hover 状态时显示*/
+    <style type="text/css">  
+.tooltips{  position:relative; 
+z-index:2;  }  .tooltips:hover{  z-index:3;  background:none; 
+}  .tooltips span{  display: none;  }  .tooltips:hover span{ 
 display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1px solid black;  background-color:#ccFFFF;  padding: 3px;  color:black;  }
 </style> 
 </head>
@@ -77,7 +80,7 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                 </div>
                 <div>
                      <a href="AskOrderTotal.aspx" class="tooltips">丢单率
-                     <span>丢单率等于询问客服人中成功下订单的人数除以询问客服的总人数</span>
+                     <span>丢单率等于询问客服人中成功下订单(含货到)的人数除以询问客服的总人数</span>
                      </a>
                 </div>
                 <div>
@@ -113,13 +116,13 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                 <div>
                      <a href="#" class="tooltips">
                       回头客
-                       <span>不只一次在网站购买商品的客户数量</span>
+                       <span>不只一次在网站购买过商品的客户数量</span>
                    </a>
                 </div>
                 <div>
                      <a href="#" class="tooltips">
                       浏览回头率
-                       <span>不只一天浏览网站的客户数量</span>
+                       <span>不只一天浏览过网站的客户数量</span>
                    </a>
                 </div>
                 <div>
