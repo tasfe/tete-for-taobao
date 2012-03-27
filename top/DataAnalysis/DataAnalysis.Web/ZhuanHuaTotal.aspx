@@ -46,7 +46,7 @@
                         x: -20 //center
                     },
                     subtitle: {
-                        text: '转化率',
+                        text: '转化率(下单人数除以访客数)',
                         x: -20
                     },
                     xAxis: {
