@@ -50,14 +50,18 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                 </div>
                 <div>
                     <a href="VisitTotal.aspx" class="tooltips">PV
-                     <span>店铺浏览页面量</span>
-                     </a>
+                       <span>店铺浏览页面量</span>
+                    </a>
                 </div>
                 <div>
-                    UV
+                    <a href="VisitTotal.aspx" class="tooltips">UV
+                       <span>店铺浏览人数</span>
+                    </a>
                 </div>
                 <div>
-                    直通车
+                     <a href="ZhiTongPV.aspx" class="tooltips">直通车流量
+                       <span>淘宝直通车是为淘宝卖家量身定制的，按点击付费的效果营销工具，实现宝贝的精准推广。用如何开网店的小编一席话总结：淘宝直通车推广，在给宝贝带来曝光量的同时，精准的搜索匹配也给宝贝带来了精准的潜在买家。淘宝直通车推广，用一个点击，让买家进入你的店铺，产生一次甚至多次的店铺内跳转流量，这种以点带面的关联效应可以降低整体推广的成本和提高整店的关联营销效果。同时，淘宝直通车还给用户提供了淘宝首页热卖单品活动和各个频道的热卖单品活动以及不定期的淘宝各类资源整合的直通车用户专享活动。</span>
+                    </a>
                 </div>
                 <div>
                     钻展流量
