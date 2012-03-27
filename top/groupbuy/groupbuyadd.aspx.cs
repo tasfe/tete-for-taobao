@@ -32,6 +32,12 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
 
+        string sql = "select enddate from TopTaobaoShop where nick='" + taobaoNick + "'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            shopgroupbuyEnddate.Value = dt.Rows[0]["enddate"].ToString();
+        }
         //过期判断
         if (string.IsNullOrEmpty(taobaoNick))
         {
@@ -41,6 +47,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
             return;
         }
 
+       
         FormatData();
     }
 
