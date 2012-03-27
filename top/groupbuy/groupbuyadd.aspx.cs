@@ -31,8 +31,10 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
     {
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
+        Rijndael_ encode = new Rijndael_("tetesoft");
+        nick = encode.Decrypt(taobaoNick);
 
-        string sql = "select enddate from TopTaobaoShop where nick='" + taobaoNick + "'";
+        string sql = "select enddate from TopTaobaoShop where nick='" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         Response.Write(sql);
         if (dt != null && dt.Rows.Count > 0)
