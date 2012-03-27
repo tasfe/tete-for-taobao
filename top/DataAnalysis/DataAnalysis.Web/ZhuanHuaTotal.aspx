@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ZuanZhanPV.aspx.cs" Inherits="ZuanZhanPV" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ZhuanHuaTotal.aspx.cs" Inherits="ZhuanHuaTotal" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -19,7 +19,7 @@
 
      <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="javascript:;" class="nolink">营销决策</a> 钻展流量 </div>
+  <div class="crumbs"><a href="javascript:;" class="nolink">营销决策</a> 转化率查看 </div>
   <div class="absright">
     <ul>
       <li>
@@ -42,11 +42,11 @@
                         marginBottom: 25
                     },
                     title: {
-                        text: '钻展流量统计',
+                        text: '转化率统计',
                         x: -20 //center
                     },
                     subtitle: {
-                        text: '钻展',
+                        text: '转化率',
                         x: -20
                     },
                     xAxis: {
@@ -54,7 +54,7 @@
                     },
                     yAxis: {
                         title: {
-                            text: '钻展流量'
+                            text: '转化率'
                         },
                         plotLines: [{
                             value: 0,
@@ -103,3 +103,4 @@
     </form>
 </body>
 </html>
+
