@@ -37,6 +37,8 @@ public class SiteTotalService
 
     const string SQL_SELECT_GOODSCOUNT_TOTAL = "SELECT SiteGoodsCount,SiteOrderPay,SiteTotalDate FROM TopSiteTotal WHERE SiteTotalDate BETWEEN @start AND @end and SiteNick=@nick";
 
+    const string SQL_SELECT_CUSTOMER_TOTAL = "SELECT SiteBuyCustomTotal,SiteOrderPay,SiteTotalDate FROM TopSiteTotal WHERE SiteTotalDate BETWEEN @start AND @end and SiteNick=@nick";
+
     public IList<TopSiteTotalInfo> GetNickOrderTotal(DateTime start,DateTime end, string nick)
     {
         IList<TopSiteTotalInfo> list = new List<TopSiteTotalInfo>();
@@ -232,6 +234,32 @@ public class SiteTotalService
         {
             TopSiteTotalInfo info = new TopSiteTotalInfo();
             info.GoodsCount = int.Parse(dr["SiteGoodsCount"].ToString());
+            info.SiteOrderPay = decimal.Parse(dr["SiteOrderPay"].ToString());
+            info.SiteTotalDate = dr["SiteTotalDate"].ToString();
+
+            list.Add(info);
+        }
+
+        return list;
+    }
+
+    public List<TopSiteTotalInfo> GetCustomerTotal(string start, string end, string nick)
+    {
+        List<TopSiteTotalInfo> list = new List<TopSiteTotalInfo>();
+
+        SqlParameter[] param = new[]
+            {
+                new SqlParameter("@start",start),
+                new SqlParameter("@end",end),
+                new SqlParameter("@nick",nick)
+            };
+
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_CUSTOMER_TOTAL, param);
+
+        foreach (DataRow dr in dt.Rows)
+        {
+            TopSiteTotalInfo info = new TopSiteTotalInfo();
+            info.SiteBuyCustomTotal = int.Parse(dr["SiteBuyCustomTotal"].ToString());
             info.SiteOrderPay = decimal.Parse(dr["SiteOrderPay"].ToString());
             info.SiteTotalDate = dr["SiteTotalDate"].ToString();
 
