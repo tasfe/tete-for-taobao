@@ -79,6 +79,12 @@ public partial class container : System.Web.UI.Page
             new NickSessionService().InsertSerssionNew(info);
             CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLNICKSESSIONINFO);
         }
+        else
+        {
+            //更新session
+            CacheCollection.GetNickSessionList().Where(o => o.Nick == nick && o.ServiceId == Enum.TopTaoBaoService.YingXiaoJueCe).ToList()[0].Session = top_session;
+            new NickSessionService().UpdateSession(info);
+        }
         HttpCookie cookie = new HttpCookie("nick", HttpUtility.UrlEncode(nick));
         HttpCookie cooksession = new HttpCookie("nicksession", top_session);
         HttpCookie cookietongji = new HttpCookie("istongji", "1");
