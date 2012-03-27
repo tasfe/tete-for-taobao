@@ -50,6 +50,8 @@ public class TaoBaoGoodsOrderService
                                      ) a
                                      GROUP BY DatePart(hh,created)";
 
+    const string SQL_SELECT_ORDER = "SELECT tid FROM TopTaoBaoGoodsOrderInfo WHERE seller_nick=@seller_nick AND created BETWEEN @start AND @end";
+
     public IList<BackTotalInfo> GetAllBackTotalList(DateTime start, DateTime end, string nick)
     {
         SqlParameter[] param = new[]
@@ -180,6 +182,30 @@ public class TaoBaoGoodsOrderService
             list.Add(info);
         }
 
+        return list;
+    }
+
+    /// <summary>
+    /// 获取指定时间数据库中的所有订单
+    /// </summary>
+    /// <param name="start"></param>
+    /// <param name="end"></param>
+    /// <param name="nick"></param>
+    /// <returns></returns>
+    public List<string> GetAllOrderId(DateTime start, DateTime end, string nick)
+    {
+        SqlParameter[] param = new[]
+            {
+                new SqlParameter("@start",start),
+                new SqlParameter("@end",end),
+                new SqlParameter("@seller_nick",nick)
+            };
+        List<string> list = new List<string>();
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_ORDER, param);
+        foreach (DataRow dr in dt.Rows)
+        {
+            list.Add(dr["tid"].ToString());
+        }
         return list;
     }
 }

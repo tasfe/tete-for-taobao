@@ -214,28 +214,34 @@ public class DataHelper
     public static void InsertGoodsOrder(DateTime start, DateTime end, string session, string nick)
     {
         TaoBaoGoodsOrderService tbgo = new TaoBaoGoodsOrderService();
+
+        List<string> allOrderTid = tbgo.GetAllOrderId(start, end, nick);
+
         //等待卖家发货,即:买家已付款
-        InsertGoodsOrderByState(start, end, "WAIT_SELLER_SEND_GOODS", session, nick, tbgo);
+        InsertGoodsOrderByState(start, end, "WAIT_SELLER_SEND_GOODS", session, nick, tbgo, allOrderTid);
         //等待买家确认收货,即:卖家已发货
-        InsertGoodsOrderByState(start, end, "WAIT_BUYER_CONFIRM_GOODS", session, nick, tbgo);
+        InsertGoodsOrderByState(start, end, "WAIT_BUYER_CONFIRM_GOODS", session, nick, tbgo, allOrderTid);
         //买家已签收,货到付款专用
-        InsertGoodsOrderByState(start, end, "TRADE_BUYER_SIGNED", session, nick, tbgo);
+        InsertGoodsOrderByState(start, end, "TRADE_BUYER_SIGNED", session, nick, tbgo, allOrderTid);
         //交易成功
-        InsertGoodsOrderByState(start, end, "TRADE_FINISHED", session, nick, tbgo);
+        InsertGoodsOrderByState(start, end, "TRADE_FINISHED", session, nick, tbgo, allOrderTid);
     }
 
-    private static void InsertGoodsOrderByState(DateTime start, DateTime end, string orderState, string session, string nick, TaoBaoGoodsOrderService tbgoDal)
+    private static void InsertGoodsOrderByState(DateTime start, DateTime end, string orderState, string session, string nick, TaoBaoGoodsOrderService tbgoDal,List<string> tids)
     {
         IList<GoodsOrderInfo> goodsOrderList = TaoBaoAPI.GetGoodsOrderInfoList(nick,start, end, session, orderState);
         if (goodsOrderList == null)
         {
             LogInfo.WriteLog("订购时获取订单错误", "参数错误");
-            System.Threading.Thread.Sleep(10 * 60);
         }
         else
         {
             for (int i = 0; i < goodsOrderList.Count; i++)
             {
+                //判断是否已经添加
+                if (tids.Contains(goodsOrderList[i].tid))
+                    continue;
+
                 goodsOrderList[i].UsePromotion = TaoBaoAPI.GetPromotion(nick,session, goodsOrderList[i].tid, "店铺优惠券");
                 goodsOrderList[i].PingInfo = TaoBaoAPI.GetPingjia(nick,session, goodsOrderList[i].tid);
                 if (goodsOrderList[i].PingInfo == null)
@@ -249,6 +255,8 @@ public class DataHelper
                 }
                 tbgoDal.InsertTaoBaoGoodsOrder(goodsOrderList[i]);
                 tbgoDal.InsertChildOrderInfo(goodsOrderList[i].orders, goodsOrderList[i].tid);
+                //添加进集合
+                tids.Add(goodsOrderList[i].tid);
             }
         }
     }
