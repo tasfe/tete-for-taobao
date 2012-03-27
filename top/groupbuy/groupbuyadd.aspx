@@ -322,7 +322,7 @@
             return;
         }
         if (shopgroupbuyEnddate != "") {
-            if (time2.value > shopgroupbuyEnddate) {
+            if (time2.value > shopgroupbuyEnddate) { 
                 errmsg.style.display = "";
                 errmsg.innerHTML = "团购结束时间不能不能大于你的服务使用结束时间" + shopgroupbuyEnddate + "到期！";
                 return;
