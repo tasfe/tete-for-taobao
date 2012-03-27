@@ -158,7 +158,7 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
             <asp:Repeater runat="server" ID="Rpt_TotalList">
                 <ItemTemplate>
                     <div class="detail">
-                        <div style="color:#8B0016;">
+                        <div style="color:#103667;">
                             <%# GetMonthDay(Eval("SiteTotalDate").ToString()) %>
                         </div>
                         <div>
@@ -212,8 +212,8 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                           </a>
                         </div>
                         <div style="height:60px">
-                          <a href='GoodsBuyTotal.aspx?day=<%# Eval("SiteTotalDate") %>' class="numalinkZ">
-                           <img src='<%# Eval("SellTop.pic_url")%>_60x60.jpg' alt='<%# Eval("SellTop.title")%>' height="50px" />
+                          <a href='GoodsBuyTotal.aspx?day=<%# Eval("SiteTotalDate") %>' class="numalink">
+                           <img style="border:0" src='<%# Eval("SellTop.pic_url")%>_60x60.jpg' alt='<%# Eval("SellTop.title")%>' height="50px" />
                           </a>
                         </div>
                        <%--     <div>
