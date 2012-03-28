@@ -23,7 +23,7 @@
                     
                     <table>
                     <tr>
-                       <th width="20px">序号</th>
+                       <th width="40px">序号</th>
                        <th width="150px">买家</th>
                        <th width="200px">接待人</th>
                        <th width="150px">接待时间</th>
