@@ -32,7 +32,7 @@
     <div>
         <div class="navigation" style="height: 600px;">
             <div class="crumbs">
-                <a href="javascript:;" class="nolink">营销决策</a> 店铺浏览统计(小时)
+                <a href="javascript:;" class="nolink">营销决策</a> 直通车/钻展流量(小时)
             </div>
             <div class="absright">
                 <ul>
@@ -57,7 +57,7 @@
                         marginBottom: 25
                     },
                     title: {
-                        text: '店铺浏览统计',
+                        text: '直通车/钻展流量统计',
                         x: -20 //center
                     },
                     subtitle: {
@@ -69,7 +69,7 @@
                     },
                     yAxis: {
                         title: {
-                            text: '24小时IP/PV量'
+                            text: '24小时直通车/钻展流量'
                         },
                         plotLines: [{
                             value: 0,
