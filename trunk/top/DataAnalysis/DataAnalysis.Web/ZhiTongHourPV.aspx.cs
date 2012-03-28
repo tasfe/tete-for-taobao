@@ -66,7 +66,7 @@ public partial class ZhiTongHourPV : System.Web.UI.Page
         {
             DateText += "'" + h + "',";
             IList<HourTotalInfo> thisInfo = list.Where(o => o.Hour == h).ToList();
-            IList<HourTotalInfo> thiszuanInfo = list.Where(o => o.Hour == h).ToList();
+            IList<HourTotalInfo> thiszuanInfo = zuanlist.Where(o => o.Hour == h).ToList();
 
             if (thisInfo.Count == 0)
                 SeriseText += "0,";
