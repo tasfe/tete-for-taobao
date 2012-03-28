@@ -233,6 +233,13 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
                 //第二套模板（一大三小）
                 templatehtmlUrl = "tpl/stylenew2.html";
             }
+            //是多商品团购模板
+            if (dt.Rows[0]["template"].ToString() == "3")
+            {
+                //第三套模板（一排三列）
+                templatehtmlUrl = "tpl/style3.html";
+            }
+            
             if (dt.Rows[0]["groupbuyGuid"].ToString() != "")
             {
                 //根据多商品团购标示，检索商品列表
@@ -265,7 +272,7 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
             }
             else { 
                 //是多商品团购模板
-                if (dt.Rows[i]["template"].ToString() == "2")
+                if (dt.Rows[i]["template"].ToString() == "2" || dt.Rows[i]["template"].ToString() == "3")
                 {
                     html = File.ReadAllText(Server.MapPath(template2htmlUrl));
                     smailtempStr += html;
