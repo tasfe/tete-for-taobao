@@ -73,7 +73,7 @@ public partial class ZhiTongHourPV : System.Web.UI.Page
             else
                 SeriseText += thisInfo[0].PVCount + ",";
 
-            if (zuanlist.Count == 0)
+            if (thiszuanInfo.Count == 0)
                 iptotal += "0,";
             else
                 iptotal += thiszuanInfo[0].PVCount + ",";
