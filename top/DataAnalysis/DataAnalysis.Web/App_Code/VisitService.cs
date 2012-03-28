@@ -74,6 +74,18 @@ group by VisitIP,VisitBrower,VisitUserAgent
 
     const string SQL_SELECT_VISITINFO_BYIP = "SELECT VisitUrl,VisitTime,GoodsId,GoodsClassId FROM @tableName WHERE VisitIP=@VisitIP AND VisitTime BETWEEN @start AND @end";
 
+    const string SQL_SELECT_GETZHITONG_HOURTOTAL = @"SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM                        (
+                            select * from @tableName
+                            WHERE CHARINDEX( 'ali_refid',VisitUrl)>0 AND CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)
+                             ) a
+                            GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)";
+
+    const string SQL_SELECT_GETZUANZHAN_HOURTOTAL = @"SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM                        (
+                            select * from @tableName
+                            WHERE CHARINDEX( 'ali_trackid',VisitUrl)>0 AND CHARINDEX( 'ali_refid',VisitUrl)<=0 AND CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)
+                             ) a
+                            GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)";
+
     /// <summary>
     /// 用户订购获取代码时生成一张表
     /// </summary>
@@ -245,6 +257,27 @@ group by VisitIP,VisitBrower,VisitUserAgent
             list.Add(info);
         }
         IList<TopVisitInfo> rlist = list.OrderBy(o => o.VisitTime).ToList();
+        return rlist;
+    }
+
+    public IList<HourTotalInfo> GetHourZhiTongOrZuanZhanPVTotal(string nickNo, DateTime date, bool zhi)
+    {
+        string sql = "";
+        if (zhi)
+            sql = SQL_SELECT_GETZHITONG_HOURTOTAL.Replace("@tableName", GetRealTable(nickNo));
+        else
+            sql = SQL_SELECT_GETZUANZHAN_HOURTOTAL.Replace("@tableName", GetRealTable(nickNo));
+        DataTable dt = DBHelper.ExecuteDataTable(sql, new SqlParameter("@date", date));
+        IList<HourTotalInfo> list = new List<HourTotalInfo>();
+        foreach (DataRow dr in dt.Rows)
+        {
+            HourTotalInfo info = new HourTotalInfo();
+            info.PVCount = int.Parse(dr["PVCount"].ToString());
+            info.Hour = int.Parse(dr["PVHour"].ToString());
+            list.Add(info);
+        }
+        IList<HourTotalInfo> rlist = list.OrderBy(o => o.Hour).ToList();
+
         return rlist;
     }
 
