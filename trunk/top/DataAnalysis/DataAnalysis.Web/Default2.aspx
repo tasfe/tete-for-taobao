@@ -46,7 +46,7 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
 <body style="padding:0px; margin:0px;">
     <form id="form1" runat="server">
     <div>
-    <div class="navigation" style="height: 600px;">
+    <div class="navigation" style="height: 1000px;">
             <div class="crumbs">
                 <a href="javascript:;" class="nolink">营销决策</a> 数据总览
             </div>
