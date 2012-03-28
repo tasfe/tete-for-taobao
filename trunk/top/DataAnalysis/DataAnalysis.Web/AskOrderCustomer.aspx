@@ -13,12 +13,12 @@
     <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
     <link href="css/common.css" rel="stylesheet" />
 </head>
-<body>
+<body style="padding:0px; margin:0px;">
     <form id="form1" runat="server">
     <div>
     <div class="navigation" style="height: 600px;">
             <div class="crumbs">
-                <a href="javascript:;" class="nolink">营销决策</a> 爆款宝贝排行
+                <a href="javascript:;" class="nolink">营销决策</a> 询单客户列表
             </div>
             <div class="absright">
                 <ul>
