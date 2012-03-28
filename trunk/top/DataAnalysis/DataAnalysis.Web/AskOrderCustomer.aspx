@@ -16,6 +16,20 @@
 <body>
     <form id="form1" runat="server">
     <div>
+    <div class="navigation" style="height: 600px;">
+            <div class="crumbs">
+                <a href="javascript:;" class="nolink">营销决策</a> 爆款宝贝排行
+            </div>
+            <div class="absright">
+                <ul>
+                    <li>
+                        <div class="msg">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div id="main-content" style="height:1000px;overflow:scroll">
+                <div>
      <asp:TextBox ID="TB_Start" runat="server" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})"
                         class="Wdate" Width="120px"></asp:TextBox>&nbsp;
                     <asp:Button ID="Btn_Select" runat="server" Text="查 看" OnClick="Btn_Select_Click" />
@@ -59,6 +73,7 @@
             <asp:HyperLink id="lnkNext" runat="server">下一页</asp:HyperLink> 
             <asp:HyperLink id="lnkEnd" runat="server">尾页</asp:HyperLink>
         </div>
+        </div></div>
     </div>
     </form>
 </body>
