@@ -173,6 +173,9 @@
                      <span  onclick="selectRd('templateID2')"  onMouseOver="toolTip('<img width=400px  src=images/groupbuy1.jpg>')" onMouseOut="toolTip()"><input type='radio' name='templateID' id="templateID2" value='2'  />
                      一大三小
                     (750宽)</span>
+                    <span  onclick="selectRd('templateID3')"  onMouseOver="toolTip('<img width=400px  src=images/groupbuy1.jpg>')" onMouseOut="toolTip()"><input type='radio' name='templateID' id="templateID3" value='3'  />
+                     一排三列
+                    (750宽)</span>
                     <input type="hidden" id="template" name="template" value="1" />
                 </div>
                 <script type="text/javascript">
