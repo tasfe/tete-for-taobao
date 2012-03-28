@@ -174,7 +174,7 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                             <a class="numalink" href='ZhiTongHourPV.aspx?day=<%# Eval("SiteTotalDate") %>'><%# Eval("SiteZuanZhan")%></a>
                         </div>
                         <div>
-                            <%# Eval("AskOrder")%>
+                            <a class="numalink" href='AskOrderCustomer.aspx?day=<%# Eval("SiteTotalDate") %>'><%# Eval("AskOrder")%></a>
                         </div>
                         <div>
                             <%# Eval("LostOrder")%>
