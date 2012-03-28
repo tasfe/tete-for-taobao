@@ -74,7 +74,7 @@
             <asp:HyperLink id="lnkEnd" runat="server">尾页</asp:HyperLink>
         </div>
         </div></div>
-    </div>
+    </div></div>
     </form>
 </body>
 </html>
