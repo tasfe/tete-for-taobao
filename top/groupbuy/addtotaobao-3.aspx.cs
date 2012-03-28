@@ -255,6 +255,7 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
         string smailtempStr = string.Empty;//小模板
         for(int i=0;i<dt.Rows.Count;i++)
         {
+
             if (i == 0)
             {
                 str = html;
@@ -269,6 +270,23 @@ public partial class top_addtotaobao_3 : System.Web.UI.Page
                 str = str.Replace("{productimg}", dt.Rows[i]["productimg"].ToString());
                 str = str.Replace("{id}", id);
                 str = str.Replace("'", "''");
+                //如果模板是第三套模板，追加第一个活动HTML
+                if (templatehtmlUrl == "tpl/style3.html")
+                {
+                    html = File.ReadAllText(Server.MapPath(template2htmlUrl));
+                    smailtempStr += html;
+                    smailtempStr = smailtempStr.Replace("{name}", dt.Rows[i]["name"].ToString());
+                    smailtempStr = smailtempStr.Replace("{oldprice}", dt.Rows[i]["productprice"].ToString());
+                    smailtempStr = smailtempStr.Replace("{zhekou}", Math.Round((decimal.Parse(dt.Rows[i]["productprice"].ToString()) - decimal.Parse(dt.Rows[i]["zhekou"].ToString())) / decimal.Parse(dt.Rows[i]["productprice"].ToString()) * 10, 1).ToString());
+                    smailtempStr = smailtempStr.Replace("{leftprice}", (decimal.Parse(dt.Rows[i]["productprice"].ToString()) - decimal.Parse(dt.Rows[i]["zhekou"].ToString())).ToString().Split('.')[0]);
+                    smailtempStr = smailtempStr.Replace("{rightprice}", (decimal.Parse(dt.Rows[i]["productprice"].ToString()) - decimal.Parse(dt.Rows[i]["zhekou"].ToString())).ToString().Split('.')[1]);
+                    smailtempStr = smailtempStr.Replace("{newprice}", dt.Rows[i]["zhekou"].ToString());
+                    smailtempStr = smailtempStr.Replace("{buycount}", dt.Rows[i]["buycount"].ToString());
+                    smailtempStr = smailtempStr.Replace("{producturl}", dt.Rows[i]["producturl"].ToString());
+                    smailtempStr = smailtempStr.Replace("{productimg}", dt.Rows[i]["productimg"].ToString());
+                    smailtempStr = smailtempStr.Replace("{id}", id);
+                    smailtempStr = smailtempStr.Replace("'", "''");
+                }
             }
             else { 
                 //是多商品团购模板
