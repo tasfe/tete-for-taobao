@@ -168,10 +168,10 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                            <a class="numalink" href='HourTotal.aspx?day=<%# Eval("SiteTotalDate") %>'><%# Eval("SiteUVCount")%></a>
                         </div>
                         <div>
-                            <%# Eval("ZhiTongFlow")%>
+                            <a class="numalink" href='ZhiTongHourPV.aspx?day=<%# Eval("SiteTotalDate") %>'><%# Eval("ZhiTongFlow")%></a>
                         </div>
                         <div>
-                            <%# Eval("SiteZuanZhan")%>
+                            <a class="numalink" href='ZhiTongHourPV.aspx?day=<%# Eval("SiteTotalDate") %>'><%# Eval("SiteZuanZhan")%></a>
                         </div>
                         <div>
                             <%# Eval("AskOrder")%>
