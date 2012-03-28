@@ -35,7 +35,7 @@
         .numalink{ text-decoration:none; color:#AF4A92}
         
     </style>
-    
+     <link href="css/common.css" rel="stylesheet" />
     <style type="text/css">  
 .tooltips{  position:relative; 
 z-index:2;  }  .tooltips:hover{  z-index:3;  background:none; 
@@ -43,10 +43,23 @@ z-index:2;  }  .tooltips:hover{  z-index:3;  background:none;
 display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1px solid black;  background-color:#ccFFFF;  padding: 3px;  color:black;  }
 </style> 
 </head>
-<body>
+<body style="padding:0px; margin:0px;">
     <form id="form1" runat="server">
     <div>
-    <asp:Button ID="Btn_AddCookie"  Text="点击查看客户真实数据" runat="server" 
+    <div class="navigation" style="height: 600px;">
+            <div class="crumbs">
+                <a href="javascript:;" class="nolink">营销决策</a> 数据总览
+            </div>
+            <div class="absright">
+                <ul>
+                    <li>
+                        <div class="msg">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div id="main-content" style="height:1000px;overflow:scroll">    
+            <asp:Button ID="Btn_AddCookie"  Text="点击查看客户真实数据" runat="server" 
             onclick="Btn_AddCookie_Click" /><font size="2">此处只是为了让审核人员能够更直观的看到软件真实效果</font>
         <div class="all">
             <div class="detail1">
@@ -223,7 +236,7 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                 </ItemTemplate>
             </asp:Repeater>
         </div>
-        
+        </div></div>
     </div>
     </form>
 </body>
