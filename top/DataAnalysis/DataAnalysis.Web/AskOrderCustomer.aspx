@@ -11,6 +11,7 @@
       th{text-align:center; height:15px}
     </style>
     <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <link href="css/common.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
