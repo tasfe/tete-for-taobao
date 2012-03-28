@@ -6,8 +6,9 @@
 <head id="Head1" runat="server">
     <title>Untitled Page</title>
     <style type="text/css">
-      td{text-align:center; height:20px}
-      th{text-align:center; height:20px}
+       a{color:Blue; text-decoration:none;}
+      td{text-align:center; height:15px;font-size:12px;}
+      th{text-align:center; height:15px}
     </style>
     <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
 </head>
@@ -22,12 +23,12 @@
                     
                     <table>
                     <tr>
-                       <th>序号</th>
+                       <th width="20px">序号</th>
                        <th width="150px">买家</th>
-                       <th width="220px">接待人</th>
+                       <th width="150px">接待人</th>
                        <th width="150px">接待时间</th>
-                       <th width="220px">接待时长</th>
-                       <th>交易</th>
+                       <th width="1500px">接待时长</th>
+                       <th width="50px">交易</th>
                     </tr>
                     <asp:Repeater ID="Rpt_CustomerList" runat="server">
                     
