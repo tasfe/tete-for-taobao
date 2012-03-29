@@ -93,7 +93,7 @@
                             </tr>
                         </ItemTemplate>
                          <SeparatorTemplate>
-                 <tr><td colspan="4"><hr /></td></tr>
+                 <tr><td colspan="6"><hr /></td></tr>
                 </SeparatorTemplate>
                     </asp:Repeater>
                 </table>
