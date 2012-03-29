@@ -215,12 +215,19 @@ public class TaoBaoGoodsOrderService
 
     public IList<GoodsOrderInfo> GetOrderList(string nick, DateTime start, DateTime end, int page, int count)
     {
+        int snum = 1;
+        if (page != 1)
+            snum = (page - 1) * count + 1;
+        int endnum = page * count;
+
         List<GoodsOrderInfo> list = new List<GoodsOrderInfo>();
         SqlParameter[] param = new[]
         {
             new SqlParameter("@nick",nick),
             new SqlParameter("@start",start),
-            new SqlParameter("@end",end)
+            new SqlParameter("@end",end),
+            new SqlParameter("@snum",snum),
+            new SqlParameter("@enum",endnum)
         };
 
         DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_ORDER_LIST, param);
