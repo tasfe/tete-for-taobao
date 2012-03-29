@@ -105,7 +105,8 @@ public class TopSiteTotalInfo
     {
         get
         {
-            return new TopKefuTotalService().GetTotalinfoList(SiteTotalDate, SiteNick).Sum(o => o.CustomerCount);
+            DateTime start = DateTime.Parse(SiteTotalDate.Substring(0, 4) + "-" + SiteTotalDate.Substring(4, 2) + "-" + SiteTotalDate.Substring(6));
+            return new TalkRecodService().GetCustomerList(start, start.AddDays(1), SiteNick).Count;
         }
     }
 
