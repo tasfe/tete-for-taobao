@@ -44,7 +44,7 @@ public partial class AskOrderTotal : BasePage
             }
             else
             {
-                SeriseText += mylist.Sum(o => o.CustomerCount) + ",";
+                SeriseText += mylist.Sum(o => o.CustomerCount + o.UnTalkCustomerCount) + ",";
                 sucss += mylist.Sum(o => o.OrderCount) + ",";
             }
         }
