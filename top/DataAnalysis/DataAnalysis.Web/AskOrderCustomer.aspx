@@ -41,8 +41,8 @@
                        <th width="40px">序号</th>
                        <th width="150px">买家</th>
                        <th width="200px">接待人</th>
-                       <th width="150px">接待时间</th>
-                       <th width="150px">接待时长</th>
+                       <th width="150px">询单开始时间</th>
+                       <th width="150px">询单时长</th>
                        <th width="150px">交易</th>
                     </tr>
                     <asp:Repeater ID="Rpt_CustomerList" runat="server">
