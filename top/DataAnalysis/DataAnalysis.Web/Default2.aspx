@@ -8,7 +8,7 @@
     <style type="text/css">
         .all
         {
-            width: 1200px;
+            width: 900px;
         }
         .detail
         {
@@ -193,7 +193,7 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                             <%# Eval("LostOrder")%>
                         </div>
                         <div>
-                            <%# Eval("SiteOrderCount")%>
+                            <a class="numalink" href='GoodsOrderList.aspx?day=<%# Eval("SiteTotalDate") %>'><%# Eval("SiteOrderCount")%></a>
                         </div>
                         <div>
                             <%# Eval("SiteOrderPay")%>
