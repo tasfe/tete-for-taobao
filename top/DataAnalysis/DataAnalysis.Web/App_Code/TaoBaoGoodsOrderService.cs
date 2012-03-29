@@ -52,6 +52,10 @@ public class TaoBaoGoodsOrderService
 
     const string SQL_SELECT_ORDER = "SELECT tid FROM TopTaoBaoGoodsOrderInfo WHERE seller_nick=@seller_nick AND created BETWEEN @start AND @end";
 
+    const string SQL_SELECT_ORDER_LIST = "select * from(select tid,buy_nick,payment,post_fee,total_fee,receiver_state,receiver_city,ROW_NUMBER() OVER(ORDER BY created DESC) as RowNum  from TopTaoBaoGoodsOrderInfo where seller_nick=@nick and created between @start and @end) a where RowNum between @snum and @enum";
+
+    const string SQL_SELECT_ORDER_LIST_COUNT = "select count(*) from TopTaoBaoGoodsOrderInfo where seller_nick=@nick and created between @start and @end";
+
     public IList<BackTotalInfo> GetAllBackTotalList(DateTime start, DateTime end, string nick)
     {
         SqlParameter[] param = new[]
@@ -208,5 +212,46 @@ public class TaoBaoGoodsOrderService
         }
         return list;
     }
+
+    public IList<GoodsOrderInfo> GetOrderList(string nick, DateTime start, DateTime end, int page, int count)
+    {
+        List<GoodsOrderInfo> list = new List<GoodsOrderInfo>();
+        SqlParameter[] param = new[]
+        {
+            new SqlParameter("@nick",nick),
+            new SqlParameter("@start",start),
+            new SqlParameter("@end",end)
+        };
+
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_ORDER_LIST, param);
+
+        foreach (DataRow dr in dt.Rows)
+        {
+            GoodsOrderInfo info = new GoodsOrderInfo();
+            info.buyer_nick = dr["buyer_nick"].ToString();
+            info.payment = decimal.Parse(dr["payment"].ToString());
+            info.receiver_city = dr["receiver_city"].ToString();
+            info.receiver_state = dr["receiver_state"].ToString();
+            info.tid = dr["tid"].ToString();
+            info.post_fee = decimal.Parse(dr["post_fee"].ToString());
+            info.total_fee = decimal.Parse(dr["total_fee"].ToString());
+
+            list.Add(info);
+        }
+
+        return list;
+    }
+
+    public int GetOrderListCount(string nick, DateTime start, DateTime end)
+    {
+        SqlParameter[] param = new[]
+        {
+            new SqlParameter("@start",start),
+            new SqlParameter("@end",end),
+            new SqlParameter("@nick",nick)
+        };
+        return DBHelper.ExecuteScalar(SQL_SELECT_ORDER_LIST_COUNT, param);
+    }
 }
+
 
