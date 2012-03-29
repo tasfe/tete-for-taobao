@@ -27,7 +27,8 @@
     <div id="main-content">
 
 <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
-    支付宝是通过短信将卡号密码发送到客户手机上的，如果您账户中的短信数量为0，则无法赠送支付宝红包
+    支付宝是通过短信将卡号密码发送到客户手机上的，如果您账户中的短信数量为0，则无法赠送支付宝红包<br />
+    <a href='htmlalipay.html'>点击此处查看支付宝红包创建教程</a>
 </div>
                 <input type="button" value="返回列表" onclick="window.location.href='alipay.aspx'" />
     

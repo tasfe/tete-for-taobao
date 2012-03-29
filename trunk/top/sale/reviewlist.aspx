@@ -27,6 +27,10 @@
     </ul>
   </div>
     <div id="main-content">
+
+    <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
+    此处的评价列表是通过支付宝的主动消息通知接口获取的，只有双方都评价了才能看到，跟实际评价时间延迟不超过10分钟
+</div>
     
     请输入买家昵称：<asp:TextBox ID="search" runat="server"></asp:TextBox>
     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="搜索" />
