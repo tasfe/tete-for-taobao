@@ -235,7 +235,7 @@ public class TaoBaoGoodsOrderService
         foreach (DataRow dr in dt.Rows)
         {
             GoodsOrderInfo info = new GoodsOrderInfo();
-            info.buyer_nick = dr["buyer_nick"].ToString();
+            info.buyer_nick = dr["buy_nick"].ToString();
             info.payment = decimal.Parse(dr["payment"].ToString());
             info.receiver_city = dr["receiver_city"].ToString();
             info.receiver_state = dr["receiver_state"].ToString();
