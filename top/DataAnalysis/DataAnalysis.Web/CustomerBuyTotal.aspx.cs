@@ -46,7 +46,10 @@ public partial class CustomerBuyTotal : BasePage
             {
                 SeriseText += mylist.Sum(o => o.SiteBuyCustomTotal) + ",";
                 sucss += mylist.Sum(o => o.SiteOrderPay) + ",";
-                onesell += Math.Round(mylist.Sum(o => o.SiteOrderPay) / mylist.Sum(o => o.SiteBuyCustomTotal), 2).ToString() + ",";
+                if (mylist.Sum(o => o.SiteBuyCustomTotal) == 0)
+                    onesell += "0,";
+                else
+                    onesell += Math.Round(mylist.Sum(o => o.SiteOrderPay) / mylist.Sum(o => o.SiteBuyCustomTotal), 2).ToString() + ",";
             }
         }
 
