@@ -94,7 +94,7 @@ public class TopSiteTotalInfo
             TopKefuTotalService tktDal = new TopKefuTotalService();
             List<TopKefuTotalInfo> list = (List<TopKefuTotalInfo>)tktDal.GetTotalinfoList(SiteTotalDate, SiteNick);
             if (AskOrder == 0) return "0";
-            return Math.Round(((decimal) (AskOrder- list.Sum(o =>o.OrderCount)) / AskOrder), 2).ToString() + "%";
+            return Math.Round(((decimal)(AskOrder - list.Sum(o => o.OrderCount)) / AskOrder) * 100, 2).ToString() + "%";
         }
     }
 
