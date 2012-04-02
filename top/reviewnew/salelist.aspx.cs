@@ -5,6 +5,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Common;
 using System.Data;
+using TeteTopApi.DataContract;
+using TeteTopApi.Entity;
+using TeteTopApi.TopApi;
+using System.Text.RegularExpressions;
 
 public partial class top_reviewnew_salelist : System.Web.UI.Page
 {
@@ -48,6 +52,9 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
 
     private void BindData()
     {
+        
+
+
         string page = utils.NewRequest("page", utils.RequestType.QueryString);
         int pageNow = 1;
         if (page == "")
@@ -61,8 +68,28 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
         int pageCount = 12;
         int dataCount = (pageNow - 1) * pageCount;
 
-        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.adddate DESC) AS rownumber FROM TCS_Trade b WHERE b.nick = '" + nick + "' AND iscoupon = 1) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY a.adddate DESC";
+        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.adddate DESC) AS rownumber FROM TCS_Trade b WHERE b.nick = '" + nick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY a.adddate DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
+
+
+        TradeData dbTrade = new TradeData();
+        CouponData dbCoupon = new CouponData();
+        MessageData dbMessage = new MessageData();
+        TopApiHaoping api = new TopApiHaoping(session);
+
+        for (int j = 0; j < dt.Rows.Count; j++)
+        {
+            Trade trade = new Trade();
+            trade.Tid = dt.Rows[j]["orderid"].ToString();
+            string result = api.GetCouponTradeTotalByNick(trade);
+
+            string couponid = new Regex(@"<promotion_id>([^\<]*)</promotion_id><promotion_name>店铺优惠券", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+            string price = new Regex(@"<total_fee>([^\<]*)</total_fee>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+            if (couponid != "")
+            {
+                Response.Write(result);
+            }
+        }
 
         rptArticle.DataSource = dt;
         rptArticle.DataBind();
