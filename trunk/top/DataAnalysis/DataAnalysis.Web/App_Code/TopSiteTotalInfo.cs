@@ -93,8 +93,8 @@ public class TopSiteTotalInfo
         {
             TopKefuTotalService tktDal = new TopKefuTotalService();
             List<TopKefuTotalInfo> list = (List<TopKefuTotalInfo>)tktDal.GetTotalinfoList(SiteTotalDate, SiteNick);
-            if (list.Sum(o => o.CustomerCount) == 0) return "0";
-            return Math.Round(((decimal)list.Sum(o => o.CustomerCount - o.OrderCount) / list.Sum(o => o.CustomerCount) * 100), 2).ToString() + "%";
+            if (AskOrder == 0) return "0";
+            return Math.Round(((decimal) (AskOrder- list.Sum(o =>o.OrderCount)) / AskOrder), 2).ToString() + "%";
         }
     }
 
@@ -103,11 +103,12 @@ public class TopSiteTotalInfo
     /// </summary>
     public int AskOrder
     {
-        get
-        {
-            DateTime start = DateTime.Parse(SiteTotalDate.Substring(0, 4) + "-" + SiteTotalDate.Substring(4, 2) + "-" + SiteTotalDate.Substring(6));
-            return new TalkRecodService().GetCustomerList(start, start.AddDays(1), SiteNick).Count;
-        }
+        set;
+        get;
+        //{
+        //    DateTime start = DateTime.Parse(SiteTotalDate.Substring(0, 4) + "-" + SiteTotalDate.Substring(4, 2) + "-" + SiteTotalDate.Substring(6));
+        //    return new TalkRecodService().GetCustomerList(start, start.AddDays(1), SiteNick).Count;
+        //}
     }
 
     public decimal CPC

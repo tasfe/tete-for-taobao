@@ -6,6 +6,8 @@ using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using Model;
+using CusServiceAchievements.DAL;
+using TaoBaoAPIHelper;
 
 /// <summary>
 /// 获取来访客户端信息
@@ -275,6 +277,9 @@ public class DataHelper
         TopSiteTotalInfo addup = new TopSiteTotalInfo();
         addup.SiteNick = nick;
         addup.SiteTotalDate = now.ToString("yyyyMMdd");
+        //给询单数赋值
+        addup.AskOrder = new TalkRecodService().GetCustomerList(DateTime.Parse(now.ToShortDateString()), DateTime.Parse(now.AddDays(1).ToShortDateString()), nick).Count;
+
         //有添加统计代码
         if (mytablelist.Count > 0)
         {
@@ -330,6 +335,140 @@ public class DataHelper
 
         taoDal.AddOrUp(addup);
 
+    }
+
+    public static DateTime GetTalkrContent(string nick, string session, DateTime now)
+    {
+        TalkRecodService trDal = new TalkRecodService();
+        SubUserService userDal = new SubUserService();
+
+        DateTime start = DateTime.Parse(now.AddDays(-7).ToShortDateString());
+        if (TalkRecodService.CheckTable(DataHelper.Encrypt(nick)))
+        {
+            DateTime max = trDal.GetMaxTime(nick);
+            if (start < max)
+                start = max;
+        }
+        else
+            trDal.CreateTable(DBHelp.DataHelper.Encrypt(nick));
+
+        List<string> childNicks = new List<string>();
+        IList<SubUserInfo> userList = TaoBaoAPIHelper.TaoBaoAPI.GetChildNick(nick,session);
+        List<SubUserInfo> hasuserList = userDal.GetAllChildNick(nick);
+
+        foreach (SubUserInfo uinfo in userList)
+        {
+            childNicks.Add(uinfo.nick);
+            if (hasuserList.Where(o => o.nick == uinfo.nick).ToList().Count == 0)
+                userDal.InsertSubUserInfo(uinfo);
+        }
+
+        foreach (string fromNick in childNicks)
+        {
+            List<TalkObj> objList = TaoBaoAPIHelper.TaoBaoAPI.GetTalkObjList(fromNick.Replace("cntaobao", ""), session, start, now);
+            foreach (TalkObj obj in objList)
+            {
+                List<TalkContent> contents = TaoBaoAPIHelper.TaoBaoAPI.GetTalkContentNow(session, fromNick.Replace("cntaobao", ""), obj.uid.Replace("cntaobao", ""), start, now);
+
+                for (int i = 0; i < contents.Count; i++)
+                {
+                    contents[i].FromNick = fromNick.Replace("cntaobao", "");
+                    contents[i].ToNick = obj.uid.Replace("cntaobao", "");
+                    trDal.InsertContent(contents[i], nick);
+                }
+            }
+        }
+
+        //返回获取聊天记录的开始时间
+        return start;
+    }
+
+    public static void GetKfjxTotal(string nick, DateTime start, DateTime now)
+    {
+        TalkRecodService trDal = new TalkRecodService();
+        GoodsService goodsDal = new GoodsService();
+        GoodsOrderService goDal = new GoodsOrderService();
+        TopKefuTotalService kfDal = new TopKefuTotalService();
+        //所有商品
+        List<TaoBaoAPIHelper.GoodsInfo> goodsNickList = goodsDal.GetAllGoods(nick);
+
+        for (DateTime h = start; h < now; h = h.AddDays(1))
+        {
+
+            //所有订单
+            List<TaoBaoAPIHelper.GoodsOrderInfo> orderList = goDal.GetGoodsOrderList(nick, h, h.AddDays(1));
+
+            //得到回复次数和接待人数
+            List<CustomerInfo> cuslist = trDal.GetReceiveList(nick, h, h.AddDays(1));
+
+            //得到接待人和购买者信息
+            IList<CustomerInfo> cusBuyList = trDal.GetCustomerList(h, h.AddDays(1), nick);
+
+            //得到客服未回复的客户数量
+            List<TopKefuTotalInfo> untalkList = trDal.GetUnTalkCustomerList(nick, h, h.AddDays(1));
+
+            for (int i = 0; i < cusBuyList.Count; i++)
+            {
+                IList<TaoBaoAPIHelper.GoodsOrderInfo> thislist = orderList.Where(o => o.buyer_nick == cusBuyList[i].CustomerNick).ToList();
+                if (thislist.Count > 0)
+                {
+                    cusBuyList[i].tid = thislist[0].tid;
+                }
+            }
+            //得到成功下单
+            List<CustomerInfo> orderCusList = cusBuyList.Where(o => !string.IsNullOrEmpty(o.tid)).ToList();
+            foreach (CustomerInfo fromInfo in cuslist)
+            {
+                TopKefuTotalInfo kefutotalInfo = new TopKefuTotalInfo();
+                kefutotalInfo.CustomerCount = int.Parse(fromInfo.CustomerNick);
+                kefutotalInfo.ReceiveCount = fromInfo.TalkCount;
+                kefutotalInfo.Nick = fromInfo.FromNick;
+                kefutotalInfo.NickDate = h.ToString("yyyyMMdd");
+                //赋值未回复数量
+                if (untalkList.Where(o => o.Nick == fromInfo.FromNick).ToList().Count > 0)
+                    kefutotalInfo.UnTalkCustomerCount = untalkList.Where(o => o.Nick == fromInfo.FromNick).ToList()[0].UnTalkCustomerCount;
+
+                List<CustomerInfo> mylist = orderCusList.Where(o => o.FromNick == fromInfo.FromNick).ToList();
+                if (mylist.Count > 0)
+                {
+                    List<string> tids = new List<string>();
+                    foreach (CustomerInfo inf in mylist)
+                        tids.Add(inf.tid);
+
+                    List<TaoBaoAPIHelper.GoodsOrderInfo> myolist = orderList.Where(o => tids.Contains(o.tid)).ToList();
+
+                    kefutotalInfo.OrderCount = mylist.Count;
+
+                    kefutotalInfo.PostFee = myolist.Sum(o => o.post_fee);
+                    kefutotalInfo.Payment = myolist.Sum(o => o.payment);
+
+                    List<TaoBaoAPIHelper.GoodsInfo> goodsList = goDal.GetGoodsCount(tids);
+                    kefutotalInfo.GoodsCount = goodsList.Sum(o => o.Count);
+                    decimal goodsPriceTotal = 0;
+                    foreach (TaoBaoAPIHelper.GoodsInfo ginfo in goodsList)
+                    {
+                        List<TaoBaoAPIHelper.GoodsInfo> mygoodsList = goodsNickList.Where(o => o.num_iid == ginfo.num_iid).ToList();
+                        if (mygoodsList.Count > 0)
+                        {
+                            goodsPriceTotal += mygoodsList[0].price * ginfo.Count;
+                        }
+                        else
+                        {
+                            TaoBaoAPIHelper.GoodsInfo newgoods = TaoBaoAPIHelper.TaoBaoAPI.GetGoodsInfoService(ginfo.num_iid);
+                            if (newgoods != null)
+                            {
+                                goodsPriceTotal += newgoods.price * ginfo.Count;
+                                //找到后添加到集合
+                                goodsNickList.Add(newgoods);
+                            }
+                        }
+                    }
+                    kefutotalInfo.GoodsPay = goodsPriceTotal;
+                }
+                //添加或者更新
+                kfDal.AddOrUp(kefutotalInfo);
+            }
+        }
     }
 
     private static string GetTableName(string nick)
