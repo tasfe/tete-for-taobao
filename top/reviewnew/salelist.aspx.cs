@@ -63,7 +63,7 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
         {
             pageNow = int.Parse(page);
         }
-        int pageCount = 120;
+        int pageCount = 1200;
         int dataCount = (pageNow - 1) * pageCount;
 
         string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.adddate DESC) AS rownumber FROM TCS_Trade b WHERE b.nick = '" + nick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY a.adddate DESC";
@@ -76,15 +76,18 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
 
             MatchCollection match = new Regex(@"<promotion_details list=""true""><promotion_detail><discount_fee>([^\<]*)</discount_fee><id>[0-9]*</id><promotion_desc>[^\<]*</promotion_desc><promotion_id>shopbonus-[0-9]*_[0-9]*-([0-9]*)</promotion_id><promotion_name>店铺优惠券</promotion_name></promotion_detail>", RegexOptions.IgnoreCase).Matches(result);
 
-            string price = match[0].Groups[1].ToString();
-            string couponid = match[0].Groups[2].ToString();
-            
-            if (couponid != "")
+            if (match.Count != 0)
             {
-                sqlNew = "UPDATE TCS_Trade SET iscoupon = 1,couponprice='" + price + "',couponnumber ='" + couponid + "' WHERE orderid = '" + orderid + "'";
-                Response.Write(sqlNew + "<br>");
-                Response.Write(result + "<br>");
-                Response.End();
+                string price = match[0].Groups[1].ToString();
+                string couponid = match[0].Groups[2].ToString();
+
+                if (couponid != "")
+                {
+                    sqlNew = "UPDATE TCS_Trade SET iscoupon = 1,couponprice='" + price + "',couponnumber ='" + couponid + "' WHERE orderid = '" + orderid + "'";
+                    Response.Write(sqlNew + "<br>");
+                    Response.Write(result + "<br>");
+                    Response.End();
+                }
             }
         }
 
