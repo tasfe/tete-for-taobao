@@ -63,7 +63,7 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
         {
             pageNow = int.Parse(page);
         }
-        int pageCount = 12;
+        int pageCount = 1200;
         int dataCount = (pageNow - 1) * pageCount;
 
         string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.adddate DESC) AS rownumber FROM TCS_Trade b WHERE b.nick = '" + nick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY a.adddate DESC";
@@ -75,8 +75,11 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
 
             string couponid = new Regex(@"<promotion_id>([^\<]*)</promotion_id><promotion_name>店铺优惠券", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             string price = new Regex(@"<total_fee>([^\<]*)</total_fee>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-
-            Response.Write(result + "<br>");
+            if (couponid != "")
+            {
+                Response.Write(result + "<br>");
+                Response.End();
+            }
         }
 
         rptArticle.DataSource = dt;
