@@ -71,12 +71,18 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
 
         for (int j = 0; j < dt.Rows.Count; j++)
         {
-            string result = GetCouponTradeTotalByNick(dt.Rows[j]["orderid"].ToString());
+            string orderid = dt.Rows[j]["orderid"].ToString();
+            string result = GetCouponTradeTotalByNick(orderid);
 
-            string couponid = new Regex(@"<promotion_id>([^\<]*)</promotion_id><promotion_name>店铺优惠券", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-            string price = new Regex(@"<total_fee>([^\<]*)</total_fee>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+            MatchCollection match = new Regex(@"<promotion_details list=""true""><promotion_detail><discount_fee>([^\<]*)</discount_fee><id>[0-9]*</id><promotion_desc>[^\<]*</promotion_desc><promotion_id>shopbonus-[0-9]*_[0-9]*-([0-9]*)</promotion_id><promotion_name>店铺优惠券</promotion_name></promotion_detail>", RegexOptions.IgnoreCase).Matches(result);
+
+            string price = match[0].Groups[1].ToString();
+            string couponid = match[0].Groups[2].ToString();
+            
             if (couponid != "")
             {
+                sqlNew = "UPDATE TCS_Trade SET iscoupon = 1,couponprice='" + price + "',couponnumber ='" + couponid + "' WHERE orderid = '" + orderid + "'";
+                Response.Write(sqlNew + "<br>");
                 Response.Write(result + "<br>");
                 Response.End();
             }
