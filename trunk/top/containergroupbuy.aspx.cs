@@ -231,7 +231,7 @@ public partial class top_containergroupbuy : System.Web.UI.Page
                         " '" + top_session + "', " +
                         " '" + shop.RemainCount + "' " +
                   ") ";
-
+        WriteLog(sql, "0", nick);
         utils.ExecuteNonQuery(sql);
 
 
@@ -264,6 +264,7 @@ public partial class top_containergroupbuy : System.Web.UI.Page
                             " '" + nick + "', " +
                             " '" + cat.Content[i].Modified + "' " +
                       ") ";
+            
             utils.ExecuteNonQuery(sql);
         }
 
