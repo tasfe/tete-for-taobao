@@ -98,7 +98,7 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
         rptArticle.DataBind();
 
         //分页数据初始化
-        sqlNew = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND b.iscoupon = 1";
+        sqlNew = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND iscoupon = 1";
         int totalCount = int.Parse(utils.ExecuteString(sqlNew));
 
         lbPage.Text = InitPageStr(totalCount, "salelist.aspx");
