@@ -72,7 +72,7 @@ public class SiteTotalService
 
             info.SiteZuanZhan = dr["SiteZuanZhan"] == DBNull.Value ? 0 : int.Parse(dr["SiteZuanZhan"].ToString());
 
-            info.RefundOrdercount = dr["RefundOrdercount"] == DBNull.Value ? 0 : int.Parse(dr["RefundOrdercount"].ToString());
+            info.RefundOrderCount = dr["RefundOrdercount"] == DBNull.Value ? 0 : int.Parse(dr["RefundOrdercount"].ToString());
             info.RefundMoney = dr["RefundMoney"] == DBNull.Value ? 0 : decimal.Parse(dr["RefundMoney"].ToString());
 
             info.SiteNick = nick;
@@ -342,11 +342,15 @@ group by VisitBrower,VisitIP,VisitUserAgent
 
     const string SQL_SELECT = "SELECT SiteTotalDate FROM TopSiteTotal WHERE SiteNick=@SiteNick AND SiteTotalDate=@SiteTotalDate";
 
-    const string SQL_INSERT = "INSERT TopSiteTotal(SiteNick,SiteTotalDate,SitePVCount,SiteUVCount,SiteOrderCount,SiteOrderPay,SiteUVBack,SiteGoodsCount,SitePostFee,SiteSecondBuy,SiteBuyCustomTotal) VALUES(@SiteNick,@SiteTotalDate,@SitePVCount,@SiteUVCount,@SiteOrderCount,@SiteOrderPay,@SiteUVBack,@SiteGoodsCount,@SitePostFee,@SiteSecondBuy,@SiteBuyCustomTotal)";
+    const string SQL_INSERT = "INSERT TopSiteTotal(SiteNick,SiteTotalDate,SitePVCount,SiteUVCount,SiteOrderCount,SiteOrderPay,SiteUVBack,SiteGoodsCount,SitePostFee,SiteSecondBuy,SiteBuyCustomTotal,SiteZhiTongTotal,SiteZuanZhan,RefundOrderCount,RefundMoney) VALUES(@SiteNick,@SiteTotalDate,@SitePVCount,@SiteUVCount,@SiteOrderCount,@SiteOrderPay,@SiteUVBack,@SiteGoodsCount,@SitePostFee,@SiteSecondBuy,@SiteBuyCustomTotal,@SiteZhiTongTotal,@SiteZuanZhan,@RefundOrderCount,@RefundMoney)";
 
-    const string SQL_UPDATE = "UPDATE TopSiteTotal SET SitePVCount=@SitePVCount,SiteUVCount=@SiteUVCount,SiteOrderCount=@SiteOrderCount,SiteOrderPay=@SiteOrderPay,SiteUVBack=@SiteUVBack,SiteGoodsCount=@SiteGoodsCount,SitePostFee=@SitePostFee,SiteSecondBuy=@SiteSecondBuy,SiteBuyCustomTotal=@SiteBuyCustomTotal WHERE SiteNick=@SiteNick AND SiteTotalDate=@SiteTotalDate";
+    const string SQL_UPDATE = "UPDATE TopSiteTotal SET SitePVCount=@SitePVCount,SiteUVCount=@SiteUVCount,SiteOrderCount=@SiteOrderCount,SiteOrderPay=@SiteOrderPay,SiteUVBack=@SiteUVBack,SiteGoodsCount=@SiteGoodsCount,SitePostFee=@SitePostFee,SiteSecondBuy=@SiteSecondBuy,SiteBuyCustomTotal=@SiteBuyCustomTotal,SiteZhiTongTotal=@SiteZhiTongTotal,SiteZuanZhan=@SiteZuanZhan,RefundOrderCount=@RefundOrderCount,RefundMoney=@RefundMoney WHERE SiteNick=@SiteNick AND SiteTotalDate=@SiteTotalDate";
 
     const string SQL_SELECT_GETORDERID = "SELECT tid FROM TopTaoBaoGoodsOrderInfo WHERE seller_nick=@seller_nick AND created BETWEEN @start AND @end";
+
+    const string SQL_SELECT_GETZHITONGTOTAL = "SELECT COUNT (*) FROM @tableName WHERE CHARINDEX( 'ali_refid',VisitUrl)>0 AND VisitTime BETWEEN @start AND @end";
+
+    const string SQL_SELECT_ZUANGZHAN = "SELECT COUNT (*) FROM @tableName WHERE CHARINDEX( 'ali_trackid',VisitUrl)>0 AND CHARINDEX( 'ali_refid',VisitUrl)<=0 AND VisitTime BETWEEN @start AND @end";
 
     public TopSiteTotalInfo GetOrderTotalPay(DateTime start, DateTime end,string nick)
     {
@@ -509,6 +513,37 @@ group by VisitBrower,VisitIP,VisitUserAgent
         return false;
     }
 
+    /// <summary>
+    /// 统计直通车
+    /// </summary>
+    /// <param name="start"></param>
+    /// <param name="end"></param>
+    /// <param name="tableName"></param>
+    /// <returns></returns>
+    public int GetZhiTongTotal(DateTime start, DateTime end, string tableName)
+    {
+        string sql = SQL_SELECT_GETZHITONGTOTAL.Replace("@tableName", tableName);
+        SqlParameter[] param = new[]
+            {
+                new SqlParameter("@start",DateTime.Parse(start.ToShortDateString())),
+                new SqlParameter("@end",DateTime.Parse(end.ToShortDateString()))
+            };
+
+        return DBHelper.ExecuteScalar(sql, param);
+    }
+
+    public int GetZuanZhanTotal(DateTime start, DateTime end, string tableName)
+    {
+        string sql = SQL_SELECT_ZUANGZHAN.Replace("@tableName", tableName);
+        SqlParameter[] param = new[]
+            {
+                new SqlParameter("@start",DateTime.Parse(start.ToShortDateString())),
+                new SqlParameter("@end",DateTime.Parse(end.ToShortDateString()))
+            };
+
+        return DBHelper.ExecuteScalar(sql, param);
+    }
+
     private static SqlParameter[] GetParameter(TopSiteTotalInfo info)
     {
         return new[]
@@ -523,7 +558,11 @@ group by VisitBrower,VisitIP,VisitUserAgent
                     new SqlParameter("@SiteGoodsCount",info.GoodsCount),
                     new SqlParameter("@SitePostFee",info.PostFee),
                     new SqlParameter("@SiteSecondBuy", info.SiteSecondBuy),
-                    new SqlParameter("@SiteBuyCustomTotal",info.SiteBuyCustomTotal)
+                    new SqlParameter("@SiteBuyCustomTotal",info.SiteBuyCustomTotal),
+                    new SqlParameter("@SiteZhiTongTotal",info.ZhiTongFlow),
+                    new SqlParameter("@SiteZuanZhan",info.SiteZuanZhan),
+                    new SqlParameter("@RefundOrderCount",info.RefundOrderCount),
+                    new SqlParameter("@RefundMoney",info.RefundMoney)
               };
     }
 

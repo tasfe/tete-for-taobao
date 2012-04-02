@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Linq;
 using System.Web;
 using Enum;
+using Model;
 
 /// <summary>
 /// Summary description for TaoBaoAPI
@@ -437,5 +438,61 @@ public class TaoBaoAPI
         }
         Regex regex = new Regex("\\d+");
         return regex.Match(text).Value;
+    }
+
+    //查询退款成功情况
+    public static IList<RefundInfo> GetRefundInfoList(DateTime start, DateTime end, string nick, string session, string refundState)
+    {
+        bool notlast = true;
+        int page_no = 0;
+
+        List<RefundInfo> list = new List<RefundInfo>();
+        System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+        while (notlast)
+        {
+            page_no++;
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("start_modified", start.ToString("yyyy-MM-dd HH:mm:ss"));
+            dic.Add("end_modified", end.ToString("yyyy-MM-dd HH:mm:ss"));
+            dic.Add("page_size", "100");
+            dic.Add("page_no", page_no.ToString());
+            dic.Add("status", refundState);
+            dic.Add("fields", "refund_id,tid,title,buyer_nick,total_fee,refund_fee,payment,has_good_return,reason,desc,num,modified");
+            string text = Post(nick, "taobao.refunds.receive.get", session, dic, DataFormatType.json);
+            if (!string.IsNullOrEmpty(text))
+            {
+                if (text.Contains("error_response"))
+                {
+                    LogInfo.WriteLog("获取退款参数错误" + session + ":", text);
+                    return list;
+                }
+                string index = "{\"refunds_receive_get_response\":{\"refunds\":{\"refund\":";
+                text = text.Replace(index, "");
+
+                Regex regex = new Regex(",\"total_results\":\\d+}}", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+                if (new Regex("\"total_results\":\\d+}}", System.Text.RegularExpressions.RegexOptions.IgnoreCase).Match(text).Value == "\"total_results\":0}}")
+                    return list;
+
+                text = regex.Replace(text, "");
+                text = text.Substring(0, text.Length - 1);
+                try
+                {
+                    List<RefundInfo> thislist = js.Deserialize<List<RefundInfo>>(text);
+
+                    list.AddRange(thislist);
+                    if (thislist.Count < 100)
+                    {
+                        notlast = false;
+                        return list;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    LogInfo.WriteLog("获取订单转换出错", ex.Message);
+                }
+            }
+        }
+        return list;
     }
 }

@@ -163,7 +163,7 @@ public class TopSiteTotalInfo
         get
         {
             if (SiteOrderCount == 0) return "0";
-            return Math.Round((((decimal)RefundOrdercount / SiteOrderCount) * 100), 2).ToString() + "%";
+            return Math.Round((((decimal)RefundOrderCount / SiteOrderCount) * 100), 2).ToString() + "%";
         }
     }
 
@@ -240,7 +240,7 @@ public class TopSiteTotalInfo
         }
     }
 
-    public int RefundOrdercount { set; get; }
+    public int RefundOrderCount { set; get; }
 
     public decimal RefundMoney { set; get; }
 

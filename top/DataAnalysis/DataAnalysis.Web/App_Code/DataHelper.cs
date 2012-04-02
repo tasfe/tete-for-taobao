@@ -5,6 +5,7 @@ using System.Web.Security;
 using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
+using Model;
 
 /// <summary>
 /// 获取来访客户端信息
@@ -261,9 +262,9 @@ public class DataHelper
         }
     }
 
-    public static void UpdateSiteTotal(string nick, DateTime now, SiteTotalService taoDal)
+    public static void UpdateSiteTotal(string nick,string session, DateTime now, SiteTotalService taoDal)
     {
-
+        List<RefundInfo> refundList = (List<RefundInfo>)TaoBaoAPI.GetRefundInfoList(now.AddDays(-2), now, nick, session, "SUCCESS");
         //所有有订单的用户
         TopSiteTotalInfo stinfo = taoDal.GetOrderTotalPay(DateTime.Parse(now.ToShortDateString()), DateTime.Parse(now.AddDays(1).ToShortDateString()), nick);
         //所有表名(添加过统计代码到网页的)
@@ -289,6 +290,8 @@ public class DataHelper
             TopSiteTotalInfo puvinfo = taoDal.GetPvUvTotal(DateTime.Parse(now.ToShortDateString()), DateTime.Parse(now.AddDays(1).ToShortDateString()), tablename);
             addup.SiteUVCount = puvinfo.SiteUVCount;
             addup.SitePVCount = puvinfo.SitePVCount;
+            addup.ZhiTongFlow = taoDal.GetZhiTongTotal(now, now.AddDays(1), tablename);
+            addup.SiteZuanZhan = taoDal.GetZuanZhanTotal(now, now.AddDays(1), tablename);
 
             addup.SiteUVBack = taoDal.GetBackTotal(DateTime.Parse(now.ToShortDateString()), DateTime.Parse(now.AddDays(1).ToShortDateString()), tablename);
         }
@@ -308,6 +311,22 @@ public class DataHelper
         IList<string> tidList = taoDal.GetOrderIds(DateTime.Parse(now.ToShortDateString()), DateTime.Parse(now.AddDays(1).ToShortDateString()), nick);
         if (tidList.Count > 0)
             addup.GoodsCount = taoDal.GetGoodsCount(tidList);
+
+        //退款情况
+        List<RefundInfo> trefundList = refundList.Where(o => o.modified.ToShortDateString() == now.ToShortDateString()).ToList();
+        if (trefundList.Count > 0)
+        {
+            int rorderCount = 0;
+            decimal rpay = 0;
+            foreach (RefundInfo refund in trefundList)
+            {
+                if (!tidList.Contains(refund.tid)) continue;
+                rorderCount++;
+                rpay += (refund.total_fee - refund.payment);
+            }
+            addup.RefundOrderCount = rorderCount;
+            addup.RefundMoney = rpay;
+        }
 
         taoDal.AddOrUp(addup);
 
