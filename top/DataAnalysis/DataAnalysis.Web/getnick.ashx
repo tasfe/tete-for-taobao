@@ -58,12 +58,18 @@ public class getnick : IHttpHandler {
                 CacheCollection.GetNickSessionList().Where(o => o.Nick == nick && o.ServiceId == Enum.TopTaoBaoService.Temporary).ToList()[0].ShopId = info.ShopId;
 
                 DataHelper.InsertGoodsOrder(DateTime.Parse(now.AddDays(-7).ToShortDateString()), now, session, nick);
+                //获取聊天记录
+                DateTime start = DataHelper.GetTalkrContent(nick, session, now);
+                
                 //添加统计数据
                 SiteTotalService taoDal = new SiteTotalService();
                 for (DateTime i = DateTime.Parse(now.AddDays(-7).ToShortDateString()); i <= now; i = i.AddDays(1))
                 {
                     DataHelper.UpdateSiteTotal(nick, session, i, taoDal);
                 }
+
+                //添加客服绩效统计
+                DataHelper.GetKfjxTotal(nick, start, now);
 
             }
             else
@@ -85,6 +91,8 @@ public class getnick : IHttpHandler {
 
                     //二次订购
                     DataHelper.InsertGoodsOrder(start, now, session, nick);
+                    //获取聊天记录
+                    DateTime kstart = DataHelper.GetTalkrContent(nick, session, now);
 
                     //添加统计数据
                     SiteTotalService taoDal = new SiteTotalService();
@@ -92,6 +100,9 @@ public class getnick : IHttpHandler {
                     {
                         DataHelper.UpdateSiteTotal(nick, session, i, taoDal);
                     }
+
+                    //添加客服绩效统计
+                    DataHelper.GetKfjxTotal(nick, kstart, now);
                 }
             }
         }

@@ -9,7 +9,7 @@ using System.Text;
 /// </summary>
 public class SiteTotalService
 {
-    const string SQL_SELECT_ORDER_BYDAY = "SELECT SiteTotalDate,SitePVCount,SiteUVCount,SiteOrderCount,SiteOrderPay,SiteUVBack,SiteGoodsCount,SitePostFee,SiteSecondBuy,SiteBuyCustomTotal,SiteZhiTongTotal,SiteZuanZhan,RefundOrdercount,RefundMoney FROM TopSiteTotal WHERE SiteNick=@SiteNick AND SiteTotalDate BETWEEN @start AND @end";
+    const string SQL_SELECT_ORDER_BYDAY = "SELECT SiteTotalDate,SitePVCount,SiteUVCount,SiteOrderCount,SiteOrderPay,SiteUVBack,SiteGoodsCount,SitePostFee,SiteSecondBuy,SiteBuyCustomTotal,SiteZhiTongTotal,SiteZuanZhan,RefundOrdercount,RefundMoney,AskOrder FROM TopSiteTotal WHERE SiteNick=@SiteNick AND SiteTotalDate BETWEEN @start AND @end";
 
     const string SQL_SELECT_SUM_SITETOTAL = @"SELECT sum(SitePVCount) AS sSitePVCount,sum(SiteUVCount) as sSiteUVCount,sum(SiteOrderCount) as sSiteOrderCount,sum(SiteOrderPay) as sSiteOrderPay,sum(SiteUVBack) as sSiteUVBack,sum(SiteGoodsCount) as sSiteGoodsCount,sum(SitePostFee) as sSitePostFee,sum(SiteSecondBuy) as sSiteSecondBuy,sum(SiteBuyCustomTotal) as sSiteBuyCustomTotal FROM 
   (select * from TopSiteTotal where SiteNick=@nick AND 
@@ -74,6 +74,7 @@ public class SiteTotalService
 
             info.RefundOrderCount = dr["RefundOrdercount"] == DBNull.Value ? 0 : int.Parse(dr["RefundOrdercount"].ToString());
             info.RefundMoney = dr["RefundMoney"] == DBNull.Value ? 0 : decimal.Parse(dr["RefundMoney"].ToString());
+            info.AskOrder = dr["AskOrder"] == DBNull.Value ? 0 : int.Parse(dr["AskOrder"].ToString());
 
             info.SiteNick = nick;
 
@@ -342,9 +343,9 @@ group by VisitBrower,VisitIP,VisitUserAgent
 
     const string SQL_SELECT = "SELECT SiteTotalDate FROM TopSiteTotal WHERE SiteNick=@SiteNick AND SiteTotalDate=@SiteTotalDate";
 
-    const string SQL_INSERT = "INSERT TopSiteTotal(SiteNick,SiteTotalDate,SitePVCount,SiteUVCount,SiteOrderCount,SiteOrderPay,SiteUVBack,SiteGoodsCount,SitePostFee,SiteSecondBuy,SiteBuyCustomTotal,SiteZhiTongTotal,SiteZuanZhan,RefundOrderCount,RefundMoney) VALUES(@SiteNick,@SiteTotalDate,@SitePVCount,@SiteUVCount,@SiteOrderCount,@SiteOrderPay,@SiteUVBack,@SiteGoodsCount,@SitePostFee,@SiteSecondBuy,@SiteBuyCustomTotal,@SiteZhiTongTotal,@SiteZuanZhan,@RefundOrderCount,@RefundMoney)";
+    const string SQL_INSERT = "INSERT TopSiteTotal(SiteNick,SiteTotalDate,SitePVCount,SiteUVCount,SiteOrderCount,SiteOrderPay,SiteUVBack,SiteGoodsCount,SitePostFee,SiteSecondBuy,SiteBuyCustomTotal,SiteZhiTongTotal,SiteZuanZhan,RefundOrderCount,RefundMoney,AskOrder) VALUES(@SiteNick,@SiteTotalDate,@SitePVCount,@SiteUVCount,@SiteOrderCount,@SiteOrderPay,@SiteUVBack,@SiteGoodsCount,@SitePostFee,@SiteSecondBuy,@SiteBuyCustomTotal,@SiteZhiTongTotal,@SiteZuanZhan,@RefundOrderCount,@RefundMoney,@AskOrder)";
 
-    const string SQL_UPDATE = "UPDATE TopSiteTotal SET SitePVCount=@SitePVCount,SiteUVCount=@SiteUVCount,SiteOrderCount=@SiteOrderCount,SiteOrderPay=@SiteOrderPay,SiteUVBack=@SiteUVBack,SiteGoodsCount=@SiteGoodsCount,SitePostFee=@SitePostFee,SiteSecondBuy=@SiteSecondBuy,SiteBuyCustomTotal=@SiteBuyCustomTotal,SiteZhiTongTotal=@SiteZhiTongTotal,SiteZuanZhan=@SiteZuanZhan,RefundOrderCount=@RefundOrderCount,RefundMoney=@RefundMoney WHERE SiteNick=@SiteNick AND SiteTotalDate=@SiteTotalDate";
+    const string SQL_UPDATE = "UPDATE TopSiteTotal SET SitePVCount=@SitePVCount,SiteUVCount=@SiteUVCount,SiteOrderCount=@SiteOrderCount,SiteOrderPay=@SiteOrderPay,SiteUVBack=@SiteUVBack,SiteGoodsCount=@SiteGoodsCount,SitePostFee=@SitePostFee,SiteSecondBuy=@SiteSecondBuy,SiteBuyCustomTotal=@SiteBuyCustomTotal,SiteZhiTongTotal=@SiteZhiTongTotal,SiteZuanZhan=@SiteZuanZhan,RefundOrderCount=@RefundOrderCount,RefundMoney=@RefundMoney,AskOrder=@AskOrder WHERE SiteNick=@SiteNick AND SiteTotalDate=@SiteTotalDate";
 
     const string SQL_SELECT_GETORDERID = "SELECT tid FROM TopTaoBaoGoodsOrderInfo WHERE seller_nick=@seller_nick AND created BETWEEN @start AND @end";
 
@@ -562,7 +563,8 @@ group by VisitBrower,VisitIP,VisitUserAgent
                     new SqlParameter("@SiteZhiTongTotal",info.ZhiTongFlow),
                     new SqlParameter("@SiteZuanZhan",info.SiteZuanZhan),
                     new SqlParameter("@RefundOrderCount",info.RefundOrderCount),
-                    new SqlParameter("@RefundMoney",info.RefundMoney)
+                    new SqlParameter("@RefundMoney",info.RefundMoney),
+                    new SqlParameter("@AskOrder",info.AskOrder)
               };
     }
 

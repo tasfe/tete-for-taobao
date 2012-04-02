@@ -152,17 +152,23 @@ public class TaoBaoAPI
         Stream reqStream = req.GetRequestStream();
         reqStream.Write(postData, 0, postData.Length);
         reqStream.Close();
-        HttpWebResponse rsp = (HttpWebResponse)req.GetResponse();
-        Encoding encoding = Encoding.GetEncoding(rsp.CharacterSet);
-        Stream stream = null;
-        StreamReader reader = null;
-        stream = rsp.GetResponseStream();
-        reader = new StreamReader(stream, encoding);
-        result = reader.ReadToEnd();
-        if (reader != null) reader.Close();
-        if (stream != null) stream.Close();
-        if (rsp != null) rsp.Close();
-
+        try
+        {
+            HttpWebResponse rsp = (HttpWebResponse)req.GetResponse();
+            Encoding encoding = Encoding.GetEncoding(rsp.CharacterSet);
+            Stream stream = null;
+            StreamReader reader = null;
+            stream = rsp.GetResponseStream();
+            reader = new StreamReader(stream, encoding);
+            result = reader.ReadToEnd();
+            if (reader != null) reader.Close();
+            if (stream != null) stream.Close();
+            if (rsp != null) rsp.Close();
+        }
+        catch (Exception ex)
+        {
+            LogInfo.WriteLog("session:" + session + "获取淘宝服务响应错误", ex.Message);
+        }
         #endregion
 
         return Regex.Replace(result, @"[\x00-\x08\x0b-\x0c\x0e-\x1f]", "");
