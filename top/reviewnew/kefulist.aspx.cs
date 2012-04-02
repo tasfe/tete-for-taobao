@@ -831,7 +831,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         return FormsAuthentication.HashPasswordForStoringInConfigFile(str, "MD5");
     }
 
-    public static string SendMessage(string phone, string msg)
+    public string SendMessage(string phone, string msg)
     {
         //有客户没有手机号也发送短信
         if (phone.Length == 0)
