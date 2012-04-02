@@ -77,7 +77,7 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
                 string couponnumber = dt.Rows[j]["couponnumber"].ToString();
                 string sql = "SELECT COUNT(*) FROM TCS_CouponSend WHERE taobaonumber = '" + couponnumber + "'";
                 string count = utils.ExecuteString(sql);
-                Response.Write(orderid + "--" + count + "<br>");
+                Response.Write(sql + "--" + orderid + "--" + count + "<br>");
                 if (count == "0")
                 {
                     sqlNew = "UPDATE TCS_Trade SET iscoupon = 0 WHERE orderid = '" + orderid + "'";
