@@ -63,7 +63,7 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
         {
             pageNow = int.Parse(page);
         }
-        int pageCount = 12;
+        int pageCount = 1200;
         int dataCount = (pageNow - 1) * pageCount;
 
         string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.adddate DESC) AS rownumber FROM TCS_Trade b WHERE b.nick = '" + nick + "' AND b.iscoupon = 1) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY a.adddate DESC";
@@ -77,7 +77,7 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
                 string couponnumber = dt.Rows[j]["couponnumber"].ToString();
                 string sql = "SELECT COUNT(*) FROM TCS_CouponSend WHERE taobaonumber = '" + couponnumber + "'";
                 string count = utils.ExecuteString(sql);
-                Response.Write(sql + "--" + orderid + "--" + count + "<br>");
+                //Response.Write(sql + "--" + orderid + "--" + count + "<br>");
                 if (count == "0")
                 {
                     sqlNew = "UPDATE TCS_Trade SET iscoupon = 0 WHERE orderid = '" + orderid + "'";
