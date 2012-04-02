@@ -50,7 +50,7 @@ public partial class AskOrderTotal : BasePage
                 if (mylist.Count == 0)
                     SeriseText += "0,";
                 else
-                    SeriseText += mystlist[0].AskOrder;
+                    SeriseText += mystlist[0].AskOrder + ",";
                 sucss += mylist.Sum(o => o.OrderCount) + ",";
             }
         }
