@@ -62,7 +62,7 @@ public class getnick : IHttpHandler {
                 SiteTotalService taoDal = new SiteTotalService();
                 for (DateTime i = DateTime.Parse(now.AddDays(-7).ToShortDateString()); i <= now; i = i.AddDays(1))
                 {
-                    DataHelper.UpdateSiteTotal(nick, i, taoDal);
+                    DataHelper.UpdateSiteTotal(nick, session, i, taoDal);
                 }
 
             }
@@ -90,7 +90,7 @@ public class getnick : IHttpHandler {
                     SiteTotalService taoDal = new SiteTotalService();
                     for (DateTime i = DateTime.Parse(start.ToShortDateString()); i <= now; i = i.AddDays(1))
                     {
-                        DataHelper.UpdateSiteTotal(nick, i, taoDal);
+                        DataHelper.UpdateSiteTotal(nick, session, i, taoDal);
                     }
                 }
             }
