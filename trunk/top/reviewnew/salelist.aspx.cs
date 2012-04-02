@@ -5,9 +5,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Common;
 using System.Data;
-using TeteTopApi.DataContract;
-using TeteTopApi.Entity;
-using TeteTopApi.TopApi;
 using System.Text.RegularExpressions;
 using System.Net;
 using System.Text;
@@ -56,9 +53,6 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
 
     private void BindData()
     {
-        
-
-
         string page = utils.NewRequest("page", utils.RequestType.QueryString);
         int pageNow = 1;
         if (page == "")
@@ -74,8 +68,6 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
 
         string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.adddate DESC) AS rownumber FROM TCS_Trade b WHERE b.nick = '" + nick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY a.adddate DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
-
-
 
         for (int j = 0; j < dt.Rows.Count; j++)
         {
