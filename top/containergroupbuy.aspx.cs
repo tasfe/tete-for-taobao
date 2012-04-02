@@ -21,6 +21,7 @@ using System.Net;
 
 public partial class top_containergroupbuy : System.Web.UI.Page
 {
+    public static string logUrl = "D:/svngroupbuy/website/ErrLog";
     public string top_session = string.Empty;
     public string nick = string.Empty;
     public string versionNo = string.Empty;
@@ -173,7 +174,7 @@ public partial class top_containergroupbuy : System.Web.UI.Page
         cookie.setCookie("top_sessiongroupbuy", top_session, 999999);
         cookie.setCookie("nick", nick, 999999);
 
-        Response.Redirect("http://www.7fshop.com/top/index.html?t=2");
+        Response.Redirect("indexgroup.html");
     }
 
 
@@ -277,6 +278,7 @@ public partial class top_containergroupbuy : System.Web.UI.Page
     private bool CheckUserExits(string nick)
     {
         string sql = "SELECT * FROM TopTaobaoShop WHERE nick = '" + nick + "'";
+        WriteLog(sql, "0", nick);
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count == 0)
         {
@@ -286,6 +288,44 @@ public partial class top_containergroupbuy : System.Web.UI.Page
         {
             return true;
         }
+    }
+
+    /// <summary>
+    /// 写日志
+    /// </summary>
+    /// <param name="value">日志内容</param>
+    /// <param name="type">类型 0(成功日志),1(错误日志) 可传空文本默认为0</param>
+    /// <returns></returns>
+    public static void WriteLog(string message, string type, string nick)
+    {
+
+        string tempStr = logUrl + "/GroupbyShop" + nick + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
+        string tempFile = tempStr + "/GroupbyShop" + nick + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+        if (type == "1")
+        {
+            tempFile = tempStr + "/GroupbyShopErr" + nick + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+        }
+        if (!Directory.Exists(tempStr))
+        {
+            Directory.CreateDirectory(tempStr);
+        }
+
+        if (System.IO.File.Exists(tempFile))
+        {
+            ///如果日志文件已经存在，则直接写入日志文件
+            StreamWriter sr = System.IO.File.AppendText(tempFile);
+            sr.WriteLine("\n");
+            sr.WriteLine(DateTime.Now + "\n" + message);
+            sr.Close();
+        }
+        else
+        {
+            ///创建日志文件
+            StreamWriter sr = System.IO.File.CreateText(tempFile);
+            sr.WriteLine(DateTime.Now + "\n" + message);
+            sr.Close();
+        }
+
     }
 
 
