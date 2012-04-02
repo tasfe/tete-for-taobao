@@ -58,7 +58,7 @@ public partial class top_reviewnew_saletotal : System.Web.UI.Page
         string sql = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND iscoupon = 1";
         totalcount = utils.ExecuteString(sql);
 
-        sql = "SELECT SUM(totalprice) FROM TCS_Trade WHERE nick = '" + nick + "' AND iscoupon = 1";
+        sql = "SELECT SUM(Convert(decimal,totalprice)) FROM TCS_Trade WHERE nick = '" + nick + "' AND iscoupon = 1";
         totalprice = utils.ExecuteString(sql);
     }
 }
