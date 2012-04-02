@@ -63,7 +63,7 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
         {
             pageNow = int.Parse(page);
         }
-        int pageCount = 1200;
+        int pageCount = 120;
         int dataCount = (pageNow - 1) * pageCount;
 
         string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.adddate DESC) AS rownumber FROM TCS_Trade b WHERE b.nick = '" + nick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY a.adddate DESC";
