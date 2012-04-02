@@ -29,8 +29,8 @@
                 <td width="120"><b>买家昵称</b></td>
                 <td width="60"><b>订单号</b></td>
                 <td width="80"><b>金额</b></td>
-                <td width="100"><b>下单时间</b></td>
-                <td width="70"><b>优惠券编号</b></td>
+                <td width="90"><b>下单时间</b></td>
+                <td width="100"><b>优惠券编号</b></td>
                 <td width="70"><b>优惠金额</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">

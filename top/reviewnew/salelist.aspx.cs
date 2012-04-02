@@ -63,7 +63,7 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
         {
             pageNow = int.Parse(page);
         }
-        int pageCount = 120000;
+        int pageCount = 12;
         int dataCount = (pageNow - 1) * pageCount;
 
         string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.adddate DESC) AS rownumber FROM TCS_Trade b WHERE b.nick = '" + nick + "' AND b.iscoupon = 1) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY a.adddate DESC";
@@ -98,7 +98,7 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
         rptArticle.DataBind();
 
         //分页数据初始化
-        sqlNew = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "'";
+        sqlNew = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND b.iscoupon = 1";
         int totalCount = int.Parse(utils.ExecuteString(sqlNew));
 
         lbPage.Text = InitPageStr(totalCount, "salelist.aspx");
