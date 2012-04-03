@@ -56,16 +56,16 @@
                     <table style="margin:0; width:740px; margin-top:5px;">
                       <thead>
                         <tr>
-                            <th style="width:15%">
+                            <th style="width:25%">
                                 客服                                
                             </th>
                             <th style="width:15%">
                                付款金额
                             </th>
-                            <th style="width:15%">
+                            <th style="width:10%">
                                 宝贝金额 
                             </th>
-                            <th style="width:15%">
+                            <th style="width:10%">
                                 运费 
                             </th>
                             <th style="width:10%">
@@ -105,7 +105,7 @@
                         <h3>
                             <a href="#" class="report">日统计</a></h3>
                         <ul>
-                            <li><a href="#" class="report">接待人数</a></li>
+                            <li><a href="CustomerList.aspx" class="report">接待人数</a></li>
                             <li><a href="#" class="report">成功订单</a></li>
                             <li><a href="#" class="report">付款金额</a></li>
                         </ul>

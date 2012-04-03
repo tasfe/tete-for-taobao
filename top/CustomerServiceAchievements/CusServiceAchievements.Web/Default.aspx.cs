@@ -16,7 +16,9 @@ public partial class _Default : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-
+            string SiteTotalDate = "20120401";
+            DateTime start = DateTime.Parse(SiteTotalDate.Substring(0, 4) + "-" + SiteTotalDate.Substring(4, 2) + "-" + SiteTotalDate.Substring(6));
+            string s = DateTime.Now.ToString("yyyyMMdd");
         }
     }
     protected void Btn_JoinNick_Click(object sender, EventArgs e)
