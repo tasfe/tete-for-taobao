@@ -1,13 +1,14 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ReceiveCustomer.aspx.cs" Inherits="ReceiveCustomer" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ReceiveCustomer.aspx.cs"
+    Inherits="ReceiveCustomer" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>接待人次</title>
     <link rel="stylesheet" type="text/css" href="jxkh/css/theme.css" />
     <link rel="stylesheet" type="text/css" href="jxkh/css/style.css" />
+
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
     <script type="text/javascript">
@@ -20,10 +21,10 @@
 <![endif]-->
 </head>
 <body>
-    <form id="form1" runat="server">
     <div id="container">
         <div id="header">
-            <h2>客服绩效考核</h2>
+            <h2>
+                客服绩效考核</h2>
             <div id="topmenu">
                 <ul>
                     <li><a href="default2.aspx">主页</a></li>
@@ -37,15 +38,17 @@
         <div id="top-panel">
             <div id="panel">
                 <ul>
-                   <li><a href="CustomerList.aspx" class="report">接待人数</a></li>
-                   <li><a href="#" class="report_seo">成功订单</a></li>
-                   <li><a href="#" class="report_seo">付款金额</a></li>
+                    <li><a href="CustomerList.aspx" class="report">接待人数</a></li>
+                    <li><a href="#" class="report_seo">成功订单</a></li>
+                    <li><a href="#" class="report_seo">付款金额</a></li>
                 </ul>
             </div>
         </div>
         <div id="wrapper">
             <div id="content">
-              <script type="text/javascript">
+                <form id="form1" runat="server">
+
+                <script type="text/javascript">
             var chart;
             $(document).ready(function() {
                 chart = new Highcharts.Chart({
@@ -96,9 +99,12 @@
                 </script>
 
                 <script type="text/javascript" src="js/highcharts.js"></script>
+
                 <script type="text/javascript" src="js/modules/exporting.js"></script>
-                 <div id="divchart" style="width: 750px; height: 400px; margin: 0 auto">
+
+                <div id="divchart" style="width: 750px; height: 400px; margin: 0 auto">
                 </div>
+                </form>
             </div>
             <div id="sidebar">
                 <ul>
@@ -170,6 +176,5 @@
             <br />
         </div>
     </div>
-    </form>
 </body>
 </html>

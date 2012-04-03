@@ -97,7 +97,5 @@ public partial class Default2 : System.Web.UI.Page
 
         Rpt_Jie.DataSource = pds;
         Rpt_Jie.DataBind();
-
     }
-
 }
