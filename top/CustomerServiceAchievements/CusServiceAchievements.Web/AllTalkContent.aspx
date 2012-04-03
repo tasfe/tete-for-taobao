@@ -16,7 +16,7 @@
     </script>
 
     <!--[if IE]>
-<link rel="stylesheet" type="text/css" href="css/ie-sucks.css" />
+<link rel="stylesheet" type="text/css" href="jxkh/css/ie-sucks.css" />
 <![endif]-->
 <style type="text/css">
   table{ border:0;}
