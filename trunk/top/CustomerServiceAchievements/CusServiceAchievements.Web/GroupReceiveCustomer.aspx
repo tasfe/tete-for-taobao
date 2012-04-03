@@ -37,7 +37,7 @@
         <div id="top-panel">
             <div id="panel">
                 <ul>
-                   <li><a href="#" class="user">接待人数</a></li>
+                   <li><a href="CustomerList.aspx" class="user">接待人数</a></li>
                    <li><a href="#" class="user">平均首次响应速度</a></li>
                    <li><a href="#" class="user">平均响应速度</a></li>
                    <li><a href="#" class="user">未回复人数</a></li>
