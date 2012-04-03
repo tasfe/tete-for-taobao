@@ -5,7 +5,7 @@ using CusServiceAchievements.DAL;
 using System.Collections.Generic;
 using TaoBaoAPIHelper;
 
-public partial class AllTalkContent : System.Web.UI.Page
+public partial class AllTalkContent : BasePage
 {
 
     TalkRecodService talkDal = new TalkRecodService();

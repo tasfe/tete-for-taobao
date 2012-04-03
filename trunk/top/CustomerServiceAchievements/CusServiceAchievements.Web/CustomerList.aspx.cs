@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using Model;
 using System.Web.UI.WebControls;
 
-public partial class CustomerList : System.Web.UI.Page
+public partial class CustomerList : BasePage
 {
 
     TalkRecodService trDal = new TalkRecodService();

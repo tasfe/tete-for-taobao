@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using CusServiceAchievements.DAL;
 using DBHelp;
 
-public partial class Default2 : System.Web.UI.Page
+public partial class Default2 : BasePage
 {
 
     TalkRecodService trDal = new TalkRecodService();

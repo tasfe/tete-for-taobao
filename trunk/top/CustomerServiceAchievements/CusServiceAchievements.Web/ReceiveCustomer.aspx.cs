@@ -5,7 +5,7 @@ using TaoBaoAPIHelper;
 using System.Collections.Generic;
 using CusServiceAchievements.DAL;
 
-public partial class ReceiveCustomer : System.Web.UI.Page
+public partial class ReceiveCustomer : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
