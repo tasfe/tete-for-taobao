@@ -7,8 +7,7 @@
     <title>客服绩效考核</title>
     <link rel="stylesheet" type="text/css" href="jxkh/css/theme.css" />
     <link rel="stylesheet" type="text/css" href="jxkh/css/style.css" />
-
-    <script type="text/javascript">
+    <script>
         var StyleFile = "theme" + document.cookie.charAt(6) + ".css";
         document.writeln('<link rel="stylesheet" type="text/css" href="jxkh/css/' + StyleFile + '">');
     </script>
