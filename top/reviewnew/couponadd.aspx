@@ -95,7 +95,7 @@
             </tr>
             <tr>
                 <td align="left" height="30" colspan="2">
-                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="创建优惠券" />
+                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存优惠券" />
                 </td>
             </tr>
         </table>
