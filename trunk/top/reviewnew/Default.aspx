@@ -93,8 +93,7 @@ h4 a {
       </li>
     </ul>
   </div>
-    <div id="main-content">
-        <div class="navigation" style="height:600px;">
+    <div id="main-content" style="padding:0px; margin:0px;">
             <div class="user_box2"
 			style="padding-top: 0px; padding-left: 0px; width: 778px">
   <table width="100%" style="border:1px solid #ABCCDC;" align="center" cellpadding="0"
@@ -117,7 +116,7 @@ h4 a {
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
                   <p>好评就送店铺优惠券，系统自动赠送，提升评价又带来2次销售。</p>
                 </div>
-                <div class="item_list_btn"><a href="couponadd.aspx" target="_blank" class="btn-middle middle-blue">立即使用</a></div>
+                <div class="item_list_btn"><a href="couponadd.aspx" class="btn-middle middle-blue">立即使用</a></div>
                 <p style="clear: both; height: 1px;"></p>
               </div></td>
 
@@ -128,7 +127,7 @@ h4 a {
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
                   <p>将您的优惠活动一键同步到店铺左侧分类或者宝贝描述里，让更多客户知道您的好评活动。</p>
                 </div>
-                <div class="item_list_btn"><a href="html.aspx" target="_blank" class="btn-middle middle-blue">立即使用</a></div>
+                <div class="item_list_btn"><a href="html.aspx" class="btn-middle middle-blue">立即使用</a></div>
                 <p style="clear: both; height: 1px;"></p>
               </div></td>
 
@@ -143,7 +142,7 @@ h4 a {
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
                   <p> 好评就送支付宝红包，真金白银的优惠，直达客户手机，到达率100%。 </p>
                 </div>
-                <div class="item_list_btn"><a href="alipay.aspx" target="_blank" class="btn-middle middle-blue">立即使用</a></div>
+                <div class="item_list_btn"><a href="alipay.aspx" class="btn-middle middle-blue">立即使用</a></div>
                 <p style="clear: both; height: 1px;"></p>
               </div></td>
 
@@ -154,7 +153,7 @@ h4 a {
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
                   <p> 发货、物流到货、订单催评、礼品赠送4个时点短信提醒，让您的优惠信息直达客户手机。</p>
                 </div>
-                <div class="item_list_btn"><a href="msg.aspx" target="_blank" class="btn-middle middle-blue">立即使用</a></div>
+                <div class="item_list_btn"><a href="msg.aspx" class="btn-middle middle-blue">立即使用</a></div>
                 <p style="clear: both; height: 1px;"></p>
               </div></td>
           </tr>
@@ -166,7 +165,7 @@ h4 a {
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
                   <p>自行根据客户评价决定是否赠送优惠券，让真正的好评得到更大的优惠。</p>
                 </div>
-                <div class="item_list_btn"><a href="kefulist.aspx" target="_blank" class="btn-middle middle-blue">立即使用</a></div>
+                <div class="item_list_btn"><a href="kefulist.aspx" class="btn-middle middle-blue">立即使用</a></div>
                 <p style="clear: both; height: 1px;"></p>
               </div></td>
             
@@ -177,7 +176,7 @@ h4 a {
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
                   <p> 不用担心莫名其妙的给用户送优惠券，好评判定条件自定义，让您每一分钱都花的有价值。</p>
                 </div>
-                <div class="item_list_btn"><a href="keyword.aspx" target="_blank" class="btn-middle middle-blue">立即使用</a></div>
+                <div class="item_list_btn"><a href="keyword.aspx" class="btn-middle middle-blue">立即使用</a></div>
                 <p style="clear: both; height: 1px;"></p>
               </div></td>
 
@@ -211,7 +210,6 @@ h4 a {
   </table>
 </div>
 
-        </div>
     </div>
 </div>
 
