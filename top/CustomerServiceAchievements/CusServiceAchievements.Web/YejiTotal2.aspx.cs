@@ -5,7 +5,7 @@ using CusServiceAchievements.DAL;
 using Model;
 using System.Collections.Generic;
 
-public partial class YejiTotal2 : System.Web.UI.Page
+public partial class YejiTotal2 : BasePage
 {
     TopKefuTotalService kftDal = new TopKefuTotalService();
 

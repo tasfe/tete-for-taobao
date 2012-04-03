@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using CusServiceAchievements.DAL;
 using Model;
 
-public partial class GroupReceiveCustomer : System.Web.UI.Page
+public partial class GroupReceiveCustomer : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
