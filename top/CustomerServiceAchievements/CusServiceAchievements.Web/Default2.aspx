@@ -35,9 +35,10 @@
         <div id="top-panel">
             <div id="panel">
                 <ul>
-                 <%--  <li><a href="#" class="report">接待人数</a></li>
-                   <li><a href="#" class="report_seo">成功订单</a></li>
-                   <li><a href="#" class="report_seo">付款金额</a></li>--%>
+                   <li><a href="/ReceiveCustomer.aspx" class="report">日统计</a></li>
+                   <li><a href="/YejiTotal2.aspx" class="folder_table">业绩统计</a></li>
+                   <li><a href="/AllTalkContent.aspx" class="invoices">聊天记录</a></li>
+                   <li><a href="/GroupReceiveCustomer.aspx" class="user">客服对比</a></li>
                 </ul>
             </div>
         </div>
