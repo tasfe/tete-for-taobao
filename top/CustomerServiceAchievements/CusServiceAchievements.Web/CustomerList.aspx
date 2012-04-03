@@ -20,7 +20,6 @@
 <![endif]-->
 </head>
 <body>
-    <form id="form1" runat="server">
     <div id="container">
         <div id="header">
             <h2>
@@ -46,6 +45,7 @@
         </div>
         <div id="wrapper">
             <div id="content">
+                <form id="form1" runat="server">
                 <div id="rightnow">
                     <asp:TextBox ID="TB_Start" runat="server" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})"
                         class="Wdate" Width="120px"></asp:TextBox>&nbsp;
@@ -106,6 +106,7 @@
                     <asp:HyperLink ID="lnkNext" runat="server">下一页</asp:HyperLink>
                     <asp:HyperLink ID="lnkEnd" runat="server">尾页</asp:HyperLink>
                 </div>
+                </form>
             </div>
             <div id="sidebar">
                 <ul>
@@ -177,6 +178,5 @@
             <br />
         </div>
     </div>
-    </form>
 </body>
 </html>
