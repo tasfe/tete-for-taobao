@@ -26,6 +26,11 @@ public partial class TestUserSeePage : System.Web.UI.Page
         cookie.Expires = DateTime.Now.AddDays(1);
         cooksession.Expires = DateTime.Now.AddDays(1);
 
+
+        HttpCookie istongji = new HttpCookie("istongji", "1");
+        istongji.Expires = DateTime.Now.AddDays(1);
+        Response.Cookies.Add(istongji);
+
         Response.Cookies.Add(cookie);
         Response.Cookies.Add(cooksession);
         Response.Redirect("indextongji.html");
