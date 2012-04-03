@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>接待人次</title>
+    <title>聊天记录</title>
     <link rel="stylesheet" type="text/css" href="jxkh/css/theme.css" />
     <link rel="stylesheet" type="text/css" href="jxkh/css/style.css" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -14,14 +14,13 @@
         var StyleFile = "theme" + document.cookie.charAt(6) + ".css";
         document.writeln('<link rel="stylesheet" type="text/css" href="jxkh/css/' + StyleFile + '">');
     </script>
-
+    
     <!--[if IE]>
 <link rel="stylesheet" type="text/css" href="jxkh/css/ie-sucks.css" />
 <![endif]-->
 <style type="text/css">
   table{ border:0;}
   tr{ border:0}
-  
   td{ border:0}
 </style>
 </head>
@@ -52,8 +51,8 @@
             </div>
         </div>
         <div id="wrapper">
-        
             <div id="content">
+            <div>
               <table style="margin:0;width:740px;margin-top:5px;padding:0;">
                  <tr>
                  <td valign="top">
@@ -103,11 +102,10 @@
                        </asp:Repeater>
                     </table>
                   </td>
-                 
                  </tr>
               </table>
             </div>
-        
+        </div>
             <div id="sidebar">
                 <ul>
                     <li>
