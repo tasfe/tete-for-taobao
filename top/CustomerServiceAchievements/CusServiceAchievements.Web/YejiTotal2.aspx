@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="YejiTotal2.aspx.cs" Inherits="YejiTotal2" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -7,6 +6,7 @@
     <title>客服绩效考核</title>
     <link rel="stylesheet" type="text/css" href="jxkh/css/theme.css" />
     <link rel="stylesheet" type="text/css" href="jxkh/css/style.css" />
+
     <script type="text/javascript">
         var StyleFile = "theme" + document.cookie.charAt(6) + ".css";
         document.writeln('<link rel="stylesheet" type="text/css" href="jxkh/css/' + StyleFile + '">');
@@ -15,13 +15,15 @@
     <!--[if IE]>
 <link rel="stylesheet" type="text/css" href="jxkh/css/ie-sucks.css" />
 <![endif]-->
+
     <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+
 </head>
 <body>
-<form id="form1" runat="server">
     <div id="container">
         <div id="header">
-            <h2>客服绩效考核</h2>
+            <h2>
+                客服绩效考核</h2>
             <div id="topmenu">
                 <ul>
                     <li><a href="default2.aspx">主页</a></li>
@@ -35,69 +37,88 @@
         <div id="top-panel">
             <div id="panel">
                 <ul>
-                   <li><a href="#" class="folder_table">成功订单</a></li>
-                   <li><a href="#" class="folder_table">接待人次</a></li>
-                   <li><a href="#" class="folder_table">日统计</a></li>
-                   <li><a href="#" class="folder_table">月统计</a></li>
-                   <li><a href="#" class="folder_table">年统计</a></li>
+                    <li><a href="#" class="folder_table">成功订单</a></li>
+                    <li><a href="#" class="folder_table">接待人次</a></li>
+                    <li><a href="#" class="folder_table">日统计</a></li>
+                    <li><a href="#" class="folder_table">月统计</a></li>
+                    <li><a href="#" class="folder_table">年统计</a></li>
                 </ul>
             </div>
         </div>
         <div id="wrapper">
             <div id="content">
+                <form id="form1" runat="server">
                 <div id="rightnow">
-                     <asp:Button ID="Btn_LastMonth" runat="server" Text="上 月" 
-            onclick="Btn_LastMonth_Click" />&nbsp;
-           <asp:TextBox ID="TB_Start" runat="server" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})" class="Wdate" Width="120px"></asp:TextBox> 至 
-            <asp:TextBox ID="TB_End" runat="server" Width="120px" class="Wdate" onFocus="WdatePicker({minDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})"></asp:TextBox>
-       &nbsp;<asp:Button ID="Btn_Select" runat="server" Text="检 索"  onclick="Btn_Select_Click" />
+                    <asp:Button ID="Btn_LastMonth" runat="server" Text="上 月" OnClick="Btn_LastMonth_Click" />&nbsp;
+                    <asp:TextBox ID="TB_Start" runat="server" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})"
+                        class="Wdate" Width="120px"></asp:TextBox>
+                    至
+                    <asp:TextBox ID="TB_End" runat="server" Width="120px" class="Wdate" onFocus="WdatePicker({minDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})"></asp:TextBox>
+                    &nbsp;<asp:Button ID="Btn_Select" runat="server" Text="检 索" OnClick="Btn_Select_Click" />
                 </div>
                 <div>
-                    <table style="margin:0; width:740px; margin-top:5px;">
-                      <thead>
-                        <tr>
-                            <th style="width:25%">
-                                客服                                
-                            </th>
-                            <th style="width:15%">
-                               付款金额
-                            </th>
-                            <th style="width:10%">
-                                宝贝金额 
-                            </th>
-                            <th style="width:10%">
-                                运费 
-                            </th>
-                            <th style="width:10%">
-                                订单数 
-                            </th>
-                            <th style="width:10%">
-                                宝贝数 
-                            </th>
-                             <th style="width:10%">
-                                回复次数 
-                            </th>
-                             <th style="width:10%">
-                                接待人数 
-                            </th>
-                        </tr>
-                      </thead>
+                    <table style="margin: 0; width: 740px; margin-top: 5px;">
+                        <thead>
+                            <tr>
+                                <th style="width: 25%">
+                                    客服
+                                </th>
+                                <th style="width: 15%">
+                                    付款金额
+                                </th>
+                                <th style="width: 10%">
+                                    宝贝金额
+                                </th>
+                                <th style="width: 10%">
+                                    运费
+                                </th>
+                                <th style="width: 10%">
+                                    订单数
+                                </th>
+                                <th style="width: 10%">
+                                    宝贝数
+                                </th>
+                                <th style="width: 10%">
+                                    回复次数
+                                </th>
+                                <th style="width: 10%">
+                                    接待人数
+                                </th>
+                            </tr>
+                        </thead>
                         <asp:Repeater ID="Rpt_KefuTotal" runat="server">
                             <ItemTemplate>
                                 <tr>
-                                     <td><%# Eval("Nick") %></td>
-                                     <td><%# Eval("Payment") %></td>
-                                     <td><%# Eval("GoodsPay") %></td>
-                                     <td><%# Eval("PostFee") %></td>
-                                     <td><%# Eval("OrderCount") %></td>
-                                     <td><%# Eval("GoodsCount") %></td>
-                                     <td><%# Eval("ReceiveCount") %></td>
-                                     <td><%# Eval("CustomerCount") %></td>
+                                    <td>
+                                        <%# Eval("Nick") %>
+                                    </td>
+                                    <td>
+                                        <%# Eval("Payment") %>
+                                    </td>
+                                    <td>
+                                        <%# Eval("GoodsPay") %>
+                                    </td>
+                                    <td>
+                                        <%# Eval("PostFee") %>
+                                    </td>
+                                    <td>
+                                        <%# Eval("OrderCount") %>
+                                    </td>
+                                    <td>
+                                        <%# Eval("GoodsCount") %>
+                                    </td>
+                                    <td>
+                                        <%# Eval("ReceiveCount") %>
+                                    </td>
+                                    <td>
+                                        <%# Eval("CustomerCount") %>
+                                    </td>
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>
                     </table>
                 </div>
+                </form>
             </div>
             <div id="sidebar">
                 <ul>
@@ -169,6 +190,5 @@
             <br />
         </div>
     </div>
-    </form>
 </body>
 </html>
