@@ -75,9 +75,6 @@
                            <td><%# Eval("ShowJ")%></td>
                          </tr>
                       </ItemTemplate>
-                     <SeparatorTemplate >
-                        <tr><td colspan="6"><hr /></td></tr>
-                     </SeparatorTemplate>
                     </asp:Repeater>
                     
                     </table>
