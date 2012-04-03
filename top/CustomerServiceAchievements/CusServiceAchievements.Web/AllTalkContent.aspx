@@ -25,10 +25,9 @@
 </style>
 </head>
 <body>
-    <form id="form1" runat="server">
     <div id="container">
         <div id="header">
-            <h2>客服绩效考核</h2>
+            <h2>聊天记录</h2>
             <div id="topmenu">
                 <ul>
                     <li><a href="default2.aspx">主页</a></li>
@@ -176,6 +175,5 @@
             <br />
         </div>
     </div>
-    </form>
 </body>
 </html>
