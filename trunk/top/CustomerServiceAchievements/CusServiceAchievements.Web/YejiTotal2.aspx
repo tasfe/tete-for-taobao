@@ -7,7 +7,6 @@
     <title>客服绩效考核</title>
     <link rel="stylesheet" type="text/css" href="jxkh/css/theme.css" />
     <link rel="stylesheet" type="text/css" href="jxkh/css/style.css" />
-<script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
     <script type="text/javascript">
         var StyleFile = "theme" + document.cookie.charAt(6) + ".css";
         document.writeln('<link rel="stylesheet" type="text/css" href="jxkh/css/' + StyleFile + '">');
@@ -16,6 +15,7 @@
     <!--[if IE]>
 <link rel="stylesheet" type="text/css" href="jxkh/css/ie-sucks.css" />
 <![endif]-->
+    <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
 </head>
 <body>
 <form id="form1" runat="server">
