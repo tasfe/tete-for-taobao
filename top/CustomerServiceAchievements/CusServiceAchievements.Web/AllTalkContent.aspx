@@ -51,6 +51,7 @@
         </div>
         <div id="wrapper">
             <div id="content">
+            <form id="form1" runat="server">
             <div>
               <table style="margin:0;width:740px;margin-top:5px;padding:0;">
                  <tr>
@@ -104,6 +105,7 @@
                  </tr>
               </table>
             </div>
+            </form>
         </div>
             <div id="sidebar">
                <ul>
