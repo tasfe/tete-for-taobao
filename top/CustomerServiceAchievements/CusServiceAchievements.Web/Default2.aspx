@@ -9,8 +9,8 @@
     <link rel="stylesheet" type="text/css" href="jxkh/css/style.css" />
 
     <script type="text/javascript">
-        var StyleFile = "theme" + document.cookie.charAt(6) + ".css";
-        alert(document.cookie.charAt(6));
+        var start = cookieString.indexOf('theme=');
+        var StyleFile = "theme" + document.cookie.charAt(start + 1) + ".css";
         document.writeln('<link rel="stylesheet" type="text/css" href="jxkh/css/' + StyleFile + '">');
     </script>
 
