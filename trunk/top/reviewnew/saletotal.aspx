@@ -27,6 +27,9 @@
         最近30天内，好评有礼送出的优惠券共为您带来了<%=totalcount %>个二次销售，总金额为<%=totalprice %>。<br />
 
         <a href='salelist.aspx'>点击查看详细清单</a>
+        <hr />
+
+
     </div>
     </form>
 </body>

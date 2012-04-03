@@ -128,13 +128,13 @@ public partial class top_review_setting : System.Web.UI.Page
         couponstr = "<select name='couponid'>";
         for (int i = 0; i < dtCoupon.Rows.Count; i++)
         {
-            if (dtCoupon.Rows[i]["coupon_id"].ToString().Trim() == couponid.Trim())
+            if (dtCoupon.Rows[i]["guid"].ToString().Trim() == couponid.Trim())
             {
-                couponstr += "<option value='" + dtCoupon.Rows[i]["coupon_id"].ToString() + "' selected>" + dtCoupon.Rows[i]["coupon_name"].ToString() + " - " + dtCoupon.Rows[i]["denominations"].ToString() + "元</option>";
+                couponstr += "<option value='" + dtCoupon.Rows[i]["guid"].ToString() + "' selected>" + dtCoupon.Rows[i]["name"].ToString() + " " + DateTime.Parse(dtCoupon.Rows[i]["enddate"].ToString()).ToString("yyyy-MM-dd") + " - " + dtCoupon.Rows[i]["num"].ToString() + "元</option>";
             }
             else
             {
-                couponstr += "<option value='" + dtCoupon.Rows[i]["coupon_id"].ToString() + "'>" + dtCoupon.Rows[i]["coupon_name"].ToString() + " - " + dtCoupon.Rows[i]["denominations"].ToString() + "元</option>";
+                couponstr += "<option value='" + dtCoupon.Rows[i]["guid"].ToString() + "'>" + dtCoupon.Rows[i]["name"].ToString() + " " + DateTime.Parse(dtCoupon.Rows[i]["enddate"].ToString()).ToString("yyyy-MM-dd") + " - " + dtCoupon.Rows[i]["num"].ToString() + "元</option>";
             }
         }
         couponstr += "</select>";
