@@ -8,7 +8,8 @@
     <link rel="stylesheet" type="text/css" href="jxkh/css/style.css" />
 
     <script type="text/javascript">
-        var StyleFile = "theme" + document.cookie.charAt(6) + ".css";
+        var start = document.cookie.indexOf('theme=');
+        var StyleFile = "theme" + document.cookie.charAt(start + 6) + ".css";
         document.writeln('<link rel="stylesheet" type="text/css" href="jxkh/css/' + StyleFile + '">');
     </script>
 
