@@ -297,7 +297,6 @@ background: none repeat scroll 0% 0% rgb(153, 153, 153); opacity: 0.4; width: 10
     </div>
 </div>
 
-<script language="javascript" src="js_isshow.aspx" type="text/javascript"></script>
 
 </body>
 </html>
