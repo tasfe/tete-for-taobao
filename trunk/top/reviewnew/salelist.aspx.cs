@@ -69,50 +69,50 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
         string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.adddate DESC) AS rownumber FROM TCS_Trade b WHERE b.nick = '" + nick + "' AND b.iscoupon = 1) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY a.adddate DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
-        if (1 == 2)
-        {
-            for (int j = 0; j < dt.Rows.Count; j++)
-            {
-                string orderid = dt.Rows[j]["orderid"].ToString();
-                string couponnumber = dt.Rows[j]["couponnumber"].ToString();
-                string sql = "SELECT COUNT(*) FROM TCS_CouponSend WHERE taobaonumber = '" + couponnumber + "'";
-                string count = utils.ExecuteString(sql);
-                //Response.Write(sql + "--" + orderid + "--" + count + "<br>");
-                if (count == "0")
-                {
-                    sqlNew = "UPDATE TCS_Trade SET iscoupon = 0 WHERE orderid = '" + orderid + "'";
-                    utils.ExecuteNonQuery(sqlNew);
-                }
-            }
-        }
+        //if (1 == 2)
+        //{
+        //    for (int j = 0; j < dt.Rows.Count; j++)
+        //    {
+        //        string orderid = dt.Rows[j]["orderid"].ToString();
+        //        string couponnumber = dt.Rows[j]["couponnumber"].ToString();
+        //        string sql = "SELECT COUNT(*) FROM TCS_CouponSend WHERE taobaonumber = '" + couponnumber + "'";
+        //        string count = utils.ExecuteString(sql);
+        //        //Response.Write(sql + "--" + orderid + "--" + count + "<br>");
+        //        if (count == "0")
+        //        {
+        //            sqlNew = "UPDATE TCS_Trade SET iscoupon = 0 WHERE orderid = '" + orderid + "'";
+        //            utils.ExecuteNonQuery(sqlNew);
+        //        }
+        //    }
+        //}
 
-        if (1 == 2)
-        {
-            for (int j = 0; j < dt.Rows.Count; j++)
-            {
-                string orderid = dt.Rows[j]["orderid"].ToString();
-                string result = GetCouponTradeTotalByNick(orderid);
+        //if (1 == 2)
+        //{
+        //    for (int j = 0; j < dt.Rows.Count; j++)
+        //    {
+        //        string orderid = dt.Rows[j]["orderid"].ToString();
+        //        string result = GetCouponTradeTotalByNick(orderid);
 
-                MatchCollection match = new Regex(@"<promotion_details list=""true""><promotion_detail><discount_fee>([^\<]*)</discount_fee><id>[0-9]*</id><promotion_desc>[^\<]*</promotion_desc><promotion_id>shopbonus-[0-9]*_[0-9]*-([0-9]*)</promotion_id><promotion_name>店铺优惠券</promotion_name></promotion_detail>", RegexOptions.IgnoreCase).Matches(result);
+        //        MatchCollection match = new Regex(@"<promotion_details list=""true""><promotion_detail><discount_fee>([^\<]*)</discount_fee><id>[0-9]*</id><promotion_desc>[^\<]*</promotion_desc><promotion_id>shopbonus-[0-9]*_[0-9]*-([0-9]*)</promotion_id><promotion_name>店铺优惠券</promotion_name></promotion_detail>", RegexOptions.IgnoreCase).Matches(result);
 
-                if (match.Count != 0)
-                {
-                    string price = match[0].Groups[1].ToString();
-                    string couponid = match[0].Groups[2].ToString();
+        //        if (match.Count != 0)
+        //        {
+        //            string price = match[0].Groups[1].ToString();
+        //            string couponid = match[0].Groups[2].ToString();
 
-                    if (couponid != "")
-                    {
-                        sqlNew = "UPDATE TCS_Trade SET iscoupon = 1,couponprice='" + price + "',couponnumber ='" + couponid + "' WHERE orderid = '" + orderid + "'";
-                        utils.ExecuteNonQuery(sqlNew);
-                        Response.Write(sqlNew + "<br>");
-                        Response.Write(result + "<br>");
-                    }
-                }
-            }
-        }
+        //            if (couponid != "")
+        //            {
+        //                sqlNew = "UPDATE TCS_Trade SET iscoupon = 1,couponprice='" + price + "',couponnumber ='" + couponid + "' WHERE orderid = '" + orderid + "'";
+        //                utils.ExecuteNonQuery(sqlNew);
+        //                Response.Write(sqlNew + "<br>");
+        //                Response.Write(result + "<br>");
+        //            }
+        //        }
+        //    }
+        //}
 
-        rptArticle.DataSource = dt;
-        rptArticle.DataBind();
+        //rptArticle.DataSource = dt;
+        //rptArticle.DataBind();
 
         //分页数据初始化
         sqlNew = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND iscoupon = 1";
