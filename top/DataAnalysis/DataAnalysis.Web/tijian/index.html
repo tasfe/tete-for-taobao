@@ -58,7 +58,7 @@
     	<a href='javascript:startall();'><img class="button" src="images/buttonstart.jpg" border="0" /></a>
     </div>
     <div id="buttonmodify" style="display:none;">
-    	<a href='http://ding.7fshop.com/default.aspx'><img class="button" src="images/buttonmodify.jpg" border="0" /></a>
+    	<img class="button" src="images/buttonmodify.jpg" border="0" onclick="localAction()" />
     </div>
 </body>
 
@@ -67,6 +67,7 @@
     var itemsStr;
     var itemsStrTxt;
     var ary;
+    var result;
 
     function createxmlHttpRequest() {
         if (window.ActiveXObject)
@@ -90,6 +91,10 @@
 
             start();
         }
+    }
+
+    function localAction() {
+        location.href = "TijianAction.aspx?paramvalue=" + result;
     }
 
     function showjindu() {

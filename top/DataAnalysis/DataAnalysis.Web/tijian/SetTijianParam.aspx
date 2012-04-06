@@ -36,6 +36,11 @@
             </div>
             <div id="main-content">
                 <table>
+                <tr>
+                  <td colspan="2" class="paramname">
+                    所设的值为体检的最低标准
+                  </td>
+                </tr>
                     <asp:Repeater ID="Rpt_tijian" runat="server">
                         <ItemTemplate>
                             <tr>
