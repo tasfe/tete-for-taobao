@@ -97,11 +97,12 @@
                        <asp:Repeater ID="Rpt_TalkList" runat="server">
                          <ItemTemplate>
                             <tr>
-                               <td style="word-wrap: break-word;word-break:break-all;">
+                               <td>
                                  <%# GetNick(Eval("direction").ToString(), Eval("FromNick").ToString(), Eval("ToNick").ToString())%>
                                   &nbsp;<%# Eval("time")%>
                                   <br  />
-                                 <%# Eval("content")%>
+                                <div style="width:349px;word-wrap: break-word;word-break:break-all;">
+                                <%# Eval("content")%></div>
                                </td>
                             </tr>
                          </ItemTemplate>
