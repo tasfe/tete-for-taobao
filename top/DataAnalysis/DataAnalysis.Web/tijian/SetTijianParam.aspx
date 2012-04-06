@@ -5,7 +5,7 @@
 <head>
     <title>体检参数设置</title>
     <link href="../css/common.css" rel="stylesheet" />
-    <style>
+    <style type="text/css">
         td
         {
             font-size: 12px;
@@ -16,6 +16,7 @@
             color: Blue;
             text-decoration: none;
         }
+        .paramname{ color:#AF4A92}
     </style>
 </head>
 <body style="padding: 0px; margin: 0px;">
@@ -56,37 +57,44 @@
                 <table width="600px">
                     <tr>
                         <td>
-                            客户浏览比率是用浏览店铺的用户总数除以浏览页面总数所得
+                           <span class="paramname">客户浏览比率</span>
+                           是用浏览店铺的用户总数除以浏览页面总数所得
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            销售关联度是用订单均价除以销售单价所得
+                             <span class="paramname">销售关联度</span>
+                             是用订单均价除以销售单价所得
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            浏览转换率是用订单总数除以浏览店铺的用户总数所得
+                             <span class="paramname">浏览转换率</span>
+                             是用订单总数除以浏览店铺的用户总数所得
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            浏览回头率是用昨天以前(含昨天)除以浏览店铺的用户总数所得
+                             <span class="paramname">浏览回头率</span>
+                             是用昨天以前(含昨天)除以浏览店铺的用户总数所得
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            二次购买率是用昨天以前(含昨天)成功下单的用户总数除以成功下单的用户总数所得
+                             <span class="paramname">二次购买率</span>
+                             是用昨天以前(含昨天)成功下单的用户总数除以成功下单的用户总数所得
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            页面访问深度是用浏览页面总数除以浏览店铺的用户总数所得
+                             <span class="paramname">页面访问深度</span>
+                             是用浏览页面总数除以浏览店铺的用户总数所得
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            爆款商品购买率是用浏览爆款宝贝的次数除以爆款宝贝的销售数量
+                            <span class="paramname">爆款商品购买率</span>
+                            是用浏览爆款宝贝的次数除以爆款宝贝的销售数量所得
                         </td>
                     </tr>
                     </tr>
