@@ -8,7 +8,7 @@
     <title>聊天记录</title>
     <link rel="stylesheet" type="text/css" href="jxkh/css/theme.css" />
     <link rel="stylesheet" type="text/css" href="jxkh/css/style.css" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
 
     <script type="text/javascript">
         var start = document.cookie.indexOf('theme=');
