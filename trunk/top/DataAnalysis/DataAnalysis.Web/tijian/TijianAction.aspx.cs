@@ -41,26 +41,26 @@ public partial class tijian_TijianAction : BasePage
 
         Lb_SellGuanlian.Text = vas[1];
         if (vas[1] == "0")
-            div_Liulan.Visible = true;
+            div_SellGuanlian.Visible = true;
 
         Lb_Zhuanhuan.Text = vas[2];
         if (vas[2] == "0")
-            div_Liulan.Visible = true;
+            div_Zhuanhuan.Visible = true;
 
         Lb_SeeBack.Text = vas[3];
         if (vas[3] == "0")
-            div_Liulan.Visible = true;
+            div_SeeBack.Visible = true;
 
         Lb_BuyBack.Text = vas[4];
         if (vas[4] == "0")
-            div_Liulan.Visible = true;
+            div_BuyBack.Visible = true;
 
         Lb_SeeDeep.Text = vas[5];
         if (vas[5] == "0")
-            div_Liulan.Visible = true;
+            div_SeeDeep.Visible = true;
 
         Lb_TopGoods.Text = vas[6];
         if (vas[6] == "0")
-            div_Liulan.Visible = true;
+            div_TopGoods.Visible = true;
     }
 }
