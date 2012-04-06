@@ -63,6 +63,10 @@ public partial class AllTalkContent : BasePage
 
     protected void ShowTalk(object sender, EventArgs e)
     {
+        if (ViewState["nick"] == null)
+        {
+            Page.RegisterStartupScript("error", "<script>alert('请选择左边的客服!');</script>");
+        }
         if (string.IsNullOrEmpty(ViewState["nick"].ToString())) return;
         LinkButton lb = (LinkButton)sender;
 
