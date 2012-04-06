@@ -96,7 +96,7 @@ public partial class AllTalkContent : BasePage
             TB_Start.Text = start.ToString("yyyy-MM-dd");
         }
         string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
-        ViewState["page"] = "1";
+        ViewState["start"] = start;
         BindCustomer(nick, start, endtime);
     }
 
