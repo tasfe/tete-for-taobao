@@ -9,7 +9,7 @@
         td
         {
             font-size: 12px;
-            height:20px;
+            height: 20px;
         }
         a
         {
@@ -34,29 +34,63 @@
                 </ul>
             </div>
             <div id="main-content">
-              <table>
-                  <asp:Repeater ID="Rpt_tijian" runat="server">
-                   <ItemTemplate>
+                <table>
+                    <asp:Repeater ID="Rpt_tijian" runat="server">
+                        <ItemTemplate>
+                            <tr>
+                                <td>
+                                    <asp:Label Text='<%# Eval("ParamName") %>' ID="Lb_ParamName" runat="server" />
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="Tb_ParamValue" runat="server" Text='<%# Eval("ParamValue") %>'></asp:TextBox>
+                                </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
                     <tr>
-                       <td><asp:Label Text='<%# Eval("ParamName") %>' ID="Lb_ParamName" runat="server" /></td>
-                       <td><asp:TextBox ID="Tb_ParamValue" runat="server" Text='<%# Eval("ParamValue") %>'></asp:TextBox></td>
+                        <td colspan="2" align="center">
+                            <asp:Button runat="server" ID="btn_Up" Text="确 定" OnClick="btn_Up_Click" />
+                        </td>
                     </tr>
-                   </ItemTemplate>
-                  </asp:Repeater>
-                  <tr><td colspan="2" align="center"><asp:Button runat="server" ID="btn_Up" Text="确 定" 
-                          onclick="btn_Up_Click" /></td></tr>
-              </table>
-              <table>
-                <tr>
-                   <td>客户浏览比率是用浏览店铺的用户总数除以浏览页面总数所得</td>
-                   <td>销售关联度是用订单均价除以销售单价所得</td>
-                   <td>浏览转换率是用订单总数除以浏览店铺的用户总数所得</td>
-                   <td>浏览回头率是用昨天以前(含昨天)除以浏览店铺的用户总数所得</td>
-                   <td>二次购买率是用昨天以前(含昨天)成功下单的用户总数除以成功下单的用户总数所得</td>
-                   <td>页面访问深度是用浏览页面总数除以浏览店铺的用户总数所得</td>
-                   <td>爆款商品购买率是用浏览爆款宝贝的次数除以爆款宝贝的销售数量</td>
-                </tr>
-              </table>
+                </table>
+                <table width="600px">
+                    <tr>
+                        <td>
+                            客户浏览比率是用浏览店铺的用户总数除以浏览页面总数所得
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            销售关联度是用订单均价除以销售单价所得
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            浏览转换率是用订单总数除以浏览店铺的用户总数所得
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            浏览回头率是用昨天以前(含昨天)除以浏览店铺的用户总数所得
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            二次购买率是用昨天以前(含昨天)成功下单的用户总数除以成功下单的用户总数所得
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            页面访问深度是用浏览页面总数除以浏览店铺的用户总数所得
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            爆款商品购买率是用浏览爆款宝贝的次数除以爆款宝贝的销售数量
+                        </td>
+                    </tr>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
