@@ -212,6 +212,17 @@ public class DataHelper
 
     #endregion
 
+    public static void GetParam(IList<TijianParamInfo> list)
+    {
+        list.Add(new TijianParamInfo { ParamName = "客户浏览比率", ParamValue = 0.33M });
+        list.Add(new TijianParamInfo { ParamName = "销售关联度", ParamValue = 1.5M });
+        list.Add(new TijianParamInfo { ParamName = "浏览转换率", ParamValue = 0.01M });
+        list.Add(new TijianParamInfo { ParamName = "浏览回头率", ParamValue = 0.2M });
+        list.Add(new TijianParamInfo { ParamName = "二次购买率", ParamValue = 0.01M });
+        list.Add(new TijianParamInfo { ParamName = "页面访问深度", ParamValue = 3 });
+        list.Add(new TijianParamInfo { ParamName = "爆款商品购买率", ParamValue = 0.3M });
+    }
+
     #region 用户订购后立即获取能获取到的数据
 
     public static void InsertGoodsOrder(DateTime start, DateTime end, string session, string nick)
