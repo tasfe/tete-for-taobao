@@ -26,5 +26,6 @@ public partial class _Default : System.Web.UI.Page
         HttpCookie cookie = new HttpCookie("nick", HttpUtility.UrlEncode(TB_Nick.Text));
         cookie.Expires = DateTime.Now.AddDays(1);
         Response.Cookies.Add(cookie);
+        Response.Redirect("Default2.aspx");
     }
 }

@@ -21,7 +21,7 @@ public partial class AllTalkContent : BasePage
 
             ViewState["start"] = dateArr[0];
             ViewState["end"] = dateArr[1];
-            
+
 
             BindUser(nick, dateArr[0], dateArr[1]);
             BindCustomer(nick, dateArr[0], dateArr[1]);
@@ -78,6 +78,26 @@ public partial class AllTalkContent : BasePage
         if (dire == "1")
             return tnick;
         return fnic;
+    }
+
+    protected void Btn_Select_Click(object sender, EventArgs e)
+    {
+        DateTime now = DateTime.Now;
+        DateTime end = now.AddDays(1);
+        DateTime start = new DateTime(now.Year, now.Month, now.Day);
+        DateTime endtime = new DateTime(end.Year, end.Month, end.Day);
+        try
+        {
+            start = DateTime.Parse(TB_Start.Text);
+            endtime = start.AddDays(1);
+        }
+        catch
+        {
+            TB_Start.Text = start.ToString("yyyy-MM-dd");
+        }
+        string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+        ViewState["page"] = "1";
+        BindCustomer(nick, start, endtime);
     }
 
 }
