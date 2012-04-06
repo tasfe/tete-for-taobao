@@ -34,13 +34,13 @@ public class CheckShopBody : IHttpHandler {
             
             //店铺流量健康
             if (sitetotalInfo.SitePVCount == 0)
-                sb.Append("0,");
+                sb.Append("0|0,");
             else
             {
                 if ((decimal)sitetotalInfo.SiteUVCount / sitetotalInfo.SitePVCount > tijianList.First(o => o.ParamName == "客户浏览比率").ParamValue)
-                    sb.Append("1,");
+                    sb.Append("1|" + ((decimal)sitetotalInfo.SiteUVCount / sitetotalInfo.SitePVCount) + ",");
                 else
-                    sb.Append("0,");
+                    sb.Append("0|" + ((decimal)sitetotalInfo.SiteUVCount / sitetotalInfo.SitePVCount) + ",");
             }
             //销售客单价健康
             if (sitetotalInfo.SiteBuyCustomTotal == 0 || sitetotalInfo.GoodsCount == 0)
@@ -48,53 +48,53 @@ public class CheckShopBody : IHttpHandler {
             else
             {
                 if (((decimal)sitetotalInfo.SiteOrderPay / sitetotalInfo.SiteBuyCustomTotal) / ((decimal)sitetotalInfo.SiteOrderPay / sitetotalInfo.GoodsCount) >= tijianList.First(o => o.ParamName == "销售关联度").ParamValue)
-                    sb.Append("1,");
+                    sb.Append("1|" + (((decimal)sitetotalInfo.SiteOrderPay / sitetotalInfo.SiteBuyCustomTotal) / ((decimal)sitetotalInfo.SiteOrderPay / sitetotalInfo.GoodsCount)) + ",");
                 else
-                    sb.Append("0,");
+                    sb.Append("0|" + ((decimal)sitetotalInfo.SiteOrderPay / sitetotalInfo.SiteBuyCustomTotal) / ((decimal)sitetotalInfo.SiteOrderPay / sitetotalInfo.GoodsCount) + ",");
             }
 
             //店铺转化率
             if (sitetotalInfo.SiteUVCount > 0)
-                sb.Append("0,");
+                sb.Append("0|0,");
             else
             {
                 if ((decimal)sitetotalInfo.SiteOrderCount / sitetotalInfo.SiteUVCount > tijianList.First(o => o.ParamName == "浏览转换率").ParamValue)
-                    sb.Append("1,");
+                    sb.Append("1|" + ((decimal)sitetotalInfo.SiteOrderCount / sitetotalInfo.SiteUVCount) + ",");
                 else
-                    sb.Append("0,");
+                    sb.Append("0|" + ((decimal)sitetotalInfo.SiteOrderCount / sitetotalInfo.SiteUVCount) + ",");
             }
 
             //店铺浏览回头率
             if (sitetotalInfo.SiteUVCount == 0)
-                sb.Append("0,");
+                sb.Append("0|0,");
             else
             {
                 if ((decimal)sitetotalInfo.SiteUVBack / sitetotalInfo.SiteUVCount > tijianList.First(o => o.ParamName == "浏览回头率").ParamValue)
-                    sb.Append("1,");
+                    sb.Append("1" + ((decimal)sitetotalInfo.SiteUVBack / sitetotalInfo.SiteUVCount) + ",");
                 else
-                    sb.Append("0,");
+                    sb.Append("0|" + ((decimal)sitetotalInfo.SiteUVBack / sitetotalInfo.SiteUVCount) + ",");
             }
             
             //店铺二次购买率
             if (sitetotalInfo.SiteBuyCustomTotal == 0)
-                sb.Append("0,");
+                sb.Append("0|0,");
             else
             {
                 if ((decimal)sitetotalInfo.SiteSecondBuy / sitetotalInfo.SiteBuyCustomTotal >= tijianList.First(o => o.ParamName == "二次购买率").ParamValue)
-                    sb.Append("1,");
+                    sb.Append("1|" + ((decimal)sitetotalInfo.SiteSecondBuy / sitetotalInfo.SiteBuyCustomTotal) + ",");
                 else
-                    sb.Append("0,");
+                    sb.Append("0|" + ((decimal)sitetotalInfo.SiteSecondBuy / sitetotalInfo.SiteBuyCustomTotal) + ",");
             }
 
             //页面访问深度
             if (sitetotalInfo.SiteUVCount == 0)
-                sb.Append("0,");
+                sb.Append("0|0,");
             else
             {
                 if (sitetotalInfo.SitePVCount / sitetotalInfo.SiteUVCount >= tijianList.First(o => o.ParamName == "页面访问深度").ParamValue)
-                    sb.Append("1,");
+                    sb.Append("1|" + (sitetotalInfo.SitePVCount / sitetotalInfo.SiteUVCount) + ",");
                 else
-                    sb.Append("0,");
+                    sb.Append("0|" + (sitetotalInfo.SitePVCount / sitetotalInfo.SiteUVCount) + ",");
             }
 
             //爆款商品购买率(浏览次数/购买次数)
@@ -106,12 +106,12 @@ public class CheckShopBody : IHttpHandler {
             if (glist.Count > 0 && gllist.Count > 0)
             {
                 if ((decimal)glist[0].Count / gllist[0].Count >= tijianList.First(o => o.ParamName == "爆款商品购买率").ParamValue)
-                    sb.Append("1,");
-                else sb.Append("0,");
+                    sb.Append("1|" + ((decimal)glist[0].Count / gllist[0].Count) + ",");
+                else sb.Append("0|" + ((decimal)glist[0].Count / gllist[0].Count) + ",");
 
             }
             else
-                sb.Append("0,");
+                sb.Append("0|0,");
 
             context.Response.Write(sb.ToString().Substring(0, sb.ToString().Length - 1) + "}");
 
