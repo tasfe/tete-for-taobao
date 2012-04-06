@@ -3,6 +3,7 @@
 using System;
 using System.Web;
 using System.Collections.Generic;
+using System.Linq;
 
 public class CheckShopBody : IHttpHandler {
 
@@ -24,12 +25,19 @@ public class CheckShopBody : IHttpHandler {
             SiteTotalService stsDal = new SiteTotalService();
             TopSiteTotalInfo sitetotalInfo = stsDal.GetOrderTotalInfo(DateTime.Now.AddDays(-1), DateTime.Now.AddDays(-1), nickNo);
 
+            //获取用户自定义体检参数
+            IList<Model.TijianParamInfo> tijianList = new TijianParamValueService().GetParamInfo(nickNo);
+            if (tijianList.Count == 0)
+            {
+                DataHelper.GetParam(tijianList);
+            }
+            
             //店铺流量健康
             if (sitetotalInfo.SitePVCount == 0)
                 sb.Append("0,");
             else
             {
-                if ((double)sitetotalInfo.SiteUVCount / sitetotalInfo.SitePVCount > 0.33)
+                if ((decimal)sitetotalInfo.SiteUVCount / sitetotalInfo.SitePVCount > tijianList.First(o => o.ParamName == "客户浏览比率").ParamValue)
                     sb.Append("1,");
                 else
                     sb.Append("0,");
@@ -39,7 +47,7 @@ public class CheckShopBody : IHttpHandler {
                 sb.Append("0,");
             else
             {
-                if (((double)sitetotalInfo.SiteOrderPay / sitetotalInfo.SiteBuyCustomTotal) / ((double)sitetotalInfo.SiteOrderPay / sitetotalInfo.GoodsCount) >= 1.5)
+                if (((decimal)sitetotalInfo.SiteOrderPay / sitetotalInfo.SiteBuyCustomTotal) / ((decimal)sitetotalInfo.SiteOrderPay / sitetotalInfo.GoodsCount) >= tijianList.First(o => o.ParamName == "销售关联度").ParamValue)
                     sb.Append("1,");
                 else
                     sb.Append("0,");
@@ -50,7 +58,7 @@ public class CheckShopBody : IHttpHandler {
                 sb.Append("0,");
             else
             {
-                if ((double)sitetotalInfo.SiteOrderCount / sitetotalInfo.SiteUVCount > 0.01)
+                if ((decimal)sitetotalInfo.SiteOrderCount / sitetotalInfo.SiteUVCount > tijianList.First(o => o.ParamName == "浏览转换率").ParamValue)
                     sb.Append("1,");
                 else
                     sb.Append("0,");
@@ -61,7 +69,7 @@ public class CheckShopBody : IHttpHandler {
                 sb.Append("0,");
             else
             {
-                if ((double)sitetotalInfo.SiteUVBack / sitetotalInfo.SiteUVCount > 0.2)
+                if ((decimal)sitetotalInfo.SiteUVBack / sitetotalInfo.SiteUVCount > tijianList.First(o => o.ParamName == "浏览回头率").ParamValue)
                     sb.Append("1,");
                 else
                     sb.Append("0,");
@@ -72,7 +80,7 @@ public class CheckShopBody : IHttpHandler {
                 sb.Append("0,");
             else
             {
-                if ((double)sitetotalInfo.SiteSecondBuy / sitetotalInfo.SiteBuyCustomTotal >= 0.01)
+                if ((decimal)sitetotalInfo.SiteSecondBuy / sitetotalInfo.SiteBuyCustomTotal >= tijianList.First(o => o.ParamName == "二次购买率").ParamValue)
                     sb.Append("1,");
                 else
                     sb.Append("0,");
@@ -83,7 +91,7 @@ public class CheckShopBody : IHttpHandler {
                 sb.Append("0,");
             else
             {
-                if (sitetotalInfo.SitePVCount / sitetotalInfo.SiteUVCount >= 3)
+                if (sitetotalInfo.SitePVCount / sitetotalInfo.SiteUVCount >= tijianList.First(o => o.ParamName == "页面访问深度").ParamValue)
                     sb.Append("1,");
                 else
                     sb.Append("0,");
@@ -97,7 +105,7 @@ public class CheckShopBody : IHttpHandler {
             IList<GoodsInfo> gllist = taoGoodsService.GetTopGoods(DataHelper.Encrypt(nickNo), DateTime.Parse(DateTime.Now.AddDays(-1).ToShortDateString()), DateTime.Parse(DateTime.Now.ToShortDateString()), 1, 1);
             if (glist.Count > 0 && gllist.Count > 0)
             {
-                if ((double)glist[0].Count / gllist[0].Count >= 0.3)
+                if ((decimal)glist[0].Count / gllist[0].Count >= tijianList.First(o => o.ParamName == "爆款商品购买率").ParamValue)
                     sb.Append("1,");
                 else sb.Append("0,");
 
