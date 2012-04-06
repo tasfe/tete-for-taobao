@@ -35,32 +35,32 @@ public partial class tijian_TijianAction : BasePage
 
     private void InitRealValue(string[] vas)
     {
-        Lb_Liulan.Text = vas[0];
-        if (vas[0] == "0")
+        Lb_Liulan.Text = vas[0].Substring(2,1);
+        if (vas[0].Substring(0,1) == "0")
             div_Liulan.Visible = true;
 
-        Lb_SellGuanlian.Text = vas[1];
-        if (vas[1] == "0")
+        Lb_SellGuanlian.Text = vas[1].Substring(2, 1);
+        if (vas[1].Substring(0, 1) == "0")
             div_SellGuanlian.Visible = true;
 
-        Lb_Zhuanhuan.Text = vas[2];
-        if (vas[2] == "0")
+        Lb_Zhuanhuan.Text = vas[2].Substring(2, 1);
+        if (vas[2].Substring(0, 1) == "0")
             div_Zhuanhuan.Visible = true;
 
-        Lb_SeeBack.Text = vas[3];
-        if (vas[3] == "0")
+        Lb_SeeBack.Text = vas[3].Substring(2, 1);
+        if (vas[3].Substring(0, 1) == "0")
             div_SeeBack.Visible = true;
 
-        Lb_BuyBack.Text = vas[4];
-        if (vas[4] == "0")
+        Lb_BuyBack.Text = vas[4].Substring(2, 1);
+        if (vas[4].Substring(0, 1) == "0")
             div_BuyBack.Visible = true;
 
-        Lb_SeeDeep.Text = vas[5];
-        if (vas[5] == "0")
+        Lb_SeeDeep.Text = vas[5].Substring(2, 1);
+        if (vas[5].Substring(0, 1) == "0")
             div_SeeDeep.Visible = true;
 
-        Lb_TopGoods.Text = vas[6];
-        if (vas[6] == "0")
+        Lb_TopGoods.Text = vas[6].Substring(2, 1);
+        if (vas[6].Substring(0, 1) == "0")
             div_TopGoods.Visible = true;
     }
 }

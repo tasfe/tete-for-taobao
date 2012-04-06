@@ -123,7 +123,7 @@
         document.getElementById("nowcount").innerHTML = i + 1;
         document.getElementById("nowdetail").innerHTML = strArr[i];
         
-        if (ary[i] == 0) {
+        if (ary[i].substring(0,1) == 0) {
             document.getElementById("noarea").innerHTML += "<li>" + strArr[i] + "</li>";
             document.getElementById("score").innerHTML = document.getElementById("score").innerHTML - 10;
             no++;
