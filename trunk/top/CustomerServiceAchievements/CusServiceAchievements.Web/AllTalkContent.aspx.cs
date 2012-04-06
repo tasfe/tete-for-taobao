@@ -97,6 +97,8 @@ public partial class AllTalkContent : BasePage
         }
         string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         ViewState["start"] = start;
+        ViewState["end"] = endtime;
+        BindUser(nick, start, end);
         BindCustomer(nick, start, endtime);
     }
 
