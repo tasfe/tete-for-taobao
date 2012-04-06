@@ -53,6 +53,11 @@
         <div id="wrapper">
             <div id="content">
             <form id="form1" runat="server">
+             <div id="rightnow">
+                    <asp:TextBox ID="TB_Start" runat="server" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})"
+                        class="Wdate" Width="120px"></asp:TextBox>&nbsp;
+                    <asp:Button ID="Btn_Select" runat="server" Text="查 看" OnClick="Btn_Select_Click" />
+                </div>
             <div>
               <table style="margin:0;width:740px;margin-top:5px;padding:0;">
                  <tr>
@@ -92,7 +97,7 @@
                        <asp:Repeater ID="Rpt_TalkList" runat="server">
                          <ItemTemplate>
                             <tr>
-                               <td>
+                               <td style="word-wrap: break-word;word-break:break-all;">
                                  <%# GetNick(Eval("direction").ToString(), Eval("FromNick").ToString(), Eval("ToNick").ToString())%>
                                   &nbsp;<%# Eval("time")%>
                                   <br  />
