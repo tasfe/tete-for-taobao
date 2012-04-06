@@ -40,7 +40,7 @@ public class CheckShopBody : IHttpHandler {
                 if ((decimal)sitetotalInfo.SiteUVCount / sitetotalInfo.SitePVCount > tijianList.First(o => o.ParamName == "客户浏览比率").ParamValue)
                     sb.Append("1|" + Math.Round(((decimal)sitetotalInfo.SiteUVCount / sitetotalInfo.SitePVCount), 2) + ",");
                 else
-                    sb.Append("0|" + ((decimal)sitetotalInfo.SiteUVCount / sitetotalInfo.SitePVCount) + ",");
+                    sb.Append("0|" + Math.Round(((decimal)sitetotalInfo.SiteUVCount / sitetotalInfo.SitePVCount),2) + ",");
             }
             //销售客单价健康
             if (sitetotalInfo.SiteBuyCustomTotal == 0 || sitetotalInfo.GoodsCount == 0)
