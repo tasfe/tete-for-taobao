@@ -20,8 +20,6 @@ public partial class top_review_reviewlist : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
-        nick = "jkrxj";
-
         BindData();
     }
 
