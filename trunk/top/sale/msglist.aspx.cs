@@ -25,7 +25,6 @@ public partial class top_review_msglist : System.Web.UI.Page
         session = cookie.getCookie("top_sessionsale");
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
-        nick = "jkrxj";
 
         if (!IsPostBack)
         {
