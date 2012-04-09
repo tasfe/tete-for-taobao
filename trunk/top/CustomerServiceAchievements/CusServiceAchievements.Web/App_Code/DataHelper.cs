@@ -346,7 +346,7 @@ public class DataHelper
 
     }
 
-    public static DateTime GetTalkrContent(string nick, string session, DateTime now)
+    public static DateTime GetTalkContent(string nick, string session, DateTime now)
     {
         TalkRecodService trDal = new TalkRecodService();
         SubUserService userDal = new SubUserService();
