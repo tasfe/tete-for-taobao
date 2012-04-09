@@ -111,7 +111,7 @@
                         class="Wdate" Width="120px"></asp:TextBox>&nbsp;
                     <asp:Button ID="Btn_Select" runat="server" Text="查 看" OnClick="Btn_Select_Click" />
                 </div>
-                <div id="divchart" style="width: 750px; height: 400px; margin: 0 auto; margin-top:5px">
+                <div id="divchart" style="width: 740px; height: 400px; margin: 0 auto; margin-top:5px">
                 </div>
                 </form>
             </div>
