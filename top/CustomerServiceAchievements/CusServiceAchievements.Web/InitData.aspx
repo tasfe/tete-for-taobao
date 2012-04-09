@@ -52,6 +52,7 @@
                 }
             }
         }
+      </script>
     </div>
     </form>
 </body>
