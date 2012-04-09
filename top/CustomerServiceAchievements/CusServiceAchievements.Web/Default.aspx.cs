@@ -21,7 +21,7 @@ public partial class _Default : System.Web.UI.Page
 
             if (Request.Cookies["nick"] == null || string.IsNullOrEmpty(Request.Cookies["nick"].Value))
             {
-                Response.Write("您未订购");
+                Response.Write("false");
                 Response.End();
                 return;
             }
@@ -51,7 +51,7 @@ public partial class _Default : System.Web.UI.Page
             }
             else
             {
-                Response.Write("您尚未订购");
+                Response.Write("false");
                 Response.End();
             }
         }
