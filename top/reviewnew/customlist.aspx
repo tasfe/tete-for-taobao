@@ -27,6 +27,7 @@
     <div id="main-content">
         <input type="button" value="优惠券批量赠送" onclick="window.location.href='msgsend.aspx?typ=<%=typ %>'" />
         <input type="button" value="短信营销" onclick="window.location.href='msgsend.aspx?typ=<%=typ %>'" />
+        <input type="button" value="导出会员数据" onclick="window.location.href='msgsend.aspx?typ=<%=typ %>'" />
         <hr />
 
         <table width="740" cellpadding="0" cellspacing="0">

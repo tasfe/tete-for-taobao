@@ -33,6 +33,9 @@
 
             <asp:Button ID="Button1" runat="server" Text="导入历史客户" 
                 onclick="Button1_Click1" />
+
+            <asp:Button ID="Button2" runat="server" Text="根据好评数据库导入历史客户" 
+                onclick="Button1_Click2" />
     </div>
     </div>
     </div>

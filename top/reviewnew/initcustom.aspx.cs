@@ -40,6 +40,12 @@ public partial class top_crm_initcustom : System.Web.UI.Page
         }
     }
 
+    protected void Button1_Click2(object sender, EventArgs e)
+    {
+        string sql = "SELECT TCS_Trade WHERE nick = '" + nick + "'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+    }
+
     protected void Button1_Click1(object sender, EventArgs e)
     {
         int index = 0;
