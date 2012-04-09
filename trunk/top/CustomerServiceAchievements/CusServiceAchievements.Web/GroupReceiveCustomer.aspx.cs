@@ -56,4 +56,20 @@ public partial class GroupReceiveCustomer : BasePage
         get { return ViewState["seriseText"].ToString(); }
         set { ViewState["seriseText"] = value; }
     }
+
+    protected void Btn_Select_Click(object sender, EventArgs e)
+    {
+        DateTime now = DateTime.Now;
+        try
+        {
+            now = DateTime.Parse(TB_Start.Text);
+        }
+        catch
+        {
+            TB_Start.Text = now.ToString("yyyy-MM-dd");
+        }
+
+        ShowChart(now);
+    }
+
 }

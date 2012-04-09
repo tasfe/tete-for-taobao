@@ -50,7 +50,8 @@
         <div id="wrapper">
             <div id="content">
                 <form id="form1" runat="server">
-
+                
+                 
                 <script type="text/javascript">
             var chart;
             $(document).ready(function() {
@@ -104,8 +105,12 @@
                 <script type="text/javascript" src="js/highcharts.js"></script>
 
                 <script type="text/javascript" src="js/modules/exporting.js"></script>
-
-                <div id="divchart" style="width: 750px; height: 400px; margin: 0 auto">
+<div id="rightnow">
+                    <asp:TextBox ID="TB_Start" runat="server" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})"
+                        class="Wdate" Width="120px"></asp:TextBox>&nbsp;
+                    <asp:Button ID="Btn_Select" runat="server" Text="查 看" OnClick="Btn_Select_Click" />
+                </div>
+                <div id="divchart" style="width: 750px; height: 400px; margin: 0 auto; margin-top:5px">
                 </div>
                 </form>
             </div>
