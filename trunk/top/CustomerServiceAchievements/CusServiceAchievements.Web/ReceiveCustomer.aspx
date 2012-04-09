@@ -103,7 +103,7 @@
 
                 <script type="text/javascript" src="js/modules/exporting.js"></script>
 
-                <div id="divchart" style="width: 750px; height: 400px; margin: 0 auto">
+                <div id="divchart" style="width: 740px; height: 400px; margin: 0 auto">
                 </div>
                 </form>
             </div>
