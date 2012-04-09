@@ -52,7 +52,10 @@
                 }
             }
         }
-        alert(1);
+
+        window.onload = function() {
+            DoFetch();
+        }
       </script>
     </div>
     </form>
