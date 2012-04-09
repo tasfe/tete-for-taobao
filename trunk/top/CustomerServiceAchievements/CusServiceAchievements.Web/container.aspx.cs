@@ -60,7 +60,7 @@ public partial class container : System.Web.UI.Page
 
         //插入信息
         InsertSession();
-        Response.Redirect("Default.aspx");
+        Response.Redirect("InitData.aspx");
     }
 
     /// <summary>
