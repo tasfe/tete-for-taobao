@@ -5,13 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>正在初始化，请稍候...</title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-    
-    正在初始化，请稍候...
-       <script type="text/javascript">
+    <script type="text/javascript">
 
         var XMLHttpReq;
         function createXMLHttpRequest() {
@@ -57,6 +51,13 @@
             DoFetch();
         }
       </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    
+    正在初始化，请稍候...
+       
     </div>
     </form>
 </body>
