@@ -352,7 +352,7 @@ public class DataHelper
         SubUserService userDal = new SubUserService();
 
         DateTime start = DateTime.Parse(now.AddDays(-7).ToShortDateString());
-        if (TalkRecodService.CheckTable(DataHelper.Encrypt(nick)))
+        if (!TalkRecodService.CheckTable(DataHelper.Encrypt(nick)))
         {
             DateTime max = trDal.GetMaxTime(nick);
             if (start < max)
