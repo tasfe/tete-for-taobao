@@ -26,7 +26,7 @@ public partial class _Default : System.Web.UI.Page
                 return;
             }
             string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
-            string session = Request.Cookies["nicksession"].Value;
+            string session = "610062491512599df1afc0664ee3a7041eb4f8d0b200134204200856";//测试//Request.Cookies["nicksession"].Value;
 
             if (CacheCollection.GetNickSessionList().Where(o => o.Nick == nick).ToList().Count > 0)
             {
