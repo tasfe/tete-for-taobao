@@ -352,14 +352,14 @@ public class DataHelper
         SubUserService userDal = new SubUserService();
 
         DateTime start = DateTime.Parse(now.AddDays(-7).ToShortDateString());
-        if (!TalkRecodService.CheckTable(DataHelper.Encrypt(nick)))
+        if (TalkRecodService.CheckTable(DataHelper.Encrypt(nick)))
         {
             DateTime max = trDal.GetMaxTime(nick);
             if (start < max)
                 start = max;
         }
         else
-            trDal.CreateTable(DBHelp.DataHelper.Encrypt(nick));
+            trDal.CreateTable(DataHelper.Encrypt(nick));
 
         List<string> childNicks = new List<string>();
         IList<SubUserInfo> userList = TaoBaoAPIHelper.TaoBaoAPI.GetChildNick(nick, session);
