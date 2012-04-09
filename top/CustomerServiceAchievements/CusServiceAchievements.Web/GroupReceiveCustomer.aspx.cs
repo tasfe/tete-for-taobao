@@ -43,6 +43,7 @@ public partial class GroupReceiveCustomer : BasePage
 
         DateText = DateText.Substring(0, DateText.Length - 1);
         DateText += "]";
+        TB_Start.Text = date.ToString("yyyy-MM-dd");
     }
 
     protected string DateText
