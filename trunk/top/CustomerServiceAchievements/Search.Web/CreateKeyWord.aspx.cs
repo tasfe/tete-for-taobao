@@ -36,7 +36,7 @@ public partial class CreateKeyWord : System.Web.UI.Page
         KeyWordInfo info = new KeyWordInfo();
         info.Nick = Request.Cookies["nick"].Value;
         info.KeyWord = Tb_txt.Text.Trim();
-
+        info.KeyId = Guid.NewGuid();
         kyDal.Insert(info);
 
         Rpt_Keys.DataSource = kyDal.GetKeyWords(info.Nick);
