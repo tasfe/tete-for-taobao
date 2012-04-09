@@ -18,7 +18,7 @@
            <asp:Repeater ID="Rpt_Keys" runat="server">
              <ItemTemplate>
                 <tr>
-                   <td><%# Eval("Key") %></td>
+                   <td><%# Eval("KeyWord") %></td>
                 </tr>
              </ItemTemplate>
              <SeparatorTemplate>
