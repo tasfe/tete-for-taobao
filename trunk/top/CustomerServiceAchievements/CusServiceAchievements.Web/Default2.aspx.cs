@@ -23,11 +23,11 @@ public partial class Default2 : BasePage
         {
             #region 
 
-            string s = Request.QueryString["data"].Replace("[jia]", "+");
+            //string s = Request.QueryString["data"].Replace("[jia]", "+");
 
-            Qijia.PCI.MethodPCI pci = new Qijia.PCI.MethodPCI();
+            //Qijia.PCI.MethodPCI pci = new Qijia.PCI.MethodPCI();
 
-            string obj = pci.GetYouWant(s).ToString();
+            //string obj = pci.GetYouWant(s).ToString();
 
             #endregion
 
