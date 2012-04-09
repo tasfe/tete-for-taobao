@@ -34,7 +34,7 @@ public partial class _Default : System.Web.UI.Page
                 DateTime now = DateTime.Now;
                 DataHelper.InsertGoodsOrder(DateTime.Parse(now.AddDays(-7).ToShortDateString()), now, session, nick);
                 //获取聊天记录
-                DateTime start = DataHelper.GetTalkrContent(nick, session, now);
+                DateTime start = DataHelper.GetTalkContent(nick, session, now);
 
                 //添加统计数据
                 SiteTotalService taoDal = new SiteTotalService();
