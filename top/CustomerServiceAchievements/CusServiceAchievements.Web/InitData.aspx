@@ -36,7 +36,6 @@
         function processFetchResponse() {
             if (XMLHttpReq.readyState == 4) { // 判断对象状态
                 if (XMLHttpReq.status == 200) { // 信息已经成功返回，开始处理信息
-                    closeDiv();
                     if (XMLHttpReq.responseText == "true")
                         location.href = "Default2.aspx";
                     else
