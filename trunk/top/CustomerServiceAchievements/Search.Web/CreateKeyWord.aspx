@@ -9,7 +9,8 @@
 <body>
     <form id="form1" runat="server">
     <div>
-       请输入关键字:<asp:TextBox ID="Tb_txt" runat="server"></asp:TextBox>
+       请输入关键字:<asp:TextBox ID="Tb_txt" runat="server"></asp:TextBox>&nbsp;<asp:Button 
+            ID="Btn_Add" runat="server" Text="添 加" onclick="Btn_Add_Click" />
        <p />
        
        <table>
