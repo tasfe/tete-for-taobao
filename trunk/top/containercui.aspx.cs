@@ -170,10 +170,10 @@ public partial class top_containerbao : System.Web.UI.Page
         nick = encode.Encrypt(nick);
 
         Common.Cookie cookie = new Common.Cookie();
-        cookie.setCookie("top_sessionbao", top_session, 999999);
+        cookie.setCookie("top_sessioncui", top_session, 999999);
         cookie.setCookie("nick", nick, 999999);
 
-        Response.Redirect("indexbao.html");
+        Response.Redirect("indexcui.html");
     }
 
     private void Tuijian(string nick)
