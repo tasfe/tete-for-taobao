@@ -11,14 +11,24 @@
     <div>
        <table>
          <tr>
-           <td>关键字</td><td><div></div></td>
+           <td>关键字</td><td>商品及排名</td>
          </tr>
          
          <asp:Repeater ID="Rpt_KeyWords" runat="server">
          
            <ItemTemplate>
              <tr>
-                <td><%# Eval("Key") %></td> <td><%# Eval("Value") %></td>
+                <td><%# Eval("Key") %></td> 
+                
+                <td>
+                    <asp:Repeater DataSource='<%# Eval("Value") %>' runat="server">
+                        <ItemTemplate>
+                            <tr>
+                              <td></td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </td>
              </tr>
            </ItemTemplate>
          
