@@ -18,14 +18,12 @@
          
            <ItemTemplate>
              <tr>
-                <td><%# Eval("Key") %></td> 
-                
+                <td><%# Eval("Key") %></td>
                 <td>
                     <asp:Repeater DataSource='<%# Eval("Value") %>' runat="server">
                         <ItemTemplate>
-                            <tr>
-                              <td><%# Eval("title") %></td>
-                            </tr>
+                              <td><%# Eval("title") %>&nbsp;排名：<font color="red"><%# Eval("Collection")%></font> 
+                              </td>
                         </ItemTemplate>
                     </asp:Repeater>
                 </td>
