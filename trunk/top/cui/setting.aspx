@@ -36,7 +36,65 @@
                     不开启<input name="iscoupon" id="coupon2" type="radio" value="0" <%=check(iscoupon, "0") %> onclick="showArea(0)" />
                 </td>
             </tr>
-            
+            <!--<tr id="couponArea">
+                <td align="left" height="30">选择赠送的优惠券：</td>
+                <td>
+                    <%=couponstr%>
+                    <a href="couponadd.aspx">创建优惠券</a>
+                    <a href="couponsend.aspx">查看优惠券赠送记录</a>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" width="180" height="30">是否开启按时好评送支付宝红包：</td>
+                <td>
+                    开启<input name="isalipay" id="Radio1" type="radio" value="1" <%=check(isalipay, "1") %> onclick="showAreaAli(1)" />
+                    不开启<input name="isalipay" id="Radio2" type="radio" value="0" <%=check(isalipay, "0") %> onclick="showAreaAli(0)" />
+                </td>
+            </tr>
+            <tr id="aliArea">
+                <td align="left" height="30">选择赠送的支付宝红包：</td>
+                <td>
+                    <%=alipaystr%>
+                    <a href="alipayadd.aspx">导入支付宝红包</a>
+                    <a href="alipay.aspx">查看赠送记录</a>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" height="30">淘宝提供物流跟踪订单最短评价时间：</td>
+                <td>
+                    <input id="mindate" name="mindate" type="text" value="<%=mindate %>" size="2" /> 天 
+
+                </td>
+            </tr>
+            <tr>
+                <td align="left" height="30">淘宝不提供物流跟踪最短评价时间：</td>
+                <td>
+                    <input id="maxdate" name="maxdate" type="text" value="<%=maxdate %>" size="2" /> 天 
+                </td>
+            </tr>
+            <tr>
+                <td align="left" height="30">默认好评优惠券处理：</td>
+                <td>
+                    赠送<input name="iscancelauto" type="radio" value="0" <%=check(iscancelauto, "0") %> />
+                    不赠送<input name="iscancelauto" type="radio" value="1" <%=check(iscancelauto, "1") %> />
+                </td>
+            </tr>
+            <tr>
+                <td align="left" height="30">好评自动判定：</td>
+                <td>
+                    开启<input name="iskeyword" type="radio" value="1" <%=check(iskeyword, "1") %> />
+                    不开启<input name="iskeyword" type="radio" value="0" <%=check(iskeyword, "0") %> />
+                    <a href="keyword.aspx">设置好评自动判定规则</a>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" height="30">是否开启评价审核：</td>
+                <td>
+                    开启<input name="iskefu" id="kefu1" type="radio" value="1" <%=check(iskefu, "1") %> />
+                    不开启<input name="iskefu" id="kefu2" type="radio" value="0" <%=check(iskefu, "0") %> />
+                    <a href="kefulist.aspx">查看待审核列表</a>
+                </td>
+            </tr>-->
             <tr>
                 <td align="left" colspan="2">
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" />
