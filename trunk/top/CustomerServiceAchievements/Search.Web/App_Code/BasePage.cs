@@ -13,12 +13,13 @@ using System.Xml.Linq;
 /// <summary>
 /// Summary description for BasePage
 /// </summary>
-public class BasePage
+public class BasePage : System.Web.UI.Page
 {
-    public BasePage()
+    protected override void InitializeCulture()
     {
-        //
-        // TODO: Add constructor logic here
-        //
+        if (Request.Cookies["nick"] == null || string.IsNullOrEmpty(Request.Cookies["nick"].Value))
+        {
+            Response.Redirect("Default.aspx");
+        }
     }
 }
