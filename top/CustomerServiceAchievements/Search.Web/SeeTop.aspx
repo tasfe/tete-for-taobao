@@ -9,7 +9,27 @@
 <body>
     <form id="form1" runat="server">
     <div>
-       
+       <table>
+         <tr>
+           <td>关键字</td><td><div></div></td>
+         </tr>
+         
+         <asp:Repeater ID="Rpt_KeyWords" runat="server">
+         
+           <ItemTemplate>
+             <tr>
+                <td><%# Eval("Key") %></td> <td><%# Eval("Value") %></td>
+             </tr>
+           </ItemTemplate>
+         
+           <SeparatorTemplate>
+             <tr>
+               <td colspan="2"><hr /></td>
+             </tr>
+           </SeparatorTemplate>
+         </asp:Repeater>
+         
+       </table>
     </div>
     </form>
 </body>
