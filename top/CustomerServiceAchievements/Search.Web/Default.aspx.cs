@@ -17,6 +17,8 @@ public partial class _Default : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+           // TaoBaoAPI.SearchGoods("印花连衣裙的朋友");
+
             Response.Write("请先订购");
             Response.End();
         }
