@@ -48,7 +48,8 @@ public partial class SeeTop : BasePage
                     }
                 }
             }
-
+            Rpt_KeyWords.DataSource = dic;
+            Rpt_KeyWords.DataBind();
         }
     }
 }
