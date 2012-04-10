@@ -9,6 +9,23 @@
 <body>
     <form id="form1" runat="server">
     <div>
+    <table>
+      <tr><td>商品名</td><td>价格</td></tr>
+     <asp:Repeater ID="Rpt_Goods" runat="server">
+        <ItemTemplate>
+           <tr>
+              <td>
+                 <%# Eval("title") %>
+              </td>
+              <td>
+                <%# Eval("price") %>
+              </td>
+           </tr>
+          
+        </ItemTemplate>
+     
+     </asp:Repeater>
+    </table>
         
     </div>
     </form>

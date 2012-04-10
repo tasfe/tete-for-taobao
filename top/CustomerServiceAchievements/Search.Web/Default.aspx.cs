@@ -17,7 +17,8 @@ public partial class _Default : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            string text = TaoBaoAPIHelper.TaoBaoAPI.GetGoodsUrl();
+            Response.Write("请先订购");
+            Response.End();
         }
 
     }
