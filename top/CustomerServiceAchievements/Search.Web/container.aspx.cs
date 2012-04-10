@@ -51,7 +51,7 @@ public partial class container : System.Web.UI.Page
 
         //插入信息
         InsertSession();
-        Response.Redirect("InitData.aspx");
+        Response.Redirect("index.html");
     }
 
     /// <summary>
