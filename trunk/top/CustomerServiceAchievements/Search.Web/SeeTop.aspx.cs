@@ -52,4 +52,9 @@ public partial class SeeTop : BasePage
             Rpt_KeyWords.DataBind();
         }
     }
+
+    protected void Rpt_KeyWords_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        
+    }
 }
