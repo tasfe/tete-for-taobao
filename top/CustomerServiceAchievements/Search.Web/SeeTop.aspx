@@ -24,7 +24,7 @@
                     <asp:Repeater DataSource='<%# Eval("Value") %>' runat="server">
                         <ItemTemplate>
                             <tr>
-                              <td></td>
+                              <td><%# Eval("title") %></td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
