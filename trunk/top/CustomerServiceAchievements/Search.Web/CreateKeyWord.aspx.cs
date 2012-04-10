@@ -22,7 +22,7 @@ public partial class CreateKeyWord : BasePage
     {
         if (!IsPostBack)
         {
-            string nick = Request.Cookies["nick"].Value;
+            string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
 
             Bind(nick);
         }
@@ -84,7 +84,7 @@ public partial class CreateKeyWord : BasePage
         }
 
         KeyWordInfo info = new KeyWordInfo();
-        info.Nick = Request.Cookies["nick"].Value;
+        info.Nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         info.KeyWord = Tb_txt.Text.Trim();
 
         if (kyDal.GetKeyWord(info.Nick, info.KeyWord) > 0)

@@ -24,7 +24,7 @@ public partial class SeeTop : BasePage
         {
             KeyWordService kyDal = new KeyWordService();
             GoodsService goodsDal = new GoodsService();
-            string nick = Request.Cookies["nick"].Value;
+            string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
             IList<KeyWordInfo> list = kyDal.GetKeyWords(nick);
 
             IList<TaoBaoAPIHelper.GoodsInfo> goodsList = goodsDal.GetAllGoods(nick);
