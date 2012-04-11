@@ -306,7 +306,8 @@ public partial class top_review_kefulist : System.Web.UI.Page
                     {
                         string err = new Regex(@"<msg>([^<]*)</msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
                         string errnew = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-                        Response.Write("<script>alert('【系统错误】：" + id + " - " + err + " - " + errnew + "，请稍后再试或者联系客服人员！');window.location.href='kefulist.aspx';</script>");
+                        string reason = new Regex(@"<reason>([^<]*)</reason>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                        Response.Write("<script>alert('【系统错误】：" + err + " - " + errnew + " - " + reason + "，请稍后再试或者联系客服人员！');window.location.href='kefulist.aspx';</script>");
                         Response.End();
                         return;
                     }
@@ -645,7 +646,8 @@ public partial class top_review_kefulist : System.Web.UI.Page
                         {
                             string err = new Regex(@"<msg>([^<]*)</msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
                             string errnew = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-                            Response.Write("<script>alert('【系统错误】：" + err + " - " + errnew + "，请稍后再试或者联系客服人员！');window.location.href='kefulist.aspx';</script>");
+                            string reason = new Regex(@"<reason>([^<]*)</reason>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                            Response.Write("<script>alert('【系统错误】：" + err + " - " + errnew + " - " + reason + "，请稍后再试或者联系客服人员！');window.location.href='kefulist.aspx';</script>");
                             Response.End();
                             return;
                         }
