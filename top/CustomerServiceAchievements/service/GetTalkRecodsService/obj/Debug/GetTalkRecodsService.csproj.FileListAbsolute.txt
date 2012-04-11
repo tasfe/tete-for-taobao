@@ -2,11 +2,11 @@ F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsServi
 F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\bin\Debug\GetTalkRecods.exe
 F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\bin\Debug\GetTalkRecods.pdb
 F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\bin\Debug\CusServiceAchievements.DAL.dll
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\bin\Debug\DBHelp.dll
 F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\bin\Debug\Enum.dll
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\bin\Debug\LogHelper.dll
 F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\bin\Debug\Model.dll
 F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\bin\Debug\TaoBaoAPIHelper.dll
-F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\bin\Debug\DBHelp.dll
-F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\bin\Debug\LogHelper.dll
 F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
 F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
 F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
@@ -17,5 +17,8 @@ F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsServi
 F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\bin\Debug\Enum.pdb
 F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\bin\Debug\TaoBaoAPIHelper.pdb
 F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\obj\Debug\ResolveAssemblyReference.cache
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\obj\Debug\GetTalkRecods.GetTalkRecodsService.resources
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\obj\Debug\GetTalkRecods.ProjectInstaller.resources
+F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\obj\Debug\GetTalkRecodsService.csproj.GenerateResource.Cache
 F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\obj\Debug\GetTalkRecods.exe
 F:\特特soft\tetesvn\top\CustomerServiceAchievements\service\GetTalkRecodsService\obj\Debug\GetTalkRecods.pdb

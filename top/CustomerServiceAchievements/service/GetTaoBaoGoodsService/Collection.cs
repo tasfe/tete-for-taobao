@@ -6,26 +6,86 @@ using System.Net;
 using System.IO;
 using Model;
 using CusServiceAchievements.DAL;
+using System.Text.RegularExpressions;
 
 namespace GetTaoBaoGoodsService
 {
     public class Collection
     {
-
         public void GetGoodsCollection()
         {
-            
-             IList<TopNickSessionInfo> list = new NickSessionService().GetAllNickSession(Enum.TopTaoBaoService.YingXiaoJueCe);
+            DateTime now = DateTime.Now;
+            string fetchDate = now.ToString("yyyyMMdd");
+
+            IList<TopNickSessionInfo> list = new NickSessionService().GetAllNickSession(Enum.TopTaoBaoService.Temporary);
             GoodsService goodsDal = new GoodsService();
 
-             foreach (TopNickSessionInfo info in list)
-             {
-                 IList<string> goodsIds = goodsDal.GetGoodsIds(info.Nick);
-                 foreach (string gid in goodsIds)
-                 {
-                     string s = GetWebSiteContent("http://count.tbcdn.cn/counter3?keys=DFX_200_1_14050993029,ICVT_7_" + gid + ",ICCP_1_" + gid + ",SCCP_2_" + info.ShopId + ",ICE_3_feedcount-" + gid + ",ZAN_27_2_" + gid + "&inc=ICVT_7_" + gid + "&sign=733642a8ae2a9e398e96d638798f3281a8bdb&callback=TShop.mods.SKU.CounterCenter.saveCounts", "get", "", "gbk");
-                 }
-             }
+            GoodsCollectionService goodscollecDal = new GoodsCollectionService();
+            ShopCollectionService shopcollecDal = new ShopCollectionService();
+
+            List<ShopCollectionInfo> shopcollecList = shopcollecDal.GetShopCollectionList(fetchDate);
+            List<GoodsCollectionInfo> goodscollecList = goodscollecDal.GetGoodsCollectionList(fetchDate);
+
+            //Regex regex = null;
+
+            foreach (TopNickSessionInfo info in list)
+            {
+                string shopUrl = "http://count.tbcdn.cn/counter3?keys=SCCP_2_" + info.ShopId + "&callback=TShop.setShopStat";
+
+                string s = GetWebSiteContent(shopUrl, "get", "", "gbk");
+                if (s.Contains(":"))
+                {
+                    string shopcollec = s.Substring(s.IndexOf(":") + 1, s.IndexOf("}") - s.IndexOf(":") - 1);
+                    IList<ShopCollectionInfo> myshop = shopcollecList.Where(o => o.ShopId == info.ShopId).ToList();
+
+                    ShopCollectionInfo shopcinfo = new ShopCollectionInfo();
+                    shopcinfo.ShopId = info.ShopId;
+                    shopcinfo.ShopDate = fetchDate;
+                    shopcinfo.CollectionCount = int.Parse(shopcollec);
+                    if (myshop.Count > 0)
+                    {
+                        shopcollecDal.UpdateCollection(shopcinfo);
+                    }
+                    else
+                    {
+                        shopcollecDal.InsertShopCollectionInfo(shopcinfo);
+                    }
+                }
+
+                //LogHelper.ServiceLog.RecodeLog(info.Nick + shopcollec);
+
+                IList<string> goodsIds = goodsDal.GetGoodsIds(info.Nick);
+                foreach (string gid in goodsIds)
+                {
+                    //string s = GetWebSiteContent("http://item.taobao.com/item.htm?id=" + gid, "get", "", "gbk");
+                    //"apiItemViews": "http://count.taobao.com/counter2?keys=ICVT_7_10011714578&inc=ICVT_7_10011714578&callback=page_viewcount&sign=4084248dfb302ce856d227475a79a5b39c653",
+
+                    //regex = new Regex(@"""apiItemViews"": ""([^""]*)"",", RegexOptions.IgnoreCase);
+                    string goodsUrl = "http://count.tbcdn.cn/counter3?keys=ICCP_1_" + gid + "&callback=TShop.mods.SKU.Stat.setCollectCount";
+                    string gs = GetWebSiteContent(goodsUrl, "get", "", "gbk");
+                    if (gs.Contains(":"))
+                    {
+                        string goodspcollec = gs.Substring(gs.IndexOf(":") + 1, gs.IndexOf("}") - gs.IndexOf(":") - 1);
+                        IList<GoodsCollectionInfo> mygoods = goodscollecList.Where(o => o.GoodsId == gid).ToList();
+
+                        GoodsCollectionInfo goodscinfo = new GoodsCollectionInfo();
+                        goodscinfo.GoodsId = gid;
+                        goodscinfo.CollectionDate = fetchDate;
+                        goodscinfo.Collection = int.Parse(goodspcollec);
+
+                        if (mygoods.Count > 0)
+                        {
+                            goodscollecDal.UpdateCollection(goodscinfo);
+                        }
+                        else
+                        {
+                            goodscollecDal.InsertGoodsCollectionInfo(goodscinfo);
+                        }
+                    }
+
+                    //LogHelper.ServiceLog.RecodeLog(gid + goodspcollec);
+                }
+            }
         }
 
         /// <summary>
@@ -38,7 +98,7 @@ namespace GetTaoBaoGoodsService
         /// <returns></returns>
         private static string GetWebSiteContent(string url, string requestMethod, string requestBody, string encode)
         {
-            string strReturn;
+            string strReturn = "";
 
             WebRequest wRequestUTF =
                 WebRequest.Create(url +
@@ -78,7 +138,8 @@ namespace GetTaoBaoGoodsService
             }
             catch (Exception ex)
             {
-                throw ex;
+                //throw ex;
+                LogHelper.ServiceLog.RecodeLog(url + ex.Message);
             }
 
             return strReturn;

@@ -45,8 +45,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackTotalInfo.cs" />
+    <Compile Include="CustomerInfo.cs" />
+    <Compile Include="GoodsCollectionInfo.cs" />
+    <Compile Include="GoodsInfo.cs" />
+    <Compile Include="KeyWordInfo.cs" />
+    <Compile Include="RefundInfo.cs" />
+    <Compile Include="ShopCollectionInfo.cs" />
+    <Compile Include="TijianParamInfo.cs" />
+    <Compile Include="TopKefuTotalInfo.cs" />
     <Compile Include="TopNickSessionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TopSiteTotalInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Enum\Enum\Enum.csproj">
+      <Project>{037F179B-3F2F-4E59-BA64-143018B4E1B6}</Project>
+      <Name>Enum</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

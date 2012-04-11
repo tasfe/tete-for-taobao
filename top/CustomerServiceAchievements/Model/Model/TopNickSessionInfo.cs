@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Enum;
 
 namespace Model
 {
     public class TopNickSessionInfo
     {
+        /// <summary>
+        /// 服务ID
+        /// </summary>
+        public TopTaoBaoService ServiceId { set; get; }
+
         public string Nick { get; set; }
 
         public string Session { set; get; }

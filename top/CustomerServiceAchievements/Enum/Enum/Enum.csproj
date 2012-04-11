@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TalkObjType.cs" />
     <Compile Include="TopTaoBaoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataFormatType.cs" />

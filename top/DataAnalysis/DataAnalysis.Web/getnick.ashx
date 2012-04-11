@@ -59,7 +59,7 @@ public class getnick : IHttpHandler {
 
                 DataHelper.InsertGoodsOrder(DateTime.Parse(now.AddDays(-7).ToShortDateString()), now, session, nick);
                 //获取聊天记录
-                DateTime start = DataHelper.GetTalkrContent(nick, session, now);
+                DateTime start = DataHelper.GetTalkContent(nick, session, now);
                 
                 //添加统计数据
                 SiteTotalService taoDal = new SiteTotalService();
@@ -92,7 +92,7 @@ public class getnick : IHttpHandler {
                     //二次订购
                     DataHelper.InsertGoodsOrder(start, now, session, nick);
                     //获取聊天记录
-                    DateTime kstart = DataHelper.GetTalkrContent(nick, session, now);
+                    DateTime kstart = DataHelper.GetTalkContent(nick, session, now);
 
                     //添加统计数据
                     SiteTotalService taoDal = new SiteTotalService();
