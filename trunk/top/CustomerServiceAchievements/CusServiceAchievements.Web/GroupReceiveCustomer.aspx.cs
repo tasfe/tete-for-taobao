@@ -31,14 +31,21 @@ public partial class GroupReceiveCustomer : BasePage
         List<TopKefuTotalInfo> list = (List<TopKefuTotalInfo>)new TopKefuTotalService().GetNickCountTotal(date.ToString("yyyyMMdd"), nick);
         SeriseText = "[{name:'接待人次', data:[";
         DateText = "[";
-      
-        for (int h = 0; h < list.Count; h++)
+
+        if (list.Count == 0)
         {
-            DateText += "'" + (list[h].Nick.IndexOf(':') >= 0 ? list[h].Nick.Substring(list[h].Nick.IndexOf(':') + 1) : "主旺旺") + "',";
-
-            SeriseText += list[h].CustomerCount + ",";
+            DateText += "0,";
+            SeriseText += "0,";
         }
+        else
+        {
+            for (int h = 0; h < list.Count; h++)
+            {
+                DateText += "'" + (list[h].Nick.IndexOf(':') >= 0 ? list[h].Nick.Substring(list[h].Nick.IndexOf(':') + 1) : "主旺旺") + "',";
 
+                SeriseText += list[h].CustomerCount + ",";
+            }
+        }
         SeriseText = SeriseText.Substring(0, SeriseText.Length - 1) + "]}]";
 
         DateText = DateText.Substring(0, DateText.Length - 1);
