@@ -115,6 +115,6 @@ public partial class Default2 : BasePage
 
         Response.Cookies.Add(cookie);
 
-        Response.Write("Default2.aspx");
+        Response.Redirect("Default2.aspx");
     }
 }
