@@ -1,0 +1,5 @@
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\bin\Debug\Qijia.PCI.dll
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\bin\Debug\Qijia.PCI.pdb
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\obj\Debug\ResolveAssemblyReference.cache
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\obj\Debug\Qijia.PCI.dll
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\obj\Debug\Qijia.PCI.pdb

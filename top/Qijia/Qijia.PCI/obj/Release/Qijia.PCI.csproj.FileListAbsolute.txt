@@ -1,0 +1,10 @@
+F:\特特soft\tetesvn\top\Qijia\ClassLibrary1\bin\Release\Qijia.PCI.dll
+F:\特特soft\tetesvn\top\Qijia\ClassLibrary1\bin\Release\Qijia.PCI.pdb
+F:\特特soft\tetesvn\top\Qijia\ClassLibrary1\obj\Release\ResolveAssemblyReference.cache
+F:\特特soft\tetesvn\top\Qijia\ClassLibrary1\obj\Release\Qijia.PCI.dll
+F:\特特soft\tetesvn\top\Qijia\ClassLibrary1\obj\Release\Qijia.PCI.pdb
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\obj\Release\ResolveAssemblyReference.cache
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\obj\Release\Qijia.PCI.dll
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\obj\Release\Qijia.PCI.pdb
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\bin\Release\Qijia.PCI.dll
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\bin\Release\Qijia.PCI.pdb
