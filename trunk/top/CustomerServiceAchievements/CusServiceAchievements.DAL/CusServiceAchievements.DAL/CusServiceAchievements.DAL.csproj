@@ -45,10 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GoodsCollectionService.cs" />
+    <Compile Include="GoodsOrderService.cs" />
     <Compile Include="GoodsService.cs" />
     <Compile Include="NickSessionService.cs" />
+    <Compile Include="ShopCollectionService.cs" />
+    <Compile Include="SiteTotalService.cs" />
+    <Compile Include="SubUserService.cs" />
     <Compile Include="TalkRecodService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaoBaoGoodsOrderService.cs" />
+    <Compile Include="TopKefuTotalService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\DataAnalysis\TaoBaoAPIHelper\TaoBaoAPIHelper.csproj">

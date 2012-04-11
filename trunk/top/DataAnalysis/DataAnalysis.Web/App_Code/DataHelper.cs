@@ -348,7 +348,7 @@ public class DataHelper
 
     }
 
-    public static DateTime GetTalkrContent(string nick, string session, DateTime now)
+    public static DateTime GetTalkContent(string nick, string session, DateTime now)
     {
         TalkRecodService trDal = new TalkRecodService();
         SubUserService userDal = new SubUserService();
@@ -361,7 +361,7 @@ public class DataHelper
                 start = max;
         }
         else
-            trDal.CreateTable(DBHelp.DataHelper.Encrypt(nick));
+            trDal.CreateTable(DataHelper.Encrypt(nick));
 
         List<string> childNicks = new List<string>();
         IList<SubUserInfo> userList = TaoBaoAPIHelper.TaoBaoAPI.GetChildNick(nick,session);

@@ -8,13 +8,23 @@ namespace Enum
     public enum TopTaoBaoService
     {
         /// <summary>
-        /// 客服绩效服务
+        /// 测试服务
         /// </summary>
-        YingXiaoJueCe = 1,
+        Temporary = 0,
 
         /// <summary>
         /// 营销决策服务
         /// </summary>
-        KeFuJiXiao = 5
+        YingXiaoJueCe = 1,
+
+        /// <summary>
+        /// 客服绩效服务
+        /// </summary>
+        KeFuJiXiao = 5,
+
+        /// <summary>
+        /// 商品搜索排名服务
+        /// </summary>
+        Prom = 9
     }
 }

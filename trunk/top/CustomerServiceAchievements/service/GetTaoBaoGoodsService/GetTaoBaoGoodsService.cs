@@ -16,12 +16,16 @@ namespace GetTaoBaoGoodsService
         private readonly Thread getgoodsthread;
         private readonly string getgoodshour = System.Configuration.ConfigurationManager.AppSettings["getgoodshour"];
 
+        private readonly Thread getcollectionthreed;
+        private readonly string getcollectionhour = System.Configuration.ConfigurationManager.AppSettings["getcollectionhour"];
+
         public GetTaoBaoGoodsService()
         {
             InitializeComponent();
             try
             {
                 getgoodsthread = new Thread(GetGoodsInfo) { Priority = ThreadPriority.Lowest, IsBackground = true };
+                getcollectionthreed = new Thread(GetCollection) { Priority = ThreadPriority.Lowest, IsBackground = true };
             }
             catch (Exception ex)
             {
@@ -32,11 +36,13 @@ namespace GetTaoBaoGoodsService
         protected override void OnStart(string[] args)
         {
             getgoodsthread.Start();
+            getcollectionthreed.Start();
         }
 
         protected override void OnStop()
         {
             getgoodsthread.Abort();
+            getcollectionthreed.Abort();
         }
 
         void GetGoodsInfo()
@@ -55,9 +61,40 @@ namespace GetTaoBaoGoodsService
                 }
 
                 TaoBaoGoods taogoods = new TaoBaoGoods();
+
                 LogHelper.ServiceLog.RecodeLog("正在执行获取商品...");
+
                 taogoods.GetTaoBaoGoods();
+
                 LogHelper.ServiceLog.RecodeLog("执行获取商品结束.");
+
+                Thread.Sleep(hour * 3600 * 1000);
+            }
+        }
+
+        void GetCollection()
+        {
+            while (true)
+            {
+                //每多少个小时搜集一次订单
+                int hour = 2;
+                try
+                {
+                    hour = int.Parse(getcollectionhour);
+                }
+                catch (Exception ex)
+                {
+                    LogHelper.ServiceLog.RecodeLog("配置获取商品收藏数量间隔时间错误" + ex.Message);
+                }
+
+                Collection collec = new Collection();
+
+                LogHelper.ServiceLog.RecodeLog("正在执行获取商品收藏数量...");
+
+                collec.GetGoodsCollection();
+
+                LogHelper.ServiceLog.RecodeLog("执行获取商品收藏数量结束.");
+
                 Thread.Sleep(hour * 3600 * 1000);
             }
         }
