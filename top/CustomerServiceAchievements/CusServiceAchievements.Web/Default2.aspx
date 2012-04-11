@@ -5,9 +5,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>客服绩效考核</title>
+    <link href="css/css1.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jxkh/css/theme.css" />
     <link rel="stylesheet" type="text/css" href="jxkh/css/style.css" />
-
+    
     <script type="text/javascript">
         var start = document.cookie.indexOf('theme=');
         var StyleFile = "theme" + document.cookie.charAt(start + 6) + ".css";
@@ -21,6 +22,18 @@
 <body>
     <div id="container">
         <div id="header">
+            
+           <div id="site-nav" style="margin-bottom: 5px;">
+                <p class="login-info">
+                    <font color="white">在线客服：</font> <a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid=叶儿随清风&site=cntaobao&s=1&charset=utf-8">
+                        <img border="0" align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=叶儿随清风&site=cntaobao&s=1&charset=utf-8"
+                            alt="有问题请点这里" /></a>
+                </p>
+                <ul class="quick-menu">
+                    <li><a href="help/help.html" style="color:White">帮助教程</a></li>
+                </ul>
+            </div>
+        
             <h2>客服绩效考核</h2>
             <div id="topmenu">
                 <ul>
