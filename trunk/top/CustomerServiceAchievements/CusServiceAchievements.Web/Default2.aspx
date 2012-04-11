@@ -56,7 +56,7 @@
             </div>
         </div>
         <div id="wrapper">
-        <form runat="server"
+        <form runat="server">
             <div id="content">
                 <%--<div id="rightnow">
                     <h3 class="reallynow">
