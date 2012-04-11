@@ -59,8 +59,6 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                 </ul>
             </div>
             <div id="main-content" style="height:1000px;overflow:scroll">    
-            <asp:Button ID="Btn_AddCookie"  Text="点击查看客户真实数据" runat="server" 
-            onclick="Btn_AddCookie_Click" /><font size="2">此处只是为了让审核人员能够更直观的看到软件真实效果</font>
         <div class="all">
             <div class="detail1">
                 <div>
