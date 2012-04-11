@@ -70,6 +70,10 @@
                     </p>
                 </div>--%>
                 <div>
+                <p>
+                   <asp:Button ID="Btn_AddCookie" runat="server" Text="点击测试真实数据" 
+                        onclick="Btn_AddCookie_Click" />
+                </p>
                  <p class="youhave">
                   <a href="CustomerList.aspx">客服今天接待情况</a>
                  </p>
