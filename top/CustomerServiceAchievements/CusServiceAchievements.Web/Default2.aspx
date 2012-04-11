@@ -56,6 +56,7 @@
             </div>
         </div>
         <div id="wrapper">
+        <form runat="server"
             <div id="content">
                 <%--<div id="rightnow">
                     <h3 class="reallynow">
@@ -127,6 +128,7 @@
                     </table>
                 </div>
             </div>
+            </form>
             <div id="sidebar">
                <ul>
                     <li>
