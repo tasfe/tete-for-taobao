@@ -53,6 +53,7 @@
     <Compile Include="Jia_ImgCustomer.cs" />
     <Compile Include="Jia_Item.cs" />
     <Compile Include="Jia_Shop.cs" />
+    <Compile Include="Jia_Template.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -25,15 +25,17 @@ namespace Qijia.DAL
             SqlParameter[] param = CreateParameter(jia_shop);
             return DBHelper.ExecuteNonQuery(sql, param);
         }
-        public int DeleteJia_Shop(int jia_shopId)
+        public int DeleteJia_Shop(string nick)
         {
-            string sql = "delete from Jia_Shop where Nick=" + jia_shopId;
-            return DBHelper.ExecuteNonQuery(sql);
+            string sql = "delete from Jia_Shop where Nick=@Nick";
+            SqlParameter param = new SqlParameter("@Nick", nick);
+            return DBHelper.ExecuteNonQuery(sql, param);
         }
-        public Jia_Shop GetJia_ShopById(int jia_shopId)
+        public Jia_Shop GetJia_ShopByNick(string nick)
         {
-            string sql = "select * from Jia_Shop where Nick=" + jia_shopId;
-            IList<Jia_Shop> list = Jia_ShopPropertity(sql);
+            string sql = "select * from Jia_Shop where Nick=@Nick";
+            SqlParameter param = new SqlParameter("@Nick", nick);
+            IList<Jia_Shop> list = Jia_ShopPropertity(sql, param);
             return list.Count == 0 ? null : list[0];
         }
         private SqlParameter[] CreateParameter(Jia_Shop jia_shop)
@@ -48,9 +50,9 @@ namespace Qijia.DAL
                     };
             return param;
         }
-        private IList<Jia_Shop> Jia_ShopPropertity(string sql)
+        private IList<Jia_Shop> Jia_ShopPropertity(string sql, params SqlParameter[] param)
         {
-            DataTable dt = DBHelper.ExecuteDataTable(sql);
+            DataTable dt = DBHelper.ExecuteDataTable(sql, param);
             IList<Jia_Shop> list = new List<Jia_Shop>();
             foreach (DataRow dr in dt.Rows)
             {

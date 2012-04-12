@@ -53,6 +53,7 @@
     <Compile Include="Jia_ImgService.cs" />
     <Compile Include="Jia_ItemService.cs" />
     <Compile Include="Jia_ShopService.cs" />
+    <Compile Include="Jia_TemplateService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
