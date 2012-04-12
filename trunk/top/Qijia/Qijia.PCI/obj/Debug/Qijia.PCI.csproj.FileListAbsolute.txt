@@ -3,3 +3,14 @@ F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\bin\Debug\Qijia.PCI.pdb
 F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\obj\Debug\ResolveAssemblyReference.cache
 F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\obj\Debug\Qijia.PCI.dll
 F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\obj\Debug\Qijia.PCI.pdb
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\bin\Debug\Qijia.DAL.dll
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\bin\Debug\Qijia.Model.dll
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\bin\Debug\DBHelp.dll
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\bin\Debug\LogHelper.dll
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\bin\Debug\DBHelp.pdb
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\bin\Debug\LogHelper.pdb
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\bin\Debug\Qijia.DAL.pdb
+F:\特特soft\tetesvn\top\Qijia\Qijia.PCI\bin\Debug\Qijia.Model.pdb

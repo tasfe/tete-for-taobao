@@ -15,7 +15,7 @@ namespace Qijia.DAL
         }
         public int AddJia_ApiFailLog(Jia_ApiFailLog jia_apifaillog)
         {
-            string sql = "insert Jia_ApiFailLog values(@ApiName,@ActDate,@Data,@ErrInfo)";
+            string sql = "insert Jia_ApiFailLog(Guid,ApiName,ActDate,Data,ErrInfo) values(@Guid,@ApiName,@ActDate,@Data,@ErrInfo)";
             SqlParameter[] param = CreateParameter(jia_apifaillog);
             return DBHelper.ExecuteNonQuery(sql, param);
         }

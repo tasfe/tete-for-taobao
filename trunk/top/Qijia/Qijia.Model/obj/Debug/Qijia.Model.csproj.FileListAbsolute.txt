@@ -1,0 +1,5 @@
+F:\特特soft\tetesvn\top\Qijia\Qijia.Model\bin\Debug\Qijia.Model.dll
+F:\特特soft\tetesvn\top\Qijia\Qijia.Model\bin\Debug\Qijia.Model.pdb
+F:\特特soft\tetesvn\top\Qijia\Qijia.Model\obj\Debug\ResolveAssemblyReference.cache
+F:\特特soft\tetesvn\top\Qijia\Qijia.Model\obj\Debug\Qijia.Model.dll
+F:\特特soft\tetesvn\top\Qijia\Qijia.Model\obj\Debug\Qijia.Model.pdb

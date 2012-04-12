@@ -30,9 +30,9 @@ namespace Qijia.DAL
             string sql = "delete from Jia_Item where Nick=" + jia_itemId;
             return DBHelper.ExecuteNonQuery(sql);
         }
-        public Jia_Item GetJia_ItemById(int jia_itemId)
+        public Jia_Item GetJia_ItemById(string jia_itemId)
         {
-            string sql = "select * from Jia_Item where Nick=" + jia_itemId;
+            string sql = "select * from Jia_Item where ItemId=" + jia_itemId;
             IList<Jia_Item> list = Jia_ItemPropertity(sql);
             return list.Count == 0 ? null : list[0];
         }

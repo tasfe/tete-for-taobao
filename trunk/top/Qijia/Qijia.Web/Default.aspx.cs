@@ -14,6 +14,21 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack)
+        {
+            Qijia.PCI.MethodPCI pci = new Qijia.PCI.MethodPCI();
+            string data = "method=checkexpire&uid=测试帐号&datatype=json";
 
+            Qijia.PCI.PasswordParam pp = new Qijia.PCI.PasswordParam();
+            string sign = pp.Encrypt3DES(data);
+
+            string realdata = pp.Encrypt3DES(data + "&sign=" + sign);
+            //data = data.Replace("+", "[jia]");
+
+            string s = pci.GetYouWant(realdata).ToString();
+            //Response.ContentType = "text/xml";
+            Response.Write(s);
+            Response.End();
+        }
     }
 }

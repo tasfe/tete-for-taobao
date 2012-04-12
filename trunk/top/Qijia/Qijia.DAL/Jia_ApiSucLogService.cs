@@ -15,7 +15,7 @@ namespace Qijia.DAL
         }
         public int AddJia_ApiSucLog(Jia_ApiSucLog jia_apisuclog)
         {
-            string sql = "insert Jia_ApiSucLog values(@ApiName,@ActDate,@Data)";
+            string sql = "insert Jia_ApiSucLog(Guid,ApiName,ActDate,Data)  values(@Guid,@ApiName,@ActDate,@Data)";
             SqlParameter[] param = CreateParameter(jia_apisuclog);
             return DBHelper.ExecuteNonQuery(sql, param);
         }
