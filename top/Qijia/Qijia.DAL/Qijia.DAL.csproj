@@ -45,8 +45,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Jia_ApiFailLogService.cs" />
+    <Compile Include="Jia_ApiSucLogService.cs" />
+    <Compile Include="Jia_BuyLogService.cs" />
+    <Compile Include="Jia_CategoryService.cs" />
+    <Compile Include="Jia_ImgCustomerService.cs" />
+    <Compile Include="Jia_ImgService.cs" />
+    <Compile Include="Jia_ItemService.cs" />
+    <Compile Include="Jia_ShopService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CustomerServiceAchievements\DBHelp\DBHelp\DBHelp.csproj">
+      <Project>{12FA2A43-AD78-4992-9C68-50B3032DF3AF}</Project>
+      <Name>DBHelp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Qijia.Model\Qijia.Model.csproj">
+      <Project>{9EA2A17C-E0DC-4BFA-8F07-BE5A266C96A2}</Project>
+      <Name>Qijia.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
