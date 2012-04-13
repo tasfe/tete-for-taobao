@@ -33,5 +33,13 @@ namespace Qijia.Model
             get { return _PropertyText; }
             set { _PropertyText = value; }
         }
+
+        private String _CharText;
+
+        public String CharText
+        {
+            get { return _CharText; }
+            set { _CharText = value; }
+        }
     }
 }

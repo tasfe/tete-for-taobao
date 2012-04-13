@@ -8,10 +8,11 @@ namespace Qijia.DAL
 {
     public class Jia_ImgService
     {
-        public IList<Jia_Img> GetAllJia_Img()
+        public IList<Jia_Img> GetAllJia_Img(string tplId)
         {
-            string sql = "select * from Jia_Img";
-            return Jia_ImgPropertity(sql);
+            string sql = "select * from Jia_Img where TplId=@TplId";
+            SqlParameter param = new SqlParameter("@TplId", tplId);
+            return Jia_ImgPropertity(sql, param);
         }
         public int AddJia_Img(Jia_Img jia_img)
         {
@@ -47,9 +48,9 @@ namespace Qijia.DAL
                     };
             return param;
         }
-        private IList<Jia_Img> Jia_ImgPropertity(string sql)
+        private IList<Jia_Img> Jia_ImgPropertity(string sql, params SqlParameter[] param)
         {
-            DataTable dt = DBHelper.ExecuteDataTable(sql);
+            DataTable dt = DBHelper.ExecuteDataTable(sql, param);
             IList<Jia_Img> list = new List<Jia_Img>();
             foreach (DataRow dr in dt.Rows)
             {

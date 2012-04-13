@@ -60,7 +60,7 @@ namespace Qijia.PCI
 
         }
 
-        public string UpdateGoods(string goodsId, int tempType, string dataType)
+        public string updategoods(string goodsId, string tempType, string dataType)
         {
             Jia_Item item = itemDal.GetJia_ItemById(goodsId);
 
@@ -83,7 +83,8 @@ namespace Qijia.PCI
                 }
                 else
                 {
-
+                    pmsg.result = "success";
+                    msg.content = GetRealItemInfo(item, temp, tempType);
                 }
             }
             List<msg> list = new List<msg>();
@@ -99,12 +100,72 @@ namespace Qijia.PCI
             return GetXMLStr(list, xmlmsg);
         }
 
+        private static string GetRealItemInfo(Jia_Item item, Jia_Template temp, string type)
+        {
+            Jia_ImgService imgDal = new Jia_ImgService();
+            Jia_ImgCustomerService cimgDal = new Jia_ImgCustomerService();
+            string tempHtml = "";
+            if (type == "1")
+                tempHtml = temp.TplHtml;
+            if (type == "0")
+                tempHtml = temp.UglyTplHtml;
+            IList<Jia_Img> imgList = imgDal.GetAllJia_Img(temp.TplId);
+            IList<Jia_ImgCustomer> cimgList = cimgDal.GetAllJia_ImgCustomer(item.ItemId);
+
+            //替换图片
+            foreach (Jia_Img jimg in imgList)
+            {
+                tempHtml = tempHtml.Replace(jimg.Tag, jimg.JiaImg);
+            }
+
+            foreach (Jia_ImgCustomer jcimg in cimgList)
+            {
+                tempHtml = tempHtml.Replace(jcimg.Tag, jcimg.JiaImg);
+            }
+
+            //替换chartext
+            string chartext = item.CharText.Substring(1, item.CharText.Length - 2); //剔除{}
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+
+            string[] chars = Regex.Split(chartext, "{,}");
+            foreach (string s in chars)
+            {
+                dic.Add(s.Substring(0, s.IndexOf(':')), s.Substring(s.IndexOf(':') + 1, s.Length - s.IndexOf(':') - 1));
+            }
+
+            foreach (KeyValuePair<string, string> kvp in dic)
+            {
+                tempHtml = tempHtml.Replace("{" + kvp.Key + "}", kvp.Value);
+            }
+
+            //替换PropertyText
+            string propertyText = item.PropertyText.Substring(1, item.PropertyText.Length - 2); //剔除{}
+            string loop = tempHtml.Substring(tempHtml.IndexOf("{loop}") + 6, tempHtml.IndexOf("{/loop}") - tempHtml.IndexOf("{loop}") - 6);
+
+            chars = Regex.Split(propertyText, "{,}");
+            string realpropertyText = "";
+
+            foreach (string s in chars)
+            {
+                realpropertyText += loop.Replace("{left}", s.Substring(0, s.IndexOf(':'))).Replace("{right}", s.Substring(s.IndexOf(':') + 1, s.Length - s.IndexOf(':') - 1));
+            }
+
+            Regex regex = new Regex("{loop}.*?{/loop}");
+
+            tempHtml = regex.Replace(tempHtml, realpropertyText);
+
+            return tempHtml;
+        }
+
         private static string GetJsonStr(List<msg> list, ResponseMsg pmsg)
         {
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("msg", list);
             pmsg.msgs = dic;
             string json = JSONHelper.ObjectToJSON(pmsg);
+            json = json.Replace("\\u003c", "<");
+            json = json.Replace("\\u003e", ">");
+            json = json.Replace("\\t", "");
             json = "{\"qijia_response\":" + json + "}";
             return json;
         }

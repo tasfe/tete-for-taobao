@@ -66,7 +66,7 @@ namespace Qijia.PCI
 
                 if (pnamevalue[0].ToLower() == "method")
                 {
-                    method = pnamevalue[1];
+                    method = pnamevalue[1].ToLower();
                     continue;
                 }
 

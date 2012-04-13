@@ -8,10 +8,11 @@ namespace Qijia.DAL
 {
     public class Jia_ImgCustomerService
     {
-        public IList<Jia_ImgCustomer> GetAllJia_ImgCustomer()
+        public IList<Jia_ImgCustomer> GetAllJia_ImgCustomer(string itemId)
         {
-            string sql = "select * from Jia_ImgCustomer";
-            return Jia_ImgCustomerPropertity(sql);
+            string sql = "select * from Jia_ImgCustomer where ItemId=@ItemId";
+            SqlParameter param = new SqlParameter("@ItemId", itemId);
+            return Jia_ImgCustomerPropertity(sql, param);
         }
         public int AddJia_ImgCustomer(Jia_ImgCustomer jia_imgcustomer)
         {
@@ -25,15 +26,17 @@ namespace Qijia.DAL
             SqlParameter[] param = CreateParameter(jia_imgcustomer);
             return DBHelper.ExecuteNonQuery(sql, param);
         }
-        public int DeleteJia_ImgCustomer(int jia_imgcustomerId)
+        public int DeleteJia_ImgCustomer(string jia_imgcustomerId)
         {
-            string sql = "delete from Jia_ImgCustomer where Guid=" + jia_imgcustomerId;
-            return DBHelper.ExecuteNonQuery(sql);
+            string sql = "delete from Jia_ImgCustomer where Guid=@jia_imgcustomerId";
+            SqlParameter param = new SqlParameter("@jia_imgcustomerId", jia_imgcustomerId);
+            return DBHelper.ExecuteNonQuery(sql, param);
         }
         public Jia_ImgCustomer GetJia_ImgCustomerById(int jia_imgcustomerId)
         {
-            string sql = "select * from Jia_ImgCustomer where Guid=" + jia_imgcustomerId;
-            IList<Jia_ImgCustomer> list = Jia_ImgCustomerPropertity(sql);
+            string sql = "select * from Jia_ImgCustomer where Guid=@jia_imgcustomerId";
+            SqlParameter param = new SqlParameter("@jia_imgcustomerId", jia_imgcustomerId);
+            IList<Jia_ImgCustomer> list = Jia_ImgCustomerPropertity(sql, param);
             return list.Count == 0 ? null : list[0];
         }
         private SqlParameter[] CreateParameter(Jia_ImgCustomer jia_imgcustomer)
@@ -47,9 +50,9 @@ namespace Qijia.DAL
                     };
             return param;
         }
-        private IList<Jia_ImgCustomer> Jia_ImgCustomerPropertity(string sql)
+        private IList<Jia_ImgCustomer> Jia_ImgCustomerPropertity(string sql,params SqlParameter[] param)
         {
-            DataTable dt = DBHelper.ExecuteDataTable(sql);
+            DataTable dt = DBHelper.ExecuteDataTable(sql, param);
             IList<Jia_ImgCustomer> list = new List<Jia_ImgCustomer>();
             foreach (DataRow dr in dt.Rows)
             {
