@@ -18,13 +18,18 @@ public partial class api_Default : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            //string data = Request.QueryString["data"];
+
+            //Request.Files["image"].SaveAs(Server.MapPath("~/temp")+"\\s.jpg");
+
             string data = Request.QueryString["data"].Replace("[jia]", "+");
 
             MethodPCI pci = new MethodPCI();
 
             string obj = pci.GetYouWant(data).ToString();
 
-            
+            Response.Write(obj);
+            Response.End();
         }
     }
 
