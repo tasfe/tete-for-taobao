@@ -16,25 +16,27 @@ namespace Qijia.DAL
         }
         public int AddJia_Template(Jia_Template jia_template)
         {
-            string sql = "insert Jia_Template values(@Tplname,@OrderIid,@Count,@TplImg,@TplShort,@TplHtml,@CateId)";
+            string sql = "insert Jia_Template(TplId,Tplname,OrderIid,Count,TplImg,TplShort,TplHtml,CateId,UglyTplHtml) values(@TplId,@Tplname,@OrderIid,@Count,@TplImg,@TplShort,@TplHtml,@CateId,@UglyTplHtml)";
             SqlParameter[] param = CreateParameter(jia_template);
             return DBHelper.ExecuteNonQuery(sql, param);
         }
         public int ModifyJia_Template(Jia_Template jia_template)
         {
-            string sql = "update Jia_Template set Tplname=@Tplname,OrderIid=@OrderIid,Count=@Count,TplImg=@TplImg,TplShort=@TplShort,TplHtml=@TplHtml,CateId=@CateId where TplId=@TplId";
+            string sql = "update Jia_Template set Tplname=@Tplname,OrderIid=@OrderIid,Count=@Count,TplImg=@TplImg,TplShort=@TplShort,TplHtml=@TplHtml,CateId=@CateId,UglyTplHtml=@UglyTplHtml where TplId=@TplId";
             SqlParameter[] param = CreateParameter(jia_template);
             return DBHelper.ExecuteNonQuery(sql, param);
         }
         public int DeleteJia_Template(string jia_templateId)
         {
-            string sql = "delete from Jia_Template where TplId=" + jia_templateId;
-            return DBHelper.ExecuteNonQuery(sql);
+            string sql = "delete from Jia_Template where TplId=@TplId";
+            SqlParameter param = new SqlParameter("@TplId", jia_templateId);
+            return DBHelper.ExecuteNonQuery(sql, param);
         }
         public Jia_Template GetJia_TemplateById(string jia_templateId)
         {
-            string sql = "select * from Jia_Template where TplId=" + jia_templateId;
-            IList<Jia_Template> list = Jia_TemplatePropertity(sql);
+            string sql = "select * from Jia_Template where TplId=@TplId";
+            SqlParameter param = new SqlParameter("@TplId", jia_templateId);
+            IList<Jia_Template> list = Jia_TemplatePropertity(sql, param);
             return list.Count == 0 ? null : list[0];
         }
         private SqlParameter[] CreateParameter(Jia_Template jia_template)
@@ -48,13 +50,14 @@ namespace Qijia.DAL
                       new SqlParameter("@TplImg",jia_template.TplImg),
                       new SqlParameter("@TplShort",jia_template.TplShort),
                       new SqlParameter("@TplHtml",jia_template.TplHtml),
-                      new SqlParameter("@CateId",jia_template.CateId)
+                      new SqlParameter("@CateId",jia_template.CateId),
+                      new SqlParameter("@UglyTplHtml",jia_template.UglyTplHtml)
                     };
             return param;
         }
-        private IList<Jia_Template> Jia_TemplatePropertity(string sql)
+        private IList<Jia_Template> Jia_TemplatePropertity(string sql, params SqlParameter[] param)
         {
-            DataTable dt = DBHelper.ExecuteDataTable(sql);
+            DataTable dt = DBHelper.ExecuteDataTable(sql, param);
             IList<Jia_Template> list = new List<Jia_Template>();
             foreach (DataRow dr in dt.Rows)
             {
@@ -67,6 +70,7 @@ namespace Qijia.DAL
                 jia_template.TplShort = Convert.ToString(dr["TplShort"]);
                 jia_template.TplHtml = Convert.ToString(dr["TplHtml"]);
                 jia_template.CateId = Convert.ToString(dr["CateId"]);
+                jia_template.UglyTplHtml = Convert.ToString(dr["UglyTplHtml"]);
                 list.Add(jia_template);
             }
             return list;

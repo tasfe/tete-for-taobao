@@ -51,5 +51,13 @@ namespace Qijia.Model
             get { return _CateId; }
             set { _CateId = value; }
         }
+
+        private String _UglyTplHtml;
+
+        public String UglyTplHtml
+        {
+            get { return _UglyTplHtml; }
+            set { _UglyTplHtml = value; }
+        }
     }
 }
