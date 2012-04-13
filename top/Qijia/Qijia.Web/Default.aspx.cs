@@ -17,7 +17,7 @@ public partial class _Default : System.Web.UI.Page
         if (!IsPostBack)
         {
             Qijia.PCI.MethodPCI pci = new Qijia.PCI.MethodPCI();
-            string data = "method=checkexpire&uid=测试帐号&datatype=json";
+            string data = "method=UpdateGoods&goodsId=11&tempType=1&datatype=json";
 
             Qijia.PCI.PasswordParam pp = new Qijia.PCI.PasswordParam();
             string sign = pp.Encrypt3DES(data);
