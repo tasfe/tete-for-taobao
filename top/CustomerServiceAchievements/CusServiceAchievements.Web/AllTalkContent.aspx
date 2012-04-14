@@ -141,7 +141,7 @@
                         <h3>
                             <a href="#" class="folder_table">业绩统计</a></h3>
                         <ul>
-                            <li><a href="#" class="folder_table">成功订单</a></li>
+                            <li><a href="/GoodsOrderList.aspx" class="folder_table">成功订单</a></li>
                             <li><a href="#" class="folder_table">接待人次</a></li>
                             <li><a href="#" class="folder_table">日统计</a></li>
                             <li><a href="#" class="folder_table">月统计</a></li>
