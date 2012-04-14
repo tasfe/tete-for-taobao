@@ -56,25 +56,13 @@
             </div>
         </div>
         <div id="wrapper">
-        <form runat="server">
             <div id="content">
-                <%--<div id="rightnow">
-                    <h3 class="reallynow">
-                        <span>Right Now</span> <a href="#" class="add">Add New Product</a> <a href="#" class="app_add">
-                            Some Action</a>
-                        <br />
-                    </h3>
-                    <p class="youhave">
-                        You have <a href="#">19 new orders</a>, <a href="#">12 new users</a> and <a href="#">
-                            5 new reviews</a>, today you made <a href="#">$1523.63 in sales</a> and a total
-                        of <strong>$328.24 profit </strong>
-                    </p>
-                </div>--%>
-                <div>
-                <p>
-                   <asp:Button ID="Btn_AddCookie" runat="server" Text="点击测试真实数据" 
+             <form id="form1" runat="server">
+                <div id="rightnow">
+                    <asp:Button ID="Btn_AddCookie" runat="server" Text="点击测试真实数据" 
                         onclick="Btn_AddCookie_Click" />
-                </p>
+                </div>
+                <div>
                  <p class="youhave">
                   <a href="CustomerList.aspx">客服今天接待情况</a>
                  </p>
@@ -87,7 +75,7 @@
                             <th style="width:15%">
                                 买家
                             </th>
-                            <th style="width:15%">
+                            <th style="width:25%">
                                 接待人
                             </th>
                             <th style="width:15%">
@@ -127,16 +115,16 @@
                         </asp:Repeater>
                     </table>
                 </div>
+               </form>
             </div>
-            </form>
             <div id="sidebar">
                <ul>
                     <li>
                         <h3>
                             <a href="#" class="report">日统计</a></h3>
                         <ul>
-                            <li><a href="#" class="report">接待人数</a></li>
-                            <li><a href="#" class="report">成功订单</a></li>
+                            <li><a href="/ReceiveCustomer.aspx" class="report">接待人数</a></li>
+                            <li><a href="/GoodsOrderList.aspx" class="report">成功订单</a></li>
                             <li><a href="#" class="report">付款金额</a></li>
                         </ul>
                     </li>
