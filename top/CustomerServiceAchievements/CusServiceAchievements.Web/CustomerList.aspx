@@ -66,6 +66,7 @@
                     <asp:Button ID="Btn_Success" runat="server" Text="查看成功" OnClick="Btn_Success_Click" />
                 </div>
                 <table style="margin: 0; width: 740px; margin-top: 5px;">
+                   <thead>
                     <tr>
                         <th width="40px">
                             序号
@@ -86,6 +87,7 @@
                             交易
                         </th>
                     </tr>
+                    </thead>
                     <asp:Repeater ID="Rpt_CustomerList" runat="server">
                         <ItemTemplate>
                             <tr>
