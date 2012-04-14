@@ -73,7 +73,7 @@
                     <asp:Button ID="Btn_Select" runat="server" Text="检索" OnClick="Btn_Select_Click" />
                 </div>
             <div>
-              <table cellpadding="0" cellspacing="0" width="100%">
+              <table style="margin:0; width:740px; margin-top:5px;">
                     <tr>
                          <td align="center">
                             <b>订单号</b>
