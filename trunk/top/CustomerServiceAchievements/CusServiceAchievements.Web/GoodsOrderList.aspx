@@ -83,25 +83,25 @@
                     <table style="margin: 0; width: 740px; margin-top: 5px;">
                         <thead>
                             <tr>
-                                <th align="center">
+                                <th align="center" width="100px">
                                     订单号
                                 </th>
-                                <th align="center" width="150px">
+                                <th align="center" width="115px">
                                     购买者
                                 </th>
-                                <th align="center">
+                                <th align="center" width="40px">
                                     邮费
                                 </th>
-                                <th align="center">
+                                <th align="center" width="85px">
                                     商品总价
                                 </th>
-                                <th align="center">
+                                <th align="center" width="85px">
                                     实际支付
                                 </th>
                                 <th align="center" width="200px">
                                     收获地址
                                 </th>
-                                <th align="center" width="150px">
+                                <th align="center" width="115px">
                                     接待人
                                 </th>
                             </tr>
