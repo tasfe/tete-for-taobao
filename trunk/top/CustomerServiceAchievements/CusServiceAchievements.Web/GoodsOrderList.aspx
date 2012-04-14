@@ -20,20 +20,6 @@
     <!--[if IE]>
 <link rel="stylesheet" type="text/css" href="jxkh/css/ie-sucks.css" />
 <![endif]-->
-    <style type="text/css">
-        table
-        {
-            border: 0;
-        }
-        tr
-        {
-            border: 0;
-        }
-        td
-        {
-            border: 0;
-        }
-    </style>
 </head>
 <body>
     <div id="container">
@@ -83,25 +69,25 @@
                     <table style="margin: 0; width: 740px; margin-top: 5px;">
                         <thead>
                             <tr>
-                                <th align="center" width="100px">
+                                <th style="width:100px">
                                     订单号
                                 </th>
-                                <th align="center" width="115px">
+                                <th style="width:115px">
                                     购买者
                                 </th>
-                                <th align="center" width="40px">
+                                <th style="width:40px">
                                     邮费
                                 </th>
-                                <th align="center" width="85px">
+                                <th style="width:85px">
                                     商品总价
                                 </th>
-                                <th align="center" width="85px">
+                                <th style="width:85px">
                                     实际支付
                                 </th>
-                                <th align="center" width="200px">
+                                <th style="width:200px">
                                     收获地址
                                 </th>
-                                <th align="center" width="115px">
+                                <th style="width:115px">
                                     接待人
                                 </th>
                             </tr>
@@ -109,25 +95,25 @@
                         <asp:Repeater ID="Rpt_PageVisit" runat="server">
                             <ItemTemplate>
                                 <tr>
-                                    <td align="center">
+                                    <td>
                                         <%# Eval("tid") %>
                                     </td>
-                                    <td align="left">
+                                    <td>
                                         <%# Eval("buyer_nick")%>
                                     </td>
-                                    <td align="center">
+                                    <td>
                                         <%#Eval("post_fee")%>
                                     </td>
-                                    <td align="center">
+                                    <td>
                                         <%#Eval("total_fee")%>
                                     </td>
-                                    <td align="center">
+                                    <td>
                                         <%#Eval("payment")%>
                                     </td>
-                                    <td align="left">
+                                    <td>
                                         <%#Eval("receiver_state")%><%#Eval("receiver_city")%>
                                     </td>
-                                    <td align="center">
+                                    <td>
                                         <%# Eval("seller_nick")%>
                                     </td>
                                 </tr>
