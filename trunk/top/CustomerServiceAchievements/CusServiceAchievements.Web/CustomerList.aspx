@@ -24,7 +24,7 @@
 <body>
     <div id="container">
         <div id="header">
-           <div id="site-nav" style="margin-bottom: 5px;">
+           <div id="site-nav" style="margin-bottom:-15px;">
                 <p class="login-info">
                     <font color="white">在线客服：</font> <a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid=叶儿随清风&site=cntaobao&s=1&charset=utf-8">
                         <img border="0" align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=叶儿随清风&site=cntaobao&s=1&charset=utf-8"

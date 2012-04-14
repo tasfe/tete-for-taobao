@@ -21,16 +21,6 @@ public partial class Default2 : BasePage
     {
         if (!IsPostBack)
         {
-            #region 
-
-            //string s = Request.QueryString["data"].Replace("[jia]", "+");
-
-            //Qijia.PCI.MethodPCI pci = new Qijia.PCI.MethodPCI();
-
-            //string obj = pci.GetYouWant(s).ToString();
-
-            #endregion
-
             string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
 
             DateTime[] dateArr = DataHelper.GetDateTime(DateTime.Now, 1);
