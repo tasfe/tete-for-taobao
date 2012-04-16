@@ -84,6 +84,14 @@ public class TopSiteTotalInfo
         get;
     }
 
+    public int FreeFlow
+    {
+        get
+        {
+            return SitePVCount - ZhiTongFlow - SiteZuanZhan;
+        }
+    }
+
     /// <summary>
     /// 丢单率
     /// </summary>
@@ -91,10 +99,27 @@ public class TopSiteTotalInfo
     {
         get
         {
-            TopKefuTotalService tktDal = new TopKefuTotalService();
-            List<TopKefuTotalInfo> list = (List<TopKefuTotalInfo>)tktDal.GetTotalinfoList(SiteTotalDate, SiteNick);
             if (AskOrder == 0) return "0";
-            return Math.Round(((decimal)(AskOrder - list.Sum(o => o.OrderCount)) / AskOrder) * 100, 2).ToString() + "%";
+            DateTime date = DateTime.Parse(SiteTotalDate.Substring(0, 4) + "-" + SiteTotalDate.Substring(4, 2) + "-" + SiteTotalDate.Substring(6));
+            TalkRecodService trDal = new TalkRecodService();
+            GoodsOrderService goDal = new GoodsOrderService();
+            List<TaoBaoAPIHelper.GoodsOrderInfo> goodsOrderList = goDal.GetCustomerList(SiteNick, date, date.AddDays(1));
+
+            IList<CustomerInfo> list = trDal.GetCustomerList(date, date.AddDays(1), SiteNick);
+
+            if (list.Count > 0)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    IList<TaoBaoAPIHelper.GoodsOrderInfo> thislist = goodsOrderList.Where(o => o.buyer_nick == list[i].CustomerNick).ToList();
+                    if (thislist.Count > 0)
+                    {
+                        list[i].tid = thislist[0].tid;
+                    }
+                }
+            }
+            else return "0";
+            return Math.Round(((decimal)(AskOrder - list.Where(o => !string.IsNullOrEmpty(o.tid)).ToList().Count) / AskOrder) * 100, 2).ToString() + "%";
         }
     }
 

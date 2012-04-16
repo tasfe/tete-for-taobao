@@ -83,6 +83,12 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                        <span>淘宝钻石展位,是淘宝图片类广告位竞价平台,就是花钱在淘宝首页,或者其他位置做广告</span>
                      </a>
                 </div>
+                
+                 <div>
+                     <a href="#" class="tooltips">免费流量
+                       <span>不是通过广告等需要支付费用的流量</span>
+                     </a>
+                </div>
                 <div>
                    <a href="AskOrderTotal.aspx" class="tooltips">
                       询单数
@@ -162,9 +168,12 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                        <span>销售最多的商品</span>
                    </a>
                 </div>
-                <%--<div>
-                    收藏量
-                </div>--%>
+                <div>
+                      <a href="#" class="tooltips">
+                      收藏量
+                       <span>店铺有多少人收藏</span>
+                   </a>
+                </div>
             </div>
             <asp:Repeater runat="server" ID="Rpt_TotalList">
                 <ItemTemplate>
@@ -184,6 +193,10 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                         <div>
                             <a class="numalink" href='ZhiTongHourPV.aspx?day=<%# Eval("SiteTotalDate") %>'><%# Eval("SiteZuanZhan")%></a>
                         </div>
+                        <div>
+                            <%# Eval("FreeFlow")%>
+                        </div>
+                        
                         <div>
                             <a class="numalink" href='AskOrderCustomer.aspx?day=<%# Eval("SiteTotalDate") %>'><%# Eval("AskOrder")%></a>
                         </div>
@@ -227,9 +240,9 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                            <img style="border:0" src='<%# Eval("SellTop.pic_url")%>_60x60.jpg' alt='<%# Eval("SellTop.title")%>' height="50px" />
                           </a>
                         </div>
-                       <%--     <div>
-                                <%# Eval("Collection")%>
-                            </div>--%>
+                        <div>
+                            <%# Eval("Collection")%>
+                        </div>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
