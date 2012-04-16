@@ -18,7 +18,7 @@ public partial class GoodsBuyTotal : BasePage
             try
             {
                 darray[0] = DateTime.Parse(Request.QueryString["start"]);
-                darray[1] = DateTime.Parse(Request.QueryString["end"]);
+                darray[1] = DateTime.Parse(Request.QueryString["end"]).AddDays(1);
             }
             catch
             {
@@ -136,7 +136,7 @@ public partial class GoodsBuyTotal : BasePage
 
         string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         string session = Request.Cookies["nicksession"].Value;
-        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(nick, start, endtime);
+        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(nick, start, endtime.AddDays(1));
         ViewState["page"] = "1";
         Bind(nick, session, start, endtime, int.Parse(ViewState["count"].ToString()), 9);
     }
