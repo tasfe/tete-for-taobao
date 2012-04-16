@@ -28,6 +28,10 @@
   </div>
     <div id="main-content">
 
+<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
+催单有礼是一款有效帮您提升未付款订单成交比率的软件，通过免订单运费、赠送支付宝红包等多种促销方式并结合短信告之客户，从而成功转化未付款订单的软件。
+</div>
+
         <table width="700">
             <tr>
                 <td align="left" width="180" height="30">是否开启催单免运费：</td>
