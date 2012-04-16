@@ -39,6 +39,15 @@ from(select od.num_iid,od.num from [TopTaoBaoGoodsOrderInfo] o
    o.seller_nick=@nick) a group by num_iid
    ) b";
 
+    const string SQL_SELECT_TOP_SEE_BUY = @"select num_iid,SUM(num) as bcount
+from(
+  select od.num_iid,od.num from [TopTaoBaoGoodsOrderInfo] o 
+  inner join TopTaoBaoOrderGoodsList od on o.tid=od.tid and o.created between @start
+   and @end and od.status 
+in('TRADE_FINISHED','TRADE_BUYER_SIGNED','WAIT_BUYER_CONFIRM_GOODS','WAIT_SELLER_SEND_GOODS')
+ and 
+   o.seller_nick=@nick) a group by num_iid having num_iid in(@pids)";
+
     public void InsertTaoBaoGoodsInfo(GoodsInfo info)
     {
         SqlParameter[] param = new[]
@@ -104,6 +113,29 @@ from(select od.num_iid,od.num from [TopTaoBaoGoodsOrderInfo] o
         };
 
         DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_TOP_BUY, param);
+        IList<GoodsInfo> list = new List<GoodsInfo>();
+        foreach (DataRow dr in dt.Rows)
+        {
+            GoodsInfo info = new GoodsInfo();
+            info.num_iid = dr["num_iid"].ToString();
+            info.Count = int.Parse(dr["bcount"].ToString());
+            list.Add(info);
+        }
+        return list;
+    }
+
+    public IList<GoodsInfo> GetTopSeeBuyList(string nick, DateTime start, DateTime end, string pids)
+    {
+        string sql = SQL_SELECT_TOP_SEE_BUY.Replace("@pids", pids);
+
+        SqlParameter[] param = new[]
+        {
+            new SqlParameter("@start",start),
+            new SqlParameter("@end",end),
+            new SqlParameter("@nick",nick)
+        };
+
+        DataTable dt = DBHelper.ExecuteDataTable(sql, param);
         IList<GoodsInfo> list = new List<GoodsInfo>();
         foreach (DataRow dr in dt.Rows)
         {
