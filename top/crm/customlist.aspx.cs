@@ -67,7 +67,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
         string appkey = "12159997";
         string secret = "614e40bfdb96e9063031d1a9e56fbed5";
 
-        string sql = "SELECT * FROM TCS_Trade WHERE nick = '" + nick + "'";
+        string sql = "SELECT TOP 100 * FROM TCS_Trade WHERE status = 'TradeRated' AND nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         for (int i = 0; i < dt.Rows.Count; i++)
         {
@@ -86,8 +86,27 @@ public partial class top_crm_customlist : System.Web.UI.Page
                 string birthday = GetValueByProperty(nickresult, "birthday");
                 string email = GetValueByProperty(nickresult, "email");
 
+                param = new Dictionary<string, string>();
+                param.Add("buyer_nick ", dt.Rows[i]["buynick"].ToString());
+
+                string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.crm.members.search", session, param);
+
+                string buyer_id = GetValueByProperty(result, "buyer_id");
+                string buyer_nick = GetValueByProperty(result, "buyer_nick");
+                string group_ids = GetValueByProperty(result, "group_ids");
+                string item_num = GetValueByProperty(result, "item_num");
+                string grade = GetValueByProperty(result, "grade");
+                string relation_source = GetValueByProperty(result, "relation_source");
+                string last_trade_time = GetValueByProperty(result, "last_trade_time");
+                string status = GetValueByProperty(result, "status");
+                string trade_amount = GetValueByProperty(result, "trade_amount");
+                string trade_count = GetValueByProperty(result, "trade_count");
+                string province = GetValueByProperty(result, "province");
+                string city = GetValueByProperty(result, "city");
+                string avg_price = GetValueByProperty(result, "avg_price");
+
                 //如果有则通过会员接口插入会员基础数据
-                InsertCustomerData(dt.Rows[i]["nick"].ToString(), dt.Rows[i]["buynick"].ToString(), dt.Rows[i]["mobile"].ToString(), dt.Rows[i]["receiver_name"].ToString(), dt.Rows[i]["receiver_address"].ToString(), dt.Rows[i]["receiver_state"].ToString(), dt.Rows[i]["receiver_city"].ToString(), dt.Rows[i]["receiver_district"].ToString(), sex, level, created, last_visit, birthday, email);
+                InsertCustomerData(dt.Rows[i]["nick"].ToString(), dt.Rows[i]["buynick"].ToString(), dt.Rows[i]["mobile"].ToString(), dt.Rows[i]["receiver_name"].ToString(), dt.Rows[i]["receiver_address"].ToString(), dt.Rows[i]["receiver_state"].ToString(), dt.Rows[i]["receiver_city"].ToString(), dt.Rows[i]["receiver_district"].ToString(), sex, level, created, last_visit, birthday, email,buyer_id, buyer_nick, group_ids, item_num, grade, relation_source, last_trade_time, status, trade_amount, trade_count, province, city, avg_price);
             }
         }
     }
@@ -110,11 +129,22 @@ public partial class top_crm_customlist : System.Web.UI.Page
     /// </summary>
     /// <param name="trade"></param>
     /// <param name="customer"></param>
-    public void InsertCustomerData(string nick, string buynick, string mobile, string truename, string address, string sheng, string shi, string qu, string sex, string level, string created, string last_visit, string birthday, string email)
+    public void InsertCustomerData(string nick, string buynick, string mobile, string truename, string address, string sheng, string shi, string qu, string sex, string level, string created, string last_visit, string birthday, string email,string buyer_id,string buyer_nick,string group_ids,string item_num,string grade,string relation_source,string last_trade_time,string status,string trade_amount,string trade_count,string province,string city,string avg_price)
     {
         string sql = "INSERT INTO TCS_Customer (" +
                                     "nick, " +
                                     "buynick, " +
+                                    "status, " +
+                                    "tradecount, " +
+                                    "tradeamount, " +
+                                    "groupid, " +
+                                    "lastorderdate, " +
+                                    "province, " +
+                                    "city, " +
+                                    "avgprice, " +
+                                    "source, " +
+                                    "buyerid, " +
+                                    "grade, " +
                                     "mobile, " +
                                     "truename, " +
                                     "address, " +
@@ -130,6 +160,17 @@ public partial class top_crm_customlist : System.Web.UI.Page
                                 " ) VALUES ( " +
                                     " '" + nick + "', " +
                                     " '" + buynick + "', " +
+                                    " '" + status + "', " +
+                                    " '" + trade_count + "', " +
+                                    " '" + trade_amount + "', " +
+                                    " '" + group_ids + "', " +
+                                    " '" + last_trade_time + "', " +
+                                    " '" + province + "', " +
+                                    " '" + city + "', " +
+                                    " '" + avg_price + "', " +
+                                    " '" + relation_source + "', " +
+                                    " '" + buyer_id + "', " +
+                                    " '" + grade + "'," +
                                     " '" + mobile + "', " +
                                     " '" + truename + "', " +
                                     " '" + address + "', " +
