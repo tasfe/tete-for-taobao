@@ -33,7 +33,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
         }
 
         //如果是第一次进入则根据好评数据库获取会员信息
-        if (1 == 1)
+        if (nick == '珍爱一生311913')
         {
             InitHaopingOldData();
         }
@@ -55,9 +55,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
     /// </summary>
     private void InitHaopingOldData()
     {
-        string sql = "SELECT * FROM TSC_Trade WHERE nick = '" + nick + "'";
-        Response.Write(sql);
-        Response.End();
+        string sql = "SELECT * FROM TCS_Trade WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         for (int i = 0; i < dt.Rows.Count; i++)
         {
