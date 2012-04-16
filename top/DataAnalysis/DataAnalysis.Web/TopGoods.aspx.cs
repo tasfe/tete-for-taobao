@@ -115,13 +115,6 @@ public partial class TopGoods : BasePage
                     list[i].pic_url = thislist[0].pic_url;
                 }
             }
-
-            //for (int i = 0; i < list.Count; i++)
-            //{
-            //    GoodsInfo rinfo = TaoBaoAPI.GetGoodsInfo(list[i].num_iid);
-            //    list[i].title = rinfo.title;
-            //    list[i].price = rinfo.price;
-            //}
         }
 
         lblCurrentPage.Text = "共" + totalCount.ToString() + "条记录 当前页：" + page + "/" + (TotalPage == 0 ? 1 : TotalPage);
@@ -169,21 +162,21 @@ public partial class TopGoods : BasePage
     {
         string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         string session = Request.Cookies["nicksession"].Value;
-        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(DataHelper.Encrypt(nick), DateTime.Now.AddDays(-2), DateTime.Now);
+        ViewState["count"] = taoGoodsService.GetTopGoodsCount(DataHelper.Encrypt(nick), DateTime.Now.AddDays(-2), DateTime.Now);
         Bind(nick, session, DateTime.Now.AddDays(-2), DateTime.Now, int.Parse(ViewState["count"].ToString()), 9);
     }
     protected void Btn_7Days_Click(object sender, EventArgs e)
     {
         string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         string session = Request.Cookies["nicksession"].Value;
-        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(DataHelper.Encrypt(nick), DateTime.Now.AddDays(-6), DateTime.Now);
+        ViewState["count"] = taoGoodsService.GetTopGoodsCount(DataHelper.Encrypt(nick), DateTime.Now.AddDays(-6), DateTime.Now);
         Bind(nick, session, DateTime.Now.AddDays(-6), DateTime.Now, int.Parse(ViewState["count"].ToString()), 9);
     }
     protected void Btn_30Days_Click(object sender, EventArgs e)
     {
         string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         string session = Request.Cookies["nicksession"].Value;
-        ViewState["count"] = taoGoodsService.GetTopGoodsBuyCount(DataHelper.Encrypt(nick), DateTime.Now.AddDays(-29), DateTime.Now);
+        ViewState["count"] = taoGoodsService.GetTopGoodsCount(DataHelper.Encrypt(nick), DateTime.Now.AddDays(-29), DateTime.Now);
         Bind(nick, session, DateTime.Now.AddDays(-29), DateTime.Now, int.Parse(ViewState["count"].ToString()), 9);
     }
 }
