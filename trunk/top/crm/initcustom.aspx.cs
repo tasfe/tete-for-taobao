@@ -29,7 +29,7 @@ public partial class top_crm_initcustom : System.Web.UI.Page
         string iscrm = cookie.getCookie("iscrm");
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
-
+        return;
         //过期判断
         if (string.IsNullOrEmpty(taobaoNick))
         {
