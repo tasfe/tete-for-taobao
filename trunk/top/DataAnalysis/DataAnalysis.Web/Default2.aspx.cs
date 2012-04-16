@@ -48,7 +48,8 @@ public partial class Default2 : BasePage
         info.Refund = Math.Round(decimal.Parse(localinfo.Refund.Replace("%", "")) - decimal.Parse(lastinfo.Refund.Replace("%", "")), 2) + "%";
 
         info.SeeDeepAVG = (decimal.Parse(localinfo.SeeDeepAVG) - decimal.Parse(lastinfo.SeeDeepAVG)).ToString();
-
+        info.SeeTop = new TaoBaoAPIHelper.GoodsInfo();
+        info.SellTop = new TaoBaoAPIHelper.GoodsInfo();
         info.Collection = localinfo.Collection - lastinfo.Collection;
         siteTotalList.Add(info);
     }
