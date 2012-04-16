@@ -189,7 +189,7 @@ h4 a {
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
                   <p> 查看你赠送的优惠券给你带来了多少2次消费，一切尽在掌握</p>
                 </div>
-                <div class="item_list_btn"><a href="saletotal.aspx" target="_blank" class="btn-middle middle-blue">立即使用</a></div>
+                <div class="item_list_btn"><a href="saletotal.aspx" class="btn-middle middle-blue">立即使用</a></div>
                 <p style="clear: both; height: 1px;"></p>
               </div></td>
             <td><div class="item_list item_list_right_top">
