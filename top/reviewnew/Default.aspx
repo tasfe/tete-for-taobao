@@ -103,7 +103,7 @@ h4 a {
         评 <br />
         有 <br />
         礼 <br />
-        六 <br />
+        八 <br />
         大 <br />
         功 <br />
         能 </td>
@@ -181,30 +181,28 @@ h4 a {
               </div></td>
 
           </tr>
-
-          
-          <!--<tr>
+          <tr>
            <td><div class="item_list item_list_right_bottom">
                 <div class="title_contents">
                   <h4 style="padding-left: 0px"><img src="images/icon_6.gif" width="32" height="32"
-													style="vertical-align: middle; margin-right: 0px" /><a href="#">二次销售统计</a></h4>
+													style="vertical-align: middle; margin-right: 0px" /><a href="saletotal.aspx">二次销售统计</a> <a href='#' class="qubie">(免费试用中)</a></h4>
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
-                  <p> 查看你的评价周期是否缩短，好评是否有上升，给你带来了多少2次消费，一切尽在掌握</p>
+                  <p> 查看你赠送的优惠券给你带来了多少2次消费，一切尽在掌握</p>
                 </div>
-                <div class="item_list_btn"><a href="#" target="_blank" class="btn-middle middle-blue">立即使用</a></div>
+                <div class="item_list_btn"><a href="saletotal.aspx" target="_blank" class="btn-middle middle-blue">立即使用</a></div>
                 <p style="clear: both; height: 1px;"></p>
               </div></td>
             <td><div class="item_list item_list_right_bottom">
                 <div class="title_contents">
                   <h4 style="padding-left: 0px"><img src="images/icon_8.gif" width="32" height="32"
-													style="vertical-align: middle; margin-right: 0px" /><a href="#">客户关系管理</a></h4>
+													style="vertical-align: middle; margin-right: 0px" /><a href="../crm/customlist.aspx">客户关系管理</a>  <a href='../crm/customlist.aspx' class="qubie">(单独订购)</a></h4>
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
                   <p> 管理您的客户，批量赠送优惠券，一键导出客户信息全部搞定</p>
                 </div>
-                <div class="item_list_btn"><a href="#" target="_blank" class="btn-middle middle-blue">立即使用</a></div>
+                <div class="item_list_btn"><a href="../crm/customlist.aspx" target="_blank" class="btn-middle middle-blue">立即使用</a></div>
                 <p style="clear: both; height: 1px;"></p>
               </div></td>
-          </tr>-->
+          </tr>
         </table></td>
     </tr>
   </table>
