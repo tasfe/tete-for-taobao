@@ -18,7 +18,7 @@ public partial class GoodsBuyTotal : BasePage
             try
             {
                 darray[0] = DateTime.Parse(Request.QueryString["start"]);
-                darray[1] = DateTime.Parse(Request.QueryString["end"]).AddDays(1);
+                darray[1] = DateTime.Parse(Request.QueryString["end"]);
             }
             catch
             {
