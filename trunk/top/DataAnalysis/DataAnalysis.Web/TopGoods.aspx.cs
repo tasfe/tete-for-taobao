@@ -67,6 +67,21 @@ public partial class TopGoods : BasePage
         catch { }
 
         IList<GoodsInfo> list = taoGoodsService.GetTopGoods(DataHelper.Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value)), start, end, page, recordCount);
+        string gids = "";
+        foreach (GoodsInfo ginfo in list)
+        {
+            gids += ginfo.num_iid + ",";
+        }
+
+        IList<GoodsInfo> seeBuyList = taoGoodsService.GetTopSeeBuyList(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), start, end, gids.Substring(0, gids.Length - 1));
+        for (int i = 0; i < list.Count; i++)
+        {
+            IList<GoodsInfo> seeblist = seeBuyList.Where(o => o.num_iid == list[i].num_iid).ToList();
+            if (seeblist.Count > 0)
+            {
+                list[i].nick = seeblist[0].Count.ToString();
+            }
+        }
 
         if (list.Count > 0)
         {
@@ -80,11 +95,8 @@ public partial class TopGoods : BasePage
                     pids += info.num_iid + ",";
             }
 
-            IList<GoodsInfo> seeBuyList = new List<GoodsInfo>();
             if (pids != "")
             {
-                 seeBuyList = taoGoodsService.GetTopSeeBuyList(HttpUtility.UrlDecode(Request.Cookies["nick"].Value), start, end, pids.Substring(0, pids.Length - 1));
-
                 List<GoodsInfo> goodsinfoList = TaoBaoAPI.GetGoodsInfoList(nick, session, pids.Substring(0, pids.Length - 1));
 
                 if (Cache["taobaogoodslist"] == null)
@@ -101,11 +113,6 @@ public partial class TopGoods : BasePage
                     list[i].title = thislist[0].title;
                     list[i].price = thislist[0].price;
                     list[i].pic_url = thislist[0].pic_url;
-                }
-                IList<GoodsInfo> seeblist = seeBuyList.Where(o => o.num_iid == list[i].num_iid).ToList();
-                if (seeblist.Count > 0)
-                {
-                    list[i].nick = seeblist[0].Count.ToString();
                 }
             }
 
