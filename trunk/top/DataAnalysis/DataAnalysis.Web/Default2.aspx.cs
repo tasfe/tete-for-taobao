@@ -15,12 +15,43 @@ public partial class Default2 : BasePage
 
             string nickNo = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
             IList<TopSiteTotalInfo> siteTotalList = new SiteTotalService().GetNickOrderTotal(now.AddDays(-10), now.AddDays(-1), nickNo);
+            InsertTongbi(siteTotalList);
             Rpt_TotalList.DataSource = siteTotalList;
             Rpt_TotalList.DataBind();
 
         }
     }
 
+    private void InsertTongbi(IList<TopSiteTotalInfo> siteTotalList)
+    {
+        TopSiteTotalInfo lastinfo = siteTotalList.OrderByDescending(o => o.SiteTotalDate).ToList()[1];
+        TopSiteTotalInfo localinfo = siteTotalList.OrderByDescending(o => o.SiteTotalDate).ToList()[0];
+
+        TopSiteTotalInfo info = new TopSiteTotalInfo();
+        info.SiteTotalDate = "同比";
+        info.SitePVCount = localinfo.SitePVCount - lastinfo.SitePVCount;
+        info.SiteUVCount = localinfo.SiteUVCount - lastinfo.SiteUVCount;
+        info.ZhiTongFlow = localinfo.ZhiTongFlow - lastinfo.ZhiTongFlow;
+        info.SiteZuanZhan = localinfo.SiteZuanZhan - lastinfo.SiteZuanZhan;
+        
+        info.FreeFlow = localinfo.FreeFlow - lastinfo.FreeFlow;
+        info.AskOrder = localinfo.AskOrder - lastinfo.AskOrder;
+        info.LostOrder = Math.Round(decimal.Parse(localinfo.LostOrder) - decimal.Parse(lastinfo.LostOrder), 2) + "%";
+        info.SiteOrderCount = localinfo.SiteOrderCount - lastinfo.SiteOrderCount;
+        info.SiteOrderPay = localinfo.SiteOrderPay - lastinfo.SiteOrderPay;
+        info.SellAvg = (decimal.Parse(localinfo.SellAvg) - decimal.Parse(lastinfo.SellAvg)).ToString();
+        info.OneCustomerPrice = (decimal.Parse(localinfo.OneCustomerPrice) - decimal.Parse(lastinfo.OneCustomerPrice)).ToString();
+
+        info.CreateAVG = Math.Round(decimal.Parse(localinfo.CreateAVG) - decimal.Parse(lastinfo.CreateAVG), 2) + "%";
+        info.SiteSecondBuy = localinfo.SiteSecondBuy - lastinfo.SiteSecondBuy;
+        info.BackSee = Math.Round(decimal.Parse(localinfo.BackSee) - decimal.Parse(lastinfo.BackSee), 2) + "%";
+        info.Refund = Math.Round(decimal.Parse(localinfo.Refund) - decimal.Parse(lastinfo.Refund), 2) + "%";
+
+        info.SeeDeepAVG = (decimal.Parse(localinfo.SeeDeepAVG) - decimal.Parse(lastinfo.SeeDeepAVG)).ToString();
+
+        info.Collection = localinfo.Collection - lastinfo.Collection;
+        siteTotalList.Add(info);
+    }
     protected string GetMonthDay(string date)
     {
         string s = date.Substring(4);
