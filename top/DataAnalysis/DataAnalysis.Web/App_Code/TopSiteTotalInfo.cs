@@ -224,13 +224,17 @@ public class TopSiteTotalInfo
         }
     }
 
+    private TaoBaoAPIHelper.GoodsInfo _SeeTop;
+
     /// <summary>
     /// 浏览第一的商品ID
     /// </summary>
     public TaoBaoAPIHelper.GoodsInfo SeeTop
     {
+        set { _SeeTop = value; }
         get
         {
+            if (_SeeTop != null) return _SeeTop;
             DateTime start = DateTime.Parse(SiteTotalDate.Substring(0, 4) + "-" + SiteTotalDate.Substring(4, 2) + "-" + SiteTotalDate.Substring(6));
             IList<GoodsInfo> list = new TaoBaoGoodsServive().GetTopGoods(DataHelper.Encrypt(SiteNick), start, start.AddDays(1), 1, 1);
             if (list.Count == 0) return new TaoBaoAPIHelper.GoodsInfo();
@@ -242,13 +246,16 @@ public class TopSiteTotalInfo
         }
     }
 
+    private TaoBaoAPIHelper.GoodsInfo _SellTop;
     /// <summary>
     /// 销售第一的商品ID
     /// </summary>
     public TaoBaoAPIHelper.GoodsInfo SellTop
     {
+        set { _SellTop = value; }
         get
         {
+            if (_SellTop != null) return _SellTop;
             DateTime start = DateTime.Parse(SiteTotalDate.Substring(0, 4) + "-" + SiteTotalDate.Substring(4, 2) + "-" + SiteTotalDate.Substring(6));
             IList<GoodsInfo> list = new TaoBaoGoodsServive().GetTopBuyGoods(SiteNick, start, start.AddDays(1), 1, 1);
             if (list.Count == 0) return new TaoBaoAPIHelper.GoodsInfo();
