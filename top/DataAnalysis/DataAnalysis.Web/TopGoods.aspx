@@ -48,10 +48,10 @@
                 <td align="center">
                     <b>商品价格</b>
                 </td>
-                <td width="220" align="center">
+                <td width="110px" align="center">
                     <b>浏览次数</b>
                 </td>
-                 <td width="220" align="center">
+                 <td width="110px" align="center">
                     <b>销售数量</b>
                 </td>
             </tr>
