@@ -66,7 +66,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
     /// <returns></returns>
     private bool IsBuy(string nick)
     {
-        string sql = "SELECT plus FROM TCS_ShopSession WHERE nick = '天堂故事旗舰店'";
+        string sql = "SELECT plus FROM TCS_ShopSession WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
