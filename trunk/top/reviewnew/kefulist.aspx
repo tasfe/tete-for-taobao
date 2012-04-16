@@ -16,7 +16,7 @@
     <input type="hidden" name="t" id="t" value="" />
 <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="javascript:;" class="nolink">好评有礼</a> 买家好评审核 </div>
+  <div class="crumbs"><a href="default.aspx" class="nolink">好评有礼</a> 买家好评审核 </div>
   <div class="absright">
     <ul>
       <li>
