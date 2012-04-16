@@ -54,6 +54,9 @@ public partial class Default2 : BasePage
     }
     protected string GetMonthDay(string date)
     {
+
+        if (date == "同比")
+            return date;
         string s = date.Substring(4);
 
         if (s.Substring(0, 1) == "0")
