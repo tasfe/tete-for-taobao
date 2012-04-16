@@ -33,7 +33,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
         }
 
         //如果是第一次进入则根据好评数据库获取会员信息
-        if (nick == '珍爱一生311913')
+        if (nick == "珍爱一生311913")
         {
             InitHaopingOldData();
         }
