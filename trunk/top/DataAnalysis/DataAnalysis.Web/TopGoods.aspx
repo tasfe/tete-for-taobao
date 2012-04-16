@@ -51,6 +51,9 @@
                 <td width="220" align="center">
                     <b>浏览次数</b>
                 </td>
+                 <td width="220" align="center">
+                    <b>销售数量</b>
+                </td>
             </tr>
             <asp:Repeater ID="Rpt_PageVisit" runat="server">
                 <ItemTemplate>
@@ -73,10 +76,13 @@
                         <td align="center" valign="top">
                             <%#Eval("Count")%>
                         </td>
+                        <td align="center" valign="top">
+                          <%# Eval("nick") %>
+                        </td>
                     </tr>
                 </ItemTemplate>
                 <SeparatorTemplate>
-                 <tr><td colspan="4"><hr /></td></tr>
+                 <tr><td colspan="5"><hr /></td></tr>
                 </SeparatorTemplate>
             </asp:Repeater>
         </table>

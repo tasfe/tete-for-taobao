@@ -18,9 +18,6 @@ public partial class TestUserSeePage : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            IList<TaoBaoAPIHelper.SubUserInfo> list = TaoBaoAPIHelper.TaoBaoAPI.GetChildNick("冥狱冰炎", "6101501de17072e582aec5b3daaa520274fd02c9edebef716906993");
-
-            TaoBaoAPIHelper.TaoBaoAPI.GetTalkObjList("冥狱冰炎:冥狱紫炎", "6101501de17072e582aec5b3daaa520274fd02c9edebef716906993", DateTime.Now.AddDays(-6), DateTime.Now);
         }
     }
     protected void Btn_AddCookie_Click(object sender, EventArgs e)
