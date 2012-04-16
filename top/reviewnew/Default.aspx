@@ -182,17 +182,17 @@ h4 a {
 
           </tr>
           <tr>
-           <td><div class="item_list item_list_right_bottom">
+           <td><div class="item_list item_list_left_top">
                 <div class="title_contents">
                   <h4 style="padding-left: 0px"><img src="images/icon_6.gif" width="32" height="32"
-													style="vertical-align: middle; margin-right: 0px" /><a href="saletotal.aspx">二次销售统计</a> <a href='#' class="qubie">(免费试用中)</a></h4>
+													style="vertical-align: middle; margin-right: 0px" /><a href="saletotal.aspx">二次销售统计</a> <a href='saletotal.aspx' class="qubie">(免费试用中)</a></h4>
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
                   <p> 查看你赠送的优惠券给你带来了多少2次消费，一切尽在掌握</p>
                 </div>
                 <div class="item_list_btn"><a href="saletotal.aspx" target="_blank" class="btn-middle middle-blue">立即使用</a></div>
                 <p style="clear: both; height: 1px;"></p>
               </div></td>
-            <td><div class="item_list item_list_right_bottom">
+            <td><div class="item_list item_list_right_top">
                 <div class="title_contents">
                   <h4 style="padding-left: 0px"><img src="images/icon_8.gif" width="32" height="32"
 													style="vertical-align: middle; margin-right: 0px" /><a href="../crm/customlist.aspx">客户关系管理</a>  <a href='../crm/customlist.aspx' class="qubie">(单独订购)</a></h4>
