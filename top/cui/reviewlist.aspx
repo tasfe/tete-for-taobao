@@ -29,7 +29,7 @@
     <div id="main-content">
 
     <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
-这里是通过淘宝的消息通知接口即时获取到买家的未付款订单。
+这里是通过淘宝的消息通知接口即时获取到买家的未付款订单，如需要查看测试数据请联系。
 </div>
     
     请输入买家昵称：<asp:TextBox ID="search" runat="server"></asp:TextBox>
