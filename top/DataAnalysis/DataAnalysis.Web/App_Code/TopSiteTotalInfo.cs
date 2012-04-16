@@ -212,14 +212,18 @@ public class TopSiteTotalInfo
         }
     }
 
+    private int _Collection = -1;
+
     /// <summary>
     /// 收藏量
     /// </summary>
     public int Collection
     {
-        set { }
+        set { _Collection = value; }
         get
         {
+            if (_Collection != -1)
+                return _Collection;
             return new ShopCollectionService().GetShopCollection(CacheCollection.GetNickSessionList().Where(o => o.Nick == SiteNick).ToArray()[0].ShopId, SiteTotalDate);
         }
     }
