@@ -81,6 +81,8 @@ public partial class TopGoods : BasePage
             {
                 list[i].nick = seeblist[0].Count.ToString();
             }
+            else
+                list[i].nick = "0";
         }
 
         if (list.Count > 0)
