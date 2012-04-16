@@ -88,8 +88,11 @@ public partial class top_crm_customlist : System.Web.UI.Page
 
                 param = new Dictionary<string, string>();
                 param.Add("buyer_nick ", dt.Rows[i]["buynick"].ToString());
+                param.Add("current_page", "1");
 
                 string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.crm.members.search", session, param);
+
+                Response.Write(result);
 
                 string buyer_id = GetValueByProperty(result, "buyer_id");
                 string buyer_nick = GetValueByProperty(result, "buyer_nick");
