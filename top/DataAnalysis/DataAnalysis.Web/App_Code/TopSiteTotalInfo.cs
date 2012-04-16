@@ -55,6 +55,7 @@ public class TopSiteTotalInfo
     /// </summary>
     public string SellAvg
     {
+        set{}
         get
         {
             if (GoodsCount == 0 || SiteOrderCount == 0)
@@ -86,6 +87,7 @@ public class TopSiteTotalInfo
 
     public int FreeFlow
     {
+        set { }
         get
         {
             return SitePVCount - ZhiTongFlow - SiteZuanZhan;
@@ -97,6 +99,7 @@ public class TopSiteTotalInfo
     /// </summary>
     public string LostOrder
     {
+        set { }
         get
         {
             if (AskOrder == 0) return "0";
@@ -160,6 +163,7 @@ public class TopSiteTotalInfo
     /// </summary>
     public string OneCustomerPrice
     {
+        set { }
         get
         {
             if (SiteBuyCustomTotal == 0)
@@ -173,6 +177,7 @@ public class TopSiteTotalInfo
     /// </summary>
     public string CreateAVG
     {
+        set { }
         get
         {
             if (SiteUVCount == 0)
@@ -186,6 +191,7 @@ public class TopSiteTotalInfo
     /// </summary>
     public string Refund
     {
+        set { }
         get
         {
             if (SiteOrderCount == 0) return "0";
@@ -198,6 +204,7 @@ public class TopSiteTotalInfo
     /// </summary>
     public int Collection
     {
+        set { }
         get
         {
             return new ShopCollectionService().GetShopCollection(CacheCollection.GetNickSessionList().Where(o => o.Nick == SiteNick).ToArray()[0].ShopId, SiteTotalDate);
@@ -245,6 +252,7 @@ public class TopSiteTotalInfo
     /// </summary>
     public string BackSee
     {
+        set { }
         get
         {
             if (SiteUVBack == 0)
@@ -258,6 +266,7 @@ public class TopSiteTotalInfo
     /// </summary>
     public string SeeDeepAVG
     {
+        set { }
         get
         {
             if (SiteUVCount == 0)
