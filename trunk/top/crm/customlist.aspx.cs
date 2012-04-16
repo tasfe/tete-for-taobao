@@ -67,7 +67,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
         string appkey = "12159997";
         string secret = "614e40bfdb96e9063031d1a9e56fbed5";
 
-        string sql = "SELECT TOP 100 * FROM TCS_Trade WHERE status = 'TradeRated' AND nick = '" + nick + "'";
+        string sql = "SELECT * FROM TCS_Trade WHERE status = 'TradeRated' AND nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         for (int i = 0; i < dt.Rows.Count; i++)
         {
@@ -87,12 +87,10 @@ public partial class top_crm_customlist : System.Web.UI.Page
                 string email = GetValueByProperty(nickresult, "email");
 
                 param = new Dictionary<string, string>();
-                param.Add("buyer_nick ", dt.Rows[i]["buynick"].ToString());
+                param.Add("buyer_nick", dt.Rows[i]["buynick"].ToString());
                 param.Add("current_page", "1");
 
                 string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.crm.members.search", session, param);
-
-                Response.Write(result);
 
                 string buyer_id = GetValueByProperty(result, "buyer_id");
                 string buyer_nick = GetValueByProperty(result, "buyer_nick");
