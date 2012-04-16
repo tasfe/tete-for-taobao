@@ -36,16 +36,16 @@ public partial class Default2 : BasePage
         
         info.FreeFlow = localinfo.FreeFlow - lastinfo.FreeFlow;
         info.AskOrder = localinfo.AskOrder - lastinfo.AskOrder;
-        info.LostOrder = Math.Round(decimal.Parse(localinfo.LostOrder) - decimal.Parse(lastinfo.LostOrder), 2) + "%";
+        info.LostOrder = Math.Round(decimal.Parse(localinfo.LostOrder.Replace("%", "")) - decimal.Parse(lastinfo.LostOrder.Replace("%", "")), 2) + "%";
         info.SiteOrderCount = localinfo.SiteOrderCount - lastinfo.SiteOrderCount;
         info.SiteOrderPay = localinfo.SiteOrderPay - lastinfo.SiteOrderPay;
         info.SellAvg = (decimal.Parse(localinfo.SellAvg) - decimal.Parse(lastinfo.SellAvg)).ToString();
         info.OneCustomerPrice = (decimal.Parse(localinfo.OneCustomerPrice) - decimal.Parse(lastinfo.OneCustomerPrice)).ToString();
 
-        info.CreateAVG = Math.Round(decimal.Parse(localinfo.CreateAVG) - decimal.Parse(lastinfo.CreateAVG), 2) + "%";
+        info.CreateAVG = Math.Round(decimal.Parse(localinfo.CreateAVG.Replace("%", "")) - decimal.Parse(lastinfo.CreateAVG.Replace("%", "")), 2) + "%";
         info.SiteSecondBuy = localinfo.SiteSecondBuy - lastinfo.SiteSecondBuy;
-        info.BackSee = Math.Round(decimal.Parse(localinfo.BackSee) - decimal.Parse(lastinfo.BackSee), 2) + "%";
-        info.Refund = Math.Round(decimal.Parse(localinfo.Refund) - decimal.Parse(lastinfo.Refund), 2) + "%";
+        info.BackSee = Math.Round(decimal.Parse(localinfo.BackSee.Replace("%", "")) - decimal.Parse(lastinfo.BackSee.Replace("%", "")), 2) + "%";
+        info.Refund = Math.Round(decimal.Parse(localinfo.Refund.Replace("%", "")) - decimal.Parse(lastinfo.Refund.Replace("%", "")), 2) + "%";
 
         info.SeeDeepAVG = (decimal.Parse(localinfo.SeeDeepAVG) - decimal.Parse(lastinfo.SeeDeepAVG)).ToString();
 
