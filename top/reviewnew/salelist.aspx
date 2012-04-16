@@ -13,7 +13,7 @@
     <form id="form1" runat="server">
 <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="javascript:;" class="nolink">好评有礼</a> 2次购买记录 </div>
+  <div class="crumbs"><a href="default.aspx" class="nolink">好评有礼</a> 2次购买记录 </div>
   <div class="absright">
     <ul>
       <li>
