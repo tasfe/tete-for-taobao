@@ -111,8 +111,8 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
         //    }
         //}
 
-        //rptArticle.DataSource = dt;
-        //rptArticle.DataBind();
+        rptArticle.DataSource = dt;
+        rptArticle.DataBind();
 
         //分页数据初始化
         sqlNew = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND iscoupon = 1";
