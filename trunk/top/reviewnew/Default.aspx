@@ -194,7 +194,7 @@ h4 a {
               </div></td>
             <td><div class="item_list item_list_right_top">
                 <div class="title_contents">
-                  <h4 style="padding-left: 0px"><img src="images/icon_8.gif" width="32" height="32"
+                  <h4 style="padding-left: 0px"><img src="images/icon_3.gif" width="32" height="32"
 													style="vertical-align: middle; margin-right: 0px" /><a href="../crm/customlist.aspx">客户关系管理</a>  <a href='../crm/customlist.aspx' class="qubie">(单独订购)</a></h4>
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
                   <p> 管理您的客户，批量赠送优惠券，一键导出客户信息全部搞定</p>
