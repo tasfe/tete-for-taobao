@@ -50,14 +50,17 @@ public class TopSiteTotalInfo
 
     #region
 
+
+    private string _SellAvg;
     /// <summary>
     /// 销售单价
     /// </summary>
     public string SellAvg
     {
-        set{}
+        set { _SellAvg = value; }
         get
         {
+            if (!string.IsNullOrEmpty(_SellAvg)) return _SellAvg;
             if (GoodsCount == 0 || SiteOrderCount == 0)
             {
                 return "0";
@@ -94,14 +97,17 @@ public class TopSiteTotalInfo
         }
     }
 
+
+    private string _LostOrder;
     /// <summary>
     /// 丢单率
     /// </summary>
     public string LostOrder
     {
-        set { }
+        set { _LostOrder = value; }
         get
         {
+            if (!string.IsNullOrEmpty(_LostOrder)) return _LostOrder;
             if (AskOrder == 0) return "0";
             DateTime date = DateTime.Parse(SiteTotalDate.Substring(0, 4) + "-" + SiteTotalDate.Substring(4, 2) + "-" + SiteTotalDate.Substring(6));
             TalkRecodService trDal = new TalkRecodService();
@@ -158,42 +164,49 @@ public class TopSiteTotalInfo
         }
     }
 
+    private string __OneCustomerPrice;
     /// <summary>
     /// 客单价
     /// </summary>
     public string OneCustomerPrice
     {
-        set { }
+        set { __OneCustomerPrice = value; }
         get
         {
+            if (!string.IsNullOrEmpty(__OneCustomerPrice)) return __OneCustomerPrice;
             if (SiteBuyCustomTotal == 0)
                 return "0";
             return (SiteOrderPay / SiteBuyCustomTotal).ToString(".00");
         }
     }
 
+    private string _CreateAVG;
     /// <summary>
     /// 平均转化率
     /// </summary>
     public string CreateAVG
     {
-        set { }
+        set { _CreateAVG = value; }
         get
         {
+            if (!string.IsNullOrEmpty(_CreateAVG)) return _CreateAVG;
             if (SiteUVCount == 0)
                 return "0";
             return Math.Round((((decimal)SiteBuyCustomTotal / SiteUVCount) * 100), 2).ToString() + "%";
         }
     }
 
+
+    private string _Refund;
     /// <summary>
     /// 退款率
     /// </summary>
     public string Refund
     {
-        set { }
+        set { _Refund = value; }
         get
         {
+            if (!string.IsNullOrEmpty(_Refund)) return _Refund;
             if (SiteOrderCount == 0) return "0";
             return Math.Round((((decimal)RefundOrderCount / SiteOrderCount) * 100), 2).ToString() + "%";
         }
@@ -247,28 +260,32 @@ public class TopSiteTotalInfo
         }
     }
 
+    private string _BackSee;
     /// <summary>
     /// 浏览回头率
     /// </summary>
     public string BackSee
     {
-        set { }
+        set { _BackSee = value; }
         get
         {
+            if (!string.IsNullOrEmpty(_BackSee)) return _BackSee;
             if (SiteUVBack == 0)
                 return "0";
             return Math.Round((((decimal)SiteUVBack / SiteUVCount) * 100), 2).ToString() + "%";
         }
     }
 
+    private string _SeeDeepAVG;
     /// <summary>
     /// 平均访问深度
     /// </summary>
     public string SeeDeepAVG
     {
-        set { }
+        set { _SeeDeepAVG = value; }
         get
         {
+            if (!string.IsNullOrEmpty(_SeeDeepAVG)) return _SeeDeepAVG;
             if (SiteUVCount == 0)
                 return "0";
             return ((decimal)SitePVCount / SiteUVCount).ToString(".00");
