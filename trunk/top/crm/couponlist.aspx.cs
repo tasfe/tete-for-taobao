@@ -25,7 +25,7 @@ public partial class top_review_couponlist : System.Web.UI.Page
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
-        session = cookie.getCookie("top_session");
+        session = cookie.getCookie("top_sessiongroupbuy");
         string iscrm = cookie.getCookie("iscrm");
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);

@@ -17,7 +17,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
-        session = cookie.getCookie("top_session");
+        session = cookie.getCookie("top_sessiongroupbuy");
         string iscrm = cookie.getCookie("iscrm");
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
@@ -32,6 +32,12 @@ public partial class top_crm_customlist : System.Web.UI.Page
             return;
         }
 
+        //如果是第一次进入则根据好评数据库获取会员信息
+        if (1 == 1)
+        {
+            InitHaopingOldData();
+        }
+
         ////过期判断
         //if (iscrm != "1")
         //{
@@ -42,6 +48,74 @@ public partial class top_crm_customlist : System.Web.UI.Page
         //}
 
         BindData();
+    }
+
+    /// <summary>
+    /// 获取好评会员数据库信息
+    /// </summary>
+    private void InitHaopingOldData()
+    {
+        string sql = "SELECT * FROM TSC_Trade WHERE nick = '" + nick + "'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            if (!IsHaveThisCustomer(dt.Rows[i]["nick"].ToString(), dt.Rows[i]["buynick"].ToString()))
+            {
+                //如果有则通过会员接口插入会员基础数据
+                InsertCustomerData(dt.Rows[i]["nick"].ToString(), dt.Rows[i]["buynick"].ToString(), dt.Rows[i]["mobile"].ToString(), dt.Rows[i]["truename"].ToString(), dt.Rows[i]["address"].ToString(), dt.Rows[i]["sheng"].ToString(), dt.Rows[i]["shi"].ToString(), dt.Rows[i]["qu"].ToString());
+            }
+        }
+    }
+
+    /// <summary>
+    /// 插入CRM会员记录
+    /// </summary>
+    /// <param name="trade"></param>
+    /// <param name="customer"></param>
+    public void InsertCustomerData(string nick, string buynick, string mobile, string truename, string address, string sheng , string shi, string qu)
+    {
+        string sql = "INSERT INTO TCS_Customer (" +
+                                    "nick, " +
+                                    "buynick, " +
+                                    "mobile, " +
+                                    "truename, " +
+                                    "address, " +
+                                    "sheng, " +
+                                    "shi, " +
+                                    "qu " +
+                                " ) VALUES ( " +
+                                    " '" + nick + "', " +
+                                    " '" + buynick + "', " +
+                                    " '" + mobile + "', " +
+                                    " '" + truename + "', " +
+                                    " '" + address + "', " +
+                                    " '" + sheng + "', " +
+                                    " '" + shi + "', " +
+                                    " '" + qu + "'" +
+                                ") ";
+
+        utils.ExecuteNonQuery(sql);
+    }
+
+
+    /// <summary>
+    /// 看看数据库里面是否有此会员数据
+    /// </summary>
+    /// <param name="trade"></param>
+    /// <param name="customer"></param>
+    public bool IsHaveThisCustomer(string nick, string buynick)
+    {
+        string sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND buynick = '" + buynick + "'";
+        string count = utils.ExecuteString(sql);
+
+        if (count == "0")
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     private void BindData()
