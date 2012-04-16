@@ -56,6 +56,8 @@ public partial class top_crm_customlist : System.Web.UI.Page
     private void InitHaopingOldData()
     {
         string sql = "SELECT * FROM TSC_Trade WHERE nick = '" + nick + "'";
+        Response.Write(sql);
+        Response.End();
         DataTable dt = utils.ExecuteDataTable(sql);
         for (int i = 0; i < dt.Rows.Count; i++)
         {
