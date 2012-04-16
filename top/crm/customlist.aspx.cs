@@ -62,7 +62,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
             if (!IsHaveThisCustomer(dt.Rows[i]["nick"].ToString(), dt.Rows[i]["buynick"].ToString()))
             {
                 //如果有则通过会员接口插入会员基础数据
-                InsertCustomerData(dt.Rows[i]["nick"].ToString(), dt.Rows[i]["buynick"].ToString(), dt.Rows[i]["mobile"].ToString(), dt.Rows[i]["truename"].ToString(), dt.Rows[i]["address"].ToString(), dt.Rows[i]["sheng"].ToString(), dt.Rows[i]["shi"].ToString(), dt.Rows[i]["qu"].ToString());
+                InsertCustomerData(dt.Rows[i]["nick"].ToString(), dt.Rows[i]["buynick"].ToString(), dt.Rows[i]["mobile"].ToString(), dt.Rows[i]["receiver_name"].ToString(), dt.Rows[i]["receiver_address"].ToString(), dt.Rows[i]["receiver_state"].ToString(), dt.Rows[i]["receiver_city"].ToString(), dt.Rows[i]["receiver_district"].ToString());
             }
         }
     }
