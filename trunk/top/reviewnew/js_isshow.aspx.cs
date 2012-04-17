@@ -22,10 +22,13 @@ public partial class top_review_js_isshow : System.Web.UI.Page
         {
             string phone = dt.Rows[0][0].ToString();
             string qq = dt.Rows[0][1].ToString();
+            sql = "SELECT version FROM TCS_ShopSession WHERE nick = '" + taobaoNick + "'";
+            string version = utils.ExecuteString(sql);
 
             if (phone.Length == 0 || qq.Length == 0)
             {
                 Response.Write("setTimeout('showAreaPhone()', 6000);");
+                Response.Write("var version = " + version + ";");
             }
         }
     }
