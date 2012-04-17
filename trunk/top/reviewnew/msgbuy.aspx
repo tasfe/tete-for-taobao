@@ -42,7 +42,7 @@
             <b>购买完毕后请重新从 seller.taobao.com 右上 “我的服务”进入...</b>
 
              <br> 
-        <br>        <span style="font-size:20px; font-weight:bold; color:red">3月特惠充值短信8折，现在升级版本更赠送短信，具体情况请联系客服人员... </span>
+        <br>        <span style="font-size:20px; font-weight:bold; display:none; color:red">3月特惠充值短信8折，现在升级版本更赠送短信，具体情况请联系客服人员... </span>
         <br> 
         <br> 
             </div>
