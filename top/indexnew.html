@@ -460,10 +460,9 @@ background: none repeat scroll 0% 0% rgb(153, 153, 153); opacity: 0.4; width: 10
     <a href='javascript:closeArea11();' style="font-size:16px; font-weight:bold; color:white">关闭窗口</a> 60秒后窗口自动关闭.. <br>
     <div style="BACKGROUND-COLOR:#fff; width:350px; height:220px;  padding:10px;">
     <span style="font-size:14px; font-weight:bold;">订购服务后，很多卖家因主旺旺跳转子帐号，因设置错误导致功能无法正常使用，客服联系不上！</span><br />
-    <%if (versionpub == "2" || versionpub == "3")
-      { %>
-    <span style="font-size:13px; font-weight:bold; color:red">将以下资料补充完毕者并验证通过后，可以联系客服获得我们送出的100条短信 ：）</span><br />
-    <%} %>
+   
+    <span id="viparea" style="font-size:13px; font-weight:bold; color:red; display:none;">将以下资料补充完毕者并验证通过后，可以联系客服获得我们送出的100条短信 ：）</span><br />
+ 
     请输入您的手机号码：
     <br />
     <input type="text" id="phone" name="phone" style="height:20px; width:150px;" /> 
@@ -629,6 +628,10 @@ background: none repeat scroll 0% 0% rgb(153, 153, 153); opacity: 0.4; width: 10
             alert('保存成功，谢谢您的合作，请联系客服人员验证联系方式并获取短信奖励！');
             closeArea11();
         }
+    }
+
+    if (version == 2 || version == 3) {
+        document.getElementById('viparea').style.display = "";
     }
 </script>
 
