@@ -18,8 +18,8 @@ public partial class top_reviewnew_sendmsg : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
 
         string msg = "好评有礼通知：近期审核优惠券赠送时提示，该买家不是卖家的会员！因淘宝调整了优惠券规则，可能缓存问题导致数据出错。11日我们已提交问题至淘宝，有回复后我们会立刻联系您！";
-        SendMessage("18606297190", msg);
-        return;
+        //SendMessage("18606297190", msg);
+        //return;
 
         for (int i = 0; i < dt.Rows.Count; i++)
         {
