@@ -199,7 +199,7 @@ h4 a {
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
                   <p> 管理您的客户，批量赠送优惠券，一键导出客户信息全部搞定</p>
                 </div>
-                <div class="item_list_btn"><a href="../crm/customlist.aspx" target="_blank" class="btn-middle middle-blue">立即使用</a></div>
+                <div class="item_list_btn"><a href="../crm/customlist.aspx" class="btn-middle middle-blue">立即使用</a></div>
                 <p style="clear: both; height: 1px;"></p>
               </div></td>
           </tr>
