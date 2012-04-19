@@ -24,7 +24,7 @@ public partial class top_js_userinfoblog : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Cookie cookie = new Cookie();
+        Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
 
         //过期判断
