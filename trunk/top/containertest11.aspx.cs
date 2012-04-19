@@ -191,11 +191,11 @@ public partial class top_containertest11 : System.Web.UI.Page
 
         nick = this.TextBox1.Text; //utils.NewRequest("nick", utils.RequestType.QueryString);
 
-        string sql = "SELECT * FROM TopTaobaoShop WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            session = dt.Rows[0]["sessionblog"].ToString();
+            session = dt.Rows[0]["session"].ToString();
         }
 
         //加密NICK
@@ -204,10 +204,10 @@ public partial class top_containertest11 : System.Web.UI.Page
 
         Cookie cookie = new Cookie();
         cookie.setCookie("top_session", session, 999999);
-        cookie.setCookie("top_sessiongroupbuy", session, 999999);
+        cookie.setCookie("top_sessionsale", session, 999999);
         cookie.setCookie("top_sessionblog", session, 999999);
         cookie.setCookie("nick", nick, 999999);
 
-        Response.Redirect("indexnew.html");
+        Response.Redirect("indexsale.html");
     }
 }
