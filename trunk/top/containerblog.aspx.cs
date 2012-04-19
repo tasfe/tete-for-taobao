@@ -122,6 +122,7 @@ public partial class top_containerblog : System.Web.UI.Page
         UserGetRequest request = new UserGetRequest();
         request.Fields = "user_id,nick,seller_credit";
         request.Nick = nick;
+        string oldNick = nick;
         User user = client.UserGet(request, session);
 
         if (CheckUserExits(nick))
@@ -159,7 +160,8 @@ public partial class top_containerblog : System.Web.UI.Page
         cookie.setCookie("top_sessiongroupbuy", top_session, 999999);
         cookie.setCookie("nick", nick, 999999);
 
-        Response.Redirect("http://www.7fshop.com/top/index.html?t=1");
+        //Response.Redirect("http://www.7fshop.com/top/market/setcookie.aspx?t=1&nick=" + HttpUtility.UrlEncode(nick));
+        Response.Redirect("indexnew.html");
     }
 
 
@@ -431,6 +433,14 @@ public partial class top_containerblog : System.Web.UI.Page
                     {
                         //更新短信条数
                         sql = "UPDATE TCS_ShopSession SET version='3' WHERE nick = '" + nick + "'";
+
+                        utils.ExecuteNonQuery(sql);
+                    }
+
+                    //CRM购买判定
+                    if (match[i].Groups[1].ToString() == "service-0-22904-11")
+                    {
+                        sql = "UPDATE TCS_ShopSession SET plus = 'crm' WHERE nick = '" + nick + "'";
 
                         utils.ExecuteNonQuery(sql);
                     }
