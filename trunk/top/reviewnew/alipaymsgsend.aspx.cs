@@ -178,22 +178,23 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
 
         //先看还有没有短信了
         sql = "SELECT total FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
-        Response.Write(sql + "<br>");
+        //Response.Write(sql + "<br>");
         string totalAlipay = utils.ExecuteString(sql);
         if (int.Parse(totalAlipay) > 0)
         {
             //如果有短信再开始判断
             sql = "SELECT isalipay,alipayid FROM TCS_ShopConfig WITH (NOLOCK) WHERE nick = '" + nick + "'";
-            Response.Write(sql + "<br>");
+            //Response.Write(sql + "<br>");
             DataTable dtAlipay = utils.ExecuteDataTable(sql);
             if (dtAlipay.Rows.Count != 0)
             {
-                //看看卖家是否开启了支付宝红包赠送
-                if (dtAlipay.Rows[0][0].ToString() == "1")
+                //看看卖家是否开启了支付宝红包赠送-不判断
+                //if (dtAlipay.Rows[0][0].ToString() == "1")
+                if(1 == 1)
                 {
                     //判断红包是否有效
                     sql = "SELECT * FROM TCS_Alipay WITH (NOLOCK) WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND DATEDIFF(d, GETDATE(), enddate) > 0 AND used < count";
-                    Response.Write(sql + "<br>");
+                    //Response.Write(sql + "<br>");
                     DataTable dtAlipayDetail = utils.ExecuteDataTable(sql);
                     if (dtAlipayDetail.Rows.Count != 0)
                     {
