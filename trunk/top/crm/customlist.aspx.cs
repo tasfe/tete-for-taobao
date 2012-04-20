@@ -395,13 +395,13 @@ public partial class top_crm_customlist : System.Web.UI.Page
             {
                 start = pageNow - 10;
 
-                if (pageNow < (total - 10))
+                if (pageNow < (pageSize - 10))
                 {
                     end = pageNow + 10;
                 }
                 else
                 {
-                    end = total;
+                    end = pageSize;
                 }
             }
         }
