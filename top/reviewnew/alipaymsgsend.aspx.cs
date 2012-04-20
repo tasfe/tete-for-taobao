@@ -200,13 +200,13 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
                     {
                         //判断用户获取的优惠券是否超过了每人的最大领取数量
                         sql = "SELECT COUNT(*) FROM TCS_AlipayDetail WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND buynick = '" + buynick + "'";
-                        Response.Write(sql + "<br>");
+                        //Response.Write(sql + "<br>");
                         string alipayCount = utils.ExecuteString(sql);
                         if (int.Parse(alipayCount) < int.Parse(dtAlipayDetail.Rows[0]["per"].ToString()))
                         {
                             //赠送支付宝红包
                             sql = "SELECT TOP 1 * FROM TCS_AlipayDetail WITH (NOLOCK) WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND issend = 0";
-                            Response.Write(sql + "<br>");
+                            //Response.Write(sql + "<br>");
                             DataTable dtAlipayDetailList = utils.ExecuteDataTable(sql);
                             if (dtAlipayDetailList.Rows.Count != 0)
                             {
