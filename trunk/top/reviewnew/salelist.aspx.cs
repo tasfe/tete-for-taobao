@@ -69,7 +69,7 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
         string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.adddate DESC) AS rownumber FROM TCS_Trade b WHERE b.nick = '" + nick + "' AND b.iscoupon = 1) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY a.adddate DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
-        //if (1 == 2)
+        //if (1 == 2)  
         //{
         //    for (int j = 0; j < dt.Rows.Count; j++)
         //    {
