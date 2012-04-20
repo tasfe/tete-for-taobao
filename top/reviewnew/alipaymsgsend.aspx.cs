@@ -178,11 +178,13 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
 
         //先看还有没有短信了
         sql = "SELECT total FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
+        Response.Write(sql + "<br>");
         string totalAlipay = utils.ExecuteString(sql);
         if (int.Parse(totalAlipay) > 0)
         {
             //如果有短信再开始判断
             sql = "SELECT isalipay,alipayid FROM TCS_ShopConfig WITH (NOLOCK) WHERE nick = '" + nick + "'";
+            Response.Write(sql + "<br>");
             DataTable dtAlipay = utils.ExecuteDataTable(sql);
             if (dtAlipay.Rows.Count != 0)
             {
@@ -191,16 +193,19 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
                 {
                     //判断红包是否有效
                     sql = "SELECT * FROM TCS_Alipay WITH (NOLOCK) WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND DATEDIFF(d, GETDATE(), enddate) > 0 AND used < count";
+                    Response.Write(sql + "<br>");
                     DataTable dtAlipayDetail = utils.ExecuteDataTable(sql);
                     if (dtAlipayDetail.Rows.Count != 0)
                     {
                         //判断用户获取的优惠券是否超过了每人的最大领取数量
                         sql = "SELECT COUNT(*) FROM TCS_AlipayDetail WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND buynick = '" + buynick + "'";
+                        Response.Write(sql + "<br>");
                         string alipayCount = utils.ExecuteString(sql);
                         if (int.Parse(alipayCount) < int.Parse(dtAlipayDetail.Rows[0]["per"].ToString()))
                         {
                             //赠送支付宝红包
                             sql = "SELECT TOP 1 * FROM TCS_AlipayDetail WITH (NOLOCK) WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND issend = 0";
+                            Response.Write(sql + "<br>");
                             DataTable dtAlipayDetailList = utils.ExecuteDataTable(sql);
                             if (dtAlipayDetailList.Rows.Count != 0)
                             {
