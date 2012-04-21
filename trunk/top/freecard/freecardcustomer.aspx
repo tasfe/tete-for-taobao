@@ -32,7 +32,6 @@
 
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
-                <td width="140"><b>名称</b></td>
                 <td width="80"><b>买家昵称</b></td>
                 <td width="100"><b>赠送时间</b></td>
                 <td width="80"><b>免邮时间</b></td>
@@ -42,8 +41,7 @@
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
-                <td height="35"><%#Eval("name")%></td>
-                <td><%#Eval("buynick")%></td>
+                <td height="35"><%#Eval("buynick")%></td>
                 <td><%#Eval("adddate")%></td>
                 <td><%#Eval("carddate")%></td>
                 <td><%#Eval("usecount")%></td>
