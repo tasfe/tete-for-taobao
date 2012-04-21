@@ -42,7 +42,7 @@
             <ItemTemplate>
             <tr>
                 <td height="35"><%#Eval("buynick")%></td>
-                <td><%#Eval("adddate")%></td>
+                <td><%#Eval("startdate")%></td>
                 <td><%#Eval("carddate")%></td>
                 <td><%#Eval("usecount")%></td>
                 <td><a href='freecardlog.aspx?id=<%#Eval("guid")%>'>查看使用记录</a></td>
