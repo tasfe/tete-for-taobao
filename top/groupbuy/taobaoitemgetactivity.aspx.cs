@@ -51,12 +51,14 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
             //输出页面HTML
             for (int i = 0; i < product.Content.Count; i++)
             {
-
-                    string str = string.Empty;
-                    string tempStr2 = string.Empty;
-                    //Response.Write("<input type='checkbox' name='items' id='item_" + product.Content[i].NumIid + "' title='" + product.Content[i].Title.Replace("%", "") + "' value='" + product.Content[i].NumIid + "' onclick=\"SetInitArea(this)\"><label onMouseOver=\"javascript:ddrivetip('<img src=" + product.Content[i].PicUrl + "_80x80.jpg>','#ffffff',100)\" onMouseOut=\"hideddrivetip()\" for='item_" + product.Content[i].NumIid + "'>" + product.Content[i].Title.Replace("%", "") + "</label><br>");
-                    str += "<tr> <td  align=\"center\"><img src=\"" + product.Content[i].PicUrl + "_80x80.jpg\" border=\"0\" /></td><td  align=\"center\"> <a   href=\"http://item.taobao.com/item.htm?id=" + product.Content[i].NumIid.ToString() + "\" target=\"_blank\">" + product.Content[i].Title + "</a></td><td  align=\"center\">" + product.Content[i].Price + "</td><td  align=\"center\">" + tempStr2 + "</td> </tr>";
-                    Response.Write(str);
+                if (isradio == "1")
+                {
+                    Response.Write("<input type='checkbox' name='items' id='item_" + product.Content[i].NumIid + "' title='" + product.Content[i].Title.Replace("%", "") + "' value='" + product.Content[i].NumIid + "' onclick=\"SetInitArea(this)\"><label onMouseOver=\"javascript:ddrivetip('<img src=" + product.Content[i].PicUrl + "_80x80.jpg>','#ffffff',100)\" onMouseOut=\"hideddrivetip()\" for='item_" + product.Content[i].NumIid + "'>" + product.Content[i].Title.Replace("%", "") + "</label><br>");
+                }
+                else
+                {
+                    Response.Write("<input type='checkbox' name='items' id='item_" + product.Content[i].NumIid + "' title='" + product.Content[i].Title.Replace("%", "") + "' value='" + product.Content[i].NumIid + "' onclick=\"SetInitArea(this)\"><label onMouseOver=\"javascript:ddrivetip('<img src=" + product.Content[i].PicUrl + "_80x80.jpg>','#ffffff',100)\" onMouseOut=\"hideddrivetip()\" for='item_" + product.Content[i].NumIid + "'>" + product.Content[i].Title.Replace("%", "") + "</label><br>");
+                }
             }
             Response.Write("<br>");
             long totalPage = (product.TotalResults % pageSizeNow == 0) ? (product.TotalResults / pageSizeNow) : (product.TotalResults / pageSizeNow + 1);
@@ -186,34 +188,8 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                 {
                     for (int i = 0; i < itemList.Count; i++)
                     {
-                        string tempStr2 ="未参加促销活动";
-                        //str += "<div id='div" + itemList[i].NumIid.ToString() + "' width=\"800px\"><table width=\"800px\"><tr width=\"800px\"><td width=\"90px\"><a href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><img src=\"" + itemList[i].PicUrl + "_80x80.jpg\" border=\"0\" /></a></td>";
-                       // str += "<td  width=\"140px\"><a   href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\">" + itemList[i].Title + "</a> </td><td   width=\"200px\"><input type=\"text\" size=\"27\" id=\"groupbuylistname" + itemList[i].NumIid.ToString() + "\"   name=\"groupbuylistname\"  maxlength=\"30\"  value=\"\" /></td><td  width=\"100px\"> " + itemList[i].Price + "元 <input   type=\"hidden\" id=\"productid" + itemList[i].NumIid.ToString() + "\" name=\"productid\"  value=\"" + itemList[i].NumIid.ToString() + "\"><input type=\"hidden\" id=\"price" + itemList[i].NumIid.ToString() + "\" name=\"price\" value=\"" + itemList[i].Price.ToString() + "\"></td><td  width=\"100px\">  <input type=\"text\" id=\"zhekou" + itemList[i].NumIid.ToString() + "\" size=\"10\" name=\"zhekou\" onblur=\"setzekou(this)\" /> 元 <br /> 打<input type=\"text\" size=\"8\" id=\"zhekou1" + itemList[i].NumIid.ToString() + "\" name=\"zhekou1\"   onblur=\"setprice(this)\"/> 折 <br />限购：<select id=\"xiangou" + itemList[i].NumIid.ToString() + "\" name=\"xiangou\"> <OPTION selected  value=0>否</OPTION> <OPTION  value=1>是</OPTION> </select>  <span id=\"errmsg" + i + "\" style=\"color:Red\"></span> </td><td  width=\"90px\">  <input type=\"text\"  size=\"8\"  name=\"rcount\" value=\"300\" /> </td><td  width=\"80px\"><a onclick=\"deleteDIV('del1" + itemList[i].NumIid.ToString() + "')\"  style=\"cursor:hand;\">删除</a></td></tr></table><input id=\"del1" + itemList[i].NumIid.ToString() + "\" name=\"del\" value='' type=\"hidden\" ></div>";
-
-                        //商品列表
-                        str += "<tr> <td  align=\"center\">><img src=\"" + itemList[i].PicUrl + "_80x80.jpg\" border=\"0\" /></td><td  align=\"center\"> <a   href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\">" + itemList[i].Title + "</a></td><td  align=\"center\">" + itemList[i].Price + "</td><td  align=\"center\">" + tempStr2 + "</td> </tr>";
-
-                        
-                       //<tr>
-                       //     <td  align="center">
-                       //         <img src="http://img01.taobaocdn.com/bao/uploaded/i1/T1crlZXddCXXaiGHE3_045916.jpg" width="50px" height="50px"/>
-                       //     </td>
-                       //     <td  align="center">
-                       //         <a href="http://item.taobao.com/item.htm?id=12305275000" target="_blank">萨的法律框架</a>
-                       //     </td>
-                       //     <td  align="center">
-                       //         123.00
-                       //     </td>
-                       //     <td  align="center">
-                                
-                                  
-                       //           <div id="del12305275000">已参加活动:<a href="javascript:getAction('优惠活动');">优惠活动</a><br/><a href="javascript:delItemAction(235038379,12305275000)">删除此促销活动</a></div>
-                       //           <div id="12305275000" style="display:none">未参加促销活动</div>
-                                  
-                                  
-                                
-                       //     </td>
-                       // </tr>
+                        str += "<div id='div" + itemList[i].NumIid.ToString() + "' width=\"800px\"><table width=\"800px\"><tr width=\"800px\"><td width=\"90px\"><a href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><img src=\"" + itemList[i].PicUrl + "_80x80.jpg\" border=\"0\" /></a></td>";
+                        str += "<td  width=\"140px\"><a   href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\">" + itemList[i].Title + "</a> </td><td   width=\"200px\"><input type=\"text\" size=\"27\" id=\"groupbuylistname" + itemList[i].NumIid.ToString() + "\"   name=\"groupbuylistname\"  maxlength=\"30\"  value=\"\" /></td><td  width=\"100px\"> " + itemList[i].Price + "元 <input   type=\"hidden\" id=\"productid" + itemList[i].NumIid.ToString() + "\" name=\"productid\"  value=\"" + itemList[i].NumIid.ToString() + "\"><input type=\"hidden\" id=\"price" + itemList[i].NumIid.ToString() + "\" name=\"price\" value=\"" + itemList[i].Price.ToString() + "\"></td><td  width=\"100px\">  <input type=\"text\" id=\"zhekou" + itemList[i].NumIid.ToString() + "\" size=\"10\" name=\"zhekou\" onblur=\"setzekou(this)\" /> 元 <br /> 打<input type=\"text\" size=\"8\" id=\"zhekou1" + itemList[i].NumIid.ToString() + "\" name=\"zhekou1\"   onblur=\"setprice(this)\"/> 折 <br />限购：<select id=\"xiangou" + itemList[i].NumIid.ToString() + "\" name=\"xiangou\"> <OPTION selected  value=0>否</OPTION> <OPTION  value=1>是</OPTION> </select>  <span id=\"errmsg" + i + "\" style=\"color:Red\"></span> </td><td  width=\"90px\">  <input type=\"text\"  size=\"8\"  name=\"rcount\" value=\"300\" /> </td><td  width=\"80px\"><a onclick=\"deleteDIV('del1" + itemList[i].NumIid.ToString() + "')\"  style=\"cursor:hand;\">删除</a></td></tr></table><input id=\"del1" + itemList[i].NumIid.ToString() + "\" name=\"del\" value='' type=\"hidden\" ></div>";
 
                     }
                 }
