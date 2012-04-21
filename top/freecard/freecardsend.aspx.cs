@@ -53,7 +53,7 @@ public partial class top_freecard_freecardsend : System.Web.UI.Page
     {
         //数据绑定
         DataTable dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_FreeCardAction WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY adddate DESC");
-        couponstr = "<select name='couponid'>";
+        couponstr = "<select name='freecardid'>";
         for (int i = 0; i < dtCoupon.Rows.Count; i++)
         {
             couponstr += "<option value='" + dtCoupon.Rows[i]["guid"].ToString() + "'>" + dtCoupon.Rows[i]["name"].ToString() + " - 免费" + dtCoupon.Rows[i]["carddate"].ToString() + "月 限制" + dtCoupon.Rows[i]["usecount"].ToString() + "次</option>";
@@ -86,5 +86,32 @@ public partial class top_freecard_freecardsend : System.Web.UI.Page
         {
             return false;
         }
+    }
+    
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        string cardid = utils.NewRequest("freecardid", utils.RequestType.Form);
+        string sql = "SELECT * FROM TCS_FreeCardAction WHERE guid = '" + cardid + "'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        if (dt.Rows.Count != 0)
+        {
+            string startdate = DateTime.Now.ToString();
+            string enddate = DateTime.Now.ToString();
+            string usecountlimit = dt.Rows[0]["usecount"].ToString();
+            string carddate = dt.Rows[0]["carddate"].ToString();
+            if (carddate == "0")
+            {
+                enddate = DateTime.Now.AddMonths(999).ToString();
+            }
+            else
+            {
+                enddate = DateTime.Now.AddMonths(int.Parse(carddate)).ToString();
+            }
+
+            sql = "INSERT INTO TCS_FreeCard (nick,buynick,cardid,startdate,enddate,carddate,usecountlimit) VALUES ('" + nick + "', '" + this.txtBuyerNick.Text + "','" + cardid + "','" + startdate + "','" + enddate + "','" + carddate + "','" + usecountlimit + "')";
+            utils.ExecuteNonQuery(sql);
+        }
+
+        Response.Redirect("freecardcustomer.aspx");
     }
 }
