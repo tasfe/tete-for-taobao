@@ -6,7 +6,7 @@
 <head id="Head1" runat="server">
     <title></title>
     <base Target="_self" /> 
-    <link href="../css/css.css" rel="stylesheet" />
+    <link href="css/css.css" rel="stylesheet" />
     <style type="text/css">
     #dhtmltooltip {
         font-size: 9pt;
@@ -126,9 +126,11 @@
             }
         
         </script>
-        <div  ><br />
-	<p class="alert">&nbsp;&nbsp; 提示：在促销商品管理中，可以对某一已经参加过促销活动的商品进行取消促销活动的操作。</p><br />
-</div>
+
+        <div style="margin:10px;">
+        	<input type="button" value="  关闭窗口  " class="button" onclick="CloseWindow()" />
+            </div>
+            <br />
 
             <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:2px 10px 2px 10px;">
             <tr>
@@ -138,7 +140,7 @@
         	    
     <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:0px; padding:0px">
         	        <tr>
-                        <td colspan=4>
+                        <td colspan=2>
                             <select id="Select1">
         	                    <option value="0"></option>
                     	        
@@ -154,21 +156,15 @@
                                     	                <input type="button" value="提交" onclick="InitAreaAll()" />
                         </td>
                       </tr>
-                      <trs>
-                        <td style=" width:160px;"></td>
-                        <td style=" width:300px;">宝贝名称</td>
-                        <td style=" width:200px;">原价(元)</td>
-                        <td style=" width:200px;">操作</td>
-                      </tr>
-                      <div id="taobaoitem">
-                          
-                              <asp:Repeater ID="rptItems" runat="server">
+                      <tr>
+                        <td colspan=2 id="taobaoitem">
+                            <asp:Repeater ID="rptItems" runat="server">
                                 <ItemTemplate>
         	                        <input name="items" id='item_<%#Eval("NumIid") %>' type="checkbox" value='<%#Eval("NumIid") %>' title='<%#Eval("title") %>' onclick="SetInitArea(this)" /> <label for='item_<%#Eval("NumIid") %>'><%#Eval("title") %></label> <br />
                                 </ItemTemplate>
                             </asp:Repeater>
-                        
-                      </div>
+                        </td>
+                      </tr>
         	    </table>
         	    
             </td>
@@ -226,7 +222,7 @@
 
         function updateCat() {
             createxmlHttpRequest();
-            var queryString = "/top/groupbuy/groupbuy/taobaoitemgetactivity.aspx?act=getCat&t=" + new Date().getTime();
+            var queryString = "/top/groupbuy/groupbuy/taobaoitem.aspx?act=getCat&t=" + new Date().getTime();
             xmlHttp.open("GET", queryString);
             xmlHttp.onreadystatechange = handleStateChangeCat;
             xmlHttp.send(null);
@@ -245,7 +241,7 @@
             //获取当前使用样式
             var style = "0";
 
-            var queryString = "/top/groupbuy/groupbuy/taobaoitemgetactivity.aspx?act=getResultStr&isradio=0&style=" + style + "&ids=" + str + "&t=" + new Date().getTime();
+            var queryString = "/top/groupbuy/groupbuy/taobaoitem.aspx?act=getResultStr&isradio=0&style=" + style + "&ids=" + str + "&t=" + new Date().getTime();
             xmlHttp.open("GET", queryString);
             xmlHttp.onreadystatechange = handleStateChangeResultStr;
             xmlHttp.send(null);
@@ -265,7 +261,7 @@
 
             var pagenow = pageid;
             createxmlHttpRequest();
-            var queryString = "/top/groupbuy/groupbuy/taobaoitemgetactivity.aspx?act=get&isradio=0&query=" + escape(q) + "&catid=" + catid + "&p=" + pagenow + "&t=" + new Date().getTime();
+            var queryString = "/top/groupbuy/groupbuy/taobaoitem.aspx?act=get&isradio=0&query=" + escape(q) + "&catid=" + catid + "&p=" + pagenow + "&t=" + new Date().getTime();
             xmlHttp.open("GET", queryString);
             xmlHttp.onreadystatechange = handleStateChange;
             xmlHttp.send(null);
@@ -276,7 +272,7 @@
                 var taobaoitem = document.getElementById("taobaoitem")
                 taobaoitem.innerHTML = decodeURI(xmlHttp.responseText);
 
-                //formatCheckBoxAll();
+                formatCheckBoxAll();
             }
         }
 
@@ -381,7 +377,7 @@
             itemsStrTxt = document.getElementById("itemsStrTxt").value;
 
             formatHTML();
-            //formatCheckBoxAll();
+            formatCheckBoxAll();
         }
 
         function checkSelect(nam, val) {
