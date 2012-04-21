@@ -36,6 +36,7 @@
                 <td width="100"><b>赠送时间</b></td>
                 <td width="80"><b>免邮时间</b></td>
                 <td width="80"><b>使用次数</b></td>
+                <td width="80"><b>限制次数</b></td>
                 <td width="60"><b>操作</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
@@ -45,7 +46,8 @@
                 <td><%#Eval("startdate")%></td>
                 <td><%#Eval("carddate")%></td>
                 <td><%#Eval("usecount")%></td>
-                <td><a href='freecardlog.aspx?id=<%#Eval("guid")%>'>查看使用记录</a></td>
+                <td><%#Eval("usecountlimit")%></td>
+                <td><a href='freecardlog.aspx?id=<%#Eval("guid")%>'>查看使用记录</a> | <a href='freecardcustomermodify.aspx?id=<%#Eval("guid")%>'>编辑</a></td>
             </tr>
             </ItemTemplate>
         </asp:Repeater>
