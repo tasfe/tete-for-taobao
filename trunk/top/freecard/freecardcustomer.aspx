@@ -32,10 +32,10 @@
 
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
-                <td width="80"><b>买家昵称</b></td>
+                <td width="120"><b>买家昵称</b></td>
                 <td width="100"><b>赠送时间</b></td>
                 <td width="80"><b>免邮时间</b></td>
-                <td width="50"><b>使用次数</b></td>
+                <td width="80"><b>使用次数</b></td>
                 <td width="60"><b>操作</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
