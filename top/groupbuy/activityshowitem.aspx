@@ -6,7 +6,7 @@
 <head id="Head1" runat="server">
     <title></title>
     <base Target="_self" /> 
-    <link href="css/css.css" rel="stylesheet" />
+    <link href="../css/css.css" rel="stylesheet" />
     <style type="text/css">
     #dhtmltooltip {
         font-size: 9pt;

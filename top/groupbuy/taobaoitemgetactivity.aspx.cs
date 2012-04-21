@@ -51,14 +51,12 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
             //输出页面HTML
             for (int i = 0; i < product.Content.Count; i++)
             {
-                if (isradio == "1")
-                {
-                    Response.Write("<input type='checkbox' name='items' id='item_" + product.Content[i].NumIid + "' title='" + product.Content[i].Title.Replace("%", "") + "' value='" + product.Content[i].NumIid + "' onclick=\"SetInitArea(this)\"><label onMouseOver=\"javascript:ddrivetip('<img src=" + product.Content[i].PicUrl + "_80x80.jpg>','#ffffff',100)\" onMouseOut=\"hideddrivetip()\" for='item_" + product.Content[i].NumIid + "'>" + product.Content[i].Title.Replace("%", "") + "</label><br>");
-                }
-                else
-                {
-                    Response.Write("<input type='checkbox' name='items' id='item_" + product.Content[i].NumIid + "' title='" + product.Content[i].Title.Replace("%", "") + "' value='" + product.Content[i].NumIid + "' onclick=\"SetInitArea(this)\"><label onMouseOver=\"javascript:ddrivetip('<img src=" + product.Content[i].PicUrl + "_80x80.jpg>','#ffffff',100)\" onMouseOut=\"hideddrivetip()\" for='item_" + product.Content[i].NumIid + "'>" + product.Content[i].Title.Replace("%", "") + "</label><br>");
-                }
+
+                    string str = string.Empty;
+                    string tempStr2 = string.Empty;
+                    //Response.Write("<input type='checkbox' name='items' id='item_" + product.Content[i].NumIid + "' title='" + product.Content[i].Title.Replace("%", "") + "' value='" + product.Content[i].NumIid + "' onclick=\"SetInitArea(this)\"><label onMouseOver=\"javascript:ddrivetip('<img src=" + product.Content[i].PicUrl + "_80x80.jpg>','#ffffff',100)\" onMouseOut=\"hideddrivetip()\" for='item_" + product.Content[i].NumIid + "'>" + product.Content[i].Title.Replace("%", "") + "</label><br>");
+                    str += "<tr> <td  align=\"center\">><img src=\"" + product.Content[i].PicUrl + "_80x80.jpg\" border=\"0\" /></td><td  align=\"center\"> <a   href=\"http://item.taobao.com/item.htm?id=" + product.Content[i].NumIid.ToString() + "\" target=\"_blank\">" + product.Content[i].Title + "</a></td><td  align=\"center\">" + product.Content[i].Price + "</td><td  align=\"center\">" + tempStr2 + "</td> </tr>";
+                    Response.Write(str);
             }
             Response.Write("<br>");
             long totalPage = (product.TotalResults % pageSizeNow == 0) ? (product.TotalResults / pageSizeNow) : (product.TotalResults / pageSizeNow + 1);
