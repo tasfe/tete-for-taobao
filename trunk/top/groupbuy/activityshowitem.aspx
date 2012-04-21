@@ -161,7 +161,12 @@
                         <td style=" width:200px;">操作</td>
                       </tr>
                       <tr>
-                        <td colspan=4 id="taobaoitem">
+                        <td colspan="4" id="taobaoitem">
+                              <asp:Repeater ID="rptItems" runat="server">
+                                <ItemTemplate>
+        	                        <input name="items" id='item_<%#Eval("NumIid") %>' type="checkbox" value='<%#Eval("NumIid") %>' title='<%#Eval("title") %>' onclick="SetInitArea(this)" /> <label for='item_<%#Eval("NumIid") %>'><%#Eval("title") %></label> <br />
+                                </ItemTemplate>
+                            </asp:Repeater>
                         </td>
                       </tr>
         	    </table>
