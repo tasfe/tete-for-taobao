@@ -110,6 +110,10 @@ public partial class top_freecard_freecardsend : System.Web.UI.Page
 
             sql = "INSERT INTO TCS_FreeCard (nick,buynick,cardid,startdate,enddate,carddate,usecountlimit) VALUES ('" + nick + "', '" + this.txtBuyerNick.Text + "','" + cardid + "','" + startdate + "','" + enddate + "','" + carddate + "','" + usecountlimit + "')";
             utils.ExecuteNonQuery(sql);
+
+            //增加免邮卡领取次数
+            sql = "UPDATE TCS_FreeCardAction SET sendcount = sendcount + 1 WHERE guid = '" + cardid + "'";
+            utils.ExecuteNonQuery(sql);
         }
 
         Response.Redirect("freecardcustomer.aspx");
