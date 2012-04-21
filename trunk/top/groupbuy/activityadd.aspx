@@ -15,13 +15,11 @@
 </head>
 <body style="padding:0px; margin:0px;">
 <div class="navigation">
-    <div class="crumbs"><a href="javascript:;" class="nolink">特特团购</a> 添加促销活动 </div>
-        <div class="msg">
-	<p class="alert">促销活动信息均为必填内容，请将促销内容填写完毕后提交。可以创建多个不同的促销活动。</p>
-</div>
+    <div class="crumbs">促销活动信息均为必填内容，请将促销内容填写完毕后提交。可以创建多个不同的促销活动。</div>
+        
 <form id="form1" runat="server">
 	<input type="hidden" name="submit" value="true"/>
-	<div style="padding-top:8px;"><h3>设置特特团购营销活动基本信息</h3></div>
+	<div style="padding-top:2px;"><h3>设置特特团购营销活动基本信息</h3></div>
 	<hr/>
 	<table>
 
