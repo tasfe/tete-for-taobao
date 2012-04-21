@@ -160,7 +160,7 @@
                         <td style=" width:200px;">原价(元)</td>
                         <td style=" width:200px;">操作</td>
                       </tr>
-                      <tr id="taobaoitem">
+                      <div id="taobaoitem">
                           
                               <asp:Repeater ID="rptItems" runat="server">
                                 <ItemTemplate>
@@ -168,7 +168,7 @@
                                 </ItemTemplate>
                             </asp:Repeater>
                         
-                      </tr>
+                      </div>
         	    </table>
         	    
             </td>
