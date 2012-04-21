@@ -46,8 +46,6 @@ public partial class top_freecard_freecardlist : System.Web.UI.Page
             return;
         }
 
-        BindData();
-
         string act = utils.NewRequest("act", utils.RequestType.QueryString);
         if (act == "del")
         {
