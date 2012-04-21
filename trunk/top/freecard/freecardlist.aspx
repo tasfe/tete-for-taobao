@@ -26,6 +26,7 @@
   </div>
     <div id="main-content">
                 <input type="button" value="创建包邮卡" onclick="window.location.href='freecardadd.aspx'" />
+                <input type="button" value="手动赠送" onclick="window.location.href='freecardsend.aspx'" />
     
     <hr />
 
