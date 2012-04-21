@@ -271,7 +271,7 @@
                 var taobaoitem = document.getElementById("taobaoitem")
                 taobaoitem.innerHTML = decodeURI(xmlHttp.responseText);
 
-                formatCheckBoxAll();
+                //formatCheckBoxAll();
             }
         }
 
@@ -376,7 +376,7 @@
             itemsStrTxt = document.getElementById("itemsStrTxt").value;
 
             formatHTML();
-            formatCheckBoxAll();
+            //formatCheckBoxAll();
         }
 
         function checkSelect(nam, val) {
