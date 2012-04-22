@@ -54,7 +54,7 @@
          <div class="bd">
 			<div id="J_DataTabelDiv">
 				<table id="J_DataTable">
-					<thead id="J_ProductsHead">
+					<thead id="J_ProductsHead" style=" width:810px;">
 						<tr>
 							<th>活动名称</th>
 							<th>活动时间</th>
@@ -72,16 +72,16 @@
                                  <tr>
                                     <td><%#Eval("Name").ToString()%></td>
                                     <td>
-                                    开始：<%#Eval("startDate").ToString()%>
+                                    开始：<%#Eval("startDate").ToString()%><br />
                                     结束：<%#Eval("endDate").ToString()%>
                                     </td>
                                     <td><%# Eval("itemType").ToString() != "same" ? "不同促销形式" : Eval("discountType").ToString() == "DISCOUNT"?"打折":"减价"%></td>
                                     <td><%# Eval("itemType").ToString() != "same" ? "不同促销力度" : Eval("discountType").ToString() == "DISCOUNT" ? Eval("discountValue").ToString() + "折" : Eval("discountValue").ToString() + "元"%></td>
                                     <td><%#Eval("tagId").ToString() == "1" ? "全网淘宝用户" : "全网淘宝用户"%></td>
-                                    <td><a href="activitytaobaoItem.aspx?activityID=<%  Eval("ID").ToString(); %>">添加促销宝贝</a>  </td>
-                                    <td><a href="activitygetitem.aspx?activityID=<%  Eval("ID").ToString(); %>">管理促销宝贝</a>   </td>
+                                    <td><a href="activitytaobaoItem.aspx?activityID=<%#  Eval("ID").ToString() %>">添加促销宝贝</a>  </td>
+                                    <td><a href="activitygetitem.aspx?activityID=<%#  Eval("ID").ToString() %>">管理促销宝贝</a>   </td>
                                     <td>
-                                       <% outShowHtml(Eval("Status").ToString(), Eval("ID").ToString()); %>
+                                       <%# outShowHtml(Eval("Status").ToString(), Eval("ID").ToString()); %>
                                     </td>
                                  </tr>
                             </ItemTemplate>

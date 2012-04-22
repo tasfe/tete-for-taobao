@@ -92,7 +92,8 @@ public partial class top_groupbuy_activityadd : System.Web.UI.Page
 #endregion 
             string sql = "INSERT INTO [tete_activity] ([Name]   ,[Description] ,[Remark] ,[startDate] ,[endDate],[itemType] ,[discountType] ,[discountValue] ,[tagId] ,[Rcount],[Nick] ,[Status],decreaseNum,isok) VALUES('" + name + "','','" + memo + "','" + startDate + "','" + endDate + "','" + itemType + "','" + discountType + "','" + discountValue + "','" + tagId + "'," + rcount + ",'" + nick + "'," + status + "," + decreaseNum + ",0)";
             utils.ExecuteNonQuery(sql);
-            Response.Write("<script>alert('添加成功！')</script>");//添加活动商品时 要把活动状态修改为1 进行中
+            Response.Redirect("activityAddsuccess.aspx");
+            //Response.Write("<script>alert('添加成功！')</script>");//添加活动商品时 要把活动状态修改为1 进行中
         }
         
         
