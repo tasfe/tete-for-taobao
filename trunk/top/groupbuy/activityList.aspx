@@ -81,7 +81,7 @@
                                     <td><a href="activitytaobaoItem.aspx?activityID=<%#  Eval("ID").ToString() %>">添加促销宝贝</a>  </td>
                                     <td><a href="activitygetitem.aspx?activityID=<%#  Eval("ID").ToString() %>">管理促销宝贝</a>   </td>
                                     <td>
-                                       <%# outShowHtml(Eval("Status").ToString(), Eval("ID").ToString()); %>
+                                       <%# outShowHtml(Eval("Status").ToString(), Eval("ID").ToString()) %>
                                     </td>
                                  </tr>
                             </ItemTemplate>
