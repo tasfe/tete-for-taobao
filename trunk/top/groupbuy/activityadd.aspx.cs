@@ -7,7 +7,7 @@ using Common;
 
 public partial class top_groupbuy_activityadd : System.Web.UI.Page
 {
-    public string teteendDate = string.Empty;
+    public string teteendDate = string.Empty;//团购结束时间
     public string nick = string.Empty;
     
     protected void Page_Load(object sender, EventArgs e)
@@ -20,9 +20,9 @@ public partial class top_groupbuy_activityadd : System.Web.UI.Page
         nick = encode.Decrypt(taobaoNick);
         if (nick == "")
         {
-           // Response.Write("top签名验证不通过，请不要非法注入");
-           // Response.End();
-           // return;
+            Response.Write("top签名验证不通过，请不要非法注入");
+            Response.End();
+            return;
         }
 
         if (Request.Form["act"] == "post")

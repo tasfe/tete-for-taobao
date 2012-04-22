@@ -19,9 +19,9 @@ public partial class top_groupbuy_activityList : System.Web.UI.Page
         if (string.IsNullOrEmpty(taobaoNick))
         {
             string msg = "尊敬的淘宝卖家，非常抱歉的告诉您，您还没有购买此服务或者登录信息已失效，如需继续使用请<a href='http://fuwu.taobao.com/serv/detail.htm?service_id=11807' target='_blank'>进入该服务</a>，谢谢！";
-           // Response.Redirect("buy.aspx?msg=" + HttpUtility.UrlEncode(msg));
-          //  Response.End();
-           // return;
+            Response.Redirect("buy.aspx?msg=" + HttpUtility.UrlEncode(msg));
+            Response.End();
+            return;
         }
         statusStr = "";
         if (Request.QueryString["actionType"] != null)
@@ -111,14 +111,14 @@ public partial class top_groupbuy_activityList : System.Web.UI.Page
 
         string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.id DESC) AS rownumber FROM tete_activity b WHERE b.nick = '" + taobaoNick + "' " + statusStr + " and Status<>4 ) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY id DESC";
 
-         
-       // DataTable dtNew = utils.ExecuteDataTable(sqlNew);
-      //  rptArticle.DataSource = dtNew;
+
+        DataTable dtNew = utils.ExecuteDataTable(sqlNew);
+        rptArticle.DataSource = dtNew;
         rptArticle.DataBind();
 //
         //分页数据初始化
         sqlNew = "SELECT COUNT(*) FROM tete_activity WHERE nick = '" + taobaoNick + "' " + statusStr + "  and Status<>4 ";
-        int totalCount = 0;// int.Parse(utils.ExecuteString(sqlNew));
+        int totalCount =   int.Parse(utils.ExecuteString(sqlNew));
 
         lbPage.Text = InitPageStr(totalCount, "activityList.aspx");
     }
