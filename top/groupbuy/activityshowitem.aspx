@@ -154,11 +154,11 @@
             <input type="hidden" id="pagenow" value="1" />
 
 
-   <div> <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:4px; padding:0px">			<tr>
+   <div> <table width="600px;" border="0" cellspacing="0" cellpadding="0" style="margin:4px; padding:0px">			<tr>
 						    <th style=" width:100px;"></th>
-							<th>宝贝名称</th>
-							<th>原价<em>(元)</em></th>
-							<th>操作</th>
+							<th  style=" width:200px;">宝贝名称</th>
+							<th  style=" width:100px;">原价<em>(元)</em></th>
+							<th  style=" width:200px;">操作</th>
 						</tr>
                          </table>
 				  
