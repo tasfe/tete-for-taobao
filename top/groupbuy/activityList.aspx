@@ -54,7 +54,7 @@
          <div class="bd">
 			<div id="J_DataTabelDiv">
 				<table id="J_DataTable">
-					<thead id="J_ProductsHead" style=" width:810px;">
+					<thead id="J_ProductsHead" style=" width:780px;">
 						<tr>
 							<th>活动名称</th>
 							<th>活动时间</th>

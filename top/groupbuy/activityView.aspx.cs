@@ -205,7 +205,7 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
                                 itemTypeStr = "";
                                 Detailtype.Value = "1";
                             }
-                            discountType = dt.Rows[i]["[discountType]"].ToString();
+                            discountType = dt.Rows[i]["discountType"].ToString();
                             if (discountType != "DISCOUNT")
                             {
                                 discountType = "";
