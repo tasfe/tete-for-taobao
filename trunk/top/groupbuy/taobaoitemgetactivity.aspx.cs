@@ -53,7 +53,7 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
             {
                string tempstr = "未参加促销活动";
 
-                string str = "<tr><td><img src=" + product.Content[i].PicUrl + "_80x80.jpg></td><td>" + product.Content[i].Title.Replace("%", "") + "</td><td>" + product.Content[i].Price.ToString() + "</td><td>" + tempstr + "</td></tr>";
+               string str = "  <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"margin:0px; padding:0px\" > <tr><td><img src=" + product.Content[i].PicUrl + "_80x80.jpg></td><td>" + product.Content[i].Title.Replace("%", "") + "</td><td>" + product.Content[i].Price.ToString() + "</td><td>" + tempstr + "</td></tr> </table>";
                 Response.Write(str);
                //Response.Write("<input type='checkbox' name='items' id='item_" + product.Content[i].NumIid + "' title='" + product.Content[i].Title.Replace("%", "") + "' value='" + product.Content[i].NumIid + "' onclick=\"SetInitArea(this)\"><label onMouseOver=\"javascript:ddrivetip('<img src=" + product.Content[i].PicUrl + "_80x80.jpg>','#ffffff',100)\" onMouseOut=\"hideddrivetip()\" for='item_" + product.Content[i].NumIid + "'>" + product.Content[i].Title.Replace("%", "") + "</label><br>");
 
