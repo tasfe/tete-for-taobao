@@ -2,12 +2,13 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
-    <base Target="_self" /> 
-    <link href="css/css.css" rel="stylesheet" />
+    <link href="js/common.css" rel="stylesheet" />
+    <link href="js/all-min.css" rel="stylesheet" />
+    <link href="js/calendar.css" rel="stylesheet" />
+    <link href="js/groupbuy.css" rel="stylesheet" />
     <style type="text/css">
     #dhtmltooltip {
         font-size: 9pt;
@@ -26,13 +27,11 @@
         BACKGROUND-COLOR: #cccccc
     }
     </style>
+     
 </head>
 <body style="margin:0px; padding:0px;">
     <form id="form1" runat="server">
-    <div>
-            
-                <div id='dhtmltooltip' >
-        <img src="" /></div>
+ 
 
         <script>
 
@@ -128,21 +127,14 @@
         
         </script>
 
-        <div style="margin:10px;">
-        	 
-            </div>
             <br />
-
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:2px 10px 2px 10px;">
-            <tr>
-            <td valign="top" style="padding-left:10px;">
-            
-            <input type="hidden" id="pagenow" value="1" />
-        	    
-    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:0px; padding:0px">
-        	        <tr>
-                        <td colspan=2>
-                            <select id="Select1">
+            <div class="msg24">
+				 
+	            <p class="tips">提示：在促销商品管理中，可以对某一已经参加过促销活动的商品进行取消促销活动的操作。</p>
+            </div>
+            <div class="skin-gray" style="line-height:45px; ">
+				<p>
+				 宝贝分类： <select id="Select1">
         	                    <option value="0"></option>
                     	        
         	                    <asp:Repeater ID="Repeater1" runat="server">
@@ -151,14 +143,28 @@
         	                        </ItemTemplate>
         	                    </asp:Repeater>
         	                </select>
-        	                <input name="q" id="querySearch" /> 
-        	                <input type="button" value="搜索" onclick="getTaobaoItem()" />
+        	                请输入您要管理的促销宝贝名称：<input name="q"  style="width:300px;" id="querySearch" /> 
+        	                <input type="button" value="查找商品" onclick="getTaobaoItem()" />
+				</p>	
+			</div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:2px 10px 2px 10px;">
+            <tr>
+            <td valign="top" style="padding-left:10px;">
+            
+            <input type="hidden" id="pagenow" value="1" />
 
-                                    	                <input type="button" value="提交" onclick="InitAreaAll()" />
-                        </td>
-                      </tr>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:4px; padding:0px">
+                     
+						<tr>
+						    <th></th>
+							<th>宝贝名称</th>
+							<th>原价<em>(元)</em></th>
+							<th>操作</th>
+						</tr>
+                         </table>
+				   <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:0px; padding:0px"  id="taobaoitem">
                       <tr>
-                        <td colspan=2 id="taobaoitem">
+                        <td colspan=4 >
                             <asp:Repeater ID="rptItems" runat="server">
                                 <ItemTemplate>
         	                        <input name="items" id='item_<%#Eval("NumIid") %>' type="checkbox" value='<%#Eval("NumIid") %>' title='<%#Eval("title") %>' onclick="SetInitArea(this)" /> <label for='item_<%#Eval("NumIid") %>'><%#Eval("title") %></label> <br />
