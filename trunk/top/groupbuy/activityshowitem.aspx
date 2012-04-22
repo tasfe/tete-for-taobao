@@ -5,8 +5,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title></title>
-    <base Target="_self" /> 
-    <link href="css/css.css" rel="stylesheet" />
+    <link href="js/common.css" rel="stylesheet" />
+    <link href="js/all-min.css" rel="stylesheet" />
+    <link href="js/calendar.css" rel="stylesheet" />
+    <link href="js/groupbuy.css" rel="stylesheet" />
     <style type="text/css">
     #dhtmltooltip {
         font-size: 9pt;
@@ -25,13 +27,11 @@
         BACKGROUND-COLOR: #cccccc
     }
     </style>
+     
 </head>
 <body style="margin:0px; padding:0px;">
     <form id="form1" runat="server">
-    <div>
-            
-                <div id='dhtmltooltip' >
-        <img src="" /></div>
+ 
 
         <script>
 
@@ -128,16 +128,11 @@
         </script>
 
             <br />
-
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:2px 10px 2px 10px;">
-            <tr>
-            <td valign="top" style="padding-left:10px;">
-            
-            <input type="hidden" id="pagenow" value="1" />
-        	<div class="msg">
-	            <p class="alert">提示：在促销商品管理中，可以对某一已经参加过促销活动的商品进行取消促销活动的操作。</p>
+            <div class="msg24">
+				 
+	            <p class="tips">提示：在促销商品管理中，可以对某一已经参加过促销活动的商品进行取消促销活动的操作。</p>
             </div>
-            <div class="skin-gray" style="line-height:25px; ">
+            <div class="skin-gray" style="line-height:45px; ">
 				<p>
 				 宝贝分类： <select id="Select1">
         	                    <option value="0"></option>
@@ -152,6 +147,12 @@
         	                <input type="button" value="查找商品" onclick="getTaobaoItem()" />
 				</p>	
 			</div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:2px 10px 2px 10px;">
+            <tr>
+            <td valign="top" style="padding-left:10px;">
+            
+            <input type="hidden" id="pagenow" value="1" />
+
     <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:4px; padding:0px">
                      
 						<tr>
