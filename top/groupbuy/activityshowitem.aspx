@@ -129,7 +129,7 @@
         </script>
 
         <div style="margin:10px;">
-        	<input type="button" value="  关闭窗口  " class="button" onclick="CloseWindow()" />
+        	 
             </div>
             <br />
 
@@ -223,7 +223,7 @@
 
         function updateCat() {
             createxmlHttpRequest();
-            var queryString = "/top/groupbuy/groupbuy/taobaoitem.aspx?act=getCat&t=" + new Date().getTime();
+            var queryString = "/top/groupbuy/groupbuy/taobaoitemgetactivity.aspx?act=getCat&t=" + new Date().getTime();
             xmlHttp.open("GET", queryString);
             xmlHttp.onreadystatechange = handleStateChangeCat;
             xmlHttp.send(null);
@@ -242,7 +242,7 @@
             //获取当前使用样式
             var style = "0";
 
-            var queryString = "/top/groupbuy/groupbuy/taobaoitem.aspx?act=getResultStr&isradio=0&style=" + style + "&ids=" + str + "&t=" + new Date().getTime();
+            var queryString = "/top/groupbuy/groupbuy/taobaoitemgetactivity.aspx?act=getResultStr&isradio=0&style=" + style + "&ids=" + str + "&t=" + new Date().getTime();
             xmlHttp.open("GET", queryString);
             xmlHttp.onreadystatechange = handleStateChangeResultStr;
             xmlHttp.send(null);
@@ -262,7 +262,7 @@
 
             var pagenow = pageid;
             createxmlHttpRequest();
-            var queryString = "/top/groupbuy/groupbuy/taobaoitem.aspx?act=get&isradio=0&query=" + escape(q) + "&catid=" + catid + "&p=" + pagenow + "&t=" + new Date().getTime();
+            var queryString = "/top/groupbuy/groupbuy/taobaoitemgetactivity.aspx?act=get&isradio=0&query=" + escape(q) + "&catid=" + catid + "&p=" + pagenow + "&t=" + new Date().getTime();
             xmlHttp.open("GET", queryString);
             xmlHttp.onreadystatechange = handleStateChange;
             xmlHttp.send(null);
