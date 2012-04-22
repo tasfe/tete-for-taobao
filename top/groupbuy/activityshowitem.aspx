@@ -163,8 +163,8 @@
 						</tr>
                          </table>
 				   <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:0px; padding:0px" >
-                      <tr>
-                        <td colspan=4  id="taobaoitem">
+                      <tr id="taobaoitem">
+                        <td colspan=4  >
                             <asp:Repeater ID="rptItems" runat="server">
                                 <ItemTemplate>
         	                        <input name="items" id='item_<%#Eval("NumIid") %>' type="checkbox" value='<%#Eval("NumIid") %>' title='<%#Eval("title") %>' onclick="SetInitArea(this)" /> <label for='item_<%#Eval("NumIid") %>'><%#Eval("title") %></label> <br />
