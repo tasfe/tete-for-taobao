@@ -154,7 +154,7 @@
             <input type="hidden" id="pagenow" value="1" />
 
 
-   <div> <table width="600px;" border="0" cellspacing="0" cellpadding="0" style="margin:4px; padding:0px">			
+   <div> <table width="800px;" border="0" cellspacing="0" cellpadding="0" style="margin:4px; padding:0px">			
    <tr>
 						    <th style=" width:100px;"></th>
 							<th  style=" width:300px;">宝贝名称</th>
