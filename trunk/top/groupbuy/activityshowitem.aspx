@@ -153,17 +153,19 @@
             
             <input type="hidden" id="pagenow" value="1" />
 
-    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:4px; padding:0px">
-                     
-						<tr>
-						    <th></th>
+
+   <div> <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:4px; padding:0px">			<tr>
+						    <th style=" width:100px;"></th>
 							<th>宝贝名称</th>
 							<th>原价<em>(元)</em></th>
 							<th>操作</th>
 						</tr>
                          </table>
-				   <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:0px; padding:0px" >
-                      <tr id="taobaoitem">
+				  
+ 
+<div  id="taobaoitem">	
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:0px; padding:0px" >
+                      <tr >
                         <td colspan=4  >
                             <asp:Repeater ID="rptItems" runat="server">
                                 <ItemTemplate>
@@ -172,7 +174,8 @@
                             </asp:Repeater>
                         </td>
                       </tr>
-        	    </table>
+    </table>
+</div>
         	    
             </td>
           </tr>
