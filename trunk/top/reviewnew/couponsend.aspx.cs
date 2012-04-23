@@ -51,13 +51,20 @@ public partial class top_review_couponsend : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        if (search.Text.Trim() == "")
+        string buynick = utils.NewRequest("buynick", utils.RequestType.QueryString);
+
+        if (search.Text.Length != 0)
+        {
+            buynick = search.Text.Replace("'", "''");
+        }
+
+        if (buynick.Length == 0)
         {
             Response.Redirect("couponsend.aspx");
             return;
         }
 
-        string sqlNew = "SELECT * FROM TCS_CouponSend WHERE nick = '" + nick + "' AND buynick = '" + search.Text.Trim().Replace("'", "''") + "' ORDER BY taobaonumber DESC";
+        string sqlNew = "SELECT * FROM TCS_CouponSend WHERE nick = '" + nick + "' AND buynick = '" + buynick + "' ORDER BY taobaonumber DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
