@@ -98,8 +98,8 @@ public partial class top_crm_customlist : System.Web.UI.Page
             builder.Append(dt.Rows[i]["couponcount"].ToString());
         }
         //生成excel文件
-        string fileName = Server.MapPath("tmp/" + nick + DateTime.Now.Ticks.ToString() + ".xls");
-        File.WriteAllText(fileName, builder.ToString());
+        string fileName = "tmp/" + nick + DateTime.Now.Ticks.ToString() + ".xls";
+        File.WriteAllText(Server.MapPath(fileName), builder.ToString());
         
         Response.Redirect(fileName);
     }
