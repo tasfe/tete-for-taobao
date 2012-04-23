@@ -26,6 +26,8 @@
   </div>
     <div id="main-content">
         <input type="button" value="优惠券赠送" onclick="window.location.href='msgsend.aspx?typ=<%=typ %>'" />
+        <asp:Button ID="Button1" runat="server" Text="导出全部会员数据" 
+            onclick="Button1_Click" />
         <hr />
 
         <table width="740" cellpadding="0" cellspacing="0">
