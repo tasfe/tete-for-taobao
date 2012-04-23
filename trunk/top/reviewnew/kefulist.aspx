@@ -61,7 +61,7 @@
             <tr>
                 <td height="35"><input name="id" type="checkbox" value="<%#Eval("orderid")%>" /></td>
                 <td><%#Eval("buynick")%></td>
-                <td><a href='couponsend.aspx?buynick=<%#Eval("buynick")%>' target="_blank">优惠券赠送：<%#Eval("giftcount")%></a> <br /> <a href='salelist.aspx?buynick=<%#Eval("buynick")%>' target="_blank">优惠券下单：<%#Eval("couponcount")%></a></td>
+                <td><a href='couponsend.aspx?buynick=<%#HttpUtility.UrlEncode(Eval("buynick").ToString())%>' target="_blank">优惠券赠送：<%#Eval("giftcount")%></a> <br /> <a href='salelist.aspx?buynick=<%#Eval("buynick")%>' target="_blank">优惠券下单：<%#Eval("couponcount")%></a></td>
                 <td><%#Eval("orderid")%></td>
                 <td><%#Eval("adddate")%></td>
                 <td><%#Eval("reviewdate")%></td>
