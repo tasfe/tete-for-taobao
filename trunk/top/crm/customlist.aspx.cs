@@ -99,7 +99,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
         }
         //生成excel文件
         string fileName = "tmp/" + nick + DateTime.Now.Ticks.ToString() + ".xls";
-        File.WriteAllText(Server.MapPath(fileName), builder.ToString());
+        File.WriteAllText(Server.MapPath(fileName), builder.ToString(), Encoding.Default);
         
         Response.Redirect(fileName);
     }
