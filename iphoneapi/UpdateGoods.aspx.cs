@@ -17,7 +17,7 @@ public partial class UpdateGoods : BasePage
     protected void Btn_Update_Click(object sender, EventArgs e)
     {
         string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
-        string session = Request.Cookies["session"].Value;
+        string session = Request.Cookies["nicksession"].Value;
 
         TeteShopCategoryService cateDal = new TeteShopCategoryService();
 
