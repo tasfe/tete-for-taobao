@@ -1031,7 +1031,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         }
         int pageCount = 20;
         int dataCount = (pageNow - 1) * pageCount;
-
+        
 //        //SELECT TOP 20 * FROM 
 //(SELECT b.*,c.*,ROW_NUMBER() OVER (ORDER BY b.reviewdate DESC) d
 //AS rownumber FROM TCS_TradeRateCheck b LEFT JOIN TCS_Customer c ON c.buynick = b.buynick 
