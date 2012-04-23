@@ -31,7 +31,7 @@ public class BasePage : System.Web.UI.Page
         //else
         //{
         //    Session["nick"] = Request.Cookies["nick"].Value;
-        //    Session["session"] = Request.Cookies["session"].Value;
+        //    Session["session"] = Request.Cookies["nicksession"].Value;
         //}
     }
 }
