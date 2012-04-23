@@ -51,7 +51,7 @@ public class TeteUserTokenService
     }
     private IList<TeteUserTokenInfo> TeteUserTokenPropertity(string sql,params SqlParameter[] param)
     {
-        DataTable dt = DBHelper.ExecuteDataTable(sql);
+        DataTable dt = DBHelper.ExecuteDataTable(sql, param);
         IList<TeteUserTokenInfo> list = new List<TeteUserTokenInfo>();
         foreach (DataRow dr in dt.Rows)
         {
