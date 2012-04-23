@@ -113,7 +113,7 @@
 			<tr>
 				<td></td>
 				<td>
-                   <input type="submit" value="立刻创建营销活动" onclick="return checkValue();"/><span id="errorMsg" style="color: red"></span>
+                   <input type="submit" value="立刻修改营销活动" onclick="return checkValue();"/><span id="errorMsg" style="color: red"></span>
                    <input type="hidden" name="act" id="hact"  value="" />
                    <input type="hidden" name="Detailtype" id="Detailtype"  value="1" runat="server" />
 				</td>

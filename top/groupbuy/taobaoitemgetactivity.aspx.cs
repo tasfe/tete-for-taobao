@@ -157,42 +157,52 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                 nickid = "http://www.taobao.com/";
             }
 
-
-            if (isradio == "1")
+            for (int i = 0; i < itemList.Count; i++)
             {
-                //团购需要的商品数据
-                for (int i = 0; i < itemList.Count; i++)
-                {
-                    str += "<div id=\"divPro" + itemList[i].NumIid.ToString() + "\"><A href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><IMG src=\"" + itemList[i].PicUrl + "_160x160.jpg\" border=0 /></A><br>" + itemList[i].Title + "<br>" + itemList[i].Price + "<input   type=\"hidden\" id=\"productid" + itemList[i].NumIid.ToString() + "\" name=\"productid" + itemList[i].NumIid.ToString() + "\" value=\"" + itemList[i].NumIid.ToString() + "\"><input type=\"hidden\" id=\"price" + itemList[i].NumIid.ToString() + "\" name=\"price" + itemList[i].NumIid.ToString() + "\" value=\"" + itemList[i].Price.ToString() + "\"></div>";
-                }
+                str += "<div id='div" + itemList[i].NumIid.ToString() + "' width=\"800px\"><table width=\"800px\"><tr width=\"800px\"><td width=\"90px\"><a href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><img src=\"" + itemList[i].PicUrl + "_80x80.jpg\" border=\"0\" /></a></td>";
+                str += "<td  width=\"140px\"><a   href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\">" + itemList[i].Title + "</a> </td><td   width=\"200px\"><input type=\"text\" size=\"27\" id=\"groupbuylistname" + itemList[i].NumIid.ToString() + "\"   name=\"groupbuylistname\"  maxlength=\"30\"  value=\"\" /></td><td  width=\"100px\"> " + itemList[i].Price + "元 <input   type=\"hidden\" id=\"productid" + itemList[i].NumIid.ToString() + "\" name=\"productid\"  value=\"" + itemList[i].NumIid.ToString() + "\"><input type=\"hidden\" id=\"price" + itemList[i].NumIid.ToString() + "\" name=\"price\" value=\"" + itemList[i].Price.ToString() + "\"></td><td  width=\"100px\">  <input type=\"text\" id=\"zhekou" + itemList[i].NumIid.ToString() + "\" size=\"10\" name=\"zhekou\" onblur=\"setzekou(this)\" /> 元 <br /> 打<input type=\"text\" size=\"8\" id=\"zhekou1" + itemList[i].NumIid.ToString() + "\" name=\"zhekou1\"   onblur=\"setprice(this)\"/> 折 <br />限购：<select id=\"xiangou" + itemList[i].NumIid.ToString() + "\" name=\"xiangou\"> <OPTION selected  value=0>否</OPTION> <OPTION  value=1>是</OPTION> </select>  <span id=\"errmsg" + i + "\" style=\"color:Red\"></span> </td><td  width=\"90px\">  <input type=\"text\"  size=\"8\"  name=\"rcount\" value=\"300\" /> </td><td  width=\"80px\"><a onclick=\"deleteDIV('del1" + itemList[i].NumIid.ToString() + "')\"  style=\"cursor:hand;\">删除</a></td></tr></table><input id=\"del1" + itemList[i].NumIid.ToString() + "\" name=\"del\" value='' type=\"hidden\" ></div>";
             }
-            else
+ 
+            Response.Write(str);
+        }
+        else if (act == "getactivityitem")
+        {
+            //获取用户店铺商品列表
+            ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
+            request.Fields = "num_iid,title,price,pic_url";
+            request.PageSize = pageSizeNow;
+            request.PageNo = int.Parse(page);
+            request.Q = q;
+            if (catid != "0")
             {
-                if (style == "1")
-                {
-                    str += "<table background=\"http://www.7fshop.com/top/show1/4.gif\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" height=\"30\" style=\"border-right: #999999 1px solid; border-top: #999999 1px solid;border-left: #999999 1px solid; border-bottom: #999999 1px solid\" width=\"580\"><tr><td>    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td align=\"left\"><table align=\"left\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" height=\"30\"><tr><td width=\"10\"></td><td background=\"http://www.7fshop.com/top/show1/1.gif\" width=\"24\"></td><td background=\"http://www.7fshop.com/top/show1/2.gif\"><font color=\"white\" style=\"font-size: 13px\"><strong>掌柜推荐商品</strong></font></td><td><img src=\"http://www.7fshop.com/top/show1/3.gif\" /></td></tr></table></td><td align=\"right\"></td></tr></table></td></tr></table>  <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-right: #999999 1px solid;border-top: #999999 1px solid; overflow: hidden; border-left: #999999 1px solid;border-bottom: #999999 1px solid\" width=\"578\"><tr><td valign=\"top\"><TABLE cellSpacing=0 cellPadding=0 width=578 border=0><TBODY><TR><TD align=\"middle\"><TABLE cellSpacing=8 cellPadding=0 align=center border=0><TBODY><TR>";
-                    for (int i = 0; i < itemList.Count; i++)
-                    {
-                        str += "<TD vAlign=top align=\"middle\" width=175 bgColor=white><TABLE cellSpacing=0 cellPadding=0 align=center border=0><TBODY><TR><TD vAlign=top align=\"middle\" width=175 bgColor=white><TABLE cellSpacing=0 cellPadding=0 align=center border=0><TBODY><TR><TD align=\"middle\"><DIV style=\"BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; MARGIN-TOP: 4px; BORDER-LEFT: #cccccc 1px solid; WIDTH: 160px; BORDER-BOTTOM: #cccccc 1px solid; HEIGHT: 160px\"><DIV style=\"OVERFLOW: hidden; WIDTH: 160px; HEIGHT: 160px\"><A href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><IMG src=\"" + itemList[i].PicUrl + "_160x160.jpg\" border=0 /></A></DIV></DIV></TD></TR><TR><TD align=\"middle\"><DIV style=\"PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 12px; PADDING-BOTTOM: 4px; PADDING-TOP: 4px\"><A style=\"FONT-SIZE: 12px; COLOR: #3f3f3f; TEXT-DECORATION: none\" href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\">" + itemList[i].Title + "</A><BR /><FONT style=\"COLOR: #fe596a\"><B>￥&nbsp;" + itemList[i].Price + "元</B></FONT> </DIV><A href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><IMG src=\"http://www.7fshop.com/top/show1/buy1.gif\" border=0 /></A> <DIV></DIV></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD>";
-                        if ((i + 1) % 3 == 0)
-                        {
-                            str += "</tr><tr>";
-                        }
-                    }
+                request.SellerCids = catid;
+            }
 
-                    str += "</TR></TBODY></TABLE></td></tr><tr><td align=\"right\" height=\"24\" style=\"border-bottom: #999999 1px solid\" valign=\"center\"><a href=\"" + nickid + "\" style=\"text-decoration: none\" target=\"_blank\"><font style=\"font-size: 13px; color: #ff6600\"><strong>更多详情请见 " + nickid + "</strong>&nbsp;</font></a></td></tr></table></td></tr></table>";
+            PageList<Item> product = client.ItemsOnsaleGet(request, session);
+            string str = string.Empty;
+            //输出页面HTML
+            for (int i = 0; i < product.Content.Count; i++)
+            {
+
+
+                str += "<div id='div" + product.Content[i].NumIid.ToString() + "' width=\"800px\"><table width=\"800px\"><tr width=\"800px\"><td width=\"90px\"><a href=\"http://item.taobao.com/item.htm?id=" + product.Content[i].NumIid.ToString() + "\" target=\"_blank\"><img src=\"" + product.Content[i].PicUrl + "_80x80.jpg\" border=\"0\" /></a></td>";
+                str += "<td  width=\"140px\"><a   href=\"http://item.taobao.com/item.htm?id=" + product.Content[i].NumIid.ToString() + "\" target=\"_blank\">" + product.Content[i].Title + "</a> </td><td   width=\"200px\"><input type=\"text\" size=\"27\" id=\"groupbuylistname" + product.Content[i].NumIid.ToString() + "\"   name=\"groupbuylistname\"  maxlength=\"30\"  value=\"\" /></td><td  width=\"100px\"> " + product.Content[i].Price + "元 <input   type=\"hidden\" id=\"productid" + product.Content[i].NumIid.ToString() + "\" name=\"productid\"  value=\"" + product.Content[i].NumIid.ToString() + "\"><input type=\"hidden\" id=\"price" + product.Content[i].NumIid.ToString() + "\" name=\"price\" value=\"" + product.Content[i].Price.ToString() + "\"></td><td  width=\"100px\">  <input type=\"text\" id=\"zhekou" + product.Content[i].NumIid.ToString() + "\" size=\"10\" name=\"zhekou\" onblur=\"setzekou(this)\" /> 元 <br /> 打<input type=\"text\" size=\"8\" id=\"zhekou1" + product.Content[i].NumIid.ToString() + "\" name=\"zhekou1\"   onblur=\"setprice(this)\"/> 折 <br />限购：<select id=\"xiangou" + product.Content[i].NumIid.ToString() + "\" name=\"xiangou\"> <OPTION selected  value=0>否</OPTION> <OPTION  value=1>是</OPTION> </select>  <span id=\"errmsg" + i + "\" style=\"color:Red\"></span> </td><td  width=\"90px\">  <input type=\"text\"  size=\"8\"  name=\"rcount\" value=\"300\" /> </td><td  width=\"80px\"><a onclick=\"deleteDIV('del1" + product.Content[i].NumIid.ToString() + "')\"  style=\"cursor:hand;\">删除</a></td></tr></table><input id=\"del1" + product.Content[i].NumIid.ToString() + "\" name=\"del\" value='' type=\"hidden\" ></div>";
+
+            }
+            Response.Write("<br>");
+            long totalPage = (product.TotalResults % pageSizeNow == 0) ? (product.TotalResults / pageSizeNow) : (product.TotalResults / pageSizeNow + 1);
+            //输出分页HTML
+            for (int i = 1; i <= totalPage; i++)
+            {
+                if (page == i.ToString())
+                {
+                    Response.Write(i.ToString() + " ");
                 }
                 else
                 {
-                    for (int i = 0; i < itemList.Count; i++)
-                    {
-                        str += "<div id='div" + itemList[i].NumIid.ToString() + "' width=\"800px\"><table width=\"800px\"><tr width=\"800px\"><td width=\"90px\"><a href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><img src=\"" + itemList[i].PicUrl + "_80x80.jpg\" border=\"0\" /></a></td>";
-                        str += "<td  width=\"140px\"><a   href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\">" + itemList[i].Title + "</a> </td><td   width=\"200px\"><input type=\"text\" size=\"27\" id=\"groupbuylistname" + itemList[i].NumIid.ToString() + "\"   name=\"groupbuylistname\"  maxlength=\"30\"  value=\"\" /></td><td  width=\"100px\"> " + itemList[i].Price + "元 <input   type=\"hidden\" id=\"productid" + itemList[i].NumIid.ToString() + "\" name=\"productid\"  value=\"" + itemList[i].NumIid.ToString() + "\"><input type=\"hidden\" id=\"price" + itemList[i].NumIid.ToString() + "\" name=\"price\" value=\"" + itemList[i].Price.ToString() + "\"></td><td  width=\"100px\">  <input type=\"text\" id=\"zhekou" + itemList[i].NumIid.ToString() + "\" size=\"10\" name=\"zhekou\" onblur=\"setzekou(this)\" /> 元 <br /> 打<input type=\"text\" size=\"8\" id=\"zhekou1" + itemList[i].NumIid.ToString() + "\" name=\"zhekou1\"   onblur=\"setprice(this)\"/> 折 <br />限购：<select id=\"xiangou" + itemList[i].NumIid.ToString() + "\" name=\"xiangou\"> <OPTION selected  value=0>否</OPTION> <OPTION  value=1>是</OPTION> </select>  <span id=\"errmsg" + i + "\" style=\"color:Red\"></span> </td><td  width=\"90px\">  <input type=\"text\"  size=\"8\"  name=\"rcount\" value=\"300\" /> </td><td  width=\"80px\"><a onclick=\"deleteDIV('del1" + itemList[i].NumIid.ToString() + "')\"  style=\"cursor:hand;\">删除</a></td></tr></table><input id=\"del1" + itemList[i].NumIid.ToString() + "\" name=\"del\" value='' type=\"hidden\" ></div>";
-
-                    }
+                    Response.Write("<a href=\"javascript:spreadStat(" + i.ToString() + ")\">[" + i.ToString() + "]</a> ");
                 }
             }
-            Response.Write(str);
         }
     }
 }
