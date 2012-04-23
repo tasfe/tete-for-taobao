@@ -9,8 +9,8 @@ public class TeteUserTokenService
     public IList<TeteUserTokenInfo> GetAllTeteUserToken(string nick)
     {
         string sql = "select * from TeteUserToken where nick=@nick";
-        SqlParameter param = new SqlParameter();
-        return TeteUserTokenPropertity(sql);
+        SqlParameter param = new SqlParameter("@nick", nick);
+        return TeteUserTokenPropertity(sql, param);
     }
     public int AddTeteUserToken(TeteUserTokenInfo teteusertoken)
     {
@@ -49,7 +49,7 @@ public class TeteUserTokenService
                     };
         return param;
     }
-    private IList<TeteUserTokenInfo> TeteUserTokenPropertity(string sql)
+    private IList<TeteUserTokenInfo> TeteUserTokenPropertity(string sql,params SqlParameter[] param)
     {
         DataTable dt = DBHelper.ExecuteDataTable(sql);
         IList<TeteUserTokenInfo> list = new List<TeteUserTokenInfo>();
@@ -60,8 +60,8 @@ public class TeteUserTokenService
             teteusertoken.Nick = Convert.ToString(dr["nick"]);
             teteusertoken.Token = Convert.ToString(dr["token"]);
             teteusertoken.Adddate = Convert.ToDateTime(dr["adddate"]);
-            teteusertoken.Mobile = Convert.ToString(dr["mobile"]);
-            teteusertoken.Updatedate = Convert.ToDateTime(dr["updatedate"]);
+            teteusertoken.Mobile = dr["mobile"] == DBNull.Value ? "" : Convert.ToString(dr["mobile"]);
+            teteusertoken.Updatedate = dr["updatedate"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(dr["updatedate"]);
             teteusertoken.Logintimes = Convert.ToInt32(dr["logintimes"]);
             list.Add(teteusertoken);
         }
