@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-      <table>
+      <table width="100%">
         <tr>
            <td>Token</td>
            <td>安装日期</td>
