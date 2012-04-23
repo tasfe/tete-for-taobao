@@ -168,6 +168,19 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
         else if (act == "getactivityitem")
         {
             //获取用户店铺商品列表
+            //ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
+            //request.Fields = "num_iid,title,price,pic_url";
+            //request.PageSize = pageSizeNow;
+            //request.PageNo = int.Parse(page);
+            //request.Q = q;
+            //if (catid != "0")
+            //{
+            //    request.SellerCids = catid;
+            //}
+
+            //PageList<Item> product = client.ItemsOnsaleGet(request, session);
+
+            //获取用户店铺商品列表
             ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
             request.Fields = "num_iid,title,price,pic_url";
             request.PageSize = pageSizeNow;
@@ -189,6 +202,7 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                 str += "<td  width=\"140px\"><a   href=\"http://item.taobao.com/item.htm?id=" + product.Content[i].NumIid.ToString() + "\" target=\"_blank\">" + product.Content[i].Title + "</a> </td><td   width=\"200px\"><input type=\"text\" size=\"27\" id=\"groupbuylistname" + product.Content[i].NumIid.ToString() + "\"   name=\"groupbuylistname\"  maxlength=\"30\"  value=\"\" /></td><td  width=\"100px\"> " + product.Content[i].Price + "元 <input   type=\"hidden\" id=\"productid" + product.Content[i].NumIid.ToString() + "\" name=\"productid\"  value=\"" + product.Content[i].NumIid.ToString() + "\"><input type=\"hidden\" id=\"price" + product.Content[i].NumIid.ToString() + "\" name=\"price\" value=\"" + product.Content[i].Price.ToString() + "\"></td><td  width=\"100px\">  <input type=\"text\" id=\"zhekou" + product.Content[i].NumIid.ToString() + "\" size=\"10\" name=\"zhekou\" onblur=\"setzekou(this)\" /> 元 <br /> 打<input type=\"text\" size=\"8\" id=\"zhekou1" + product.Content[i].NumIid.ToString() + "\" name=\"zhekou1\"   onblur=\"setprice(this)\"/> 折 <br />限购：<select id=\"xiangou" + product.Content[i].NumIid.ToString() + "\" name=\"xiangou\"> <OPTION selected  value=0>否</OPTION> <OPTION  value=1>是</OPTION> </select>  <span id=\"errmsg" + i + "\" style=\"color:Red\"></span> </td><td  width=\"90px\">  <input type=\"text\"  size=\"8\"  name=\"rcount\" value=\"300\" /> </td><td  width=\"80px\"><a onclick=\"deleteDIV('del1" + product.Content[i].NumIid.ToString() + "')\"  style=\"cursor:hand;\">删除</a></td></tr></table><input id=\"del1" + product.Content[i].NumIid.ToString() + "\" name=\"del\" value='' type=\"hidden\" ></div>";
 
             }
+            Response.Write(str);
             Response.Write("<br>");
             long totalPage = (product.TotalResults % pageSizeNow == 0) ? (product.TotalResults / pageSizeNow) : (product.TotalResults / pageSizeNow + 1);
             //输出分页HTML
