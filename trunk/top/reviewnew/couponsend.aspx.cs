@@ -45,25 +45,31 @@ public partial class top_review_couponsend : System.Web.UI.Page
 
         if (!IsPostBack)
         {
-            BindData();
+            string buynick = utils.NewRequest("buynick", utils.RequestType.QueryString);
+            if (buynick.Length == 0)
+            {
+                BindData();
+            }
+            else
+            {
+                ShowSearchData(buynick);
+            }
         }
     }
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        string buynick = utils.NewRequest("buynick", utils.RequestType.QueryString);
-
-        if (search.Text.Length != 0)
-        {
-            buynick = search.Text.Replace("'", "''");
-        }
-
-        if (buynick.Length == 0)
+        if (search.Text.Length == 0)
         {
             Response.Redirect("couponsend.aspx");
             return;
         }
 
+        ShowSearchData(search.Text.Replace("'", "''"));
+    }
+
+    private void ShowSearchData(string buynick)
+    {
         string sqlNew = "SELECT * FROM TCS_CouponSend WHERE nick = '" + nick + "' AND buynick = '" + buynick + "' ORDER BY taobaonumber DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
