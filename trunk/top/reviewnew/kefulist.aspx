@@ -48,20 +48,20 @@
         <tr>
                 <td width="30"><input type="checkbox" onclick="selectAll()" /></td>
                 <td width="90"><b>买家</b></td>
-                <td width="80"><b>回头客</b></td>
+                <td width="100"><b>回头客</b></td>
                 <td width="120"><b>订单号</b></td>
                 <td width="60"><b>下单日期 </b></td>
                 <td width="60"><b>评价日期 </b></td>
                 <td width="60"><b>评价等级 </b></td>
-                <td width="60"><b>评价内容 </b></td>
-                <td width="160"><b>操作</b></td>
+                <td width="120"><b>评价内容 </b></td>
+                <td width="100"><b>操作</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
                 <td height="35"><input name="id" type="checkbox" value="<%#Eval("orderid")%>" /></td>
                 <td><%#Eval("buynick")%></td>
-                <td>优惠券赠送次数：<%#Eval("giftcount")%> <br /> 优惠券下单次数：<%#Eval("couponcount")%></td>
+                <td>优惠券赠送：<%#Eval("giftcount")%> <br /> 优惠券下单：<%#Eval("couponcount")%></td>
                 <td><%#Eval("orderid")%></td>
                 <td><%#Eval("adddate")%></td>
                 <td><%#Eval("reviewdate")%></td>
