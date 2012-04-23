@@ -48,7 +48,7 @@
         <tr>
                 <td width="30"><input type="checkbox" onclick="selectAll()" /></td>
                 <td width="90"><b>买家</b></td>
-                <td width="60"><b>回头客</b></td>
+                <td width="80"><b>回头客</b></td>
                 <td width="120"><b>订单号</b></td>
                 <td width="60"><b>下单日期 </b></td>
                 <td width="60"><b>评价日期 </b></td>
@@ -62,6 +62,7 @@
                 <td height="35"><input name="id" type="checkbox" value="<%#Eval("orderid")%>" /></td>
                 <td><%#Eval("buynick")%></td>
                 <td>优惠券赠送次数：<%#Eval("giftcount")%> <br /> 优惠券下单次数：<%#Eval("couponcount")%></td>
+                <td><%#Eval("orderid")%></td>
                 <td><%#Eval("adddate")%></td>
                 <td><%#Eval("reviewdate")%></td>
                 <td><img src='<%#getimg(Eval("result").ToString())%>' /></td>
