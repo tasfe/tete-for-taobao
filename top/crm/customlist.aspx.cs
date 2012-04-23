@@ -59,6 +59,51 @@ public partial class top_crm_customlist : System.Web.UI.Page
         BindData();
     }
 
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        StringBuilder builder = new StringBuilder();
+        string sql = "SELECT * FROM TCS_Customer WHERE nick = '" + nick + "'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        builder.Append("买家昵称,省,市,区,手机,性别,等级,交易量,交易额,最后交易,评论次数,优惠券赠送次数,支付红包赠送次数,优惠券使用次数");
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            builder.Append("\r\n");
+            builder.Append(dt.Rows[i]["buynick"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["sheng"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["shi"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["qu"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["mobile"].ToString());
+            builder.Append(",");
+            builder.Append(getsex(dt.Rows[i]["sex"].ToString()));
+            builder.Append(",");
+            builder.Append(getgrade(dt.Rows[i]["grade"].ToString()));
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["tradecount"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["tradeamount"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["lastorderdate"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["reviewcount"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["giftcount"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["alipaycount"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["couponcount"].ToString());
+        }
+        //生成excel文件
+        string fileName = Server.MapPath("tmp/" + nick + DateTime.Now.Ticks.ToString() + ".xls");
+        File.WriteAllText(fileName, builder.ToString());
+        
+        Response.Redirect(fileName);
+    }
+
     /// <summary>
     /// 判断该用户是否订购了该服务
     /// </summary>
