@@ -17,7 +17,7 @@ using System.Data.SqlClient;
 /// </summary>
 public class TeteShopService
 {
-    const string SQL_SELECT = "SELECT nick,sid,appkey,appsecret,session FROM TeteShop";
+    const string SQL_SELECT = "SELECT nick,sid,appkey,appsecret,session,short FROM TeteShop";
 
     const string SQL_SELECT_BY_NICK = "SELECT guid,ads,logo FROM TeteShop WHERE nick=@nick";
 
