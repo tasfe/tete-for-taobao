@@ -26,6 +26,13 @@
        
        </asp:Repeater>
       </table>
+      <div style="background-color: #dedede; margin-top: 15px">
+                    <asp:Label ID="lblCurrentPage" runat="server"></asp:Label>
+                    <asp:HyperLink ID="lnkFrist" runat="server">首页</asp:HyperLink>
+                    <asp:HyperLink ID="lnkPrev" runat="server">上一页</asp:HyperLink>
+                    <asp:HyperLink ID="lnkNext" runat="server">下一页</asp:HyperLink>
+                    <asp:HyperLink ID="lnkEnd" runat="server">尾页</asp:HyperLink>
+     </div>
     </div>
     </form>
 </body>
