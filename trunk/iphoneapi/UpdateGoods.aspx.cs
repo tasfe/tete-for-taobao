@@ -36,7 +36,15 @@ public partial class UpdateGoods : BasePage
 
         IList<TeteShopCategoryInfo> cateList = cateDal.GetAllTeteShopCategory(nick);
 
-        IList<GoodsClassInfo> classList = TaoBaoAPI.GetGoodsClassInfoList(nick, session, info.Appkey, info.Appsecret);
+        try
+        {
+            IList<GoodsClassInfo> classList = TaoBaoAPI.GetGoodsClassInfoList(nick, session, info.Appkey, info.Appsecret);
+        }
+        catch (Exception ex)
+        {
+            Page.RegisterStartupScript("错误", "<script>alert('" + ex.Message + "');</script>");
+            return;
+        }
 
         List<TeteShopCategoryInfo> addList = new List<TeteShopCategoryInfo>();
 
