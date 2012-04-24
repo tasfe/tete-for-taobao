@@ -23,7 +23,11 @@
              <td><%# Eval("Logintimes")%></td>
            </tr>
          </ItemTemplate>
-       
+       <SeparatorTemplate>
+           <tr>
+             <td colspan="3"><hr /></td>
+           </tr>
+       </SeparatorTemplate>
        </asp:Repeater>
       </table>
       <div style="background-color: #dedede; margin-top: 15px">
