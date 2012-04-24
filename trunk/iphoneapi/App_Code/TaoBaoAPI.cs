@@ -239,7 +239,7 @@ public class TaoBaoAPI
             }
             catch (Exception ex)
             {
-                LogInfo.Add("返回json转化为一个商品销售分类出错", text + ex.Message);
+                LogInfo.Add(nick + "返回json转化为一个商品销售分类出错", text + ex.Message);
                 return null;
             }
         }
