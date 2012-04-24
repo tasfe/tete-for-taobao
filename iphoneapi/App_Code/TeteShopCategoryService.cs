@@ -61,7 +61,7 @@ public class TeteShopCategoryService
             teteshopcategory.Catecount = Convert.ToInt32(dr["catecount"]);
             teteshopcategory.Parentid = Convert.ToString(dr["parentid"]);
             teteshopcategory.Nick = Convert.ToString(dr["nick"]);
-            teteshopcategory.Catepicurl = Convert.ToString(dr["catepicurl"]);
+            teteshopcategory.Catepicurl = dr["catepicurl"] == DBNull.Value ? "" : Convert.ToString(dr["catepicurl"]);
             list.Add(teteshopcategory);
         }
         return list;
