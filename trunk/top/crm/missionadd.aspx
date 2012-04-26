@@ -27,6 +27,9 @@
 
     <div id="main-content">
     
+        <input type="button" value="返回列表" onclick="window.location.href='missionlist.aspx'" />
+
+        <hr />
   <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
       您可以创建多个客户营销计划，短信内容最多66个字，超过的话短信将分成多条发送。
   </div>
