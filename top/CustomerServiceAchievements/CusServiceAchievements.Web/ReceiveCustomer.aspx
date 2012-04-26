@@ -51,7 +51,7 @@
             <div id="panel">
                 <ul>
                     <li><a href="CustomerList.aspx" class="report">接待人数</a></li>
-                    <li><a href="#" class="report_seo">成功订单</a></li>
+                    <li><a href="GoodsOrderList.aspx" class="report_seo">成功订单</a></li>
                     <li><a href="#" class="report_seo">付款金额</a></li>
                 </ul>
             </div>
@@ -125,7 +125,7 @@
                             <a href="#" class="report">日统计</a></h3>
                         <ul>
                             <li><a href="#" class="report">接待人数</a></li>
-                            <li><a href="#" class="report">成功订单</a></li>
+                            <li><a href="GoodsOrderList.aspx" class="report">成功订单</a></li>
                             <li><a href="#" class="report">付款金额</a></li>
                         </ul>
                     </li>
@@ -133,8 +133,8 @@
                         <h3>
                             <a href="#" class="folder_table">业绩统计</a></h3>
                         <ul>
-                            <li><a href="#" class="folder_table">成功订单</a></li>
-                            <li><a href="#" class="folder_table">接待人次</a></li>
+                            <li><a href="GoodsOrderList.aspx" class="folder_table">成功订单</a></li>
+                            <li><a href="" class="folder_table">接待人次</a></li>
                             <li><a href="#" class="folder_table">日统计</a></li>
                             <li><a href="#" class="folder_table">月统计</a></li>
                             <li><a href="#" class="folder_table">年统计</a></li>
@@ -142,7 +142,7 @@
                     </li>
                     <li>
                         <h3>
-                            <a href="#" class="invoices">聊天记录</a></h3>
+                            <a href="AllTalkContent.aspx" class="invoices">聊天记录</a></h3>
                         <ul>
                             <li><a href="#" class="invoices">超长响应聊天</a></li>
                             <li><a href="#" class="invoices">流失客户聊天</a></li>
