@@ -154,16 +154,16 @@ public partial class top_crm_missionmodify : System.Web.UI.Page
         switch (grade)
         {
             case "unpay":
-                str = "0";
-                break;
-            case "birthday":
                 str = "1";
                 break;
-            case "back":
+            case "birthday":
                 str = "2";
                 break;
-            case "act":
+            case "back":
                 str = "3";
+                break;
+            case "act":
+                str = "4";
                 break;
         }
 
