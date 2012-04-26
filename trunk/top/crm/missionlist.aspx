@@ -43,7 +43,7 @@
                 <ItemTemplate>
                 <tr>
                     <td height="35"><%#Eval("typ") %></td>
-                    <td><%#Eval("group")%></td>
+                    <td><%#Eval("grade")%></td>
                     <td><%#Eval("adddate")%></td>
                     <td><%#Eval("isact")%></td>
                     <td>编辑 | 删除</td>
