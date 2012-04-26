@@ -20,21 +20,27 @@ public partial class FetchOrderTotal : System.Web.UI.Page
 
             if (CacheCollection.GetNickSessionList().Where(o => o.Nick == nick).ToList().Count > 0)
             {
-
-                DateTime now = DateTime.Now;
-                DataHelper.InsertGoodsOrder(DateTime.Parse(now.AddDays(-7).ToShortDateString()), now, session, nick);
-                //获取聊天记录
-                DateTime start = DataHelper.GetTalkContent(nick, session, now);
-
-                //添加统计数据
-                SiteTotalService taoDal = new SiteTotalService();
-                for (DateTime i = DateTime.Parse(now.AddDays(-7).ToShortDateString()); i <= now; i = i.AddDays(1))
+                try
                 {
-                    DataHelper.UpdateSiteTotal(nick, session, i, taoDal);
-                }
+                    DateTime now = DateTime.Now;
+                    DataHelper.InsertGoodsOrder(DateTime.Parse(now.AddDays(-7).ToShortDateString()), now, session, nick);
+                    //获取聊天记录
+                    DateTime start = DataHelper.GetTalkContent(nick, session, now);
 
-                //添加客服绩效统计
-                DataHelper.GetKfjxTotal(nick, start, now);
+                    //添加统计数据
+                    SiteTotalService taoDal = new SiteTotalService();
+                    for (DateTime i = DateTime.Parse(now.AddDays(-7).ToShortDateString()); i <= now; i = i.AddDays(1))
+                    {
+                        DataHelper.UpdateSiteTotal(nick, session, i, taoDal);
+                    }
+
+                    //添加客服绩效统计
+                    DataHelper.GetKfjxTotal(nick, start, now);
+                }
+                catch (Exception ex)
+                {
+                    LogInfo.WriteLog("出错了", ex.Message);
+                }
 
                 Response.Write("true"); 
                 Response.End();
