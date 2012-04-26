@@ -63,6 +63,29 @@ public partial class top_crm_missionlist : System.Web.UI.Page
         rptArticle.DataBind();
     }
 
+    public static string gettyp(string grade)
+    {
+        string str = string.Empty;
+
+        switch (grade)
+        {
+            case "0":
+                str = "<span style='#eeeeee'>未付款订单催单</span>";
+                break;
+            case "1":
+                str = "<span style='color:blue'>客户生日关怀</span>";
+                break;
+            case "2":
+                str = "<span style='color:green'>买家定期回访</span>";
+                break;
+            case "3":
+                str = "<span style='color:red'>新品活动营销</span>";
+                break;
+        }
+
+        return str;
+    }
+
 
     /// <summary>
     /// 判断该用户是否订购了该服务

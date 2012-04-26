@@ -42,7 +42,7 @@
             <asp:Repeater ID="rptArticle" runat="server">
                 <ItemTemplate>
                 <tr>
-                    <td height="35"><%#Eval("typ") %></td>
+                    <td height="35"><%#gettyp(Eval("typ").ToString())%></td>
                     <td><%#Eval("grade")%></td>
                     <td><%#Eval("adddate")%></td>
                     <td><%#Eval("isstop")%></td>
