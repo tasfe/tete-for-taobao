@@ -288,7 +288,7 @@ public partial class top_review_msglist : System.Web.UI.Page
         }
         else if (str == "cui")
         {
-            newstr = "<font color=#ffff00>未付款催单</font>";
+            newstr = "<font color=#F7D729>未付款催单</font>";
         }
         else
         {
