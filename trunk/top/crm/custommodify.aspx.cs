@@ -69,7 +69,7 @@ public partial class top_crm_custommodify : System.Web.UI.Page
         {
             buynick = dt.Rows[0]["buynick"].ToString();
             birthday = dt.Rows[0]["birthday"].ToString().Replace(" 0:00:00", "");
-            if (birthday == "1900-01-01")
+            if (birthday == "1900-1-1")
             {
                 birthday = "";
             }
