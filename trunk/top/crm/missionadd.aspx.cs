@@ -90,7 +90,9 @@ public partial class top_crm_missionadd : System.Web.UI.Page
         }
 
         utils.ExecuteNonQuery(sql);
-        Response.Redirect("missionlist.aspx");
+
+        Response.Write(sql);
+        //Response.Redirect("missionlist.aspx");
     }
 
 
