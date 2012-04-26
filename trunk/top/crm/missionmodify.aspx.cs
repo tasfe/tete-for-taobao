@@ -88,6 +88,29 @@ public partial class top_crm_missionmodify : System.Web.UI.Page
         }
     }
 
+    public static string gettypinfo(string grade)
+    {
+        string str = string.Empty;
+
+        switch (grade)
+        {
+            case "unpay":
+                str = "<span style='#000'>未付款订单催单</span>";
+                break;
+            case "birthday":
+                str = "<span style='color:blue'>客户生日关怀</span>";
+                break;
+            case "back":
+                str = "<span style='color:green'>买家定期回访</span>";
+                break;
+            case "act":
+                str = "<span style='color:red'>新品活动营销</span>";
+                break;
+        }
+
+        return str;
+    }
+
     protected void Button1_Click(object sender, EventArgs e)
     {
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
