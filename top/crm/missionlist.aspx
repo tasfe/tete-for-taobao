@@ -46,7 +46,7 @@
                     <td>全部会员</td>
                     <td><%#Eval("adddate")%></td>
                     <td><%#getstop(Eval("isstop").ToString())%></td>
-                    <td>编辑 | 删除</td>
+                    <td><a href='missionmodify.aspx?id=<%Eval("guid") %>'>编辑</a> | <a href="missionlist.aspx?act=del&id=<%Eval("guid") %>" onclick="return confirm('您确定要删除吗，该操作不可回复')">删除</a> </td>
                 </tr>
                 </ItemTemplate>
             </asp:Repeater>
