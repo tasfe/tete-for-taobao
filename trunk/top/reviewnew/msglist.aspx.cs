@@ -286,6 +286,10 @@ public partial class top_review_msglist : System.Web.UI.Page
         {
             newstr = "<font color=orange>支付宝红包</font>";
         }
+        else if (str == "cui")
+        {
+            newstr = "<font color=#ffff00>未付款催单</font>";
+        }
         else
         {
             newstr = "<font color=red>赠送礼品</font>";
