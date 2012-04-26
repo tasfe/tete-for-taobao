@@ -57,7 +57,7 @@
                 <td><%#Eval("tradecount")%></td>
                 <td><%#Eval("tradeamount")%></td>
                 <td><%#Eval("lastorderdate").ToString().Replace(" 0:00:00", "")%></td>
-                <td> <a href='custommodify.aspx?id=<%#Eval("guid")%>' target="_blank">编辑会员资料</a> </td>
+                <td> <a href='custommodify.aspx?id=<%#Eval("guid")%>' target="_blank">编辑</a> </td>
             </tr>
             </ItemTemplate>
         </asp:Repeater>
