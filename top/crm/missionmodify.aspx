@@ -36,7 +36,7 @@
 
         <table width="100%">
             <tr>
-                <td align="left" width="120">任务类型：</td>
+                <td align="left" width="120" height="30">任务类型：</td>
                 <td>
                     <%=typ%>
                 </td>
@@ -44,7 +44,10 @@
             <tr>
                 <td align="left" width="120">会员组：</td>
                 <td>
-                    全部会员
+                    <select name="group">
+                        <option value="0">全部会员</option>
+                        
+                    </select>
                 </td>
             </tr>
         </table>
