@@ -79,7 +79,6 @@ public partial class top_crm_missionmodify : System.Web.UI.Page
         if (dt.Rows.Count != 0)
         {
             typ = dt.Rows[0]["typ"].ToString();
-            group = dt.Rows[0]["group"].ToString();
             content = dt.Rows[0]["content"].ToString();
             grade = dt.Rows[0]["grade"].ToString();
             isstop = dt.Rows[0]["isstop"].ToString();
@@ -93,7 +92,7 @@ public partial class top_crm_missionmodify : System.Web.UI.Page
     {
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
         string typ = utils.NewRequest("typ", utils.RequestType.Form);
-        string group = utils.NewRequest("grade", utils.RequestType.Form);
+        string group = utils.NewRequest("group", utils.RequestType.Form);
         string cuicontent = utils.NewRequest("cuicontent", utils.RequestType.Form);
         string cuidate = utils.NewRequest("cuidate", utils.RequestType.Form);
         string birthdaycontent = utils.NewRequest("birthdaycontent", utils.RequestType.Form);
