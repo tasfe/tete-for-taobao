@@ -128,7 +128,7 @@
 
     <script language="javascript" type="text/javascript">
         function InitHiddenArea(obj) {
-            var obj = document.getElementById("area" + obj.options.selectedIndex);
+            var obj = document.getElementById("area" + (obj.options.selectedIndex + 1));
 
             for(var i=1;i<5;i++)
             {
