@@ -51,7 +51,6 @@ public partial class top_crm_missionlist : System.Web.UI.Page
         }
         
         string act = utils.NewRequest("act", utils.RequestType.QueryString);
-        string id = utils.NewRequest("id", utils.RequestType.QueryString);
 
         if (act == "del")
         {
