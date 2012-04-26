@@ -105,9 +105,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="left" height="30">回访时间：</td>
+                    <td align="left" height="30">发送时间：</td>
                     <td>
-                        <input name="cuidate" type="text" value="30" size="4" />天
+                        <input name="actdate" type="text" value="<%=now %>" size="6" />
                     </td>
                 </tr>
             </table>
