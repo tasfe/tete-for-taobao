@@ -76,16 +76,16 @@ public partial class top_crm_missionadd : System.Web.UI.Page
         switch (typ)
         {
             case "unpay":
-                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, group, timecount) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + cuicontent + "','" + group + "','" + cuidate + "')";
+                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade], timecount) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + cuicontent + "','" + group + "','" + cuidate + "')";
                 break;
             case "birthday":
-                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, group) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + birthdaycontent + "','" + group + "')";
+                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + birthdaycontent + "','" + group + "')";
                 break;
             case "back":
-                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, group, timecount) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + backcontent + "','" + group + "','" + backdate + "')";
+                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade, timecount) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + backcontent + "','" + group + "','" + backdate + "')";
                 break;
             case "act":
-                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, group, senddate) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + actcontent + "','" + group + "','" + actdate + "')";
+                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade, senddate) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + actcontent + "','" + group + "','" + actdate + "')";
                 break;
         }
 
