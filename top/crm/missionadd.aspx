@@ -126,6 +126,15 @@
             </div>
             
             <table width="100%">
+                <tr>
+                    <td align="left" height="30" width="120">活动是否启用：</td>
+                    <td>
+                        <select name="isstop">
+                            <option value="0">启动</option>
+                            <option value="1">暂停</option>
+                        </select>
+                    </td>
+                </tr>
             <tr>
                 <td align="left" height="30" colspan="2">
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="创建营销计划" />

@@ -72,20 +72,21 @@ public partial class top_crm_missionadd : System.Web.UI.Page
         string backcontent = utils.NewRequest("backcontent", utils.RequestType.Form);
         string actdate = utils.NewRequest("actdate", utils.RequestType.Form);
         string actcontent = utils.NewRequest("actcontent", utils.RequestType.Form);
+        string isstop = utils.NewRequest("isstop", utils.RequestType.Form);
 
         switch (typ)
         {
             case "unpay":
-                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade, timecount) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + cuicontent + "','" + group + "','" + cuidate + "')";
+                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade, timecount,isstop) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + cuicontent + "','" + group + "','" + cuidate + "','" + isstop + "')";
                 break;
             case "birthday":
-                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + birthdaycontent + "','" + group + "')";
+                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade,isstop) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + birthdaycontent + "','" + group + "','" + isstop + "')";
                 break;
             case "back":
-                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade, timecount) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + backcontent + "','" + group + "','" + backdate + "')";
+                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade, timecount,isstop) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + backcontent + "','" + group + "','" + backdate + "','" + isstop + "')";
                 break;
             case "act":
-                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade, senddate) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + actcontent + "','" + group + "','" + actdate + "')";
+                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade, senddate,isstop) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + actcontent + "','" + group + "','" + actdate + "','" + isstop + "')";
                 break;
         }
 
