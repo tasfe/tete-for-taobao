@@ -87,6 +87,24 @@ public partial class top_crm_missionlist : System.Web.UI.Page
     }
 
 
+    public static string getstop(string grade)
+    {
+        string str = string.Empty;
+
+        switch (grade)
+        {
+            case "0":
+                str = "<span style='#000'>正常执行</span>";
+                break;
+            case "1":
+                str = "<span style='color:red'>暂停中</span>";
+                break;
+        }
+
+        return str;
+    }
+
+
     /// <summary>
     /// 判断该用户是否订购了该服务
     /// </summary>
