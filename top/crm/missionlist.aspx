@@ -15,7 +15,7 @@
         <div>
         <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="javascript:;" class="nolink">特特CRM_客户关系营销</a> 营销任务列表 </div>
+  <div class="crumbs"><a href="javascript:;" class="nolink">特特CRM_客户关系营销</a> 营销计划列表 </div>
   <div class="absright">
     <ul>
       <li>
@@ -28,9 +28,33 @@
 
     <div id="main-content">
     
-  <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
-最多只能导入3个月的历史会员数据，导入时间会稍长，请您耐心等待...
-</div>
+        <input type="button" value="创建营销计划" onclick="window.location.href='missionadd.aspx'" />
+        <hr />
+
+        <table width="740" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td width="100"><b>任务类型</b></td>
+                    <td width="100"><b>会员组</b></td>
+                    <td width="100"><b>创建时间</b></td>
+                    <td width="100"><b>状态</b></td>
+                    <td width="100"><b>操作</b></td>
+                </tr>
+            <asp:Repeater ID="rptArticle" runat="server">
+                <ItemTemplate>
+                <tr>
+                    <td height="35"><%#Eval("typ") %></td>
+                    <td><%#Eval("group")%></td>
+                    <td><%#Eval("adddate")%></td>
+                    <td><%#Eval("isact")%></td>
+                    <td>编辑 | 删除</td>
+                </tr>
+                </ItemTemplate>
+            </asp:Repeater>
+        </table>
+
+    <div>
+        <asp:Label ID="lbPage" runat="server"></asp:Label>
+    </div>
 
     </div>
     </div>

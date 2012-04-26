@@ -96,7 +96,7 @@
                 <tr>
                     <td align="left" height="30">回访时间：</td>
                     <td>
-                        <input name="cuidate" type="text" value="30" size="4" />天
+                        <input name="backdate" type="text" value="30" size="4" />天
                     </td>
                 </tr>
             </table>
