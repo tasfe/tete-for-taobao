@@ -9,6 +9,7 @@ using System.Linq;
 using System.Web;
 using Enum;
 using Model;
+using System.Xml.Serialization;
 
 /// <summary>
 /// Summary description for TaoBaoAPI
@@ -500,5 +501,34 @@ public class TaoBaoAPI
             }
         }
         return list;
+    }
+
+    public static List<TaoBaoAPIHelper.SubUserInfo> GetChildNick(string nick, string session)
+    {
+        IDictionary<string, string> param = new Dictionary<string, string>();
+        param.Add("nick", nick);//美杜莎之心
+        //6102b061e6fe4c1b437274d442350197c9fb5846db06ca8204200856
+        string text = Post(nick, "taobao.sellercenter.subusers.get", session, param, DataFormatType.xml);
+
+        if (text.Contains("error_response"))
+        {
+            LogInfo.WriteLog("加载", "获取子帐号列表" + nick + "出错" + text);
+            return new List<TaoBaoAPIHelper.SubUserInfo>();
+        }
+
+        using (StringReader sr = new StringReader(text))
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(TaoBaoAPIHelper.SubUserInfos));
+            try
+            {
+                TaoBaoAPIHelper.SubUserInfos sui = (TaoBaoAPIHelper.SubUserInfos)serializer.Deserialize(sr);
+                return sui.SubUserInfoList.ToList();
+            }
+            catch (Exception ex)
+            {
+                LogInfo.WriteLog("加载", "获取子帐号列表" + nick + "出错" + ex.Message + text);
+            }
+        }
+        return new List<TaoBaoAPIHelper.SubUserInfo>();
     }
 }
