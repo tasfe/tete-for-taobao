@@ -36,6 +36,6 @@ public partial class TestUserSeePage : System.Web.UI.Page
 
         Response.Cookies.Add(cookie);
         Response.Cookies.Add(cooksession);
-        Response.Redirect("indextongji.html");
+        Response.Redirect("Default2.aspx");
     }
 }
