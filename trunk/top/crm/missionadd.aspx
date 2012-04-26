@@ -117,7 +117,16 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="left" height="30">发送时间：</td>
+                    <td align="left" height="30">是否马上发送：</td>
+                    <td>
+                        <select name="sendnow" onchange="ShowDate(this)">
+                            <option value="1">马上发送</option>
+                            <option value="0">在指定时间发送</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr id="senddatearea" style="display:none;">
+                    <td align="left" height="30">计划发送时间：</td>
                     <td>
                         <input name="actdate" type="text" value="<%=now %>" size="20" />
                     </td>
