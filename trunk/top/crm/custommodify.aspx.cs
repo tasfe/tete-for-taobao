@@ -26,7 +26,7 @@ public partial class top_crm_custommodify : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        string id = utils.NewRequest("id", utils.RequestType.QueryString);
+        id = utils.NewRequest("id", utils.RequestType.QueryString);
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
         session = cookie.getCookie("top_sessiongroupbuy");
