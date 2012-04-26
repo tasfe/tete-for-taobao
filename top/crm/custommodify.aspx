@@ -39,7 +39,9 @@
                 </td>
             </tr>
             <tr>
-                <td align="left" width="birthday" type="text" value="<%=birthday %>" size="20" />
+                <td align="left" width="120" height="30">生日：</td>
+                <td>
+                    <input name="birthday" type="text" value="<%=birthday %>" size="20" />
                 </td>
             </tr>
         
