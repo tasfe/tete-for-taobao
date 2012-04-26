@@ -25,19 +25,19 @@
     </ul>
   </div>
     <div id="main-content">
-        <input type="button" value="优惠券赠送" onclick="window.location.href='msgsend.aspx?typ=<%=typ %>'" />
-        <asp:Button ID="Button1" runat="server" Text="导出全部会员数据" 
-            onclick="Button1_Click" /><br />
     请输入买家昵称：<asp:TextBox ID="search" runat="server"></asp:TextBox>
     <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Text="搜索" />
+    <input type="button" value="优惠券赠送" onclick="window.location.href='msgsend.aspx?typ=<%=typ %>'" />
+        <asp:Button ID="Button1" runat="server" Text="导出全部会员数据" 
+            onclick="Button1_Click" />
         <hr />
 
         <table width="740" cellpadding="0" cellspacing="0">
         <tr>
                 <td width="100"><b>客户昵称</b></td>
                 <td width="50"><b>省</b></td>
-                <td width="50"><b>市</b></td>
-                <td width="50"><b>区</b></td>
+                <!--<td width="50"><b>市</b></td>
+                <td width="50"><b>区</b></td>-->
                 <td width="85"><b>手机</b></td>
                 <td width="40"><b>性别</b></td>
                 <td width="50"><b>等级</b></td>
@@ -51,8 +51,8 @@
             <tr>
                 <td height="35"><%#Eval("buynick") %> <img src='level/<%#Eval("buyerlevel") %>.gif' valign="middle" /></td>
                 <td><%#Eval("sheng")%></td>
-                <td><%#Eval("shi")%></td>
-                <td><%#Eval("qu")%></td>
+                <!--<td><%#Eval("shi")%></td>
+                <td><%#Eval("qu")%></td>-->
                 <td><%#Eval("mobile")%></td>
                 <td><%#getsex(Eval("sex").ToString())%></td>
                 <td><%#getgrade(Eval("grade").ToString())%></td>
