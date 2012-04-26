@@ -34,11 +34,11 @@
         <table width="740" cellpadding="0" cellspacing="0">
             <tr>
                     <td width="100"><b>任务类型</b></td>
-                    <td width="100"><b>会员组</b></td>
-                    <td width="100"><b>创建时间</b></td>
-                    <td width="100"><b>执行时间</b></td>
-                    <td width="100"><b>状态</b></td>
-                    <td width="100"><b>操作</b></td>
+                    <td width="70"><b>会员组</b></td>
+                    <td width="120"><b>创建时间</b></td>
+                    <td width="120"><b>执行时间</b></td>
+                    <td width="70"><b>状态</b></td>
+                    <td width="70"><b>操作</b></td>
                 </tr>
             <asp:Repeater ID="rptArticle" runat="server">
                 <ItemTemplate>
