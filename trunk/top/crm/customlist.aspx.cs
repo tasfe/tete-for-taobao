@@ -376,7 +376,15 @@ public partial class top_crm_customlist : System.Web.UI.Page
         }
         else
         {
-            return DateTime.Parse(str).ToString("yyyy-MM-dd");
+            string date = DateTime.Parse(str).ToString("yyyy-MM-dd");
+            if (date == "1900-01-01")
+            {
+                return "未设置";
+            }
+            else
+            {
+                return date;
+            }
         }
     }
 
