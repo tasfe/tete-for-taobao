@@ -63,7 +63,7 @@ public partial class top_crm_custommodify : System.Web.UI.Page
     /// </summary>
     private void BindData()
     {
-        string sql = "SELECT * FROM TCS_customer WHERE nick = '" + nick + "' AND guid = '" + id + "'";
+        string sql = "SELECT * FROM TCS_Customer WHERE nick = '" + nick + "' AND guid = '" + id + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
@@ -78,7 +78,7 @@ public partial class top_crm_custommodify : System.Web.UI.Page
         string sql = string.Empty;
         string birthday = utils.NewRequest("birthday", utils.RequestType.Form);
 
-        sql = "UPDATE TCS_customer SET birthday = '" + birthday + "' WHERE nick = '" + nick + "' AND guid = '" + id + "'";
+        sql = "UPDATE TCS_Customer SET birthday = '" + birthday + "' WHERE nick = '" + nick + "' AND guid = '" + id + "'";
         utils.ExecuteNonQuery(sql);
 
         Response.Redirect("custommodify.aspx?id=" + id);
