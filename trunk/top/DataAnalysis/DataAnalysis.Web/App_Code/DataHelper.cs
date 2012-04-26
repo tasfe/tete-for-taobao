@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Model;
 using CusServiceAchievements.DAL;
-using TaoBaoAPIHelper;
 
 /// <summary>
 /// 获取来访客户端信息
@@ -357,12 +356,12 @@ public class DataHelper
         trDal.CreateTable(DBHelp.DataHelper.Encrypt(nick));
 
         List<string> childNicks = new List<string>();
-        try
-        {
-            IList<SubUserInfo> userList = TaoBaoAPIHelper.TaoBaoAPI.GetChildNick(nick, session);
-            List<SubUserInfo> hasuserList = userDal.GetAllChildNick(nick);
+        //try
+        //{
+            IList<TaoBaoAPIHelper.SubUserInfo> userList = TaoBaoAPI.GetChildNick(nick, session);
+            List<TaoBaoAPIHelper.SubUserInfo> hasuserList = userDal.GetAllChildNick(nick);
 
-            foreach (SubUserInfo uinfo in userList)
+            foreach (TaoBaoAPIHelper.SubUserInfo uinfo in userList)
             {
                 childNicks.Add(uinfo.nick);
                 if (hasuserList.Where(o => o.nick == uinfo.nick).ToList().Count == 0)
@@ -380,13 +379,12 @@ public class DataHelper
                     max = now.AddDays(-6);
                 }
 
-                List<TalkContent> allcontent = trDal.GetAllContent(now.AddHours(-16), now, nick, fromNick);
+                List<TaoBaoAPIHelper.TalkContent> allcontent = trDal.GetAllContent(now.AddHours(-16), now, nick, fromNick);
 
-
-                List<TalkObj> objList = TaoBaoAPIHelper.TaoBaoAPI.GetTalkObjList(fromNick.Replace("cntaobao", ""), session, max, now);
-                foreach (TalkObj obj in objList)
+                List<TaoBaoAPIHelper.TalkObj> objList = TaoBaoAPIHelper.TaoBaoAPI.GetTalkObjList(fromNick.Replace("cntaobao", ""), session, max, now);
+                foreach (TaoBaoAPIHelper.TalkObj obj in objList)
                 {
-                    List<TalkContent> contents = TaoBaoAPIHelper.TaoBaoAPI.GetTalkContentNow(session, fromNick.Replace("cntaobao", ""), obj.uid.Replace("cntaobao", ""), max, now);
+                    List<TaoBaoAPIHelper.TalkContent> contents = TaoBaoAPIHelper.TaoBaoAPI.GetTalkContentNow(session, fromNick.Replace("cntaobao", ""), obj.uid.Replace("cntaobao", ""), max, now);
 
                     for (int i = 0; i < contents.Count; i++)
                     {
@@ -401,11 +399,11 @@ public class DataHelper
                     }
                 }
             }
-        }
-        catch (Exception ex)
-        {
-            LogInfo.WriteLog("首次加载失败了", ex.Message);
-        }
+        //}
+        //catch (Exception ex)
+        //{
+        //    LogInfo.WriteLog("首次加载失败了", ex.Message);
+        //}
 
         //返回获取聊天记录的开始时间
         return max;
