@@ -76,7 +76,7 @@ public partial class top_crm_missionadd : System.Web.UI.Page
         switch (typ)
         {
             case "unpay":
-                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade], timecount) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + cuicontent + "','" + group + "','" + cuidate + "')";
+                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade, timecount) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + cuicontent + "','" + group + "','" + cuidate + "')";
                 break;
             case "birthday":
                 sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + birthdaycontent + "','" + group + "')";
@@ -91,8 +91,8 @@ public partial class top_crm_missionadd : System.Web.UI.Page
 
         utils.ExecuteNonQuery(sql);
 
-        Response.Write(sql);
-        //Response.Redirect("missionlist.aspx");
+        //Response.Write(sql);
+        Response.Redirect("missionlist.aspx");
     }
 
 
