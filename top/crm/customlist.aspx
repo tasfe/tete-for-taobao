@@ -44,7 +44,8 @@
                 <td width="50"><b>交易量</b></td>
                 <td width="50"><b>交易额</b></td>
                 <td width="55"><b>最后交易</b></td>
-                <td width="70"><b>操作</b></td>
+                <td width="55"><b>生日</b></td>
+                <td width="60"><b>操作</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
@@ -59,6 +60,7 @@
                 <td><%#Eval("tradecount")%></td>
                 <td><%#Eval("tradeamount")%></td>
                 <td><%#Eval("lastorderdate").ToString().Replace(" 0:00:00", "")%></td>
+                <td><%#Eval("birthday")%></td>
                 <td> <a href='custommodify.aspx?id=<%#Eval("guid")%>' target="_blank">编辑</a> </td>
             </tr>
             </ItemTemplate>
