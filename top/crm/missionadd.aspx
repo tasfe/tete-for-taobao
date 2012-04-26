@@ -46,7 +46,7 @@
                     </select>
                 </td>
             </tr>
-            <tr>
+            <tr style="display:none;">
                 <td align="left" width="120">会员组：</td>
                 <td>
                     <select name="group">
