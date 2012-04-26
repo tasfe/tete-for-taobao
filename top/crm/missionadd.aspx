@@ -43,7 +43,16 @@
                     </select>
                 </td>
             </tr>
-            </table>
+            <tr>
+                <td align="left" width="120">会员组：</td>
+                <td>
+                    <select name="group">
+                        <option value="0">全部会员</option>
+                        
+                    </select>
+                </td>
+            </tr>
+        </table>
             <!--催单设置-->
             <div id="area1">
             <table width="100%">
@@ -107,7 +116,7 @@
                 <tr>
                     <td align="left" height="30">发送时间：</td>
                     <td>
-                        <input name="actdate" type="text" value="<%=now %>" size="6" />
+                        <input name="actdate" type="text" value="<%=now %>" size="12" />
                     </td>
                 </tr>
             </table>
