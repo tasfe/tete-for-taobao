@@ -74,7 +74,7 @@ public partial class top_crm_missionmodify : System.Web.UI.Page
     {
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
 
-        string sql = "SELECT * FROM TCS_Mission WHERE id = '" + id + "'";
+        string sql = "SELECT * FROM TCS_Mission WHERE guid = '" + id + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
