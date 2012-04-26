@@ -115,6 +115,24 @@ public partial class top_crm_missionlist : System.Web.UI.Page
     }
 
 
+    public static string getsend(string grade)
+    {
+        string str = string.Empty;
+
+        if (grade.Length == 0)
+        {
+            str = "<span style='#000'>长期执行</span>";
+        }
+        else
+        {
+            str = "<span style='color:red'>" + grade + "</span>";
+
+        }
+
+        return str;
+    }
+
+
     /// <summary>
     /// 判断该用户是否订购了该服务
     /// </summary>
