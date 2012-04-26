@@ -43,9 +43,9 @@
                 <ItemTemplate>
                 <tr>
                     <td height="35"><%#gettyp(Eval("typ").ToString())%></td>
-                    <td><%#Eval("grade")%></td>
+                    <td>全部会员</td>
                     <td><%#Eval("adddate")%></td>
-                    <td><%#Eval("isstop")%></td>
+                    <td><%#getstop(Eval("isstop").ToString())%></td>
                     <td>编辑 | 删除</td>
                 </tr>
                 </ItemTemplate>
