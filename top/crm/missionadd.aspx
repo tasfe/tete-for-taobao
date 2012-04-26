@@ -43,8 +43,10 @@
                     </select>
                 </td>
             </tr>
+            </table>
             <!--催单设置-->
             <div id="area1">
+            <table width="100%">
                 <tr>
                     <td align="left" height="30">催单短信内容：</td>
                     <td>
@@ -54,24 +56,28 @@
                 <tr>
                     <td align="left" height="30">延迟发送时间：</td>
                     <td>
-                        <input name="cuidate" type="text" value="1" />小时
+                        <input name="cuidate" type="text" value="1" size="4" />小时
                     </td>
                 </tr>
+            </table>
             </div>
             
             <!--生日关怀-->
             <div id="area2" style="display:none">
+            <table width="100%">
                 <tr>
                     <td align="left" height="30">生日短信内容：</td>
                     <td>
                         <textarea name="birthdaycontent" cols="40" rows="3"></textarea>
                     </td>
                 </tr>
+            </table>
             </div>
             
 
             <!--定期回访-->
             <div id="area3" style="display:none">
+            <table width="100%">
                 <tr>
                     <td align="left" height="30">定期回访内容：</td>
                     <td>
@@ -81,15 +87,17 @@
                 <tr>
                     <td align="left" height="30">回访时间：</td>
                     <td>
-                        <input name="cuidate" type="text" value="30" />天
+                        <input name="cuidate" type="text" value="30" size="4" />天
                     </td>
                 </tr>
+            </table>
             </div>
 
             
 
             <!--新品活动营销-->
             <div id="area4" style="display:none">
+            <table width="100%">
                 <tr>
                     <td align="left" height="30">活动营销内容：</td>
                     <td>
@@ -99,11 +107,13 @@
                 <tr>
                     <td align="left" height="30">回访时间：</td>
                     <td>
-                        <input name="cuidate" type="text" value="30" />天
+                        <input name="cuidate" type="text" value="30" size="4" />天
                     </td>
                 </tr>
+            </table>
             </div>
-
+            
+            <table width="100%">
             <tr>
                 <td align="left" height="30" colspan="2">
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="创建营销计划" />
