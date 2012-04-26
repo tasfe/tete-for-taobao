@@ -69,16 +69,16 @@ public partial class top_crm_missionlist : System.Web.UI.Page
 
         switch (grade)
         {
-            case "0":
-                str = "<span style='#eeeeee'>未付款订单催单</span>";
+            case "unpay":
+                str = "<span style='#000'>未付款订单催单</span>";
                 break;
-            case "1":
+            case "birthday":
                 str = "<span style='color:blue'>客户生日关怀</span>";
                 break;
-            case "2":
+            case "back":
                 str = "<span style='color:green'>买家定期回访</span>";
                 break;
-            case "3":
+            case "act":
                 str = "<span style='color:red'>新品活动营销</span>";
                 break;
         }
