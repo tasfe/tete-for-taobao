@@ -48,7 +48,7 @@
             <div id="area1">
             <table width="100%">
                 <tr>
-                    <td align="left" height="30">催单短信内容：</td>
+                    <td align="left" height="30" width="120">催单短信内容：</td>
                     <td>
                         <textarea name="cuicontent" cols="40" rows="3"></textarea>
                     </td>
@@ -66,7 +66,7 @@
             <div id="area2" style="display:none">
             <table width="100%">
                 <tr>
-                    <td align="left" height="30">生日短信内容：</td>
+                    <td align="left" height="30" width="120">生日短信内容：</td>
                     <td>
                         <textarea name="birthdaycontent" cols="40" rows="3"></textarea>
                     </td>
@@ -79,7 +79,7 @@
             <div id="area3" style="display:none">
             <table width="100%">
                 <tr>
-                    <td align="left" height="30">定期回访内容：</td>
+                    <td align="left" height="30" width="120">定期回访内容：</td>
                     <td>
                         <textarea name="backcontent" cols="40" rows="3"></textarea>
                     </td>
@@ -99,7 +99,7 @@
             <div id="area4" style="display:none">
             <table width="100%">
                 <tr>
-                    <td align="left" height="30">活动营销内容：</td>
+                    <td align="left" height="30" width="120">活动营销内容：</td>
                     <td>
                         <textarea name="actcontent" cols="40" rows="3"></textarea>
                     </td>
