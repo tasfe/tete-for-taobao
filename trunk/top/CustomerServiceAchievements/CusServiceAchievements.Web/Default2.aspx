@@ -58,10 +58,10 @@
         <div id="wrapper">
             <div id="content">
              <form id="form1" runat="server">
-                <div id="rightnow">
+              <%--  <div id="rightnow">
                     <asp:Button ID="Btn_AddCookie" runat="server" Text="点击测试真实数据" 
                         onclick="Btn_AddCookie_Click" />
-                </div>
+                </div>--%>
                 <div>
                  <p class="youhave">
                   <a href="CustomerList.aspx">客服今天接待情况</a>

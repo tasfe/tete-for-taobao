@@ -100,11 +100,11 @@ public partial class Default2 : BasePage
     }
     protected void Btn_AddCookie_Click(object sender, EventArgs e)
     {
-        HttpCookie cookie = new HttpCookie("nick", HttpUtility.UrlEncode("luckyfish8800"));
-        cookie.Expires = DateTime.Now.AddDays(1);
+        //HttpCookie cookie = new HttpCookie("nick", HttpUtility.UrlEncode("luckyfish8800"));
+        //cookie.Expires = DateTime.Now.AddDays(1);
 
-        Response.Cookies.Add(cookie);
+        //Response.Cookies.Add(cookie);
 
-        Response.Redirect("Default2.aspx");
+        //Response.Redirect("Default2.aspx");
     }
 }
