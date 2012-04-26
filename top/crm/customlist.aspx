@@ -59,8 +59,8 @@
                 <td><%#getgrade(Eval("grade").ToString())%></td>
                 <td><%#Eval("tradecount")%></td>
                 <td><%#Eval("tradeamount")%></td>
-                <td><%#Eval("lastorderdate").ToString().Replace(" 0:00:00", "")%></td>
-                <td><%#Eval("birthday")%></td>
+                <td><%#DateTime.Parse(Eval("lastorderdate").ToString()).ToString("yyyy-MM-dd")%></td>
+                <td><%#DateTime.Parse(Eval("birthday").ToString()).ToString("yyyy-MM-dd")%></td>
                 <td> <a href='custommodify.aspx?id=<%#Eval("guid")%>' target="_blank">编辑</a> </td>
             </tr>
             </ItemTemplate>
