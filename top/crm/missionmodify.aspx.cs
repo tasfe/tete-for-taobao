@@ -93,7 +93,7 @@ public partial class top_crm_missionmodify : System.Web.UI.Page
     {
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
         string typ = utils.NewRequest("typ", utils.RequestType.Form);
-        string group = utils.NewRequest("group", utils.RequestType.Form);
+        string group = utils.NewRequest("grade", utils.RequestType.Form);
         string cuicontent = utils.NewRequest("cuicontent", utils.RequestType.Form);
         string cuidate = utils.NewRequest("cuidate", utils.RequestType.Form);
         string birthdaycontent = utils.NewRequest("birthdaycontent", utils.RequestType.Form);
