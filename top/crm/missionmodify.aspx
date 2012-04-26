@@ -38,7 +38,8 @@
             <tr>
                 <td align="left" width="120" height="30">任务类型：</td>
                 <td>
-                    <%=typ%>
+                    <input type="hidden" name="typ" value="<%=typ %>" />
+                    <%=gettypinfo(typ)%>
                 </td>
             </tr>
             <tr>
