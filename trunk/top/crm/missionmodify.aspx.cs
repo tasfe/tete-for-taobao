@@ -89,6 +89,42 @@ public partial class top_crm_missionmodify : System.Web.UI.Page
         }
     }
 
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        string id = utils.NewRequest("id", utils.RequestType.QueryString);
+        string typ = utils.NewRequest("typ", utils.RequestType.Form);
+        string group = utils.NewRequest("group", utils.RequestType.Form);
+        string cuicontent = utils.NewRequest("cuicontent", utils.RequestType.Form);
+        string cuidate = utils.NewRequest("cuidate", utils.RequestType.Form);
+        string birthdaycontent = utils.NewRequest("birthdaycontent", utils.RequestType.Form);
+        string backdate = utils.NewRequest("backdate", utils.RequestType.Form);
+        string backcontent = utils.NewRequest("backcontent", utils.RequestType.Form);
+        string actdate = utils.NewRequest("actdate", utils.RequestType.Form);
+        string actcontent = utils.NewRequest("actcontent", utils.RequestType.Form);
+        string isstop = utils.NewRequest("isstop", utils.RequestType.Form);
+        string sql = string.Empty;
+
+        switch (typ)
+        {
+            case "unpay":
+                sql = "UPDATE TCS_Mission SET typ = '" + typ + "',content = '" + cuicontent + "',timecount = '" + cuidate + "',isstop = '" + isstop + "' WHERE nick = '" + nick + "' AND guid = '" + id + "'";
+                break;
+            case "birthday":
+                sql = "UPDATE TCS_Mission SET typ = '" + typ + "',content = '" + birthdaycontent + "',isstop = '" + isstop + "' WHERE nick = '" + nick + "' AND guid = '" + id + "'";
+                break;
+            case "back":
+                sql = "UPDATE TCS_Mission SET typ = '" + typ + "',content = '" + backcontent + "',timecount = '" + backdate + "',isstop = '" + isstop + "' WHERE nick = '" + nick + "' AND guid = '" + id + "'";
+                break;
+            case "act":
+                sql = "UPDATE TCS_Mission SET typ = '" + typ + "',content = '" + actcontent + "',senddate = '" + actdate + "',isstop = '" + isstop + "' WHERE nick = '" + nick + "' AND guid = '" + id + "'";
+                break;
+        }
+
+        utils.ExecuteNonQuery(sql);
+
+        Response.Redirect("missionlist.aspx");
+    }
+
     public static string gettyp(string grade)
     {
         string str = string.Empty;
