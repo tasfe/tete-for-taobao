@@ -49,6 +49,17 @@ public partial class top_crm_missionlist : System.Web.UI.Page
             Response.End();
             return;
         }
+        
+        string act = utils.NewRequest("act", utils.RequestType.QueryString);
+        string id = utils.NewRequest("id", utils.RequestType.QueryString);
+
+        if (act == "del")
+        {
+            string sql = "UPDATE TCS_Mission SET isdel = 1 WHERE nick = '" + nick + "' AND guid = '" + id + "'";
+            utils.ExecuteNonQuery(sql);
+            Response.Redirect("missionlist.aspx");
+            return;
+        }
 
         BindData();
     }
