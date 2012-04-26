@@ -74,6 +74,16 @@ public partial class top_crm_missionadd : System.Web.UI.Page
         string actcontent = utils.NewRequest("actcontent", utils.RequestType.Form);
         string isstop = utils.NewRequest("isstop", utils.RequestType.Form);
 
+        //判断是否有同类型活动
+        sql = "SELECT COUNT(*) FROM TCS_Mission WHERE nick = '" + nick + "' AND typ = '" + typ + "' AND isdel = 0";
+        string count = utils.ExecuteString(sql);
+        if (count != "0")
+        {
+            Response.Write("<script>alert('已经有同类型的服务在执行中了！');history.go(-1);</script>");
+            Response.End();
+            return;
+        }
+
         switch (typ)
         {
             case "unpay":
