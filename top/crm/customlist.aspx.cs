@@ -368,6 +368,18 @@ public partial class top_crm_customlist : System.Web.UI.Page
         lbPage.Text = InitPageStr(totalCount, pageUrl);
     }
 
+    public static string getdateshort(string str)
+    {
+        if (str.Length == 0)
+        {
+            return "未设置";
+        }
+        else
+        {
+            return DateTime.Parse(str).ToString("yyyy-MM-dd");
+        }
+    }
+
     public static string getgrade(string grade)
     {
         string str = string.Empty;

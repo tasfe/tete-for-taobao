@@ -60,7 +60,7 @@
                 <td><%#Eval("tradecount")%></td>
                 <td><%#Eval("tradeamount")%></td>
                 <td><%#DateTime.Parse(Eval("lastorderdate").ToString()).ToString("yyyy-MM-dd")%></td>
-                <td><%#DateTime.Parse(Eval("birthday").ToString()).ToString("yyyy-MM-dd")%></td>
+                <td><%#getdateshort(Eval("birthday").ToString())%></td>
                 <td> <a href='custommodify.aspx?id=<%#Eval("guid")%>' target="_blank">编辑</a> </td>
             </tr>
             </ItemTemplate>
