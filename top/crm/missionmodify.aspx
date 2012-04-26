@@ -115,7 +115,7 @@
                 <tr>
                     <td align="left" height="30">发送时间：</td>
                     <td>
-                        <input name="actdate" type="text" value="<%=timecount %>" size="20" />
+                        <input name="actdate" type="text" value="<%=senddate %>" size="20" />
                     </td>
                 </tr>
             </table>
