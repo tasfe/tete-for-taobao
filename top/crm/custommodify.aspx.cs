@@ -68,7 +68,7 @@ public partial class top_crm_custommodify : System.Web.UI.Page
         if (dt.Rows.Count != 0)
         {
             buynick = dt.Rows[0]["buynick"].ToString();
-            birthday = dt.Rows[0]["birthday"].ToString();
+            birthday = dt.Rows[0]["birthday"].ToString().Replace("0:00:00", ""); ;
         }
     }
 
