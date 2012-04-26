@@ -60,6 +60,23 @@ public partial class top_crm_customlist : System.Web.UI.Page
     }
 
 
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        if (search.Text.Trim() == "")
+        {
+            Response.Redirect("customlist.aspx");
+            return;
+        }
+
+        string sqlNew = "SELECT * FROM TCS_Customer WITH (NOLOCK) WHERE nick = '" + nick + "' AND buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
+        DataTable dt = utils.ExecuteDataTable(sqlNew);
+
+        rptArticle.DataSource = dt;
+        rptArticle.DataBind();
+
+        lbPage.Text = "";
+    }
+
     protected void Button1_Click(object sender, EventArgs e)
     {
         StringBuilder builder = new StringBuilder();
