@@ -17,6 +17,10 @@ public partial class top_reviewnew_saletotal : System.Web.UI.Page
     public string nick = string.Empty;
     public string totalcount = string.Empty;
     public string totalprice = string.Empty;
+    public string totalcount1 = string.Empty;
+    public string totalprice1 = string.Empty;
+    public string totalcount2 = string.Empty;
+    public string totalprice2 = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -55,10 +59,25 @@ public partial class top_reviewnew_saletotal : System.Web.UI.Page
 
     private void BindData()
     {
+        //优惠券带来的
         string sql = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND iscoupon = 1";
         totalcount = utils.ExecuteString(sql);
 
         sql = "SELECT SUM(Convert(decimal,totalprice)) FROM TCS_Trade WHERE nick = '" + nick + "' AND iscoupon = 1";
         totalprice = utils.ExecuteString(sql);
+
+        //免邮卡带来的
+        sql = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND orderid IN (SELECT orderid FROM TCS_FreeCardLog WHERE nick = '" + nick + "')";
+        totalcount1 = utils.ExecuteString(sql);
+
+        sql = "SELECT SUM(Convert(decimal,totalprice)) FROM TCS_Trade WHERE nick = '" + nick + "' AND orderid IN (SELECT orderid FROM TCS_FreeCardLog WHERE nick = '" + nick + "')";
+        totalprice1 = utils.ExecuteString(sql);
+
+        //催单有礼带来的
+        sql = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND orderid IN (SELECT orderid FROM TCS_MsgSend WHERE nick = '" + nick + "' AND typ = 'cui')";
+        totalcount2 = utils.ExecuteString(sql);
+
+        sql = "SELECT SUM(Convert(decimal,totalprice)) FROM TCS_Trade WHERE nick = '" + nick + "' AND orderid IN (SELECT orderid FROM TCS_MsgSend WHERE nick = '" + nick + "' AND typ = 'cui')";
+        totalprice2 = utils.ExecuteString(sql);
     }
 }

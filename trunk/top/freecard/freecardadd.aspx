@@ -29,7 +29,7 @@
 
 <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
     友情提醒：本服务到期后，此包邮卡将失效！！<br />
-    包邮卡的赠送提醒是通过短信将包邮卡的到期时间和使用次数发送到客户手机上的，如果您账户中的短信数量为0，则无法发送客户获得包邮卡的提醒<br />
+    <!--包邮卡的赠送提醒是通过短信将包邮卡的到期时间和使用次数发送到客户手机上的，如果您账户中的短信数量为0，则无法发送客户获得包邮卡的提醒--><br />
     <a href='http://bangpai.taobao.com/group/thread/1091516-271728358.htm' target="_blank">教程</a>
 </div>
                 <input type="button" value="返回列表" onclick="window.location.href='freecardlist.aspx'" />
