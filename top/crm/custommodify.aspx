@@ -63,6 +63,18 @@
                 </td>
             </tr>
             <tr>
+                <td align="left" width="120" height="30">姓名：</td>
+                <td>
+                    <asp:Label ID="Label4" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" width="120" height="30">手机：</td>
+                <td>
+                    <asp:Label ID="Label5" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
                 <td align="left" width="120" height="30">生日：</td>
                 <td>
                     <input name="birthday" type="text" value="<%=birthday %>" size="20" />
