@@ -225,7 +225,6 @@ h4 a {
       <td style="vertical-align: top;" valign="top">
 
       <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-          
           <tr>
            <td><div class="item_list item_list_left_top">
                 <div class="title_contents">
@@ -248,6 +247,23 @@ h4 a {
                 <p style="clear: both; height: 1px;"></p>
               </div></td>
           </tr>
+
+          
+          <tr>
+           <td><div class="item_list item_list_left_top">
+                <div class="title_contents">
+                  <h4 style="padding-left: 0px"><img src="images/icon_3.gif" width="32" height="32"
+													style="vertical-align: middle; margin-right: 0px" /><a href="../crm/customlist.aspx">客户关系管理</a>  <a href='../crm/customlist.aspx' class="qubie">(单独订购)</a></h4>
+                  <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
+                  <p> 管理您的客户，批量赠送优惠券，一键导出客户信息全部搞定</p>
+                </div>
+                <div class="item_list_btn"><a href="../crm/customlist.aspx" class="btn-middle middle-blue">立即使用</a></div>
+                <p style="clear: both; height: 1px;"></p>
+              </div></td>
+            <td></td>
+          </tr>
+
+
         </table>
         </td>
     </tr>
