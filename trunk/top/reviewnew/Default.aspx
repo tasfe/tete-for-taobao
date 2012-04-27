@@ -211,7 +211,7 @@ h4 a {
   </table>
 
   <br />
-  <div style="font: 22px 微软雅黑; font-weight:bold;">友情提醒，以下服务需要单独订购~</div>
+  <div style="font: 22px 微软雅黑;  color:Red; padding-left:20px;">友情提醒，以下服务需要单独订购~</div>
   <br />
 
   <table width="100%" style="border:1px solid #ABCCDC;" align="center" cellpadding="0"
