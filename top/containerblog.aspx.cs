@@ -440,7 +440,15 @@ public partial class top_containerblog : System.Web.UI.Page
                     //CRM购买判定
                     if (match[i].Groups[1].ToString() == "service-0-22904-11")
                     {
-                        sql = "UPDATE TCS_ShopSession SET plus = 'crm' WHERE nick = '" + nick + "'";
+                        sql = "UPDATE TCS_ShopSession SET plus = plus + '|crm' WHERE nick = '" + nick + "'";
+
+                        utils.ExecuteNonQuery(sql);
+                    }
+
+                    //CRM购买判定
+                    if (match[i].Groups[1].ToString() == "service-0-22904-12")
+                    {
+                        sql = "UPDATE TCS_ShopSession SET plus = plus + '|freecard' WHERE nick = '" + nick + "'";
 
                         utils.ExecuteNonQuery(sql);
                     }
