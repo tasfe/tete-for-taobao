@@ -103,7 +103,7 @@ h4 a {
         评 <br />
         有 <br />
         礼 <br />
-        八 <br />
+        十 <br />
         大 <br />
         功 <br />
         能 </td>
@@ -200,6 +200,28 @@ h4 a {
                   <p> 管理您的客户，批量赠送优惠券，一键导出客户信息全部搞定</p>
                 </div>
                 <div class="item_list_btn"><a href="../crm/customlist.aspx" class="btn-middle middle-blue">立即使用</a></div>
+                <p style="clear: both; height: 1px;"></p>
+              </div></td>
+          </tr>
+          <tr>
+           <td><div class="item_list item_list_left_top">
+                <div class="title_contents">
+                  <h4 style="padding-left: 0px"><img src="images/icon_2.gif" width="32" height="32"
+													style="vertical-align: middle; margin-right: 0px" /><a href="../freecard/freecardadd.aspx">包邮卡</a> <a href='../freecard/freecardadd.aspx' class="qubie">(单独订购)</a></h4>
+                  <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
+                  <p> 下单免邮费，可设置包邮时间和包邮次数，手动赠送给买家，让你的2次销售猛增。</p>
+                </div>
+                <div class="item_list_btn"><a href="../freecard/freecardadd.aspx" class="btn-middle middle-blue">立即使用</a></div>
+                <p style="clear: both; height: 1px;"></p>
+              </div></td>
+            <td><div class="item_list item_list_right_top">
+                <div class="title_contents">
+                  <h4 style="padding-left: 0px"><img src="images/icon_4.gif" width="32" height="32"
+													style="vertical-align: middle; margin-right: 0px" /><a href="../crm/missionadd.aspx">未付款订单催单</a>  <a href='../crm/missionadd.aspx' class="qubie">(单独订购)</a></h4>
+                  <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
+                  <p> 对未付款订单进行短信催付款，让您的未付款订单不再流失</p>
+                </div>
+                <div class="item_list_btn"><a href="../crm/missionadd.aspx" class="btn-middle middle-blue">立即使用</a></div>
                 <p style="clear: both; height: 1px;"></p>
               </div></td>
           </tr>
