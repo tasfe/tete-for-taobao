@@ -191,9 +191,9 @@ h4 a {
   <table width="100%" style="border:1px solid #ABCCDC;" align="center" cellpadding="0"
 				cellspacing="1" style="line-height: 25px;">
     <tr>
-      <td style="font: 22px 微软雅黑; border-right: 1px solid #C5DCE7; vertical-align: middle; color: #000000; padding-left: 18px" width="40px"> 好 <br />
-        其 <br />
-        它 <br />
+      <td style="font: 22px 微软雅黑; border-right: 1px solid #C5DCE7; vertical-align: middle; color: #000000; padding-left: 18px" width="40px">
+        推 <br />
+        荐 <br />
         服 <br />
         务 <br /></td>
       <td style="vertical-align: top;" valign="top">
