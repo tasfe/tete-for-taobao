@@ -74,6 +74,10 @@ public partial class top_crm_custommodify : System.Web.UI.Page
                 birthday = "";
             }
             lbAddress.Text = dt.Rows[0]["address"].ToString();
+
+            Label1.Text = dt.Rows[0]["sheng"].ToString();
+            Label2.Text = dt.Rows[0]["shi"].ToString();
+            Label3.Text = dt.Rows[0]["qu"].ToString();
         }
     }
 
