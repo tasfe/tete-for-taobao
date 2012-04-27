@@ -44,7 +44,7 @@
             <tr>
                 <td height="35"><%#Eval("buynick")%></td>
                 <td><%#Eval("startdate")%></td>
-                <td><%#Eval("carddate")%></td>
+                <td><%#Eval("carddate")%>个月</td>
                 <td><%#Eval("usecount")%></td>
                 <td><%#Eval("usecountlimit")%></td>
                 <td><a href='freecardlog.aspx?id=<%#Eval("guid")%>'>查看使用记录</a> <!--| <a href='freecardcustomermodify.aspx?id=<%#Eval("guid")%>'>编辑</a>
