@@ -31,12 +31,12 @@
         
         最近30天内，包邮卡共为您带来了<%=totalcount1 %>个二次销售，总金额为<%=totalprice1 %>。<br />
 
-        <a href='salelistfreecard.aspx'>点击查看详细清单</a> | <a href='../crm/missionadd.aspx'>立即使用</a>
+        <a href='salelistfreecard.aspx'>点击查看详细清单</a> | <a href='../freecard/freecardadd.aspx'>立即使用</a>
         <hr />
         
         最近30天内，催单短信共为您带来了<%=totalcount2 %>个销售，总金额为<%=totalprice2 %>。<br />
 
-        <a href='salelistcui.aspx'>点击查看详细清单</a> | <a href='../freecard/freecardadd.aspx'>立即使用</a>
+        <a href='salelistcui.aspx'>点击查看详细清单</a> | <a href='../crm/missionadd.aspx'>立即使用</a>
     </div>
     </form>
 </body>
