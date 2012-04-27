@@ -78,6 +78,8 @@ public partial class top_crm_custommodify : System.Web.UI.Page
             Label1.Text = dt.Rows[0]["sheng"].ToString();
             Label2.Text = dt.Rows[0]["shi"].ToString();
             Label3.Text = dt.Rows[0]["qu"].ToString();
+            Label4.Text = dt.Rows[0]["truename"].ToString();
+            Label5.Text = dt.Rows[0]["mobile"].ToString();
         }
     }
 
