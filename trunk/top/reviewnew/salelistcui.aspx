@@ -13,7 +13,7 @@
     <form id="form1" runat="server">
 <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="default.aspx" class="nolink">好评有礼</a> 2次购买记录 </div>
+  <div class="crumbs"><a href="default.aspx" class="nolink">好评有礼</a> 催单购买记录 </div>
   <div class="absright">
     <ul>
       <li>
@@ -24,6 +24,9 @@
     </ul>
   </div>
     <div id="main-content">
+    <input type="button" value="返回" onclick="window.location.href='saletotal.aspx'" />
+    
+    <hr />
         <table width="720" cellpadding="0" cellspacing="0">
         <tr>
                 <td width="120"><b>买家昵称</b></td>
