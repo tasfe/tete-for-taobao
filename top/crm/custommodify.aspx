@@ -39,6 +39,24 @@
                 </td>
             </tr>
             <tr>
+                <td align="left" width="120" height="30">省：</td>
+                <td>
+                    <asp:Label ID="Label1" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" width="120" height="30">市：</td>
+                <td>
+                    <asp:Label ID="Label2" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" width="120" height="30">区：</td>
+                <td>
+                    <asp:Label ID="Label3" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
                 <td align="left" width="120" height="30">地址：</td>
                 <td>
                     <asp:Label ID="lbAddress" runat="server"></asp:Label>
