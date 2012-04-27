@@ -73,6 +73,7 @@ public partial class top_crm_custommodify : System.Web.UI.Page
             {
                 birthday = "";
             }
+            lbAddress.Text = dt.Rows[0]["address"].ToString();
         }
     }
 
