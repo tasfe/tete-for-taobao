@@ -24,6 +24,9 @@
     </ul>
   </div>
     <div id="main-content">
+    <input type="button" value="返回" onclick="window.location.href='saletotal.aspx'" />
+    
+    <hr />
         <table width="720" cellpadding="0" cellspacing="0">
         <tr>
                 <td width="120"><b>买家昵称</b></td>
