@@ -33,7 +33,7 @@
         <img src="http://a.tbcdn.cn/sys/wangwang/smiley/48x48/68.gif" /> 
         <span style="font-size:16px;"><%=msg %></span>
         <br> 
-        <span style="color:red">订购完成后需要重新进入服务才能正常使用，赠送的短信请联系客服领取。</span>
+        <span style="color:red; font-size:14px;">订购完成后需要重新进入服务才能正常使用，赠送的短信请联系客服领取。</span>
         <br> 
         <a href='javascript:history.go(-1)'>返回</a>
     </div>
