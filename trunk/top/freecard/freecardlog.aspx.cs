@@ -41,7 +41,7 @@ public partial class top_freecard_freecardlog : System.Web.UI.Page
         //过期判断
         if (!IsBuy(nick))
         {
-            string msg = "尊敬的" + nick + "，非常抱歉的告诉您，您尚未订购该功能，如需继续使用请购买该服务:<br><br>10元/月 【赠送短信20条】 <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-12:1;' target='_blank'>立即购买</a><br><br>28元/季 【赠送短信60条】 <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-12:3;' target='_blank'>立即购买</a><br><br>54元/半年 【赠送短信120条】<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-12:6;' target='_blank'>立即购买</a><br><br>99元/年 【赠送短信240条】<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-12:12;' target='_blank'>立即购买</a><br>";
+            string msg = "尊敬的" + nick + "，非常抱歉的告诉您，您尚未订购该功能，如需继续使用请购买该服务:<br><br>29元/月 【赠送短信100条】 <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-11:1;' target='_blank'>立即购买</a><br><br>78元/季 【赠送短信300条】 <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-11:3;' target='_blank'>立即购买</a><br><br>148元/半年 【赠送短信600条】<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-11:6;' target='_blank'>立即购买</a><br><br>288元/年 【赠送短信1200条】<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-11:12;' target='_blank'>立即购买</a><br>";
             Response.Redirect("buy.aspx?msg=" + HttpUtility.UrlEncode(msg));
             Response.End();
             return;
