@@ -17,7 +17,7 @@
     <input type="hidden" name="t" id="t" value="" />
 <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="javascript:;" class="nolink">营销推广</a> 版本升级提示 </div>
+  <div class="crumbs"><a href="../reviewnew/default.aspx" class="nolink">特特软件</a> 版本升级提示 </div>
   <div class="absright">
     <ul>
       <li>
@@ -33,7 +33,7 @@
         <img src="http://a.tbcdn.cn/sys/wangwang/smiley/48x48/68.gif" /> 
         <span style="font-size:16px;"><%=msg %></span>
         <br> 
-        订购完成后需要重新进入服务才能正常使用，赠送的短信请联系客服领取。
+        <span style="color:red">订购完成后需要重新进入服务才能正常使用，赠送的短信请联系客服领取。</span>
         <br> 
         <a href='javascript:history.go(-1)'>返回</a>
     </div>
