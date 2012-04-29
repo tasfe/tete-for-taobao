@@ -127,7 +127,7 @@ public partial class top_groupbuy_activitytaobaoItem : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         taobaoNick = encode.Decrypt(taobaoNick);
 
-        string sql = "SELECT * FROM TopTaobaoShopCat WHERE nick = '" + taobaoNick + "'";
+          sql = "SELECT * FROM TopTaobaoShopCat WHERE nick = '" + taobaoNick + "'";
 
         DataTable dt = utils.ExecuteDataTable(sql);
 
