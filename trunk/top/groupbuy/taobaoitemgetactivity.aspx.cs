@@ -270,6 +270,9 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                             {
                                 yhCount = " <span id=\"duojian" + product.Content[i].NumIid.ToString() + "\" style=\"display: none;\">多件<input type=\"hidden\" id=\"decreaseNumHiden" + product.Content[i].NumIid.ToString() + "\" value=\"0\" name=\"decreaseNumHiden\"></span> <span  style=\"display: inline;\" id=\"yijian" + product.Content[i].NumIid.ToString() + "\"><select onchange=\"decreaseNumChange(" + product.Content[i].NumIid.ToString() + ")\" id=\"decreaseNumSel" + product.Content[i].NumIid.ToString() + "\" name=\"decreaseNumSel\"> <option  value=\"0\">多件</option> <option value=\"1\" selected=\"selected\">一件</option> </select></span>";
                             }
+
+                            
+                            newPrice2 = (decimal.Parse(product.Content[i].Price) - decimal.Parse(yuandiscountValue)).ToString();
                         }
                         else
                         {
