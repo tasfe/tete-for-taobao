@@ -196,6 +196,49 @@
 
             	<input type="hidden" name="itemsStrValues" id="itemsStrValues" value="" />
 
+                <script type="text/javascript">
+                    function changeSelect(iid) {
+
+                        var oldPrice = $('#price' + iid).val();
+                        if ($('#discountType' + iid).val() == 'DISCOUNT') {
+                            var zhe = $('#changeZhe' + iid).val();
+                            if (zhe == '') zhe = 10;
+                            var newPrice = formatnumber(oldPrice * zhe * 0.1, 2);
+                            $('#newPrice' + iid).html(newPrice);
+                            $('#zheDiv' + iid).show();
+                            $('#jianDiv' + iid).hide();
+                            $('#duojian' + iid).show();
+                            $('#yijian' + iid).hide();
+                        }
+                        else {
+                            var jian = $('#changeJian' + iid).val();
+                            if (jian == '') jian = 0;
+                            var newPrice = formatnumber(oldPrice - jian, 2);
+                            $('#newPrice' + iid).html(newPrice);
+                            $('#zheDiv' + iid).hide();
+                            $('#jianDiv' + iid).show();
+                            $('#duojian' + iid).hide();
+                            $('#yijian' + iid).show();
+                        }
+
+                    }
+
+                    function blurValue(iid) {
+                        var oldPrice = $('#oldPrice' + iid).text();
+                        if ($('#discountType' + iid).val() == 'DISCOUNT') {
+                            var zhe = $('#changeZhe' + iid).val();
+                            if (zhe == '') zhe = 10;
+                            var newPrice = formatnumber(oldPrice * zhe * 0.1, 2);
+                            $('#newPrice' + iid).html(newPrice);
+                        } else {
+                            var jian = $('#changeJian' + iid).val();
+                            if (jian == '') jian = 0;
+                            var newPrice = formatnumber(oldPrice - jian, 2);
+                            $('#newPrice' + iid).html(newPrice);
+                        }
+                    } 
+                </script>
+
     <script language="javascript" type="text/javascript">
         function InitArea(obj) {
             getResultStr(obj.value);
