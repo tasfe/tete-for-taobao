@@ -153,7 +153,8 @@
 
     <table width="800px;" border="0" cellspacing="0" cellpadding="0" style="margin:4px; padding:0px">			
    <tr>
-					  <td  width="100px">商品图片</td>
+                         <td  width="15px"></td>
+					  <td  width="85px">商品图片</td>
 		                <td  width="140px">名称</td>
                         <td  width="70px">原价(元)</td>
 		                <td  width="70px">促销价(元)</td>
@@ -170,7 +171,7 @@
 <div  id="taobaoitem">	
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:0px; padding:0px" >
                       <tr >
-                        <td colspan=4  >
+                        <td colspan=10  >
                             <asp:Repeater ID="rptItems" runat="server">
                                 <ItemTemplate>
         	                        <input name="items" id='item_<%#Eval("NumIid") %>' type="checkbox" value='<%#Eval("NumIid") %>' title='<%#Eval("title") %>' onclick="SetInitArea(this)" /> <label for='item_<%#Eval("NumIid") %>'><%#Eval("title") %></label> <br />
