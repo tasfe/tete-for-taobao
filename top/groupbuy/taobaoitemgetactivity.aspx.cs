@@ -189,6 +189,21 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
             string itemtypevalue2 = string.Empty;
             string yhCount=string.Empty;
             string hdstr = string.Empty;
+            string aid = Request.QueryString["aid"].ToString();
+            string yuanitemtype = "";
+            string yuandiscountType = "";
+            string yuandiscountValue = "";
+            string yuandecreaseNum = "";
+   
+            string sql2 = "select * from tete_activity where id="+aid;
+            DataTable dt33 = utils.ExecuteDataTable(sql2);
+            if (dt33 != null)
+            {
+                yuanitemtype = dt33.Rows[0]["itemType"].ToString();
+                yuandiscountType = dt33.Rows[0]["discountType"].ToString();
+                yuandiscountValue = dt33.Rows[0]["discountValue"].ToString();
+                yuandecreaseNum = dt33.Rows[0]["decreaseNum"].ToString();
+            }
             //输出页面HTML
             for (int i = 0; i < product.Content.Count; i++)
             {
@@ -218,10 +233,15 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                     }
                     else
                     {
-                        itemtype2 = "<select onchange=\"changeSelect(" + product.Content[i].NumIid.ToString() + ")\" id=\"discountType" + product.Content[i].NumIid.ToString() + "\" name=\"discountType\" > <option selected=\"selected\"   value=\"DISCOUNT\">打折</option><option value=\"PRICE\">减价</option> </select>";
+                        itemtype2 = "<select onchange=\"changeSelect(" + product.Content[i].NumIid.ToString() + ")\" id=\"discountType" + product.Content[i].NumIid.ToString() + "\" name=\"discountType\" > <option   value=\"DISCOUNT\">打折</option><option  selected=\"selected\"  value=\"PRICE\">减价</option> </select>";
 
-                        yhCount = " <span id=\"duojian" + product.Content[i].NumIid.ToString() + "\" style=\"display: none;\">多件<input type=\"hidden\" id=\"decreaseNumHiden" + product.Content[i].NumIid.ToString() + "\" value=\"0\" name=\"decreaseNumHiden\"></span> <span style=\"display: inline;\" id=\"yijian" + product.Content[i].NumIid.ToString() + "\"><select onchange=\"decreaseNumChange(" + product.Content[i].NumIid.ToString() + ")\" id=\"decreaseNumSel" + product.Content[i].NumIid.ToString() + "\" name=\"decreaseNumSel\"> <option selected=\"selected\" value=\"0\">多件</option> <option value=\"1\">一件</option> </select></span>";
-
+                        if (dtNew2.Rows[0]["decreaseNum"].ToString() == "0")
+                        {
+                            yhCount = " <span id=\"duojian" + product.Content[i].NumIid.ToString() + "\" style=\"display: none;\">多件<input type=\"hidden\" id=\"decreaseNumHiden" + product.Content[i].NumIid.ToString() + "\" value=\"0\" name=\"decreaseNumHiden\"></span> <span style=\"display: inline;\" id=\"yijian" + product.Content[i].NumIid.ToString() + "\"><select onchange=\"decreaseNumChange(" + product.Content[i].NumIid.ToString() + ")\" id=\"decreaseNumSel" + product.Content[i].NumIid.ToString() + "\" name=\"decreaseNumSel\"> <option selected=\"selected\" value=\"0\">多件</option> <option value=\"1\">一件</option> </select></span>";
+                        }
+                        else {
+                            yhCount = " <span id=\"duojian" + product.Content[i].NumIid.ToString() + "\" style=\"display: none;\">多件<input type=\"hidden\" id=\"decreaseNumHiden" + product.Content[i].NumIid.ToString() + "\" value=\"0\" name=\"decreaseNumHiden\"></span> <span style=\"display: inline;\" id=\"yijian" + product.Content[i].NumIid.ToString() + "\"><select onchange=\"decreaseNumChange(" + product.Content[i].NumIid.ToString() + ")\" id=\"decreaseNumSel" + product.Content[i].NumIid.ToString() + "\" name=\"decreaseNumSel\"> <option value=\"0\">多件</option> <option value=\"1\"  selected=\"selected\">一件</option> </select></span>";
+                        }
                         itemtypevalue2 = " <div id=\"zheDiv" + product.Content[i].NumIid.ToString() + "\" style=\"display: none;\" ><input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeZhe" + product.Content[i].NumIid.ToString() + "\" value=\"9\" name=\"discountValue\" style=\"width:30px\">折</div><div style=\"display: block;\" id=\"jianDiv" + product.Content[i].NumIid.ToString() + "\">减<input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeJian" + product.Content[i].NumIid.ToString() + "\" name=\"discountValue\" style=\"width:30px\" value=\"" + discountValue + "\" >元</div>";
                         newPrice2 = (decimal.Parse(price2) -decimal.Parse(discountValue)).ToString();
                         
@@ -229,17 +249,47 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                     }
                 }
                 else {
+                    if (yuanitemtype == "same")
+                    {
+                        //same：每个参加活动的宝贝设置相同促销力度,different：每个参加活动的宝贝设置不同促销力度）
+                        //decreaseNum		是否优惠限制（0,1）
+                        hdstr = " <div id=\"add" + product.Content[i].NumIid.ToString() + "\"><a href=\"javascript:addItemAction(12305275000)\">参加活动</a></div>";
+                        itemtype2 = "<select onchange=\"changeSelect(" + product.Content[i].NumIid.ToString() + ")\" id=\"discountType" + product.Content[i].NumIid.ToString() + "\" name=\"discountType\" > <option selected=\"selected\" value=\"DISCOUNT\">打折</option><option value=\"PRICE\">减价</option> </select>";
 
-                    hdstr = " <div id=\"add" + product.Content[i].NumIid.ToString() + "\"><a href=\"javascript:addItemAction(12305275000)\">参加活动</a></div>";
-                    itemtype2 = "<select onchange=\"changeSelect(" + product.Content[i].NumIid.ToString() + ")\" id=\"discountType" + product.Content[i].NumIid.ToString() + "\" name=\"discountType\" > <option selected=\"selected\" value=\"DISCOUNT\">打折</option><option value=\"PRICE\">减价</option> </select>";
+                        if (yuandiscountType == "PRICE")
+                        {
+                            itemtypevalue2 = " <div id=\"zheDiv" + product.Content[i].NumIid.ToString() + "\" style=\"display: none;\"><input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeZhe" + product.Content[i].NumIid.ToString() + "\" value=\"\" name=\"discountValue\" style=\"width:30px\">折</div><div  style=\"display:block ;\" id=\"jianDiv" + product.Content[i].NumIid.ToString() + "\">减<input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeJian" + product.Content[i].NumIid.ToString() + "\" name=\"discountValue\" style=\"width:30px\" value=\"" + yuandiscountValue + "\" >元</div>";
+                            if (yuandecreaseNum == "0")
+                            {
+                                yhCount = " <span id=\"duojian" + product.Content[i].NumIid.ToString() + "\" style=\"display: none;\">多件<input type=\"hidden\" id=\"decreaseNumHiden" + product.Content[i].NumIid.ToString() + "\" value=\"0\" name=\"decreaseNumHiden\"></span> <span  style=\"display: inline;\" id=\"yijian" + product.Content[i].NumIid.ToString() + "\"><select onchange=\"decreaseNumChange(" + product.Content[i].NumIid.ToString() + ")\" id=\"decreaseNumSel" + product.Content[i].NumIid.ToString() + "\" name=\"decreaseNumSel\"> <option selected=\"selected\" value=\"0\">多件</option> <option value=\"1\">一件</option> </select></span>";
+                            }
+                            else
+                            {
+                                yhCount = " <span id=\"duojian" + product.Content[i].NumIid.ToString() + "\" style=\"display: none;\">多件<input type=\"hidden\" id=\"decreaseNumHiden" + product.Content[i].NumIid.ToString() + "\" value=\"0\" name=\"decreaseNumHiden\"></span> <span  style=\"display: inline;\" id=\"yijian" + product.Content[i].NumIid.ToString() + "\"><select onchange=\"decreaseNumChange(" + product.Content[i].NumIid.ToString() + ")\" id=\"decreaseNumSel" + product.Content[i].NumIid.ToString() + "\" name=\"decreaseNumSel\"> <option  value=\"0\">多件</option> <option value=\"1\" selected=\"selected\">一件</option> </select></span>";
+                            }
+                        }
+                        else
+                        {
+                            yhCount = " <span id=\"duojian" + product.Content[i].NumIid.ToString() + "\" style=\"display: inline;\">多件<input type=\"hidden\" id=\"decreaseNumHiden" + product.Content[i].NumIid.ToString() + "\" value=\"0\" name=\"decreaseNumHiden\"></span> <span  style=\"display: none;\" id=\"yijian" + product.Content[i].NumIid.ToString() + "\"><select onchange=\"decreaseNumChange(" + product.Content[i].NumIid.ToString() + ")\" id=\"decreaseNumSel" + product.Content[i].NumIid.ToString() + "\" name=\"decreaseNumSel\"> <option selected=\"selected\" value=\"0\">多件</option> <option value=\"1\">一件</option> </select></span>";
+
+                            itemtypevalue2 = " <div id=\"zheDiv" + product.Content[i].NumIid.ToString() + "\" style=\"display: block;\"><input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeZhe" + product.Content[i].NumIid.ToString() + "\" value=\""+yuandiscountValue+"\" name=\"discountValue\" style=\"width:30px\">折</div><div  style=\"display: none;\" id=\"jianDiv" + product.Content[i].NumIid.ToString() + "\">减<input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeJian" + product.Content[i].NumIid.ToString() + "\" name=\"discountValue\" style=\"width:30px\" value=\"\" >元</div>";
+                            newPrice2 = (decimal.Parse(product.Content[i].Price) * decimal.Parse(yuandiscountValue) * 0.1m).ToString();
+                     
+                        }
+                    }
+                    else
+                    {
+                        hdstr = " <div id=\"add" + product.Content[i].NumIid.ToString() + "\"><a href=\"javascript:addItemAction(12305275000)\">参加活动</a></div>";
+                        itemtype2 = "<select onchange=\"changeSelect(" + product.Content[i].NumIid.ToString() + ")\" id=\"discountType" + product.Content[i].NumIid.ToString() + "\" name=\"discountType\" > <option selected=\"selected\" value=\"DISCOUNT\">打折</option><option value=\"PRICE\">减价</option> </select>";
 
 
-                    yhCount = " <span id=\"duojian" + product.Content[i].NumIid.ToString() + "\" style=\"display: inline;\">多件<input type=\"hidden\" id=\"decreaseNumHiden" + product.Content[i].NumIid.ToString() + "\" value=\"0\" name=\"decreaseNumHiden\"></span> <span  style=\"display: none;\" id=\"yijian" + product.Content[i].NumIid.ToString() + "\"><select onchange=\"decreaseNumChange(" + product.Content[i].NumIid.ToString() + ")\" id=\"decreaseNumSel" + product.Content[i].NumIid.ToString() + "\" name=\"decreaseNumSel\"> <option selected=\"selected\" value=\"0\">多件</option> <option value=\"1\">一件</option> </select></span>";
+                        yhCount = " <span id=\"duojian" + product.Content[i].NumIid.ToString() + "\" style=\"display: inline;\">多件<input type=\"hidden\" id=\"decreaseNumHiden" + product.Content[i].NumIid.ToString() + "\" value=\"0\" name=\"decreaseNumHiden\"></span> <span  style=\"display: none;\" id=\"yijian" + product.Content[i].NumIid.ToString() + "\"><select onchange=\"decreaseNumChange(" + product.Content[i].NumIid.ToString() + ")\" id=\"decreaseNumSel" + product.Content[i].NumIid.ToString() + "\" name=\"decreaseNumSel\"> <option selected=\"selected\" value=\"0\">多件</option> <option value=\"1\">一件</option> </select></span>";
 
                         itemtypevalue2 = " <div id=\"zheDiv" + product.Content[i].NumIid.ToString() + "\" style=\"display: block;\"><input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeZhe" + product.Content[i].NumIid.ToString() + "\" value=\"9\" name=\"discountValue\" style=\"width:30px\">折</div><div  style=\"display: none;\" id=\"jianDiv" + product.Content[i].NumIid.ToString() + "\">减<input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeJian" + product.Content[i].NumIid.ToString() + "\" name=\"discountValue\" style=\"width:30px\" value=\"\" >元</div>";
-                       
-                    
-                    newPrice2 = product.Content[i].Price;
+
+
+                        newPrice2 = product.Content[i].Price;
+                    }
                 }
  
                 str += "<div id='div" + product.Content[i].NumIid.ToString() + "' width=\"800px\"><table width=\"800px\"><tr width=\"800px\"><td  width=\"15px\"><input type=\"checkbox\" id=\"" + product.Content[i].NumIid.ToString() + "\" class=\"selector\" value=\"" + product.Content[i].NumIid.ToString() + "\" name=\"iids\"></td><td width=\"100px\"> <a href=\"http://item.taobao.com/item.htm?id=" + product.Content[i].NumIid.ToString() + "\" target=\"_blank\"><img src=\"" + product.Content[i].PicUrl + "_80x80.jpg\" width=\"50px\" height=\"50px\" border=\"0\" /></a></td>";//图片
