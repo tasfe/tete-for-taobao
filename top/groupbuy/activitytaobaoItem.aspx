@@ -223,6 +223,31 @@
 
                     }
 
+                    function formatnumber(value, num) //直接去尾
+                    {
+                        var a, b, c, i
+                        a = value.toString();
+                        b = a.indexOf('.');
+                        c = a.length;
+                        if (num == 0) {
+                            if (b != -1)
+                                a = a.substring(0, b);
+                        }
+                        else {
+                            if (b == -1) {
+                                a = a + ".";
+                                for (i = 1; i <= num; i++)
+                                    a = a + "0";
+                            }
+                            else {
+                                a = a.substring(0, b + num + 1);
+                                for (i = c; i <= b + num; i++)
+                                    a = a + "0";
+                            }
+                        }
+                        return a
+                    } 
+
                     function blurValue(iid) {
                         var oldPrice = $('#oldPrice' + iid).text();
                         if ($('#discountType' + iid).val() == 'DISCOUNT') {
