@@ -168,19 +168,6 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
         else if (act == "getactivityitem")
         {
             //获取用户店铺商品列表
-            //ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
-            //request.Fields = "num_iid,title,price,pic_url";
-            //request.PageSize = pageSizeNow;
-            //request.PageNo = int.Parse(page);
-            //request.Q = q;
-            //if (catid != "0")
-            //{
-            //    request.SellerCids = catid;
-            //}
-
-            //PageList<Item> product = client.ItemsOnsaleGet(request, session);
-
-            //获取用户店铺商品列表
             ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
             request.Fields = "num_iid,title,price,pic_url";
             request.PageSize = pageSizeNow;
@@ -193,13 +180,81 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
 
             PageList<Item> product = client.ItemsOnsaleGet(request, session);
             string str = string.Empty;
+            string discountType = string.Empty;//促销方式（打折：DISCOUNT，减价：PRICE）
+            string discountValue=string.Empty;//促销力度（7折限制）
+            string Rcount = "300";//已参团人数(只在对设置团购模板时有用)
+            string newPrice2 = string.Empty;//促销价
+            string price2 = string.Empty;//商品价格
+            string itemtype2 = string.Empty;
+            string itemtypevalue2 = string.Empty;
+            string yhCount=string.Empty;
+            string hdstr = string.Empty;
             //输出页面HTML
             for (int i = 0; i < product.Content.Count; i++)
             {
+               
+                //先判断该商品是否已经参团（状态为：进行中和暂停中）
+                string sql = "SELECT *  FROM  tete_activitylist where ProductID=" + product.Content[i].NumIid.ToString() + " and (Status=3 or Status=1)";
+                DataTable dtNew2 = utils.ExecuteDataTable(sql);
+                // 取得促销价格
+                if (dtNew2 != null && dtNew2.Rows.Count > 0)
+                {
+                    Rcount = dtNew2.Rows[0]["Rcount"].ToString();
+                    discountValue = dtNew2.Rows[0]["discountValue"].ToString();
+                    discountType = dtNew2.Rows[0]["discountType"].ToString();
+                    price2 = product.Content[i].Price;
+                    hdstr = "<div id=\"del" + product.Content[i].NumIid.ToString() + "\">已参加活动:优惠活动<br><a href=\"javascript:delItemAction(" + product.Content[i].NumIid.ToString() + ")\">删除此促销活动</a></div> <div style=\"display:none\" id=\"add" + product.Content[i].NumIid.ToString() + "\"><a href=\"javascript:addItemAction(" + product.Content[i].NumIid.ToString() + ")\">参加活动</a></div> ";
+
+                    if (discountType.Trim() == "DISCOUNT")
+                    {
+                        itemtype2 = "<select onchange=\"changeSelect(" + product.Content[i].NumIid.ToString() + ")\" id=\"discountType" + product.Content[i].NumIid.ToString() + "\" name=\"discountType\" > <option selected=\"selected\" value=\"DISCOUNT\">打折</option><option value=\"PRICE\">减价</option> </select>";
+
+                        itemtypevalue2 = " <div id=\"zheDiv" + product.Content[i].NumIid.ToString() + "\" style=\"display: block;\"><input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeZhe" + product.Content[i].NumIid.ToString() + "\" value=\"" + discountValue + "\"  name=\"discountValue\" style=\"width:30px\">折</div><div  style=\"display: none;\" id=\"jianDiv" + product.Content[i].NumIid.ToString() + "\">减<input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeJian" + product.Content[i].NumIid.ToString() + "\" name=\"discountValue\" style=\"width:30px\" >元</div>";
+                        newPrice2 = (decimal.Parse(price2) * decimal.Parse(discountValue) * 0.1m).ToString();
 
 
-                str += "<div id='div" + product.Content[i].NumIid.ToString() + "' width=\"800px\"><table width=\"800px\"><tr width=\"800px\"><td width=\"90px\"><a href=\"http://item.taobao.com/item.htm?id=" + product.Content[i].NumIid.ToString() + "\" target=\"_blank\"><img src=\"" + product.Content[i].PicUrl + "_80x80.jpg\" border=\"0\" /></a></td>";
-                str += "<td  width=\"140px\"><a   href=\"http://item.taobao.com/item.htm?id=" + product.Content[i].NumIid.ToString() + "\" target=\"_blank\">" + product.Content[i].Title + "</a> </td><td   width=\"200px\"><input type=\"text\" size=\"27\" id=\"groupbuylistname" + product.Content[i].NumIid.ToString() + "\"   name=\"groupbuylistname\"  maxlength=\"30\"  value=\"\" /></td><td  width=\"100px\"> " + product.Content[i].Price + "元 <input   type=\"hidden\" id=\"productid" + product.Content[i].NumIid.ToString() + "\" name=\"productid\"  value=\"" + product.Content[i].NumIid.ToString() + "\"><input type=\"hidden\" id=\"price" + product.Content[i].NumIid.ToString() + "\" name=\"price\" value=\"" + product.Content[i].Price.ToString() + "\"></td><td  width=\"100px\">  <input type=\"text\" id=\"zhekou" + product.Content[i].NumIid.ToString() + "\" size=\"10\" name=\"zhekou\" onblur=\"setzekou(this)\" /> 元 <br /> 打<input type=\"text\" size=\"8\" id=\"zhekou1" + product.Content[i].NumIid.ToString() + "\" name=\"zhekou1\"   onblur=\"setprice(this)\"/> 折 <br />限购：<select id=\"xiangou" + product.Content[i].NumIid.ToString() + "\" name=\"xiangou\"> <OPTION selected  value=0>否</OPTION> <OPTION  value=1>是</OPTION> </select>  <span id=\"errmsg" + i + "\" style=\"color:Red\"></span> </td><td  width=\"90px\">  <input type=\"text\"  size=\"8\"  name=\"rcount\" value=\"300\" /> </td><td  width=\"80px\"><a onclick=\"deleteDIV('del1" + product.Content[i].NumIid.ToString() + "')\"  style=\"cursor:hand;\">删除</a></td></tr></table><input id=\"del1" + product.Content[i].NumIid.ToString() + "\" name=\"del\" value='' type=\"hidden\" ></div>";
+
+                        yhCount = " <span id=\"duojian" + product.Content[i].NumIid.ToString() + "\" style=\"display: inline;\">多件<input type=\"hidden\" id=\"decreaseNumHiden" + product.Content[i].NumIid.ToString() + "\" value=\"0\" name=\"decreaseNumHiden\"></span> <span  style=\"display: none;\" id=\"yijian" + product.Content[i].NumIid.ToString() + "\"><select onchange=\"decreaseNumChange(" + product.Content[i].NumIid.ToString() + ")\" id=\"decreaseNumSel" + product.Content[i].NumIid.ToString() + "\" name=\"decreaseNumSel\"> <option selected=\"selected\" value=\"0\">多件</option> <option value=\"1\">一件</option> </select></span>";
+                    }
+                    else
+                    {
+                        itemtype2 = "<select onchange=\"changeSelect(" + product.Content[i].NumIid.ToString() + ")\" id=\"discountType" + product.Content[i].NumIid.ToString() + "\" name=\"discountType\" > <option selected=\"selected\"   value=\"DISCOUNT\">打折</option><option value=\"PRICE\">减价</option> </select>";
+
+                        yhCount = " <span id=\"duojian" + product.Content[i].NumIid.ToString() + "\" style=\"display: none;\">多件<input type=\"hidden\" id=\"decreaseNumHiden" + product.Content[i].NumIid.ToString() + "\" value=\"0\" name=\"decreaseNumHiden\"></span> <span style=\"display: inline;\" id=\"yijian" + product.Content[i].NumIid.ToString() + "\"><select onchange=\"decreaseNumChange(" + product.Content[i].NumIid.ToString() + ")\" id=\"decreaseNumSel" + product.Content[i].NumIid.ToString() + "\" name=\"decreaseNumSel\"> <option selected=\"selected\" value=\"0\">多件</option> <option value=\"1\">一件</option> </select></span>";
+
+                        itemtypevalue2 = " <div id=\"zheDiv" + product.Content[i].NumIid.ToString() + "\" style=\"display: none;\" ><input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeZhe" + product.Content[i].NumIid.ToString() + "\" value=\"9\" name=\"discountValue\" style=\"width:30px\">折</div><div style=\"display: block;\" id=\"jianDiv" + product.Content[i].NumIid.ToString() + "\">减<input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeJian" + product.Content[i].NumIid.ToString() + "\" name=\"discountValue\" style=\"width:30px\" value=\"" + discountValue + "\" >元</div>";
+                        newPrice2 = (decimal.Parse(price2) -decimal.Parse(discountValue)).ToString();
+                        
+                    
+                    }
+                }
+                else {
+
+                    hdstr = " <div id=\"add" + product.Content[i].NumIid.ToString() + "\"><a href=\"javascript:addItemAction(12305275000)\">参加活动</a></div>";
+                    itemtype2 = "<select onchange=\"changeSelect(" + product.Content[i].NumIid.ToString() + ")\" id=\"discountType" + product.Content[i].NumIid.ToString() + "\" name=\"discountType\" > <option selected=\"selected\" value=\"DISCOUNT\">打折</option><option value=\"PRICE\">减价</option> </select>";
+
+
+                    yhCount = " <span id=\"duojian" + product.Content[i].NumIid.ToString() + "\" style=\"display: inline;\">多件<input type=\"hidden\" id=\"decreaseNumHiden" + product.Content[i].NumIid.ToString() + "\" value=\"0\" name=\"decreaseNumHiden\"></span> <span  style=\"display: none;\" id=\"yijian" + product.Content[i].NumIid.ToString() + "\"><select onchange=\"decreaseNumChange(" + product.Content[i].NumIid.ToString() + ")\" id=\"decreaseNumSel" + product.Content[i].NumIid.ToString() + "\" name=\"decreaseNumSel\"> <option selected=\"selected\" value=\"0\">多件</option> <option value=\"1\">一件</option> </select></span>";
+
+                        itemtypevalue2 = " <div id=\"zheDiv" + product.Content[i].NumIid.ToString() + "\" style=\"display: block;\"><input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeZhe" + product.Content[i].NumIid.ToString() + "\" value=\"9\" name=\"discountValue\" style=\"width:30px\">折</div><div  style=\"display: none;\" id=\"jianDiv" + product.Content[i].NumIid.ToString() + "\">减<input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeJian" + product.Content[i].NumIid.ToString() + "\" name=\"discountValue\" style=\"width:30px\" value=\"\" >元</div>";
+                       
+                    
+                    newPrice2 = product.Content[i].Price;
+                }
+
+                //str += "<div id='div" + product.Content[i].NumIid.ToString() + "' width=\"800px\"><table width=\"800px\"><tr width=\"800px\"><td width=\"90px\"><a href=\"http://item.taobao.com/item.htm?id=" + product.Content[i].NumIid.ToString() + "\" target=\"_blank\"><img src=\"" + product.Content[i].PicUrl + "_80x80.jpg\" border=\"0\" /></a></td>";
+               // str += "<td  width=\"140px\"><a   href=\"http://item.taobao.com/item.htm?id=" + product.Content[i].NumIid.ToString() + "\" target=\"_blank\">" + product.Content[i].Title + "</a> </td><td   width=\"200px\"><input type=\"text\" size=\"27\" id=\"groupbuylistname" + product.Content[i].NumIid.ToString() + "\"   name=\"groupbuylistname\"  maxlength=\"30\"  value=\"\" /></td><td  width=\"100px\"> " + product.Content[i].Price + "元 <input   type=\"hidden\" id=\"productid" + product.Content[i].NumIid.ToString() + "\" name=\"productid\"  value=\"" + product.Content[i].NumIid.ToString() + "\"><input type=\"hidden\" id=\"price" + product.Content[i].NumIid.ToString() + "\" name=\"price\" value=\"" + product.Content[i].Price.ToString() + "\"></td><td  width=\"100px\">  <input type=\"text\" id=\"zhekou" + product.Content[i].NumIid.ToString() + "\" size=\"10\" name=\"zhekou\" onblur=\"setzekou(this)\" /> 元 <br /> 打<input type=\"text\" size=\"8\" id=\"zhekou1" + product.Content[i].NumIid.ToString() + "\" name=\"zhekou1\"   onblur=\"setprice(this)\"/> 折 <br />限购：<select id=\"xiangou" + product.Content[i].NumIid.ToString() + "\" name=\"xiangou\"> <OPTION selected  value=0>否</OPTION> <OPTION  value=1>是</OPTION> </select>  <span id=\"errmsg" + i + "\" style=\"color:Red\"></span> </td><td  width=\"90px\">  <input type=\"text\"  size=\"8\"  name=\"rcount\" value=\"300\" /> </td><td  width=\"80px\"><a onclick=\"deleteDIV('del1" + product.Content[i].NumIid.ToString() + "')\"  style=\"cursor:hand;\">删除</a></td></tr></table><input id=\"del1" + product.Content[i].NumIid.ToString() + "\" name=\"del\" value='' type=\"hidden\" ></div>";
+
+                str += "<div id='div" + product.Content[i].NumIid.ToString() + "' width=\"800px\"><table width=\"800px\"><tr width=\"800px\"><td width=\"100px\"><input type=\"checkbox\" id=\"" + product.Content[i].NumIid.ToString() + "\" class=\"selector\" value=\"" + product.Content[i].NumIid.ToString() + "\" name=\"iids\"><a href=\"http://item.taobao.com/item.htm?id=" + product.Content[i].NumIid.ToString() + "\" target=\"_blank\"><img src=\"" + product.Content[i].PicUrl + "_80x80.jpg\" width=\"50px\" height=\"50px\" border=\"0\" /></a></td>";//图片
+                str += "<td  width=\"140px\"><a   href=\"http://item.taobao.com/item.htm?id=" + product.Content[i].NumIid.ToString() + "\" target=\"_blank\">" + product.Content[i].Title + "</a> </td>";//名称
+                str += "<td  width=\"70px\"> " + product.Content[i].Price + " <input type=\"hidden\" id=\"price" + product.Content[i].NumIid.ToString() + "\" name=\"price\" value=\"" + product.Content[i].Price.ToString() + "\"></td>";//商品原价
+                str += "<td  width=\"70px\" id=\"newPrice" + product.Content[i].NumIid.ToString() + "\"> </td>";//促销价
+                str += "<td  width=\"70px\"> " + itemtype2 + "</td>";//优惠类型
+                str += "<td  width=\"70px\"> " + itemtypevalue2 + "</td>";//优惠幅度
+                str += "<td  width=\"70px\"> " + yhCount + "</td>";//优惠数量
+                str += "<td  width=\"70px\"> " + Rcount + "</td>";//参团人数
+                str += "<td  width=\"140px\">" + hdstr + " </td>";//操作
+ 
 
             }
             Response.Write(str);
