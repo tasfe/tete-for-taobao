@@ -116,14 +116,14 @@
 </div>
 <div class="explain">
 	<div style="margin-bottom: 5px;">
-		<strong>当前促销活动名称：活动进行中</strong>
+		<strong>当前促销活动名称：<%=activitystatusstr %></strong>
 	</div>
 	<ul>
-		<li>活动时间：<%=startDate %> 到 <%=endDate%></li>
+		<li>活动时间：<%=activitystatrdatestr%> 到 <%=activityenddatestr%></li>
         
-        <li>促销形式：<%=discountTypeStr%></li>
-        <li>促销力度：<%=decreaseNumStr%></li>
-		<li>优惠数量限制：<%=itemTypeStr%> </li>
+        <li>促销形式：<%=activitydiscountTypestr%></li>
+        <li>促销力度：<%=activitydiscountValuestr%></li>
+		<li>优惠数量限制：<%=activitydecreaseNumstr%> </li>
         
 		<li>目标客户：全淘宝网会员</li>
 	</ul>
