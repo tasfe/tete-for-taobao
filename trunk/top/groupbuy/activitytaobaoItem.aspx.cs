@@ -50,6 +50,7 @@ public partial class top_groupbuy_activitytaobaoItem : System.Web.UI.Page
             return;
         }
         string activityID = Request.QueryString["activityID"].ToString();
+        activityIDstr.Value = activityID;
         string sql = "SELECT [ID],[Name] ,[Description] ,[Remark] ,[startDate] ,[endDate] ,[itemType] ,[discountType] ,[discountValue] ,[tagId] ,[Rcount] ,[Nick] ,[Status] ,[decreaseNum] ,[isOK]  FROM  [tete_activity] where ID=" + activityID;
         DataTable dt3 = utils.ExecuteDataTable(sql);
         if (dt3 != null && dt3.Rows.Count>0)

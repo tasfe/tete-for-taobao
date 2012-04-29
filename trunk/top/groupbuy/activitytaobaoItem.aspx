@@ -116,7 +116,7 @@
 </div>
 <div class="explain">
 	<div style="margin-bottom: 5px;">
-		<strong>当前促销活动名称：<%=activitystatusstr %></strong>
+		<strong>当前促销活动名称：<%=activitystatusstr %></strong> <input type="hidden" name="activityIDstr" id="activityIDstr" value="" runat="server" />
 	</div>
 	<ul>
 		<li>活动时间：<%=activitystatrdatestr%> 到 <%=activityenddatestr%></li>
@@ -323,8 +323,8 @@
 
             //获取当前使用样式
             var style = "0";
-
-            var queryString = "/top/groupbuy/groupbuy/taobaoitemgetactivity.aspx?act=getactivityitem&isradio=0&style=" + style + "&ids=" + str + "&t=" + new Date().getTime();
+            var aid = document.getElementById("activityIDstr").value;
+            var queryString = "/top/groupbuy/groupbuy/taobaoitemgetactivity.aspx?act=getactivityitem&isradio=0&aid="+aid+"&style=" + style + "&ids=" + str + "&t=" + new Date().getTime();
             xmlHttp.open("GET", queryString);
             xmlHttp.onreadystatechange = handleStateChangeResultStr;
             xmlHttp.send(null);
@@ -341,10 +341,10 @@
             var q = document.getElementById("querySearch").value;
             var catObj = document.getElementById("Select1");
             var catid = catObj.options[catObj.options.selectedIndex].value;
-
+            var aid = document.getElementById("activityIDstr").value;
             var pagenow = pageid;
             createxmlHttpRequest();
-            var queryString = "/top/groupbuy/groupbuy/taobaoitemgetactivity.aspx?act=getactivityitem&isradio=0&query=" + escape(q) + "&catid=" + catid + "&p=" + pagenow + "&t=" + new Date().getTime();
+            var queryString = "/top/groupbuy/groupbuy/taobaoitemgetactivity.aspx?act=getactivityitem&isradio=0&aid=" + aid + "&query=" + escape(q) + "&catid=" + catid + "&p=" + pagenow + "&t=" + new Date().getTime();
             xmlHttp.open("GET", queryString);
             xmlHttp.onreadystatechange = handleStateChange;
             xmlHttp.send(null);
