@@ -302,9 +302,9 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                 str += "<td  width=\"140px\"><a   href=\"http://item.taobao.com/item.htm?id=" + product.Content[i].NumIid.ToString() + "\" target=\"_blank\">" + product.Content[i].Title + "</a> </td>";//名称
                 str += "<td  width=\"70px\"> " + product.Content[i].Price + " <input type=\"hidden\" id=\"price" + product.Content[i].NumIid.ToString() + "\" name=\"price\" value=\"" + product.Content[i].Price.ToString() + "\"></td>";//商品原价
                 str += "<td  width=\"70px\" id=\"newPrice" + product.Content[i].NumIid.ToString() + "\"> " + newPrice2 + "</td>";//促销价
-                str += "<td  width=\"70px\"><div id=\"yhlxDiv" + product.Content[i].NumIid.ToString() + "> " + itemtype2 + "</div></td>";//优惠类型
-                str += "<td  width=\"70px\"> <div id=\"yhhdDiv" + product.Content[i].NumIid.ToString() + "> " + itemtypevalue2 + "</div></td>";//优惠幅度
-                str += "<td  width=\"70px\"> <div id=\"yhslDiv" + product.Content[i].NumIid.ToString() + ">" + yhCount + "</div></td>";//优惠数量
+                str += "<td  width=\"70px\"><div id=\"yhlxDiv" + product.Content[i].NumIid.ToString() + "\"> " + itemtype2 + "</div></td>";//优惠类型
+                str += "<td  width=\"70px\"> <div id=\"yhhdDiv" + product.Content[i].NumIid.ToString() + "\"> " + itemtypevalue2 + "</div></td>";//优惠幅度
+                str += "<td  width=\"70px\"> <div id=\"yhslDiv" + product.Content[i].NumIid.ToString() + "\">" + yhCount + "</div></td>";//优惠数量
                 str += "<td  width=\"70px\"> <input type=\"text\"   id=\"Rcount" + product.Content[i].NumIid.ToString() + "\" name=\"Rcount\" style=\"width:30px\" value=\"" + Rcount + "\" ></td>";//参团人数
                 str += "<td  width=\"140px\">" + hdstr + " </td>";//操作
                 str += "</tr></table></div>";
