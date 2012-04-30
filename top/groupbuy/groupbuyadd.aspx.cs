@@ -34,6 +34,7 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
+        Response.Write(cookie.getCookie("top_sessiongroupbuy"));
         string sql = "select enddate from TopTaobaoShop where nick='" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
  
