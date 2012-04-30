@@ -29,12 +29,13 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
 
             actionId = Request.QueryString["actionId"].ToString();//活动ID
             iid = Request.QueryString["iid"].ToString();//商品ID
-            discountType = Request.QueryString["discountType"].ToString();//DISCOUNT 或PRICE
-            discountValue = Request.QueryString["discountValue"].ToString();//促销力度
-            decreaseNum = Request.QueryString["decreaseNum"].ToString();//是否优惠限制
+      
 
             if (Request.QueryString["actionType"].ToString() == "add")
             {
+                discountType = Request.QueryString["discountType"].ToString();//DISCOUNT 或PRICE
+                discountValue = Request.QueryString["discountValue"].ToString();//促销力度
+                decreaseNum = Request.QueryString["decreaseNum"].ToString();//是否优惠限制
                 addactivity();
             }
             if (Request.QueryString["actionType"].ToString() == "del")
