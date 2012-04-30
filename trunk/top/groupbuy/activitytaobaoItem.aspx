@@ -197,6 +197,89 @@
             	<input type="hidden" name="itemsStrValues" id="itemsStrValues" value="" />
 
                 <script type="text/javascript">
+
+                    function addItemAction(iid) {
+                       
+                        var discountType = $('#discountType' + iid).val();
+                        var discountValue = '';
+                        var decreaseNum = '';
+                        if ($('#discountType' + iid).val() == 'DISCOUNT') {
+                            discountValue = $('#changeZhe' + iid).val();
+                            decreaseNum = $('#decreaseNumHiden' + iid).val();
+                            if (discountValue < 7 || discountValue > 9.99) {
+                                $('#add' + iid).html('请输入7~9.99之间的折扣值<br><a href=javascript:addItemAction(' + iid + ')>重新添加</a>');
+                                //alert('请输入7~9.99之间的折扣值');
+                                return;
+                            }
+                        } else {
+                            discountValue = $('#changeJian' + iid).val();
+                            decreaseNum = $('#decreaseNumSel' + iid).val();
+                            if (discountValue < 0.01) {
+                                $('#add' + iid).html('请输入大于0的减价金额！<br><a href=javascript:addItemAction(' + iid + ')>重新添加</a>');
+                                //alert('请输入大于0的减价金额！');
+                                return;
+                            }
+                        }
+                        if (discountValue == '') {
+                            $('#add' + iid).html('请输入优惠幅度<br><a href=javascript:addItemAction(' + iid + ')>重新添加</a>');
+                            //alert('请输入优惠幅度');
+                            return;
+                        }
+
+                        var actionID = document.getElementById("activityIDstr").value;
+                        var rcounts = document.getElementById("Rcount" + iid).value; 
+                        $.ajax({
+                            url: 'LoadAjax.aspx?actionType=add&actionId=' + actionID + '&rcounts=' + rcounts + '&iid=' + iid + '&discountType=' + discountType + '&discountValue=' + discountValue + '&decreaseNum=' + decreaseNum,
+                            timeout: 2000000,
+                            beforeSend: function () {
+                                $('#add' + iid).html('正在添加...');
+                            },
+                            error: function () {
+                                alert('网络错误，请重试！');
+                            },
+                            success: function (msg) {
+                                if (msg == 'true') {
+                                    $('#add' + iid).html('添加成功');
+                                    $('#yhlxDiv' + iid).hide();
+                                    $('#yhhdDiv' + iid).hide();
+                                    $('#yhslDiv' + iid).hide(); 
+                                } else {
+                                    $('#add' + iid).html('添加失败:' + msg + '<br><a href=javascript:addItemAction(' + iid + ')>重新添加</a>');
+                                }
+                            }
+                        });
+                    }
+                    function delItemAction(iid) {
+                        //if(!shortAuth(1335686645139))return;
+                        $.ajax({
+                            url: 'LoadAjax.aspx?actionId=' + actionID + '&iid=' + iid + '&actionType=del',
+                            type: 'GET',
+                            dataType: 'text',
+                            async: true,
+                            timeout: 2000000,
+                            beforeSend: function () {
+                                $('#del' + iid).html('正在删除...');
+                            },
+                            complete: function () {
+                            },
+                            error: function () {
+                                alert('网络错误，请重试！');
+                            },
+                            success: function (msg) {
+                                if (msg == 'true') {
+                                    $('#del' + iid).hide();
+                                    $('#yhlxDiv' + iid).show();
+                                    $('#yhhdDiv' + iid).show();
+                                    $('#yhslDiv' + iid).show(); 
+ 
+                                } else {
+                                    $('#del' + iid).html('删除失败:' + msg + '<a href="javascript:delItemAction(' + iid + ')">重试</a>');
+                                }
+                            }
+                        });
+                    } 
+
+
                     function changeSelect(iid) {
 
                         var oldPrice = $('#price' + iid).val();
@@ -324,7 +407,8 @@
             //获取当前使用样式
             var style = "0";
             var aid = document.getElementById("activityIDstr").value;
-            var queryString = "/top/groupbuy/groupbuy/taobaoitemgetactivity.aspx?act=getactivityitem&isradio=0&aid="+aid+"&style=" + style + "&ids=" + str + "&t=" + new Date().getTime();
+           
+            var queryString = "/top/groupbuy/groupbuy/taobaoitemgetactivity.aspx?act=getactivityitem&isradio=0&aid=" + aid + "&style=" + style + "&ids=" + str + "&t=" + new Date().getTime();
             xmlHttp.open("GET", queryString);
             xmlHttp.onreadystatechange = handleStateChangeResultStr;
             xmlHttp.send(null);
