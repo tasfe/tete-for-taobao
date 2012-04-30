@@ -122,7 +122,7 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
             //创建活动
             param = new Dictionary<string, string>();
             param.Add("num_iids", iid);
-            param.Add("discount_type", "PRICE");
+            param.Add("discount_type", discountType);
             param.Add("discount_value", discountValue);
             param.Add("start_date", DateTime.Parse(dt.Rows[0]["startDate"].ToString()).ToString("yyyy-MM-dd hh:mm:ss"));
             param.Add("end_date", DateTime.Parse(dt.Rows[0]["endDate"].ToString()).ToString("yyyy-MM-dd hh:mm:ss"));
