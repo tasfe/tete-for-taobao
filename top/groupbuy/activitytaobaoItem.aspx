@@ -251,6 +251,7 @@
                     }
                     function delItemAction(iid) {
                         //if(!shortAuth(1335686645139))return;
+                        var actionID = document.getElementById("activityIDstr").value;
                         $.ajax({
                             url: 'LoadAjax.aspx?actionId=' + actionID + '&iid=' + iid + '&actionType=del&t=' + new Date().getTime()+'',
                             type: 'GET',
@@ -259,8 +260,6 @@
                             timeout: 2000000,
                             beforeSend: function () {
                                 $('#del' + iid).html('正在删除...');
-                            },
-                            complete: function () {
                             },
                             error: function () {
                                 alert('网络错误，请重试！');
