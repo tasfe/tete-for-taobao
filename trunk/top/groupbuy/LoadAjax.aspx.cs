@@ -137,7 +137,7 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
                 string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
                 if (err == "")
                 {
-                    Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>" + result + "您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12287381&scope=promotion' target='_parent'>重新授权</a>");
+                    Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>decreaseNum=" + decreaseNum + "promotion_title=" + dt.Rows[0]["Name"].ToString() + "end_date=" + dt.Rows[0]["endDate"].ToString() + "start_date=" + dt.Rows[0]["startDate"].ToString() + "iid=" + iid + "discount_value=" + discountValue + "" + result + "您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12287381&scope=promotion' target='_parent'>重新授权</a>");
                     Response.End();
                 }
 
