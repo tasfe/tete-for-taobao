@@ -151,8 +151,8 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
 
             string promotionid = new Regex(@"<promotion_id>([^<]*)</promotion_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             Response.Write(sql);
-            //删除活动
-            sql = "update  tete_activitylist set Status=1 ,isok=1  WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
+            //更新活动
+            sql = "update  tete_activitylist set Status=1 ,isok=1,promotionID=" + promotionid + "  WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
             utils.ExecuteNonQuery(sql);
 
 
