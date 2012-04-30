@@ -34,7 +34,6 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
-        Response.Write(cookie.getCookie("top_sessiongroupbuy"));
         string sql = "select enddate from TopTaobaoShop where nick='" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
  
@@ -210,13 +209,22 @@ public partial class top_groupbuy_groupbuyadd : System.Web.UI.Page
 
             //创建活动
             param = new Dictionary<string, string>();
-            param.Add("num_iids", "12241171707");
+            param.Add("num_iids", aryProductid[p].ToString());
             param.Add("discount_type", "PRICE");
-            param.Add("discount_value", "97");
-            param.Add("start_date", "2012-4-29 12:51:36");
-            param.Add("end_date", "2012-5-31 12:51:38");
-            param.Add("promotion_title", "团购活动");
-            param.Add("decrease_num", "1");
+            param.Add("discount_value", newprice);
+            param.Add("start_date",starttime);
+            param.Add("end_date", endtime);
+            param.Add("promotion_title", "团购打折");
+            param.Add("decrease_num", aryXiaogou[p].ToString());
+
+
+            //param.Add("num_iids", "12241171707");
+            //param.Add("discount_type", "PRICE");
+            //param.Add("discount_value", "97");
+            //param.Add("start_date",DateTime.Parse("2012-4-29 12:51:36").ToString("yyyy-mm-dd hh:mm:ss"));
+            //param.Add("end_date", DateTime.Parse("2012-5-31 12:51:38").ToString("yyyy-mm-dd hh:mm:ss"));
+            //param.Add("promotion_title", "团购活动");
+            //param.Add("decrease_num", "1");
              
 
             param.Add("tag_id", tagid);

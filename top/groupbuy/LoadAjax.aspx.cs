@@ -81,7 +81,7 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
     public void addactivity()
     {
         Cookie cookie = new Cookie();
-        string taobaoNick = cookie.getCookie("nick");
+            string taobaoNick = cookie.getCookie("nick");
         string session = cookie.getCookie("top_sessiongroupbuy");
         Rijndael_ encode = new Rijndael_("tetesoft");
         taobaoNick = encode.Decrypt(taobaoNick);
@@ -123,11 +123,11 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
             param.Add("num_iids", iid);
             param.Add("discount_type", "PRICE");
             param.Add("discount_value", discountValue);
-            param.Add("start_date", dt.Rows[0]["startDate"].ToString());
-            param.Add("end_date", dt.Rows[0]["endDate"].ToString());
+            param.Add("start_date", DateTime.Parse(dt.Rows[0]["startDate"].ToString()).ToString("yyyy-MM-dd hh:mm:ss"));
+            param.Add("end_date", DateTime.Parse(dt.Rows[0]["endDate"].ToString()).ToString("yyyy-MM-dd hh:mm:ss"));
             param.Add("promotion_title", dt.Rows[0]["Name"].ToString());
             param.Add("decrease_num", decreaseNum);
-
+ 
 
             param.Add("tag_id", tagid);
             string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.add", session, param);
@@ -138,7 +138,7 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
                 string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
                 if (err == "")
                 {
-                    Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>session=" + session + "decreaseNum=" + decreaseNum + "promotion_title=" + dt.Rows[0]["Name"].ToString() + "end_date=" + dt.Rows[0]["endDate"].ToString() + "start_date=" + dt.Rows[0]["startDate"].ToString() + "iid=" + iid + "discount_value=" + discountValue + "" + result + "您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12287381&scope=promotion' target='_parent'>重新授权</a>");
+                    Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12287381&scope=promotion' target='_parent'>重新授权</a>");
                     Response.End();
                 }
 
