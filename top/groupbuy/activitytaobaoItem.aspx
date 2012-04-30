@@ -332,7 +332,7 @@
                     } 
 
                     function blurValue(iid) {
-                        var oldPrice = $('#oldPrice' + iid).text();
+                        var oldPrice = $('#price' + iid).val();
                         if ($('#discountType' + iid).val() == 'DISCOUNT') {
                             var zhe = $('#changeZhe' + iid).val();
                             if (zhe == '') zhe = 10;

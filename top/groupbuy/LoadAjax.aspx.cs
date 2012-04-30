@@ -104,8 +104,7 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
             sql = "INSERT INTO  [tete_activitylist] ([ActivityID] ,[Productname] ,[Productprice] ,[ProductImg] ,[ProductUrl] ,[ProductID] ,[promotionID] ,[Name] ,[Description] ,[Remark] ,[startDate] ,[endDate] ,[itemType] ,[discountType] ,[discountValue] ,[tagId] ,[Status] ,[Rcount] ,[Nick] ,[decreaseNum] ,[isOK])     VALUES(" + actionId + ",'" + product.Title + "','" + product.Price + "','" + product.PicUrl + "','http:///item.taobao.com/item.htm?id=" + product.NumIid.ToString() + "','" + iid + "',0,'" + dt.Rows[0]["Name"].ToString() + "','" + dt.Rows[0]["Description"].ToString() + "','" + dt.Rows[0]["Remark"].ToString() + "','" + dt.Rows[0]["startDate"].ToString() + "','" + dt.Rows[0]["endDate"].ToString() + "','" + dt.Rows[0]["itemType"].ToString() + "','" + discountType + "','" + discountValue + "','" + dt.Rows[0]["tagId"].ToString() + "',0," + rcounts + ",'" + taobaoNick + "'," + decreaseNum + ",0)";
             utils.ExecuteNonQuery(sql);
 
-            Response.Write(sql);
-            Response.End();
+          
 
 
             //创建活动及相关人群
