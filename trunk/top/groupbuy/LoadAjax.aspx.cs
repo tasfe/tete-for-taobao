@@ -81,13 +81,13 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
     public void addactivity()
     {
         Cookie cookie = new Cookie();
-            string taobaoNick = cookie.getCookie("nick");
+        string taobaoNick = cookie.getCookie("nick");
         string session = cookie.getCookie("top_sessiongroupbuy");
         Rijndael_ encode = new Rijndael_("tetesoft");
         taobaoNick = encode.Decrypt(taobaoNick);
         //获取原宝贝
         TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12287381", "d3486dac8198ef01000e7bd4504601a4");
-    
+
         ItemGetRequest requestItem = new ItemGetRequest();
         requestItem.Fields = "desc";
         requestItem.NumIid = long.Parse(iid);
@@ -104,6 +104,8 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
             sql = "INSERT INTO  [tete_activitylist] ([ActivityID] ,[Productname] ,[Productprice] ,[ProductImg] ,[ProductUrl] ,[ProductID] ,[promotionID] ,[Name] ,[Description] ,[Remark] ,[startDate] ,[endDate] ,[itemType] ,[discountType] ,[discountValue] ,[tagId] ,[Status] ,[Rcount] ,[Nick] ,[decreaseNum] ,[isOK])     VALUES(" + actionId + ",'" + product.Title + "','" + product.Price + "','" + product.PicUrl + "','http:///item.taobao.com/item.htm?id=" + product.NumIid.ToString() + "','" + iid + "',0,'" + dt.Rows[0]["Name"].ToString() + "','" + dt.Rows[0]["Description"].ToString() + "','" + dt.Rows[0]["Remark"].ToString() + "','" + dt.Rows[0]["startDate"].ToString() + "','" + dt.Rows[0]["endDate"].ToString() + "','" + dt.Rows[0]["itemType"].ToString() + "','" + discountType + "','" + discountValue + "','" + dt.Rows[0]["tagId"].ToString() + "',0," + rcounts + ",'" + taobaoNick + "'," + decreaseNum + ",0)";
             utils.ExecuteNonQuery(sql);
 
+            Response.Write(sql);
+            Response.End();
 
 
             //创建活动及相关人群
@@ -127,7 +129,7 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
             param.Add("end_date", DateTime.Parse(dt.Rows[0]["endDate"].ToString()).ToString("yyyy-MM-dd hh:mm:ss"));
             param.Add("promotion_title", dt.Rows[0]["Name"].ToString());
             param.Add("decrease_num", decreaseNum);
- 
+
 
             param.Add("tag_id", tagid);
             string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.add", session, param);
@@ -148,13 +150,13 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
             }
 
             string promotionid = new Regex(@"<promotion_id>([^<]*)</promotion_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-
+            Response.Write(sql);
             //删除活动
             sql = "update  tete_activitylist set Status=1 ,isok=1  WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
             utils.ExecuteNonQuery(sql);
 
 
-            Response.Write("success");
+            Response.Write("true");
             Response.End();
         }
         else
@@ -188,6 +190,9 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
         //删除活动
         sql = "update  tete_activitylist set Status=4 ,isok=1  WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
         utils.ExecuteNonQuery(sql);
+
+        Response.Write("true");
+        Response.End();
 
     }
 
