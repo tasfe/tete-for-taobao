@@ -102,10 +102,12 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
             decreaseNum = Request.QueryString["decreaseNum"].ToString();//是否优惠限制
             string rcounts = Request.QueryString["rcounts"].ToString();//团购人数
             sql = "INSERT INTO  [tete_activitylist] ([ActivityID] ,[Productname] ,[Productprice] ,[ProductImg] ,[ProductUrl] ,[ProductID] ,[promotionID] ,[Name] ,[Description] ,[Remark] ,[startDate] ,[endDate] ,[itemType] ,[discountType] ,[discountValue] ,[tagId] ,[Status] ,[Rcount] ,[Nick] ,[decreaseNum] ,[isOK])     VALUES(" + actionId + ",'" + product.Title + "','" + product.Price + "','" + product.PicUrl + "','http:///item.taobao.com/item.htm?id=" + product.NumIid.ToString() + "','" + iid + "',0,'" + dt.Rows[0]["Name"].ToString() + "','" + dt.Rows[0]["Description"].ToString() + "','" + dt.Rows[0]["Remark"].ToString() + "','" + dt.Rows[0]["startDate"].ToString() + "','" + dt.Rows[0]["endDate"].ToString() + "','" + dt.Rows[0]["itemType"].ToString() + "','" + discountType + "','" + discountValue + "','" + dt.Rows[0]["tagId"].ToString() + "',0," + rcounts + ",'" + taobaoNick + "'," + decreaseNum + ",0)";
+           
             utils.ExecuteNonQuery(sql);
 
-          
 
+            Response.Write(sql);
+            Response.End();
 
             //创建活动及相关人群
             string appkey = "12287381";
@@ -149,7 +151,7 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
             }
 
             string promotionid = new Regex(@"<promotion_id>([^<]*)</promotion_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-            Response.Write(sql);
+ 
             //更新活动
             sql = "update  tete_activitylist set Status=1 ,isok=1,promotionID=" + promotionid + "  WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
             utils.ExecuteNonQuery(sql);
