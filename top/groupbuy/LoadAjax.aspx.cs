@@ -89,7 +89,7 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
         TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12287381", "d3486dac8198ef01000e7bd4504601a4");
 
         ItemGetRequest requestItem = new ItemGetRequest();
-        requestItem.Fields = "desc";
+        requestItem.Fields = "desc,num_iid,title,price,pic_url ";
         requestItem.NumIid = long.Parse(iid);
         Item product = client.ItemGet(requestItem, session);
 
