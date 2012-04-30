@@ -249,13 +249,11 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                     }
                 }
                 else {
+                    hdstr = " <div id=\"add" + product.Content[i].NumIid.ToString() + "\"><a href=\"javascript:addItemAction(" + product.Content[i].NumIid.ToString() + ")\">参加活动</a></div>";
                     if (yuanitemtype == "same")
                     {
                         //same：每个参加活动的宝贝设置相同促销力度,different：每个参加活动的宝贝设置不同促销力度）
                         //decreaseNum		是否优惠限制（0,1）
-                        hdstr = " <div id=\"add" + product.Content[i].NumIid.ToString() + "\"><a href=\"javascript:addItemAction(12305275000)\">参加活动</a></div>";
-                       
-                        
 
                         if (yuandiscountType == "PRICE")
                         {
@@ -287,7 +285,7 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                     }
                     else
                     {
-                        hdstr = " <div id=\"add" + product.Content[i].NumIid.ToString() + "\"><a href=\"javascript:addItemAction(12305275000)\">参加活动</a></div>";
+ 
                         itemtype2 = "<select onchange=\"changeSelect(" + product.Content[i].NumIid.ToString() + ")\" id=\"discountType" + product.Content[i].NumIid.ToString() + "\" name=\"discountType\" > <option selected=\"selected\" value=\"DISCOUNT\">打折</option><option value=\"PRICE\">减价</option> </select>";
 
 
@@ -304,10 +302,10 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                 str += "<td  width=\"140px\"><a   href=\"http://item.taobao.com/item.htm?id=" + product.Content[i].NumIid.ToString() + "\" target=\"_blank\">" + product.Content[i].Title + "</a> </td>";//名称
                 str += "<td  width=\"70px\"> " + product.Content[i].Price + " <input type=\"hidden\" id=\"price" + product.Content[i].NumIid.ToString() + "\" name=\"price\" value=\"" + product.Content[i].Price.ToString() + "\"></td>";//商品原价
                 str += "<td  width=\"70px\" id=\"newPrice" + product.Content[i].NumIid.ToString() + "\"> " + newPrice2 + "</td>";//促销价
-                str += "<td  width=\"70px\"> " + itemtype2 + "</td>";//优惠类型
-                str += "<td  width=\"70px\"> " + itemtypevalue2 + "</td>";//优惠幅度
-                str += "<td  width=\"70px\"> " + yhCount + "</td>";//优惠数量
-                str += "<td  width=\"70px\"> " + Rcount + "</td>";//参团人数
+                str += "<td  width=\"70px\"><div id=\"yhlxDiv" + product.Content[i].NumIid.ToString() + "> " + itemtype2 + "</div></td>";//优惠类型
+                str += "<td  width=\"70px\"> <div id=\"yhhdDiv" + product.Content[i].NumIid.ToString() + "> " + itemtypevalue2 + "</div></td>";//优惠幅度
+                str += "<td  width=\"70px\"> <div id=\"yhslDiv" + product.Content[i].NumIid.ToString() + ">" + yhCount + "</div></td>";//优惠数量
+                str += "<td  width=\"70px\"> <input type=\"text\"   id=\"Rcount" + product.Content[i].NumIid.ToString() + "\" name=\"Rcount\" style=\"width:30px\" value=\"" + Rcount + "\" ></td>";//参团人数
                 str += "<td  width=\"140px\">" + hdstr + " </td>";//操作
                 str += "</tr></table></div>";
 
