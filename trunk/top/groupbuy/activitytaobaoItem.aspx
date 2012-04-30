@@ -229,7 +229,7 @@
                         var actionID = document.getElementById("activityIDstr").value;
                         var rcounts = document.getElementById("Rcount" + iid).value; 
                         $.ajax({
-                            url: 'LoadAjax.aspx?actionType=add&actionId=' + actionID + '&rcounts=' + rcounts + '&iid=' + iid + '&discountType=' + discountType + '&discountValue=' + discountValue + '&decreaseNum=' + decreaseNum,
+                            url: 'LoadAjax.aspx?actionType=add&actionId=' + actionID + '&rcounts=' + rcounts + '&iid=' + iid + '&discountType=' + discountType + '&discountValue=' + discountValue + '&t=' + new Date().getTime() + '&decreaseNum=' + decreaseNum,
                             timeout: 2000000,
                             beforeSend: function () {
                                 $('#add' + iid).html('正在添加...');
@@ -252,7 +252,7 @@
                     function delItemAction(iid) {
                         //if(!shortAuth(1335686645139))return;
                         $.ajax({
-                            url: 'LoadAjax.aspx?actionId=' + actionID + '&iid=' + iid + '&actionType=del',
+                            url: 'LoadAjax.aspx?actionId=' + actionID + '&iid=' + iid + '&actionType=del&t=' + new Date().getTime()+'',
                             type: 'GET',
                             dataType: 'text',
                             async: true,

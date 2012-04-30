@@ -80,13 +80,14 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
     /// </summary>
     public void addactivity()
     {
-        //获取原宝贝
-        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12287381", "d3486dac8198ef01000e7bd4504601a4");
         Cookie cookie = new Cookie();
         string taobaoNick = cookie.getCookie("nick");
         string session = cookie.getCookie("top_sessiongroupbuy");
         Rijndael_ encode = new Rijndael_("tetesoft");
         taobaoNick = encode.Decrypt(taobaoNick);
+        //获取原宝贝
+        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12287381", "d3486dac8198ef01000e7bd4504601a4");
+    
         ItemGetRequest requestItem = new ItemGetRequest();
         requestItem.Fields = "desc";
         requestItem.NumIid = long.Parse(iid);
@@ -137,7 +138,7 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
                 string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
                 if (err == "")
                 {
-                    Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>decreaseNum=" + decreaseNum + "promotion_title=" + dt.Rows[0]["Name"].ToString() + "end_date=" + dt.Rows[0]["endDate"].ToString() + "start_date=" + dt.Rows[0]["startDate"].ToString() + "iid=" + iid + "discount_value=" + discountValue + "" + result + "您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12287381&scope=promotion' target='_parent'>重新授权</a>");
+                    Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>session=" + session + "decreaseNum=" + decreaseNum + "promotion_title=" + dt.Rows[0]["Name"].ToString() + "end_date=" + dt.Rows[0]["endDate"].ToString() + "start_date=" + dt.Rows[0]["startDate"].ToString() + "iid=" + iid + "discount_value=" + discountValue + "" + result + "您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12287381&scope=promotion' target='_parent'>重新授权</a>");
                     Response.End();
                 }
 
