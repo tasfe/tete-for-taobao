@@ -161,7 +161,7 @@
 						    <th style=" width:100px;"></th>
 							<th  style=" width:300px;">宝贝名称</th> 
 							<th  style=" width:150px;">原价<em>(元)</em></th>
-							<th  style=" width:250px;">操作</th>
+							<th  style=" width:250px;">操作 </th>
 						</tr>
                        
                          </table>
