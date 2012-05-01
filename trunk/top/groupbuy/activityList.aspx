@@ -51,11 +51,11 @@
 		</ul>
 	</div>
 
-         <div class="bd">
-			<div id="J_DataTabelDiv">
-				<table id="J_DataTable">
-					<thead id="J_ProductsHead" style=" width:780px;">
-						<tr style=" width:780px;">
+         <div class="bd" style=" width:760px;">
+			<div id="J_DataTabelDiv" style=" width:760px;">
+				<table id="J_DataTable" style=" width:760px;">
+					<thead id="J_ProductsHead" style=" width:760px;">
+						<tr style=" width:760px;">
 							<th>活动名称</th>
 							<th>活动时间</th>
 							<th>优惠类型</th>
@@ -69,7 +69,7 @@
 
                         <asp:Repeater ID="rptArticle" runat="server">
                             <ItemTemplate>
-                                 <tr style=" width:780px;">
+                                 <tr style=" width:760px;">
                                     <td><%#Eval("Name").ToString()%></td>
                                     <td>
                                     开始：<%#Eval("startDate").ToString()%><br />
