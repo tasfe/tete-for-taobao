@@ -337,10 +337,10 @@ namespace teteactivitystart
         public static void WriteLog2(string message, string type)
         {
             string tempStr = logUrl + "/Write" + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
-            string tempFile = tempStr + "/promotionID" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+            string tempFile = tempStr + "/stapromotionID" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
             if (type == "1")
             {
-                tempFile = tempStr + "/ErrpromotionID" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+                tempFile = tempStr + "/ErrstapromotionID" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
             }
             if (!Directory.Exists(tempStr))
             {
@@ -488,10 +488,10 @@ namespace teteactivitystart
         public static void WriteLog(string message, string type, string groupbuyID)
         {
             string tempStr = logUrl + "/Write" + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
-            string tempFile = tempStr + "/promotionID" + groupbuyID + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+            string tempFile = tempStr + "/stapromotionID" + groupbuyID + DateTime.Now.ToString("yyyyMMdd") + ".txt";
             if (type == "1")
             {
-                tempFile = tempStr + "/ErrpromotionID" + groupbuyID + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+                tempFile = tempStr + "/ErrstapromotionID" + groupbuyID + DateTime.Now.ToString("yyyyMMdd") + ".txt";
             }
             if (!Directory.Exists(tempStr))
             {

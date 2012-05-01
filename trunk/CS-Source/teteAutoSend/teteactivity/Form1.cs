@@ -47,12 +47,13 @@ namespace teteactivity
                     for (int i = 0; i < dt1.Rows.Count; i++)
                     {
                         sql1 = "update tete_activity set Status=1 and isok=1 where id=" + dt1.Rows[i]["ID"].ToString(); //更新活动状态
+                        WriteLog(sql1,"");
                         DBSql.getInstance().ExecSql(sql1);
                     }
                 }
                 string sql2 = " select * from tete_activitylist where status=0 and promotionID=0 and  DATEDIFF(s,GETDATE(),startDate) < 0";//未开始的活动列表
 
-                dt1 = DBSql.getInstance().GetTable(sql1);
+                dt1 = DBSql.getInstance().GetTable(sql2); 
                 if (dt1 != null && dt1.Rows.Count > 0)
                 {
                     for (int i = 0; i < dt1.Rows.Count; i++)
