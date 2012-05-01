@@ -52,11 +52,11 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
             for (int i = 0; i < product.Content.Count; i++)
             {
                string tempstr = "未参加促销活动";
-               string sql = "select * from Tete_activitylist where Status<>4 and Status<>3 and Status<>2 ProductID=" + product.Content[i].NumIid.ToString();
+               string sql = "select * from Tete_activitylist where Status<>4 and Status<>3 and Status<>2 and  ProductID=" + product.Content[i].NumIid.ToString().Trim();
                DataTable dt = utils.ExecuteDataTable(sql);
                if (dt != null && dt.Rows.Count > 0)
                {
-                   tempstr = "已参加促销活动";
+                   tempstr = " <font color=green> 已参加促销活动</font>";
                }
 
                string str = " <table  width=\"800px;\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"margin:0px; padding:0px\">  <tr><td style=\" width:100px;\"><img src=" + product.Content[i].PicUrl + "_80x80.jpg></td><td  style=\" width:300px;\"><a   href=\"http://item.taobao.com/item.htm?id=" + product.Content[i].NumIid.ToString() + "\" target=\"_blank\">" + product.Content[i].Title + "</a></td><td  style=\" width:150px;\">" + product.Content[i].Price.ToString() + "</td><td  style=\" width:250px;\">" + tempstr + "</td></tr> </table><hr/>";

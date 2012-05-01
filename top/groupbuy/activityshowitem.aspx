@@ -145,6 +145,8 @@
         	                </select>
         	                请输入您要管理的促销宝贝名称：<input name="q"  style="width:300px;" id="querySearch" /> 
         	                <input type="button" value="查找商品" onclick="getTaobaoItem()" />
+
+                            
 				</p>	
 			</div>
             <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:2px 10px 2px 10px;">
@@ -157,7 +159,7 @@
    <div> <table width="800px;" border="0" cellspacing="0" cellpadding="0" style="margin:4px; padding:0px">			
    <tr>
 						    <th style=" width:100px;"></th>
-							<th  style=" width:300px;">宝贝名称</th>
+							<th  style=" width:300px;">宝贝名称</th> 
 							<th  style=" width:150px;">原价<em>(元)</em></th>
 							<th  style=" width:250px;">操作</th>
 						</tr>
