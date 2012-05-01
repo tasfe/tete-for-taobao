@@ -42,23 +42,23 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
             //Response.End();
             //return;
         }
-       
+
 
         if (Request.QueryString["act"] == "post")
         {
             string activityID = Request.QueryString["activityID"].ToString();
-             name = Request.Form["name"].ToString();
-             memo = Request.Form["memo"].ToString();
-             startDate = Request.Form["startDate"].ToString();
-             endDate = Request.Form["endDate"].ToString();
-             itemType = Request.Form["itemType"].ToString();
-             discountType = Request.Form["discountType"].ToString();
-             zhe = Request.Form["zhe"].ToString();
-             yuan = Request.Form["yuan"].ToString();
-             decreaseNum = Request.Form["decreaseNum"].ToString();
-             rcount = Request.Form["Rcount"].ToString();
-             tagId = "1";
-             status = "1";//进行中 
+            name = Request.Form["name"].ToString();
+            memo = Request.Form["memo"].ToString();
+            startDate = Request.Form["startDate"].ToString();
+            endDate = Request.Form["endDate"].ToString();
+            itemType = Request.Form["itemType"].ToString();
+            discountType = Request.Form["discountType"].ToString();
+            zhe = Request.Form["zhe"].ToString();
+            yuan = Request.Form["yuan"].ToString();
+            decreaseNum = Request.Form["decreaseNum"].ToString();
+            rcount = Request.Form["Rcount"].ToString();
+            tagId = "1";
+            status = "1";//进行中 
             #region  数据格式验证
             if (DateTime.Parse(startDate) < DateTime.Now)
             {
@@ -117,107 +117,111 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
                 sql = "update tete_activitylist set Name='" + name + "',Remark='" + memo + "',startDate='" + startDate + "',endDate='" + endDate + "',itemType='" + itemType + "',discountType='" + discountType + "',discountValue='" + discountValue + "',tagId='" + tagId + "',Rcount=" + rcount + ",nick='" + nick + "',Status=1,decreaseNum='" + decreaseNum + "',isok=0 where ActivityID=" + activityID;
                 utils.ExecuteNonQuery(sql);//修改活动商品  '延长修改活动 Status=1 和 isok=0 '
             }
-            Response.Write("<script>alert('修改成功！')</script>");
             Response.Redirect("activityList.aspx");
         }
-
-        if (!IsPostBack)
+        else
         {
-
-            if (Request.QueryString["activityID"] != null)
+            if (!IsPostBack)
             {
-                string activityID=Request.QueryString["activityID"].ToString();
-                if (Request.QueryString["tp"].ToString().Trim() == "pause") //暂停
-                {
-                    //更新活动，更新活动商品，及同步到淘宝，做服务控制
-                    string   sql = "update tete_activity set Status=3,isok=0 where ID=" + activityID;//暂停进行中
- 
-                    utils.ExecuteNonQuery(sql); //更新活动成功
-                    sql = "update tete_activitylist set  Status=3 ,isok=0 where ActivityID=" + activityID;
-                    utils.ExecuteNonQuery(sql); //更新活动商品
 
-                    Response.Redirect("activityList.aspx");
-                }
-                else if (Request.QueryString["tp"].ToString().Trim() == "del")//删除
+                if (Request.QueryString["activityID"] != null)
                 {
-                    //更新活动，更新活动商品，及同步淘宝，做服务控制
-                    string  sql = "update tete_activity set Status=4,isok=0 where ID=" + activityID;//删除进行中
-                    
-                    utils.ExecuteNonQuery(sql); //更新活动成功
-                    sql = "update tete_activitylist set  Status=4 ,isok=0 where ActivityID=" + activityID;
-                    utils.ExecuteNonQuery(sql); //更新活动商品
-                    Response.Redirect("activityList.aspx");
-                   
-                }
-                else if (Request.QueryString["tp"].ToString().Trim() == "hf")//恢复  暂停恢复
-                {
-                    //更新活动，更新活动商品，及同步淘宝，做服务控制
-                    string    sql = "update tete_activity set Status=1,isok=0 where ID=" + activityID;//活动进行中
-    
-                    utils.ExecuteNonQuery(sql); //更新活动成功
-                    sql = "update tete_activitylist set  Status=1 ,isok=0 where ActivityID=" + activityID;
-                    utils.ExecuteNonQuery(sql); //更新活动商品
-                    Response.Redirect("activityList.aspx");
-                }
-                else //修改，延长
-                {
-                 
-                    string sql = "select * from [tete_activity] where ID=" + Request.QueryString["activityID"].ToString();
-                    DataTable dt = new DataTable();
-                    dt = utils.ExecuteDataTable(sql);
-                    if (dt != null)
+                    string activityID = Request.QueryString["activityID"].ToString();
+                    if (Request.QueryString["tp"].ToString().Trim() == "pause") //暂停
                     {
-                        for (int i = 0; i < dt.Rows.Count; i++)
+                        //更新活动，更新活动商品，及同步到淘宝，做服务控制
+                        string sql = "update tete_activity set Status=3,isok=0 where ID=" + activityID;//暂停进行中
+
+                        utils.ExecuteNonQuery(sql); //更新活动成功
+                        sql = "update tete_activitylist set  Status=3 ,isok=0 where ActivityID=" + activityID;
+                        utils.ExecuteNonQuery(sql); //更新活动商品
+
+                        Response.Redirect("activityList.aspx");
+                       
+                    }
+                    else if (Request.QueryString["tp"].ToString().Trim() == "del")//删除
+                    {
+                        //更新活动，更新活动商品，及同步淘宝，做服务控制
+                        string sql = "update tete_activity set Status=4,isok=0 where ID=" + activityID;//删除进行中
+
+                        utils.ExecuteNonQuery(sql); //更新活动成功
+                        sql = "update tete_activitylist set  Status=4 ,isok=0 where ActivityID=" + activityID;
+                        utils.ExecuteNonQuery(sql); //更新活动商品
+                        Response.Redirect("activityList.aspx");
+          
+                    }
+                    else if (Request.QueryString["tp"].ToString().Trim() == "hf")//恢复  暂停恢复
+                    {
+                        //更新活动，更新活动商品，及同步淘宝，做服务控制
+                        string sql = "update tete_activity set Status=1,isok=0 where ID=" + activityID;//活动进行中
+
+                        utils.ExecuteNonQuery(sql); //更新活动成功
+                        sql = "update tete_activitylist set  Status=1 ,isok=0 where ActivityID=" + activityID;
+                        utils.ExecuteNonQuery(sql); //更新活动商品
+                        Response.Redirect("activityList.aspx");
+              
+                    }
+                    else //修改，延长
+                    {
+
+                        string sql = "select * from [tete_activity] where ID=" + Request.QueryString["activityID"].ToString();
+                        DataTable dt = new DataTable();
+                        dt = utils.ExecuteDataTable(sql);
+                        if (dt != null)
                         {
-                            name = dt.Rows[i]["Name"].ToString();
-                            memo = dt.Rows[i]["Remark"].ToString();
-                            startDate = dt.Rows[i]["startDate"].ToString();
-                            endDate = dt.Rows[i]["endDate"].ToString();
-                            itemType = dt.Rows[i]["itemType"].ToString();
-                            if (itemType != "same")
+                            for (int i = 0; i < dt.Rows.Count; i++)
                             {
-                                itemType = "";
-                                itemTypeStr = "checked";
-                                Detailtype.Value = "2";
+                                name = dt.Rows[i]["Name"].ToString();
+                                memo = dt.Rows[i]["Remark"].ToString();
+                                startDate = dt.Rows[i]["startDate"].ToString();
+                                endDate = dt.Rows[i]["endDate"].ToString();
+                                itemType = dt.Rows[i]["itemType"].ToString();
+                                if (itemType != "same")
+                                {
+                                    itemType = "";
+                                    itemTypeStr = "checked";
+                                    Detailtype.Value = "2";
+                                }
+                                else
+                                {
+                                    itemType = "checked";
+                                    itemTypeStr = "";
+                                    Detailtype.Value = "1";
+                                }
+                                discountType = dt.Rows[i]["discountType"].ToString();
+                                if (discountType != "DISCOUNT")
+                                {
+                                    discountType = "";
+                                    discountTypeStr = "checked";
+                                }
+                                else
+                                {
+                                    discountType = "checked";
+                                    discountTypeStr = "";
+                                }
+                                zhe = dt.Rows[i]["discountValue"].ToString();
+                                yuan = dt.Rows[i]["discountValue"].ToString();
+                                decreaseNum = dt.Rows[i]["decreaseNum"].ToString();
+                                if (decreaseNum == "0")
+                                {
+                                    decreaseNum = "selected";
+                                    decreaseNumStr = "";
+                                }
+                                else
+                                {
+                                    decreaseNum = "";
+                                    decreaseNumStr = "selected";
+                                }
+                                rcount = dt.Rows[i]["Rcount"].ToString();
                             }
-                            else
-                            {
-                                itemType = "checked";
-                                itemTypeStr = "";
-                                Detailtype.Value = "1";
-                            }
-                            discountType = dt.Rows[i]["discountType"].ToString();
-                            if (discountType != "DISCOUNT")
-                            {
-                                discountType = "";
-                                discountTypeStr = "checked";
-                            }
-                            else
-                            {
-                                discountType = "checked";
-                                discountTypeStr = "";
-                            }
-                            zhe = dt.Rows[i]["discountValue"].ToString();
-                            yuan = dt.Rows[i]["discountValue"].ToString();
-                            decreaseNum = dt.Rows[i]["decreaseNum"].ToString();
-                            if (decreaseNum == "0")
-                            {
-                                decreaseNum = "selected";
-                                decreaseNumStr = "";
-                            }
-                            else
-                            {
-                                decreaseNum = "";
-                                decreaseNumStr = "selected";
-                            }
-                            rcount = dt.Rows[i]["Rcount"].ToString();
                         }
                     }
                 }
-            }
-            else {
-                Response.Write("请选中活动!");
-                Response.End();
+                else
+                {
+                    Response.Write("请选中活动!");
+                    Response.End();
+                }
             }
         }
 
