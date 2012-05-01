@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>橱窗模板管理</title>
+    <title>橱窗模板管理 </title>
 </head>
 <body>
     <form id="form1" runat="server">
