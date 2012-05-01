@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Common;
+using System.Data;
 
 public partial class top_groupbuy_activityadd : System.Web.UI.Page
 {
@@ -18,6 +19,10 @@ public partial class top_groupbuy_activityadd : System.Web.UI.Page
         string taobaoNick = cookie.getCookie("nick");
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
+
+      
+
+       
         if (nick == "")
         {
             Response.Write("top签名验证不通过，请不要非法注入");
@@ -40,11 +45,25 @@ public partial class top_groupbuy_activityadd : System.Web.UI.Page
             string tagId = "1";
             string status = "1";//进行中
             string discountValue = "";
+            string shopgroupbuyEnddate = "";
            
 #region  数据格式验证
-            if (DateTime.Parse(startDate) < DateTime.Now)
+            if (DateTime.Parse(startDate) > DateTime.Now)
             {
                 status = "0";//未开始
+            }
+
+            string sql23 = "select enddate from TopTaobaoShop where nick='" + nick + "'";
+            DataTable  dt = utils.ExecuteDataTable(sql23);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                shopgroupbuyEnddate  = dt.Rows[0]["enddate"].ToString();
+            }
+            if (DateTime.Parse(shopgroupbuyEnddate) < DateTime.Now)
+            {
+                Response.Write("<script>alert('活动结束时间不能大于服务使用结束时间！')</script>");
+                return;
             }
             if (DateTime.Parse(endDate) < DateTime.Now)
             {
