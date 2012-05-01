@@ -60,7 +60,7 @@
                             <asp:Repeater ID="rptItems" runat="server">
                                 <ItemTemplate>
         	                      <tr>
-                                    <td width="100px"><img src="<%#Eval("ProductImg").ToString()%>" width="80px;" height="80px;" /></td>
+                                    <td width="100px"><a href="<%#Eval("ProductUrl").ToString()%>" target="_blank"><img src="<%#Eval("ProductImg").ToString()%>" width="80px;" height="80px;" /></a></td>
                                     <td  width="140px"><%#Eval("Productname").ToString()%></td>
                                     <td  width="70px">
                                      <%#Eval("Productprice").ToString()%> 
