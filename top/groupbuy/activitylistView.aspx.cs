@@ -141,7 +141,7 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
                 shopgroupbuyEnddate.Value = dt.Rows[0]["enddate"].ToString();//特特结束时间
             }
             sql = "select * from [tete_activitylist] where ID=" + Request.QueryString["ID"].ToString();
-
+            Response.Write(sql);
             dt = utils.ExecuteDataTable(sql);
             if (dt != null)
             {
