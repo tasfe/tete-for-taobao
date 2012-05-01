@@ -147,7 +147,7 @@ namespace teteactivityupdate
                             }
                         }
 
-                        sql1 = "update tete_activity set Status=1 and isok=1 where id=" + dt1.Rows[i]["ID"].ToString(); //更新修改延迟活动状态
+                        sql1 = "update tete_activity set Status=1, isok=1 where id=" + dt1.Rows[i]["ID"].ToString(); //更新修改延迟活动状态
                         DBSql.getInstance().ExecSql(sql1);
                     }
                 }
