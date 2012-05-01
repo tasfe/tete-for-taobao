@@ -110,18 +110,17 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
             #endregion
             string sql = "update tete_activity set Name='" + name + "',Remark='" + memo + "',startDate='" + startDate + "',endDate='" + endDate + "',itemType='" + itemType + "',discountType='" + discountType + "',discountValue='" + discountValue + "',tagId='" + tagId + "',Rcount=" + rcount + ",nick='" + nick + "',Status=1,decreaseNum='" + decreaseNum + "',isok=0 where id=" + activityID;
 
-            Response.Write(sql);
+          
             utils.ExecuteNonQuery(sql);
             sql = "select * from tete_activitylist where ActivityID=" + activityID;
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
                 sql = "update tete_activitylist set Name='" + name + "',Remark='" + memo + "',startDate='" + startDate + "',endDate='" + endDate + "',itemType='" + itemType + "',discountType='" + discountType + "',discountValue='" + discountValue + "',tagId='" + tagId + "',Rcount=" + rcount + ",nick='" + nick + "',Status=1,decreaseNum='" + decreaseNum + "',isok=0 where ActivityID=" + activityID;
-
-                Response.Write(sql);
+                 
                 utils.ExecuteNonQuery(sql);//修改活动商品  '延长修改活动 Status=1 和 isok=0 '
             }
-            Response.End();
+ 
 
             Response.Redirect("activityList.aspx");
             Response.End();

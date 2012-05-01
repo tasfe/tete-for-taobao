@@ -19,7 +19,7 @@
         <div class="msg">
 	<p class="alert">促销活动信息均为必填内容，请将促销内容填写完毕后提交。可以创建多个不同的促销活动。</p>
 </div>
-<form id="form1" runat="server">
+<form id="form1" action="activityView.aspx" runat="server">
 	<input type="hidden" name="submit" value="true"/>
 	<div style="padding-top:8px;"><h3>设置特特团购营销活动基本信息</h3></div>
 	<hr/>
