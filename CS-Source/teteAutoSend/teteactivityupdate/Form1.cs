@@ -10,8 +10,7 @@ using System.Net;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
-
-namespace teteactivity
+namespace teteactivityupdate
 {
     public partial class Form1 : Form
     {
@@ -20,75 +19,18 @@ namespace teteactivity
         {
             InitializeComponent();
             Control.CheckForIllegalCrossThreadCalls = false;
- 
-            //刷新未开始的服务
-            Thread newThread = new Thread(activitynotStart);
-            newThread.Start();
 
              
-        }
 
-        /// <summary>
-        /// 刷新未开始的服务
-        /// </summary>
-        private void activitynotStart()
-        {
-            try
-            {
+            //刷新已开始的服务
+            Thread newThread4 = new Thread(activityupdateStart);
+            newThread4.Start();
  
-                string session = string.Empty;
-
-                DBSql db = DBSql.getInstance();
-
-                string sql1 = "select * from tete_activity where status=0 and  DATEDIFF(s,GETDATE(),startDate) < 0 "; //未开始的活动
-                DataTable dt1 = DBSql.getInstance().GetTable(sql1);
-                if (dt1 != null && dt1.Rows.Count > 0)
-                {
-                    for (int i = 0; i < dt1.Rows.Count; i++)
-                    {
-                        sql1 = "update tete_activity set Status=1 and isok=1 where id=" + dt1.Rows[i]["ID"].ToString(); //更新活动状态
-                        DBSql.getInstance().ExecSql(sql1);
-                    }
-                }
-                string sql2 = " select * from tete_activitylist where status=0 and promotionID=0 and  DATEDIFF(s,GETDATE(),startDate) < 0";//未开始的活动列表
-
-                dt1 = DBSql.getInstance().GetTable(sql1);
-                if (dt1 != null && dt1.Rows.Count > 0)
-                {
-                    for (int i = 0; i < dt1.Rows.Count; i++)
-                    {
-                        string sqlstr1 = "SELECT session FROM TopTaobaoShop WHERE nick = '" + dt1.Rows[i]["nick"].ToString() + "'";
-
-                        DataTable dtnick = db.GetTable(sqlstr1);
-                        if (dtnick.Rows.Count != 0)
-                        {
-                            session = dtnick.Rows[0]["session"].ToString();
-                        }
-                        //添加活动
-                        addpromotion(dt1.Rows[i]["ProductID"].ToString(), dt1.Rows[i]["discountType"].ToString(), dt1.Rows[i]["discountValue"].ToString(), dt1.Rows[i]["startDate"].ToString(), dt1.Rows[i]["endDate"].ToString(), dt1.Rows[i]["Name"].ToString(), dt1.Rows[i]["decreaseNum"].ToString(), session, dt1.Rows[i]["ActivityID"].ToString());
-
-                    }
-                }
-
-                dt1.Dispose();
-                //休息后继续循环-默认1分半钟一次
-                Thread.Sleep(300000);
-
-                Thread newThread11 = new Thread(activitynotStart);
-                newThread11.Start();
-            }
-            catch (Exception e)
-            {
-
-                WriteLog("自动取消活动运行错误*****************************************" + e.StackTrace + e.Message + "----error!!!", "1");
-                //MessageBox.Show("\r\n" + e.StackTrace);
-                Thread newThread11 = new Thread(activitynotStart);
-                //休息后继续循环-默认1分半钟一次 
-                Thread.Sleep(300000);
-                newThread11.Start();
-            }
         }
 
+ 
+
+  
         /// <summary>
         /// 添加活动
         /// </summary>
@@ -101,19 +43,27 @@ namespace teteactivity
         /// <param name="decreaseNum">是否限制</param>
         /// <param name="session"></param>
         /// <param name="actionId">活动ID</param>
-        public void addpromotion(string iid, string discountType, string discountValue, string sdate, string edate, string name, string decreaseNum, string session, string actionId)
+        public void delORaddpromotion(string iid, string discountType, string discountValue, string sdate, string edate, string name, string decreaseNum, string session, string actionId, string promotion_id)
         {
+
+
+
             //创建活动及相关人群
             string appkey = "12287381";
             string secret = "d3486dac8198ef01000e7bd4504601a4";
 
+            IDictionary<string, string> param2 = new Dictionary<string, string>();
 
-
+            //删除活动
+            param2 = new Dictionary<string, string>();
+            param2.Add("promotion_id", promotion_id);
+            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.delete", session, param2);
+            Thread.Sleep(2000);//一秒一次， 太快 淘宝有限制  
             //创建活动相关人群
             string guid = Guid.NewGuid().ToString().Substring(0, 4);
             IDictionary<string, string> param = new Dictionary<string, string>();
 
-            string tagid = "1";  
+            string tagid = "1";
             //创建活动
             param = new Dictionary<string, string>();
             param.Add("num_iids", iid);
@@ -126,37 +76,120 @@ namespace teteactivity
 
 
             param.Add("tag_id", tagid);
-            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.add", session, param);
+            result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.add", session, param);
 
 
             if (result.IndexOf("error_response") != -1)
             {
-                string  sql = "delete from    [tete_activitylist]    WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
+                string sql = "delete from    [tete_activitylist]    WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
 
                 DBSql.getInstance().ExecSql(sql);
 
                 string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
                 if (err == "")
                 {
-                    WriteLog("活动创建失败，错误原因：您的session已经失效，需要重新授权", "1");
+                    WriteLog3("活动创建失败，错误原因：您的session已经失效，需要重新授权", "1");
 
                 }
-                else {
-                    WriteLog("活动创建失败，错误原因：" + err, "1");
+                else
+                {
+                    WriteLog3("活动创建失败，错误原因：" + err, "1");
                 }
- 
- 
+
+
                 return;
             }
 
             string promotionid = new Regex(@"<promotion_id>([^<]*)</promotion_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
 
             //更新活动
-           string  sql2 = "update  tete_activitylist set Status=1 ,isok=1,promotionID=" + promotionid + "  WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
-           DBSql.getInstance().ExecSql(sql2);
- 
+            string sql2 = "update  tete_activitylist set Status=1 ,isok=1,promotionID=" + promotionid + "  WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
+            DBSql.getInstance().ExecSql(sql2);
+
         }
 
+        
+
+        /// <summary>
+        /// 刷新已开始的服务(更新修改，延迟活动)
+        /// </summary>
+        private void activityupdateStart()
+        {
+            try
+            {
+                string session = string.Empty;
+
+                DBSql db = DBSql.getInstance();
+
+                string sql1 = "select * from tete_activity where status=1 and isok=0  "; //更新修改，延迟活动
+                DataTable dt1 = DBSql.getInstance().GetTable(sql1);
+                if (dt1 != null && dt1.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt1.Rows.Count; i++)
+                    {
+                        string sql2 = " select * from tete_activitylist where ActivityID=" + dt1.Rows[i]["ID"].ToString();//更新该活动下的商品
+                        DataTable dt1s2 = DBSql.getInstance().GetTable(sql2);
+                        if (dt1s2 != null && dt1s2.Rows.Count > 0)
+                        {
+                            for (int j = 0; j < dt1s2.Rows.Count; j++)
+                            {
+                                string sqlstr1 = "SELECT session FROM TopTaobaoShop WHERE nick = '" + dt1s2.Rows[j]["nick"].ToString() + "'";
+
+                                DataTable dtnick = db.GetTable(sqlstr1);
+                                if (dtnick.Rows.Count != 0)
+                                {
+                                    session = dtnick.Rows[0]["session"].ToString();
+                                }
+
+                                //删除活动,在添加活动
+                                delORaddpromotion(dt1s2.Rows[j]["ProductID"].ToString(), dt1s2.Rows[j]["discountType"].ToString(), dt1s2.Rows[j]["discountValue"].ToString(), dt1s2.Rows[j]["startDate"].ToString(), dt1s2.Rows[j]["endDate"].ToString(), dt1s2.Rows[j]["Name"].ToString(), dt1s2.Rows[j]["decreaseNum"].ToString(), session, dt1s2.Rows[j]["ActivityID"].ToString(), dt1s2.Rows[j]["promotionID"].ToString());
+
+                            }
+                        }
+
+                        sql1 = "update tete_activity set Status=1 and isok=1 where id=" + dt1.Rows[i]["ID"].ToString(); //更新修改延迟活动状态
+                        DBSql.getInstance().ExecSql(sql1);
+                    }
+                }
+                dt1.Dispose();
+
+                string sqls3 = " select * from tete_activitylist where status=1  and isok=0 ";//未开始的活动列表
+
+                DataTable dt1s3 = DBSql.getInstance().GetTable(sqls3);
+                if (dt1s3 != null && dt1s3.Rows.Count > 0)
+                {
+                    for (int j = 0; j < dt1s3.Rows.Count; j++)
+                    {
+                        string sqlstr1 = "SELECT session FROM TopTaobaoShop WHERE nick = '" + dt1s3.Rows[j]["nick"].ToString() + "'";
+
+                        DataTable dtnick = db.GetTable(sqlstr1);
+                        if (dtnick.Rows.Count != 0)
+                        {
+                            session = dtnick.Rows[0]["session"].ToString();
+                        }
+
+                        //删除活动
+                        delORaddpromotion(dt1s3.Rows[j]["ProductID"].ToString(), dt1s3.Rows[j]["discountType"].ToString(), dt1s3.Rows[j]["discountValue"].ToString(), dt1s3.Rows[j]["startDate"].ToString(), dt1s3.Rows[j]["endDate"].ToString(), dt1s3.Rows[j]["Name"].ToString(), dt1s3.Rows[j]["decreaseNum"].ToString(), session, dt1s3.Rows[j]["ActivityID"].ToString(), dt1s3.Rows[j]["promotionID"].ToString());
+                    }
+                }
+                dt1s3.Dispose();
+                //休息后继续循环-默认1分半钟一次
+                Thread.Sleep(300000);
+
+                Thread newThread44 = new Thread(activityupdateStart);
+                newThread44.Start();
+            }
+            catch (Exception e)
+            {
+
+                WriteLog3("自动取消活动运行错误*****************************************" + e.StackTrace + e.Message + "----error!!!", "1");
+                //MessageBox.Show("\r\n" + e.StackTrace);
+                Thread newThread44 = new Thread(activityupdateStart);
+                //休息后继续循环-默认1分半钟一次 
+                Thread.Sleep(300000);
+                newThread44.Start();
+            }
+        }
 
  
 
@@ -456,7 +489,7 @@ namespace teteactivity
             }
 
         }
- 
+
 
         /// <summary>
         /// 写日志
@@ -495,7 +528,7 @@ namespace teteactivity
 
         }
 
-      
+
 
         /// <summary>
         /// 更新宝贝详细日志
@@ -533,7 +566,7 @@ namespace teteactivity
             }
         }
 
-       
+
         /// <summary>
         /// 写日志
         /// </summary>
@@ -574,7 +607,7 @@ namespace teteactivity
 
         }
 
-       
+
         #endregion
 
 
