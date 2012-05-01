@@ -187,7 +187,7 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
                     {
 
                         string sql = "select * from [tete_activity] where ID=" + Request.QueryString["activityID"].ToString();
-                        DataTable dt = new DataTable();
+                          dt = new DataTable();
                         dt = utils.ExecuteDataTable(sql);
                         if (dt != null)
                         {
