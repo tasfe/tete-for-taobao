@@ -27,13 +27,20 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
     public string decreaseNumStr = "";
     public string discountValue = "";
     public string imgStr = "";
-
+    public string shopgroupbuyEnddate2 = "";
     protected void Page_Load(object sender, EventArgs e)
     {
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
         Rijndael_ encode = new Rijndael_("tetesoft");
+        string sql23 = "select enddate from TopTaobaoShop where nick='" + nick + "'";
+        DataTable dt32 = utils.ExecuteDataTable(sql23);
 
+        if (dt32 != null && dt32.Rows.Count > 0)
+        {
+            shopgroupbuyEnddate2 = dt32.Rows[0]["enddate"].ToString();
+            teteendDate = dt32.Rows[0]["enddate"].ToString();
+        }
         nick = encode.Decrypt(taobaoNick);
         if (nick == "")
         {
@@ -45,7 +52,7 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
         {
             string activityID = Request.QueryString["activityID"].ToString();
             string ID = Request.QueryString["ID"].ToString();
-            string shopgroupbuyEnddate = "";
+
             startDate = Request.Form["startDate"].ToString();
             endDate = Request.Form["endDate"].ToString();
             itemType = Request.Form["itemType"].ToString();
@@ -61,15 +68,8 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
             {
                 status = "0";//未开始
             }
-            string sql23 = "select enddate from TopTaobaoShop where nick='" + nick + "'";
-            DataTable dt32 = utils.ExecuteDataTable(sql23);
 
-            if (dt32 != null && dt32.Rows.Count > 0)
-            {
-                shopgroupbuyEnddate = dt32.Rows[0]["enddate"].ToString();
-                teteendDate = dt32.Rows[0]["enddate"].ToString();
-            }
-            if (DateTime.Parse(shopgroupbuyEnddate) < DateTime.Now)
+            if (DateTime.Parse(shopgroupbuyEnddate2) < DateTime.Now)
             {
                 Response.Write("<script>alert('活动结束时间不能大于服务使用结束时间！')</script>");
                 return;
