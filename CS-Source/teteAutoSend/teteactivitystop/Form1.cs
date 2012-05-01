@@ -381,10 +381,10 @@ namespace teteactivitystop
         public static void WriteLog4(string message, string type)
         {
             string tempStr = logUrl + "/Write" + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
-            string tempFile = tempStr + "/promotionID" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+            string tempFile = tempStr + "/stoppromotionID" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
             if (type == "1")
             {
-                tempFile = tempStr + "/ErrpromotionID" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+                tempFile = tempStr + "/ErrstoppromotionID" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
             }
             if (!Directory.Exists(tempStr))
             {
