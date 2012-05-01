@@ -61,7 +61,7 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
             {
                 status = "0";//未开始
             }
-            if (DateTime.Parse(endDate) > DateTime.Now)
+            if (DateTime.Parse(endDate) < DateTime.Now)
             {
                 Response.Write("<script>alert('活动结束时间不能小于当前时间！')</script>");
                 return;
