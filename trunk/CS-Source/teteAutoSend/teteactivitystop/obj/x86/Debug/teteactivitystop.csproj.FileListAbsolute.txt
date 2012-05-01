@@ -1,0 +1,12 @@
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\teteactivitystop\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\teteactivitystop\obj\x86\Debug\teteactivitystop.Properties.Resources.resources
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\teteactivitystop\bin\Debug\teteactivitystop.exe.config
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\teteactivitystop\bin\Debug\teteactivitystop.exe
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\teteactivitystop\bin\Debug\teteactivitystop.pdb
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\teteactivitystop\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\teteactivitystop\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\teteactivitystop\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\teteactivitystop\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\teteactivitystop\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\teteactivitystop\obj\x86\Debug\teteactivitystop.exe
+E:\工作文件2\googleSvn\tete-for-taobao\CS-Source\teteAutoSend\teteactivitystop\obj\x86\Debug\teteactivitystop.pdb
