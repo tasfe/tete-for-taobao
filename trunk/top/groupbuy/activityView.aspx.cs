@@ -118,6 +118,7 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
                 utils.ExecuteNonQuery(sql);//修改活动商品  '延长修改活动 Status=1 和 isok=0 '
             }
             Response.Write("<script>alert('修改成功！')</script>");
+            Response.Redirect("activityList.aspx");
         }
 
         if (!IsPostBack)
