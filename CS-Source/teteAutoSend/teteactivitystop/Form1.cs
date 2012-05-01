@@ -90,7 +90,7 @@ namespace teteactivitystop
                             }
                         }
 
-                        sql1 = "update tete_activity set Status=3 and isok=1 where id=" + dt1.Rows[i]["ID"].ToString(); //暂停活动
+                        sql1 = "update tete_activity set Status=3 , isok=1 where id=" + dt1.Rows[i]["ID"].ToString(); //暂停活动
                         DBSql.getInstance().ExecSql(sql1);
                     }
                 }

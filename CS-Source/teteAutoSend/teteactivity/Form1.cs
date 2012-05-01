@@ -46,7 +46,7 @@ namespace teteactivity
                 {
                     for (int i = 0; i < dt1.Rows.Count; i++)
                     {
-                        sql1 = "update tete_activity set Status=1 and isok=1 where id=" + dt1.Rows[i]["ID"].ToString(); //更新活动状态
+                        sql1 = "update tete_activity set Status=1 , isok=1 where id=" + dt1.Rows[i]["ID"].ToString(); //更新活动状态
                         WriteLog(sql1,"");
                         DBSql.getInstance().ExecSql(sql1);
                     }
@@ -61,7 +61,7 @@ namespace teteactivity
                         string sqlstr1 = "SELECT session FROM TopTaobaoShop WHERE nick = '" + dt1.Rows[i]["nick"].ToString() + "'";
 
                         DataTable dtnick = db.GetTable(sqlstr1);
-                        if (dtnick.Rows.Count != 0)
+                        if (dtnick!=null&&dtnick.Rows.Count != 0)
                         {
                             session = dtnick.Rows[0]["session"].ToString();
                         }
@@ -81,7 +81,7 @@ namespace teteactivity
             catch (Exception e)
             {
 
-                WriteLog("自动取消活动运行错误*****************************************" + e.StackTrace + e.Message + "----error!!!", "1");
+                WriteLog("自动取消活动运行错误*****************************************" + e.StackTrace + e.Message+e + "----error!!!", "1");
                 //MessageBox.Show("\r\n" + e.StackTrace);
                 Thread newThread11 = new Thread(activitynotStart);
                 //休息后继续循环-默认1分半钟一次 

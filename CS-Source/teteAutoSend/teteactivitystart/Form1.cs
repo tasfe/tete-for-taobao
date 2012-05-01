@@ -96,7 +96,7 @@ namespace teteactivitystart
                                 delactivity(dt1s2.Rows[j]["promotionID"].ToString(), session, dt1s2.Rows[j]["ActivityID"].ToString(), dt1s2.Rows[j]["ProductID"].ToString());
                             }
                         }
-                        sql1 = "update tete_activity set Status=2 and isok=1 where id=" + dt1.Rows[i]["ID"].ToString(); //更新活动到期状态
+                        sql1 = "update tete_activity set Status=2, isok=1 where id=" + dt1.Rows[i]["ID"].ToString(); //更新活动到期状态
                         DBSql.getInstance().ExecSql(sql1);
                     }
                 }
