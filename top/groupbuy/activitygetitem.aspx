@@ -71,7 +71,7 @@
                                     <td  width="70px"> <%#Eval("Rcount").ToString()%> </td>
                            
                                     <td  width="140px">
-                                      
+                                        <div id="del"></div>
                                         <%# outShowHtml(Eval("ActivityID").ToString(), Eval("ID").ToString(), Eval("ProductID").ToString())%>
                                     </td>
                                  </tr>
@@ -107,9 +107,6 @@
                 success: function (msg) {
                     if (msg == 'true') {
                         $('#del' + iid).hide();
-                        $('#yhlxDiv' + iid).show();
-                        $('#yhhdDiv' + iid).show();
-                        $('#yhslDiv' + iid).show();
 
                     } else {
                         $('#del' + iid).html('删除失败:' + msg + '<a href="javascript:delItemAction(' + iid + ')">重试</a>');
