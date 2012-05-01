@@ -54,7 +54,7 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
             string ID = Request.QueryString["ID"].ToString();
 
             startDate = Request.Form["startDate"].ToString();
-            endDate = Request.Form["endDate"].ToString(); 
+            endDate = Request.Form["endDate"].ToString();
             discountType = Request.Form["discountType"].ToString();
             zhe = Request.Form["zhe"].ToString();
             yuan = Request.Form["yuan"].ToString();
@@ -67,48 +67,47 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
             {
                 status = "0";//未开始
             }
-              sql23 = "select enddate from TopTaobaoShop where nick='" + nick + "'";
-              dt32 = utils.ExecuteDataTable(sql23);
+            sql23 = "select enddate from TopTaobaoShop where nick='" + nick + "'";
+            dt32 = utils.ExecuteDataTable(sql23);
 
             if (dt32 != null && dt32.Rows.Count > 0)
             {
                 shopgroupbuyEnddate2 = dt32.Rows[0]["enddate"].ToString();
-              
+
             }
             if (DateTime.Parse(shopgroupbuyEnddate2) < DateTime.Now)
             {
                 Response.Write("<script>alert('活动结束时间不能大于服务使用结束时间！')</script>");
                 return;
             }
- 
+
             if (DateTime.Parse(endDate) < DateTime.Now)
             {
                 Response.Write("<script>alert('活动结束时间不能小于当前时间！')</script>");
                 return;
             }
             //每个参加活动的宝贝设置相同促销力度
-            if (Request.Form["itemType"].ToString() == "same")
+
+            //促销方式
+            if (Request.Form["discountType"].ToString() == "DISCOUNT")
             {
-                //促销方式
-                if (Request.Form["discountType"].ToString() == "DISCOUNT")
+                if (!isNumber(Request.Form["zhe"].ToString()))
                 {
-                    if (!isNumber(Request.Form["zhe"].ToString()))
-                    {
-                        Response.Write("<script>alert('折扣格式不正确！')</script>");
-                        return;
-                    }
-                    discountValue = zhe;
+                    Response.Write("<script>alert('折扣格式不正确！')</script>");
+                    return;
                 }
-                else
-                {
-                    if (!isNumber(Request.Form["yuan"].ToString()))
-                    {
-                        Response.Write("<script>alert('金额格式不正确！')</script>");
-                        return;
-                    }
-                    discountValue = yuan;
-                }
+                discountValue = zhe;
             }
+            else
+            {
+                if (!isNumber(Request.Form["yuan"].ToString()))
+                {
+                    Response.Write("<script>alert('金额格式不正确！')</script>");
+                    return;
+                }
+                discountValue = yuan;
+            }
+
             if (!isNumber(rcount))
             {
                 rcount = "0";
@@ -125,8 +124,8 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
                 return;
             }
             #endregion
-            string sql = "update tete_activity set  startDate='" + startDate + "',endDate='" + endDate + "',itemType='" + itemType + "',discountType='" + discountType + "',discountValue='" + discountValue + "',tagId='" + tagId + "',Rcount=" + rcount + ",nick='" + nick + "', decreaseNum='" + decreaseNum + "'  where id=" + activityID; //更新活动
-      
+            string sql = "update tete_activity set  startDate='" + startDate + "',endDate='" + endDate + "',discountType='" + discountType + "',discountValue='" + discountValue + "',tagId='" + tagId + "',Rcount=" + rcount + ",nick='" + nick + "', decreaseNum='" + decreaseNum + "'  where id=" + activityID; //更新活动
+
             utils.ExecuteNonQuery(sql);
 
             sql = "select * from tete_activitylist where  ID=" + ID;
@@ -134,13 +133,13 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
-                sql = "update tete_activitylist set startDate='" + startDate + "',endDate='" + endDate + "',itemType='" + itemType + "',discountType='" + discountType + "',discountValue='" + discountValue + "',tagId='" + tagId + "',Rcount=" + rcount + ",Status=1,decreaseNum='" + decreaseNum + "',isok=0 where ID=" + ID;
-               
+                sql = "update tete_activitylist set startDate='" + startDate + "',endDate='" + endDate + "',discountType='" + discountType + "',discountValue='" + discountValue + "',tagId='" + tagId + "',Rcount=" + rcount + ",Status=1,decreaseNum='" + decreaseNum + "',isok=0 where ID=" + ID;
+
                 utils.ExecuteNonQuery(sql);//修改活动商品  '延长修改活动 Status=1 和 isok=0 '
             }
-           
 
-            Response.Redirect("activitygetitem.aspx?activityID="+activityID);
+
+            Response.Redirect("activitygetitem.aspx?activityID=" + activityID);
         }
         if (!IsPostBack)
         {
@@ -153,14 +152,14 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
                 teteendDate = dt.Rows[0]["enddate"].ToString();
             }
             sql = "select * from [tete_activitylist] where ID=" + Request.QueryString["ID"].ToString();
-    
+
             dt = utils.ExecuteDataTable(sql);
             if (dt != null)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     imags.Src = dt.Rows[i]["ProductImg"].ToString();
-                  
+
                     startDate = dt.Rows[i]["startDate"].ToString();
                     endDate = dt.Rows[i]["endDate"].ToString();
                     itemType = dt.Rows[i]["itemType"].ToString();
