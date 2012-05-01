@@ -70,6 +70,7 @@ public partial class top_groupbuy_activityadd : System.Web.UI.Page
                 Response.Write("<script>alert('活动结束时间不能小于当前时间！')</script>");
                 return;
             }
+              
             //每个参加活动的宝贝设置相同促销力度
             if (Request.Form["itemType"].ToString() == "same")
             {
