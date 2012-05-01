@@ -34,6 +34,7 @@ public partial class top_groupbuy_activitygetitem : System.Web.UI.Page
     public string activitydiscountTypestr = string.Empty;
     public string activitydiscountValuestr = string.Empty;
     public string activitydecreaseNumstr = string.Empty;
+    public string addactivity = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -55,7 +56,9 @@ public partial class top_groupbuy_activitygetitem : System.Web.UI.Page
             Response.Redirect("activityList.aspx");
             return;
         }
+      
         string activityID = Request.QueryString["activityID"].ToString();
+        addactivity = "<a href=\"activitytaobaoItem.aspx?activityID=" + activityID + "\">添加促销宝贝</a>   <a href=\"activityList.aspx\">返回活动列表</a>";
         activityIDstr.Value = activityID;
         string sql = "SELECT *  FROM  [tete_activity] where ID=" + activityID;
         DataTable dt3 = utils.ExecuteDataTable(sql);
