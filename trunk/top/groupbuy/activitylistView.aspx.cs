@@ -128,7 +128,6 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
                 sql = "update tete_activitylist set startDate='" + startDate + "',endDate='" + endDate + "',itemType='" + itemType + "',discountType='" + discountType + "',discountValue='" + discountValue + "',tagId='" + tagId + "',Rcount=" + rcount + ",Status=1,decreaseNum='" + decreaseNum + "',isok=0 where ID=" + ID;
                 utils.ExecuteNonQuery(sql);//修改活动商品  '延长修改活动 Status=1 和 isok=0 '
             }
-            Response.Write("<script>alert('修改成功！')</script>");
             Response.Redirect("activitygetitem.aspx");
         }
         if (!IsPostBack)
@@ -139,8 +138,9 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
             if (dt != null && dt.Rows.Count > 0)
             {
                 shopgroupbuyEnddate.Value = dt.Rows[0]["enddate"].ToString();//特特结束时间
+                teteendDate = dt.Rows[0]["enddate"].ToString();
             }
-            sql = "select * from [tete_activitylist] where activityID=" + Request.QueryString["ID"].ToString();
+            sql = "select * from [tete_activitylist] where ID=" + Request.QueryString["ID"].ToString();
     
             dt = utils.ExecuteDataTable(sql);
             if (dt != null)

@@ -28,7 +28,7 @@
 			<tr>
 			 
 				<td  colspan="2" align=center>
-					 <img src="" id=imags runat="server"  width="80px;" /> <input id="shopgroupbuyEnddate" type="hidden" runat=server name="shopgroupbuyEnddate" value="" />
+					 <img src="" id=imags runat="server"  width="80" /> <input id="shopgroupbuyEnddate" type="hidden" runat=server name="shopgroupbuyEnddate" value="" />
 				</td>
 			</tr>
 			<tr>

@@ -138,11 +138,12 @@ public partial class top_groupbuy_activitygetitem : System.Web.UI.Page
     }
 
 
-
     /// <summary>
-    /// 输出HTML
-    /// </summary> 
-    /// <param name="actionID">活动ID</param>
+    /// 
+    /// </summary>
+    /// <param name="ID"></param>
+    /// <param name="actionID"></param>
+    /// <param name="pid"></param>
     /// <returns></returns>
     public string outShowHtml(string ID, string actionID,string pid)
     {
