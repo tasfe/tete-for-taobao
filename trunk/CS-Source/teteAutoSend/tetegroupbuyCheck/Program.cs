@@ -15,9 +15,18 @@ namespace tetegroupbuyCheck
             int i = 0;
             int j = 0;
             int k = 0;
+            int p = 0;
+            int q = 0;
+            int w = 0;
+            int e = 0;
             Process process = new Process();
             Process processShipping = new Process();
-            Process processOrder = new Process();
+            Process processGroupbuy = new Process();
+            Process oldGroupbuystop = new Process();
+            Process oldGroupbuystr = new Process();
+            Process oldGroupbuyup = new Process();
+            Process oldGroupbuyend = new Process();
+            
             while (true)
             {
                 //判断同步宝贝详细服务的运行状态
@@ -61,6 +70,55 @@ namespace tetegroupbuyCheck
                     processShipping = Process.Start("tetegroupbuy.exe");
                 }
 
+                //判断到期活动团购取消服务的运行状态
+                Process[] oldGroupbuy = Process.GetProcessesByName("tetegroupbuyRemove");
+                if (oldGroupbuy.Length <= 0) //
+                {
+                    k++;
+                    Console.Write("[" + DateTime.Now.ToString() + "] - [" + k.ToString() + "] tetegroupbuyRemove程序没有运行!!!!!! \r\n");
+                    //启动程序
+                    processGroupbuy = Process.Start("tetegroupbuyRemove.exe");
+                }
+
+                //判断活动服务的运行状态
+                Process[] Groupbuystop = Process.GetProcessesByName("teteactivity");
+                if (Groupbuystop.Length <= 0) //
+                {
+                    p++;
+                    Console.Write("[" + DateTime.Now.ToString() + "] - [" + p.ToString() + "] teteactivity程序没有运行!!!!!! \r\n");
+                    //启动程序
+                    oldGroupbuystop = Process.Start("teteactivity.exe");
+                }
+
+                //判断活动服务的运行状态
+                Process[] Groupbuystr = Process.GetProcessesByName("teteactivitystart");
+                if (Groupbuystr.Length <= 0) //
+                {
+                    w++;
+                    Console.Write("[" + DateTime.Now.ToString() + "] - [" + w.ToString() + "] teteactivitystart程序没有运行!!!!!! \r\n");
+                    //启动程序
+                    oldGroupbuystr = Process.Start("teteactivitystart.exe");
+                }
+
+                //判断活动服务的运行状态
+                Process[] Groupbuyup = Process.GetProcessesByName("teteactivitystop");
+                if (Groupbuyup.Length <= 0) //
+                {
+                    q++;
+                    Console.Write("[" + DateTime.Now.ToString() + "] - [" + q.ToString() + "] teteactivitystop程序没有运行!!!!!! \r\n");
+                    //启动程序
+                    oldGroupbuyup = Process.Start("teteactivitystop.exe");
+                }
+
+                //判断活动服务的运行状态
+                Process[] Groupbuyend = Process.GetProcessesByName("teteactivitystop");
+                if (Groupbuyend.Length <= 0) //
+                {
+                    e++;
+                    Console.Write("[" + DateTime.Now.ToString() + "] - [" + e.ToString() + "] teteactivitystop程序没有运行!!!!!! \r\n");
+                    //启动程序
+                    oldGroupbuyend = Process.Start("teteactivitystop.exe");
+                }
                 
 
                 //1秒刷新一下状态
