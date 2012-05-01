@@ -111,13 +111,13 @@ namespace tetegroupbuyCheck
                 }
 
                 //判断活动服务的运行状态
-                Process[] Groupbuyend = Process.GetProcessesByName("teteactivitystop");
+                Process[] Groupbuyend = Process.GetProcessesByName("teteactivityupdate");
                 if (Groupbuyend.Length <= 0) //
                 {
                     e++;
-                    Console.Write("[" + DateTime.Now.ToString() + "] - [" + e.ToString() + "] teteactivitystop程序没有运行!!!!!! \r\n");
+                    Console.Write("[" + DateTime.Now.ToString() + "] - [" + e.ToString() + "] teteactivityupdate程序没有运行!!!!!! \r\n");
                     //启动程序
-                    oldGroupbuyend = Process.Start("teteactivitystop.exe");
+                    oldGroupbuyend = Process.Start("teteactivityupdate.exe");
                 }
                 
 
