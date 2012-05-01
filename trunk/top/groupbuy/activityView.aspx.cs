@@ -44,7 +44,7 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
         }
 
 
-        if (Request.QueryString["act"] == "post")
+        if (Request.Form["act"] == "post")
         {
             string activityID = Request.QueryString["activityID"].ToString();
             name = Request.Form["name"].ToString();
@@ -64,7 +64,7 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
             {
                 status = "0";//未开始
             }
-            if (DateTime.Parse(endDate) > DateTime.Now)
+            if (DateTime.Parse(endDate) < DateTime.Now)
             {
                 Response.Write("<script>alert('活动结束时间不能小于当前时间！')</script>");
                 return;
@@ -123,8 +123,7 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
  
 
             Response.Redirect("activityList.aspx");
-            Response.End();
-            return;
+ 
         }
         else
         {
