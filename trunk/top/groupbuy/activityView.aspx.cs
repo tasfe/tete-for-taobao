@@ -60,7 +60,7 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
             tagId = "1";
             status = "1";//进行中 
             #region  数据格式验证
-            if (DateTime.Parse(startDate) < DateTime.Now)
+            if (DateTime.Parse(startDate) > DateTime.Now)
             {
                 status = "0";//未开始
             }
