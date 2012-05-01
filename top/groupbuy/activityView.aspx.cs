@@ -59,10 +59,25 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
             rcount = Request.Form["Rcount"].ToString();
             tagId = "1";
             status = "1";//进行中 
+            string shopgroupbuyEnddate = "";
             #region  数据格式验证
             if (DateTime.Parse(startDate) > DateTime.Now)
             {
                 status = "0";//未开始
+            }
+
+            string sql23 = "select enddate from TopTaobaoShop where nick='" + nick + "'";
+            DataTable dt = utils.ExecuteDataTable(sql23);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                shopgroupbuyEnddate = dt.Rows[0]["enddate"].ToString();
+                teteendDate = dt.Rows[0]["enddate"].ToString();
+            }
+            if (DateTime.Parse(shopgroupbuyEnddate) < DateTime.Now)
+            {
+                Response.Write("<script>alert('活动结束时间不能大于服务使用结束时间！')</script>");
+                return;
             }
             if (DateTime.Parse(endDate) < DateTime.Now)
             {

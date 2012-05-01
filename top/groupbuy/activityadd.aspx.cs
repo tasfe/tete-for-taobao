@@ -59,6 +59,7 @@ public partial class top_groupbuy_activityadd : System.Web.UI.Page
             if (dt != null && dt.Rows.Count > 0)
             {
                 shopgroupbuyEnddate  = dt.Rows[0]["enddate"].ToString();
+                teteendDate = dt.Rows[0]["enddate"].ToString();
             }
             if (DateTime.Parse(shopgroupbuyEnddate) < DateTime.Now)
             {
