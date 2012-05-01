@@ -1,4 +1,4 @@
-﻿d<%@ Page Language="C#" AutoEventWireup="true" CodeFile="activitygetitem.aspx.cs" Inherits="top_groupbuy_activitygetitem" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="activitygetitem.aspx.cs" Inherits="top_groupbuy_activitygetitem" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -26,9 +26,9 @@
         
         <li>促销形式：<%=activitydiscountTypestr%></li>
         <li>促销力度：<%=activitydiscountValuestr%></li>
-		<li>优惠数量限制：<%=activitydecreaseNumstr%> </li>
+		<li>优惠数量限制：<%=activitydecreaseNumstr%> <%=addactivity%></li>
         
-		<li>目标客户：全淘宝网会员</li>
+		<li>目标客户：全淘宝网会员    </li>
 	</ul>
 </div>
      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:2px 10px 2px 10px;">
