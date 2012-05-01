@@ -72,7 +72,7 @@
                            
                                     <td  width="140px">
                                       
-                                        <%# outShowHtml(Eval("ActivityID").ToString(), Eval("ID").ToString())%>
+                                        <%# outShowHtml(Eval("ActivityID").ToString(), Eval("ID").ToString(), Eval("ProductID").ToString())%>
                                     </td>
                                  </tr>
                                 </ItemTemplate>
@@ -88,5 +88,36 @@
      
     </table>
     </form>
+    <script type="text/javascript">
+        function delItemAction(iid) {
+            //if(!shortAuth(1335686645139))return;
+            var actionID = document.getElementById("activityIDstr").value;
+            $.ajax({
+                url: 'LoadAjax.aspx?actionId=' + actionID + '&iid=' + iid + '&actionType=del&t=' + new Date().getTime() + '',
+                type: 'GET',
+                dataType: 'text',
+                async: true,
+                timeout: 2000000,
+                beforeSend: function () {
+                    $('#del' + iid).html('正在删除...');
+                },
+                error: function () {
+                    alert('网络错误，请重试！');
+                },
+                success: function (msg) {
+                    if (msg == 'true') {
+                        $('#del' + iid).hide();
+                        $('#yhlxDiv' + iid).show();
+                        $('#yhhdDiv' + iid).show();
+                        $('#yhslDiv' + iid).show();
+
+                    } else {
+                        $('#del' + iid).html('删除失败:' + msg + '<a href="javascript:delItemAction(' + iid + ')">重试</a>');
+                    }
+                }
+            });
+        } 
+
+    </script>
 </body>
 </html>
