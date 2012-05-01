@@ -38,14 +38,7 @@ public partial class top_groupbuy_activitygetitem : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.QueryString["tp"] != null)
-        {
-            //删除活动
-            string sql2 = "delete from tete_activitylist where  id=" + Request.QueryString["ID"].ToString();
-            utils.ExecuteNonQuery(sql2);
-            Response.Redirect("activitygetitem.aspx");
-            return;
-        }
+
 
         Cookie cookie = new Cookie();
         string taobaoNick = cookie.getCookie("nick");
