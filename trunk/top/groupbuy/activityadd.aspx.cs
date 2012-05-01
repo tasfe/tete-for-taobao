@@ -20,7 +20,14 @@ public partial class top_groupbuy_activityadd : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
-      
+        string sql23 = "select enddate from TopTaobaoShop where nick='" + nick + "'";
+        DataTable dt = utils.ExecuteDataTable(sql23);
+
+        if (dt != null && dt.Rows.Count > 0)
+        {
+          
+            teteendDate = dt.Rows[0]["enddate"].ToString();
+        }
 
        
         if (nick == "")
@@ -53,8 +60,8 @@ public partial class top_groupbuy_activityadd : System.Web.UI.Page
                 status = "0";//未开始
             }
 
-            string sql23 = "select enddate from TopTaobaoShop where nick='" + nick + "'";
-            DataTable  dt = utils.ExecuteDataTable(sql23);
+              sql23 = "select enddate from TopTaobaoShop where nick='" + nick + "'";
+               dt = utils.ExecuteDataTable(sql23);
 
             if (dt != null && dt.Rows.Count > 0)
             {

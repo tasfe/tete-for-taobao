@@ -29,6 +29,7 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        string shopgroupbuyEnddate = "";
         teteendDate = "2012-12-12"; //特特结束时间
         teteendDateID.Value = teteendDate;
         Common.Cookie cookie = new Common.Cookie();
@@ -42,7 +43,14 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
             //Response.End();
             //return;
         }
+        string sql23 = "select enddate from TopTaobaoShop where nick='" + nick + "'";
+        DataTable dt = utils.ExecuteDataTable(sql23);
 
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            shopgroupbuyEnddate = dt.Rows[0]["enddate"].ToString();
+            teteendDate = dt.Rows[0]["enddate"].ToString();
+        }
 
         if (Request.Form["act"] == "post")
         {
@@ -59,21 +67,14 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
             rcount = Request.Form["Rcount"].ToString();
             tagId = "1";
             status = "1";//进行中 
-            string shopgroupbuyEnddate = "";
+       
             #region  数据格式验证
             if (DateTime.Parse(startDate) > DateTime.Now)
             {
                 status = "0";//未开始
             }
 
-            string sql23 = "select enddate from TopTaobaoShop where nick='" + nick + "'";
-            DataTable dt = utils.ExecuteDataTable(sql23);
-
-            if (dt != null && dt.Rows.Count > 0)
-            {
-                shopgroupbuyEnddate = dt.Rows[0]["enddate"].ToString();
-                teteendDate = dt.Rows[0]["enddate"].ToString();
-            }
+          
             if (DateTime.Parse(shopgroupbuyEnddate) < DateTime.Now)
             {
                 Response.Write("<script>alert('活动结束时间不能大于服务使用结束时间！')</script>");
@@ -128,7 +129,7 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
           
             utils.ExecuteNonQuery(sql);
             sql = "select * from tete_activitylist where ActivityID=" + activityID;
-            DataTable dt = utils.ExecuteDataTable(sql);
+              dt = utils.ExecuteDataTable(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
                 sql = "update tete_activitylist set Name='" + name + "',Remark='" + memo + "',startDate='" + startDate + "',endDate='" + endDate + "',itemType='" + itemType + "',discountType='" + discountType + "',discountValue='" + discountValue + "',tagId='" + tagId + "',Rcount=" + rcount + ",nick='" + nick + "',Status=1,decreaseNum='" + decreaseNum + "',isok=0 where ActivityID=" + activityID;
