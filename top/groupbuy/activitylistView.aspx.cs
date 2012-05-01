@@ -54,8 +54,7 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
             string ID = Request.QueryString["ID"].ToString();
 
             startDate = Request.Form["startDate"].ToString();
-            endDate = Request.Form["endDate"].ToString();
-            itemType = Request.Form["itemType"].ToString();
+            endDate = Request.Form["endDate"].ToString(); 
             discountType = Request.Form["discountType"].ToString();
             zhe = Request.Form["zhe"].ToString();
             yuan = Request.Form["yuan"].ToString();
@@ -68,7 +67,14 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
             {
                 status = "0";//未开始
             }
+              sql23 = "select enddate from TopTaobaoShop where nick='" + nick + "'";
+              dt32 = utils.ExecuteDataTable(sql23);
 
+            if (dt32 != null && dt32.Rows.Count > 0)
+            {
+                shopgroupbuyEnddate2 = dt32.Rows[0]["enddate"].ToString();
+              
+            }
             if (DateTime.Parse(shopgroupbuyEnddate2) < DateTime.Now)
             {
                 Response.Write("<script>alert('活动结束时间不能大于服务使用结束时间！')</script>");
