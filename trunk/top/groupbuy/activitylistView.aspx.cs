@@ -67,6 +67,7 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
             if (dt32 != null && dt32.Rows.Count > 0)
             {
                 shopgroupbuyEnddate = dt32.Rows[0]["enddate"].ToString();
+                teteendDate = dt32.Rows[0]["enddate"].ToString();
             }
             if (DateTime.Parse(shopgroupbuyEnddate) < DateTime.Now)
             {
