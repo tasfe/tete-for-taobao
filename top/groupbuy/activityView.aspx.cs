@@ -29,7 +29,7 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        teteendDate = "2012-12-12";
+        teteendDate = "2012-12-12"; //特特结束时间
         teteendDateID.Value = teteendDate;
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
@@ -108,14 +108,14 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
                 return;
             }
             #endregion
-            string sql = "update tete_activity set Name='" + name + "',Remark='" + memo + "',startDate='" + startDate + "',endDate='" + endDate + "',itemType='" + itemType + "',discountType='" + discountType + "',discountValue='" + discountValue + "',tagId='" + tagId + "',Rcount=" + rcount + ",nick='" + nick + "',Status=1,decreaseNum='" + decreaseNum + "',isok=1 where id=" + activityID;
+            string sql = "update tete_activity set Name='" + name + "',Remark='" + memo + "',startDate='" + startDate + "',endDate='" + endDate + "',itemType='" + itemType + "',discountType='" + discountType + "',discountValue='" + discountValue + "',tagId='" + tagId + "',Rcount=" + rcount + ",nick='" + nick + "',Status=1,decreaseNum='" + decreaseNum + "',isok=0 where id=" + activityID;
             utils.ExecuteNonQuery(sql);
             sql = "select * from tete_activitylist where ActivityID=" + activityID;
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
-                sql = "update tete_activitylist set Name='" + name + "',Remark='" + memo + "',startDate='" + startDate + "',endDate='" + endDate + "',itemType='" + itemType + "',discountType='" + discountType + "',discountValue='" + discountValue + "',tagId='" + tagId + "',Rcount=" + rcount + ",nick='" + nick + "',Status=1,decreaseNum='" + decreaseNum + "',isok=1 where ActivityID=" + activityID;
-                utils.ExecuteNonQuery(sql);//修改活动商品
+                sql = "update tete_activitylist set Name='" + name + "',Remark='" + memo + "',startDate='" + startDate + "',endDate='" + endDate + "',itemType='" + itemType + "',discountType='" + discountType + "',discountValue='" + discountValue + "',tagId='" + tagId + "',Rcount=" + rcount + ",nick='" + nick + "',Status=1,decreaseNum='" + decreaseNum + "',isok=0 where ActivityID=" + activityID;
+                utils.ExecuteNonQuery(sql);//修改活动商品  '延长修改活动 Status=1 和 isok=0 '
             }
             Response.Write("<script>alert('修改成功！')</script>");
         }
@@ -129,54 +129,34 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
                 if (Request.QueryString["tp"].ToString().Trim() == "pause") //暂停
                 {
                     //更新活动，更新活动商品，及同步到淘宝，做服务控制
-                    string sql = "select * from tete_activitylist where ActivityID=" + activityID;
-                    DataTable dt = utils.ExecuteDataTable(sql);
-                    if (dt != null && dt.Rows.Count > 0)
-                    {
-                        sql = "update tete_activity set Status=3,isok=1 where ID=" + activityID;//暂停进行中
-                    }
-                    else
-                    {
-                        sql = "update tete_activity set Status=3,isok=0 where ID=" + activityID;//没有商品，活动状态更新完成
-                    }
+                    string   sql = "update tete_activity set Status=3,isok=0 where ID=" + activityID;//暂停进行中
+ 
                     utils.ExecuteNonQuery(sql); //更新活动成功
-                    sql = "update tete_activitylist set  Status=3 ,isok=1 where ActivityID=" + activityID;
+                    sql = "update tete_activitylist set  Status=3 ,isok=0 where ActivityID=" + activityID;
                     utils.ExecuteNonQuery(sql); //更新活动商品
+
+                    Response.Redirect("activityList.aspx");
                 }
                 else if (Request.QueryString["tp"].ToString().Trim() == "del")//删除
                 {
                     //更新活动，更新活动商品，及同步淘宝，做服务控制
-                    string sql = "select * from tete_activitylist where ActivityID=" + activityID;
-                    DataTable dt = utils.ExecuteDataTable(sql);
-                    if (dt != null && dt.Rows.Count > 0)
-                    {
-                        sql = "update tete_activity set Status=4,isok=1 where ID=" + activityID;//删除进行中
-                    }
-                    else
-                    {
-                        sql = "update tete_activity set Status=4,isok=0 where ID=" + activityID;//没有商品，活动状态更新完成
-                    }
+                    string  sql = "update tete_activity set Status=4,isok=0 where ID=" + activityID;//删除进行中
+                    
                     utils.ExecuteNonQuery(sql); //更新活动成功
-                    sql = "update tete_activitylist set  Status=4 ,isok=1 where ActivityID=" + activityID;
+                    sql = "update tete_activitylist set  Status=4 ,isok=0 where ActivityID=" + activityID;
                     utils.ExecuteNonQuery(sql); //更新活动商品
+                    Response.Redirect("activityList.aspx");
                    
                 }
                 else if (Request.QueryString["tp"].ToString().Trim() == "hf")//恢复  暂停恢复
                 {
                     //更新活动，更新活动商品，及同步淘宝，做服务控制
-                    string sql = "select * from tete_activitylist where ActivityID=" + activityID;
-                    DataTable dt = utils.ExecuteDataTable(sql);
-                    if (dt != null && dt.Rows.Count > 0)
-                    {
-                        sql = "update tete_activity set Status=1,isok=1 where ID=" + activityID;//活动进行中
-                    }
-                    else
-                    {
-                        sql = "update tete_activity set Status=1,isok=0 where ID=" + activityID;//没有商品，活动状态更新完成
-                    }
+                    string    sql = "update tete_activity set Status=1,isok=0 where ID=" + activityID;//活动进行中
+    
                     utils.ExecuteNonQuery(sql); //更新活动成功
-                    sql = "update tete_activitylist set  Status=1 ,isok=1 where ActivityID=" + activityID;
+                    sql = "update tete_activitylist set  Status=1 ,isok=0 where ActivityID=" + activityID;
                     utils.ExecuteNonQuery(sql); //更新活动商品
+                    Response.Redirect("activityList.aspx");
                 }
                 else //修改，延长
                 {
