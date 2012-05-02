@@ -143,62 +143,67 @@ public partial class top_crm_initcustom : System.Web.UI.Page
 
                 //Response.Write(nickresult + "<br><br>");
 
-                sql = "INSERT INTO TCS_Customer (" +
-                                        "nick, " +
-                                        "buynick, " +
-                                        "status, " +
-                                        "tradecount, " +
-                                        "tradeamount, " +
-                                        "groupid, " +
-                                        "lastorderdate, " +
-                                        "province, " +
-                                        "city, " +
-                                        "avgprice, " +
-                                        "source, " +
-                                        "buyerid, " +
-                                        "grade, " +
-                                        "sex, " +
-                                        "buyerlevel, " +
-                                        "created, " +
-                                        "lastlogin, " +
-                                        "email, " +
-                                        "birthday, " +
-                                        "mobile, " +
-                                        "truename, " +
-                                        "address, " +
-                                        "sheng, " +
-                                        "shi, " +
-                                        "qu " +
-                                    " ) VALUES ( " +
-                                        " '" + nick + "', " +
-                                        " '" + buyer_nick + "', " +
-                                        " '" + status + "', " +
-                                        " '" + trade_count + "', " +
-                                        " '" + trade_amount + "', " +
-                                        " '" + group_ids + "', " +
-                                        " '" + last_trade_time + "', " +
-                                        " '" + province + "', " +
-                                        " '" + city + "', " +
-                                        " '" + avg_price + "', " +
-                                        " '" + relation_source + "', " +
-                                        " '" + buyer_id + "', " +
-                                        " '" + grade + "'," +
-                                        " '" + sex + "', " +
-                                        " '" + level + "', " +
-                                        " '" + created + "', " +
-                                        " '" + last_visit + "', " +
-                                        " '" + email + "', " +
-                                        " '" + birthday + "'," +
-                                        " '" + receiver_mobile + "', " +
-                                        " '" + receiver_name + "', " +
-                                        " '" + receiver_address + "', " +
-                                        " '" + receiver_state + "', " +
-                                        " '" + receiver_city + "', " +
-                                        " '" + receiver_district + "'" +
-                                    ") ";
-                //Response.Write(sql + "<br><br>");
-                utils.ExecuteNonQuery(sql);
-                index++;
+                sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '"+nick+"' AND buynick = '"+buyer_nick+"'";
+                string count = utils.ExecuteString(sql);
+                if (count == "0")
+                {
+                    sql = "INSERT INTO TCS_Customer (" +
+                                            "nick, " +
+                                            "buynick, " +
+                                            "status, " +
+                                            "tradecount, " +
+                                            "tradeamount, " +
+                                            "groupid, " +
+                                            "lastorderdate, " +
+                                            "province, " +
+                                            "city, " +
+                                            "avgprice, " +
+                                            "source, " +
+                                            "buyerid, " +
+                                            "grade, " +
+                                            "sex, " +
+                                            "buyerlevel, " +
+                                            "created, " +
+                                            "lastlogin, " +
+                                            "email, " +
+                                            "birthday, " +
+                                            "mobile, " +
+                                            "truename, " +
+                                            "address, " +
+                                            "sheng, " +
+                                            "shi, " +
+                                            "qu " +
+                                        " ) VALUES ( " +
+                                            " '" + nick + "', " +
+                                            " '" + buyer_nick + "', " +
+                                            " '" + status + "', " +
+                                            " '" + trade_count + "', " +
+                                            " '" + trade_amount + "', " +
+                                            " '" + group_ids + "', " +
+                                            " '" + last_trade_time + "', " +
+                                            " '" + province + "', " +
+                                            " '" + city + "', " +
+                                            " '" + avg_price + "', " +
+                                            " '" + relation_source + "', " +
+                                            " '" + buyer_id + "', " +
+                                            " '" + grade + "'," +
+                                            " '" + sex + "', " +
+                                            " '" + level + "', " +
+                                            " '" + created + "', " +
+                                            " '" + last_visit + "', " +
+                                            " '" + email + "', " +
+                                            " '" + birthday + "'," +
+                                            " '" + receiver_mobile + "', " +
+                                            " '" + receiver_name + "', " +
+                                            " '" + receiver_address + "', " +
+                                            " '" + receiver_state + "', " +
+                                            " '" + receiver_city + "', " +
+                                            " '" + receiver_district + "'" +
+                                        ") ";
+                    //Response.Write(sql + "<br><br>");
+                    utils.ExecuteNonQuery(sql);
+                    index++;
+                }
             }
 
             if (match.Count < 100)
