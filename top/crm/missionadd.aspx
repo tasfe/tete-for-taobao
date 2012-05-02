@@ -135,11 +135,34 @@
                 <tr id="senddatearea" style="display:none;">
                     <td align="left" height="30">计划发送时间：</td>
                     <td>
-                        <input name="actdate" type="text" value="<%=now %>" size="20" />
+                        <input name="actdate" type="text" value="<%=now %>" size="20"  onkeyup="gettextc(this, findObj('max_m').value);if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" />
+                        每条短信最多<span id="msg_t">66</span>个字，超出部分不发送，剩余：<b id="msg_c">66</b>
                     </td>
                 </tr>
             </table>
             </div>
+            <input id="max_m" value="66" type="hidden"/>
+            <script>
+                function findObj(n, d) {
+                    var p, i, x;
+                    if (!d) d = document;
+                    if ((p = n.indexOf("?")) > 0 && parent.frames.length) {
+                        d = parent.frames[n.substring(p + 1)].document;
+                        n = n.substring(0, p);
+                    }
+                    if (!(x = d[n]) && d.all) x = d.all[n];
+                    for (i = 0; !x && i < d.forms.length; i++) x = d.forms[i][n];
+                    for (i = 0; !x && d.layers && i < d.layers.length; i++) x = MM_findObj(n, d.layers[i].document);
+                    if (!x && d.getElementById) x = d.getElementById(n);
+                    return x;
+                }
+
+                function gettextc(o, mc) {
+                    var c_i = o.value.length;
+                    var t_i = c_i <= mc ? (mc - c_i) : '0';
+                    findObj('msg_c').innerHTML = t_i;
+                }
+            </script>
             
             <table width="100%">
                 <tr>
