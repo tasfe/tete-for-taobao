@@ -49,7 +49,6 @@ align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=%E7%BE%8E%E6
    <li><a href="javascript:void(0)" title="团购营销" rel="2">团购营销</a></li>
    <li class="currentBtn"><a href="javascript:void(0)" title="好评有礼" rel="3">好评有礼</a></li>
    <li><a href="javascript:void(0)" title="客户关系营销" rel="4">客户关系营销</a></li>
-   <li><a href="javascript:void(0)" title="包邮卡" rel="5">包邮卡</a></li>
    <li><a href="http://bangpai.taobao.com/group/1091516.htm" target="_blank" title="社区">社区</a></li>
 </ul>
 </div>
@@ -174,12 +173,21 @@ name="mainframe1" src="http://groupbuy.7fshop.com/top/groupbuy/groupbuyadd.aspx"
 
 <div class="mytaobao-bd">
 
+<script language="javascript" type="text/javascript">
+    function focusObj(obj) {
+        for (var i = 1; i < 7; i++) {
+            document.getElementById("area" + i).style.display = "none";
+        }
+
+        obj.style.display = "";
+    }
+</script>
 
 <div class="menu-box">
 <h3 class="mytaobao-bar"><span> 好评有礼 </span>
 <button class="menu-close">-</button>
 </h3>
-<ul class="group">
+<ul class="group" id="area1" onclick="focusObj(this)">
 		<li><span> <a
 		href="http://haoping.7fshop.com/top/reviewnew/setting.aspx" target="mainframe2">基本设置</a></span></li>
 		<li><span> <a
@@ -191,7 +199,7 @@ name="mainframe1" src="http://groupbuy.7fshop.com/top/groupbuy/groupbuyadd.aspx"
 <h3 class="mytaobao-bar"><span> 商品评价 </span>
 <button class="menu-close">-</button>
 </h3>
-<ul class="group">
+<ul class="group" id="area2" style="display:none" onclick="focusObj(this)">
 		<li ><span> <a
 		href="http://haoping.7fshop.com/top/reviewnew/reviewlist.aspx" target="mainframe2">好评列表</a></span></li>	
 		<li ><span> <a
@@ -203,7 +211,7 @@ name="mainframe1" src="http://groupbuy.7fshop.com/top/groupbuy/groupbuyadd.aspx"
 <h3 class="mytaobao-bar"><span> 短信提醒 </span>
 <button class="menu-close">-</button>
 </h3>
-<ul class="group">
+<ul class="group" id="area3" style="display:none" onclick="focusObj(this)">
 		<li ><span> <a
 		href="http://haoping.7fshop.com/top/reviewnew/msg.aspx" target="mainframe2">短信提醒设置</a></span></li>	
 		<li ><span> <a
@@ -220,7 +228,7 @@ name="mainframe1" src="http://groupbuy.7fshop.com/top/groupbuy/groupbuyadd.aspx"
 <h3 class="mytaobao-bar"><span> 优惠券赠送 </span>
 <button class="menu-close">-</button>
 </h3>
-<ul class="group">
+<ul class="group" id="area4" style="display:none" onclick="focusObj(this)">
 		<li ><span> <a
 		href="http://haoping.7fshop.com/top/reviewnew/couponlist.aspx" target="mainframe2">优惠券管理</a></span></li>		
 		<li ><span> <a
@@ -236,7 +244,7 @@ name="mainframe1" src="http://groupbuy.7fshop.com/top/groupbuy/groupbuyadd.aspx"
 <h3 class="mytaobao-bar"><span> 支付宝红包 </span>
 <button class="menu-close">-</button>
 </h3>
-<ul class="group">
+<ul class="group" id="area5" style="display:none" onclick="focusObj(this)">
 		<li><span> <a href="http://haoping.7fshop.com/top/reviewnew/alipayadd.aspx" target="mainframe2">导入支付宝红包</a></span></li>		
 		<li><span> <a href="http://haoping.7fshop.com/top/reviewnew/alipay.aspx" target="mainframe2">支付宝红包赠送记录</a></span></li>		
 		<li><span> <a href="http://haoping.7fshop.com/top/reviewnew/alipaymsgsend.aspx" target="mainframe2">手动赠送</a></span></li>		
@@ -248,7 +256,7 @@ name="mainframe1" src="http://groupbuy.7fshop.com/top/groupbuy/groupbuyadd.aspx"
 <h3 class="mytaobao-bar"><span> 二次销售统计 </span>
 <button class="menu-close">-</button>
 </h3>
-<ul class="group">
+<ul class="group" id="area6" style="display:none" onclick="focusObj(this)">
 		<li><span> <a href="http://haoping.7fshop.com/top/reviewnew/saletotal.aspx" target="mainframe2">二次销售总览</a></span></li>		
 		<li><span> <a href="http://haoping.7fshop.com/top/reviewnew/salelist.aspx" target="mainframe2">二次销售详情</a></span></li>		
 	</ul>
@@ -305,17 +313,19 @@ name="mainframe1" src="http://groupbuy.7fshop.com/top/groupbuy/groupbuyadd.aspx"
 
 
 <div class="menu-box">
-<h3 class="mytaobao-bar"><span> 按购买次数区别 </span>
+<h3 class="mytaobao-bar"><span> 包邮卡 </span>
 <button class="menu-close">-</button>
 </h3>
 <ul class="group">
 		<li><span> <a
-		href="http://haoping.7fshop.com/top/crm/customlist.aspx?count=1" target="mainframe5">购买过一次的会员</a></span></li>
+		href="http://haoping.7fshop.com/top/freecard/freecardadd.aspx" target="mainframe5">创建包邮卡</a></span></li>
 		<li><span> <a
-		href="http://haoping.7fshop.com/top/crm/customlist.aspx?count=2" target="mainframe5">购买过多次的会员</a></span></li>
-		<li><span> <a
-		href="http://haoping.7fshop.com/top/crm/customlist.aspx?count=0" target="mainframe5">未成功购买的会员</a></span></li>
-    </ul>
+		href="http://haoping.7fshop.com/top/freecard/freecardlist.aspx" target="mainframe5">包邮卡清单</a></span></li>
+	<li><span> <a
+		href="http://haoping.7fshop.com/top/freecard/freecardcustomer.aspx" target="mainframe5">赠送记录</a></span></li>
+	<li><span> <a
+		href="http://haoping.7fshop.com/top/freecard/freecardsend.aspx" target="mainframe5">手动赠送</a></span></li>
+	</ul>
 </div>
 
 
@@ -338,48 +348,6 @@ name="mainframe1" src="http://groupbuy.7fshop.com/top/groupbuy/groupbuyadd.aspx"
                 <iframe style="overflow:scroll; width: 100%; height:1220px; padding:0px;" 
 
 name="mainframe5" src="http://haoping.7fshop.com/top/crm/customlist.aspx" frameborder="0" scrolling="no"></iframe>
-        </div>
-    </div>
-</div>
-
-
-<div id="tabCot_product_5" class="tabCot" style="padding:2px 0 0 0; display:none">
-    <div id="mytaobao-panel" class="grid-c2">
-        <div class="col-sub">
-            <div id="mytaobao-menu" class="box-diamond">
-<!--content-->
-
-<div class="mytaobao-bd">
-
-
-
-
-<div class="menu-box">
-<h3 class="mytaobao-bar"><span> 包邮卡 </span>
-<button class="menu-close">-</button>
-</h3>
-<ul class="group">
-		<li><span> <a
-		href="http://haoping.7fshop.com/top/freecard/freecardadd.aspx" target="mainframe6">创建包邮卡</a></span></li>
-		<li><span> <a
-		href="http://haoping.7fshop.com/top/freecard/freecardlist.aspx" target="mainframe6">包邮卡清单</a></span></li>
-	<li><span> <a
-		href="http://haoping.7fshop.com/top/freecard/freecardcustomer.aspx" target="mainframe6">赠送记录</a></span></li>
-	<li><span> <a
-		href="http://haoping.7fshop.com/top/freecard/freecardsend.aspx" target="mainframe6">手动赠送</a></span></li>
-	</ul>
-</div>
-
-
-</div>
-<!--content-->
-            </div>
-        </div>
-        
-        <div style="width:780px; margin-left:10px; float:left; height:1220px;">
-                <iframe style="overflow:scroll; width: 100%; height:1220px; padding:0px;" 
-
-name="mainframe6" src="http://haoping.7fshop.com/top/freecard/freecardadd.aspx" frameborder="0" scrolling="no"></iframe>
         </div>
     </div>
 </div>
