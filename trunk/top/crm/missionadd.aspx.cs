@@ -134,6 +134,12 @@ public partial class top_crm_missionadd : System.Web.UI.Page
                 string count = utils.ExecuteString(sql);
                 if (count == "0")
                 {
+                    //强行截取
+                    if (actcontent.Length > 66)
+                    {
+                        actcontent = actcontent.Substring(0, 66);
+                    }
+
                     string result = SendMessage(mobile, actcontent);
                     if (result != "0")
                     {
