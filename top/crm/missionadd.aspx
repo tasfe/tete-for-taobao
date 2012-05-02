@@ -113,7 +113,8 @@
                 <tr>
                     <td align="left" height="30" width="120">活动营销内容：</td>
                     <td>
-                        <textarea name="actcontent" cols="40" rows="3"></textarea>
+                        <textarea name="actcontent" cols="40" rows="3" onkeyup="gettextc(this, findObj('max_m').value);if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);"></textarea>
+                        <br />每条短信最多<span id="msg_t">66</span>个字，超出部分不发送，剩余：<b id="msg_c">66</b>
                     </td>
                 </tr>
                 <tr>
@@ -135,8 +136,8 @@
                 <tr id="senddatearea" style="display:none;">
                     <td align="left" height="30">计划发送时间：</td>
                     <td>
-                        <input name="actdate" type="text" value="<%=now %>" size="20"  onkeyup="gettextc(this, findObj('max_m').value);if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" />
-                        每条短信最多<span id="msg_t">66</span>个字，超出部分不发送，剩余：<b id="msg_c">66</b>
+                        <input name="actdate" type="text" value="<%=now %>" size="20"  />
+                        
                     </td>
                 </tr>
             </table>
