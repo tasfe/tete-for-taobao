@@ -161,7 +161,7 @@ public partial class top_crm_missionadd : System.Web.UI.Page
                                             " '" + actcontent.Replace("'", "''") + "', " +
                                             " '" + result + "', " +
                                             " '" + number + "', " +
-                                            " 'gift' " +
+                                            " 'act' " +
                                         ") ";
                         if (mobile.Length != 0)
                         {
