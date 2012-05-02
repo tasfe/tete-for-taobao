@@ -33,6 +33,7 @@
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
                 <td width="140"><b>名称</b></td>
+                <td width="80"><b>创建时间</b></td>
                 <td width="80"><b>免邮时间</b></td>
                 <td width="100"><b>使用次数</b></td>
                 <td width="80"><b>满金额</b></td>
@@ -43,9 +44,10 @@
             <ItemTemplate>
             <tr>
                 <td height="35"><%#Eval("name")%></td>
-                <td><%#Eval("carddate")%></td>
+                <td><%#Eval("adddate")%></td>
+                <td><%#Eval("carddate")%>个月</td>
                 <td><%#Eval("usecount")%></td>
-                <td><%#Eval("price")%></td>
+                <td><%#Eval("price")%>元</td>
                 <td><%#Eval("sendcount")%></td>
                 <td><a href='freecardlist.aspx?act=del&id=<%#Eval("guid")%>' onclick="return confirm('您确定要删除吗，该操作不可恢复？')">删除</a>
                 | <a href='freecardcustomer.aspx?id=<%#Eval("guid")%>'>查看赠送记录</a></td>
