@@ -93,7 +93,8 @@
                 <tr>
                     <td align="left" height="30" width="120">定期回访内容：</td>
                     <td>
-                        <textarea name="backcontent" cols="40" rows="3"></textarea>
+                        <textarea name="backcontent" cols="40" rows="3" onkeyup="gettextc(this, findObj('max_m').value, 'msg_c1');if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);"></textarea>
+                        <br />每条短信最多<span id="Span1" style="color:Red">66</span>个字，超出部分不发送，剩余：<b id="msg_c1" style="color:Red">66</b>
                     </td>
                 </tr>
                 <tr>
@@ -113,8 +114,8 @@
                 <tr>
                     <td align="left" height="30" width="120">活动营销内容：</td>
                     <td>
-                        <textarea name="actcontent" cols="40" rows="3" onkeyup="gettextc(this, findObj('max_m').value);if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);"></textarea>
-                        <br />每条短信最多<span id="msg_t">66</span>个字，超出部分不发送，剩余：<b id="msg_c">66</b>
+                        <textarea name="actcontent" cols="40" rows="3" onkeyup="gettextc(this, findObj('max_m').value, 'msg_c');if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);"></textarea>
+                        <br />每条短信最多<span id="msg_t" style="color:Red">66</span>个字，超出部分不发送，剩余：<b id="msg_c" style="color:Red">66</b>
                     </td>
                 </tr>
                 <tr>
@@ -158,10 +159,10 @@
                     return x;
                 }
 
-                function gettextc(o, mc) {
+                function gettextc(o, mc, show) {
                     var c_i = o.value.length;
                     var t_i = c_i <= mc ? (mc - c_i) : '0';
-                    findObj('msg_c').innerHTML = t_i;
+                    findObj(show).innerHTML = t_i;
                 }
             </script>
             
