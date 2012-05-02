@@ -290,6 +290,10 @@ public partial class top_review_msglist : System.Web.UI.Page
         {
             newstr = "<font color=#F7D729>未付款催单</font>";
         }
+        else if (str == "act")
+        {
+            newstr = "<font color=#F7D729>新品活动营销</font>";
+        }
         else
         {
             newstr = "<font color=red>赠送礼品</font>";
