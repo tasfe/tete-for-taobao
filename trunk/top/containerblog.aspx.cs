@@ -131,11 +131,13 @@ public partial class top_containerblog : System.Web.UI.Page
             string sql = "UPDATE TCS_ShopSession SET session='" + top_session + "',version='" + versionNo + "' WHERE nick = '" + nick + "'";
             utils.ExecuteNonQuery(sql);
 
-            //特殊用户处理
-            sql = "UPDATE TCS_ShopSession SET version = 3 WHERE nick = '四川中青旅锦华分社'";
+
+            //更新特殊用户
+            sql = "UPDATE TCS_ShopSession SET version = 2 WHERE nick = '玩具第一城'";
             utils.ExecuteNonQuery(sql);
 
-            sql = "UPDATE TCS_ShopConfig SET isdel = 1 WHERE nick = '紫竹a恋'";
+            //更新特殊用户
+            sql = "UPDATE TCS_ShopSession SET version = 3 WHERE nick = '魔女茶花'";
             utils.ExecuteNonQuery(sql);
         }
         else
