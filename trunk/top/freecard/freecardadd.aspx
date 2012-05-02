@@ -46,12 +46,12 @@
                     <input name="carddate" type="text" value="3" size="2" />月 （这里的时间是指客户收到此包邮卡起几个月内下单免邮费，填0为终身包邮卡）
                 </td>
             </tr>
-            <!--<tr>
-                <td align="left" height="30">是否关联店铺宝贝：</td>
+            <tr>
+                <td align="left" height="30">满多少金额可用：</td>
                 <td>
-                    <input name="itemid" type="text" value="" /> 
+                    满<input name="price" type="text" value="0" />元可用
                 </td>
-            </tr>-->
+            </tr>
             <tr>
                 <td align="left" height="30">使用次数限制：</td>
                 <td>
