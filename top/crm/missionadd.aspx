@@ -117,6 +117,12 @@
                     </td>
                 </tr>
                 <tr>
+                    <td align="left" height="30" width="120">会员总数：</td>
+                    <td>
+                        您目前共有<%=totalcustomer %>名有手机号码的会员，请确保账户内有足够的短信，否则无法正常发送。
+                    </td>
+                </tr>
+                <tr>
                     <td align="left" height="30">是否马上发送：</td>
                     <td>
                         <select name="sendnow" onchange="ShowDate(this)">
@@ -166,6 +172,14 @@
             }
 
             obj.style.display = "";
+        }
+
+        function ShowDate(obj) {
+            if (obj.options.selectedIndex == 1) {
+                document.getElementById("senddatearea").style.display = "";
+            } else {
+                document.getElementById("senddatearea").style.display = "none";
+            }
         }
     </script>
 
