@@ -96,8 +96,9 @@ public partial class top_freecard_freecardadd : System.Web.UI.Page
         string name = utils.NewRequest("name", utils.RequestType.Form);
         string carddate = utils.NewRequest("carddate", utils.RequestType.Form);
         string usecount = utils.NewRequest("usecount", utils.RequestType.Form);
+        string price = utils.NewRequest("price", utils.RequestType.Form);
 
-        string sql = "INSERT INTO TCS_FreeCardAction (name, carddate, usecount, nick) VALUES ('" + name + "','" + carddate + "','" + usecount + "', '" + nick + "')";
+        string sql = "INSERT INTO TCS_FreeCardAction (name, carddate, usecount, nick, price) VALUES ('" + name + "','" + carddate + "','" + usecount + "', '" + nick + "', '" + price + "')";
         utils.ExecuteNonQuery(sql);
 
         Response.Redirect("freecardlist.aspx");
