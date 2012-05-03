@@ -1,10 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="activityshowitem.aspx.cs" Inherits="top_groupbuy_activityshowitem" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title></title>
+    <title>特特团购</title>
+    <link href="../css/common.css" rel="stylesheet" />
     <link href="js/common.css" rel="stylesheet" />
     <link href="js/all-min.css" rel="stylesheet" />
     <link href="js/calendar.css" rel="stylesheet" />
@@ -26,13 +25,20 @@
         POSITION: absolute; 
         BACKGROUND-COLOR: #cccccc
     }
+        td{font-size:12px;}
+        a{color:Blue; text-decoration:none;}
+        th{text-align:left; height:40px;}
     </style>
      
 </head>
 <body style="margin:0px; padding:0px;">
     <form id="form1" runat="server">
  
+ <div class="navigation">
+  <div class="crumbs"><a href="default.aspx" class="nolink">特特团购</a> 促销商品管理 </div>
 
+    
+    <div id="main-content">
         <script>
 
 
@@ -185,7 +191,9 @@
           </tr>
      
     </table>
-
+    
+</div>
+</div>
         	<input type="hidden" name="itemsStrValues" id="itemsStrValues" value="" />
 
     </form>
@@ -428,7 +436,6 @@
 
         spreadStat(1);
 </script>
-
 
 
 </body>
