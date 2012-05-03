@@ -1,10 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="activityView.aspx.cs" Inherits="top_groupbuy_activityView" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>我要推广</title>
+    <title>修改促销活动</title>
+    <link href="../css/common.css" rel="stylesheet" />
     <link href="js/common.css" rel="stylesheet" />
     <link href="js/calendar.css" rel="stylesheet" />
     <link href="js/groupbuy.css" rel="stylesheet" />
@@ -12,14 +11,21 @@
 
     <script language="javascript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
     <script type="text/javascript" src="js/cal.js"></script>
+    <style>
+        td{font-size:12px;}
+        a{color:Blue; text-decoration:none;}
+        th{text-align:left; height:40px;}
+    </style>
 </head>
 <body style="padding:0px; margin:0px;">
-<div class="navigation">
-    <div class="crumbs"><a href="javascript:;" class="nolink">特特团购</a> 添加促销活动 </div>
-        <div class="msg">
-	<p class="alert">促销活动信息均为必填内容，请将促销内容填写完毕后提交。可以创建多个不同的促销活动。</p>
-</div>
 <form id="form1"   runat="server">
+
+<div class="navigation">
+  <div class="crumbs"><a href="default.aspx" class="nolink">特特团购</a> 修改促销活动 </div>
+
+    
+    <div id="main-content">
+
 	<input type="hidden" name="submit" value="true"/>
 	<div style="padding-top:8px;"><h3>设置特特团购营销活动基本信息</h3></div>
 	<hr/>
@@ -120,6 +126,9 @@
 			</tr>
 		</tfoot>
 	</table>
+    
+	</div>
+    </div>
     <script type="text/javascript">
 
 
@@ -244,6 +253,5 @@
 </form>
  
  
-	</div>
 </body>
 </html>
