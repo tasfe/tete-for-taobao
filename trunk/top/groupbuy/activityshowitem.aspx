@@ -132,10 +132,7 @@
             }
         
         </script>
-            <div class="msg24">
-				 
-	            <p class="tips">提示：在促销商品管理中，可以对某一已经参加过促销活动的商品进行取消促销活动的操作。</p>
-            </div>
+
             <div class="skin-gray" style="line-height:45px; ">
 				<p>
 				 宝贝分类： <select id="Select1">
