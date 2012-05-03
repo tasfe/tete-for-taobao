@@ -39,7 +39,7 @@
 				<th class="required">活动备注：</th>
 				<td style="">
 					<input id="actionMemo" name="memo" value="" type="text" style="width:165px;"/>
-					<div class="tips">此备注为用户自己填写内容，不显示在商品页面中。可不填。最多输入10个字符</div>
+					不显示在商品页面中，可不填，最多输入10个字符。
 				</td>
 			</tr>
 			<tr>
