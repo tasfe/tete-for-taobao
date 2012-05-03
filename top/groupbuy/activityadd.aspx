@@ -1,10 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="activityadd.aspx.cs" Inherits="top_groupbuy_activityadd" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>我要推广</title>
+    <link href="../css/common.css" rel="stylesheet" />
     <link href="js/common.css" rel="stylesheet" />
     <link href="js/calendar.css" rel="stylesheet" />
     <link href="js/groupbuy.css" rel="stylesheet" />
@@ -12,6 +11,10 @@
 
     <script language="javascript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
     <script type="text/javascript" src="js/cal.js"></script>
+    <style>
+        td{font-size:12px;}
+        a{color:Blue; text-decoration:none;}
+    </style>
 </head>
 <body style="padding:0px; margin:0px;">
 <div class="navigation">

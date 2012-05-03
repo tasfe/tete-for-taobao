@@ -113,22 +113,22 @@ h4 a {
             <td><div class="item_list item_list_left_top">
                 <div class="title_contents">
                   <h4 style="padding-left: 0px"><img src="images/icon_1.gif" width="32" height="32"
-													style="vertical-align: middle; margin-right: 0px" /><a href="couponadd.aspx">创建促销活动</a></h4>
+													style="vertical-align: middle; margin-right: 0px" /><a href="activityadd.aspx">创建促销活动</a></h4>
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
                   <p>好评就送店铺优惠券，系统自动赠送，提升评价又带来2次销售。</p>
                 </div>
-                <div class="item_list_btn"><a href="couponadd.aspx" class="btn-middle middle-blue">立即使用</a></div>
+                <div class="item_list_btn"><a href="activityadd.aspx" class="btn-middle middle-blue">立即使用</a></div>
                 <p style="clear: both; height: 1px;"></p>
               </div></td>
 
                       <td><div class="item_list item_list_right_top">
                 <div class="title_contents">
                   <h4 style="padding-left: 0px"><img src="images/icon_6.gif" width="32" height="32"
-													style="vertical-align: middle; margin-right: 0px" /><a href="html.aspx">促销商品设置</a></h4>
+													style="vertical-align: middle; margin-right: 0px" /><a href="activityList.aspx">促销商品设置</a></h4>
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
                   <p>将您的优惠活动一键同步到店铺左侧分类或者宝贝描述里，让更多客户知道您的好评活动。</p>
                 </div>
-                <div class="item_list_btn"><a href="html.aspx" class="btn-middle middle-blue">立即使用</a></div>
+                <div class="item_list_btn"><a href="activityList.aspx" class="btn-middle middle-blue">立即使用</a></div>
                 <p style="clear: both; height: 1px;"></p>
               </div></td>
 
