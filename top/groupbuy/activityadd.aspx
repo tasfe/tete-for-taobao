@@ -26,6 +26,9 @@
     
     <div id="main-content">
     
+                <input type="button" value="返回列表" onclick="window.location.href='activityList.aspx'" />
+    
+    <hr />
     <table width="700" cellpadding="0" cellspacing="0">
 
 		<tbody>
