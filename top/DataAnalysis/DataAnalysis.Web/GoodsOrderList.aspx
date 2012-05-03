@@ -66,7 +66,7 @@
                             <b>实际支付</b>
                         </td>
                         <td align="center" width="220px">
-                            <b>收获地址</b>
+                            <b>收货地址</b>
                         </td>
                     </tr>
                     <asp:Repeater ID="Rpt_PageVisit" runat="server">
