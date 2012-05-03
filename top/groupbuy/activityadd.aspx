@@ -32,7 +32,7 @@
 			<tr>
 				<th class="required">活动名称：</th>
 				<td style="">
-					<input id="actionName" name="name" value="" type="text" style="width:80px;"/> 活动名称应为2~5个字符，支持中文、字母、数字、下划线。其他不支持！
+					<input id="actionName" name="name" value="" type="text" style="width:80px;"/> 2到5个字符，支持中文、字母、数字、下划线。
 				</td>
 			</tr>
 			<tr>
