@@ -2,7 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>我要推广</title>
+    <title>特特团购</title>
     <link href="../css/common.css" rel="stylesheet" />
     <link href="js/common.css" rel="stylesheet" />
     <link href="js/calendar.css" rel="stylesheet" />
@@ -17,12 +17,11 @@
     </style>
 </head>
 <body style="padding:0px; margin:0px;">
-<div class="navigation">
-  <div class="crumbs"><a href="default.aspx" class="nolink">特特团购</a> 创建促销活动 </div>
-    <!--<div class="crumbs">促销活动信息均为必填内容，请将促销内容填写完毕后提交。可以创建多个不同的促销活动。</div>-->
-        
 <form id="form1" runat="server">
 	<input type="hidden" name="submit" value="true"/>
+<div class="navigation">
+  <div class="crumbs"><a href="default.aspx" class="nolink">特特团购</a> 创建促销活动 </div>
+
     
     <div id="main-content">
     
@@ -244,9 +243,9 @@
 
 
     </script>
-</form>
  
  
 	</div>
+</form>
 </body>
 </html>
