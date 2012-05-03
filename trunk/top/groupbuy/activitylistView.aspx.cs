@@ -53,8 +53,8 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
             string activityID = Request.QueryString["activityID"].ToString();
             string ID = Request.QueryString["ID"].ToString();
 
-            startDate = Request.Form["startDate"].ToString();
-            endDate = Request.Form["endDate"].ToString();
+            startDate =DateTime.Parse(Request.Form["startDate"].ToString()).ToString("yyyy-MM-dd hh:mm:ss");
+            endDate = DateTime.Parse(Request.Form["endDate"].ToString()).ToString("yyyy-MM-dd hh:mm:ss");
             discountType = Request.Form["discountType"].ToString();
             zhe = Request.Form["zhe"].ToString();
             yuan = Request.Form["yuan"].ToString();
@@ -160,8 +160,8 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
                 {
                     imags.Src = dt.Rows[i]["ProductImg"].ToString();
 
-                    startDate = dt.Rows[i]["startDate"].ToString();
-                    endDate = dt.Rows[i]["endDate"].ToString();
+                    startDate = DateTime.Parse(dt.Rows[i]["startDate"].ToString()).ToString("yyyy-MM-dd hh:mm:ss");
+                    endDate = DateTime.Parse(dt.Rows[i]["endDate"].ToString()).ToString("yyyy-MM-dd hh:mm:ss");
                     itemType = dt.Rows[i]["itemType"].ToString();
                     if (itemType != "same")
                     {
