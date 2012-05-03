@@ -70,8 +70,8 @@
 			<tr class="itemDetail">
 				<th class="required">促销力度：</th>
 				<td >
-					<div id="dz"> 打 <input type="text" id="dzValue"  name="zhe" value="" style="width:30px"/> 折<div class="tips">有效值范围：7.0-9.9，支持小数点后1位。7折限制为近期限制，官方以后会逐步开放折扣限制</div></div>
-                    <div id="jj" style=" display:none"> 减 <input type="text" id="jjValue" name="yuan" value="" style="width:30px"/> 元<div class="tips">支持小数点后2位。 <font color="red">注意：优惠不能低于原价7折</font>7折限制为近期限制，官方以后会逐步开放折扣限制</div></div>
+					<div id="dz"> 打 <input type="text" id="dzValue"  name="zhe" value="" style="width:30px"/> 折  （有效值范围：7.0-9.9，支持小数点后1位。）</div>
+                    <div id="jj" style=" display:none"> 减 <input type="text" id="jjValue" name="yuan" value="" style="width:30px"/> 元  （支持小数点后2位。 <font color="red">注意：优惠不能低于原价7折</font>）</div>
 				</td>
 			</tr>
 			<tr class="itemDetail">
