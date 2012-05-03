@@ -5,11 +5,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>添加促销宝贝</title>
+    <link href="../css/common.css" rel="stylesheet" />
     <link href="js/common.css" rel="stylesheet" />
     <link href="js/calendar.css" rel="stylesheet" />
     <link href="js/groupbuy.css" rel="stylesheet" />
     <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script> 
         <link href="js/all-min.css" rel="stylesheet" />
+         <style>
+        td{font-size:12px;}
+        a{color:Blue; text-decoration:none;}
+        th{text-align:left; height:40px;}
+    </style>
     <script language="javascript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
     <script type="text/javascript" src="js/cal.js"></script>
       <script>
@@ -109,7 +115,11 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        
+        <div class="navigation">
+  <div class="crumbs"><a href="default.aspx" class="nolink">特特团购</a> 添加促销宝贝 </div>
+
+    
+    <div id="main-content">
 
 <div class="msg">
 	<p class="alert">提示：同一商品只能参加一种促销活动，您可以删除原有活动，再添加新的促销活动。</p>
@@ -188,7 +198,8 @@
     </table>
 
         	<input type="hidden" name="itemsStrValues" id="Hidden1" value="" />
-
+            </div>
+            </div>
     </form>
 
     <input type="hidden" name="itemsStr" id="itemsStr" value="" />
