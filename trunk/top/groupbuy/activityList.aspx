@@ -1,10 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="activityList.aspx.cs" Inherits="top_groupbuy_activityList" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>我要推广</title>
+    <title>特特团购</title>
+    <link href="../css/common.css" rel="stylesheet" />
     <link href="js/common.css" rel="stylesheet" />
     <link href="js/all-min.css" rel="stylesheet" />
     <link href="js/calendar.css" rel="stylesheet" />
@@ -28,8 +27,15 @@
 </style>
   
 </head>
-<body>
+<body style="padding:0px; margin:0px;">
 <form id="form1" runat="server"> 
+
+<div class="navigation">
+  <div class="crumbs"><a href="default.aspx" class="nolink">特特团购</a> 促销活动管理 </div>
+
+    
+    <div id="main-content">
+
         <div class="msg24">
 					<p class="tips">
 						<span>您可以根据自己的需要定制各种促销活动</span>
@@ -109,6 +115,8 @@
     }
     setSelect();
                 </script>
+       </div>
+       </div>
 </form>
 </body>
 </html>
