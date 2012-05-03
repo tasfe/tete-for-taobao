@@ -464,7 +464,7 @@ public class TaoBaoAPI
             dic.Add("page_size", "100");
             dic.Add("page_no", page_no.ToString());
             dic.Add("status", refundState);
-            dic.Add("fields", "refund_id,tid,title,buyer_nick,total_fee,refund_fee,payment,has_good_return,reason,desc,num,modified");
+            dic.Add("fields", "refund_id,tid,title,buyer_nick,total_fee,refund_fee,payment,has_good_return,reason,desc,num,modified,created");
             string text = Post(nick, "taobao.refunds.receive.get", session, dic, DataFormatType.json);
             if (!string.IsNullOrEmpty(text))
             {
