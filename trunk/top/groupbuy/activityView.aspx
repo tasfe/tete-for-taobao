@@ -27,8 +27,6 @@
     <div id="main-content">
 
 	<input type="hidden" name="submit" value="true"/>
-	<div style="padding-top:8px;"><h3>设置特特团购营销活动基本信息</h3></div>
-	<hr/>
 	<table>
 
 		<tbody>
