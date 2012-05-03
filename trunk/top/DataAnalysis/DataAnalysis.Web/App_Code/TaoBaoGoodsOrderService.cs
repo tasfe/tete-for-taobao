@@ -56,6 +56,8 @@ public class TaoBaoGoodsOrderService
 
     const string SQL_SELECT_ORDER_LIST_COUNT = "select count(*) from TopTaoBaoGoodsOrderInfo where seller_nick=@nick and created between @start and @end";
 
+    const string SQL_SELECT_GOODSORDER = "SELECT created,pay_time FROM TopTaoBaoGoodsOrderInfo WHERE tid=@tid";
+
     public IList<BackTotalInfo> GetAllBackTotalList(DateTime start, DateTime end, string nick)
     {
         SqlParameter[] param = new[]
@@ -187,6 +189,20 @@ public class TaoBaoGoodsOrderService
         }
 
         return list;
+    }
+
+    public GoodsOrderInfo GetGoodsOrderInfo(string tid)
+    {
+        SqlParameter param = new SqlParameter("@tid", tid);
+        GoodsOrderInfo info = null;
+
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_GOODSORDER, param);
+        foreach (DataRow dr in dt.Rows)
+        {
+            info = new GoodsOrderInfo();
+            info.created = DateTime.Parse(dr["created"].ToString());
+        }
+        return info;
     }
 
     /// <summary>

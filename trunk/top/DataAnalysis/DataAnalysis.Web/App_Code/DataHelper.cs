@@ -276,6 +276,9 @@ public class DataHelper
 
     public static void UpdateSiteTotal(string nick,string session, DateTime now, SiteTotalService taoDal)
     {
+        RefundService refDal = new RefundService();
+        TaoBaoGoodsOrderService tbgoDal = new TaoBaoGoodsOrderService();
+
         List<RefundInfo> refundList = (List<RefundInfo>)TaoBaoAPI.GetRefundInfoList(now.AddDays(-2), now, nick, session, "SUCCESS");
         //所有有订单的用户
         TopSiteTotalInfo stinfo = taoDal.GetOrderTotalPay(DateTime.Parse(now.ToShortDateString()), DateTime.Parse(now.AddDays(1).ToShortDateString()), nick);
@@ -326,6 +329,7 @@ public class DataHelper
         IList<string> tidList = taoDal.GetOrderIds(DateTime.Parse(now.ToShortDateString()), DateTime.Parse(now.AddDays(1).ToShortDateString()), nick);
         if (tidList.Count > 0)
             addup.GoodsCount = taoDal.GetGoodsCount(tidList);
+        List<RefundInfo> hadReList = refDal.GetAllRefund(nick, now.AddDays(-2), now);
 
         //退款情况
         List<RefundInfo> trefundList = refundList.Where(o => o.modified.ToShortDateString() == now.ToShortDateString()).ToList();
@@ -333,9 +337,31 @@ public class DataHelper
         {
             int rorderCount = 0;
             decimal rpay = 0;
-            foreach (RefundInfo refund in trefundList)
+            foreach (RefundInfo refund in new List<RefundInfo>(trefundList))
             {
-                if (!tidList.Contains(refund.tid)) continue;
+                if (!tidList.Contains(refund.tid))
+                {
+                    GoodsOrderInfo roinfo = tbgoDal.GetGoodsOrderInfo(refund.tid);
+                    if (roinfo == null)
+                        continue;
+                    else
+                    {
+                        if (hadReList.Where(o => o.tid == refund.tid).ToList().Count > 0)
+                            continue;
+                        if (roinfo.pay_time != DateTime.Parse("1990-1-1"))
+                            refund.OrderTime = roinfo.pay_time;
+                        else
+                            refund.OrderTime = roinfo.created;
+                        refund.seller_nick = nick;
+                        refDal.AddRefund(refund);
+                        //需要查询这一天有多少订单
+                        RefundInfo newrefund = refDal.GetRefundTotal(nick, DateTime.Parse(refund.OrderTime.ToShortDateString()), DateTime.Parse(refund.OrderTime.ToShortDateString()).AddDays(1));
+
+                        taoDal.UpdateGoodsOrderInfo(nick, refund.OrderTime.ToString("yyyyMMdd"), newrefund.total_fee, newrefund.num);
+
+                    }
+                    continue;
+                }
                 rorderCount++;
                 rpay += (refund.total_fee - refund.payment);
             }

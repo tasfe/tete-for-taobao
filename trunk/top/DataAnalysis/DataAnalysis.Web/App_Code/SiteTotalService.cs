@@ -353,6 +353,8 @@ group by VisitBrower,VisitIP,VisitUserAgent
 
     const string SQL_SELECT_ZUANGZHAN = "SELECT COUNT (*) FROM @tableName WHERE CHARINDEX( 'ali_trackid',VisitUrl)>0 AND CHARINDEX( 'ali_refid',VisitUrl)<=0 AND VisitTime BETWEEN @start AND @end";
 
+    const string SQL_UPDATE_GOODSORDER = "UPDATE TopSiteTotal SET RefundOrderCount=@RefundOrderCount,RefundMoney=@RefundMoney WHERE SiteNick=@nick AND SiteTotalDate=@date";
+
     public TopSiteTotalInfo GetOrderTotalPay(DateTime start, DateTime end,string nick)
     {
         SqlParameter[] param = new[]
@@ -543,6 +545,17 @@ group by VisitBrower,VisitIP,VisitUserAgent
             };
 
         return DBHelper.ExecuteScalar(sql, param);
+    }
+
+    public int UpdateGoodsOrderInfo(string nick, string date, decimal money, int count)
+    {
+        SqlParameter[] param = new[]{
+                  new SqlParameter("@nick",nick),
+                  new SqlParameter("@date",date),
+                  new SqlParameter("@RefundMoney",money),
+                  new SqlParameter("@RefundOrderCount",count)
+              };
+        return DBHelper.ExecuteNonQuery(SQL_UPDATE_GOODSORDER, param);
     }
 
     private static SqlParameter[] GetParameter(TopSiteTotalInfo info)
