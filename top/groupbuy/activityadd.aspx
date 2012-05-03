@@ -14,7 +14,7 @@
     <style>
         td{font-size:12px;}
         a{color:Blue; text-decoration:none;}
-        th{text-align:left; height:30px;}
+        th{text-align:left; height:40px;}
     </style>
 </head>
 <body style="padding:0px; margin:0px;">
@@ -32,8 +32,7 @@
 			<tr>
 				<th class="required">活动名称：</th>
 				<td style="">
-					<input id="actionName" name="name" value="" type="text" style="width:165px;"/>
-					<div class="tips">活动名称应为2~5个字符，支持中文、字母、数字、下划线。其他不支持！</div>
+					<input id="actionName" name="name" value="" type="text" style="width:80px;"/> 活动名称应为2~5个字符，支持中文、字母、数字、下划线。其他不支持！
 				</td>
 			</tr>
 			<tr>
