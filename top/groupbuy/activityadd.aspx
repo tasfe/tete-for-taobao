@@ -23,9 +23,10 @@
         
 <form id="form1" runat="server">
 	<input type="hidden" name="submit" value="true"/>
-	<div style="padding-top:2px;"><h3>设置特特团购营销活动基本信息</h3></div>
-	<hr/>
-	<table>
+    
+    <div id="main-content">
+    
+    <table width="700" cellpadding="0" cellspacing="0">
 
 		<tbody>
 			<tr>
@@ -121,6 +122,8 @@
 			</tr>
 		</tfoot>
 	</table>
+
+    </div>
     <script type="text/javascript">
 
 
