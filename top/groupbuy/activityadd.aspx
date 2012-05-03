@@ -14,6 +14,7 @@
     <style>
         td{font-size:12px;}
         a{color:Blue; text-decoration:none;}
+        th{text-align:left}
     </style>
 </head>
 <body style="padding:0px; margin:0px;">
