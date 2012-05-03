@@ -75,7 +75,7 @@
 
                         <asp:Repeater ID="rptArticle" runat="server">
                             <ItemTemplate>
-                                 <tr style=" width:750px;">
+                                 <tr style=" width:750px; height:75px;">
                                     <td><%#Eval("Name").ToString()%></td>
                                     <td>
                                     开始：<%#Eval("startDate").ToString()%><br />
