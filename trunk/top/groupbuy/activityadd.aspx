@@ -14,7 +14,7 @@
     <style>
         td{font-size:12px;}
         a{color:Blue; text-decoration:none;}
-        th{text-align:left}
+        th{text-align:left; height:30px;}
     </style>
 </head>
 <body style="padding:0px; margin:0px;">
@@ -31,22 +31,14 @@
 		<tbody>
 			<tr>
 				<th class="required">活动名称：</th>
-				<td style="height: 55px;">
+				<td style="">
 					<input id="actionName" name="name" value="" type="text" style="width:165px;"/>
 					<div class="tips">活动名称应为2~5个字符，支持中文、字母、数字、下划线。其他不支持！</div>
 				</td>
 			</tr>
-<!--			<tr>
-				<th class="required">活动描述</th>
-				<td style="height: 55px;">
-					<textarea id="actionDesc" cols="10" name="actionDesc" 
-                        style="overflow-x:hidden;overflow-y:hidden; height: 44px;"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;<span id="showImg"><a style="text-decoration: underline;">什么是活动描述？</a></span>
-					<div class="tips">活动描述最多30个字！可以不填</div>
-				</td>
-			</tr>-->
 			<tr>
 				<th class="required">活动备注：</th>
-				<td style="height: 55px;">
+				<td style="">
 					<input id="actionMemo" name="memo" value="" type="text" style="width:165px;"/>
 					<div class="tips">此备注为用户自己填写内容，不显示在商品页面中。可不填。最多输入10个字符</div>
 				</td>
@@ -66,13 +58,13 @@
 			</tr>
 			<tr>
 				<th class="required">活动形式：</th>
-				<td style="height: 55px;">
+				<td style="">
 					<input type="radio" id="noStyle" name="itemType" value="same" checked="checked" onclick="showDetail(1)"/>每个参加活动的宝贝设置相同促销力度<input id="noStyle"  type="radio" name="itemType" value="different" onclick="showDetail(2)"/>每个参加活动的宝贝设置不同促销力度
 				</td>
 			</tr>
 			<tr class="itemDetail">
 				<th class="required">促销方式：</th>
-				<td style="height: 55px;">
+				<td style="">
 					<input type="radio" id="noStyle" class="dzRadio" name="discountType" value="DISCOUNT" checked="checked" onclick="showPrice(1)"/>打折 <input id="noStyle" class="jjRadio" type="radio" name="discountType" value="PRICE" onclick="showPrice(2)"/>减价
 				</td>
 			</tr>
