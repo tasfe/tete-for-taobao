@@ -57,8 +57,8 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
             string activityID = Request.QueryString["activityID"].ToString();
             name = Request.Form["name"].ToString();
             memo = Request.Form["memo"].ToString();
-            startDate = Request.Form["startDate"].ToString();
-            endDate = Request.Form["endDate"].ToString();
+            startDate =DateTime.Parse(Request.Form["startDate"].ToString()).ToString("yyyy-MM-dd hh:mm:ss");
+            endDate = DateTime.Parse(Request.Form["endDate"].ToString()).ToString("yyyy-MM-dd hh:mm:ss");
             itemType = Request.Form["itemType"].ToString();
             discountType = Request.Form["discountType"].ToString();
             zhe = Request.Form["zhe"].ToString();
@@ -195,8 +195,8 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
                             {
                                 name = dt.Rows[i]["Name"].ToString();
                                 memo = dt.Rows[i]["Remark"].ToString();
-                                startDate = dt.Rows[i]["startDate"].ToString();
-                                endDate = dt.Rows[i]["endDate"].ToString();
+                                startDate = DateTime.Parse(dt.Rows[i]["startDate"].ToString()).ToString("yyyy-MM-dd hh:mm:ss");
+                                endDate = DateTime.Parse(dt.Rows[i]["endDate"].ToString()).ToString("yyyy-MM-dd hh:mm:ss");
                                 itemType = dt.Rows[i]["itemType"].ToString();
                                 if (itemType != "same")
                                 {
