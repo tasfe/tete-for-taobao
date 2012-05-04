@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Collections.Generic;
+using Model;
 
 public partial class TestUserSeePage : System.Web.UI.Page
 {
@@ -18,6 +19,9 @@ public partial class TestUserSeePage : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            //IList<OrderExpressInfo> list = TaoBaoAPI.GetOrderLogisticompanies("luckyfish8800", "6101312587cbdace711a1e26d5877064329a4dd05d9c96326907498",DateTime.Now.AddDays(-7),DateTime.Now.AddDays(-1));
+
+         
         }
     }
     protected void Btn_AddCookie_Click(object sender, EventArgs e)

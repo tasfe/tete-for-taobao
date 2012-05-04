@@ -12,7 +12,19 @@ public partial class UpdatePrice : BasePage
     {
         if (!IsPostBack)
         {
-            Bind("", 1, 10);
+            string page = Request.QueryString["Page"];
+            if (string.IsNullOrEmpty(page))
+                Bind("", 1, 9);
+            else
+            {
+                int p = 1;
+                try
+                {
+                    p = int.Parse(page);
+                }
+                catch { }
+                Bind("", p, 9);
+            }
         }
     }
 
@@ -70,6 +82,6 @@ public partial class UpdatePrice : BasePage
     }
     protected void Btn_Search_Click(object sender, EventArgs e)
     {
-        Bind(Tb_GoodsName.Text.Trim(), 1, 10);
+        Bind(Tb_GoodsName.Text.Trim(), 1, 9);
     }
 }
