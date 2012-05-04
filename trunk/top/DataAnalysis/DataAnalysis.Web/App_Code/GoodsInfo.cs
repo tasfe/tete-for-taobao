@@ -25,6 +25,8 @@ public class GoodsInfo
 
     public string pic_url { set; get; }
 
+    public decimal PurchasePrice { set; get; }
+
     public override bool Equals(object obj)
     {
         if (obj is GoodsInfo)
