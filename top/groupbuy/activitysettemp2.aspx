@@ -18,7 +18,7 @@
     </style>
 </head>
 <body style="padding:0px; margin:0px;">
-<form id="form1" action="activitysettemp3.aspx" runat="server">
+<form id="form1" action="activitysettemp3.aspx">
 
     <div class="navigation">
         <div class="crumbs"><a href="default.aspx" class="nolink">特特团购</a> 3.设置宝贝顺序和价格 </div>
