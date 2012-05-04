@@ -217,7 +217,7 @@ in('TRADE_FINISHED','TRADE_BUYER_SIGNED','WAIT_BUYER_CONFIRM_GOODS','WAIT_SELLER
             info.title = dr["GoodsName"].ToString();
             info.pic_url = dr["Pic_Url"].ToString();
             info.price = decimal.Parse(dr["GoodsPrice"].ToString());
-            info.PurchasePrice = decimal.Parse(dr["PurchasePrice"].ToString());
+            info.PurchasePrice = dr["PurchasePrice"] == DBNull.Value ? 0 : decimal.Parse(dr["PurchasePrice"].ToString());
             list.Add(info);
         }
         return list;
