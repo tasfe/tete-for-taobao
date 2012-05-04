@@ -531,4 +531,66 @@ public class TaoBaoAPI
         }
         return new List<TaoBaoAPIHelper.SubUserInfo>();
     }
+
+    public static IList<ExpressInfo> GetLogisticompanies(string nick, string session)
+    {
+        IList<ExpressInfo> list = new List<ExpressInfo>();
+        IDictionary<string, string> param = new Dictionary<string, string>();
+        param.Add("fields", "id,name");
+        string text = Post(nick, "taobao.logistics.companies.get", session, param, DataFormatType.json);
+
+        text = text.Replace("{\"logistics_companies_get_response\":{\"logistics_companies\":{\"logistics_company\":", "");
+
+        text = text.Replace("}}}", "");
+        System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+        try
+        {
+            list = js.Deserialize<List<ExpressInfo>>(text);
+        }
+        catch (Exception ex)
+        {
+            LogInfo.WriteLog("获取与淘宝合作物流信息转换出错", text + ex.Message);
+        }
+        return list;
+    }
+
+    public static IList<OrderExpressInfo> GetOrderLogisticompanies(string nick, string session,DateTime start,DateTime end)
+    {
+        List<OrderExpressInfo> list = new List<OrderExpressInfo>();
+        bool notlast = true;
+        int page_no = 0;
+
+        System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+        Regex regex = new Regex("},\"total_results\":\\d+}}", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+        while (notlast)
+        {
+            page_no++;
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            param.Add("fields", "tid,company_name");
+            param.Add("page_size", "100");
+            param.Add("page_no", page_no.ToString());
+            param.Add("start_created", start.ToString("yyyy-MM-dd HH:mm:ss"));
+            param.Add("end_created", end.ToString("yyyy-MM-dd HH:mm:ss"));
+
+            string text = Post(nick, "taobao.logistics.orders.get", session, param, DataFormatType.json);
+            text = text.Replace("{\"logistics_orders_get_response\":{\"shippings\":{\"shipping\":", "");
+
+            if (new Regex("\"total_results\":\\d+}}", System.Text.RegularExpressions.RegexOptions.IgnoreCase).Match(text).Value == "\"total_results\":0}}")
+                return list;
+
+            text = regex.Replace(text, "");
+            try
+            {
+                List<OrderExpressInfo> jsList = js.Deserialize<List<OrderExpressInfo>>(text);
+                list.AddRange(jsList);
+                if (jsList.Count < 100)
+                    notlast = false;
+            }
+            catch (Exception ex)
+            {
+                LogInfo.WriteLog("获取订单使用物流信息转换出错", text + ex.Message);
+            }
+        }
+        return list;
+    }
 }

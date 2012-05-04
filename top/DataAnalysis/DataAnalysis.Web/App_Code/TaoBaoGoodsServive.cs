@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Collections.Generic;
 
 /// <summary>
-/// Summary description for TaoBaoGoodsServivr
+/// 存取用户在售商品信息
 /// </summary>
 public class TaoBaoGoodsServive
 {
@@ -47,6 +47,12 @@ from(
 in('TRADE_FINISHED','TRADE_BUYER_SIGNED','WAIT_BUYER_CONFIRM_GOODS','WAIT_SELLER_SEND_GOODS')
  and 
    o.seller_nick=@nick) a group by num_iid having num_iid in(@pids)";
+
+    const string SQL_UPDATE_PRICE = "UPDATE TopTaoBaoGoodsInfo SET PurchasePrice=@PurchasePrice WHERE GoodsId=@GoodsId AND NickNo=@NickNo";
+
+    const string SQL_SELECT_GOODS_PRICE = "select * from(select *,ROW_NUMBER() OVER(ORDER BY GoodsId DESC) as  RowNum from TopTaoBaoGoodsInfo where NickNo=@nick and CHARINDEX(@goodsName,GoodsName)>0) a where RowNum between @snum and @enum";
+
+    const string SQL_SELECT_GOODS_PRICE_COUNT = "select COUNT(*) from TopTaoBaoGoodsInfo where NickNo=@nick";
 
     public void InsertTaoBaoGoodsInfo(GoodsInfo info)
     {
@@ -158,4 +164,62 @@ in('TRADE_FINISHED','TRADE_BUYER_SIGNED','WAIT_BUYER_CONFIRM_GOODS','WAIT_SELLER
         return DBHelper.ExecuteScalar(SQL_SELECT_TOP_BUY_COUNT, param);
     }
 
+    public int UpdatePrice(GoodsInfo info)
+    {
+        SqlParameter[] param = new[]
+        {
+            new SqlParameter("@GoodsId",info.num_iid),
+            new SqlParameter("@NickNo",info.nick),
+            new SqlParameter("@PurchasePrice",info.PurchasePrice)
+        };
+
+        return DBHelper.ExecuteNonQuery(SQL_UPDATE_PRICE, param);
+    }
+
+    public int GetAllGoodsCount(string nick, string goodsName)
+    {
+        SqlParameter param = new SqlParameter("@nick", nick);
+        string sql = SQL_SELECT_GOODS_PRICE_COUNT;
+        if (!string.IsNullOrEmpty(goodsName))
+            sql += " and CHARINDEX('"+goodsName+"',GoodsName)>0";
+
+        return DBHelper.ExecuteScalar(sql, param);
+    }
+
+    public IList<GoodsInfo> GetAllGoods(string nick,string goodsName, int page, int count)
+    {
+        int snum = 1;
+        if (page != 1)
+            snum = (page - 1) * count + 1;
+        int endnum = page * count;
+        SqlParameter[] param = new[]
+        {
+            new SqlParameter("@nick",nick),
+            new SqlParameter("@snum",snum),
+            new SqlParameter("@enum",endnum)
+        };
+
+        string sql = SQL_SELECT_GOODS_PRICE;
+
+        if (string.IsNullOrEmpty(goodsName))
+            sql = sql.Replace("and CHARINDEX(@goodsName,GoodsName)>0", "");
+        else
+        {
+            sql = sql.Replace("@goodsName", "'" + goodsName + "'");
+        }
+
+        DataTable dt = DBHelper.ExecuteDataTable(sql, param);
+        IList<GoodsInfo> list = new List<GoodsInfo>();
+        foreach (DataRow dr in dt.Rows)
+        {
+            GoodsInfo info = new GoodsInfo();
+            info.num_iid = dr["GoodsId"].ToString();
+            info.title = dr["GoodsName"].ToString();
+            info.pic_url = dr["Pic_Url"].ToString();
+            info.price = decimal.Parse(dr["GoodsPrice"].ToString());
+            info.PurchasePrice = decimal.Parse(dr["PurchasePrice"].ToString());
+            list.Add(info);
+        }
+        return list;
+    }
 }
