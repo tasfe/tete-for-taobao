@@ -25,7 +25,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
                     
                     html += "<td width=\"100px\"> " + dt.Rows[i]["Productprice"].ToString() + "元 <input   type=\"hidden\" id=\"productid" + dt.Rows[i]["ProductID"].ToString() + "\" name=\"productid\"  value=\"" + dt.Rows[i]["ProductID"].ToString() + "\"><input type=\"hidden\" id=\"price" + dt.Rows[i]["ProductID"].ToString() + "\" name=\"price\" value=\"" + dt.Rows[i]["Productprice"].ToString() + "\"></td>";
 
-                    html += "<td   width=\"100px\">  <input type=\"text\" id=\"zhekou" + dt.Rows[i]["ProductID"].ToString() + "\" size=\"20\" name=\"zhekou\" /> 元 </td>";
+                    html += "<td   width=\"100px\">  <input type=\"text\" id=\"zhekou" + dt.Rows[i]["ProductID"].ToString() + "\" size=\"10\" name=\"zhekou\" /> 元 </td>";
                     html += " <td   width=\"100px\">  <input type=\"text\"  size=\"8\"  name=\"rcount\" value=\"300\" /> </td><td><a onclick=\"deleteDIV('del1" + dt.Rows[i]["ProductID"].ToString() + "')\"  style=\"cursor:hand;\">删除</a></td></tr></table><input id=\"del1" + dt.Rows[i]["ProductID"].ToString() + "\" name=\"del\" value='' type=\"hidden\" ></div>";
                     idstr = "," + i.ToString();
                 }
