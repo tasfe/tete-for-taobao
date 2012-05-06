@@ -20,6 +20,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
     public string mall = string.Empty;
     public string liang = string.Empty;
     public string baoy = string.Empty;
+    public string strhtml = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -45,8 +46,14 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
             sql = "SELECT * FROM tete_activity WHERE Status=1 and Nick = '" + taobaoNick + "'";
 
             DataTable dt = utils.ExecuteDataTable(sql);
-           
 
+            if (dt != null)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    strhtml += "<option value=\"" + dt.Rows[i]["id"].ToString() + "\">" + dt.Rows[i]["name"].ToString() + "</option>";
+                }
+            }
              
              
         }
