@@ -28,7 +28,7 @@
             <tr>
                 <td align="left" height="30">选择展示宝贝：</td>
                 <td>
-                           <select id="Select1" name=selstr>
+                           <select id="Select1" name=selstr style=" width:200px;">
         	                    <option value="0">请选择</option>
                     	        
         	                    <%=  strhtml %>
