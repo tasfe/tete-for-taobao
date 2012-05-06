@@ -13,7 +13,7 @@ public partial class top_groupbuy_activityadd : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
-        teteendDate = "2012-12-12";
+        teteendDate = "";
        
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");

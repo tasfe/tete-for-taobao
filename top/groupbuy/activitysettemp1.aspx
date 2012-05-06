@@ -33,7 +33,7 @@
                     	        
         	                    <%=  strhtml %>
                                 <option value="">手动选择</option>
-        	                </select>
+        	                </select> 只用进行中的活动能选择
                    
                 </td>
             </tr>

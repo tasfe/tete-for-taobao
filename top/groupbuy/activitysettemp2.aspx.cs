@@ -11,6 +11,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
     public string html = string.Empty;
     public string sql = string.Empty;
     string idstr = string.Empty;
+    string newprice = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Request.Form["selstr"].ToString() != "" && Request.Form["selstr"].ToString() != "0")
@@ -24,9 +25,21 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
                     html += "<div id='div" + dt.Rows[i]["ProductID"].ToString() + "' width=\"700px\"><table width=\"700px\"><tr ><td width=\"200px\"><a href=\"http://item.taobao.com/item.htm?id=" + dt.Rows[i]["ProductID"].ToString() + "\" target=\"_blank\">" + dt.Rows[i]["Productname"].ToString() + "</a></td>";
                     
                     html += "<td width=\"100px\"> " + dt.Rows[i]["Productprice"].ToString() + "元 <input   type=\"hidden\" id=\"productid" + dt.Rows[i]["ProductID"].ToString() + "\" name=\"productid\"  value=\"" + dt.Rows[i]["ProductID"].ToString() + "\"><input type=\"hidden\" id=\"price" + dt.Rows[i]["ProductID"].ToString() + "\" name=\"price\" value=\"" + dt.Rows[i]["Productprice"].ToString() + "\"></td>";
-
-                    html += "<td   width=\"100px\">  <input type=\"text\" id=\"zhekou" + dt.Rows[i]["ProductID"].ToString() + "\" size=\"10\" name=\"zhekou\" /> 元 </td>";
-                    html += " <td   width=\"100px\">  <input type=\"text\"  size=\"8\"  name=\"rcount\" value=\"300\" /> </td><td><a onclick=\"deleteDIV('del1" + dt.Rows[i]["ProductID"].ToString() + "')\"  style=\"cursor:hand;\">删除</a></td></tr></table><input id=\"del1" + dt.Rows[i]["ProductID"].ToString() + "\" name=\"del\" value='' type=\"hidden\" ></div>";
+                    try
+                    {
+                        if (dt.Rows[i]["discountType"].ToString() == "DISCOUNT") //discountValue
+                        {
+                            newprice = decimal.Round((decimal.Parse(dt.Rows[i]["Productprice"].ToString()) * decimal.Parse(dt.Rows[i]["discountValue"].ToString()) * 0.1m), 2).ToString();
+                        }
+                        else if (dt.Rows[i]["discountType"].ToString() == "PRICE")
+                        {
+                            newprice = decimal.Round((decimal.Parse(dt.Rows[i]["Productprice"].ToString()) - decimal.Parse(dt.Rows[i]["discountValue"].ToString())), 2).ToString();
+                        }
+                    }
+                    catch { }
+                    html += "<td   width=\"100px\">  <input type=\"text\" id=\"zhekou" + dt.Rows[i]["ProductID"].ToString() + "\" size=\"10\" name=\"zhekou\" value=" + newprice + " /> 元 </td>";
+                    html += "<td   width=\"80px\">  <input type=\"text\" id=\"sort" + dt.Rows[i]["ProductID"].ToString() + "\" size=\"10\" name=\"sort\" value=" + i.ToString() + " />  </td>";
+                    html += " <td   width=\"80px\">  <input type=\"text\"  size=\"8\"  name=\"rcount\" value=\"300\" /> </td><td><a onclick=\"deleteDIV('del1" + dt.Rows[i]["ProductID"].ToString() + "')\"  style=\"cursor:hand;\">删除</a></td></tr></table><input id=\"del1" + dt.Rows[i]["ProductID"].ToString() + "\" name=\"del\" value='' type=\"hidden\" ></div>";
                     idstr = "," + i.ToString();
                 }
                 html += "<input type=\"hidden\" id=\"idss\" name=\"idss\" value=\"" + idstr + "\">";
