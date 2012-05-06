@@ -46,24 +46,37 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
         sort = Request.Form["sort"].ToString();
         pimg = Request.Form["pimg"].ToString(); 
         pname=  Request.Form["pname"].ToString();
-          Cookie cookie = new Cookie();
-          string taobaoNick = cookie.getCookie("nick");
+        Cookie cookie = new Cookie();
+         string taobaoNick = cookie.getCookie("nick");
  
-            Rijndael_ encode = new Rijndael_("tetesoft");
-            taobaoNick = encode.Decrypt(taobaoNick);
-
+        Rijndael_ encode = new Rijndael_("tetesoft");
+        taobaoNick = encode.Decrypt(taobaoNick);
+ 
         //添加店铺模板
-        sql = "INSERT INTO  [tete_shoptemplet] ([templetID] ,[buttonValue] ,[scbzvalue] ,[lpbzvalue] ,[byvalue] ,[nick] ,[title] ,careteDate])   VALUES   ("+templetid+",'"+bt+"','"+mall+"','"+liang+"',,'"+baoy+"' ,'"+taobaoNick+"' ,'"+name+"' ,'"+ DateTime.Now.ToString()+"')";
-        string shoptempid= utils.ExecuteString(sql);
+        sql = "INSERT INTO  [tete_shoptemplet] ([templetID] ,[buttonValue] ,[scbzvalue] ,[lpbzvalue] ,[byvalue] ,[nick] ,[title] ,careteDate)   VALUES   ("+templetid+",'"+bt+"','"+mall+"','"+liang+"','"+baoy+"' ,'"+taobaoNick+"' ,'"+name+"' ,'"+ DateTime.Now.ToString()+"')";
+ 
+         utils.ExecuteNonQuery(sql);
+         DataTable dt2 = utils.ExecuteDataTable("select top 1 * from tete_shoptemplet where nick='" + taobaoNick + "' order by id desc");
+         string shoptempid = "";
+         if (dt2 != null && dt2.Rows.Count > 0)
+         {
+             shoptempid = dt2.Rows[0]["id"].ToString();
+         }
+         if (shoptempid != "")
+         {
+             //添加店铺模板列表
+             for (int i = 0; i < price.Split(',').Length; i++)
+             {
+                 sql = "INSERT INTO  [tete_shoptempletlist] ([shoptempletID],[name],[price],[proprice],[Sort],[nick],[rcount],[ProductImg],[ProductUrl],[ProductID])  VALUES (" + shoptempid + ",'" + pname[i].ToString() + "','" + price[i].ToString() + "','" + zhekou[i].ToString() + "'," + sort[i].ToString() + ",'" + taobaoNick + "'," + rcount + ",'" + pimg[i].ToString() + "','http:///item.taobao.com/item.htm?id=" + productid[i].ToString() + "','" + productid[i].ToString() + "')";
+                 utils.ExecuteNonQuery(sql);
+             }
 
-        //添加店铺模板列表
-        for(int i=0;i<price.Split(',').Length;i++)
-        {
-            sql = "INSERT INTO  [tete_shoptempletlist] ([shoptempletID],[name],[price],[proprice],[Sort],[nick],[rcount],[ProductImg],[ProductUrl],[ProductID])  VALUES (" + shoptempid + ",'" + pname[i].ToString() + "','" + price[i].ToString() + "','" + zhekou[i].ToString() + "'," + sort[i].ToString() + ",'" + taobaoNick + "'," + rcount + ",'" + pimg[i].ToString() + "','http:///item.taobao.com/item.htm?id=" + productid[i].ToString() + "','" + productid[i].ToString() + "')";
-            utils.ExecuteNonQuery(sql);
-        }
-
-        TextBox1.Text = CreateGroupbuyHtml(shoptempid);
+             TextBox1.Text = CreateGroupbuyHtml(shoptempid);
+         }
+         else
+         {
+             TextBox1.Text = "模板创建失败！";
+         }
     }
 
     /// <summary>
