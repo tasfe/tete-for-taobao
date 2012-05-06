@@ -27,9 +27,20 @@
             <asp:TextBox ID="TextBox1" runat="server" Height="178px" TextMode="MultiLine" 
                 Width="602px"></asp:TextBox>
             <br />
-            <input type="button" value="复制代码" />
+            <input type="button" value="复制代码" onclick="jsCopy();" />
         </div>
     </div>
+    <script type="text/javascript">
+        function jsCopy() {
+            var e = document.getElementById("TextBox1"); //对象是content 
+            e.select(); //选择对象 
+            document.execCommand("Copy"); //执行浏览器复制命令
+
+            alert("已复制好，可贴粘。");
+        } 
+</script> 
+
+ 
     </form>
 </body>
 </html>
