@@ -33,12 +33,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
         {
             baoy = Request.Form["flag"].ToString();
         }
-        HiddenField1.Value = name;
-        HiddenField1.Value = templetid;
-        HiddenField1.Value = bt;
-        HiddenField1.Value = mall;
-        HiddenField1.Value = liang;
-        HiddenField1.Value = baoy;
+     
 
         Cookie cookie = new Cookie();
         string taobaoNick = cookie.getCookie("nick");
@@ -50,8 +45,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
             sql = "SELECT * FROM tete_activity WHERE Status=1 and Nick = '" + taobaoNick + "'";
 
             DataTable dt = utils.ExecuteDataTable(sql);
-            Repeater1.DataSource = dt;
-            Repeater1.DataBind();
+           
 
              
              
