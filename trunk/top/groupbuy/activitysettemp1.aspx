@@ -28,7 +28,7 @@
             <tr>
                 <td align="left" height="30">选择展示宝贝：</td>
                 <td>
-                    <select runat="server" id="select1">
+                    <select   id="select1">
                         <option  value="0">请选择</option>
         	                    <asp:Repeater ID="Repeater1" runat="server">
         	                        <ItemTemplate>
@@ -38,6 +38,8 @@
      
                         <option>手动选择</option>
                     </select>
+                    <asp:DropDownList ID="DropDownList1" runat="server">
+                    </asp:DropDownList>
                 </td>
             </tr>
             <tr>
