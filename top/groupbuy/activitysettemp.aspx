@@ -149,10 +149,10 @@
                     </table>
                 </td>
             </tr>
-            <tr><input type="submit" value="下一步：选择展示的宝贝" onclick="parent.scroll(0,0);" />
+            <tr>
                 <td align="left" height="30"></td>
                 <td>
-                    
+                    <input type="submit" value="下一步：选择展示的宝贝" onclick="parent.scroll(0,0);" />
                 </td>
             </tr>
             </table>
