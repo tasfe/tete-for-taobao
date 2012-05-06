@@ -62,16 +62,20 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
          {
              shoptempid = dt2.Rows[0]["id"].ToString();
          }
+ 
          if (shoptempid != "")
          {
+ 
              //添加店铺模板列表
              for (int i = 0; i < price.Split(',').Length; i++)
              {
-                 sql = "INSERT INTO  [tete_shoptempletlist] ([shoptempletID],[name],[price],[proprice],[Sort],[nick],[rcount],[ProductImg],[ProductUrl],[ProductID])  VALUES (" + shoptempid + ",'" + pname[i].ToString() + "','" + price[i].ToString() + "','" + zhekou[i].ToString() + "'," + sort[i].ToString() + ",'" + taobaoNick + "'," + rcount + ",'" + pimg[i].ToString() + "','http:///item.taobao.com/item.htm?id=" + productid[i].ToString() + "','" + productid[i].ToString() + "')";
+                 sql = "INSERT INTO  [tete_shoptempletlist] ([shoptempletID],[name],[price],[proprice],[Sort],[nick],[rcount],[ProductImg],[ProductUrl],[ProductID])  VALUES (" + shoptempid + ",'" + pname.Split(',')[i].ToString() + "','" + price.Split(',')[i].ToString() + "','" + zhekou.Split(',')[i].ToString() + "'," + sort.Split(',')[i].ToString() + ",'" + taobaoNick + "'," + rcount.Split(',')[i].ToString() + ",'" + pimg.Split(',')[i].ToString() + "','http:///item.taobao.com/item.htm?id=" + productid.Split(',')[i].ToString() + "','" + productid.Split(',')[i].ToString() + "')";
+                  
                  utils.ExecuteNonQuery(sql);
+   
              }
-
-             TextBox1.Text = CreateGroupbuyHtml(shoptempid);
+        
+             TextBox1.Text  = CreateGroupbuyHtml(shoptempid);
          }
          else
          {
@@ -91,7 +95,8 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
             return "";
         }
         string str = string.Empty;
-        string sql = "select tete_shoptempletlist.*,templetID，[buttonValue],[scbzvalue],[lpbzvalue],[byvalue],[title],[careteDate],[Sort] from tete_shoptempletlist left join   tete_shoptemplet on tete_shoptempletlist.shoptempletID=tete_shoptemplet.ID  WHERE tete_shoptemplet.templetID = '" + id + "'";
+        string sql = "select tete_shoptempletlist.*,templetID,[buttonValue],[scbzvalue],[lpbzvalue],[byvalue],[title],[careteDate],[Sort] from tete_shoptempletlist left join   tete_shoptemplet on tete_shoptempletlist.shoptempletID=tete_shoptemplet.ID  WHERE tete_shoptemplet.templetID = '" + id + "'";
+       
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt == null)
         {
@@ -108,7 +113,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
                 templatehtmlUrl = "tpl/stylenew2.html";
             }
             //是多商品团购模板
-            if (dt.Rows[0]["template"].ToString() == "3")
+            if (dt.Rows[0]["templetID"].ToString() == "3")
             {
                 //第三套模板（一排三列）
                 templatehtmlUrl = "tpl/style3.html";
@@ -155,7 +160,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
             else
             {
                 //是多商品团购模板
-                if (dt.Rows[i]["template"].ToString() == "2" || dt.Rows[i]["template"].ToString() == "3")
+                if (dt.Rows[i]["templetID"].ToString() == "2" || dt.Rows[i]["templetID"].ToString() == "3")
                 {
                     html = File.ReadAllText(Server.MapPath(template2htmlUrl));
                     smailtempStr += html;
