@@ -8,6 +8,6 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Response.Write(Request.Form["productid"].ToString());
     }
 }

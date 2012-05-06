@@ -15,10 +15,18 @@
         td{font-size:12px;}
         a{color:Blue; text-decoration:none;}
         th{text-align:left; height:40px;}
-    </style>
+    </style> 
+    <script type="text/javascript">
+
+        function deleteDIV(obj) {
+            var ob = document.getElementById(obj);
+
+            $(ob).parent().remove();
+        }
+    </script>
 </head>
 <body style="padding:0px; margin:0px;">
-<form id="form1" action="activitysettemp3.aspx">
+<form id="form1" action="activitysettemp3.aspx" method="post">
 
     <div class="navigation">
         <div class="crumbs"><a href="default.aspx" class="nolink">特特团购</a> 3.设置宝贝顺序和价格 </div>
@@ -26,25 +34,20 @@
         <div id="main-content">
             <table width="700">
             <tr>
-                <td>宝贝名称</td>
-                <td>原价 </td>
-                <td>促销价 </td>
-                <td>排序号</td>
-                <td>操作</td>
+                <td width="200px">宝贝名称</td>
+                <td  width="100px">原价 </td>
+                <td  width="100px">促销价 </td>
+                <td  width="100px">排序号</td>
+                <td  >操作</td>
             </tr>
+ 
+            </table>
+            <div id="listhtml" style=" width:700px">
+            <%=html%>
+            </div>
+           <table width="700">
             <tr>
-                <td colspan=4><%=html%></td>
-            </tr>
-         <%--   <tr>
-                <td>宝贝1</td>
-                <td>600</td>
-                <td><input value="300" /></td>
-                <td><input value="1" /></td>
-                <td> 删除 </td>
-            </tr>--%>
-          
-            <tr>
-                <td align="left" height="30"></td>
+                <td align="left" height="30" width="200px"></td>
                 <td>
                     <input type="button" value="上一步" onclick="history.go(-1)" />
                     <input type="submit" value="下一步：生成促销代码" />
