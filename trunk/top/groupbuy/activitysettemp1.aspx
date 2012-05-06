@@ -44,6 +44,9 @@
             </table>
         </div>
     </div>
+    <script type="text/javascript">
+         scroll(0, 0);
+    </script>
     </form>
 </body>
 </html>
