@@ -55,6 +55,13 @@
                 </td>
             </tr>
             </table>
+              <input type=hidden name="name"  value="<%= name %>" />
+            <input type=hidden name="templetid"  value="<%= templetid %>" />
+            <input type=hidden name="bt"  value="<%= bt %>" />
+            <input type=hidden name="mall"  value="<%= mall %>" />
+            <input type=hidden name="liang"  value="<%= liang %>" />
+            <input type=hidden name="baoy"  value="<%= baoy %>" />
+            <input type=hidden name="hdID"  value="<%= hdID %>" />
         </div>
     </div>
     </form>
