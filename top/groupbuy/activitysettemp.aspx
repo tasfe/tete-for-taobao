@@ -85,7 +85,7 @@
                 <td>
                     <table width="100%" cellpadding=0 cellspacing=0>
                         <tr>
-                            <td><img src="images/0.png" /> <br /><input type="radio" name='button1' value="0" /></td>
+                            <td><img src="images/0.png" /> <br /><input type="radio" checked=checked name="button1" value="0" /></td>
                             <td><img src="images/1.png" /> <br /><input type="radio" name="button1" value="1" /></td>
                             <td><img src="images/2.png" /> <br /><input type="radio" name="button1" value="2" /></td>
                             <td><img src="images/3.png" /> <br /><input type="radio" name="button1" value="3" /></td>
@@ -121,14 +121,14 @@
                 <td align="left" height="30">商城标志</td>
                 <td>
                     <img src="images/lp_protection_icon.png" /> 
-                    <br /> <input type="radio" name="showmall" value="1" />显示  <input type="radio" name="showmall" value="0" />不显示
+                    <br /> <input type="radio" name="showmall" checked=checked value="1" />显示  <input type="radio" name="showmall" value="0" />不显示
                 </td>
             </tr>
             <tr>
                 <td align="left" height="30">良品标志</td>
                 <td>
                     <img src="images/mall_protection_icon.png" />
-                    <br /> <input type="radio" name="showliang" value="1" />显示  <input type="radio" name="showliang" value="0" />不显示
+                    <br /> <input type="radio" name="showliang"  checked=checked value="1" />显示  <input type="radio"  name="showliang" value="0" />不显示
                 </td>
             </tr>
             <tr>
