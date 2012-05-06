@@ -18,7 +18,7 @@
     </style>
 </head>
 <body style="padding:0px; margin:0px;">
-<form id="form1" action="activitysettemp2.aspx"   >
+<form id="form1" action="activitysettemp2.aspx"  method="post"  >
 
     <div class="navigation">
         <div class="crumbs"><a href="default.aspx" class="nolink">特特团购</a> 2.选择展示宝贝 </div>
@@ -58,9 +58,7 @@
  
         </div>
     </div>
-    <script type="text/javascript">
-         scroll(0, 0);
-    </script>
+ 
     </form>
 </body>
 </html>
