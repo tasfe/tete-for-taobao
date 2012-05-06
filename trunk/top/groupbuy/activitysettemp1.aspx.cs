@@ -29,7 +29,10 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
         bt = Request.Form["button1"].ToString();
         mall = Request.Form["showmall"].ToString();
         liang = Request.Form["showliang"].ToString();
-        baoy = Request.Form["flag"].ToString();
+        if (Request.Form["flag"] != null && Request.Form["flag"] != "")
+        {
+            baoy = Request.Form["flag"].ToString();
+        }
         HiddenField1.Value = name;
         HiddenField1.Value = templetid;
         HiddenField1.Value = bt;
