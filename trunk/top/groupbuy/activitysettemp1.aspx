@@ -18,7 +18,7 @@
     </style>
 </head>
 <body style="padding:0px; margin:0px;">
-<form id="form1" action="activitysettemp2.aspx"  runat="server">
+<form id="form1" action="activitysettemp2.aspx"   >
 
     <div class="navigation">
         <div class="crumbs"><a href="default.aspx" class="nolink">特特团购</a> 2.选择展示宝贝 </div>
@@ -31,11 +31,7 @@
                            <select id="Select1" name=selstr>
         	                    <option value="0">请选择</option>
                     	        
-        	                    <asp:Repeater ID="Repeater1" runat="server">
-        	                        <ItemTemplate>
-        	                            <option value='<%#Eval("cid") %>'><%#Eval("name") %></option>
-        	                        </ItemTemplate>
-        	                    </asp:Repeater>
+        	                    
                                 <option value="">手动选择</option>
         	                </select>
                    
@@ -48,7 +44,7 @@
 
                     <input type="button" value="上一步" onclick="history.go(-1)" />
  
-                    <input type="button" value="下一步：设置宝贝顺序和价格" />
+                    <input type=submit value="下一步：设置宝贝顺序和价格" />
  
                 </td>
             </tr>
@@ -59,12 +55,7 @@
             <input type=hidden name="mall"  value="<%= mall %>" />
             <input type=hidden name="liang"  value="<%= liang %>" />
             <input type=hidden name="baoy"  value="<%= baoy %>" />
-                    <asp:HiddenField ID="HiddenField1"  runat="server" />
-                    <asp:HiddenField ID="HiddenField2"  runat="server" />
-                    <asp:HiddenField ID="HiddenField3"  runat="server" />
-                    <asp:HiddenField ID="HiddenField4"  runat="server" />
-                    <asp:HiddenField ID="HiddenField5"  runat="server" />
-                    <asp:HiddenField ID="HiddenField6"  runat="server" />
+ 
         </div>
     </div>
     <script type="text/javascript">
