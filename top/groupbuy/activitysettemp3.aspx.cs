@@ -31,11 +31,13 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
     {
         name = Request.Form["name"].ToString();
         templetid = Request.Form["templetid"].ToString();//模板ID
-        bt = Request.Form["button1"].ToString();
-        mall = Request.Form["showmall"].ToString();
-        liang = Request.Form["showliang"].ToString();
+        bt = Request.Form["bt"].ToString();
+        mall = Request.Form["mall"].ToString();
+        liang = Request.Form["liang"].ToString();
         hdID = Request.Form["hdID"].ToString();//活动ID
-         baoy = Request.Form["flag"].ToString();
+        baoy = Request.Form["baoy"].ToString();
+
+ 
 
         productid = Request.Form["productid"].ToString();
         price = Request.Form["price"].ToString();

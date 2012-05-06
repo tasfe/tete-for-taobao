@@ -24,13 +24,13 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
     {
         name = Request.Form["name"].ToString();
         templetid = Request.Form["templetid"].ToString();
-        bt = Request.Form["button1"].ToString();
-        mall = Request.Form["showmall"].ToString();
-        liang = Request.Form["showliang"].ToString();
+        bt = Request.Form["bt"].ToString();
+        mall = Request.Form["mall"].ToString();
+        liang = Request.Form["liang"].ToString();
 
-        if (Request.Form["flag"] != null && Request.Form["flag"] != "")
+        if (Request.Form["baoy"] != null && Request.Form["baoy"] != "")
         {
-            baoy = Request.Form["flag"].ToString();
+            baoy = Request.Form["baoy"].ToString();
         }
 
         if (Request.Form["selstr"].ToString() != "" && Request.Form["selstr"].ToString() != "0")
