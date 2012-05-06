@@ -22,7 +22,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        name = Request.Form["title"].ToString();
+        name = Request.Form["name"].ToString();
         templetid = Request.Form["templateID"].ToString();
         bt = Request.Form["button1"].ToString();
         mall = Request.Form["showmall"].ToString();
