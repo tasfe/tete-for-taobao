@@ -15,6 +15,8 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
     string sql = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
+        Cookie cookie = new Cookie();
+        string taobaoNick = cookie.getCookie("nick");
         if (!IsPostBack)
         {
             Rijndael_ encode = new Rijndael_("tetesoft");
