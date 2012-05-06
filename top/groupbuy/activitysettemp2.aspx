@@ -33,33 +33,16 @@
                 <td>操作</td>
             </tr>
             <tr>
+                <td colspan=4><%=html%></td>
+            </tr>
+         <%--   <tr>
                 <td>宝贝1</td>
                 <td>600</td>
                 <td><input value="300" /></td>
                 <td><input value="1" /></td>
                 <td> 删除 </td>
-            </tr>
-            <tr>
-                <td>宝贝1</td>
-                <td>600</td>
-                <td><input value="300" /></td>
-                <td><input value="1" /></td>
-                <td> 删除 </td>
-            </tr>
-            <tr>
-                <td>宝贝1</td>
-                <td>600</td>
-                <td><input value="300" /></td>
-                <td><input value="1" /></td>
-                <td> 删除 </td>
-            </tr>
-            <tr>
-                <td>宝贝1</td>
-                <td>600</td>
-                <td><input value="300" /></td>
-                <td><input value="1" /></td>
-                <td> 删除 </td>
-            </tr>
+            </tr>--%>
+          
             <tr>
                 <td align="left" height="30"></td>
                 <td>

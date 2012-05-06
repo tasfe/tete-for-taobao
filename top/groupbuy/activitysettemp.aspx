@@ -26,9 +26,14 @@
         <div id="main-content">
             <table width="700">
             <tr>
+                <td>活动模板名称：</td>
+                <td><input name="title" id="title" value="" size=40 /> <font color=red>*</font></td>
+            
+            </tr>
+            <tr>
                 <td align="left" height="30">选择活动模板：</td>
                 <td>
-                    宽950的（适合放在店铺首页头部位置）：
+                    <%--宽950的（适合放在店铺首页头部位置）：
                     <hr />
                     <table width="100%" cellpadding=0 cellspacing=0>
                         <tr>
@@ -38,24 +43,31 @@
                             <td>风格4（每行1个） <br /><input type="radio" name="style" value="4" /></td>
                         </tr>
                     </table>
-                    <br />
+                    <br />--%>
                     宽750的（适合放在宝贝描述里面）：
                     <hr />
                     <table width="100%" cellpadding=0 cellspacing=0>
                         <tr>
-                            <td>风格1（每行3个） <br /><input type="radio" name="style" value="5" /></td>
-                            <td>风格2（第一行1个，下面每行3个） <br /><input type="radio" name="style" value="6" /></td>
-                            <td>风格3（第一行1个，下面每行2个） <br /><input type="radio" name="style" value="7" /></td>
-                            <td>风格4（每行2个） <br /><input type="radio" name="style" value="8" /></td>
+                            <td>风格1（默认团购模板） <br />
+                                <span onclick="selectRd('templateID1')"   onMouseOver="toolTip('<img width=400px  src=images/groupbuy1.jpg>')" onMouseOut="toolTip()" > 
+                                <input type='radio' name='templateID' id="Radio1" checked="checked" value='1' />
+                            </td>
+                            <td>风格2（第一行1个，下面每行3个） <br />
+                                <span  onclick="selectRd('templateID2')"  onMouseOver="toolTip('<img width=400px  src=images/groupbuy1.jpg>')" onMouseOut="toolTip()">
+                                <input type='radio' name='templateID' id="templateID2" value='2'  />
+                            </td>
+                            <td>风格3（一排三列） <br />
+                                <span  onclick="selectRd('templateID3')"  onMouseOver="toolTip('<img width=400px  src=images/groupbuy1.jpg>')" onMouseOut="toolTip()">
+                                <input type='radio' name='templateID' id="templateID3" value='3'  />
+                                  <input type="hidden" id="template" name="template" value="1" />   
+                            </td>
+                            <td> </td>
                         </tr>
-                        <tr>
-                            <td>风格5（每行3个） <br /><input type="radio" name="style" value="9" /></td>
-                            <td>风格6（每行3个） <br /><input type="radio" name="style" value="10" /></td>
-                            <td>风格7（每行3个） <br /><input type="radio" name="style" value="11" /></td>
-                            <td></td>
-                        </tr>
+    
+ 
+                                      
                     </table>
-                    <br />
+                   <%-- <br />
                     宽190的（适合放在左侧菜单）：
                     <hr />
                     <table width="100%" cellpadding=0 cellspacing=0>
@@ -65,7 +77,7 @@
                             <td></td>
                             <td></td>
                         </tr>
-                    </table>
+                    </table>--%>
                 </td>
             </tr>
             <tr>
@@ -146,6 +158,7 @@
             </table>
         </div>
     </div>
+    <script type="text/javascript" src="js/ToolTip.js"></script>
     </form>
 </body>
 </html>

@@ -18,7 +18,7 @@
     </style>
 </head>
 <body style="padding:0px; margin:0px;">
-<form id="form1" action="activitysettemp2.aspx">
+<form id="form1"  runat="server">
 
     <div class="navigation">
         <div class="crumbs"><a href="default.aspx" class="nolink">特特团购</a> 2.选择展示宝贝 </div>
@@ -28,10 +28,14 @@
             <tr>
                 <td align="left" height="30">选择展示宝贝：</td>
                 <td>
-                    <select>
-                        <option>请选择</option>
-                        <option>促销活动1</option>
-                        <option>促销活动2</option>
+                    <select runat="server" id="select1">
+                        <option  value="0">请选择</option>
+        	                    <asp:Repeater ID="Repeater1" runat="server">
+        	                        <ItemTemplate>
+        	                            <option value='<%#Eval("ID") %>'><%#Eval("name") %></option>
+        	                        </ItemTemplate>
+        	                    </asp:Repeater>
+     
                         <option>手动选择</option>
                     </select>
                 </td>
@@ -40,7 +44,9 @@
                 <td align="left" height="30"></td>
                 <td>
                     <input type="button" value="上一步" onclick="history.go(-1)" />
-                    <input type="submit" value="下一步：设置宝贝顺序和价格" />
+ 
+                    <asp:Button ID="Button1" runat="server" Text="下一步：设置宝贝顺序和价格" 
+                        onclick="Button1_Click" />
                 </td>
             </tr>
             </table>
