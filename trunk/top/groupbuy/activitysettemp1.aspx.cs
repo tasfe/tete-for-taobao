@@ -26,7 +26,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
 
         name = Request.Form["title"].ToString();
         templetid = Request.Form["templateID"].ToString();
-        bt = Request.Form["button"].ToString();
+        bt = Request.Form["button1"].ToString();
         mall = Request.Form["showmall"].ToString();
         liang = Request.Form["showliang"].ToString();
         baoy = Request.Form["flag"].ToString();
