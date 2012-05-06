@@ -18,13 +18,14 @@
     </style>
 </head>
 <body style="padding:0px; margin:0px;">
-<form id="form1" action="activitysettemp3.aspx">
+<form id="form1" action="activitysettemp3.aspx" runat="server">
 
     <div class="navigation">
         <div class="crumbs"><a href="default.aspx" class="nolink">特特团购</a> 4.生成广告代码 </div>
     
         <div id="main-content">
-            <textarea cols="40" rows="4"></textarea>
+            <asp:TextBox ID="TextBox1" runat="server" Height="178px" TextMode="MultiLine" 
+                Width="602px"></asp:TextBox>
             <br />
             <input type="button" value="复制代码" />
         </div>
