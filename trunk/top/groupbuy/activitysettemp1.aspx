@@ -62,11 +62,11 @@
 
      function isshow() {
          var s = document.getElementById('Select1').value;
-         if (s == "") {
+         if (s == "0") {
              alert("请选择展示宝贝");
              return false;
          }
-         if (s == "0") {
+         if (s == "") {
              alert("手动选择宝贝");
          }
          return true;
