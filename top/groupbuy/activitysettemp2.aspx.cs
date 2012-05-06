@@ -10,5 +10,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         html = "测试";
+        Response.Write(Request.Form["selstr"].ToString());
+        Response.Write(Request.Form["templetid"].ToString()); 
     }
 }
