@@ -91,7 +91,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
             return "";
         }
         string str = string.Empty;
-        string sql = "select tete_shoptempletlist.*,[buttonValue],[scbzvalue],[lpbzvalue],[byvalue],[title],[careteDate],[Sort] from tete_shoptempletlist left join   tete_shoptemplet on tete_shoptempletlist.shoptempletID=tete_shoptemplet.ID  WHERE tete_shoptemplet.templetID = '" + id + "'";
+        string sql = "select tete_shoptempletlist.*,templetID，[buttonValue],[scbzvalue],[lpbzvalue],[byvalue],[title],[careteDate],[Sort] from tete_shoptempletlist left join   tete_shoptemplet on tete_shoptempletlist.shoptempletID=tete_shoptemplet.ID  WHERE tete_shoptemplet.templetID = '" + id + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt == null)
         {
@@ -99,10 +99,10 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
         }
         string templatehtmlUrl = "tpl/style1.html";//默认模板
         string template2htmlUrl = "tpl/stylenew2-1.html";//第二套模板（一大三小） 小模板  (团购模板第三套和第二套)
-        if (dt.Rows[0]["ismuch"].ToString() == "1")
-        {
+ 
+        //模板生成需要在好好考虑一下。。。。。。。。。。。。。。。。。。。。。。。。。。。。
             //是多商品团购模板
-            if (dt.Rows[0]["template"].ToString() == "2")
+            if (dt.Rows[0]["templetID"].ToString() == "2")
             {
                 //第二套模板（一大三小）
                 templatehtmlUrl = "tpl/stylenew2.html";
@@ -114,17 +114,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
                 templatehtmlUrl = "tpl/style3.html";
             }
 
-            //if (dt.Rows[0]["groupbuyGuid"].ToString() != "")
-            //{
-            //    //根据多商品团购标示，检索商品列表
-            //    sql = "SELECT * FROM TopGroupBuy WHERE groupbuyGuid = '" + dt.Rows[0]["groupbuyGuid"].ToString() + "'";
-            //    dt = utils.ExecuteDataTable(sql);
-            //    if (dt == null || dt.Rows.Count < 1)
-            //    {
-            //        return "";
-            //    }
-            //}
-        }
+ 
         string html = File.ReadAllText(Server.MapPath(templatehtmlUrl));
         string smailtempStr = string.Empty;//小模板
         for (int i = 0; i < dt.Rows.Count; i++)
