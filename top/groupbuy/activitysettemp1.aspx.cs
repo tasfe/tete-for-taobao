@@ -22,12 +22,10 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
             Rijndael_ encode = new Rijndael_("tetesoft");
             taobaoNick = encode.Decrypt(taobaoNick);
 
-            sql = "SELECT * FROM tete_activity WHERE Nick = '" + taobaoNick + "'";
+            sql = "SELECT * FROM tete_activity WHERE Status=1 and Nick = '" + taobaoNick + "'";
 
             DataTable dt = utils.ExecuteDataTable(sql);
-
-            Repeater1.DataSource = dt;
-            Repeater1.DataBind();
+ 
 
             DropDownList1.DataSource = dt;
             DropDownList1.DataTextField = "name";
