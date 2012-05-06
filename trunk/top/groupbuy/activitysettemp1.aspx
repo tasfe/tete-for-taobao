@@ -31,7 +31,7 @@
                            <select id="Select1" name=selstr>
         	                    <option value="0">请选择</option>
                     	        
-        	                    
+        	                    <%=  strhtml %>
                                 <option value="">手动选择</option>
         	                </select>
                    
@@ -44,7 +44,7 @@
 
                     <input type="button" value="上一步" onclick="history.go(-1)" />
  
-                    <input type=submit value="下一步：设置宝贝顺序和价格" />
+                    <input type=submit value="下一步：设置宝贝顺序和价格" onclick="return isshow()" />
  
                 </td>
             </tr>
@@ -58,7 +58,20 @@
  
         </div>
     </div>
- 
+ <script type="text/javascript">
+
+     function isshow() {
+         var s = document.getElementById('Select1').value;
+         if (s == "") {
+             alert("请选择展示宝贝");
+             return false;
+         }
+         if (s == "0") {
+             alert("手动选择宝贝");
+         }
+         return true;
+     }
+ </script>
     </form>
 </body>
 </html>
