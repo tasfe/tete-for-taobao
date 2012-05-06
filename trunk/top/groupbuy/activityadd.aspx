@@ -154,7 +154,7 @@
                 $('#startDateId').html('<input type="text" name="startDate" style="width:165px;cursor:pointer" value="2011-01-01 21:30:00"/><font color="red">&nbsp;&nbsp;&nbsp;&nbsp;日期格式必须为：2011-01-01 21:30:00</font>');
             }
             if (date == 'end') {
-                $('#endDateId').html('<input type="text" name="endDate" style="width:165px;cursor:pointer" value="2011-01-01 21:30:00"/><font color="red">&nbsp;&nbsp;&nbsp;&nbsp;日期格式必须为：2011-01-01 21:30:00</font><div class="tips" style="color: red">结束时间不可超过软件到期时间。您当前软件到期时间为：2012-05-07 00:00:00</div>');
+                $('#endDateId').html('<input type="text" name="endDate" style="width:165px;cursor:pointer" value="2011-01-01 21:30:00"/><font color="red">&nbsp;&nbsp;&nbsp;&nbsp;日期格式必须为：2011-01-01 21:30:00</font><div class="tips" style="color: red">结束时间不可超过软件到期时间。您当前软件到期时间为：'+document.getElementById("teteendDateID").value+'</div>');
             }
         }
 

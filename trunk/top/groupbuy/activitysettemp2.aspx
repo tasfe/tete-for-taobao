@@ -37,7 +37,8 @@
                 <td width="200px">宝贝名称</td>
                 <td  width="100px">原价 </td>
                 <td  width="100px">促销价 </td>
-                <td  width="100px">排序号</td>
+                <td  width="80px">排序号</td>
+                <td  width="80px">参团人数</td>
                 <td  >操作</td>
             </tr>
  
