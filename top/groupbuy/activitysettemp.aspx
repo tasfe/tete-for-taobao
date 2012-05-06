@@ -18,7 +18,7 @@
     </style>
 </head>
 <body style="padding:0px; margin:0px;">
-<form id="form1" method=post action="activitysettemp1.aspx">
+<form id="form1" method="post" action="activitysettemp1.aspx">
 
     <div class="navigation">
         <div class="crumbs"><a href="default.aspx" class="nolink">特特团购</a> 1.选择促销模板 </div>
@@ -85,33 +85,33 @@
                 <td>
                     <table width="100%" cellpadding=0 cellspacing=0>
                         <tr>
-                            <td><img src="images/0.png" /> <br /><input type="radio" name="button" value="0" /></td>
-                            <td><img src="images/1.png" /> <br /><input type="radio" name="button" value="1" /></td>
-                            <td><img src="images/2.png" /> <br /><input type="radio" name="button" value="2" /></td>
-                            <td><img src="images/3.png" /> <br /><input type="radio" name="button" value="3" /></td>
+                            <td><img src="images/0.png" /> <br /><input type="radio" name='button1' value="0" /></td>
+                            <td><img src="images/1.png" /> <br /><input type="radio" name="button1" value="1" /></td>
+                            <td><img src="images/2.png" /> <br /><input type="radio" name="button1" value="2" /></td>
+                            <td><img src="images/3.png" /> <br /><input type="radio" name="button1" value="3" /></td>
                         </tr>
                         <tr>
-                            <td><img src="images/4.png" /> <br /><input type="radio" name="button" value="4" /></td>
-                            <td><img src="images/5.png" /> <br /><input type="radio" name="button" value="5" /></td>
-                            <td><img src="images/6.png" /> <br /><input type="radio" name="button" value="6" /></td>
-                            <td><img src="images/7.png" /> <br /><input type="radio" name="button" value="7" /></td>
+                            <td><img src="images/4.png" /> <br /><input type="radio" name="button1" value="4" /></td>
+                            <td><img src="images/5.png" /> <br /><input type="radio" name="button1" value="5" /></td>
+                            <td><img src="images/6.png" /> <br /><input type="radio" name="button1" value="6" /></td>
+                            <td><img src="images/7.png" /> <br /><input type="radio" name="button1" value="7" /></td>
                         </tr>
                         <tr>
-                            <td><img src="images/8.png" /> <br /><input type="radio" name="button" value="8" /></td>
-                            <td><img src="images/9.png" /> <br /><input type="radio" name="button" value="9" /></td>
-                            <td><img src="images/10.png" /> <br /><input type="radio" name="button" value="10" /></td>
-                            <td><img src="images/11.png" /> <br /><input type="radio" name="button" value="11" /></td>
+                            <td><img src="images/8.png" /> <br /><input type="radio" name="button1" value="8" /></td>
+                            <td><img src="images/9.png" /> <br /><input type="radio" name="button1" value="9" /></td>
+                            <td><img src="images/10.png" /> <br /><input type="radio" name="button1" value="10" /></td>
+                            <td><img src="images/11.png" /> <br /><input type="radio" name="button1" value="11" /></td>
                         </tr>
                         <tr>
-                            <td><img src="images/12.png" /> <br /><input type="radio" name="button" value="12" /></td>
-                            <td><img src="images/13.png" /> <br /><input type="radio" name="button" value="13" /></td>
-                            <td><img src="images/14.png" /> <br /><input type="radio" name="button" value="14" /></td>
-                            <td><img src="images/15.png" /> <br /><input type="radio" name="button" value="15" /></td>
+                            <td><img src="images/12.png" /> <br /><input type="radio" name="button1" value="12" /></td>
+                            <td><img src="images/13.png" /> <br /><input type="radio" name="button1" value="13" /></td>
+                            <td><img src="images/14.png" /> <br /><input type="radio" name="button1" value="14" /></td>
+                            <td><img src="images/15.png" /> <br /><input type="radio" name="button1" value="15" /></td>
                         </tr>
                         <tr>
-                            <td><img src="images/16.png" /> <br /><input type="radio" name="button" value="16" /></td>
-                            <td><img src="images/17.png" /> <br /><input type="radio" name="button" value="17" /></td>
-                            <td><img src="images/18.png" /> <br /><input type="radio" name="button" value="18" /></td>
+                            <td><img src="images/16.png" /> <br /><input type="radio" name="button1" value="16" /></td>
+                            <td><img src="images/17.png" /> <br /><input type="radio" name="button1" value="17" /></td>
+                            <td><img src="images/18.png" /> <br /><input type="radio" name="button1" value="18" /></td>
                         </tr>
                     </table>
                     
