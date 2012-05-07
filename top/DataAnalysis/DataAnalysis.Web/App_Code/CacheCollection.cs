@@ -39,7 +39,7 @@ public class CacheCollection
 
     public static IList<ProvinceInfo> GetAllProvinceInfo()
     {
-        return new CacheUtility<IList<ProvinceInfo>>().Get(KEY_ALLNICKSESSIONINFO, delegate()
+        return new CacheUtility<IList<ProvinceInfo>>().Get(KEY_ALLPROVINCECITY, delegate()
         {
             ProvinceService proviDal = new ProvinceService();
             return proviDal.GetAllProvince();
@@ -48,7 +48,7 @@ public class CacheCollection
 
     public static IList<ExpressInfo> GetAllExpressInfo()
     {
-        return new CacheUtility<IList<ExpressInfo>>().Get(KEY_ALLNICKSESSIONINFO, delegate()
+        return new CacheUtility<IList<ExpressInfo>>().Get(KEY_ALLEXPRESS, delegate()
         {
             ExpressService exprDal = new ExpressService();
             return exprDal.GetAllExpressInfo("");
