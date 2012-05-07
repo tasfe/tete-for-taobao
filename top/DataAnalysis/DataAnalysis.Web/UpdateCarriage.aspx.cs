@@ -71,6 +71,7 @@ public partial class UpdateCarriage : BasePage
 
         if (hadinfo == null)
         {
+            info.ID = Guid.NewGuid();
             ecDal.AddExpressCarriage(info);
         }
         else
