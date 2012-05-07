@@ -56,7 +56,7 @@ public partial class UpdateCarriage : BasePage
         ExpressCarriageInfo info = new ExpressCarriageInfo();
         info.CityId = new Guid(ddl_City.SelectedValue);
         info.ExpressId = new Guid(ddl_Express.SelectedValue);
-
+        info.ProvinceId = new Guid(ddl_Pr.SelectedValue);
         info.Goods = int.Parse(Rbl_Huo.SelectedValue);
 
         info.Nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
@@ -68,7 +68,7 @@ public partial class UpdateCarriage : BasePage
         {
         }
 
-        ExpressCarriageInfo hadinfo = ecDal.GetExpressCarriageInfo(info.Nick, info.CityId, info.ExpressId);
+        ExpressCarriageInfo hadinfo = ecDal.GetExpressCarriageInfo(info.Nick, info.CityId, info.ExpressId, info.ProvinceId);
 
         if (hadinfo == null)
         {
@@ -85,12 +85,16 @@ public partial class UpdateCarriage : BasePage
         Rpt_ExpressCarriage.DataBind();
     }
 
-    protected string GetCity(string cid)
+    protected string GetCity(string pid, string cid)
     {
         IList<ProvinceInfo> list = CacheCollection.GetAllProvinceInfo();
 
         foreach (ProvinceInfo info in list)
         {
+            if (info.ID.ToString() != pid)
+                continue;
+            if (cid == Guid.Empty.ToString())
+                return info.ProvinceName + "所有地区";
             foreach (CityInfo cinfo in info.CityList)
             {
                 if (cinfo.ID.ToString() == cid)
