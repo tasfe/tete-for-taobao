@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using Keede.Caching;
 using System.Collections;
+using Model;
+using CusServiceAchievements.DAL;
 
 public class CacheCollection
 {
@@ -11,6 +13,16 @@ public class CacheCollection
     /// 所有订购商户信息
     /// </summary>
     public const string KEY_ALLNICKSESSIONINFO = "CacheKey_NickSessionList";
+
+    /// <summary>
+    /// 省市信息
+    /// </summary>
+    public const string KEY_ALLPROVINCECITY = "CacheKey_ProvinceCity";
+
+    /// <summary>
+    /// 快递信息
+    /// </summary>
+    public const string KEY_ALLEXPRESS = "CacheKey_Express";
 
     /// <summary>
     ///  所有订购用户信息缓存(12小时更新一次)
@@ -22,6 +34,24 @@ public class CacheCollection
         {
             NickSessionService nickDal = new NickSessionService();
             return nickDal.GetAllNickSession();
+        }, 60 * 12);
+    }
+
+    public static IList<ProvinceInfo> GetAllProvinceInfo()
+    {
+        return new CacheUtility<IList<ProvinceInfo>>().Get(KEY_ALLNICKSESSIONINFO, delegate()
+        {
+            ProvinceService proviDal = new ProvinceService();
+            return proviDal.GetAllProvince();
+        }, 60 * 12);
+    }
+
+    public static IList<ExpressInfo> GetAllExpressInfo()
+    {
+        return new CacheUtility<IList<ExpressInfo>>().Get(KEY_ALLNICKSESSIONINFO, delegate()
+        {
+            ExpressService exprDal = new ExpressService();
+            return exprDal.GetAllExpressInfo("");
         }, 60 * 12);
     }
 
