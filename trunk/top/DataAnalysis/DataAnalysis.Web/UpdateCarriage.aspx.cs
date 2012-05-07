@@ -11,6 +11,8 @@ public partial class UpdateCarriage : BasePage
 {
     //ExpressService esDal = new ExpressService();
 
+    ExpressCarriageService ecDal = new ExpressCarriageService();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -30,8 +32,7 @@ public partial class UpdateCarriage : BasePage
             ddl_Pr.DataBind();
 
             string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
-            ExpressCarriageService ecsDal = new ExpressCarriageService();
-            IList<ExpressCarriageInfo> ecList = ecsDal.GetAllExpressCarriageInfo(nick);
+            IList<ExpressCarriageInfo> ecList = ecDal.GetAllExpressCarriageInfo(nick);
             Rpt_ExpressCarriage.DataSource = ecList;
             Rpt_ExpressCarriage.DataBind();
         }
@@ -78,6 +79,10 @@ public partial class UpdateCarriage : BasePage
         {
             ecDal.UpdateExpressCarriageInfo(hadinfo.ID, info.Carriage);
         }
+
+        IList<ExpressCarriageInfo> ecList = ecDal.GetAllExpressCarriageInfo(info.Nick);
+        Rpt_ExpressCarriage.DataSource = ecList;
+        Rpt_ExpressCarriage.DataBind();
     }
 
     protected string GetCity(string cid)
@@ -137,5 +142,9 @@ public partial class UpdateCarriage : BasePage
         {
             ecDal.UpdateExpressCarriageInfo(info.ID, info.Carriage);
         }
+
+        IList<ExpressCarriageInfo> ecList = ecDal.GetAllExpressCarriageInfo(nick);
+        Rpt_ExpressCarriage.DataSource = ecList;
+        Rpt_ExpressCarriage.DataBind();
     }
 }
