@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="initbutton.aspx.cs" Inherits="top_Qijia_Qijia.Web_detail_initbutton" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="initbutton.aspx.cs" Inherits="Web_detail_initbutton" %>
 // JavaScript Document
 var nick = 'test';
 var str = '<img src="http://qijia.7fshop.com/detail/u3.png" onclick="showTeteDialog()" style="cursor:pointer" /> <br />';
