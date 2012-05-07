@@ -8,7 +8,7 @@ public partial class Web_detail_create : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Response.Write("<script>parent.style.display = '';</script>");
+        Response.Write("<script>opener.document.getElementById('showArea').style.display = 'none';</script>");
         Response.End();
     }
 }
