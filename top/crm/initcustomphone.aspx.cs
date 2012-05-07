@@ -5,6 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Text.RegularExpressions;
+using Common;
 
 public partial class top_crm_initcustomphone : System.Web.UI.Page
 {
@@ -23,7 +24,12 @@ public partial class top_crm_initcustomphone : System.Web.UI.Page
 
         for (int i = 0; i < arr.Length; i++)
         {
-            Response.Write(arr[i] + "<br>");
+            string phone = arr[i];
+            if (phone.Length != 0)
+            {
+                string sql = "INSERT INTO TCS_Customer (nick, buynick, mobile) VALUES ('宝美户外专营店', '" + phone + "', '" + phone + "')";
+                utils.ExecuteNonQuery(sql);
+            }
         }
     }
 }
