@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TaoBaoAPIHelper;
 using CusServiceAchievements.DAL;
+using Enum;
 
 namespace GetTaoBaoGoodsService
 {
@@ -12,7 +13,7 @@ namespace GetTaoBaoGoodsService
         public void GetTaoBaoGoods()
         {
             NickSessionService nsDal = new NickSessionService();
-            IList<Model.TopNickSessionInfo> list = nsDal.GetAllNickSession();
+            IList<Model.TopNickSessionInfo> list = nsDal.GetAllNickSession(new[] { TopTaoBaoService.Temporary, TopTaoBaoService.YingXiaoJueCe });
 
             GoodsService goodsDal = new GoodsService();
             for (int i = 0; i < list.Count; i++)
@@ -24,7 +25,7 @@ namespace GetTaoBaoGoodsService
 
             foreach (Model.TopNickSessionInfo info in list)
             {
-                List<GoodsInfo> goodsList = TaoBaoAPI.GetGoodsInfoListByNick(info.Nick, info.Session);
+                List<GoodsInfo> goodsList = TaoBaoAPIService.GetGoodsInfoListByNick(info.Nick, info.Session, info.ServiceId);
 
                 List<GoodsInfo> allGoods = goodsDal.GetAllGoods(info.Nick);
 

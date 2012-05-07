@@ -6,7 +6,7 @@ using System.Net;
 using System.IO;
 using Model;
 using CusServiceAchievements.DAL;
-using System.Text.RegularExpressions;
+using Enum;
 
 namespace GetTaoBaoGoodsService
 {
@@ -17,7 +17,7 @@ namespace GetTaoBaoGoodsService
             DateTime now = DateTime.Now;
             string fetchDate = now.ToString("yyyyMMdd");
 
-            IList<TopNickSessionInfo> list = new NickSessionService().GetAllNickSession(Enum.TopTaoBaoService.Temporary);
+            IList<TopNickSessionInfo> list = new NickSessionService().GetAllNickSession(new[] { TopTaoBaoService.Temporary, TopTaoBaoService.YingXiaoJueCe });
             GoodsService goodsDal = new GoodsService();
 
             GoodsCollectionService goodscollecDal = new GoodsCollectionService();
