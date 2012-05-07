@@ -91,7 +91,7 @@
                        <asp:Repeater ID="Rpt_ExpressCarriage" runat="server">
                           <ItemTemplate>
                              <tr>
-                                <td><%# GetCity(Eval("CityId").ToString())%></td>
+                                <td><%# GetCity(Eval("ProvinceId").ToString(), Eval("CityId").ToString())%></td>
                                 <td><%# GetExpress(Eval("ExpressId").ToString())%></td>
                                 <td><%# GetGoods(Eval("Goods").ToString())%></td>
                                 <td>
