@@ -15,8 +15,8 @@ public partial class top_crm_initcustomphone : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        FileUpload1.SaveAs("tmp.txt");
         string file = Server.MapPath("tmp.txt");
+        FileUpload1.SaveAs(file);
         string str = File.ReadAllText(file);
 
         string[] arr = Regex.Split(str, "\r\n");
