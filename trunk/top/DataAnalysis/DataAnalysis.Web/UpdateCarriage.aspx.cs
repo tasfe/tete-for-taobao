@@ -40,7 +40,7 @@ public partial class UpdateCarriage : BasePage
     protected void ddl_Pr_SelectedIndexChanged(object sender, EventArgs e)
     {
         //CityService csDal = new CityService();
-        IList<CityInfo> list = CacheCollection.GetAllProvinceInfo().Where(o=>o.ID==new Guid(ddl_Pr.SelectedValue)).ToList()[0].CityList; //csDal.GetAllCity(new Guid(ddl_Pr.SelectedValue));
+        IList<CityInfo> list = new List<CityInfo>(CacheCollection.GetAllProvinceInfo().Where(o => o.ID == new Guid(ddl_Pr.SelectedValue)).ToList()[0].CityList);//csDal.GetAllCity(new Guid(ddl_Pr.SelectedValue));
 
         list.Insert(0, new CityInfo { ID = Guid.Empty, CityName = "所有城市" });
 
