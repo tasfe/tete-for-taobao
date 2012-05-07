@@ -35,9 +35,9 @@
                     </li>
                 </ul>
             </div>
-            <div id="main-content" style="height: 750px; overflow: scroll">
+            <div id="main-content" style="height: 750px;">
                 <div>
-                    <table>
+                    <table width="750px">
                         <tr>
                             <td>
                                 <asp:DropDownList ID="ddl_Express" runat="server">
@@ -77,17 +77,32 @@
                             </td>
                         </tr>
                         <tr>
-                          <td colspan="2" align="center">
+                          <td align="center">
                             <asp:Button ID="Btn_Ok" runat="server" Text="确 定" onclick="Btn_Ok_Click" />
+                          </td>
+                          <td>
+                             <asp:Button ID="Btn_UpAll" runat="server" Text="修改以下所有邮费" 
+                                  onclick="Btn_UpAll_Click" />
                           </td>
                         </tr>
                     </table>
-                    <table>
+                    <table width="750px">
                        <tr><td>省市</td><td>快递</td><td>款到/货到</td><td>邮费</td></tr>
                        <asp:Repeater ID="Rpt_ExpressCarriage" runat="server">
                           <ItemTemplate>
                              <tr>
-                                <td></td><td></td><td></td><td></td>
+                                <td><%# GetCity(Eval("CityId").ToString())%></td>
+                                <td><%# GetExpress(Eval("ExpressId").ToString())%></td>
+                                <td><%# GetGoods(Eval("Goods").ToString())%></td>
+                                <td>
+                                    <asp:Label ID="Lbl_Id" Text='<%# Eval("ID") %>' runat="server" Visible="false">
+                                    </asp:Label>
+                                    <asp:Label ID="Lbl_Carri" Text='<%# Eval("Carriage") %>' runat="server" Visible="false">
+                                    </asp:Label>
+                                    
+                                    <asp:TextBox ID="Tb_Carri" runat="server" Text='<%# Eval("Carriage")%>'>
+                                    </asp:TextBox>
+                                </td>
                              </tr>
                           </ItemTemplate>
                           <SeparatorTemplate>
