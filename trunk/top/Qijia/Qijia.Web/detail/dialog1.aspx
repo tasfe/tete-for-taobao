@@ -53,9 +53,9 @@
 <tr>
 <td valign="top" width="370">
 请输入商品属性：<br />
-<input name="text11" value="NO" type="hidden" />
+<input name="text111" value="NO" type="hidden" />
 【商品编号】：
-<input name="text12" value="" /><br />
+<input name="text121" value="" /><br />
 
 <input name="property1" value="【产品品牌】" type="hidden" />
 【产品品牌】：
