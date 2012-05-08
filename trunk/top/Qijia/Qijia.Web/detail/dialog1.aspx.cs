@@ -4,12 +4,24 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using Qijia.PCI;
+using Qijia.DAL;
+using Qijia.Model;
 
 public partial class Web_detail_dialog1 : System.Web.UI.Page
 {
+    Jia_ShopService ssDal = new Jia_ShopService();
+    Jia_ItemService itemDal = new Jia_ItemService();
+    Jia_TemplateService tempDal = new Jia_TemplateService();
+    public string id = string.Empty;
+    public string nick = string.Empty;
+    public string tplid = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        id = Request.QueryString["id"].ToString() == null ? "0" : Request.QueryString["id"].ToString();
+        nick = Request.QueryString["nick"].ToString() == null ? "0" : Request.QueryString["nick"].ToString();
+        nick = Request.QueryString["tplid"].ToString() == null ? "0" : Request.QueryString["tplid"].ToString();
     }
 
     /// <summary>
@@ -68,7 +80,48 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
     {
         UploadUserPic();
 
-        Response.Write("<script>alert(window.parent.test());</script>");
-        Response.End();
+        string content = GetRealItemInfo();
     }
+
+    private string GetRealItemInfo()
+    {
+        //如果是编辑则调用宝贝ID，如果是添加则生成随机数
+        if (id == "0")
+        {
+            id = nick;
+        }
+
+        //创建宝贝
+        Jia_Item item = CreateItemInfo();
+        Jia_ItemService jiaService = new Jia_ItemService();
+        jiaService.AddJia_Item(item);
+
+        //获取模板信息
+        Jia_Template temp = tempDal.GetJia_TemplateById(item.TplId);
+
+        string content = MethodGroup.GetRealItemInfo(item, temp, "1");
+
+        return "";
+    }
+
+    private Jia_Item CreateItemInfo()
+    {
+        Jia_Item item = new Jia_Item();
+
+        item.ItemId = nick;
+        item.Nick = nick;
+        item.PropertyText = Request.Form["property"].ToString();
+        item.TplId = tplid;
+        item.UpdateDate = DateTime.Now;
+
+        return item;
+    }
+
+
+    private string CreateQijiaItem()
+    {
+        throw new NotImplementedException();
+    }
+
+
 }
