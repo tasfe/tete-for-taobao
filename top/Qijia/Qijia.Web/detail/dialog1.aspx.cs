@@ -19,7 +19,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
     {
         string fileName = string.Empty;
         //判断日期文件夹是否存在
-        string dateName = "pic/" + DateTime.Now.ToString("yyyy-mm-dd");
+        string dateName = "pic/" + DateTime.Now.ToString("yyyy-MM-dd");
         if (!Directory.Exists(Server.MapPath(dateName)))
         {
             Directory.CreateDirectory(dateName);
