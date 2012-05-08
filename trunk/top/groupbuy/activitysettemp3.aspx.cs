@@ -211,7 +211,8 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt == null||dt.Rows.Count<1)
         {
-            return "";
+            Response.Write(sql);
+            Response.End();
         }
         string templatehtmlUrl = "tpl/style1.html";//默认模板
         string template2htmlUrl = "tpl/stylenew2-1.html";//第二套模板（一大三小） 小模板  (团购模板第三套和第二套)
