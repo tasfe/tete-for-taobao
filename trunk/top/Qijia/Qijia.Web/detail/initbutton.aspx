@@ -12,7 +12,7 @@ function showTeteDialog(){
 }
 
 function CloseShowWindow(){
-	document.getElementById("showArea").style.display = none"";
+	document.getElementById("showArea").style.display = "none";
 }
 
 function test(){
