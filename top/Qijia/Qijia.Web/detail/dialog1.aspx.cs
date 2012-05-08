@@ -86,10 +86,32 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
 
     private void CreateProperty()
     {
+        string result = string.Empty;
+        int i = 0;
         foreach (string p in Request.Form)
         {
-            Response.Write(p + "<br>");
+            if (p.IndexOf("property") != -1)
+            {
+                i++;
+                if (i % 2 == 1)
+                {
+                    if (i == 1)
+                    {
+                        result = Request.Form[p] + ":";
+                    }
+                    else
+                    {
+                        result += "{,}" + Request.Form[p] + ":";
+                    }
+                }
+                else
+                {
+                    result += Request.Form[p];
+                }
+            }
         }
+        result = "{" + result + "}";
+        Response.Write(result);
         Response.End();
     }
 
