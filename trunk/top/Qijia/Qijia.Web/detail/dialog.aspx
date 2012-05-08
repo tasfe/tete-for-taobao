@@ -7,7 +7,7 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" action="dialog1.aspx">
     <div>
     <img src="template1.gif" /><br />
 <input type="button" value="选择此模板" id="tpl1" onclick="selectTemplate(this)">
