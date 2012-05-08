@@ -55,10 +55,10 @@ public partial class UpdateCarriage : BasePage
 
         string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         IList<ExpressCarriageInfo> ecList = ecDal.GetAllExpressCarriageInfo(nick);
-       
+        TotalCount = ecList.Count;
         pds.DataSource = ecList;
         pds.AllowPaging = true;
-        pds.PageSize = 13;
+        pds.PageSize = 15;
 
         if (TotalCount == 0)
             TotalPage = 1;
