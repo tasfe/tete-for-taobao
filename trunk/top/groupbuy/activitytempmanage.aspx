@@ -39,7 +39,7 @@
                      
                             <asp:Repeater ID="rptItems" runat="server">
                                 <ItemTemplate>
-        	                      <tr>
+        	                      <tr style=" height:30px; border-bottom:1px; border-bottom-color:Green;">
                                     <td width="200px"><%#Eval("title").ToString()%></td>
                                     <td  width="150px"><%#Eval("name").ToString()%></td>
                                     <td  width="150px">
@@ -50,7 +50,7 @@
                                         <%# outShowHtml(Eval("ID").ToString())%>
                                     </td>
                                  </tr>
-                                 <hr/>
+                                
                                 </ItemTemplate>
                             </asp:Repeater>
  
