@@ -56,6 +56,12 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             imgCus.Tag = "{item1}";
             imgCus.Guid = Guid.NewGuid().ToString();
             icDal.AddJia_ImgCustomer(imgCus);
+
+            Response.Write(imgCus.JiaImg + "-");
+            Response.Write(imgCus.ItemId + "-");
+            Response.Write(imgCus.Tag + "-");
+            Response.Write(imgCus.Guid + "-");
+            Response.End();
         }
 
         if (CheckFileIsSave(FileUpload2))
