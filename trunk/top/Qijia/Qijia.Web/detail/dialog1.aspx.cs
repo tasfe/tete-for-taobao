@@ -84,7 +84,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         //string content = GetRealItemInfo();
     }
 
-    private void CreateProperty()
+    private string CreateProperty()
     {
         string result = string.Empty;
         int i = 0;
@@ -111,10 +111,41 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             }
         }
         result = "{" + result + "}";
-        Response.Write(result);
-        Response.End();
+
+        return result;
     }
 
+
+    private string CreateChar()
+    {
+        string result = string.Empty;
+        int i = 0;
+        foreach (string p in Request.Form)
+        {
+            if (p.IndexOf("text") != -1)
+            {
+                i++;
+                if (i % 2 == 1)
+                {
+                    if (i == 1)
+                    {
+                        result = Request.Form[p] + ":";
+                    }
+                    else
+                    {
+                        result += "{,}" + Request.Form[p] + ":";
+                    }
+                }
+                else
+                {
+                    result += Request.Form[p];
+                }
+            }
+        }
+        result = "{" + result + "}";
+
+        return result;
+    }
 
 
     private string GetRealItemInfo()
@@ -146,24 +177,11 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
 
         item.ItemId = nick;
         item.Nick = nick;
-        item.PropertyText = CreateProperty(Request.Form["property"].ToString());
-        item.CharText = CreateChar(Request.Form["text"].ToString());
+        item.PropertyText = CreateProperty();
+        item.CharText = CreateChar();
         item.TplId = tplid;
         item.UpdateDate = DateTime.Now;
 
         return item;
     }
-
-    private string CreateProperty(string p)
-    {
-        return p;
-    }
-
-    private string CreateChar(string p)
-    {
-        
-        return p;
-    }
-
-   
 }
