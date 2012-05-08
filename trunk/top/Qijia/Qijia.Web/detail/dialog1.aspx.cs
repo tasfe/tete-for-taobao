@@ -29,6 +29,13 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
     /// </summary>
     private void UploadUserPic()
     {
+        //如果是编辑则调用宝贝ID，如果是添加则生成随机数
+        if (id == "0")
+        {
+            id = nick;
+        }
+
+        string url = "http://qijia.7fshop.com/detail/";
         string fileName = string.Empty;
         //判断日期文件夹是否存在
         string dateName = "pic/" + DateTime.Now.ToString("yyyy-MM-dd");
@@ -39,23 +46,57 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
 
         if (CheckFileIsSave(FileUpload1))
         {
-            this.FileUpload1.PostedFile.SaveAs(Server.MapPath(dateName + "/" + Guid.NewGuid() + ".jpg"));
+            Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
+            string picName = dateName + "/" + Guid.NewGuid() + ".jpg";
+            this.FileUpload1.PostedFile.SaveAs(Server.MapPath(picName));
+            imgCus.JiaImg = url + picName;
+            imgCus.ItemId = id;
+            imgCus.Tag = "{item1}";
         }
         if (CheckFileIsSave(FileUpload2))
         {
-            this.FileUpload2.PostedFile.SaveAs(Server.MapPath(dateName + "/" + Guid.NewGuid() + ".jpg"));
+            Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
+            string picName = dateName + "/" + Guid.NewGuid() + ".jpg";
+            this.FileUpload2.PostedFile.SaveAs(Server.MapPath(picName));
+            imgCus.JiaImg = url + picName;
+            imgCus.ItemId = id;
+            imgCus.Tag = "{item2}";
         }
         if (CheckFileIsSave(FileUpload3))
         {
-            this.FileUpload3.PostedFile.SaveAs(Server.MapPath(dateName + "/" + Guid.NewGuid() + ".jpg"));
+            Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
+            string picName = dateName + "/" + Guid.NewGuid() + ".jpg";
+            this.FileUpload3.PostedFile.SaveAs(Server.MapPath(picName));
+            imgCus.JiaImg = url + picName;
+            imgCus.ItemId = id;
+            imgCus.Tag = "{item3}";
         }
         if (CheckFileIsSave(FileUpload4))
         {
-            this.FileUpload4.PostedFile.SaveAs(Server.MapPath(dateName + "/" + Guid.NewGuid() + ".jpg"));
+            Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
+            string picName = dateName + "/" + Guid.NewGuid() + ".jpg";
+            this.FileUpload4.PostedFile.SaveAs(Server.MapPath(picName));
+            imgCus.JiaImg = url + picName;
+            imgCus.ItemId = id;
+            imgCus.Tag = "{item4}";
         }
         if (CheckFileIsSave(FileUpload5))
         {
-            this.FileUpload5.PostedFile.SaveAs(Server.MapPath(dateName + "/" + Guid.NewGuid() + ".jpg"));
+            Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
+            string picName = dateName + "/" + Guid.NewGuid() + ".jpg";
+            this.FileUpload5.PostedFile.SaveAs(Server.MapPath(picName));
+            imgCus.JiaImg = url + picName;
+            imgCus.ItemId = id;
+            imgCus.Tag = "{item5}";
+        }
+        if (CheckFileIsSave(FileUpload6))
+        {
+            Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
+            string picName = dateName + "/" + Guid.NewGuid() + ".jpg";
+            this.FileUpload6.PostedFile.SaveAs(Server.MapPath(picName));
+            imgCus.JiaImg = url + picName;
+            imgCus.ItemId = id;
+            imgCus.Tag = "{item6}";
         }
     }
 
@@ -79,9 +120,10 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         CreateProperty();
-        //UploadUserPic();
 
-        //string content = GetRealItemInfo();
+        UploadUserPic();
+
+        string content = GetRealItemInfo();
     }
 
     private string CreateProperty()
