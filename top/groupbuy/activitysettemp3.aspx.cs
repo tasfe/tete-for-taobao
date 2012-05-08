@@ -6,6 +6,14 @@ using System.Web.UI.WebControls;
 using Common;
 using System.IO;
 using System.Data;
+using System.Text;
+using System.Security.Cryptography;
+using System.Text.RegularExpressions;
+using System.Drawing;
+using System.Collections;
+using System.Web.Security;
+using System.Data;
+using System.Threading;
 
 public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
 {
@@ -26,6 +34,8 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
     public string pimg = string.Empty;
     public string purl = string.Empty;
     public string pname = string.Empty;
+    string appkey = "12287381";
+    string secret = "d3486dac8198ef01000e7bd4504601a4";
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -51,6 +61,43 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
  
         Rijndael_ encode = new Rijndael_("tetesoft");
         taobaoNick = encode.Decrypt(taobaoNick);
+        //判断模板图片是否已经上传（查询本地数据库tete_shoptempletimg）,生成HTML时图片需要替换图片地址
+        sql = "select * from  tete_shoptempletimg where nick='"+taobaoNick+"'";
+        DataTable dts3 = utils.ExecuteDataTable(sql);
+        string session = cookie.getCookie("top_sessiongroupbuy");
+        if (dts3 != null && dts3.Rows.Count > 0)
+        {
+            //如果没有上传，断模板分类是否创建,
+            sql = "select * from  tete_shoptempletimg where nick='" + taobaoNick + "' and templetID=" + templetid;
+            dts3 = utils.ExecuteDataTable(sql);
+            //如果没有上传图片
+            if (dts3 == null || dts3.Rows.Count < 1)
+            {
+                //获取分类ID，上传图片，返回图片地址，创建本地店铺模板图片地址
+                IDictionary<string, string> param = new Dictionary<string, string>();
+                //创建活动
+                param = new Dictionary<string, string>();
+                param.Add("picture_category_name ", "特特团购图片");
+
+                string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.picture.category.add ", session, param);
+
+                Response.Write(result);
+                Response.End();
+            }
+
+        }
+        else {
+            //添加分类，获取分类ID，上传图片，返回图片地址，创建本地店铺模板图片地址
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            //创建活动
+            param = new Dictionary<string, string>();
+            param.Add("picture_category_name ", "特特团购图片");
+
+            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.picture.category.add ", session, param);
+
+            Response.Write(result);
+            Response.End();
+        }
  
         //添加店铺模板
         sql = "INSERT INTO  [tete_shoptemplet] ([templetID] ,[buttonValue] ,[scbzvalue] ,[lpbzvalue] ,[byvalue] ,[nick] ,[title] ,careteDate)   VALUES   ("+templetid+",'"+bt+"','"+mall+"','"+liang+"','"+baoy+"' ,'"+taobaoNick+"' ,'"+name+"' ,'"+ DateTime.Now.ToString()+"')";
@@ -74,14 +121,17 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
                  utils.ExecuteNonQuery(sql);
    
              }
-        
+            //替换图片
              TextBox1.Text  = CreateGroupbuyHtml(shoptempid);
+
          }
          else
          {
              TextBox1.Text = "模板创建失败！";
          }
     }
+
+
 
     /// <summary>
     /// 
@@ -182,4 +232,121 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
         str = str.Replace("{productlist}", smailtempStr);//一大三小模板，商品列表替换
         return str;
     }
+
+    #region  TOP API POST 请求
+
+    /// <summary> 
+    /// 给TOP请求签名 API v2.0 
+    /// </summary> 
+    /// <param name="parameters">所有字符型的TOP请求参数</param> 
+    /// <param name="secret">签名密钥</param> 
+    /// <returns>签名</returns> 
+    protected static string CreateSign(IDictionary<string, string> parameters, string secret)
+    {
+        parameters.Remove("sign");
+        IDictionary<string, string> sortedParams = new SortedDictionary<string, string>(parameters);
+        IEnumerator<KeyValuePair<string, string>> dem = sortedParams.GetEnumerator();
+        StringBuilder query = new StringBuilder(secret);
+        while (dem.MoveNext())
+        {
+            string key = dem.Current.Key;
+            string value = dem.Current.Value;
+            if (!string.IsNullOrEmpty(key) && !string.IsNullOrEmpty(value))
+            {
+                query.Append(key).Append(value);
+            }
+        }
+        query.Append(secret);
+        MD5 md5 = MD5.Create();
+        byte[] bytes = md5.ComputeHash(Encoding.UTF8.GetBytes(query.ToString()));
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < bytes.Length; i++)
+        {
+            string hex = bytes[i].ToString("X");
+            if (hex.Length == 1)
+            {
+                result.Append("0");
+            }
+            result.Append(hex);
+        }
+        return result.ToString();
+    }
+    /// <summary> 
+    /// 组装普通文本请求参数。 
+    /// </summary> 
+    /// <param name="parameters">Key-Value形式请求参数字典</param> 
+    /// <returns>URL编码后的请求数据</returns> 
+    protected static string PostData(IDictionary<string, string> parameters)
+    {
+        StringBuilder postData = new StringBuilder();
+        bool hasParam = false;
+        IEnumerator<KeyValuePair<string, string>> dem = parameters.GetEnumerator();
+        while (dem.MoveNext())
+        {
+            string name = dem.Current.Key;
+            string value = dem.Current.Value;
+            // 忽略参数名或参数值为空的参数 
+            if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(value))
+            {
+                if (hasParam)
+                {
+                    postData.Append("&");
+                }
+                postData.Append(name);
+                postData.Append("=");
+                postData.Append(Uri.EscapeDataString(value));
+                hasParam = true;
+            }
+        }
+        return postData.ToString();
+    }
+    /// <summary> 
+    /// TOP API POST 请求 
+    /// </summary> 
+    /// <param name="url">请求容器URL</param> 
+    /// <param name="appkey">AppKey</param> 
+    /// <param name="appSecret">AppSecret</param> 
+    /// <param name="method">API接口方法名</param> 
+    /// <param name="session">调用私有的sessionkey</param> 
+    /// <param name="param">请求参数</param> 
+    /// <returns>返回字符串</returns> 
+    public static string Post(string url, string appkey, string appSecret, string method, string session,
+    IDictionary<string, string> param)
+    {
+        #region -----API系统参数----
+        param.Add("app_key", appkey);
+        param.Add("method", method);
+        param.Add("session", session);
+        param.Add("timestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+        param.Add("format", "xml");
+        param.Add("v", "2.0");
+        param.Add("sign_method", "md5");
+        param.Add("sign", CreateSign(param, appSecret));
+        #endregion
+        string result = string.Empty;
+        #region ---- 完成 HTTP POST 请求----
+        System.Net.HttpWebRequest req = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(url);
+        req.Method = "POST";
+        req.KeepAlive = true;
+        req.Timeout = 300000;
+        req.ContentType = "application/x-www-form-urlencoded;charset=utf-8";
+        byte[] postData = Encoding.UTF8.GetBytes(PostData(param));
+        Stream reqStream = req.GetRequestStream();
+        reqStream.Write(postData, 0, postData.Length);
+        reqStream.Close();
+        System.Net.HttpWebResponse rsp = (System.Net.HttpWebResponse)req.GetResponse();
+        Encoding encoding = Encoding.GetEncoding(rsp.CharacterSet);
+        Stream stream = null;
+        StreamReader reader = null;
+        stream = rsp.GetResponseStream();
+        reader = new StreamReader(stream, encoding);
+        result = reader.ReadToEnd();
+        if (reader != null) reader.Close();
+        if (stream != null) stream.Close();
+        if (rsp != null) rsp.Close();
+        #endregion
+        return Regex.Replace(result, @"[\x00-\x08\x0b-\x0c\x0e-\x1f]", "");
+    }
+
+    #endregion
 }
