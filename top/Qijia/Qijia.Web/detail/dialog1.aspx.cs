@@ -130,6 +130,9 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         UploadUserPic();
 
         string content = GetRealItemInfo();
+
+        Response.Write(content);
+        Response.End();
     }
 
     private string CreateProperty()
