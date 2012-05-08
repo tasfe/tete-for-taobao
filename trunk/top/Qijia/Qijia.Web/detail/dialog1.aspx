@@ -57,45 +57,45 @@
 【商品编号】：
 <input name="text" value="" /><br />
 
-<input name="property" value="【产品品牌】：" type="hidden" />
+<input name="property1" value="【产品品牌】" type="hidden" />
 【产品品牌】：
-<input name="property" value="" /><br />
+<input name="property2" value="" /><br />
 
-<input name="property" value="【产品名称】：" type="hidden" />
+<input name="property3" value="【产品名称】" type="hidden" />
 【产品名称】：
-<input name="property" value="" /><br />
+<input name="property4" value="" /><br />
 
-<input name="property" value="【材质】：" type="hidden" />
+<input name="property5" value="【材质】" type="hidden" />
 【材质】：
-<input name="property" value="" /><br />
+<input name="property6" value="" /><br />
 
-<input name="property" value="【规格】：" type="hidden" />
+<input name="property7" value="【规格】" type="hidden" />
 【规格】：
-<input name="property" value="" /><br />
+<input name="property8" value="" /><br />
 
-<input name="property" value="【图层工艺】：" type="hidden" />
+<input name="property9" value="【图层工艺】" type="hidden" />
 【图层工艺】：
-<input name="property" value="" /><br />
+<input name="property10" value="" /><br />
 
-<input name="property" value="【适用范围】：" type="hidden" />
+<input name="property11" value="【适用范围】" type="hidden" />
 【适用范围】：
-<input name="property" value="" /><br />
+<input name="property12" value="" /><br />
 
-<input name="property" value="【计价单位】：" type="hidden" />
+<input name="property13" value="【计价单位】" type="hidden" />
 【计价单位】：
-<input name="property" value="" /><br />
+<input name="property14" value="" /><br />
 
-<input name="property" value="【产地】：" type="hidden" />
+<input name="property15" value="【产地】" type="hidden" />
 【产地】：
-<input name="property" value="" /><br />
+<input name="property16" value="" /><br />
 
-<input name="property" value="【是否带不干胶】：" type="hidden" />
+<input name="property17" value="【是否带不干胶】" type="hidden" />
 【是否带不干胶】：
-<input name="property" value="" /><br />
+<input name="property18" value="" /><br />
 
-<input name="property" value="【产品介绍】：" type="hidden" />
+<input name="property19" value="【产品介绍】" type="hidden" />
 【产品介绍】：
-<input name="property" value="" /><br /><br /><br />
+<input name="property20" value="" /><br /><br /><br />
 </td>
 <td align="left" valign="top">
 效果图：<br />
