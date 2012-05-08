@@ -58,7 +58,7 @@ public partial class UpdateCarriage : BasePage
        
         pds.DataSource = ecList;
         pds.AllowPaging = true;
-        pds.PageSize = 20;
+        pds.PageSize = 13;
 
         if (TotalCount == 0)
             TotalPage = 1;
