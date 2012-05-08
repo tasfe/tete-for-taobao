@@ -29,7 +29,7 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
     /// <returns></returns>
     public string outShowHtml(string ID)
     {
-        string html = "<div> <a href=\"#\" >编辑 <br /><a href=\"#\")\">获取代码</a><a href=\"#\")\">预览</a><a href=\"#\")\">删除</a></div>";
+        string html = "<div> <a href=\"#\" >编辑   <a href=\"#\")\">获取代码</a>   <a href=\"#\")\">预览</a>      <a href=\"#\")\">删除</a></div>";
 
         return html;
     }

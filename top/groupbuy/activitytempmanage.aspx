@@ -31,7 +31,7 @@
 					   <td  width="200px">模板名称</td>
 		                <td  width="150px">风格</td>
                         <td  width="150px">创建时间</td>
-		                <td > 操作</td>
+		                <td width="300px"> 操作</td>
 						</tr>
            </table>
 				  <hr/>
@@ -45,7 +45,7 @@
                                     <td  width="150px">
                                      <%#Eval("careteDate").ToString()%> 
                                     </td>
-                                    <td >
+                                    <td  width="300px">
                                         <div id="del"></div>
                                         <%# outShowHtml(Eval("ID").ToString())%>
                                     </td>
