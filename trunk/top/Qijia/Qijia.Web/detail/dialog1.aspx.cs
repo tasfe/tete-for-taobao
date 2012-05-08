@@ -78,9 +78,10 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        UploadUserPic();
+        CreateProperty(Request.Form["property"].ToString());
+        //UploadUserPic();
 
-        string content = GetRealItemInfo();
+        //string content = GetRealItemInfo();
     }
 
     private string GetRealItemInfo()
@@ -96,12 +97,14 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         Jia_ItemService jiaService = new Jia_ItemService();
         jiaService.AddJia_Item(item);
 
+        //创建宝贝图片
+
         //获取模板信息
         Jia_Template temp = tempDal.GetJia_TemplateById(item.TplId);
 
         string content = MethodGroup.GetRealItemInfo(item, temp, "1");
 
-        return "";
+        return content;
     }
 
     private Jia_Item CreateItemInfo()
@@ -110,18 +113,24 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
 
         item.ItemId = nick;
         item.Nick = nick;
-        item.PropertyText = Request.Form["property"].ToString();
+        item.PropertyText = CreateProperty(Request.Form["property"].ToString());
+        item.CharText = CreateChar(Request.Form["text"].ToString());
         item.TplId = tplid;
         item.UpdateDate = DateTime.Now;
 
         return item;
     }
 
-
-    private string CreateQijiaItem()
+    private string CreateChar(string p)
     {
-        throw new NotImplementedException();
+        
+        return p;
     }
 
-
+    private string CreateProperty(string p)
+    {
+        Response.Write(p);
+        Response.End();
+        return p;
+    }
 }
