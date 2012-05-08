@@ -8,7 +8,7 @@ document.write(str);
 
 function showTeteDialog(){
 	document.getElementById("showArea").style.display = "";
-	document.getElementById("showFrame").src = "http://qijia.7fshop.com/detail/dialog.aspx";
+	document.getElementById("showFrame").src = "http://qijia.7fshop.com/detail/dialog.aspx?nick=<%=nick %>&id=<%=id %>";
 }
 
 function test(){

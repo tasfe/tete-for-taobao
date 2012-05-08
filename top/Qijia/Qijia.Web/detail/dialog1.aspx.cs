@@ -19,9 +19,9 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        id = Request.QueryString["id"].ToString() == null ? "0" : Request.QueryString["id"].ToString();
-        nick = Request.QueryString["nick"].ToString() == null ? "0" : Request.QueryString["nick"].ToString();
-        nick = Request.QueryString["tplid"].ToString() == null ? "0" : Request.QueryString["tplid"].ToString();
+        id = Request.QueryString["id"] == null ? "0" : Request.QueryString["id"].ToString();
+        nick = Request.QueryString["nick"] == null ? "0" : Request.QueryString["nick"].ToString();
+        tplid = Request.QueryString["tplid"] == null ? "0" : Request.QueryString["tplid"].ToString();
     }
 
     /// <summary>

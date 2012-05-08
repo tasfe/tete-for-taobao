@@ -10,11 +10,11 @@
     <form id="form1" runat="server">
     <div>
     <img src="template1.gif" /><br />
-<input type="button" value="选择此模板" id="tpl1" onclick="selectTemplate(this)">
+<input type="button" value="选择此模板" id="a3b6283d-ac07-4bc4-9d68-c64ab09a4903" onclick="selectTemplate(this)">
 
 <script>
     function selectTemplate(obj) {
-        var url = "dialog1.aspx?id=" + obj.id;
+        var url = "dialog1.aspx?nick=<%=nick %>&id=<%=id %>&tplid=" + obj.id;
         window.location.href = url;
     }
 </script>
