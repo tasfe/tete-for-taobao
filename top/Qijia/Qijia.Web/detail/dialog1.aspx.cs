@@ -54,7 +54,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
     /// <returns></returns>
     private bool CheckFileIsSave(FileUpload FileUpload1)
     {
-        if (FileUpload1.PostedFile.ContentType.IndexOf("jpg") != -1)
+        if (FileUpload1.PostedFile.ContentType.IndexOf("jpeg") != -1 || FileUpload1.PostedFile.ContentType.IndexOf("jpg") != -1)
         {
             return true;
         }
