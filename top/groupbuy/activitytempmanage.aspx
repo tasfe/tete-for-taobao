@@ -21,35 +21,42 @@
 <form id="form1" action="activitysettemp3.aspx">
 
     <div class="navigation">
+
         <div class="crumbs"><a href="default.aspx" class="nolink">特特团购</a> 模板管理 </div>
     
         <div id="main-content">
-            <table width="700">
-            <tr>
-                <td align="left" height="30">模板名称</td>
-                <td>风格</td>
-                <td>创建时间</td>
-                <td>操作</td>
-            </tr>
-            <tr>
-                <td align="left" height="30">团购1</td>
-                <td>950px （一行3个）</td>
-                <td>2012-12-12</td>
-                <td>编辑 获取代码 预览 删除</td>
-            </tr>
-            <tr>
-                <td align="left" height="30">团购1</td>
-                <td>950px （一行3个）</td>
-                <td>2012-12-12</td>
-                <td>编辑 获取代码 预览  删除</td>
-            </tr>
-            <tr>
-                <td align="left" height="30">团购1</td>
-                <td>950px （一行3个）</td>
-                <td>2012-12-12</td>
-                <td>编辑 获取代码 预览  删除</td>
-            </tr>
-            </table>
+          <table width="800px;" border="0" cellspacing="0" cellpadding="0" style="margin:4px; padding:0px">			
+                <tr>
+                 
+					   <td  width="200px">模板名称</td>
+		                <td  width="150px">风格</td>
+                        <td  width="150px">创建时间</td>
+		                <td > 操作</td>
+						</tr>
+           </table>
+				  <hr/>
+            <table width="800px;" border="0" cellspacing="0" cellpadding="0" style="margin:4px; padding:0px">	
+                     
+                            <asp:Repeater ID="rptItems" runat="server">
+                                <ItemTemplate>
+        	                      <tr>
+                                    <td width="200px"><%#Eval("title").ToString()%></td>
+                                    <td  width="150px"><%#Eval("name").ToString()%></td>
+                                    <td  width="150px">
+                                     <%#Eval("careteDate").ToString()%> 
+                                    </td>
+                                    <td >
+                                        <div id="del"></div>
+                                        <%# outShowHtml(Eval("ID").ToString())%>
+                                    </td>
+                                 </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+ 
+    </table>
+           <div>
+                        <asp:Label ID="lbPage" runat="server"></asp:Label>
+                    </div>
         </div>
     </div>
     </form>
