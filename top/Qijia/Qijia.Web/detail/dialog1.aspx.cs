@@ -68,7 +68,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
     {
         UploadUserPic();
 
-        Response.Write("<script>alert(parent.document);</script>");
+        Response.Write("<script>alert(parent);</script>");
         Response.End();
     }
 }
