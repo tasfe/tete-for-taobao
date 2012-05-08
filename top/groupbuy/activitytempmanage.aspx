@@ -50,6 +50,7 @@
                                         <%# outShowHtml(Eval("ID").ToString())%>
                                     </td>
                                  </tr>
+                                 <hr/>
                                 </ItemTemplate>
                             </asp:Repeater>
  

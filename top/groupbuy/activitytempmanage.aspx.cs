@@ -54,7 +54,7 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
         {
             pageNow = int.Parse(page);
         }
-        int pageCount = 5;
+        int pageCount = 10;
         int dataCount = (pageNow - 1) * pageCount;
         //select [tete_shoptemplet].*, [tete_templet].name from [tete_shoptemplet] 
         //left join [tete_templet] on [tete_shoptemplet].[templetID]=[tete_templet].id
@@ -76,7 +76,7 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
     {
         //分页数据初始化
         string str = string.Empty;
-        int pageCount = 5;
+        int pageCount = 10;
         int pageSize = 0;
         int pageNow = 1;
         string page = utils.NewRequest("page", utils.RequestType.QueryString);
