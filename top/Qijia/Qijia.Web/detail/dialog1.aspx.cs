@@ -54,8 +54,10 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             imgCus.JiaImg = url + picName;
             imgCus.ItemId = id;
             imgCus.Tag = "{item1}";
+            imgCus.Guid = Guid.NewGuid().ToString();
             icDal.AddJia_ImgCustomer(imgCus);
         }
+
         if (CheckFileIsSave(FileUpload2))
         {
             Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
@@ -64,8 +66,10 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             imgCus.JiaImg = url + picName;
             imgCus.ItemId = id;
             imgCus.Tag = "{item2}";
+            imgCus.Guid = Guid.NewGuid().ToString();
             icDal.AddJia_ImgCustomer(imgCus);
         }
+
         if (CheckFileIsSave(FileUpload3))
         {
             Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
@@ -74,8 +78,10 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             imgCus.JiaImg = url + picName;
             imgCus.ItemId = id;
             imgCus.Tag = "{item3}";
+            imgCus.Guid = Guid.NewGuid().ToString();
             icDal.AddJia_ImgCustomer(imgCus);
         }
+
         if (CheckFileIsSave(FileUpload4))
         {
             Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
@@ -84,8 +90,10 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             imgCus.JiaImg = url + picName;
             imgCus.ItemId = id;
             imgCus.Tag = "{item4}";
+            imgCus.Guid = Guid.NewGuid().ToString();
             icDal.AddJia_ImgCustomer(imgCus);
         }
+
         if (CheckFileIsSave(FileUpload5))
         {
             Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
@@ -94,8 +102,10 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             imgCus.JiaImg = url + picName;
             imgCus.ItemId = id;
             imgCus.Tag = "{item5}";
+            imgCus.Guid = Guid.NewGuid().ToString();
             icDal.AddJia_ImgCustomer(imgCus);
         }
+
         if (CheckFileIsSave(FileUpload6))
         {
             Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
@@ -104,6 +114,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             imgCus.JiaImg = url + picName;
             imgCus.ItemId = id;
             imgCus.Tag = "{item6}";
+            imgCus.Guid = Guid.NewGuid().ToString();
             icDal.AddJia_ImgCustomer(imgCus);
         }
     }
