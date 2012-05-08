@@ -64,7 +64,12 @@
                             <td> </td>
                         </tr>
     
- 
+                 <script type="text/javascript">
+                     function selectRd(obj) {
+                         document.getElementById(obj).checked = true;
+                         document.getElementById('template').value = document.getElementById(obj).value;
+                     }
+                </script>
                                       
                     </table>
                    <%-- <br />

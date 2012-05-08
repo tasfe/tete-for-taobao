@@ -126,8 +126,6 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
                     utils.ExecuteNonQuery(sql);
                 }
             }
-            Response.Write(result +"cid="+ categoryid);
-            Response.End();
         }
  
         //添加店铺模板
