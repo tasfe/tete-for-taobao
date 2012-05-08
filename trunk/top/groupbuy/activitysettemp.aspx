@@ -57,7 +57,7 @@
                                 <input type='radio' name='templateID' id="templateID2" value='2'  />
                             </td>
                             <td>风格3（一排三列） <br />
-                                <span  onclick="selectRd('templateID3')"  onMouseOver="toolTip('<img width=400px  src=images/groupbuy1.jpg>')" onMouseOut="toolTip()">
+                                <span  onclick="selectRd('templateID3')"  onMouseOver="toolTip('<img width=400px  src=images/image3.jpg>')" onMouseOut="toolTip()">
                                 <input type='radio' name='templateID' id="templateID3" value='3'  />
                                   <input type="hidden" id="template" name="template" value="1" />   
                             </td>
