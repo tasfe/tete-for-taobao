@@ -242,7 +242,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
                 str = html;
                 str = str.Replace("{name}", dt.Rows[i]["name"].ToString());
                 str = str.Replace("{oldprice}", dt.Rows[i]["price"].ToString());
-                str = str.Replace("{zhekou}", Math.Round((decimal.Parse(dt.Rows[i]["price"].ToString()) - decimal.Parse(dt.Rows[i]["proprice"].ToString())) / decimal.Parse(dt.Rows[i]["price"].ToString()) * 10, 1).ToString());
+                str = str.Replace("{zhekou}", Math.Round(decimal.Parse(dt.Rows[i]["proprice"].ToString()) / decimal.Parse(dt.Rows[i]["price"].ToString()) * 10, 1).ToString());
                 str = str.Replace("{leftprice}", dt.Rows[i]["proprice"].ToString().Split('.')[0]);
                 str = str.Replace("{rightprice}",  dt.Rows[i]["proprice"].ToString().Split('.')[1]);
                 str = str.Replace("{newprice}", (decimal.Parse(dt.Rows[i]["price"].ToString()) - decimal.Parse(dt.Rows[i]["proprice"].ToString())).ToString());
@@ -258,7 +258,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
                     smailtempStr += html;
                     smailtempStr = smailtempStr.Replace("{name}", dt.Rows[i]["name"].ToString());
                     smailtempStr = smailtempStr.Replace("{oldprice}", dt.Rows[i]["price"].ToString());
-                    smailtempStr = smailtempStr.Replace("{zhekou}", Math.Round((decimal.Parse(dt.Rows[i]["price"].ToString()) - decimal.Parse(dt.Rows[i]["proprice"].ToString())) / decimal.Parse(dt.Rows[i]["price"].ToString()) * 10, 1).ToString());
+                    smailtempStr = smailtempStr.Replace("{zhekou}", Math.Round( decimal.Parse(dt.Rows[i]["proprice"].ToString()) / decimal.Parse(dt.Rows[i]["price"].ToString()) * 10, 1).ToString());
                     smailtempStr = smailtempStr.Replace("{leftprice}", dt.Rows[i]["proprice"].ToString().Split('.')[0]);
                     smailtempStr = smailtempStr.Replace("{rightprice}", dt.Rows[i]["proprice"].ToString().Split('.')[1]);
                     smailtempStr = smailtempStr.Replace("{newprice}", (decimal.Parse(dt.Rows[i]["price"].ToString()) - decimal.Parse(dt.Rows[i]["proprice"].ToString())).ToString());
@@ -278,7 +278,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
                     smailtempStr += html;
                     smailtempStr = smailtempStr.Replace("{name}", dt.Rows[i]["name"].ToString());
                     smailtempStr = smailtempStr.Replace("{oldprice}", dt.Rows[i]["price"].ToString());
-                    smailtempStr = smailtempStr.Replace("{zhekou}", Math.Round((decimal.Parse(dt.Rows[i]["price"].ToString()) - decimal.Parse(dt.Rows[i]["proprice"].ToString())) / decimal.Parse(dt.Rows[i]["price"].ToString()) * 10, 1).ToString());
+                    smailtempStr = smailtempStr.Replace("{zhekou}", Math.Round( decimal.Parse(dt.Rows[i]["proprice"].ToString()) / decimal.Parse(dt.Rows[i]["price"].ToString()) * 10, 1).ToString());
                     smailtempStr = smailtempStr.Replace("{leftprice}", dt.Rows[i]["proprice"].ToString().Split('.')[0]);
                     smailtempStr = smailtempStr.Replace("{rightprice}", dt.Rows[i]["proprice"].ToString().Split('.')[1]);
                     smailtempStr = smailtempStr.Replace("{newprice}", (decimal.Parse(dt.Rows[i]["price"].ToString()) - decimal.Parse(dt.Rows[i]["proprice"].ToString())).ToString());
