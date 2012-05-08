@@ -98,7 +98,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
                     return;
                 }
                 string categoryid = new Regex(@"<picture_category_id>([^<]*)</picture_category_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-                Response.Write(result);
+                Response.Write(result + "categoryid=" + categoryid);
                 Response.End();
             }
 
