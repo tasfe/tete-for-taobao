@@ -14,6 +14,9 @@ using System.Collections;
 using System.Web.Security;
 using System.Data;
 using System.Threading;
+using Taobao.Top.Api;
+using Taobao.Top.Api.Request;
+using Taobao.Top.Api.Util;
 
 public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
 {
@@ -36,6 +39,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
     public string pname = string.Empty;
     string appkey = "12287381";
     string secret = "d3486dac8198ef01000e7bd4504601a4";
+    string session = cookie.getCookie("top_sessiongroupbuy");
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -64,7 +68,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
         //判断模板图片是否已经上传（查询本地数据库tete_shoptempletimg）,生成HTML时图片需要替换图片地址
         sql = "select * from  tete_shoptempletimg where nick='"+taobaoNick+"'";
         DataTable dts3 = utils.ExecuteDataTable(sql);
-        string session = cookie.getCookie("top_sessiongroupbuy");
+
         if (dts3 != null && dts3.Rows.Count > 0)
         {
             //如果没有上传，断模板分类是否创建,
@@ -89,13 +93,40 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
         else {
             //添加分类，获取分类ID，上传图片，返回图片地址，创建本地店铺模板图片地址
             IDictionary<string, string> param = new Dictionary<string, string>();
-            //创建活动
+            //创建特特图片分类
             param = new Dictionary<string, string>();
-            param.Add("picture_category_name", "特特团购图片");
+            param.Add("picture_category_name", "特特团购模板图片勿删");
 
             string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.picture.category.add", session, param);
+            if (result.IndexOf("error_response") != -1)
+            {
+                string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                if (err == "")
+                {
+                    Response.Write("<b>模板创建失败，错误原因：</b><br><font color='red'>您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12287381&scope=promotion' target='_parent'>重新授权</a>");
+                    Response.End();
+                }
 
-            Response.Write(result);
+                Response.Write("<b>模板创建失败，错误原因：</b><br><font color='red'>" + err + "</font><br><a href='groupbuyadd.aspx'>重新添加</a>");
+                Response.End();
+                return;
+            }
+            string categoryid = new Regex(@"<picture_category_id>([^<]*)</picture_category_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+            sql = "select * from  tete_templetimg where templetID=" + templetid;
+            dts3 = utils.ExecuteDataTable(sql);
+            if (dts3 != null && dts3.Rows.Count > 0)
+            {
+                //如上传图片，返回图片地址，创建本地店铺模板图片地址
+                for (int j = 0; j < dts3.Rows.Count; j++)
+                {
+                    //上传图片
+                    string newurl = TaobaoUpload(dts3.Rows[j][""].ToString(), "templetid" + j.ToString(), int.Parse(categoryid));
+                    //创建本地店铺模板图片地址
+                    sql = "insert into tete_shoptempletimg ([templetID],[url] ,[taobaourl] ,[nick]) VALUES (" + templetid + ",'" + dts3.Rows[j]["url"].ToString() + "','" + newurl + "','" + taobaoNick + "')";
+                    utils.ExecuteNonQuery(sql);
+                }
+            }
+            Response.Write(result +"cid="+ categoryid);
             Response.End();
         }
  
@@ -129,6 +160,36 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
          {
              TextBox1.Text = "模板创建失败！";
          }
+    }
+
+    /// <summary>
+    /// 图片上传
+    /// </summary>
+    /// <param name="picurl"></param>
+    /// <param name="picname"></param>
+    /// <param name="CategoryId"></param>
+    /// <returns></returns>
+    public string TaobaoUpload(string picurl, string picname, int CategoryId)
+    {
+        TopXmlRestClient clientaa = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
+        PictureUploadRequest request = new PictureUploadRequest();
+
+        string filepath = Server.MapPath("images/" + picurl);
+
+        request.Img = new FileItem(filepath, File.ReadAllBytes(filepath));
+        request.ImageInputTitle = picurl;
+        request.PictureCategoryId = CategoryId;
+        request.Title = picname;
+
+        clientaa.PictureUpload(request, session);
+
+
+        PictureGetRequest request1 = new PictureGetRequest();
+        request1.Title = picname;
+        string path = string.Empty;
+        path = clientaa.PictureGet(request1, session).Content[0].PicturePath;
+
+        return path;
     }
 
 
