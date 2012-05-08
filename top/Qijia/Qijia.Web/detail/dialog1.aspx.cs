@@ -9,10 +9,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        UploadUserPic();
 
-        Response.Write("<script>alert(1);window.parent.document.getElementById('showArea').style.display = 'none';</script>");
-        Response.End();
     }
 
     /// <summary>
@@ -65,5 +62,13 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         {
             return false;
         }
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        UploadUserPic();
+
+        Response.Write("<script>alert(1);window.parent.document.getElementById('showArea').style.display = 'none';</script>");
+        Response.End();
     }
 }
