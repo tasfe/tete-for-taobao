@@ -23,7 +23,7 @@
 <body style="padding: 0px; margin: 0px;">
     <form id="form1" runat="server">
     <div>
-        <div class="navigation" style="height: 600px;">
+        <div class="navigation" style="height: 1000px;">
             <div class="crumbs">
                 <a href="javascript:;" class="nolink">营销决策</a> 邮费设置
             </div>
@@ -35,7 +35,7 @@
                     </li>
                 </ul>
             </div>
-            <div id="main-content" style="height: 750px;">
+            <div id="main-content" style="height: 1000px;">
                 <div>
                     <table width="750px">
                         <tr>
@@ -112,6 +112,14 @@
                           </SeparatorTemplate>
                        </asp:Repeater>
                     </table>
+                    
+                     <div style="background-color:#dedede; margin-top:15px">
+                        <asp:label ID="lblCurrentPage" runat="server"></asp:label>
+                        <asp:HyperLink id="lnkFrist" runat="server">首页</asp:HyperLink>
+                        <asp:HyperLink id="lnkPrev" runat="server">上一页</asp:HyperLink>
+                        <asp:HyperLink id="lnkNext" runat="server">下一页</asp:HyperLink> 
+                        <asp:HyperLink id="lnkEnd" runat="server">尾页</asp:HyperLink>
+                    </div>
                 </div>
             </div>
         </div>
