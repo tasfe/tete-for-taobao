@@ -53,7 +53,7 @@
 <tr>
 <td valign="top" width="370">
 请输入商品属性：<br />
-<input name="text11" value="{no}" type="hidden" />
+<input name="text11" value="no" type="hidden" />
 【商品编号】：
 <input name="text12" value="" /><br />
 
@@ -108,23 +108,23 @@
 <tr>
 <td valign="top" width="370">
 请输入长度属性：<br />
-<input name="text1" value="{text1}" type="hidden" />
+<input name="text1" value="text1" type="hidden" />
 【文字1】：
 <input name="text2" value="" /><br />
 
-<input name="text3" value="{text2}" type="hidden" />
+<input name="text3" value="text2" type="hidden" />
 【文字2】：
 <input name="text4" value="" /><br />
 
-<input name="text5" value="{text3}" type="hidden" />
+<input name="text5" value="text3" type="hidden" />
 【文字3】：
 <input name="text6" value="" /><br />
 
-<input name="text7" value="{text4}" type="hidden" />
+<input name="text7" value="text4" type="hidden" />
 【文字4】：
 <input name="text8" value="" /><br />
 
-<input name="text9" value="{text5}" type="hidden" />
+<input name="text9" value="text5" type="hidden" />
 【文字5】：
 <input name="text10" value="" /><br />
 
@@ -141,11 +141,11 @@
 </tr>
 <tr>
 <td valign="top" width="370">
-<input name="text11" value="{text6}" type="hidden" />
+<input name="text11" value="text6" type="hidden" />
 【文字6】：
 <textarea name="text12" value="" rows="4" cols="26"></textarea><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(不超过50个字符)<br /><br />
 
-<input name="text13" value="{text7}" type="hidden" />
+<input name="text13" value="text7" type="hidden" />
 【文字7】：
 <textarea name="text14" value="" rows="4" cols="26" ></textarea><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(不超过50个字符)
 </td>
