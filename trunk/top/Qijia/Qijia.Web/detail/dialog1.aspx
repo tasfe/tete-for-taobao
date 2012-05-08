@@ -168,7 +168,8 @@
 </tr>
 </table>
 
-<input type="submit" value="生成商品描述" style="width:200px; height:40px;" />
+        <asp:Button ID="Button1" runat="server" Text="生成商品描述" 
+            style="width:200px; height:40px;" onclick="Button1_Click"  />
 <input type="button" value="效果预览" style="width:100px; height:40px;" />
 
 </div>
