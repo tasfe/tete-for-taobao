@@ -12,6 +12,7 @@ public partial class UpdateCarriage : BasePage
     //ExpressService esDal = new ExpressService();
 
     ExpressCarriageService ecDal = new ExpressCarriageService();
+    PagedDataSource pds = new PagedDataSource();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -31,12 +32,59 @@ public partial class UpdateCarriage : BasePage
             ddl_Pr.DataValueField = "ID";
             ddl_Pr.DataBind();
 
-            string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
-            IList<ExpressCarriageInfo> ecList = ecDal.GetAllExpressCarriageInfo(nick);
-            Rpt_ExpressCarriage.DataSource = ecList;
-            Rpt_ExpressCarriage.DataBind();
+            Bind();
         }
     }
+
+    private void Bind()
+    {
+        int TotalCount = 0;//总记录数
+        int TotalPage = 1; //总页数
+
+        int page = 1;
+        try
+        {
+            page = int.Parse(Request.QueryString["Page"]);
+            if (ViewState["page"] != null)
+            {
+                page = int.Parse(ViewState["page"].ToString());
+                ViewState["page"] = null;
+            }
+        }
+        catch { }
+
+        string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+        IList<ExpressCarriageInfo> ecList = ecDal.GetAllExpressCarriageInfo(nick);
+       
+        pds.DataSource = ecList;
+        pds.AllowPaging = true;
+        pds.PageSize = 20;
+
+        if (TotalCount == 0)
+            TotalPage = 1;
+        else
+        {
+            if (TotalCount % pds.PageSize == 0)
+                TotalPage = TotalCount / pds.PageSize;
+            else
+                TotalPage = TotalCount / pds.PageSize + 1;
+        }
+
+        pds.CurrentPageIndex = page - 1;
+        lblCurrentPage.Text = "共" + TotalCount.ToString() + "条记录 当前页：" + page + "/" + TotalPage;
+
+        lnkFrist.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=1";
+        if (!pds.IsFirstPage)
+            lnkPrev.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + (page - 1);
+
+        if (!pds.IsLastPage)
+            lnkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + (page + 1);
+        lnkEnd.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + TotalPage;
+
+        Rpt_ExpressCarriage.DataSource = pds;
+        Rpt_ExpressCarriage.DataBind();
+    }
+
     protected void ddl_Pr_SelectedIndexChanged(object sender, EventArgs e)
     {
         //CityService csDal = new CityService();
