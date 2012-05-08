@@ -132,6 +132,11 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         return item;
     }
 
+    private string CreateProperty(string p)
+    {
+        return p;
+    }
+
     private string CreateChar(string p)
     {
         
