@@ -1,0 +1,69 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.IO;
+
+public partial class Web_detail_dialog1 : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        UploadUserPic();
+
+        Response.Write("<script>alert(1);window.parent.document.getElementById('showArea').style.display = 'none';</script>");
+        Response.End();
+    }
+
+    /// <summary>
+    /// 上传客户图片到自己服务器
+    /// </summary>
+    private void UploadUserPic()
+    {
+        string fileName = string.Empty;
+        //判断日期文件夹是否存在
+        string dateName = DateTime.Now.ToString("yyyy-mm-dd");
+        if (!Directory.Exists(Server.MapPath(dateName)))
+        {
+            Directory.CreateDirectory(dateName);
+        }
+
+        if (CheckFileIsSave(FileUpload1))
+        {
+            this.FileUpload1.PostedFile.SaveAs(Server.MapPath(dateName + "/" + Guid.NewGuid() + ".jpg"));
+        }
+        if (CheckFileIsSave(FileUpload2))
+        {
+            this.FileUpload2.PostedFile.SaveAs(Server.MapPath(dateName + "/" + Guid.NewGuid() + ".jpg"));
+        }
+        if (CheckFileIsSave(FileUpload3))
+        {
+            this.FileUpload3.PostedFile.SaveAs(Server.MapPath(dateName + "/" + Guid.NewGuid() + ".jpg"));
+        }
+        if (CheckFileIsSave(FileUpload4))
+        {
+            this.FileUpload4.PostedFile.SaveAs(Server.MapPath(dateName + "/" + Guid.NewGuid() + ".jpg"));
+        }
+        if (CheckFileIsSave(FileUpload5))
+        {
+            this.FileUpload5.PostedFile.SaveAs(Server.MapPath(dateName + "/" + Guid.NewGuid() + ".jpg"));
+        }
+    }
+
+    /// <summary>
+    /// 判断上传的文件是否合法
+    /// </summary>
+    /// <param name="FileUpload1"></param>
+    /// <returns></returns>
+    private bool CheckFileIsSave(FileUpload FileUpload1)
+    {
+        if (FileUpload1.PostedFile.ContentType.IndexOf("jpg") != -1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
