@@ -77,7 +77,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
                 IDictionary<string, string> param = new Dictionary<string, string>();
                 //创建活动
                 param = new Dictionary<string, string>();
-                param.Add("picture_category_name ", "特特团购图片");
+                param.Add("picture_category_name", "特特团购图片");
 
                 string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.picture.category.add ", session, param);
 
