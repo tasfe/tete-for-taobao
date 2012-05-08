@@ -39,7 +39,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
     public string pname = string.Empty;
     string appkey = "12287381";
     string secret = "d3486dac8198ef01000e7bd4504601a4";
-    string session = cookie.getCookie("top_sessiongroupbuy");
+ 
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -62,7 +62,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
         pname=  Request.Form["pname"].ToString();
         Cookie cookie = new Cookie();
          string taobaoNick = cookie.getCookie("nick");
- 
+         string session = cookie.getCookie("top_sessiongroupbuy");
         Rijndael_ encode = new Rijndael_("tetesoft");
         taobaoNick = encode.Decrypt(taobaoNick);
         //判断模板图片是否已经上传（查询本地数据库tete_shoptempletimg）,生成HTML时图片需要替换图片地址
@@ -171,6 +171,8 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
     /// <returns></returns>
     public string TaobaoUpload(string picurl, string picname, int CategoryId)
     {
+        Cookie cookie = new Cookie(); 
+        string session = cookie.getCookie("top_sessiongroupbuy");
         TopXmlRestClient clientaa = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
         PictureUploadRequest request = new PictureUploadRequest();
 
