@@ -22,7 +22,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         string dateName = "pic/" + DateTime.Now.ToString("yyyy-MM-dd");
         if (!Directory.Exists(Server.MapPath(dateName)))
         {
-            Directory.CreateDirectory(dateName);
+            Directory.CreateDirectory(Server.MapPath(dateName));
         }
 
         if (CheckFileIsSave(FileUpload1))
