@@ -78,11 +78,22 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        CreateProperty(Request.Form["property"].ToString());
+        CreateProperty();
         //UploadUserPic();
 
         //string content = GetRealItemInfo();
     }
+
+    private void CreateProperty()
+    {
+        foreach (string p in Request.Form)
+        {
+            Response.Write(p + "<br>");
+        }
+        Response.End();
+    }
+
+
 
     private string GetRealItemInfo()
     {
@@ -127,10 +138,5 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         return p;
     }
 
-    private string CreateProperty(string p)
-    {
-        Response.Write(p);
-        Response.End();
-        return p;
-    }
+   
 }
