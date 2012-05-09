@@ -41,6 +41,8 @@ public class SiteTotalService
 
     const string SQL_SELECT_ZHUANHUA_TOTAL = "SELECT SiteBuyCustomTotal,SiteUVCount,SiteTotalDate FROM TopSiteTotal WHERE SiteTotalDate BETWEEN @start AND @end and SiteNick=@nick";
 
+    const string SQL_SELECT_ORDER_REAL_TOTAL_POST_FEE = "SELECT SiteTotalDate,SiteOrderPay,RealPostFee,RealTotalFee FROM TopSiteTotal WHERE SiteNick=@nick AND SiteTotalDate BETWEEN @start AND @end";
+
     public IList<TopSiteTotalInfo> GetNickOrderTotal(DateTime start,DateTime end, string nick)
     {
         IList<TopSiteTotalInfo> list = new List<TopSiteTotalInfo>();
@@ -282,7 +284,7 @@ public class SiteTotalService
                 new SqlParameter("@end",end),
                 new SqlParameter("@nick",nick)
             };
-
+        
         DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_ZHUANHUA_TOTAL, param);
 
         foreach (DataRow dr in dt.Rows)
@@ -292,6 +294,29 @@ public class SiteTotalService
             info.SiteUVCount = int.Parse(dr["SiteUVCount"].ToString());
             info.SiteTotalDate = dr["SiteTotalDate"].ToString();
 
+            list.Add(info);
+        }
+
+        return list;
+    }
+
+    public List<TopSiteTotalInfo> GetRealTotal(string nick, DateTime start, DateTime end)
+    {
+        SqlParameter[] param = new[]
+        {
+            new SqlParameter("@nick",nick),
+            new SqlParameter("@start",start.ToString("yyyyMMdd")),
+            new SqlParameter("@end",end.ToString("yyyyMMdd"))
+        };
+        List<TopSiteTotalInfo> list = new List<TopSiteTotalInfo>();
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_ORDER_REAL_TOTAL_POST_FEE, param);
+        foreach (DataRow dr in dt.Rows)
+        {
+            TopSiteTotalInfo info = new TopSiteTotalInfo();
+            info.SiteTotalDate = dr["SiteTotalDate"].ToString();
+            info.SiteOrderPay = decimal.Parse(dr["SiteOrderPay"].ToString());
+            info.RealPostFee = dr["RealPostFee"] == DBNull.Value ? 0 : decimal.Parse(dr["RealPostFee"].ToString());
+            info.RealTotalFee = dr["RealTotalFee"] == DBNull.Value ? 0 : decimal.Parse(dr["RealTotalFee"].ToString());
             list.Add(info);
         }
 

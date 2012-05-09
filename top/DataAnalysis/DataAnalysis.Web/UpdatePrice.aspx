@@ -26,7 +26,7 @@
       </li>
     </ul>
   </div>
-    <div id="main-content" style="height:1000px;overflow:scroll">
+    <div id="main-content" style="height:1000px;">
 
      <div>
      商品名：<asp:TextBox ID="Tb_GoodsName" runat="server"></asp:TextBox>&nbsp;
