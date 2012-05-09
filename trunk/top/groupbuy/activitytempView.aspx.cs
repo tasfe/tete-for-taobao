@@ -15,12 +15,13 @@ public partial class top_groupbuy_activitytempView : System.Web.UI.Page
         if (Request.QueryString["ytid"] != null)
         {
             html = CreateGroupbuyHtml(Request.QueryString["ytid"].ToString());
-            div1.Disabled = false;
+            div1.Style.Add("display", "none");
 
         }
         if (Request.QueryString["tid"] != null)
         {
             html = "";
+            div1.Style.Add("display", "");
             TextBox1.Text = CreateGroupbuyHtml(Request.QueryString["tid"].ToString());
         }
     }

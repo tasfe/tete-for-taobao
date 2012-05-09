@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
     <%=html%>
-    <div runat=server id=div1>
+    <div runat=server id=div1 style=" display:none">
     <asp:TextBox ID="TextBox1" runat="server" Height="178px" TextMode="MultiLine" 
                 Width="602px"></asp:TextBox>
             <br />
