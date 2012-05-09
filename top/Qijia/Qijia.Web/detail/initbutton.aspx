@@ -1,13 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="initbutton.aspx.cs" 
-Inherits="Web_detail_initbutton" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="initbutton.aspx.cs" Inherits="Web_detail_initbutton" %>
 // JavaScript Document
 var nick = 'test';
-var str = '<img src="http://qijia.7fshop.com/detail/u3.png" onclick="showTeteDialog(event)" 
-style="cursor:pointer" /> <br />';
-str += '<div id="showArea" style="display:none; position:absolute; top:1083px; left:305px; background-
-color:White; border:solid 1px #000; width:724px; height:570px; z-index:99999"><a 
-href="javascript:CloseShowWindow()">关闭窗口</a><br /><iframe id="showFrame" 
-src="http://qijia.7fshop.com/detail/dialog.html" width="724" height="570" frameborder="0"></iframe></div>';
+var str = '<img src="http://qijia.7fshop.com/detail/u3.png" onclick="showTeteDialog(event)" style="cursor:pointer" /> <br />';
+str += '<div id="showArea" style="display:none; position:absolute; top:1083px; left:305px; background-color:White; border:solid 1px #000; width:724px; height:570px; z-index:99999"><a href="javascript:CloseShowWindow()">关闭窗口</a><br /><iframe id="showFrame" src="http://qijia.7fshop.com/detail/dialog.html" width="724" height="570" frameborder="0"></iframe></div>';
 document.write(str);
 
 
