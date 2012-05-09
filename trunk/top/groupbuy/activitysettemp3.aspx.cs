@@ -239,7 +239,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
             Response.Write("数据为空");
             Response.End();
         }
-        string templatehtmlUrl = "tpl/style1.html";//默认模板
+        string templatehtmlUrl = "tpl/stylenew1.html";//默认模板
         string template2htmlUrl = "tpl/stylenew2-1.html";//第二套模板（一大三小） 小模板  (团购模板第三套和第二套)
  
         //模板生成需要在好好考虑一下。。。。。。。。。。。。。。。。。。。。。。。。。。。。
@@ -253,7 +253,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
             if (dt.Rows[0]["templetID"].ToString() == "3")
             {
                 //第三套模板（一排三列）
-                templatehtmlUrl = "tpl/style3.html";
+                templatehtmlUrl = "tpl/stylenew3.html";
             }
 
  
