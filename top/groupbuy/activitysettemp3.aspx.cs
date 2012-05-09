@@ -106,7 +106,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
                     for (int j = 0; j < dts3.Rows.Count; j++)
                     {
                         //上传图片
-                        string newurl = TaobaoUpload(dts3.Rows[j]["url"].ToString(), "templetid" + j.ToString(), long.Parse(categoryid));
+                        string newurl = TaobaoUpload(dts3.Rows[j]["url"].ToString(), "temp" + templetid.ToString() + "" + j.ToString(), long.Parse(categoryid));
                         //创建本地店铺模板图片地址
                         sql = "insert into tete_shoptempletimg ([templetID],[url] ,[taobaourl] ,[nick]) VALUES (" + templetid + ",'" + dts3.Rows[j]["url"].ToString() + "','" + newurl + "','" + taobaoNick + "')";
                         utils.ExecuteNonQuery(sql);
@@ -145,7 +145,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
                 for (int j = 0; j < dts3.Rows.Count; j++)
                 {
                     //上传图片
-                    string newurl = TaobaoUpload(dts3.Rows[j]["url"].ToString(), "templetid" + j.ToString(), long.Parse(categoryid));
+                    string newurl = TaobaoUpload(dts3.Rows[j]["url"].ToString(), "temp" + templetid.ToString() + "" + j.ToString(), long.Parse(categoryid));
                     //创建本地店铺模板图片地址
                     sql = "insert into tete_shoptempletimg ([templetID],[url] ,[taobaourl] ,[nick]) VALUES (" + templetid + ",'" + dts3.Rows[j]["url"].ToString() + "','" + newurl + "','" + taobaoNick + "')";
                     utils.ExecuteNonQuery(sql);
