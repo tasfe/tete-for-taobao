@@ -52,7 +52,7 @@ public partial class top_groupbuy_activity_getimg : System.Web.UI.Page
         {
             try
             {
-                endDate = DateTime.Parse(dt.Rows[0]["endtime"].ToString());
+                endDate = DateTime.Parse(dt.Rows[0]["enddate"].ToString());
                 startDate = DateTime.Parse(date);
                 TimeSpan tdays = endDate - startDate;  //得到时间差 当前时间与团购结束时间
                 string d = tdays.Days.ToString();//剩余时间:小时
