@@ -46,7 +46,7 @@ public partial class top_groupbuy_activity_getimg : System.Web.UI.Page
         DateTime endDate;
         DateTime startDate;
         //计算时间 判断团购时间是否结束 
-        sql = "select top 1 tete_activitylist.enddate,* from tete_shoptemplet left join tete_shoptempletlist on tete_shoptemplet.id=tete_shoptempletlist.shoptempletID left join tete_activitylist on tete_shoptempletlist.productid=tete_activitylist.productid  where tete_shoptempletlist.shoptempletID=34    order by sort asc ,tete_activitylist.enddate descid =" + id;
+        sql = "select top 1 tete_activitylist.enddate,* from tete_shoptemplet left join tete_shoptempletlist on tete_shoptemplet.id=tete_shoptempletlist.shoptempletID left join tete_activitylist on tete_shoptempletlist.productid=tete_activitylist.productid  where tete_shoptempletlist.shoptempletID="+id+"    order by sort asc ,tete_activitylist.enddate desc ";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt != null && dt.Rows.Count > 0)
         {
