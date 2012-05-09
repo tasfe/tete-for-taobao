@@ -100,6 +100,12 @@ public partial class UpdateCarriage : BasePage
     }
     protected void Btn_Ok_Click(object sender, EventArgs e)
     {
+        if (string.IsNullOrEmpty(ddl_City.SelectedValue))
+        {
+            Page.RegisterStartupScript("error", "<script>alert('请选择城市');</script>");
+            return;
+        }
+
         ExpressCarriageService ecDal = new ExpressCarriageService();
         ExpressCarriageInfo info = new ExpressCarriageInfo();
         info.CityId = new Guid(ddl_City.SelectedValue);

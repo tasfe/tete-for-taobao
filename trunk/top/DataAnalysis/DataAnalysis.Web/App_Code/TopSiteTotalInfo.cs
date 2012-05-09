@@ -17,6 +17,24 @@ public class TopSiteTotalInfo
     public int SiteUVCount { set; get; }
 
     /// <summary>
+    /// 商家真实需要支出邮费
+    /// </summary>
+    public decimal RealPostFee { set; get; }
+
+    /// <summary>
+    /// 销售成本价
+    /// </summary>
+    public decimal RealTotalFee { set; get; }
+
+    public decimal Commerce
+    {
+        get
+        {
+            return SiteOrderPay - RealTotalFee - RealPostFee;
+        }
+    }
+
+    /// <summary>
     /// 订单总数
     /// </summary>
     public int SiteOrderCount { set; get; }

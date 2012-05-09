@@ -28,7 +28,7 @@
                     </li>
                 </ul>
             </div>
-            <div id="main-content" style="height:1000px;overflow:scroll">
+            <div id="main-content" style="height:1000px;">
                 <div>
      <asp:TextBox ID="TB_Start" runat="server" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})"
                         class="Wdate" Width="120px"></asp:TextBox>&nbsp;

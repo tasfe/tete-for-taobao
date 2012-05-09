@@ -58,7 +58,7 @@ display:block;  position:absolute;  top:21px;  left:9px;  width:15em;  border:1p
                     </li>
                 </ul>
             </div>
-            <div id="main-content" style="height:1000px;overflow:scroll">    
+            <div id="main-content" style="height:1000px;">    
         <div class="all">
             <div class="detail1">
                 <div>

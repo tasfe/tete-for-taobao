@@ -35,7 +35,7 @@
                     </li>
                 </ul>
             </div>
-            <div id="main-content" style="height:1000px;overflow:scroll">
+            <div id="main-content" style="height:1000px;">
                 <div>
                 <asp:Button ID="Btn_3Days" runat="server" OnClick="Btn_3Days_Click" Text="最近3天" />&nbsp;
      <asp:Button ID="Btn_7Days" runat="server" OnClick="Btn_7Days_Click" Text="最近7天" />&nbsp;
