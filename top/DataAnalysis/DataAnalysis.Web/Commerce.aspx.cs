@@ -13,7 +13,7 @@ public partial class Commerce : BasePage
     {
         if (!IsPostBack)
         {
-            DateTime[] dates = DataHelper.GetDateTime(DateTime.Now, 3);
+            DateTime[] dates = DataHelper.GetDateTime(DateTime.Now.AddDays(-3), 3);
 
             Bind(dates[0], dates[1]);
         }
