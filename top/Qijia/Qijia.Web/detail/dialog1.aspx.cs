@@ -142,7 +142,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
 
         string content = GetRealItemInfo();
 
-        Response.Write("<iframe src=\"http://shop.jia.com/item/upload_describe_image?id=" + id + "&isframe=1\"></iframe>");
+        Response.Write("<iframe src=\"http://shop.jia.com/item/get_item_template?id=" + id + "\"></iframe>");
         Response.End();
     }
 
