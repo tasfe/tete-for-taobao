@@ -141,15 +141,16 @@
                 <td>
                     <table width="100%" cellpadding=0 cellspacing=0>
                         <tr>
-                            <td><img src="images/b0.png" /> <br /><input type="radio" name="flag" value="0" /></td>
-                            <td><img src="images/b1.png" /> <br /><input type="radio" name="flag" value="1" /></td>
-                            <td><img src="images/b2.png" /> <br /><input type="radio" name="flag" value="2" /></td>
-                            <td><img src="images/b3.png" /> <br /><input type="radio" name="flag" value="3" /></td>
+                            <td> <input type="checkbox" name="flag" value="0" /><img src="images/b0.png" />消费者保障 </td>
+                            <td><input type="checkbox" name="flag" value="1" /> <img src="images/b1.png" /> 七天退换</td>
+                            <td><input type="checkbox" name="flag" value="2" /><img src="images/b2.png" /> 假一赔三</td>
+                            <td><input type="checkbox" name="flag" value="3" /><img src="images/b3.png" /> 30天维修</td>
+                                  
                         </tr>
                         <tr>
-                            <td><img src="images/b4.png" /> <br /><input type="radio" name="flag" value="4" /></td>
-                            <td><img src="images/b5.png" /> <br /><input type="radio" name="flag" value="5" /></td>
-                            <td><img src="images/b6.png" /> <br /><input type="radio" name="flag" value="6" /></td>
+                            <td><input type="checkbox" name="flag" value="4" /><img src="images/b4.png" /> 1小时发货</td>
+                            <td><input type="checkbox" name="flag" value="5" /><img src="images/b5.png" /> 闪电发货</td>
+                            <td><input type="checkbox" name="flag" value="6" /><img src="images/b6.png" />正品保障</td>
                         </tr>
                     </table>
                 </td>
