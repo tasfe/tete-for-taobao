@@ -319,17 +319,17 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
             //如果为空返回HTML
             return str;
         }
+        sqlstr = "select * from  tete_shoptempletimg where nick='" + taobaoNick + "' and url='" + btvalue + ".png'";
+        DataTable dtr2 = utils.ExecuteDataTable(sqlstr);
+        if (dtr2 != null && dtr2.Rows.Count > 0)
+        {
+            //参团按钮替换
+            str = str.Replace("http://groupbuy.7fshop.com/top/groupbuy/images/temp2ct.png", dtr2.Rows[0]["taobaourl"].ToString());
+            str = str.Replace("http://groupbuy.7fshop.com/top/groupbuy/images/temp2ct2.png", dtr2.Rows[0]["taobaourl"].ToString());
+        }
         if (tid == "1" || tid == "2")
         {
             //如果是团购模板需要替换团购HTML
-            
-            sqlstr = "select * from  tete_shoptempletimg where nick='" + taobaoNick + "' and url='"+btvalue+".png'";
-            DataTable dtr2 = utils.ExecuteDataTable(sqlstr);
-            if (dtr2 != null && dtr2.Rows.Count > 0)
-            {
-                //参团按钮替换
-                str = str.Replace("http://groupbuy.7fshop.com/top/groupbuy/images/temp2ct.png", dtr2.Rows[0]["taobaourl"].ToString());
-            }
             //商城图片替换
             if (scbzvalue == "1")
             {
