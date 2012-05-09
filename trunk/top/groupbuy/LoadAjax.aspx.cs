@@ -148,7 +148,7 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
                     Response.End();
                 }
 
-                Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>" + err + "</font><br><a href='groupbuyadd.aspx'>重新添加</a>");
+                Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>" + err + "</font><br><a href='activityadd.aspx'>重新添加</a>");
                 Response.End();
                 return;
             }
