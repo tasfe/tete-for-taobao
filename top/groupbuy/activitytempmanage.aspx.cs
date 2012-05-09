@@ -13,6 +13,18 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Request.QueryString["act"] != null&&Request.QueryString["act"].ToString()=="del")
+        {
+            if (Request.QueryString["id"] != null)
+            {
+                string id = Request.QueryString["id"].ToString();
+                //删除模板
+                utils.ExecuteNonQuery("delete from tete_shoptemplet where id=" + id);
+                //删除模板列表
+                utils.ExecuteNonQuery("delete from tete_shoptempletlist where shoptempletID=" + id);
+                Response.Redirect("activitytempmanage.aspx");
+            }
+        }
         if (!IsPostBack)
         {
             BindData();
@@ -29,7 +41,7 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
     /// <returns></returns>
     public string outShowHtml(string ID)
     {
-        string html = "<div> <a href=\"#\" >编辑   <a href=\"#\")\">获取代码</a>   <a href=\"#\")\">预览</a>      <a href=\"#\")\">删除</a></div>";
+        string html = "<div>  <a  target=_blank href=\"activitytempView.aspx?tid=" + ID + "\")\">获取代码</a>   <a  target=_blank  href=\"activitytempView.aspx?ytid=" + ID + "\")\">预览</a>      <a href=\"activitytempmanage.aspx?act=del&id=" + ID + "\")\">删除</a></div>";
 
         return html;
     }
