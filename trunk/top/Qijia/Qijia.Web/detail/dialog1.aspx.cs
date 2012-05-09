@@ -237,7 +237,12 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
     {
         Jia_Item item = new Jia_Item();
 
-        item.ItemId = nick;
+        if (id == "0")
+        {
+            id = nick;
+        }
+
+        item.ItemId = id;
         item.Nick = nick;
         item.PropertyText = CreateProperty();
         item.CharText = CreateChar();
