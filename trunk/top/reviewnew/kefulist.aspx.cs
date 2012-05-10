@@ -704,6 +704,12 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                 //开始发送
                                 string msg = GetMsg(giftcontent, shopname, buynick, iscoupon, isfree);
 
+                                //强行截取
+                                if (msg.Length > 66)
+                                {
+                                    msg = msg.Substring(0, 66);
+                                }
+
                                 //Response.Write(msg + "<br>");
                                 string result = SendMessage(phone, msg);
 
