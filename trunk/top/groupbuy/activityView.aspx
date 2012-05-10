@@ -133,7 +133,7 @@
 
         //活动形式
         showDetail(document.getElementById("Detailtype").value);
-        showPrice(document.getElementById("Detailtype").value);
+        showPrice(document.getElementById("typediscountType").value);
         document.getElementById("hact").value = "";
         function showDetail(n) {
             if (n == 1) {
