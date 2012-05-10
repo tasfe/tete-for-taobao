@@ -202,6 +202,7 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
             string yuandecreaseNum = "";
    
             string sql2 = "select * from tete_activity where id="+aid;
+            string name = string.Empty;
             DataTable dt33 = utils.ExecuteDataTable(sql2);
             if (dt33 != null)
             {
@@ -209,6 +210,7 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                 yuandiscountType = dt33.Rows[0]["discountType"].ToString();
                 yuandiscountValue = dt33.Rows[0]["discountValue"].ToString();
                 yuandecreaseNum = dt33.Rows[0]["decreaseNum"].ToString();
+                name = dt33.Rows[0]["name"].ToString();
             }
             //输出页面HTML
             for (int i = 0; i < product.Content.Count; i++)
@@ -224,7 +226,7 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                     discountValue = dtNew2.Rows[0]["discountValue"].ToString();
                     discountType = dtNew2.Rows[0]["discountType"].ToString();
                     price2 = product.Content[i].Price;
-                    hdstr = "<div id=\"del" + product.Content[i].NumIid.ToString() + "\">已参加活动:优惠活动<br><a href=\"javascript:delItemAction(" + product.Content[i].NumIid.ToString() + ")\">删除此促销活动</a></div> <div style=\"display:none\" id=\"add" + product.Content[i].NumIid.ToString() + "\"><a href=\"javascript:addItemAction(" + product.Content[i].NumIid.ToString() + ")\">参加活动</a></div> ";
+                    hdstr = "<div id=\"del" + product.Content[i].NumIid.ToString() + "\">已参加活动:" + name + "<br><a href=\"javascript:delItemAction(" + product.Content[i].NumIid.ToString() + ")\">删除此促销活动</a></div> <div style=\"display:none\" id=\"add" + product.Content[i].NumIid.ToString() + "\"><a href=\"javascript:addItemAction(" + product.Content[i].NumIid.ToString() + ")\">参加活动</a></div> ";
 
                     if (discountType.Trim() == "DISCOUNT")
                     {
