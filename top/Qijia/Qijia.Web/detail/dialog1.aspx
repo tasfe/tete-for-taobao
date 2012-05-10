@@ -14,11 +14,10 @@
     
 <table width="100%" style="line-height:24px; color:#555; font-size:12px;">
 <tr>
-<div style=" padding:4px; background:#fafafa url(title_bg02.png) no-repeat; margin:0 3px 6px 3px; color:red;line-height:25px; padding:10px; font-size:12px; text-indent:2em; width:364px;">
 请上传商品图片：<br />
 
-<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
-&nbsp;&nbsp;&nbsp;&nbsp;您可以在右侧的效果图上看到每个图片展示的位置，我们会根据您传的图片自动帮您生成合适尺寸的图片，不用您手动去调整图片大小。(注：每张图片大小不能超过1M)
+<div style=" padding:4px; background:#fafafa url(title_bg02.png) no-repeat; margin:0 3px 6px 3px; color:red;line-height:25px; padding:10px; font-size:12px; text-indent:2em; width:364px;">
+您可以在右侧的效果图上看到每个图片展示的位置，我们会根据您传的图片自动帮您生成合适尺寸的图片，不用您手动去调整图片大小。(注：每张图片大小不能超过1M)
 </div>
 <br />
 【商品图片1】：<asp:FileUpload ID="FileUpload1" runat="server" /><br />
