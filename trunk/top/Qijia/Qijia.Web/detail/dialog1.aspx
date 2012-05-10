@@ -12,29 +12,29 @@
 <table width="100%" style="line-height:24px; color:#555; font-size:12px;">
 <tr>
 <td valign="top" width="500">
-请上传商品图片：<br />
+<strong>请上传商品图片：</strong><br />
 
 <div style=" padding:4px; background:#fafafa url(title_bg02.png) no-repeat; margin:0 3px 6px 3px; color:red;line-height:25px; padding:10px; font-size:12px; text-indent:2em; width:364px;">
 您可以在右侧的效果图上看到每个图片展示的位置，我们会根据您传的图片自动帮您生成合适尺寸的图片，不用您手动去调整图片大小。(注：每张图片大小不能超过1M)
 </div>
 <br />
 【商品图片1】：<asp:FileUpload ID="FileUpload1" runat="server" /><br />
-&nbsp;第1张大图，图片尺寸720*583<br /><br />
+<span>第1张大图，图片尺寸720*583</span><br /><br />
 
 【商品图片2】：<asp:FileUpload ID="FileUpload2" runat="server" /><br />
-&nbsp;商品详情图，图片尺寸324*316<br /><br />
+<span>商品详情图，图片尺寸324*316</span><br /><br />
 
 【商品图片3】：<asp:FileUpload ID="FileUpload3" runat="server" /><br />
-&nbsp;第1张局部小图，图片尺寸190*130<br /><br />
+<span>第1张局部小图，图片尺寸190*130</span><br /><br />
 
 【商品图片4】：<asp:FileUpload ID="FileUpload4" runat="server" /><br />
-&nbsp;第1张局部大图，图片尺寸480*310<br /><br />
+<span>第1张局部大图，图片尺寸480*310</span><br /><br />
 
 【商品图片5】：<asp:FileUpload ID="FileUpload5" runat="server" /><br />
-&nbsp;第2张局部小图，图片尺寸190*130<br /><br />
+<span>第2张局部小图，图片尺寸190*130</span><br /><br />
 
 【商品图片6】：<asp:FileUpload ID="FileUpload6" runat="server" /><br />
-&nbsp;第2张局部大图，图片尺寸480*310<br /><br />
+<span>第2张局部大图，图片尺寸480*310</span><br /><br />
 
 
 </td>
