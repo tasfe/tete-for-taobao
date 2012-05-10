@@ -67,7 +67,7 @@
 			<tr class="itemDetail">
 				<th class="required">促销方式：</th>
 				<td style="">
-					<input type="radio" id="noStyle" class="dzRadio" name="discountType" value="DISCOUNT" checked="checked" onclick="showPrice(1)"/>打折 <input id="noStyle" class="jjRadio" type="radio" name="discountType" value="PRICE" onclick="showPrice(2)"/>减价
+					<input type="radio" id="noStyle1" class="dzRadio" name="discountType" value="DISCOUNT" checked="checked" onclick="showPrice(1)"/>打折 <input id="noStyle1" class="jjRadio" type="radio" name="discountType" value="PRICE" onclick="showPrice(2)"/>减价
 				</td>
 			</tr>
 			<tr class="itemDetail">
