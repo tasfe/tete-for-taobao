@@ -170,7 +170,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
              //添加店铺模板列表
              for (int i = 0; i < price.Split(',').Length; i++)
              {
-                 sql = "INSERT INTO  [tete_shoptempletlist] ([shoptempletID],[name],[price],[proprice],[Sort],[nick],[rcount],[ProductImg],[ProductUrl],[ProductID])  VALUES (" + shoptempid + ",'" + pname.Split(',')[i].ToString() + "','" + price.Split(',')[i].ToString() + "','" + zhekou.Split(',')[i].ToString() + "'," + sort.Split(',')[i].ToString() + ",'" + taobaoNick + "'," + rcount.Split(',')[i].ToString() + ",'" + pimg.Split(',')[i].ToString() + "','http:///item.taobao.com/item.htm?id=" + productid.Split(',')[i].ToString() + "','" + productid.Split(',')[i].ToString() + "')";
+                 sql = "INSERT INTO  [tete_shoptempletlist] ([shoptempletID],[name],[price],[proprice],[Sort],[nick],[rcount],[ProductImg],[ProductUrl],[ProductID])  VALUES (" + shoptempid + ",'" + pname.Split(',')[i].ToString() + "','" + price.Split(',')[i].ToString() + "','" + zhekou.Split(',')[i].ToString() + "'," + sort.Split(',')[i].ToString() + ",'" + taobaoNick + "'," + rcount.Split(',')[i].ToString() + ",'" + pimg.Split(',')[i].ToString() + "','http://item.taobao.com/item.htm?id=" + productid.Split(',')[i].ToString() + "','" + productid.Split(',')[i].ToString() + "')";
                   
                  utils.ExecuteNonQuery(sql);
    
