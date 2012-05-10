@@ -9,11 +9,11 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    <div style="height:1000px;">
-
-<table width="100%">
+    <div style="height:500px;font-family: tahoma, Arial, Helvetica, Verdana, '微软雅黑';">
+    
+<table width="100%" style="line-height:24px; color:#555; font-size:12px;">
 <tr>
-<td valign="top" width="370">
+<div style=" padding:4px; background:#fafafa url(title_bg02.png) no-repeat; margin:0 3px 6px 3px; color:red;line-height:25px; padding:10px; font-size:12px; text-indent:2em; width:364px;">
 请上传商品图片：<br />
 
 <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
@@ -49,7 +49,7 @@
 
 <br />
 
-<table width="100%">
+<table width="100%" style="font-size:12px; color:#555;">
 <tr>
 <td valign="top" width="370">
 请输入商品属性：<br />
@@ -104,7 +104,7 @@
 </tr>
 </table>
 
-<table width="100%">
+<table width="100%" style="font-size:12px; color:#555;">
 <tr>
 <td valign="top" width="370">
 请输入长度属性：<br />
@@ -168,9 +168,8 @@
 </tr>
 </table>
 
-        <asp:Button ID="Button1" runat="server" Text="生成商品描述" 
-            style="width:200px; height:40px;" onclick="Button1_Click"  />
-<input type="button" value="效果预览" style="width:100px; height:40px;" />
+        <asp:Button ID="Button1" runat="server" Text=""  style="width:120px; height:40px; background:url(btn_02.jpg) no-repeat;border:0; cursor:pointer; margin-right:40px; margin-left:230px;" onclick="Button1_Click"  />
+<input type="button" value="" style="width:90px; height:40px; background:url(btn_03.jpg) no-repeat;border:0; cursor:pointer" />
 
 </div>
     </div>
