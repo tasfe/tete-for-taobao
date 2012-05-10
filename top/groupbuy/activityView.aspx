@@ -68,13 +68,13 @@
 			<tr>
 				<th class="required">活动形式：</th>
 				<td style="height: 55px;">
-					<input type="radio" id="noStyle" name="itemType" value="same" checked="<%= itemType %>" onclick="showDetail(1)"/>每个参加活动的宝贝设置相同促销力度<input id="noStyle"  type="radio" name="itemType" value="different" checked="<%= itemTypeStr %>" onclick="showDetail(2)"/>每个参加活动的宝贝设置不同促销力度
+					<input type="radio" id="noStyle" name="itemType" value="same"   <%= itemType %> onclick="showDetail(1)"/>每个参加活动的宝贝设置相同促销力度<input id="noStyle"  type="radio" name="itemType" value="different" <%= itemTypeStr %> onclick="showDetail(2)"/>每个参加活动的宝贝设置不同促销力度
 				</td>
 			</tr>
 			<tr class="itemDetail">
 				<th class="required">促销方式：</th>
 				<td style="height: 55px;">
-					<input type="radio" id="noStyle" class="dzRadio" name="discountType" value="DISCOUNT"  checked="<%= discountType %>" onclick="showPrice(1)"/>打折 <input id="noStyle" class="jjRadio" type="radio" name="discountType" value="PRICE" checked="<%= discountTypeStr %>" onclick="showPrice(2)"/>减价
+					<input type="radio" id="noStyle1" class="dzRadio" name="discountType" value="DISCOUNT"  <%= discountType %> onclick="showPrice(1)"/>打折 <input id="noStyle1" class="jjRadio" type="radio" name="discountType" value="PRICE" <%= discountTypeStr %> onclick="showPrice(2)"/>减价
 				</td>
 			</tr>
 			<tr class="itemDetail">

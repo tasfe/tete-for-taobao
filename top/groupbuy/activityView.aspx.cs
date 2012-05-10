@@ -212,7 +212,7 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
                                     Detailtype.Value = "1";
                                 }
                                 discountType = dt.Rows[i]["discountType"].ToString();
-                                Response.Write("itemType:" + itemType + "itemTypeStr:" + itemTypeStr + "discountType:" + discountType);
+                               
                                 if (discountType.Trim() != "DISCOUNT")
                                 {
                                     discountType = "";
