@@ -60,23 +60,23 @@ public partial class top_groupbuy_activitytaobaoItem : System.Web.UI.Page
             activitystatusstr = dt3.Rows[0]["Status"].ToString();
             if (activitystatusstr == "0")
             {
-                activitystatusstr = "活动未开始";
+                activitystatusstr = dt3.Rows[0]["Name"].ToString() + "   活动未开始";
             }
             else if (activitystatusstr == "1")
             {
-                activitystatusstr = "活动进行中";
+                activitystatusstr = dt3.Rows[0]["Name"].ToString() + "   活动进行中";
             }
             else if (activitystatusstr == "2")
             {
-                activitystatusstr = "活动已结束";
+                activitystatusstr = dt3.Rows[0]["Name"].ToString() + "   活动已结束";
             }
             else if (activitystatusstr == "3")
             {
-                activitystatusstr = "活动已暂停";
+                activitystatusstr = dt3.Rows[0]["Name"].ToString() + "   活动已暂停";
             }
             else
             {
-                activitystatusstr = "活动已删除";
+                activitystatusstr = dt3.Rows[0]["Name"].ToString() + "   活动已删除";
             }
             activityitemTypestr = dt3.Rows[0]["itemType"].ToString();
             if (activityitemTypestr == "same")
