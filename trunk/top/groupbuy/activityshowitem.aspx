@@ -195,8 +195,8 @@
 
         	<input type="hidden" name="itemsStr" id="itemsStr" value="" />
         	<input type="hidden" name="itemsStrTxt" id="itemsStrTxt" value="" />
-
-
+            <input type=text name="itemsStrTxt" id="Hidden1" value="" />
+             
 
     <script language="javascript" type="text/javascript">
         function InitArea(obj) {
@@ -290,7 +290,10 @@
         function handleStateChange() {
             if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
                 var taobaoitem = document.getElementById("taobaoitem")
-                taobaoitem.innerHTML = decodeURI(xmlHttp.responseText);
+          
+                //taobaoitem.innerHTML = decodeURI(xmlHttp.responseText);
+                document.getElementById("Hidden1").value = decodeURI(xmlHttp.responseText);
+             
 
                 formatCheckBoxAll();
             }
