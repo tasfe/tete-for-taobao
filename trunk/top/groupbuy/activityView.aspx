@@ -120,6 +120,7 @@
                    <input type="submit" value="立刻修改营销活动" onclick="return checkValue();"/><span id="errorMsg" style="color: red"></span>
                    <input type="hidden" name="act" id="hact"  value="" />
                    <input type="hidden" name="Detailtype" id="Detailtype"  value="1" runat="server" />
+                    <input type="hidden" name="typediscountType" id="typediscountType"  value="1" runat="server" />
 				</td>
 			</tr>
 		</tfoot>
@@ -132,7 +133,7 @@
 
         //活动形式
         showDetail(document.getElementById("Detailtype").value);
-
+        showPrice(document.getElementById("Detailtype").value);
         document.getElementById("hact").value = "";
         function showDetail(n) {
             if (n == 1) {
