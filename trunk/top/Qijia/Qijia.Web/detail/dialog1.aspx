@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="dialog1.aspx.cs" Inherits="Web_detail_dialog1" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
@@ -14,6 +12,7 @@
     
 <table width="100%" style="line-height:24px; color:#555; font-size:12px;">
 <tr>
+<td valign="top" width="500">
 请上传商品图片：<br />
 
 <div style=" padding:4px; background:#fafafa url(title_bg02.png) no-repeat; margin:0 3px 6px 3px; color:red;line-height:25px; padding:10px; font-size:12px; text-indent:2em; width:364px;">
@@ -51,7 +50,7 @@
 
 <table width="100%" style="font-size:12px; color:#555;">
 <tr>
-<td valign="top" width="370">
+<td valign="top" width="500">
 请输入商品属性：<br />
 <input name="text111" value="NO" type="hidden" />
 【商品编号】：
@@ -106,7 +105,7 @@
 
 <table width="100%" style="font-size:12px; color:#555;">
 <tr>
-<td valign="top" width="370">
+<td valign="top" width="500">
 请输入长度属性：<br />
 <input name="text1" value="text1" type="hidden" />
 【文字1】：
@@ -140,7 +139,7 @@
     </td>
 </tr>
 <tr>
-<td valign="top" width="370">
+<td valign="top" width="500">
 <input name="text11" value="text6" type="hidden" />
 【文字6】：
 <textarea name="text12" value="" rows="4" cols="26"></textarea><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(不超过50个字符)<br /><br />
@@ -158,7 +157,7 @@
 
 <table width="100%">
 <tr>
-<td valign="top" width="280">
+<td valign="top" width="400">
 <img src="tip3.gif" /> <br />
 <img src="tip4.gif" /> 
 </td>
