@@ -198,20 +198,21 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
                                 startDate = DateTime.Parse(dt.Rows[i]["startDate"].ToString()).ToString("yyyy-MM-dd hh:mm:ss");
                                 endDate = DateTime.Parse(dt.Rows[i]["endDate"].ToString()).ToString("yyyy-MM-dd hh:mm:ss");
                                 itemType = dt.Rows[i]["itemType"].ToString();
-                                if (itemType != "same")
+                                Response.Write(itemType + discountType);
+                                if (itemType.Trim() != "same")
                                 {
-                                    itemType = "checked";
-                                    itemTypeStr = "";
+                                    itemType = "";
+                                    itemTypeStr = "checked";
                                     Detailtype.Value = "2";
                                 }
                                 else
                                 {
-                                    itemType = "";
-                                    itemTypeStr = "checked";
+                                    itemType = "checked";
+                                    itemTypeStr = "";
                                     Detailtype.Value = "1";
                                 }
                                 discountType = dt.Rows[i]["discountType"].ToString();
-                                if (discountType != "DISCOUNT")
+                                if (discountType.Trim() != "DISCOUNT")
                                 {
                                     discountType = "";
                                     discountTypeStr = "checked";
