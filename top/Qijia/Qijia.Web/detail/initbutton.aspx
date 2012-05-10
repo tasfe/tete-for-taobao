@@ -24,8 +24,8 @@ function CloseShowWindow(){
 
 
 function setContentTete(aa){
-	alert("tete-"+ aa);
 	document.getElementById("showArea").style.display = "none";
+    setContent(aa);
 }
 
 
