@@ -210,9 +210,7 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                 yuandiscountValue = dt33.Rows[0]["discountValue"].ToString();
                 yuandecreaseNum = dt33.Rows[0]["decreaseNum"].ToString();
             }
-            else {
-                return;
-            }
+ 
             //输出页面HTML
             for (int i = 0; i < product.Content.Count; i++)
             {
