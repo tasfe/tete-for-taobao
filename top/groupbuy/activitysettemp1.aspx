@@ -32,7 +32,6 @@
         	                    <option value="0">请选择</option>
                     	        
         	                    <%=  strhtml %>
-                                <option value="">手动选择</option>
         	                </select> 只用进行中的活动能选择
                    
                 </td>
