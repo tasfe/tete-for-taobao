@@ -396,7 +396,7 @@
 
         function updateCat() {
             createxmlHttpRequest();
-            var queryString = "/top/groupbuy/groupbuy/taobaoitemgetactivity.aspx?act=getCat&t=" + new Date().getTime();
+            var queryString = "/top/groupbuy/taobaoitemgetactivity.aspx?act=getCat&t=" + new Date().getTime();
             xmlHttp.open("GET", queryString);
             xmlHttp.onreadystatechange = handleStateChangeCat;
             xmlHttp.send(null);
@@ -416,7 +416,7 @@
             var style = "0";
             var aid = document.getElementById("activityIDstr").value;
            
-            var queryString = "/top/groupbuy/groupbuy/taobaoitemgetactivity.aspx?act=getactivityitem&isradio=0&aid=" + aid + "&style=" + style + "&ids=" + str + "&t=" + new Date().getTime();
+            var queryString = "/top/groupbuy/taobaoitemgetactivity.aspx?act=getactivityitem&isradio=0&aid=" + aid + "&style=" + style + "&ids=" + str + "&t=" + new Date().getTime();
             xmlHttp.open("GET", queryString);
             xmlHttp.onreadystatechange = handleStateChangeResultStr;
             xmlHttp.send(null);
@@ -436,7 +436,7 @@
             var aid = document.getElementById("activityIDstr").value;
             var pagenow = pageid;
             createxmlHttpRequest();
-            var queryString = "/top/groupbuy/groupbuy/taobaoitemgetactivity.aspx?act=getactivityitem&isradio=0&aid=" + aid + "&query=" + escape(q) + "&catid=" + catid + "&p=" + pagenow + "&t=" + new Date().getTime();
+            var queryString = "/top/groupbuy/taobaoitemgetactivity.aspx?act=getactivityitem&isradio=0&aid=" + aid + "&query=" + escape(q) + "&catid=" + catid + "&p=" + pagenow + "&t=" + new Date().getTime();
             xmlHttp.open("GET", queryString);
             xmlHttp.onreadystatechange = handleStateChange;
             xmlHttp.send(null);
