@@ -321,15 +321,18 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
             Response.Write("<br>");
             long totalPage = (product.TotalResults % pageSizeNow == 0) ? (product.TotalResults / pageSizeNow) : (product.TotalResults / pageSizeNow + 1);
             //输出分页HTML
+            string ss = string.Empty;
             for (int i = 1; i <= totalPage; i++)
             {
                 if (page == i.ToString())
                 {
+                    ss += i.ToString() + " ";
                     Response.Write(i.ToString() + " ");
                 }
                 else
                 {
-                    Response.Write("<a href=\"javascript:spreadStat(" + i.ToString() + ")\">[" + i.ToString() + "]</a> ");
+                    ss +=" <a href=\"javascript:spreadStat(" + i.ToString() + ")\">[" + i.ToString() + "]</a> ";
+                    Response.Write(ss);
                 }
             }
         }
