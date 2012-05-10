@@ -61,7 +61,7 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
 
                string str = " <table  width=\"800px;\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"margin:0px; padding:0px\">  <tr><td style=\" width:100px;\"><img width=50px src=" + product.Content[i].PicUrl + "_80x80.jpg></td><td  style=\" width:300px;\"><a   href=\"http://item.taobao.com/item.htm?id=" + product.Content[i].NumIid.ToString() + "\" target=\"_blank\">" + product.Content[i].Title + "</a></td><td  style=\" width:150px;\">" + product.Content[i].Price.ToString() + "</td><td  style=\" width:250px;\">" + tempstr + "</td></tr> </table><hr/>";
                 Response.Write(str);
-               //Response.Write("<input type='checkbox' name='items' id='item_" + product.Content[i].NumIid + "' title='" + product.Content[i].Title.Replace("%", "") + "' value='" + product.Content[i].NumIid + "' onclick=\"SetInitArea(this)\"><label onMouseOver=\"javascript:ddrivetip('<img src=" + product.Content[i].PicUrl + "_80x80.jpg>','#ffffff',100)\" onMouseOut=\"hideddrivetip()\" for='item_" + product.Content[i].NumIid + "'>" + product.Content[i].Title.Replace("%", "") + "</label><br>");
+
 
             }
             Response.Write("<br>");
@@ -78,6 +78,7 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                     Response.Write("<a href=\"javascript:spreadStat(" + i.ToString() + ")\">[" + i.ToString() + "]</a> ");
                 }
             }
+            Response.End();
         }
         else if (act == "getCat")
         {
@@ -321,18 +322,16 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
             Response.Write("<br>");
             long totalPage = (product.TotalResults % pageSizeNow == 0) ? (product.TotalResults / pageSizeNow) : (product.TotalResults / pageSizeNow + 1);
             //输出分页HTML
-            string ss = string.Empty;
+
             for (int i = 1; i <= totalPage; i++)
             {
                 if (page == i.ToString())
                 {
-                    ss += i.ToString() + " ";
                     Response.Write(i.ToString() + " ");
                 }
                 else
                 {
-                    ss +=" <a href=\"javascript:spreadStat(" + i.ToString() + ")\">[" + i.ToString() + "]</a> ";
-                    Response.Write(ss);
+                    Response.Write("<a href=\"javascript:spreadStat(" + i.ToString() + ")\">[" + i.ToString() + "]</a> ");
                 }
             }
         }
