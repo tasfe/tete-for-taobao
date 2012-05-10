@@ -198,7 +198,7 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
                                 startDate = DateTime.Parse(dt.Rows[i]["startDate"].ToString()).ToString("yyyy-MM-dd hh:mm:ss");
                                 endDate = DateTime.Parse(dt.Rows[i]["endDate"].ToString()).ToString("yyyy-MM-dd hh:mm:ss");
                                 itemType = dt.Rows[i]["itemType"].ToString();
-                                Response.Write(itemType + discountType);
+              
                                 if (itemType.Trim() != "same")
                                 {
                                     itemType = "";
@@ -212,6 +212,7 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
                                     Detailtype.Value = "1";
                                 }
                                 discountType = dt.Rows[i]["discountType"].ToString();
+                                Response.Write(itemType + discountType);
                                 if (discountType.Trim() != "DISCOUNT")
                                 {
                                     discountType = "";
