@@ -7,7 +7,7 @@
     <title></title>
     <link href="http://qijia.7fshop.com/detail/global.css" rel="stylesheet" />
 </head>
-<body style="margin:0px; padding:0px;">
+<body style="margin:12px; padding:0px;">
     <form id="form1" runat="server">
     <div>
     <img src="template1.gif" /><br />

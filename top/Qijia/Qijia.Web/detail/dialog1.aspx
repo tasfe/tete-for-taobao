@@ -1,11 +1,11 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="dialog1.aspx.cs" Inherits="Web_detail_dialog1" %>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head runat="server">
     <title></title>
     <link href="http://qijia.7fshop.com/detail/global.css" rel="stylesheet" />
 </head>
-<body style="margin:0px; padding:0px;">
+<body style="margin:12px; padding:0px;">
     <form id="form1" runat="server">
     <div style="height:500px;font-family: tahoma, Arial, Helvetica, Verdana, '微软雅黑';">
     
@@ -39,7 +39,7 @@
 
 </td>
 <td align="left" valign="top">
-效果图：<br />
+<strong>效果图：</strong><br />
 <img src="tip.gif" />
 </td>
 </tr>
@@ -50,53 +50,53 @@
 <table width="100%" style="font-size:12px; color:#555;">
 <tr>
 <td valign="top" width="500">
-请输入商品属性：<br />
+<strong>请输入商品属性：</strong><br />
 <input name="text111" value="NO" type="hidden" />
-【商品编号】：
+【　商品编号　】：
 <input name="text121" value="" /><br />
 
 <input name="property1" value="【产品品牌】" type="hidden" />
-【产品品牌】：
+【　产品品牌　】：
 <input name="property2" value="" /><br />
 
 <input name="property3" value="【产品名称】" type="hidden" />
-【产品名称】：
+【　产品名称　】：
 <input name="property4" value="" /><br />
 
 <input name="property5" value="【材质】" type="hidden" />
-【材质】：
+【　材质　】：
 <input name="property6" value="" /><br />
 
 <input name="property7" value="【规格】" type="hidden" />
-【规格】：
+【　规格　】：
 <input name="property8" value="" /><br />
 
 <input name="property9" value="【图层工艺】" type="hidden" />
-【图层工艺】：
+【　图层工艺　】：
 <input name="property10" value="" /><br />
 
 <input name="property11" value="【适用范围】" type="hidden" />
-【适用范围】：
+【　适用范围　】：
 <input name="property12" value="" /><br />
 
 <input name="property13" value="【计价单位】" type="hidden" />
-【计价单位】：
+【　计价单位　】：
 <input name="property14" value="" /><br />
 
 <input name="property15" value="【产地】" type="hidden" />
-【产地】：
+【　产地　】：
 <input name="property16" value="" /><br />
 
 <input name="property17" value="【是否带不干胶】" type="hidden" />
-【是否带不干胶】：
+【　是否带不干胶　】：
 <input name="property18" value="" /><br />
 
 <input name="property19" value="【产品介绍】" type="hidden" />
-【产品介绍】：
+【　产品介绍　】：
 <input name="property20" value="" /><br /><br /><br />
 </td>
 <td align="left" valign="top">
-效果图：<br />
+<strong>效果图：</strong><br />
 <img src="tip1.gif" />
 </td>
 </tr>
@@ -105,7 +105,7 @@
 <table width="100%" style="font-size:12px; color:#555;">
 <tr>
 <td valign="top" width="500">
-请输入长度属性：<br />
+<strong>请输入长度属性：</strong><br />
 <input name="text1" value="text1" type="hidden" />
 【文字1】：
 <input name="text2" value="" /><br />
@@ -128,7 +128,7 @@
 
 </td>
 <td align="left" valign="top">
-效果图：<br />
+<strong>效果图：</strong><br />
 <img src="tip2.gif" />
 </td>
 </tr>
@@ -141,11 +141,11 @@
 <td valign="top" width="500">
 <input name="text11" value="text6" type="hidden" />
 【文字6】：
-<textarea name="text12" value="" rows="4" cols="26"></textarea><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(不超过50个字符)<br /><br />
+<textarea name="text12" value="" rows="4" cols="26"></textarea><br /><b>(不超过50个字符)</b><br /><br />
 
 <input name="text13" value="text7" type="hidden" />
 【文字7】：
-<textarea name="text14" value="" rows="4" cols="26" ></textarea><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(不超过50个字符)
+<textarea name="text14" value="" rows="4" cols="26" ></textarea><br /><b>(不超过50个字符)</b>
 </td>
 <td align="left" valign="top">
 <img src="tip6.gif" />
