@@ -11,7 +11,7 @@
     <form id="form1" runat="server">
     <div>
     <img src="template1.gif" /><br />
-<input type="button" value="选择此模板" id="a3b6283d-ac07-4bc4-9d68-c64ab09a4903" onclick="selectTemplate(this)">
+<input type="button" style="background:url(btn_01.jpg) no-repeat; width:116px; height:29px; border:0;margin-left:40px; margin-top:10px; cursor:pointer" id="a3b6283d-ac07-4bc4-9d68-c64ab09a4903" onclick="selectTemplate(this)">
 
 <script>
     function selectTemplate(obj) {
