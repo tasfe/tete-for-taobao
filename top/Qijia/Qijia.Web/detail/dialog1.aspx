@@ -5,9 +5,8 @@
     <title></title>
     <link href="http://qijia.7fshop.com/detail/global.css" rel="stylesheet" />
 </head>
-<body>
+<body style="margin:0px; padding:0px;">
     <form id="form1" runat="server">
-    <div>
     <div style="height:500px;font-family: tahoma, Arial, Helvetica, Verdana, '微软雅黑';">
     
 <table width="100%" style="line-height:24px; color:#555; font-size:12px;">
@@ -171,7 +170,6 @@
 <input type="button" value="" style="width:90px; height:40px; background:url(btn_03.jpg) no-repeat;border:0; cursor:pointer" />
 
 </div>
-    </div>
     </form>
 </body>
 </html>
