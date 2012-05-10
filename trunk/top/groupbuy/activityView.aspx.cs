@@ -200,14 +200,14 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
                                 itemType = dt.Rows[i]["itemType"].ToString();
                                 if (itemType != "same")
                                 {
-                                    itemType = "";
-                                    itemTypeStr = "checked";
+                                    itemType = "checked";
+                                    itemTypeStr = "";
                                     Detailtype.Value = "2";
                                 }
                                 else
                                 {
-                                    itemType = "checked";
-                                    itemTypeStr = "";
+                                    itemType = "";
+                                    itemTypeStr = "checked";
                                     Detailtype.Value = "1";
                                 }
                                 discountType = dt.Rows[i]["discountType"].ToString();
