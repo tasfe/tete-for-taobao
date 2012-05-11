@@ -41,7 +41,7 @@ public partial class top_groupbuy_activityadd : System.Web.UI.Page
         if (Request.Form["act"] == "post")
         {
             string name= Request.Form["name"].ToString();
-            string memo= Request.Form["memo"].ToString();
+            string memo= "";
             string startDate=Request.Form["startDate"].ToString();
             string endDate=Request.Form["endDate"].ToString();
             string itemType=Request.Form["itemType"].ToString();
