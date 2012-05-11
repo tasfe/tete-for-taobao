@@ -228,7 +228,7 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                     discountValue = dtNew2.Rows[0]["discountValue"].ToString();
                     discountType = dtNew2.Rows[0]["discountType"].ToString();
                     price2 = product.Content[i].Price;
-                    hdstr = "<div id=\"del" + product.Content[i].NumIid.ToString() + "\">已参加活动:" + dt33.Rows[0]["name"].ToString() + " <br><a href=\"javascript:delItemAction(" + product.Content[i].NumIid.ToString() + ")\">删除此促销活动</a></div> <div style=\"display:none\" id=\"add" + product.Content[i].NumIid.ToString() + "\"><a href=\"javascript:addItemAction(" + product.Content[i].NumIid.ToString() + ")\">参加活动</a></div> ";
+                    hdstr = "<div id=\"del" + product.Content[i].NumIid.ToString() + "\">已参加活动:" + dtNew2.Rows[0]["name"].ToString() + " <br><a href=\"javascript:delItemAction(" + product.Content[i].NumIid.ToString() + ")\">删除此促销活动</a></div> <div style=\"display:none\" id=\"add" + product.Content[i].NumIid.ToString() + "\"><a href=\"javascript:addItemAction(" + product.Content[i].NumIid.ToString() + ")\">参加活动</a></div> ";
 
                     if (discountType.Trim() == "DISCOUNT")
                     {

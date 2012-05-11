@@ -38,13 +38,13 @@
 					<input id="actionName" name="name" value="" type="text" style="width:80px;"/> 2到5个字符，支持中文、字母、数字、下划线。
 				</td>
 			</tr>
-			<tr>
+			<!--<tr>
 				<th class="required">活动备注：</th>
 				<td style="">
 					<input id="actionMemo" name="memo" value="" type="text" style="width:165px;"/>
 					不显示在商品页面中，可不填，最多输入10个字符。
 				</td>
-			</tr>
+			</tr>-->
 			<tr>
 				<th class="required">活动开始时间：</th>
 				<td id="startDateId">
