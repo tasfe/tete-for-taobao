@@ -272,6 +272,7 @@
                 for(var i=0;i<obj.length;i++){
                     if(obj[i].name.indexOf("property") != -1){
                         index++;
+                        
                     }
                 }
             }
@@ -298,7 +299,7 @@
 
 
         
-        InitPropertyText(<%=property %>);
+        InitPropertyText('<%=property %>');
     </script>
 
 </body>
