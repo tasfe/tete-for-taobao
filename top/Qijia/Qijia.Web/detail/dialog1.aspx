@@ -7,6 +7,11 @@
 </head>
 <body style="margin:12px; padding:0px;">
     <form id="form1" runat="server">
+
+    <div style="width:866px; height:750px; background-color:#ccc;">
+        图片上传中，请您稍等...
+    </div>
+
     <div style="height:500px;font-family: tahoma, Arial, Helvetica, Verdana, '微软雅黑';">
     
 <table width="100%" style="line-height:24px; color:#555; font-size:12px;">
@@ -167,10 +172,17 @@
 </tr>
 </table>
 
-        <asp:Button ID="Button1" runat="server" Text=""  style="width:120px; height:40px; background:url(btn_02.jpg) no-repeat;border:0; cursor:pointer; margin-right:40px; margin-left:230px;" onclick="Button1_Click"  />
-<input type="button" value="" style="width:90px; height:40px; background:url(btn_03.jpg) no-repeat;border:0; cursor:pointer" />
+        <asp:Button ID="Button1" runat="server" Text=""  style="width:120px; height:40px; background:url(btn_02.jpg) no-repeat;border:0; cursor:pointer; margin-right:40px; margin-left:230px;" onclick="Button1_Click" OnClientClick="ShowUpload()"  />
+<input type="button" value="" style="width:90px; height:40px; background:url(btn_03.jpg) no-repeat;border:0; cursor:pointer; display:none" />
 
 </div>
     </form>
+
+    <script language="javascript">
+        function ShowUpload() { 
+            
+        }
+    </script>
+
 </body>
 </html>
