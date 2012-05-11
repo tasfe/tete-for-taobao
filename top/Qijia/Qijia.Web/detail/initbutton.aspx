@@ -6,7 +6,7 @@ str += '<div id="showArea" style="display:none; position:absolute; top:1083px; l
 document.write(str);
 
 
- 
+
 function showTeteDialog(event){
 if(navigator.userAgent.indexOf("MSIE")>0) {
 	teteheight = event.clientY + document.documentElement.scrollTop;
@@ -23,9 +23,10 @@ function CloseShowWindow(){
 }
 
 
-function setContentTete(aa){
+function setContentTete(aa, id){
 	document.getElementById("showArea").style.display = "none";
-    setContent(aa);
+    alert(id);
+    setContent(aa, id);
 }
 
 

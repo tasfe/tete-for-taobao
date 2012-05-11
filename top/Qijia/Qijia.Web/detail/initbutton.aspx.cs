@@ -13,7 +13,7 @@ public partial class Web_detail_initbutton : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        id = Request.QueryString["itemid"] == null ? "0" : Request.QueryString["itemid"].ToString();
+        id = Request.QueryString["itemid"] == null ? Guid.NewGuid().ToString() : Request.QueryString["itemid"].ToString();
         nick = Request.QueryString["nick"] == null ? "0" : Request.QueryString["nick"].ToString();
         tplid = Request.QueryString["tplid"] == null ? "0" : Request.QueryString["tplid"].ToString();
     }
