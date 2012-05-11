@@ -25,7 +25,6 @@ function CloseShowWindow(){
 
 function setContentTete(aa, id){
 	document.getElementById("showArea").style.display = "none";
-    alert(id);
     setContent(aa, id);
 }
 
