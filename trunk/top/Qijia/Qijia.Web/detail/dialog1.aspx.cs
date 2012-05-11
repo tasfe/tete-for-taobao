@@ -93,15 +93,15 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         UploadFileCommon(FileUpload6, "{item6}", dateName);
     }
 
-    private void UploadFileCommon(FileUpload FileUpload1, string tag, string dateName)
+    private void UploadFileCommon(FileUpload fileUpload1, string tag, string dateName)
     {
         string url = "http://qijia.7fshop.com/detail/";
 
-        if (CheckFileIsSave(FileUpload1))
+        if (CheckFileIsSave(fileUpload1))
         {
             Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
             string picName = dateName + "/" + Guid.NewGuid() + ".jpg";
-            this.FileUpload1.PostedFile.SaveAs(Server.MapPath(picName));
+            fileUpload1.PostedFile.SaveAs(Server.MapPath(picName));
             imgCus.JiaImg = url + picName;
             imgCus.ItemId = id;
             imgCus.Tag = tag;
