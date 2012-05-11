@@ -25,15 +25,15 @@
 
 <br />
 【商品图片1】：
-<div id="addFileUpload1">
+<span id="addFileUpload1">
     <asp:FileUpload ID="FileUpload1" runat="server" /> 
     <input id="returnFileUpload1" type="button" style="display:none;" value="返回" onclick="ShowViewArea('FileUpload1')" /> 
-</div> 
+</span> 
 
-<div id="modifyFileUpload1" style="display:none;"> 
+<span id="modifyFileUpload1" style="display:none;"> 
     <a href='<%=item1 %>' target="_blank">点击查看图片</a> 
     <input type="button" value="更改图片" onclick="ShowUploadButton('FileUpload1')" /> 
-</div> 
+</span> 
 
 <br />
 <span>第1张大图，图片尺寸720*583</span><br /><br />
