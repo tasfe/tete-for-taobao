@@ -196,13 +196,13 @@
 
         function ShowUploadButton(id) {
             document.getElementById("add" + id).style.display = "";
-            document.getElementById("view" + id).style.display = "none";
+            document.getElementById("modify" + id).style.display = "none";
             document.getElementById("return" + id).style.display = "";
         }
 
         function ShowViewArea(id) {
             document.getElementById("add" + id).style.display = "none";
-            document.getElementById("view" + id).style.display = "";
+            document.getElementById("modify" + id).style.display = "";
         }
 
         if ('<%=item1 %>' != '') {
