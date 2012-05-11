@@ -90,13 +90,13 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
     private string GetRight(string p)
     {
         string[] ary = p.Split(':');
-        if (ary.Length > 0)
+        if (ary.Length > 1)
         {
             return ary[1];
         }
         else
         {
-            return ary[1];
+            return "";
         }
     }
 

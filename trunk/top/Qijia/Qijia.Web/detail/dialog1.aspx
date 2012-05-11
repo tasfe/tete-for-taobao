@@ -263,8 +263,10 @@
             document.getElementById("modify" + id).style.display = "";
         }
 
-        function InitPropertyText(str){
+        function InitPropertyText(str) {
             var index = 0;
+            var indexAry = 0;
+            var strArray = str.split("|");
             if(str.length == 0){
                 return;
             }else{
@@ -272,7 +274,10 @@
                 for(var i=0;i<obj.length;i++){
                     if(obj[i].name.indexOf("property") != -1){
                         index++;
-                        
+                        if (index % 2 == 0) {
+                            obj[i].value = strArray[indexAry];
+                            indexAry++;
+                        }
                     }
                 }
             }
