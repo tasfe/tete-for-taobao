@@ -216,11 +216,11 @@
 <td valign="top" width="500">
 <input name="text11" value="text6" type="hidden" />
 【文字6】：
-<textarea name="text12" value="" rows="4" cols="26"></textarea><br /><b>(不超过50个字符)</b><br /><br />
+<textarea id="text1" name="text12" value="" rows="4" cols="26"></textarea><br /><b>(不超过50个字符)</b><br /><br />
 
 <input name="text13" value="text7" type="hidden" />
 【文字7】：
-<textarea name="text14" value="" rows="4" cols="26" ></textarea><br /><b>(不超过50个字符)</b>
+<textarea id="text2" name="text14" value="" rows="4" cols="26" ></textarea><br /><b>(不超过50个字符)</b>
 </td>
 <td align="left" valign="top">
 <img src="tip6.gif" />
@@ -281,6 +281,11 @@
                     }
                 }
             }
+
+            if (tag == 'text') {
+                document.getElementById("text1").value = strArray[5];
+                document.getElementById("text2").value = strArray[6];
+            }
         }
 
         if ('<%=item1 %>' != '') {
@@ -301,8 +306,6 @@
         if ('<%=item6 %>' != '') {
             ShowViewArea('FileUpload6');
         }
-
-
 
         InitPropertyText('<%=property %>','property');
         InitPropertyText('<%=property %>','text');
