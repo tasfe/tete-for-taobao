@@ -263,6 +263,20 @@
             document.getElementById("modify" + id).style.display = "";
         }
 
+        function InitPropertyText(str){
+            var index = 0;
+            if(str.length == 0){
+                return;
+            }else{
+                var obj = document.getElementsByTagName("input");
+                for(var i=0;i<obj.length;i++){
+                    if(obj[i].name.indexOf("property") != -1){
+                        index++;
+                    }
+                }
+            }
+        }
+
         if ('<%=item1 %>' != '') {
             ShowViewArea('FileUpload1');
         }
@@ -282,6 +296,9 @@
             ShowViewArea('FileUpload6');
         }
 
+
+        
+        InitPropertyText(<%=property %>);
     </script>
 
 </body>
