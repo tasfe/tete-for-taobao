@@ -75,19 +75,29 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         string[] chars = Regex.Split(propertyText, "{,}");
         for (int i = 0; i < chars.Length;i++ )
         {
-            if (i % 2 == 1)
+            if (i == 0)
             {
-                if (i == 1)
-                {
-                    newStr = chars[i];
-                }
-                else
-                {
-                    newStr += "|" + chars[i];
-                }
+                newStr = GetRight(chars[i]);
+            }
+            else
+            {
+                newStr += "|" + GetRight(chars[i]);
             }
         }
         return newStr;
+    }
+
+    private string GetRight(string p)
+    {
+        string[] ary = p.Split(':');
+        if (ary.Length > 1)
+        {
+            return ary[1];
+        }
+        else
+        {
+            return "";
+        }
     }
 
     private string GetImgByTag(string id, string tag)
