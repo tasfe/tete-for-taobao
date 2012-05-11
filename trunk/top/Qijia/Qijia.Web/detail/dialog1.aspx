@@ -263,7 +263,7 @@
             document.getElementById("modify" + id).style.display = "";
         }
 
-        function InitPropertyText(str) {
+        function InitPropertyText(str, tag) {
             var index = 0;
             var indexAry = 0;
             var strArray = str.split("|");
@@ -272,7 +272,7 @@
             }else{
                 var obj = document.getElementsByTagName("input");
                 for(var i=0;i<obj.length;i++){
-                    if(obj[i].name.indexOf("property") != -1){
+                    if (obj[i].name.indexOf(tag) != -1) {
                         index++;
                         if (index % 2 == 0) {
                             obj[i].value = strArray[indexAry];
@@ -303,8 +303,9 @@
         }
 
 
-        
-        InitPropertyText('<%=property %>');
+
+        InitPropertyText('<%=property %>','property');
+        InitPropertyText('<%=property %>','text');
     </script>
 
 </body>
