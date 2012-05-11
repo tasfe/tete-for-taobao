@@ -51,8 +51,12 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
         hdID = Request.Form["hdID"].ToString();//活动ID
         baoy = Request.Form["baoy"].ToString();
 
- 
 
+        if (Request.Form["productid"] == null || Request.Form["productid"].ToString() == "")
+        {
+            Response.Write("该活动没有促销宝贝，请先添加促销宝贝，再创建促销模板！");
+            Response.End();
+        }
         productid = Request.Form["productid"].ToString();
         price = Request.Form["price"].ToString();
         zhekou = Request.Form["zhekou"].ToString();
@@ -236,7 +240,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt == null||dt.Rows.Count<1)
         {
-            Response.Write("数据为空");
+            Response.Write("该活动没有促销宝贝，请先添加促销宝贝，再创建促销模板！");
             Response.End();
         }
         string templatehtmlUrl = "tpl/stylenew1.html";//默认模板

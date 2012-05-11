@@ -70,6 +70,7 @@ public partial class top_groupbuy_activitygetitem : System.Web.UI.Page
             }
             else if (activitystatusstr == "2")
             {
+                addactivity = "   <a href=\"activityList.aspx\">返回活动列表</a>";
                 activitystatusstr = dt3.Rows[0]["Name"].ToString() + "   活动已结束";
             }
             else if (activitystatusstr == "3")
@@ -78,6 +79,7 @@ public partial class top_groupbuy_activitygetitem : System.Web.UI.Page
             }
             else
             {
+                addactivity = "   <a href=\"activityList.aspx\">返回活动列表</a>";
                 activitystatusstr = dt3.Rows[0]["Name"].ToString() + "   活动已删除";
             }
             activityitemTypestr = dt3.Rows[0]["itemType"].ToString();

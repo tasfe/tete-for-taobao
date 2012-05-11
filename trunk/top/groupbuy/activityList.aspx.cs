@@ -59,6 +59,25 @@ public partial class top_groupbuy_activityList : System.Web.UI.Page
     }
 
     /// <summary>
+    /// 输出添加促销宝贝html
+    /// </summary>
+    /// <param name="enddate">活动结束时间</param>
+    /// <returns></returns>
+    public string outShowaddaction(string enddate,string id)
+    {
+        string htmls=string.Empty;
+        if (DateTime.Parse(enddate) < DateTime.Now)
+        {
+            htmls = "活动已结束";
+        }
+        else
+        {
+            htmls = "<a href=\"activitytaobaoItem.aspx?activityID="+id+"\">添加促销宝贝</a>";
+        }
+        return htmls;
+    }
+
+    /// <summary>
     /// 输出HTML
     /// </summary>
     /// <param name="status">0:未开始，1:进行中，2：已结束，3已暂停</param>

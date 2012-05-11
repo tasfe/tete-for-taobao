@@ -84,7 +84,9 @@
                                     <td><%# Eval("itemType").ToString() != "same" ? "不同促销形式" : Eval("discountType").ToString() == "DISCOUNT"?"打折":"减价"%></td>
                                     <td><%# Eval("itemType").ToString() != "same" ? "不同促销力度" : Eval("discountType").ToString() == "DISCOUNT" ? Eval("discountValue").ToString() + "折" : Eval("discountValue").ToString() + "元"%></td>
                                     <td><%#Eval("tagId").ToString() == "1" ? "全网淘宝用户" : "全网淘宝用户"%></td>
-                                    <td><a href="activitytaobaoItem.aspx?activityID=<%#  Eval("ID").ToString() %>">添加促销宝贝</a>  </td>
+                                    <td>
+                                    <%#outShowaddaction(Eval("endDate").ToString(), Eval("ID").ToString())%>
+                                    <%--<a href="activitytaobaoItem.aspx?activityID=<%#  Eval("ID").ToString() %>">添加促销宝贝</a>--%>  </td>
                                     <td><a href="activitygetitem.aspx?activityID=<%#  Eval("ID").ToString() %>">管理促销宝贝</a>   </td>
                                     <td>
                                        <%# outShowHtml(Eval("Status").ToString(), Eval("ID").ToString()) %>
