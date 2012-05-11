@@ -13,7 +13,8 @@
         订购成功，您的服务到期时间是<asp:Label ID="lbEndDate" runat="server"></asp:Label>   
         <a href='fuwuLoglist.aspx?nick=<%=nickurl %>'>查看订购日志</a><br /><br />
         <asp:Button ID="Button1" runat="server" Text="立即使用" Height="45px" 
-            onclick="Button1_Click" Width="135px" />
+            onclick="Button1_Click" Width="135px" /><br />
+            <asp:Label ID="Label1" runat="server"></asp:Label>
     </div>
     </form>
 </body>
