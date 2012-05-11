@@ -9,6 +9,7 @@ using Qijia.DAL;
 using Qijia.Model;
 using DBHelp;
 using System.Data;
+using System.Text.RegularExpressions;
 
 public partial class Web_detail_dialog1 : System.Web.UI.Page
 {
@@ -27,6 +28,8 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
     public string item4 = string.Empty;
     public string item5 = string.Empty;
     public string item6 = string.Empty;
+    public string property = string.Empty;
+    public string text = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -49,8 +52,43 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         item4 = GetImgByTag(id, "{item4}");
         item5 = GetImgByTag(id, "{item5}");
         item6 = GetImgByTag(id, "{item6}");
+
+        //商品属性绑定
+        string sql = "SELECT * FROM Jia_Item WHERE ItemId = '" + id + "'";
+        DataTable dt = DBHelper.ExecuteDataTable(sql);
+        if (dt.Rows.Count != 0)
+        {
+            property = CreateProperty(dt.Rows[0]["propertyText"].ToString());
+            text = CreateProperty(dt.Rows[0]["charText"].ToString());
+        }
     }
 
+    private string CreateProperty(string str)
+    {
+        if (str.Length == 0)
+        {
+            return "";
+        }
+
+        string newStr = string.Empty;
+        string propertyText = str.Substring(1, str.Length - 2); //剔除{}
+        string[] chars = Regex.Split(propertyText, "{,}");
+        for (int i = 0; i < chars.Length;i++ )
+        {
+            if (i % 2 == 1)
+            {
+                if (i == 1)
+                {
+                    newStr = chars[i];
+                }
+                else
+                {
+                    newStr += "|" + chars[i];
+                }
+            }
+        }
+        return newStr;
+    }
 
     private string GetImgByTag(string id, string tag)
     {
