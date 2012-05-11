@@ -96,7 +96,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         }
         else
         {
-            return "";
+            return ary[1];
         }
     }
 
