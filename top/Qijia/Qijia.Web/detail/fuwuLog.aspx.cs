@@ -31,6 +31,13 @@ public partial class detail_fuwuLog : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        Response.Redirect("dialog.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&nickid=" + nickid + "&id=" + id);
+        if (id == "0")
+        {
+            this.Label1.Text = "您可以在发布商品时使用我们的生成宝贝描述模板功能！";
+        }
+        else
+        {
+            Response.Redirect("dialog.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&nickid=" + nickid + "&id=" + id);
+        }
     }
 }
