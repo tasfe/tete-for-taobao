@@ -293,8 +293,8 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
                 if (dt.Rows[i]["templetID"].ToString() == "1")
                 {
                     html = File.ReadAllText(Server.MapPath(templatehtmlUrl));
-                    smailtempStr += html;
-                    smailtempStr = tuanhtmlReplace(str, dt.Rows[i]["name"].ToString(), dt.Rows[i]["price"].ToString(), dt.Rows[i]["proprice"].ToString(), dt.Rows[i]["rcount"].ToString(), dt.Rows[i]["producturl"].ToString(), dt.Rows[i]["productimg"].ToString(), id, dt.Rows[0]["templetID"].ToString());
+                    str += html;
+                    str = tuanhtmlReplace(str, dt.Rows[i]["name"].ToString(), dt.Rows[i]["price"].ToString(), dt.Rows[i]["proprice"].ToString(), dt.Rows[i]["rcount"].ToString(), dt.Rows[i]["producturl"].ToString(), dt.Rows[i]["productimg"].ToString(), id, dt.Rows[0]["templetID"].ToString());
                 }
 
             }
