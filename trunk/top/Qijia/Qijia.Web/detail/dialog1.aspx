@@ -8,7 +8,7 @@
 <body style="margin:12px; padding:0px;">
     <form id="form1" runat="server">
 
-    <div style="width:866px; height:750px; background-color:#ccc; position:absolute; top:0px; left:0px;">
+    <div style="width:866px; height:2250px; background-color:#ccc; position:absolute; top:0px; left:0px;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5;opacity: 0.5;">
         图片上传中，请您稍等...
     </div>
 
