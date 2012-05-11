@@ -8,6 +8,7 @@ using Qijia.PCI;
 using Qijia.DAL;
 using Qijia.Model;
 using DBHelp;
+using System.Data;
 
 public partial class Web_detail_dialog1 : System.Web.UI.Page
 {
@@ -68,14 +69,15 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             imgCus.Tag = tag;
             imgCus.Guid = Guid.NewGuid().ToString();
 
-            string sql = "SELECT COUNT(*) FROM Jia_ImgCustomer WHERE ItemId = '" + id + "' AND tag = '" + tag + "'";
-            string count = DBHelper.ExecuteDataTable(sql).Rows[0][0].ToString();
-            if (count == "0")
+            string sql = "SELECT * FROM Jia_ImgCustomer WHERE ItemId = '" + id + "' AND tag = '" + tag + "'";
+            DataTable dt = DBHelper.ExecuteDataTable(sql);
+            if (dt.Rows.Count == 0)
             {
                 icDal.AddJia_ImgCustomer(imgCus);
             }
             else
             {
+                imgCus.Guid = dt.Rows[0]["guid"].ToString();
                 icDal.ModifyJia_ImgCustomer(imgCus);
             }
         }
