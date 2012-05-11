@@ -16,7 +16,7 @@ public partial class detail_changeitemid : System.Web.UI.Page
         string sql = "UPDATE Jia_ImgCustomer SET itemid = '" + itemid + "' WHERE itemid = '" + tempid + "'";
         DBHelper.ExecuteNonQuery(sql);
 
-        sql = "UPDATE Jia_ImgCustomer SET itemid = '" + itemid + "' WHERE itemid = '" + tempid + "'";
+        sql = "UPDATE Jia_Item SET itemid = '" + itemid + "' WHERE itemid = '" + tempid + "'";
         DBHelper.ExecuteNonQuery(sql);
 
         Response.Write("ok");
