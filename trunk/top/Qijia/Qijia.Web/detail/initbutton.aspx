@@ -14,7 +14,7 @@ if(navigator.userAgent.indexOf("MSIE")>0) {
 	teteheight = event.clientY + document.documentElement.scrollTop;
 }
     document.getElementById("showArea").style.top = teteheight + "px";
-	document.getElementById("showFrame").src = "http://qijia.7fshop.com/detail/dialog.aspx?nick=<%=nick %>&id=<%=id %>";
+	document.getElementById("showFrame").src = "http://qijia.7fshop.com/detail/dialog.aspx?nick=<%=nick %>&nickid=<%=nickid %>&id=<%=id %>";
 	document.getElementById("showArea").style.display = "";
 }
 
