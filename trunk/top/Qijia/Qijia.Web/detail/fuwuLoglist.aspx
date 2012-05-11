@@ -33,8 +33,8 @@
         </table>
         
         <br /><br />
-        <asp:Button ID="Button1" runat="server" Text="返回" Height="45px" Width="135px" OnClientClick="javascript:history.go(-1)" />
-    </div>
+        <input type="button" value="返回" style="height:45px; width:135px;" onclick="history.go(-1)" />
+     </div>
     </form>
 </body>
 </html>
