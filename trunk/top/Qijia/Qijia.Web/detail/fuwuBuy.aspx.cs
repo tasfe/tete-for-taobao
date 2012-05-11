@@ -19,6 +19,14 @@ public partial class detail_fuwuBuy : System.Web.UI.Page
         nickid = Request.QueryString["nickid"] == null ? "" : Request.QueryString["nickid"].ToString();
         //默认订购天数
         day = "15";
+
+        //如果已经订购而且正常使用则直接跳转到日志页面
+        string sql = "SELECT COUNT(*) FROM Jia_Shop WHERE nick = '" + nick + "' AND isexpired = 0";
+        string count = DBHelper.ExecuteDataTable(sql).Rows[0][0].ToString();
+        if (count != "0")
+        {
+            Response.Redirect("fuwuLog.aspx?nick=" + HttpUtility.UrlEncode(nick));
+        }
     }
 
     protected void Button1_Click(object sender, EventArgs e)
