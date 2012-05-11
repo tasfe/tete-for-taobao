@@ -92,7 +92,7 @@
 " border="0" /></a>
         </td>
         <td width="108" align="center">
-        	<a href="http://fuwu.taobao.com/serv/detail.htm?service_id=415&ref=zxb" title="库存宝 " target="_blank"><img src="http://img01.taobaocdn.com/top/i1/T10oJ8XcXFXXaCwpjX.png" border="0" /></a>
+        	<a href="http://fuwu.taobao.com/serv/detail.htm?service_id=23005&tracelog=other_serv" title="滞销宝" target="_blank"><img src="http://img02.taobaocdn.com/imgextra/i2/665301569/T2OSGFXiFXXXXXXXXX_!!665301569.jpg" border="0" /></a>
         </td>
         <td width="108" align="center">
         	<a href="http://fuwu.taobao.com/serv/detail.htm?service_id=12938#teteyx" title="起赛推广" target="_blank"><img src="http://img01.taobaocdn.com/top/i1/T1FpakXd8XXXb1upjX.jpg" border="0" /></a>
