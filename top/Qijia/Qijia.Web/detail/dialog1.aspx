@@ -308,7 +308,7 @@
         }
 
         InitPropertyText('<%=property %>','property');
-        InitPropertyText('<%=property %>','text');
+        InitPropertyText('<%=text %>','text');
     </script>
 
 </body>
