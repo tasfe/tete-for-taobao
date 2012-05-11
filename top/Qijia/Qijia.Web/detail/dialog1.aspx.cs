@@ -21,11 +21,49 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
     public string nick = string.Empty;
     public string tplid = string.Empty;
 
+    public string item1 = string.Empty;
+    public string item2 = string.Empty;
+    public string item3 = string.Empty;
+    public string item4 = string.Empty;
+    public string item5 = string.Empty;
+    public string item6 = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         id = Request.QueryString["id"] == null ? "0" : Request.QueryString["id"].ToString();
         nick = Request.QueryString["nick"] == null ? "0" : Request.QueryString["nick"].ToString();
         tplid = Request.QueryString["tplid"] == null ? "0" : Request.QueryString["tplid"].ToString();
+
+        BindData();
+    }
+
+    /// <summary>
+    /// 数据绑定
+    /// </summary>
+    private void BindData()
+    {
+        //获取图片地址，如果已经传过的
+        item1 = GetImgByTag(id, "{item1}");
+        item2 = GetImgByTag(id, "{item2}");
+        item3 = GetImgByTag(id, "{item3}");
+        item4 = GetImgByTag(id, "{item4}");
+        item5 = GetImgByTag(id, "{item5}");
+        item6 = GetImgByTag(id, "{item6}");
+    }
+
+
+    private string GetImgByTag(string id, string tag)
+    {
+        string sql = "SELECT * FROM Jia_ImgCustomer WHERE ItemId = '" + id + "' AND tag = '" + tag + "'";
+        DataTable dt = DBHelper.ExecuteDataTable(sql);
+        if (dt.Rows.Count != 0)
+        {
+            return dt.Rows[0]["JiaImg"].ToString();
+        }
+        else
+        {
+            return "";
+        }
     }
 
     /// <summary>

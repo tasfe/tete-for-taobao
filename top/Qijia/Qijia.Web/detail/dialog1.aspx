@@ -24,7 +24,18 @@
 </div>
 
 <br />
-【商品图片1】：<asp:FileUpload ID="FileUpload1" runat="server" /><br />
+【商品图片1】：
+<div id="addFileUpload1">
+    <asp:FileUpload ID="FileUpload1" runat="server" /> 
+    <input id="returnFileUpload1" type="button" style="display:none;" value="返回" onclick="ShowViewArea('FileUpload1')" /> 
+</div> 
+
+<div id="modifyFileUpload1" style="display:none;"> 
+    <a href='<%=item1 %>' target="_blank">点击查看图片</a> 
+    <input type="button" value="更改图片" onclick="ShowUploadButton('FileUpload1')" /> 
+</div> 
+
+<br />
 <span>第1张大图，图片尺寸720*583</span><br /><br />
 
 【商品图片2】：<asp:FileUpload ID="FileUpload2" runat="server" /><br />
@@ -178,10 +189,41 @@
 </div>
     </form>
 
-    <script language="javascript">
+    <script language="javascript" type="text/javascript">
         function ShowUpload() {
             document.getElementById("alphaArea").style.display = "";
         }
+
+        function ShowUploadButton(id) {
+            document.getElementById("add" + id).style.display = "";
+            document.getElementById("view" + id).style.display = "none";
+            document.getElementById("return" + id).style.display = "";
+        }
+
+        function ShowViewArea(id) {
+            document.getElementById("add" + id).style.display = "none";
+            document.getElementById("view" + id).style.display = "";
+        }
+
+        if ('<%=item1 %>' != '') {
+            ShowViewArea('FileUpload1');
+        }
+        /*if ('<%=item2 %>' != '') {
+            ShowViewArea('FileUpload2');
+        }
+        if ('<%=item3 %>' != '') {
+            ShowViewArea('FileUpload3');
+        }
+        if ('<%=item4 %>' != '') {
+            ShowViewArea('FileUpload4');
+        }
+        if ('<%=item5 %>' != '') {
+            ShowViewArea('FileUpload5');
+        }
+        if ('<%=item6 %>' != '') {
+            ShowViewArea('FileUpload6');
+        }*/
+
     </script>
 
 </body>
