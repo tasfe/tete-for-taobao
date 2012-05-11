@@ -38,19 +38,77 @@
 <br />
 <span>第1张大图，图片尺寸720*583</span><br /><br />
 
-【商品图片2】：<asp:FileUpload ID="FileUpload2" runat="server" /><br />
+【商品图片2】：
+<span id="addFileUpload2">
+    <asp:FileUpload ID="FileUpload2" runat="server" /> 
+    <input id="returnFileUpload2" type="button" style="display:none;" value="返回" onclick="ShowViewArea('FileUpload2')" /> 
+</span> 
+
+<span id="modifyFileUpload2" style="display:none;"> 
+    <a href='<%=item2 %>' target="_blank">点击查看图片</a> 
+    <input type="button" value="更改图片" onclick="ShowUploadButton('FileUpload2')" /> 
+</span> 
+<br />
 <span>商品详情图，图片尺寸324*316</span><br /><br />
 
-【商品图片3】：<asp:FileUpload ID="FileUpload3" runat="server" /><br />
+【商品图片3】：
+
+<span id="addFileUpload3">
+    <asp:FileUpload ID="FileUpload3" runat="server" /> 
+    <input id="returnFileUpload3" type="button" style="display:none;" value="返回" onclick="ShowViewArea('FileUpload3')" /> 
+</span> 
+
+<span id="modifyFileUpload3" style="display:none;"> 
+    <a href='<%=item3 %>' target="_blank">点击查看图片</a> 
+    <input type="button" value="更改图片" onclick="ShowUploadButton('FileUpload3')" /> 
+</span> 
+
+<br />
 <span>第1张局部小图，图片尺寸190*130</span><br /><br />
 
-【商品图片4】：<asp:FileUpload ID="FileUpload4" runat="server" /><br />
+【商品图片4】：
+
+<span id="addFileUpload4">
+    <asp:FileUpload ID="FileUpload4" runat="server" /> 
+    <input id="returnFileUpload4" type="button" style="display:none;" value="返回" onclick="ShowViewArea('FileUpload4')" /> 
+</span> 
+
+<span id="modifyFileUpload4" style="display:none;"> 
+    <a href='<%=item4 %>' target="_blank">点击查看图片</a> 
+    <input type="button" value="更改图片" onclick="ShowUploadButton('FileUpload4')" /> 
+</span> 
+
+<br />
 <span>第1张局部大图，图片尺寸480*310</span><br /><br />
 
-【商品图片5】：<asp:FileUpload ID="FileUpload5" runat="server" /><br />
+【商品图片5】：
+
+<span id="addFileUpload5">
+    <asp:FileUpload ID="FileUpload5" runat="server" /> 
+    <input id="returnFileUpload5" type="button" style="display:none;" value="返回" onclick="ShowViewArea('FileUpload5')" /> 
+</span> 
+
+<span id="modifyFileUpload5" style="display:none;"> 
+    <a href='<%=item5 %>' target="_blank">点击查看图片</a> 
+    <input type="button" value="更改图片" onclick="ShowUploadButton('FileUpload5')" /> 
+</span> 
+
+<br />
 <span>第2张局部小图，图片尺寸190*130</span><br /><br />
 
-【商品图片6】：<asp:FileUpload ID="FileUpload6" runat="server" /><br />
+【商品图片6】：
+
+<span id="addFileUpload6">
+    <asp:FileUpload ID="FileUpload6" runat="server" /> 
+    <input id="returnFileUpload6" type="button" style="display:none;" value="返回" onclick="ShowViewArea('FileUpload6')" /> 
+</span> 
+
+<span id="modifyFileUpload6" style="display:none;"> 
+    <a href='<%=item6 %>' target="_blank">点击查看图片</a> 
+    <input type="button" value="更改图片" onclick="ShowUploadButton('FileUpload6')" /> 
+</span> 
+
+<br />
 <span>第2张局部大图，图片尺寸480*310</span><br /><br />
 
 
@@ -208,7 +266,7 @@
         if ('<%=item1 %>' != '') {
             ShowViewArea('FileUpload1');
         }
-        /*if ('<%=item2 %>' != '') {
+        if ('<%=item2 %>' != '') {
             ShowViewArea('FileUpload2');
         }
         if ('<%=item3 %>' != '') {
@@ -222,7 +280,7 @@
         }
         if ('<%=item6 %>' != '') {
             ShowViewArea('FileUpload6');
-        }*/
+        }
 
     </script>
 
