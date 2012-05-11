@@ -54,7 +54,7 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         taobaoNick = encode.Decrypt(taobaoNick);
 
-        taobaoNick = HttpUtility.UrlEncode(taobaoNick);
+        //taobaoNick = HttpUtility.UrlEncode(taobaoNick);
 
         string page = utils.NewRequest("page", utils.RequestType.QueryString);
         int pageNow = 1;
@@ -72,7 +72,7 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
         //left join [tete_templet] on [tete_shoptemplet].[templetID]=[tete_templet].id
         string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT b.*,name,ROW_NUMBER() OVER (ORDER BY b.id DESC) AS rownumber FROM tete_shoptemplet b left join [tete_templet] on b.[templetID]=[tete_templet].id WHERE b.nick = '" + taobaoNick + "' ) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY id DESC";
 
-
+ //Response.Write(sqlNew);
         DataTable dtNew = utils.ExecuteDataTable(sqlNew);
         rptItems.DataSource = dtNew;
         rptItems.DataBind();
