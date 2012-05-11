@@ -7,6 +7,7 @@ using System.IO;
 using Qijia.PCI;
 using Qijia.DAL;
 using Qijia.Model;
+using DBHelp;
 
 public partial class Web_detail_dialog1 : System.Web.UI.Page
 {
@@ -37,7 +38,6 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             id = nick;
         }
 
-        string url = "http://qijia.7fshop.com/detail/";
         string fileName = string.Empty;
         //判断日期文件夹是否存在
         string dateName = "pic/" + DateTime.Now.ToString("yyyy-MM-dd");
@@ -46,6 +46,18 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             Directory.CreateDirectory(Server.MapPath(dateName));
         }
 
+        UploadFileCommon(FileUpload1, "{item1}", dateName);
+        UploadFileCommon(FileUpload2, "{item2}", dateName);
+        UploadFileCommon(FileUpload3, "{item3}", dateName);
+        UploadFileCommon(FileUpload4, "{item4}", dateName);
+        UploadFileCommon(FileUpload5, "{item5}", dateName);
+        UploadFileCommon(FileUpload6, "{item6}", dateName);
+    }
+
+    private void UploadFileCommon(FileUpload FileUpload1, string tag, string dateName)
+    {
+        string url = "http://qijia.7fshop.com/detail/";
+
         if (CheckFileIsSave(FileUpload1))
         {
             Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
@@ -53,69 +65,19 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             this.FileUpload1.PostedFile.SaveAs(Server.MapPath(picName));
             imgCus.JiaImg = url + picName;
             imgCus.ItemId = id;
-            imgCus.Tag = "{item1}";
+            imgCus.Tag = tag;
             imgCus.Guid = Guid.NewGuid().ToString();
-            icDal.AddJia_ImgCustomer(imgCus);
-        }
 
-        if (CheckFileIsSave(FileUpload2))
-        {
-            Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
-            string picName = dateName + "/" + Guid.NewGuid() + ".jpg";
-            this.FileUpload2.PostedFile.SaveAs(Server.MapPath(picName));
-            imgCus.JiaImg = url + picName;
-            imgCus.ItemId = id;
-            imgCus.Tag = "{item2}";
-            imgCus.Guid = Guid.NewGuid().ToString();
-            icDal.AddJia_ImgCustomer(imgCus);
-        }
-
-        if (CheckFileIsSave(FileUpload3))
-        {
-            Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
-            string picName = dateName + "/" + Guid.NewGuid() + ".jpg";
-            this.FileUpload3.PostedFile.SaveAs(Server.MapPath(picName));
-            imgCus.JiaImg = url + picName;
-            imgCus.ItemId = id;
-            imgCus.Tag = "{item3}";
-            imgCus.Guid = Guid.NewGuid().ToString();
-            icDal.AddJia_ImgCustomer(imgCus);
-        }
-
-        if (CheckFileIsSave(FileUpload4))
-        {
-            Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
-            string picName = dateName + "/" + Guid.NewGuid() + ".jpg";
-            this.FileUpload4.PostedFile.SaveAs(Server.MapPath(picName));
-            imgCus.JiaImg = url + picName;
-            imgCus.ItemId = id;
-            imgCus.Tag = "{item4}";
-            imgCus.Guid = Guid.NewGuid().ToString();
-            icDal.AddJia_ImgCustomer(imgCus);
-        }
-
-        if (CheckFileIsSave(FileUpload5))
-        {
-            Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
-            string picName = dateName + "/" + Guid.NewGuid() + ".jpg";
-            this.FileUpload5.PostedFile.SaveAs(Server.MapPath(picName));
-            imgCus.JiaImg = url + picName;
-            imgCus.ItemId = id;
-            imgCus.Tag = "{item5}";
-            imgCus.Guid = Guid.NewGuid().ToString();
-            icDal.AddJia_ImgCustomer(imgCus);
-        }
-
-        if (CheckFileIsSave(FileUpload6))
-        {
-            Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
-            string picName = dateName + "/" + Guid.NewGuid() + ".jpg";
-            this.FileUpload6.PostedFile.SaveAs(Server.MapPath(picName));
-            imgCus.JiaImg = url + picName;
-            imgCus.ItemId = id;
-            imgCus.Tag = "{item6}";
-            imgCus.Guid = Guid.NewGuid().ToString();
-            icDal.AddJia_ImgCustomer(imgCus);
+            string sql = "SELECT COUNT(*) FROM Jia_ImgCustomer WHERE ItemId = '" + id + "' AND tag = '" + tag + "'";
+            string count = DBHelper.ExecuteDataTable(sql).Rows[0][0].ToString();
+            if (count == "0")
+            {
+                icDal.AddJia_ImgCustomer(imgCus);
+            }
+            else
+            {
+                icDal.ModifyJia_ImgCustomer(imgCus);
+            }
         }
     }
 
@@ -219,9 +181,19 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         }
 
         //创建宝贝
+        string sql = "SELECT COUNT(*) FROM Jia_Item WHERE itemid = '" + id + "'";
+        string count = DBHelper.ExecuteDataTable(sql).Rows[0][0].ToString();
         Jia_Item item = CreateItemInfo();
-        Jia_ItemService jiaService = new Jia_ItemService();
-        jiaService.AddJia_Item(item);
+        if (count == "0")
+        {
+            Jia_ItemService jiaService = new Jia_ItemService();
+            jiaService.AddJia_Item(item);
+        }
+        else
+        {
+            Jia_ItemService jiaService = new Jia_ItemService();
+            jiaService.ModifyJia_Item(item);
+        }
 
         //创建宝贝图片
 
