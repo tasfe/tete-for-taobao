@@ -815,6 +815,7 @@ public partial class top_groupbuy_addtotaobaoactivity_3 : System.Web.UI.Page
                             IDictionary<string, string> param = new Dictionary<string, string>();
                             param.Add("num_iid", dtWrite.Rows[j]["itemid"].ToString());
                             param.Add("desc", newContent);
+                            Response.Write(newContent);
                             string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update ", session, param);
                             //插入宝贝错误日志
                             if (resultpro.IndexOf("ITEM_PROPERTIES_ERROR") != -1)
