@@ -158,7 +158,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
         }
  
         //添加店铺模板
-        sql = "INSERT INTO  [tete_shoptemplet] ([templetID] ,[buttonValue] ,[scbzvalue] ,[lpbzvalue] ,[byvalue] ,[nick] ,[title] ,careteDate)   VALUES   ("+templetid+",'"+bt+"','"+mall+"','"+liang+"','"+baoy+"' ,'"+taobaoNick+"' ,'"+name+"' ,'"+ DateTime.Now.ToString()+"')";
+        sql = "INSERT INTO  [tete_shoptemplet] ([templetID] ,[buttonValue] ,[scbzvalue] ,[lpbzvalue] ,[byvalue] ,[nick] ,[title] ,careteDate,ActivityID,Isdelete)   VALUES   (" + templetid + ",'" + bt + "','" + mall + "','" + liang + "','" + baoy + "' ,'" + taobaoNick + "' ,'" + name + "' ,'" + DateTime.Now.ToString() + "',"+hdID+",0)";
  
          utils.ExecuteNonQuery(sql);
          DataTable dt2 = utils.ExecuteDataTable("select top 1 * from tete_shoptemplet where nick='" + taobaoNick + "' order by id desc");

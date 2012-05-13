@@ -19,9 +19,9 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
             {
                 string id = Request.QueryString["id"].ToString();
                 //删除模板
-                utils.ExecuteNonQuery("delete from tete_shoptemplet where id=" + id);
-                //删除模板列表
-                utils.ExecuteNonQuery("delete from tete_shoptempletlist where shoptempletID=" + id);
+                utils.ExecuteNonQuery("update tete_shoptemplet set Isdelete=1 where id=" + id);
+                //删除模板列表,10天后再删除
+                //utils.ExecuteNonQuery("delete from tete_shoptempletlist where shoptempletID=" + id);
                 Response.Redirect("activitytempmanage.aspx");
             }
         }
@@ -70,7 +70,7 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
         int dataCount = (pageNow - 1) * pageCount;
         //select [tete_shoptemplet].*, [tete_templet].name from [tete_shoptemplet] 
         //left join [tete_templet] on [tete_shoptemplet].[templetID]=[tete_templet].id
-        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT b.*,name,ROW_NUMBER() OVER (ORDER BY b.id DESC) AS rownumber FROM tete_shoptemplet b left join [tete_templet] on b.[templetID]=[tete_templet].id WHERE b.nick = '" + taobaoNick + "' ) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY id DESC";
+        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT b.*,name,ROW_NUMBER() OVER (ORDER BY b.id DESC) AS rownumber FROM tete_shoptemplet b left join [tete_templet] on b.[templetID]=[tete_templet].id WHERE b.Isdelete=0 and b.nick = '" + taobaoNick + "' ) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY id DESC";
 
  //Response.Write(sqlNew);
         DataTable dtNew = utils.ExecuteDataTable(sqlNew);
@@ -78,7 +78,7 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
         rptItems.DataBind();
         //
         //分页数据初始化
-        sqlNew = "SELECT COUNT(*) FROM tete_shoptemplet WHERE nick = '" + taobaoNick + "' ";
+        sqlNew = "SELECT COUNT(*) FROM tete_shoptemplet WHERE Isdelete=0 and nick = '" + taobaoNick + "' ";
         int totalCount = int.Parse(utils.ExecuteString(sqlNew));
 
         lbPage.Text = InitPageStr(totalCount, "activitytempmanage.aspx");
