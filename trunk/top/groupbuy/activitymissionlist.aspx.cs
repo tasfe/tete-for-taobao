@@ -49,7 +49,7 @@ public partial class top_groupbuy_activitymissionlist : System.Web.UI.Page
         int pageCount = 5;
         int dataCount = (pageNow - 1) * pageCount;
 
-        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT b.*,tete_activity.name,tete_shoptemplet.title,ROW_NUMBER() OVER (ORDER BY b.id DESC) AS rownumber FROM TopMission b left join tete_activity on b.ActivityID=tete_activity.id left join tete_shoptemplet on b.shoptempletID=tete_shoptemplet.id WHERE b.nick = '" + taobaoNick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY id DESC";
+        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT b.*,tete_activity.name,tete_shoptemplet.title,ROW_NUMBER() OVER (ORDER BY b.id DESC) AS rownumber FROM tete_ActivityMission b left join tete_activity on b.ActivityID=tete_activity.id left join tete_shoptemplet on b.shoptempletID=tete_shoptemplet.id WHERE b.nick = '" + taobaoNick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY id DESC";
 
         //string sql = "SELECT * FROM TopGroupBuy WHERE nick = '" + taobaoNick + "' ORDER BY id DESC";
         DataTable dtNew = utils.ExecuteDataTable(sqlNew);
@@ -57,10 +57,10 @@ public partial class top_groupbuy_activitymissionlist : System.Web.UI.Page
         rptArticle.DataBind();
 
         //分页数据初始化
-        sqlNew = "SELECT COUNT(*) FROM TopMission WHERE nick = '" + taobaoNick + "'";
+        sqlNew = "SELECT COUNT(*) FROM tete_ActivityMission WHERE nick = '" + taobaoNick + "'";
         int totalCount = int.Parse(utils.ExecuteString(sqlNew));
 
-        lbPage.Text = InitPageStr(totalCount, "missionlist.aspx");
+        lbPage.Text = InitPageStr(totalCount, "activitymissionlist.aspx");
     }
 
     public static string result(string msg)
