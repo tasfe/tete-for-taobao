@@ -177,7 +177,7 @@ public partial class top_groupbuy_addtotaobaoactivity_3 : System.Web.UI.Page
             return false;
         }
 
-        sql = "SELECT COUNT(*) FROM Tete_ ActivityMission WHERE shoptempletID ="+mytemp+" AND typ='write' AND isok = 0";
+        sql = "SELECT COUNT(*) FROM Tete_ActivityMission WHERE shoptempletID ="+mytemp+" AND typ='write' AND isok = 0";
         string count = utils.ExecuteString(sql);
 
         if (count != "0")
