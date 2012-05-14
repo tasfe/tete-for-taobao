@@ -90,7 +90,7 @@ public partial class top_groupbuy_LoadAjax2 : System.Web.UI.Page
                             if (resultpro.IndexOf("ITEM_PROPERTIES_ERROR") != -1)
                             {
                                 //插入宝贝错误日志
-                                sql = "insert TopMissionErrDetail (TopMissionID,itemid,nick,ErrDetail) values('" + dt.Rows[i]["id"].ToString() + "','" + dtWrite.Rows[j]["itemid"].ToString() + "','" + dt.Rows[i]["nick"].ToString() + "','" + resultpro + "')";
+                                //sql = "insert TopMissionErrDetail (TopMissionID,itemid,nick,ErrDetail) values('" + dt.Rows[i]["id"].ToString() + "','" + dtWrite.Rows[j]["itemid"].ToString() + "','" + dt.Rows[i]["nick"].ToString() + "','" + resultpro + "')";
                                 utils.ExecuteNonQuery(sql);
                                 //更新宝贝错误数
                                 sql = "UPDATE TopMission SET fail = fail + 1,isok = -1  WHERE id = " + dt.Rows[i]["id"].ToString();

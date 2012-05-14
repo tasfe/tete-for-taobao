@@ -55,8 +55,8 @@
                 <td><%#Eval("startdate").ToString() %></td>
                 <td><%#result(Eval("isok").ToString())%></td>
                 <td>
-                    <a target="_blank" href="ErrLog/<%#typSuccess(Eval("typ").ToString())%><%#typSTRfile(Eval("ActivityID").ToString())%>">查看成功日志</a>
-                <br /><a target="_blank" href="ErrLog/<%#typErr(Eval("typ").ToString())%><%#typSTRfile(Eval("ActivityID").ToString())%>"> 查看错误日志</a>
+                    <a target="_blank" href="ErrLog/<%#typSuccess(Eval("typ").ToString())%><%#typSTRfile(Eval("ID").ToString())%>">查看日志</a>
+               
                 </td>
             </tr>
             </ItemTemplate>

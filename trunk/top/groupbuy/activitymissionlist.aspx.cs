@@ -34,7 +34,7 @@ public partial class top_groupbuy_activitymissionlist : System.Web.UI.Page
             return;
         }
 
-        nickencode = HttpUtility.UrlEncode(taobaoNick);
+       // nickencode = HttpUtility.UrlEncode(taobaoNick);
 
         string page = utils.NewRequest("page", utils.RequestType.QueryString);
         int pageNow = 1;
@@ -81,6 +81,7 @@ public partial class top_groupbuy_activitymissionlist : System.Web.UI.Page
 
     public static string typ(string msg)
     {
+
         if (msg == "write")
         {
             return "更新宝贝描述";
@@ -93,9 +94,14 @@ public partial class top_groupbuy_activitymissionlist : System.Web.UI.Page
 
     public static string typSuccess(string msg)
     {
+        Common.Cookie cookie = new Common.Cookie();
+        string taobaoNick = cookie.getCookie("nick");
+
+        Rijndael_ encode = new Rijndael_("tetesoft");
+        taobaoNick = encode.Decrypt(taobaoNick);
         if (msg == "write")
         {
-            return "Write" + DateTime.Now.ToString("yyyyMMdd") + "/";
+            return "activity" + taobaoNick + "" + DateTime.Now.ToString("yyyyMMdd") + "/";
         }
         else
         {
@@ -117,7 +123,12 @@ public partial class top_groupbuy_activitymissionlist : System.Web.UI.Page
 
     public static string typSTRfile(string groupbuyID)
     {
-        return groupbuyID + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+        Common.Cookie cookie = new Common.Cookie();
+        string taobaoNick = cookie.getCookie("nick");
+
+        Rijndael_ encode = new Rijndael_("tetesoft");
+        taobaoNick = encode.Decrypt(taobaoNick);
+        return "activitypromotion" + groupbuyID + taobaoNick + DateTime.Now.ToString("yyyyMMdd") + ".txt";
 
     }
 
