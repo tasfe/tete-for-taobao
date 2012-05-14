@@ -21,7 +21,7 @@ using System.Security.Cryptography;
 
 public partial class top_groupbuy_addtotaobaoactivity_3 : System.Web.UI.Page
 {
-    public static string logUrl = "D:/svngroupbuy/website/ErrLog";
+    public static string logUrl = "D:/groupbuy.7fshop.com/wwwroot/top/groupbuy/ErrLog";
     public string style = string.Empty;
     public string size = string.Empty;
     public string type = string.Empty;
