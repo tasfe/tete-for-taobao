@@ -293,18 +293,31 @@ public partial class top_containerblog : System.Web.UI.Page
             }
         }
 
+        string plus = string.Empty;
+        if (version == "2")
+        {
+            plus = "freecard";
+        }
+
+        if (version == "3")
+        {
+            plus = "crm|freecard";
+        }
+
         //记录到本地数据库
         string sql = "INSERT INTO TCS_ShopSession (" +
                        "sid, " +
                        "nick, " +
                        "typ, " +
                        "version, " +
+                       "plus, " +
                        "session" +
                    " ) VALUES ( " +
                        " '" + shop.Sid + "', " +
                        " '" + shop.Nick + "', " +
                        " 'taobao', " +
                        " '" + version + "', " +
+                       " '" + plus + "', " +
                        " '" + top_session + "' " +
                  ") ";
 
