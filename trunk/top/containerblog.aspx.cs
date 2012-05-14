@@ -125,6 +125,11 @@ public partial class top_containerblog : System.Web.UI.Page
         string oldNick = nick;
         User user = client.UserGet(request, session);
 
+        if (versionNo == "1")
+        {
+            versionNo = "2";
+        }
+
         if (CheckUserExits(nick))
         {
             //更新登录次数和最近登陆时间
