@@ -28,7 +28,7 @@
           <table width="800px;" border="0" cellspacing="0" cellpadding="0" style="margin:4px; padding:0px">			
                 <tr>
                  
-					   <td  width="200px">模板名称</td>
+					   <td  width="200px">模板名称</td> 
 		                <td  width="150px">风格</td>
                         <td  width="150px">创建时间</td>
 		                <td width="300px"> 操作</td>
@@ -40,14 +40,14 @@
                             <asp:Repeater ID="rptItems" runat="server">
                                 <ItemTemplate>
         	                      <tr style=" height:30px; border-bottom:1px; border-bottom-color:Green;">
-                                    <td width="200px"><%#Eval("title").ToString()%></td>
+                                    <td width="200px"><%#Eval("title").ToString()%></td> 
                                     <td  width="150px"><%#Eval("name").ToString()%></td>
                                     <td  width="150px">
                                      <%#Eval("careteDate").ToString()%> 
                                     </td>
                                     <td  width="300px">
                                         <div id="del"></div>
-                                        <%# outShowHtml(Eval("ID").ToString())%>
+                                        <%# outShowHtml(Eval("ID").ToString(), Eval("ActivityID").ToString())%>
                                     </td>
                                  </tr>
                                 

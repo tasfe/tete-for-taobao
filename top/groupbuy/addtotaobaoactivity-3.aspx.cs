@@ -713,7 +713,7 @@ public partial class top_groupbuy_addtotaobaoactivity_3 : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         taobaoNick = encode.Decrypt(taobaoNick);
 
-        string sql = "INSERT INTO Tete_ActivityMission (typ, nick, ActivityID,IsOK,shoptempletID) VALUES ('write','" + taobaoNick + "','" + id + "',0,'" + myadstemp + "')";
+        string sql = "INSERT INTO Tete_ActivityMission (typ, nick, ActivityID,IsOK,shoptempletID,Success,Fail,Startdate) VALUES ('write','" + taobaoNick + "','" + id + "',0,'" + myadstemp + "',0,0,'"+DateTime.Now.ToString()+"')";
         utils.ExecuteNonQuery(sql);
 
         sql = "SELECT TOP 1 ID FROM Tete_ActivityMission ORDER BY ID DESC";
@@ -833,7 +833,7 @@ public partial class top_groupbuy_addtotaobaoactivity_3 : System.Web.UI.Page
                             }
                             else
                             {
-                                WriteLog("itemid:" + dtWrite.Rows[j]["itemid"].ToString() + resultpro, "", dt.Rows[i]["nick"].ToString());
+                                WriteLog("itemid:" + dtWrite.Rows[j]["itemid"].ToString() + resultpro, "", dt.Rows[i]["nick"].ToString(), dtWrite.Rows[j]["ActivityMissionID"].ToString());
                                 //更新状态
                                 sql = "UPDATE Tete_ActivityWriteContent SET isok = 1 WHERE id = " + dtWrite.Rows[j]["id"].ToString();
                                 utils.ExecuteNonQuery(sql);
@@ -846,8 +846,8 @@ public partial class top_groupbuy_addtotaobaoactivity_3 : System.Web.UI.Page
                         }
                         catch (Exception e)
                         {
-                            WriteLog(e.Message, "1", dt.Rows[i]["nick"].ToString());
-                            WriteLog(e.StackTrace, "1", dt.Rows[i]["nick"].ToString());
+                            WriteLog(e.Message, "1", dt.Rows[i]["nick"].ToString(), dtWrite.Rows[j]["ActivityMissionID"].ToString());
+                            WriteLog(e.StackTrace, "1", dt.Rows[i]["nick"].ToString(), dtWrite.Rows[j]["ActivityMissionID"].ToString());
                             sql = "UPDATE Tete_ActivityMission SET fail = fail + 1,isok = -1  WHERE id = " + dt.Rows[i]["id"].ToString();
                             utils.ExecuteNonQuery(sql);
                             continue;
@@ -872,15 +872,15 @@ public partial class top_groupbuy_addtotaobaoactivity_3 : System.Web.UI.Page
     /// <param name="value">日志内容</param>
     /// <param name="type">类型 0(成功日志),1(错误日志) 可传空文本默认为0</param>
     /// <returns></returns>
-    public static void WriteLog(string message, string type, string nick)
+    public static void WriteLog(string message, string type, string nick,string mid)
     {
 
-        string tempStr = logUrl + "/Groupby" + nick + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
-        string tempFile = tempStr + "/Groupbypromotion" + nick + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-        if (type == "1")
-        {
-            tempFile = tempStr + "/GroupbypromotionErr" + nick + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-        }
+        string tempStr = logUrl + "/activity" + nick + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
+        string tempFile = tempStr + "/activitypromotion"+mid+"" + nick + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+        //if (type == "1")
+        //{
+        //    tempFile = tempStr + "/activitypromotionErr" + nick + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+        //}
         if (!Directory.Exists(tempStr))
         {
             Directory.CreateDirectory(tempStr);
