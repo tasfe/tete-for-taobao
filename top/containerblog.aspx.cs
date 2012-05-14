@@ -147,6 +147,9 @@ public partial class top_containerblog : System.Web.UI.Page
         }
 
 
+        InsertConfigInfo(nick, session, versionNo);
+
+
         IDictionary<string, string> param = new Dictionary<string, string>();
         string result = Post("http://gw.api.taobao.com/router/rest", "12159997", "614e40bfdb96e9063031d1a9e56fbed5", "taobao.increment.customer.permit", top_session, param);
 
@@ -164,6 +167,71 @@ public partial class top_containerblog : System.Web.UI.Page
 
         //Response.Redirect("http://www.7fshop.com/top/market/setcookie.aspx?t=1&nick=" + HttpUtility.UrlEncode(nick));
         Response.Redirect("indexnew.html");
+    }
+
+    private void InsertConfigInfo(string nick,string session, string version)
+    {
+        string giftMsg = "0";
+        //如果是头一次进入则赠送VIP和专业版短信
+        if (version == "1" || version == "2")
+        {
+            giftMsg = "100";
+        }
+
+        if (version == "3")
+        {
+            giftMsg = "200";
+        }
+        //先判断是否有记录
+        string sql = "SELECT COUNT(*) FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
+        string count = utils.ExecuteString(sql);
+        if (count == "0")
+        {
+            sql = "INSERT INTO TCS_ShopConfig (" +
+                        "nick, " +
+                        "iscoupon, " +
+                        "couponid, " +
+                        "iskefu, " +
+                        "mindate, " +
+                        "maxdate, " +
+                        "iscancelauto, " +
+                        "iskeyword, " +
+                        "sessionold, " +
+                        "isalipay, " +
+                        "alipayid, " +
+                        "total, " +
+                        "issendmsg " +
+                    " ) VALUES ( " +
+                        " '" + nick + "', " +
+                        " '1', " +
+                        " '', " +
+                        " '0', " +
+                        " '3', " +
+                        " '6', " +
+                        " '1', " +
+                        " '0', " +
+                        " '" + session + "', " +
+                        " '0', " +
+                        " '0', " +
+                        " '" + giftMsg + "', " +
+                        " '0' " +
+                    ") ";
+            utils.ExecuteNonQuery(sql);
+
+            //插入充值记录并更新短信条数
+            sql = "INSERT INTO TCS_PayLog (" +
+                            "typ, " +
+                            "enddate, " +
+                            "nick, " +
+                            "count " +
+                        " ) VALUES ( " +
+                            " '好评有礼真情回馈', " +
+                            " GETDATE(), " +
+                            " '" + nick + "', " +
+                            " '" + giftMsg + "' " +
+                      ") ";
+            utils.ExecuteNonQuery(sql);
+        }
     }
 
 
