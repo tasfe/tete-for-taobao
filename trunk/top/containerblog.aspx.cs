@@ -294,6 +294,12 @@ public partial class top_containerblog : System.Web.UI.Page
         }
 
         string plus = string.Empty;
+
+        if (version == "1")
+        {
+            version = "2";
+        }
+
         if (version == "2")
         {
             plus = "freecard";
