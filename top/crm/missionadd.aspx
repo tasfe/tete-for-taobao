@@ -38,7 +38,7 @@
             <tr>
                 <td align="left" width="120">任务类型：</td>
                 <td>
-                    <select name="typ" onchange="InitHiddenArea(this)">
+                    <select name="typ" id="typ" onchange="InitHiddenArea(this)">
                         <option value="unpay">未付款订单催单</option>
                         <option value="birthday">客户生日关怀</option>
                         <option value="back">买家定期回访</option>
@@ -191,6 +191,12 @@
     </form>
 
     <script language="javascript" type="text/javascript">
+        function StartSend() {
+            if (document.getElementById("typ").options.selectedIndex == 3) { 
+                //if(confirm("您确定要立即发送吗"))
+            }
+        }
+
         function InitHiddenArea(obj) {
             var obj = document.getElementById("area" + (obj.options.selectedIndex + 1));
 
