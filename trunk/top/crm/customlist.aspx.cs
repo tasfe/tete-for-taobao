@@ -20,6 +20,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
     public string session = string.Empty;
     public string nick = string.Empty;
     public string typ = string.Empty;
+    public string total = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -364,6 +365,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
         //分页数据初始化
         sql = "SELECT COUNT(*) FROM TCS_Customer b WHERE b.nick = '" + nick + "' " + condition + "";
         int totalCount = int.Parse(utils.ExecuteString(sql));
+        total = totalCount.ToString();
 
         lbPage.Text = InitPageStr(totalCount, pageUrl);
     }
