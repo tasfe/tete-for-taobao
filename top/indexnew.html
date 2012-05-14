@@ -299,7 +299,7 @@ name="mainframe5" src="http://haoping.7fshop.com/top/crm/customlist.aspx" frameb
     tab.prototype = {
         ACTIVE: function () {
             var $ = function (o) { return document.getElementById(o) };
-
+            alert(this['link']['cur'].className);
             if (this['link']['cur'].className == "noTab") return;
 
             this['link']['cur'].className = this['css'][3];
