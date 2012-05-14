@@ -76,8 +76,9 @@ public partial class top_groupbuy_addtotaobaoactivity_3 : System.Web.UI.Page
         if (act == "save" && NoRepeat(id,myadstemp, type))
         {
             //记录该任务
+            Response.Write("任务进行");
             missionid = RecordMission();
-
+            Response.Write("任务" + missionid + "进行");
             TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12287381", "d3486dac8198ef01000e7bd4504601a4");
             //提交更新到淘宝商品上去
             if (type != "1")
@@ -113,6 +114,7 @@ public partial class top_groupbuy_addtotaobaoactivity_3 : System.Web.UI.Page
                     string session = cookie.getCookie("top_sessiongroupbuy");
                     PageList<Item> product = client.ItemsOnsaleGet(request, session);
 
+                    Response.Write( product.Content.Count.ToString()+"个商品");
                     for (int i = 0; i < product.Content.Count; i++)
                     {
                         RecordMissionDetail(id,myadstemp, product.Content[i].NumIid.ToString(),missionid);
@@ -685,6 +687,7 @@ public partial class top_groupbuy_addtotaobaoactivity_3 : System.Web.UI.Page
     private void RecordMissionDetail(string ActivityID, string shoptempletID, string itemid, string ActivityMissionID)
     {
         string sql = "INSERT INTO TopWriteContent (ActivityID, shoptempletID, itemid,ActivityMissionID,Actdate,Isok) VALUES ('" + ActivityID + "', '" + shoptempletID + "', '" + itemid + "'," + ActivityMissionID + ",'"+DateTime.Now.ToString()+"',0)";
+        Response.Write(sql);
         utils.ExecuteNonQuery(sql);
     }
 
