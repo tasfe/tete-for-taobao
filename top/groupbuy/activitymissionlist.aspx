@@ -55,7 +55,7 @@
                 <td><%#Eval("startdate").ToString() %></td>
                 <td><%#result(Eval("isok").ToString())%></td>
                 <td>
-                    <a target="_blank" href="ErrLog/<%#typSuccess(Eval("typ").ToString())%><%#typSTRfile(Eval("ID").ToString())%>">查看日志</a>
+                    <a target="_blank" href="ErrLog/<%#typSuccess(Eval("typ").ToString())%><%#typSTRfile(Eval("typ").ToString(),Eval("ID").ToString())%>">查看日志</a>
                
                 </td>
             </tr>

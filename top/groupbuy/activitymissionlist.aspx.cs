@@ -99,36 +99,35 @@ public partial class top_groupbuy_activitymissionlist : System.Web.UI.Page
 
         Rijndael_ encode = new Rijndael_("tetesoft");
         taobaoNick = encode.Decrypt(taobaoNick);
-        if (msg == "write")
-        {
+       
             return "activity" + taobaoNick + "" + DateTime.Now.ToString("yyyyMMdd") + "/";
-        }
-        else
-        {
-            return "Write" + DateTime.Now.ToString("yyyyMMdd") + "/Delete";
-        }
+       
     }
 
     public static string typErr(string msg)
     {
-        if (msg == "write")
-        {
+        
             return "Write" + DateTime.Now.ToString("yyyyMMdd") + "/Err";
-        }
-        else
-        {
-            return "Write" + DateTime.Now.ToString("yyyyMMdd") + "/DeleteErr";
-        }
+         
     }
 
-    public static string typSTRfile(string groupbuyID)
+    public static string typSTRfile(string msg, string groupbuyID)
     {
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
 
         Rijndael_ encode = new Rijndael_("tetesoft");
         taobaoNick = encode.Decrypt(taobaoNick);
-        return "activitypromotion" + groupbuyID + taobaoNick + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+        if (msg == "write")
+        {
+            
+            return "activitypromotion" + groupbuyID + taobaoNick + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+        }
+        else
+        {
+            return "delactivitypromotion" + groupbuyID + taobaoNick + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+        }
+       
 
     }
 
