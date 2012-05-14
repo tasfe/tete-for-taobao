@@ -158,6 +158,9 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
                 break;
         }
 
+        int index = 0;
+        int err = 0;
+
         sql = "SELECT * FROM TCS_Customer b WHERE b.nick = '" + nick + "' " + condition + "";
         DataTable dt = utils.ExecuteDataTable(sql);
         for (int i = 0; i < dt.Rows.Count; i++)
@@ -175,11 +178,13 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
             //如果失败
             if (!reg.IsMatch(result))
             {
+                err++;
                 //string err = new Regex(@"<reason>([^<]*)</reason>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
                 //Response.Write("<script>alert('【系统错误】：" + err + "，请稍后再试或者联系客服人员！');window.location.href='msgsend.aspx';</script>");
             }
             else
             {
+                index++;
                 string number = match[0].Groups[1].ToString();
 
                 //赠送优惠券
@@ -199,6 +204,9 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
                 utils.ExecuteNonQuery(sql);
             }
         }
+
+        Response.Write("<script>alert('赠送完毕，成功赠送" + index.ToString() + "张，失败" + err.ToString() + "张！');window.location.href='../reviewnew/couponsend.aspx';</script>");
+        Response.End();
     }
 
 
