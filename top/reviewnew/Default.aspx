@@ -187,7 +187,7 @@ h4 a {
            <td><div class="item_list item_list_left_top">
                 <div class="title_contents">
                   <h4 style="padding-left: 0px"><img src="images/icon_2.gif" width="32" height="32"
-													style="vertical-align: middle; margin-right: 0px" /><a href="../freecard/freecardadd.aspx">包邮卡</a> <a href='../freecard/freecardadd.aspx' class="qubie">(付费使用)</a></h4>
+													style="vertical-align: middle; margin-right: 0px" /><a href="../freecard/freecardadd.aspx">包邮卡</a></h4>
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
                   <p> 下单免邮费，可设置包邮时间和包邮次数，手动赠送给买家，让你的2次销售猛增。</p>
                 </div>
@@ -198,7 +198,7 @@ h4 a {
             <td><div class="item_list item_list_right_top">
                 <div class="title_contents">
                   <h4 style="padding-left: 0px"><img src="images/icon_4.gif" width="32" height="32"
-													style="vertical-align: middle; margin-right: 0px" /><a href="../crm/missionadd.aspx">未付款订单催单</a>  <a href='../crm/missionadd.aspx' class="qubie">(付费使用)</a></h4>
+													style="vertical-align: middle; margin-right: 0px" /><a href="../crm/missionadd.aspx">未付款订单催单</a> <a class="qubie" href='qubie.html'>(VIP)</a></h4>
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
                   <p> 对未付款订单进行短信催付款，让您的未付款订单不再流失</p>
                 </div>
