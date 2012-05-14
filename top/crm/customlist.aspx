@@ -25,6 +25,11 @@
     </ul>
   </div>
     <div id="main-content">
+
+<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
+    您共有<%=total %>名会员
+</div>
+
     请输入买家昵称：<asp:TextBox ID="search" runat="server"></asp:TextBox>
     <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Text="搜索" />
     <input type="button" value="优惠券赠送" onclick="window.location.href='msgsend.aspx?typ=<%=typ %>'" />
