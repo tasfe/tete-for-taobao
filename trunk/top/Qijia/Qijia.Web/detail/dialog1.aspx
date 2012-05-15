@@ -216,9 +216,9 @@
 <td valign="top" width="500">
 <input name="text11" value="text6" type="hidden" />
 【文字6】：
-<textarea id="text1" name="text12" rows="4" cols="26"></textarea><br /><b>(不超过50个字符)</b><br /><br />
+<textarea id="text1" name="text12" rows="4" cols="26" ></textarea><br /><b>(不超过50个字符)</b><br /><br />
 
-<input name="text13" value="text7" type="hidden" />
+<input name="text137" value="text7" type="hidden" />
 【文字7】：
 <textarea id="text2" name="text14" rows="4" cols="26" ></textarea><br /><b>(不超过50个字符)</b>
 </td>
