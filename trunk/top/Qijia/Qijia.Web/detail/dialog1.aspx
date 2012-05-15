@@ -249,9 +249,14 @@
 
     <script language="javascript" type="text/javascript">
         function CheckInitData() {
-            if (Obj("FileUpload1").value == "") {
+            if (Obj("FileUpload1").value == "" && '<%=item1 %>' == '') {
                 alert("请上传商品图片1！");
                 Obj("FileUpload1").focus();
+                return false;
+            }
+            if (Obj("FileUpload2").value == "" && '<%=item2 %>' == '') {
+                alert("请上传商品图片2！");
+                Obj("FileUpload2").focus();
                 return false;
             }
 
