@@ -73,7 +73,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="left" height="30">默认好评优惠券处理：</td>
+                <td align="left" height="30">默认好评是否赠送：</td>
                 <td>
                     赠送<input name="iscancelauto" type="radio" value="0" <%=check(iscancelauto, "0") %> />
                     不赠送<input name="iscancelauto" type="radio" value="1" <%=check(iscancelauto, "1") %> />
