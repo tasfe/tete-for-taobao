@@ -185,7 +185,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
                 {
                     errtexttemp = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
                 }
-                if (errtext.IndexOf(errtexttemp) != -1)
+                if (errtext.IndexOf(errtexttemp) == -1)
                 {
                     errtext += "|" + errtexttemp;
                 }
