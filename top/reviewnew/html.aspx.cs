@@ -400,7 +400,7 @@ public partial class top_review_html : System.Web.UI.Page
         {
             string taobaourl = GetTaobaoImg(dt.Rows[0]["detailimgname"].ToString(), "detail");
 
-            if (!Regex.IsMatch(desc, @"<div><a name=""tetehaoping-start""></a></div><div><img src=""([\s\S]*)""></div><div><a name=""tetehaoping-end""></a></div>"))
+            if (!Regex.IsMatch(desc, @"<div>[\s]*<a name=""tetehaoping-start""></a>[\s]*</div>[\s]*<div>[\s]*<img src=""([\s\S]*)"">[\s]*</div>[\s]*<div>[\s]*<a name=""tetehaoping-end""></a>[\s]*</div>"))
             {
                 if (istop == "1")
                 {
