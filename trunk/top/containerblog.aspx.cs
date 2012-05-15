@@ -132,8 +132,20 @@ public partial class top_containerblog : System.Web.UI.Page
 
         if (CheckUserExits(nick))
         {
+            string plus = string.Empty;
+
+            if (versionNo == "2")
+            {
+                plus = "freecard";
+            }
+
+            if (versionNo == "3")
+            {
+                plus = "crm|freecard";
+            }
+
             //更新登录次数和最近登陆时间
-            string sql = "UPDATE TCS_ShopSession SET session='" + top_session + "',version='" + versionNo + "' WHERE nick = '" + nick + "'";
+            string sql = "UPDATE TCS_ShopSession SET session='" + top_session + "',version='" + versionNo + "',plus='" + plus + "' WHERE nick = '" + nick + "'";
             utils.ExecuteNonQuery(sql);
 
             //更新特殊用户
@@ -235,6 +247,10 @@ public partial class top_containerblog : System.Web.UI.Page
                             " '" + giftMsg + "' " +
                       ") ";
             utils.ExecuteNonQuery(sql);
+        }
+        else
+        { 
+            
         }
     }
 
