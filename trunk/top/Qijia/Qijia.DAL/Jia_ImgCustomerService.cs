@@ -16,7 +16,7 @@ namespace Qijia.DAL
         }
         public int AddJia_ImgCustomer(Jia_ImgCustomer jia_imgcustomer)
         {
-            string sql = "insert Jia_ImgCustomer(ItemId,Tag,JiaImg,MyImg) values(@ItemId,@Tag,@JiaImg,@MyImg)";
+            string sql = "insert Jia_ImgCustomer(Guid,ItemId,Tag,JiaImg,MyImg) values(@Guid,@ItemId,@Tag,@JiaImg,@MyImg)";
             SqlParameter[] param = CreateParameter(jia_imgcustomer);
             return DBHelper.ExecuteNonQuery(sql, param);
         }
