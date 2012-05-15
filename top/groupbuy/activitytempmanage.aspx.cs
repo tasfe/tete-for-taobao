@@ -18,10 +18,13 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
             if (Request.QueryString["id"] != null)
             {
                 string id = Request.QueryString["id"].ToString();
+                string aid = Request.QueryString["aid"].ToString();
                 //删除模板
                 utils.ExecuteNonQuery("update tete_shoptemplet set Isdelete=1 where id=" + id);
                 //删除模板列表,10天后再删除
                 //utils.ExecuteNonQuery("delete from tete_shoptempletlist where shoptempletID=" + id);
+                //清除宝贝描述
+                ClearitemsDesc(id, aid);
                 Response.Redirect("activitytempmanage.aspx");
             }
         }
@@ -118,7 +121,7 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
     /// <returns></returns>
     public string outShowHtml(string ID,string aid)
     {
-        string html = "<div>  <a  target=_blank href=\"activitytempView.aspx?tid=" + ID + "\")\">获取代码</a>   <a  target=_blank  href=\"activitytempView.aspx?ytid=" + ID + "\")\">预览</a>      <a href=\"activitytempmanage.aspx?act=del&id=" + ID + "\")\">删除</a>   <a href=\"activitytempmanage.aspx?act=delitem&aid="+aid+"&id=" + ID + "\")\" ' onclick=\"return confirm('您确认要清除关联描述，该操作不可恢复？')\">清除宝贝描述</a></div>";
+        string html = "<div>  <a  target=_blank href=\"activitytempView.aspx?tid=" + ID + "\")\">获取代码</a>   <a  target=_blank  href=\"activitytempView.aspx?ytid=" + ID + "\")\">预览</a>      <a href=\"activitytempmanage.aspx?act=del&aid=" + aid + "&id=" + ID + "\")\">删除</a>   <a href=\"activitytempmanage.aspx?act=delitem&aid=" + aid + "&id=" + ID + "\")\" ' onclick=\"return confirm('您确认要清除关联描述，该操作不可恢复？')\">清除宝贝描述</a></div>";
 
         return html;
     }
