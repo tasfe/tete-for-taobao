@@ -13,6 +13,15 @@ namespace Qijia.DAL
             string sql = "select * from Jia_BuyLog";
             return Jia_BuyLogPropertity(sql);
         }
+
+        public IList<Jia_BuyLog> GetAllJia_BuyLog(string nick)
+        {
+            string sql = "select * from Jia_BuyLog where Nick=@nick";
+            SqlParameter param = new SqlParameter("@nick", nick);
+
+            return Jia_BuyLogPropertity(sql, param);
+        }
+
         public int AddJia_BuyLog(Jia_BuyLog jia_buylog)
         {
             string sql = "insert Jia_BuyLog values(@Nick,@Type,@Price,@BuyDate,@IsOld,@AddDate)";
@@ -50,9 +59,9 @@ namespace Qijia.DAL
                     };
             return param;
         }
-        private IList<Jia_BuyLog> Jia_BuyLogPropertity(string sql)
+        private IList<Jia_BuyLog> Jia_BuyLogPropertity(string sql, params SqlParameter[] param)
         {
-            DataTable dt = DBHelper.ExecuteDataTable(sql);
+            DataTable dt = DBHelper.ExecuteDataTable(sql, param);
             IList<Jia_BuyLog> list = new List<Jia_BuyLog>();
             foreach (DataRow dr in dt.Rows)
             {
@@ -61,7 +70,7 @@ namespace Qijia.DAL
                 jia_buylog.Nick = Convert.ToString(dr["Nick"]);
                 jia_buylog.Type = Convert.ToString(dr["Type"]);
                 jia_buylog.Price = Convert.ToDecimal(dr["Price"]);
-                jia_buylog.BuyDate = Convert.ToDateTime(dr["BuyDate"]);
+                jia_buylog.BuyDate = Convert.ToInt32(dr["BuyDate"]);
                 jia_buylog.IsOld = Convert.ToInt32(dr["IsOld"]);
                 jia_buylog.AddDate = Convert.ToDateTime(dr["AddDate"]);
                 list.Add(jia_buylog);
