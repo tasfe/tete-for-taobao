@@ -62,7 +62,7 @@ public partial class top_containerblog : System.Web.UI.Page
         }
         else
         {
-            //versionNo = "1";
+            versionNo = GetVersion(nick);
         }
 
         nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["visitor_nick"];
@@ -90,6 +90,64 @@ public partial class top_containerblog : System.Web.UI.Page
 
         //判断跳转
         GetData(nick);
+    }
+
+    /// <summary>
+    /// 当没有版本号传入的时候获取客户版本号
+    /// </summary>
+    /// <returns></returns>
+    private string GetVersion(string u)
+    {
+        string appkey = "12159997";
+        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+
+        //判断该店铺是B店还是C店
+        IDictionary<string, string> param = new Dictionary<string, string>();
+        string sql = string.Empty;
+        //判断短信购买及充值情况
+        param.Add("nick", u);
+        param.Add("article_code", "service-0-22904");
+        string resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.vas.subscribe.get", "", param);
+        if (resultnew.IndexOf("invali") != -1)
+        {
+            //到期了
+            return "-1";
+        }
+        else
+        {
+            Regex reg = new Regex(@"<item_code>([^<]*)</item_code><deadline>([^<]*)</deadline>", RegexOptions.IgnoreCase);
+            //更新日期
+            MatchCollection match = reg.Matches(resultnew);
+            for (int i = 0; i < match.Count; i++)
+            {
+                try
+                {
+                    //10元
+                    if (match[i].Groups[1].ToString() == "service-0-22904-1")
+                    {
+                        return "2";
+                    }
+                    //10元
+                    if (match[i].Groups[1].ToString() == "service-0-22904-2")
+                    {
+                        return "2";
+                    }
+                    //10元
+                    if (match[i].Groups[1].ToString() == "service-0-22904-3")
+                    {
+                        return "3";
+                    }
+                    //10元
+                    if (match[i].Groups[1].ToString() == "service-0-22904-3")
+                    {
+                        return "3";
+                    }
+                }
+                catch { }
+            }
+        }
+
+        return "2";
     }
 
     private bool VersionVerify(string app_secret, string top_sign, string appkey, string leaseId, string timestamp, string versionNo)
