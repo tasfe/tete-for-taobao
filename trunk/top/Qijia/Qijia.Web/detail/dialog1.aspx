@@ -218,7 +218,7 @@
 【文字6】：
 <textarea id="text1" name="text12" rows="4" cols="26" ></textarea><br /><b>(不超过50个字符)</b><br /><br />
 
-<input name="text137" value="text7" type="hidden" />
+<textarea name="text137" style="display:none">text7</textarea>
 【文字7】：
 <textarea id="text2" name="text14" rows="4" cols="26" ></textarea><br /><b>(不超过50个字符)</b>
 </td>
