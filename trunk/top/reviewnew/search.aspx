@@ -20,6 +20,10 @@
         内容：<asp:TextBox ID="TextBox5" runat="server" Text="填写联系方式赠送100条短信"></asp:TextBox>
         <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
         <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Text="给客户增加短信" />
+        <hr />
+
+        <asp:TextBox ID="TextBox8" runat="server"></asp:TextBox>
+        <asp:Button ID="Button3" runat="server" onclick="Button3_Click" Text="看下此客户是否进过服务" />
     </div>
     </form>
 </body>

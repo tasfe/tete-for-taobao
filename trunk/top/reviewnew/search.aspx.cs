@@ -28,6 +28,21 @@ public partial class top_reviewnew_search : System.Web.UI.Page
         }
     }
 
+
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + this.TextBox1.Text + "'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        if (dt.Rows.Count != 0)
+        {
+            Response.Write("该客户已经进过服务");
+        }
+        else
+        {
+            Response.Write("该客户没有进过服务！！");
+        }
+    }
+
     protected void Button2_Click(object sender, EventArgs e)
     {
         if (TextBox6.Text != "xiaoman")
