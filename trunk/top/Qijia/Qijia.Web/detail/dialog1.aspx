@@ -241,13 +241,28 @@
 </tr>
 </table>
 
-        <asp:Button ID="Button1" runat="server" Text=""  style="width:120px; height:40px; background:url(btn_02.jpg) no-repeat;border:0; cursor:pointer; margin-right:40px; margin-left:230px;" onclick="Button1_Click" OnClientClick="ShowUpload()"  />
+        <asp:Button ID="Button1" runat="server" Text=""  style="width:120px; height:40px; background:url(btn_02.jpg) no-repeat;border:0; cursor:pointer; margin-right:40px; margin-left:230px;" onclick="Button1_Click" OnClientClick="return CheckInitData()"  />
 <input type="button" value="" style="width:90px; height:40px; background:url(btn_03.jpg) no-repeat;border:0; cursor:pointer; display:none" />
 
 </div>
     </form>
 
     <script language="javascript" type="text/javascript">
+        function CheckInitData() {
+            if (Obj("FileUpload1").value == "") {
+                alert("请上传商品图片1！");
+                Obj("FileUpload1").focus();
+                return false;
+            }
+
+            ShowUpload();
+            return true;
+        }
+
+        function Obj(id) {
+            return document.getElementById(id);
+        }
+
         function ShowUpload() {
             document.getElementById("alphaArea").style.display = "";
         }
