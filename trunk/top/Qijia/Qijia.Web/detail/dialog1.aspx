@@ -216,11 +216,11 @@
 <td valign="top" width="500">
 <input name="text11" value="text6" type="hidden" />
 【文字6】：
-<textarea id="text1" name="text12" value="" rows="4" cols="26"></textarea><br /><b>(不超过50个字符)</b><br /><br />
+<textarea id="text1" id="txt17" name="text12" value="" rows="4" cols="26"></textarea><br /><b>(不超过50个字符)</b><br /><br />
 
 <input name="text13" value="text7" type="hidden" />
 【文字7】：
-<textarea id="text2" name="text14" value="" rows="4" cols="26" ></textarea><br /><b>(不超过50个字符)</b>
+<textarea id="text2" id="txt18" name="text14" value="" rows="4" cols="26" ></textarea><br /><b>(不超过50个字符)</b>
 </td>
 <td align="left" valign="top">
 <img src="tip6.gif" />
@@ -447,13 +447,35 @@
             }
 
             if (Obj("txt16").value == "") {
-                alert("请输入文字6！");
+                alert("请输入文字5！");
                 Obj("txt16").focus();
                 return false;
             }
             if (Obj("txt16").value.length > 50) {
-                alert("文字6不能超过50个字符！");
+                alert("文字5不能超过50个字符！");
                 Obj("txt16").focus();
+                return false;
+            }
+
+            if (Obj("txt17").value == "") {
+                alert("请输入文字6！");
+                Obj("txt17").focus();
+                return false;
+            }
+            if (Obj("txt17").value.length > 50) {
+                alert("文字6不能超过50个字符！");
+                Obj("txt17").focus();
+                return false;
+            }
+
+            if (Obj("txt18").value == "") {
+                alert("请输入文字7！");
+                Obj("txt18").focus();
+                return false;
+            }
+            if (Obj("txt18").value.length > 50) {
+                alert("文字7不能超过50个字符！");
+                Obj("txt18").focus();
                 return false;
             }
 
