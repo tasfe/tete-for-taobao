@@ -136,39 +136,39 @@
 
 <input name="property3" value="【产品名称】" type="hidden" />
 【　产品名称　】：
-<input name="property4" value="" /><br />
+<input name="property4" id="txt3" value="" /><br />
 
 <input name="property5" value="【材质】" type="hidden" />
 【　材质　】：
-<input name="property6" value="" /><br />
+<input name="property6" id="txt4" value="" /><br />
 
 <input name="property7" value="【规格】" type="hidden" />
 【　规格　】：
-<input name="property8" value="" /><br />
+<input name="property8" id="txt5" value="" /><br />
 
 <input name="property9" value="【图层工艺】" type="hidden" />
 【　图层工艺　】：
-<input name="property10" value="" /><br />
+<input name="property10" id="txt6" value="" /><br />
 
 <input name="property11" value="【适用范围】" type="hidden" />
 【　适用范围　】：
-<input name="property12" value="" /><br />
+<input name="property12" id="txt7" value="" /><br />
 
 <input name="property13" value="【计价单位】" type="hidden" />
 【　计价单位　】：
-<input name="property14" value="" /><br />
+<input name="property14" id="txt8" value="" /><br />
 
 <input name="property15" value="【产地】" type="hidden" />
 【　产地　】：
-<input name="property16" value="" /><br />
+<input name="property16" id="txt9" value="" /><br />
 
 <input name="property17" value="【是否带不干胶】" type="hidden" />
 【　是否带不干胶　】：
-<input name="property18" value="" /><br />
+<input name="property18" id="txt10" value="" /><br />
 
 <input name="property19" value="【产品介绍】" type="hidden" />
 【　产品介绍　】：
-<input name="property20" value="" /><br /><br /><br />
+<input name="property20" id="txt11" value="" /><br /><br /><br />
 </td>
 <td align="left" valign="top">
 <strong>效果图：</strong><br />
@@ -183,23 +183,23 @@
 <strong>请输入长度属性：</strong><br />
 <input name="text1" value="text1" type="hidden" />
 【文字1】：
-<input name="text2" value="" /><br />
+<input name="text2" id="txt12" value="" /><br />
 
 <input name="text3" value="text2" type="hidden" />
 【文字2】：
-<input name="text4" value="" /><br />
+<input name="text4" id="txt13" value="" /><br />
 
 <input name="text5" value="text3" type="hidden" />
 【文字3】：
-<input name="text6" value="" /><br />
+<input name="text6" id="txt14" value="" /><br />
 
 <input name="text7" value="text4" type="hidden" />
 【文字4】：
-<input name="text8" value="" /><br />
+<input name="text8" id="txt15" value="" /><br />
 
 <input name="text9" value="text5" type="hidden" />
 【文字5】：
-<input name="text10" value="" /><br />
+<input name="text10" id="txt16" value="" /><br />
 
 </td>
 <td align="left" valign="top">
@@ -302,6 +302,160 @@
                 return false;
             }
 
+            if (Obj("txt3").value == "") {
+                alert("请输入产品名称！");
+                Obj("txt3").focus();
+                return false;
+            }
+            if (Obj("txt3").value.length > 50) {
+                alert("产品名称不能超过50个字符！");
+                Obj("txt3").focus();
+                return false;
+            }
+
+            if (Obj("txt4").value == "") {
+                alert("请输入材质！");
+                Obj("txt4").focus();
+                return false;
+            }
+            if (Obj("txt4").value.length > 50) {
+                alert("材质不能超过50个字符！");
+                Obj("txt4").focus();
+                return false;
+            }
+
+
+            if (Obj("txt5").value == "") {
+                alert("请输入规格！");
+                Obj("txt5").focus();
+                return false;
+            }
+            if (Obj("txt5").value.length > 50) {
+                alert("规格不能超过50个字符！");
+                Obj("txt5").focus();
+                return false;
+            }
+
+            if (Obj("txt6").value == "") {
+                alert("请输入图层工艺！");
+                Obj("txt6").focus();
+                return false;
+            }
+            if (Obj("txt6").value.length > 50) {
+                alert("图层工艺不能超过50个字符！");
+                Obj("txt6").focus();
+                return false;
+            }
+
+            if (Obj("txt7").value == "") {
+                alert("请输入适用范围！");
+                Obj("txt7").focus();
+                return false;
+            }
+            if (Obj("txt7").value.length > 50) {
+                alert("适用范围不能超过50个字符！");
+                Obj("txt7").focus();
+                return false;
+            }
+
+            if (Obj("txt8").value == "") {
+                alert("请输入计价单位！");
+                Obj("txt8").focus();
+                return false;
+            }
+            if (Obj("txt8").value.length > 50) {
+                alert("计价单位不能超过50个字符！");
+                Obj("txt8").focus();
+                return false;
+            }
+
+            if (Obj("txt9").value == "") {
+                alert("请输入产地！");
+                Obj("txt9").focus();
+                return false;
+            }
+            if (Obj("txt9").value.length > 50) {
+                alert("产地不能超过50个字符！");
+                Obj("txt9").focus();
+                return false;
+            }
+
+            if (Obj("txt10").value == "") {
+                alert("请输入是否带不干胶！");
+                Obj("txt10").focus();
+                return false;
+            }
+            if (Obj("txt10").value.length > 50) {
+                alert("是否带不干胶不能超过50个字符！");
+                Obj("txt10").focus();
+                return false;
+            }
+
+            if (Obj("txt11").value == "") {
+                alert("请输入产品介绍！");
+                Obj("txt11").focus();
+                return false;
+            }
+            if (Obj("txt11").value.length > 250) {
+                alert("产品介绍不能超过250个字符！");
+                Obj("txt11").focus();
+                return false;
+            }
+
+            if (Obj("txt12").value == "") {
+                alert("请输入文字1！");
+                Obj("txt12").focus();
+                return false;
+            }
+            if (Obj("txt12").value.length > 50) {
+                alert("文字1不能超过50个字符！");
+                Obj("txt12").focus();
+                return false;
+            }
+
+            if (Obj("txt13").value == "") {
+                alert("请输入文字2！");
+                Obj("txt13").focus();
+                return false;
+            }
+            if (Obj("txt13").value.length > 50) {
+                alert("文字2不能超过50个字符！");
+                Obj("txt13").focus();
+                return false;
+            }
+
+            if (Obj("txt14").value == "") {
+                alert("请输入文字3！");
+                Obj("txt14").focus();
+                return false;
+            }
+            if (Obj("txt14").value.length > 50) {
+                alert("文字3不能超过50个字符！");
+                Obj("txt14").focus();
+                return false;
+            }
+
+            if (Obj("txt15").value == "") {
+                alert("请输入文字4！");
+                Obj("txt15").focus();
+                return false;
+            }
+            if (Obj("txt15").value.length > 50) {
+                alert("文字4不能超过50个字符！");
+                Obj("txt15").focus();
+                return false;
+            }
+
+            if (Obj("txt16").value == "") {
+                alert("请输入文字6！");
+                Obj("txt16").focus();
+                return false;
+            }
+            if (Obj("txt16").value.length > 50) {
+                alert("文字6不能超过50个字符！");
+                Obj("txt16").focus();
+                return false;
+            }
 
 
             ShowUpload();
