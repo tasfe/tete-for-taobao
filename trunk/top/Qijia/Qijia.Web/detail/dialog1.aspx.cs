@@ -133,27 +133,49 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             Directory.CreateDirectory(Server.MapPath(dateName));
         }
 
-        UploadFileCommon(FileUpload1, "{item1}", dateName);
-        UploadFileCommon(FileUpload2, "{item2}", dateName);
-        UploadFileCommon(FileUpload3, "{item3}", dateName);
-        UploadFileCommon(FileUpload4, "{item4}", dateName);
-        UploadFileCommon(FileUpload5, "{item5}", dateName);
-        UploadFileCommon(FileUpload6, "{item6}", dateName);
+        UploadFileCommon(FileUpload1, "{item1}", dateName, "720*583");
+        UploadFileCommon(FileUpload2, "{item2}", dateName, "324*316");
+        UploadFileCommon(FileUpload3, "{item3}", dateName, "190*130");
+        UploadFileCommon(FileUpload4, "{item4}", dateName, "480*310");
+        UploadFileCommon(FileUpload5, "{item5}", dateName, "190*130");
+        UploadFileCommon(FileUpload6, "{item6}", dateName, "480*310");
     }
 
-    private void UploadFileCommon(FileUpload fileUpload1, string tag, string dateName)
+    private void UploadFileCommon(FileUpload fileUpload1, string tag, string dateName,string wihe)
     {
         string url = "http://qijia.7fshop.com/detail/";
 
         if (CheckFileIsSave(fileUpload1))
         {
             Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
-            string picName = dateName + "/" + Guid.NewGuid() + ".jpg";
+            Guid imgId = Guid.NewGuid();
+            string picName = dateName + "/" + imgId + ".jpg";
+            //保存原图
             fileUpload1.PostedFile.SaveAs(Server.MapPath(picName));
+            string picsName = "~/temp/" + imgId + "_s.jpg";
+            
+            //生成合理尺寸图(对照模板)
+            string[] widhei = wihe.Split('*');
+            HttpUtil.MakeThumbnail(picName, Server.MapPath(picsName), int.Parse(widhei[0]), int.Parse(widhei[1]), "Cut");
             imgCus.JiaImg = url + picName;
             imgCus.ItemId = id;
             imgCus.Tag = tag;
             imgCus.Guid = Guid.NewGuid().ToString();
+
+            //发送图片到齐家网站
+            List<Parameter> list = new List<Parameter>();
+            Parameter paramter = new Parameter("image", Server.MapPath(picsName));
+            list.Add(paramter);
+            try
+            {
+                string realUrl = UploadFile.HttpPostWithFile("http://mall.jia.com/site/upload_describe_image", "", list);
+            }
+            catch (Exception ex)
+            {
+                LogHelper.LogInfo.Add("用户上传图片错误", ex.Message);
+            }
+
+            //可做删除生成的图片操作(暂未做)
 
             string sql = "SELECT * FROM Jia_ImgCustomer WHERE ItemId = '" + id + "' AND tag = '" + tag + "'";
             DataTable dt = DBHelper.ExecuteDataTable(sql);
