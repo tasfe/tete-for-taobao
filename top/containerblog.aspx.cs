@@ -71,20 +71,20 @@ public partial class top_containerblog : System.Web.UI.Page
             return;
         }
 
-        if (agreementsign != "")
-        {
-            //加密NICK
-            Rijndael_ encode = new Rijndael_("tetesoft");
-            nick = encode.Encrypt(nick);
+        //if (agreementsign != "")
+        //{
+        //    //加密NICK
+        //    Rijndael_ encode = new Rijndael_("tetesoft");
+        //    nick = encode.Encrypt(nick);
 
-            Common.Cookie cookie = new Common.Cookie();
-            cookie.setCookie("top_sessionblog", top_session, 999999);
-            cookie.setCookie("top_sessiongroupbuy", top_session, 999999);
-            cookie.setCookie("nick", nick, 999999);
+        //    Common.Cookie cookie = new Common.Cookie();
+        //    cookie.setCookie("top_sessionblog", top_session, 999999);
+        //    cookie.setCookie("top_sessiongroupbuy", top_session, 999999);
+        //    cookie.setCookie("nick", nick, 999999);
 
-            Response.Redirect("indexnew.html");
-            return;
-        }
+        //    Response.Redirect("indexnew.html");
+        //    return;
+        //}
 
         //判断跳转
         GetData(nick);
@@ -135,7 +135,6 @@ public partial class top_containerblog : System.Web.UI.Page
             //更新登录次数和最近登陆时间
             string sql = "UPDATE TCS_ShopSession SET session='" + top_session + "',version='" + versionNo + "' WHERE nick = '" + nick + "'";
             utils.ExecuteNonQuery(sql);
-
 
             //更新特殊用户
             sql = "UPDATE TCS_ShopSession SET version = 2 WHERE nick = '玩具第一城'";
