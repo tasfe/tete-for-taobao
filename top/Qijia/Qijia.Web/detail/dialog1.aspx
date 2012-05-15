@@ -462,8 +462,8 @@
                 Obj("text1").focus();
                 return false;
             }
-            if (Obj("text1").value.length > 150) {
-                alert("文字6不能超过150个字符！");
+            if (Obj("text1").value.length > 50) {
+                alert("文字6不能超过50个字符！");
                 Obj("text1").focus();
                 return false;
             }
@@ -473,8 +473,8 @@
                 Obj("text2").focus();
                 return false;
             }
-            if (Obj("text2").value.length > 150) {
-                alert("文字7不能超过150个字符！");
+            if (Obj("text2").value.length > 50) {
+                alert("文字7不能超过50个字符！");
                 Obj("text2").focus();
                 return false;
             }
