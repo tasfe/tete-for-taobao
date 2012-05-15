@@ -36,19 +36,19 @@
             <tr>
                 <td align="left" width="180" height="30">请选择发送的会员组：</td>
                 <td>
-                    <select name="typ">
-                        <option value="all">所有会员</option>
+                    <select name="typ" onchange="InitUserCount(this)">
+                        <option value="all" title="<%=count1 %>">所有会员</option>
                         <optgroup label="按购买次数区别">
-                            <option value="0">未成功购买的会员</option>
-                            <option value="1">购买过一次的会员</option>
-                            <option value="2">购买过多次的会员</option>
+                            <option value="0" title="<%=count2 %>">未成功购买的会员</option>
+                            <option value="1" title="<%=count3 %>">购买过一次的会员</option>
+                            <option value="2" title="<%=count4 %>">购买过多次的会员</option>
                         </optgroup>
                         <optgroup label="按用户组区别">
-                            <option value="a">未购买</option>
-                            <option value="b">普通会员</option>
-                            <option value="c">高级会员</option>
-                            <option value="d">VIP会员</option>
-                            <option value="e">至尊VIP会员</option>
+                            <option value="a" title="<%=count5 %>">未购买</option>
+                            <option value="b" title="<%=count6 %>">普通会员</option>
+                            <option value="c" title="<%=count7 %>">高级会员</option>
+                            <option value="d" title="<%=count8 %>">VIP会员</option>
+                            <option value="e" title="<%=count9 %>">至尊VIP会员</option>
                         </optgroup>
                     </select>
                 </td>
@@ -57,8 +57,21 @@
                 <td align="left" height="30">选择赠送的优惠券：</td>
                 <td>
                     <%=couponstr%>
-                    <a href="couponadd.aspx">创建优惠券</a>
-                    <a href="couponsend.aspx">查看优惠券赠送记录</a>
+                    <a href="../reviewnew/couponadd.aspx">创建优惠券</a>
+                    <a href="../reviewnew/couponsend.aspx">查看优惠券赠送记录</a>
+                </td>
+            </tr>
+            <tr>
+                <td align="left" width="180" height="30">该组会员数量：</td>
+                <td>
+                    【<span ID="lbCount"><%=count1 %></span>】
+                </td>
+            </tr>
+            <tr>
+                <td align="left" width="180" height="30">是否发送短信：</td>
+                <td>
+                    <input type="radio" name="ismsg" value="0" checked="checked" />不发
+                    <input type="radio" name="ismsg" value="1" />发短信
                 </td>
             </tr>
             <tr>
@@ -71,6 +84,12 @@
     </div>
 </div>
 </form>
+
+<script>
+    function InitUserCount(obj) {
+        document.getElementById("lbCount").innerHTML = obj.options[obj.options.selectedIndex].title;
+    }
+</script>
 
 </body>
 </html>
