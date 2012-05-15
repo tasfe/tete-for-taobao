@@ -189,6 +189,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
                 {
                     errtext += "|" + errtexttemp;
                 }
+                err++;
                     //string err = new Regex(@"<reason>([^<]*)</reason>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
                 //Response.Write("<script>alert('【系统错误】：" + err + "，请稍后再试或者联系客服人员！');window.location.href='msgsend.aspx';</script>");
             }
@@ -214,7 +215,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
                 utils.ExecuteNonQuery(sql);
             }
         }
-        if (err > 0)
+        if (err == 0)
         {
             Response.Write("<script>alert('赠送完毕，成功赠送" + index.ToString() + "张，失败" + err.ToString() + "张！');window.location.href='../reviewnew/couponsend.aspx';</script>");
         }
