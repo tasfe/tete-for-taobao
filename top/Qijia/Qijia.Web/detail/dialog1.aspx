@@ -259,6 +259,26 @@
                 Obj("FileUpload2").focus();
                 return false;
             }
+            if (Obj("FileUpload3").value == "" && '<%=item3 %>' == '') {
+                alert("请上传商品图片3！");
+                Obj("FileUpload3").focus();
+                return false;
+            }
+            if (Obj("FileUpload4").value == "" && '<%=item4 %>' == '') {
+                alert("请上传商品图片4！");
+                Obj("FileUpload4").focus();
+                return false;
+            }
+            if (Obj("FileUpload5").value == "" && '<%=item5 %>' == '') {
+                alert("请上传商品图片5！");
+                Obj("FileUpload5").focus();
+                return false;
+            }
+            if (Obj("FileUpload6").value == "" && '<%=item6 %>' == '') {
+                alert("请上传商品图片6！");
+                Obj("FileUpload6").focus();
+                return false;
+            }
 
             ShowUpload();
             return true;
