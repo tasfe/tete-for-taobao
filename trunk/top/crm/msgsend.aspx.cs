@@ -117,8 +117,8 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         //执行优惠券赠送行为
-        string appkey = "12132145";
-        string secret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
+        string appkey = "12159997";
+        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
         string sql = string.Empty;
 
         string couponid = utils.NewRequest("couponid", utils.RequestType.Form);
