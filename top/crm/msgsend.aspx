@@ -67,13 +67,15 @@
                     【<span ID="lbCount"><%=count1 %></span>】
                 </td>
             </tr>
-            <tr>
+            <!--<tr>
                 <td align="left" width="180" height="30">是否发送短信：</td>
                 <td>
                     <input type="radio" name="ismsg" value="0" checked="checked" />不发
                     <input type="radio" name="ismsg" value="1" />发短信
+
+                    设置短信内容 （如果在）
                 </td>
-            </tr>
+            </tr>-->
             <tr>
                 <td align="left" colspan="2">
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="赠送优惠券给买家" />
