@@ -60,7 +60,7 @@ public partial class top_containerblog : System.Web.UI.Page
         }
         else
         {
-            versionNo = "1";
+            //versionNo = "1";
         }
 
         nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["visitor_nick"];
