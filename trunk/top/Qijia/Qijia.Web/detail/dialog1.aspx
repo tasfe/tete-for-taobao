@@ -128,11 +128,11 @@
 <strong>请输入商品属性：</strong><br />
 <input name="text111" value="NO" type="hidden" />
 【　商品编号　】：
-<input name="text121" value="" /><br />
+<input name="text121" id="txt1" value="" /><br />
 
 <input name="property1" value="【产品品牌】" type="hidden" />
 【　产品品牌　】：
-<input name="property2" value="" /><br />
+<input name="property2" id="txt2" value="" /><br />
 
 <input name="property3" value="【产品名称】" type="hidden" />
 【　产品名称　】：
@@ -279,6 +279,30 @@
                 Obj("FileUpload6").focus();
                 return false;
             }
+
+            if (Obj("txt1").value == "") {
+                alert("请输入产品编号！");
+                Obj("txt1").focus();
+                return false;
+            }
+            if (Obj("txt1").value.length > 50) {
+                alert("产品编号不能超过50个字符！");
+                Obj("txt1").focus();
+                return false;
+            }
+
+            if (Obj("txt2").value == "") {
+                alert("请输入产品品牌！");
+                Obj("txt2").focus();
+                return false;
+            }
+            if (Obj("txt2").value.length > 50) {
+                alert("产品品牌不能超过50个字符！");
+                Obj("txt2").focus();
+                return false;
+            }
+
+
 
             ShowUpload();
             return true;
