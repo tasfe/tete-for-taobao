@@ -16,13 +16,13 @@ namespace Qijia.DAL
         }
         public int AddJia_ImgCustomer(Jia_ImgCustomer jia_imgcustomer)
         {
-            string sql = "insert Jia_ImgCustomer values(@ItemId,@Tag,@JiaImg)";
+            string sql = "insert Jia_ImgCustomer(ItemId,Tag,JiaImg,MyImg) values(@ItemId,@Tag,@JiaImg,@MyImg)";
             SqlParameter[] param = CreateParameter(jia_imgcustomer);
             return DBHelper.ExecuteNonQuery(sql, param);
         }
         public int ModifyJia_ImgCustomer(Jia_ImgCustomer jia_imgcustomer)
         {
-            string sql = "update Jia_ImgCustomer set ItemId=@ItemId,Tag=@Tag,JiaImg=@JiaImg where Guid=@Guid";
+            string sql = "update Jia_ImgCustomer set ItemId=@ItemId,Tag=@Tag,JiaImg=@JiaImg,MyImg=@MyImg where Guid=@Guid";
             SqlParameter[] param = CreateParameter(jia_imgcustomer);
             return DBHelper.ExecuteNonQuery(sql, param);
         }
@@ -46,7 +46,8 @@ namespace Qijia.DAL
                       new SqlParameter("@Guid",jia_imgcustomer.Guid),
                       new SqlParameter("@ItemId",jia_imgcustomer.ItemId),
                       new SqlParameter("@Tag",jia_imgcustomer.Tag),
-                      new SqlParameter("@JiaImg",jia_imgcustomer.JiaImg)
+                      new SqlParameter("@JiaImg",jia_imgcustomer.JiaImg),
+                      new SqlParameter("@MyImg",jia_imgcustomer.MyImg)
                     };
             return param;
         }
@@ -61,6 +62,8 @@ namespace Qijia.DAL
                 jia_imgcustomer.ItemId = Convert.ToString(dr["ItemId"]);
                 jia_imgcustomer.Tag = Convert.ToString(dr["Tag"]);
                 jia_imgcustomer.JiaImg = Convert.ToString(dr["JiaImg"]);
+                jia_imgcustomer.MyImg = Convert.ToString(dr["MyImg"]);
+
                 list.Add(jia_imgcustomer);
             }
             return list;
