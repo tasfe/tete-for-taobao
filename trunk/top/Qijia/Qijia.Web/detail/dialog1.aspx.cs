@@ -162,7 +162,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             imgCus.Guid = Guid.NewGuid().ToString();
             imgCus.MyImg = url + picName;
 
-            imgCus.JiaImg = url + "temp/" + imgId + "_s.jpg";
+            imgCus.JiaImg = "http://qijia.7fshop.com/temp/" + imgId + "_s.jpg";
 
             //发送图片到齐家网站
             List<Parameter> list = new List<Parameter>();
