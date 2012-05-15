@@ -210,48 +210,51 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
             IDictionary<string, string> param = new Dictionary<string, string>();
             param.Add("coupon_id", couponid);
             param.Add("buyer_nick", buynick);
-
-            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.send", session, param);
-            Regex reg = new Regex(@"<coupon_number>([^<]*)</coupon_number>", RegexOptions.IgnoreCase);
-            MatchCollection match = reg.Matches(result);
-
-            //如果失败
-            if (!reg.IsMatch(result))
+            try
             {
-                string errtexttemp = new Regex(@"<reason>([^<]*)</reason>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-                if (errtexttemp.Length == 0)
+                string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.send", session, param);
+                Regex reg = new Regex(@"<coupon_number>([^<]*)</coupon_number>", RegexOptions.IgnoreCase);
+                MatchCollection match = reg.Matches(result);
+
+                //如果失败
+                if (!reg.IsMatch(result))
                 {
-                    errtexttemp = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-                }
-                if (errtext.IndexOf(errtexttemp) == -1)
-                {
-                    errtext += "|" + errtexttemp;
-                }
-                err++;
+                    string errtexttemp = new Regex(@"<reason>([^<]*)</reason>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                    if (errtexttemp.Length == 0)
+                    {
+                        errtexttemp = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                    }
+                    if (errtext.IndexOf(errtexttemp) == -1)
+                    {
+                        errtext += "|" + errtexttemp;
+                    }
+                    err++;
                     //string err = new Regex(@"<reason>([^<]*)</reason>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-                //Response.Write("<script>alert('【系统错误】：" + err + "，请稍后再试或者联系客服人员！');window.location.href='msgsend.aspx';</script>");
-            }
-            else
-            {
-                index++;
-                string number = match[0].Groups[1].ToString();
+                    //Response.Write("<script>alert('【系统错误】：" + err + "，请稍后再试或者联系客服人员！');window.location.href='msgsend.aspx';</script>");
+                }
+                else
+                {
+                    index++;
+                    string number = match[0].Groups[1].ToString();
 
-                //赠送优惠券
-                sql = "INSERT INTO TCS_CouponSend (" +
-                                    "nick, " +
-                                    "guid, " +
-                                    "buynick, " +
-                                    "taobaonumber " +
-                                " ) VALUES ( " +
-                                    " '" + nick + "', " +
-                                    " '" + guid + "', " +
-                                    " '" + buynick + "', " +
-                                    " '" + number + "' " +
-                                ") ";
-                //Response.Write(sql);
-                //Response.End();
-                utils.ExecuteNonQuery(sql);
+                    //赠送优惠券
+                    sql = "INSERT INTO TCS_CouponSend (" +
+                                        "nick, " +
+                                        "guid, " +
+                                        "buynick, " +
+                                        "taobaonumber " +
+                                    " ) VALUES ( " +
+                                        " '" + nick + "', " +
+                                        " '" + guid + "', " +
+                                        " '" + buynick + "', " +
+                                        " '" + number + "' " +
+                                    ") ";
+                    //Response.Write(sql);
+                    //Response.End();
+                    utils.ExecuteNonQuery(sql);
+                }
             }
+            catch { }
         }
         if (err == 0)
         {
