@@ -523,8 +523,8 @@
             }
 
             if (tag == 'text') {
-                document.getElementById("text1").value = strArray[5];
-                document.getElementById("text2").value = strArray[6];
+                document.getElementById("text1").value = strArray[6];
+                document.getElementById("text2").value = strArray[7];
             }
         }
 
