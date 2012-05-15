@@ -157,10 +157,12 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             //生成合理尺寸图(对照模板)
             string[] widhei = wihe.Split('*');
             HttpUtil.MakeThumbnail(picName, Server.MapPath(picsName), int.Parse(widhei[0]), int.Parse(widhei[1]), "Cut");
-            imgCus.JiaImg = url + picName;
             imgCus.ItemId = id;
             imgCus.Tag = tag;
             imgCus.Guid = Guid.NewGuid().ToString();
+            imgCus.MyImg = url + picName;
+
+            imgCus.JiaImg = url + "temp/" + imgId + "_s.jpg";
 
             //发送图片到齐家网站
             List<Parameter> list = new List<Parameter>();
