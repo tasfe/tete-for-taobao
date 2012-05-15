@@ -247,6 +247,9 @@ public partial class top_containerblog : System.Web.UI.Page
                             " '" + giftMsg + "' " +
                       ") ";
             utils.ExecuteNonQuery(sql);
+
+            Response.Write("好评有礼真情回馈,恭喜您获得我们送出的首次订购赠送的【" + giftMsg + "】条短信,感谢您的使用，您的支持是我们的最大动力！<hr><input type=button value='开始使用服务' onclick='window.location.href=\"indexnew.html\"'>");
+            Response.End();
         }
         else
         { 
