@@ -24,6 +24,8 @@ public partial class top_containerblog : System.Web.UI.Page
     public string top_session = string.Empty;
     public string nick = string.Empty;
     public string versionNo = string.Empty;
+    public string isFirst = string.Empty;
+    public string sendMsg = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -182,7 +184,15 @@ public partial class top_containerblog : System.Web.UI.Page
         cookie.setCookie("nick", nick, 999999);
 
         //Response.Redirect("http://www.7fshop.com/top/market/setcookie.aspx?t=1&nick=" + HttpUtility.UrlEncode(nick));
-        Response.Redirect("indexnew.html");
+        if (isFirst == "1")
+        {
+            Response.Write("好评有礼真情回馈,恭喜您获得我们送出的首次订购赠送的【" + sendMsg + "】条短信,感谢您的使用，您的支持是我们的最大动力！<hr><input type=button value='开始使用服务' onclick='window.location.href=\"indexnew.html\"'>");
+            Response.End();
+        }
+        else
+        {
+            Response.Redirect("indexnew.html");
+        }
     }
 
     private void InsertConfigInfo(string nick,string session, string version)
@@ -248,8 +258,8 @@ public partial class top_containerblog : System.Web.UI.Page
                       ") ";
             utils.ExecuteNonQuery(sql);
 
-            Response.Write("好评有礼真情回馈,恭喜您获得我们送出的首次订购赠送的【" + giftMsg + "】条短信,感谢您的使用，您的支持是我们的最大动力！<hr><input type=button value='开始使用服务' onclick='window.location.href=\"indexnew.html\"'>");
-            Response.End();
+            isFirst = "1";
+            sendMsg = giftMsg;
         }
         else
         { 
