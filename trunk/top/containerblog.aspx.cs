@@ -186,7 +186,7 @@ public partial class top_containerblog : System.Web.UI.Page
         //Response.Redirect("http://www.7fshop.com/top/market/setcookie.aspx?t=1&nick=" + HttpUtility.UrlEncode(nick));
         if (isFirst == "1")
         {
-            Response.Write("<span style='font-size:18px; font-weight:bold'>好评有礼真情回馈,恭喜您获得我们送出的首次订购赠送的【" + sendMsg + "】条短信,感谢您的使用，您的支持是我们的最大动力！</span><hr><input type=button value='开始使用服务' onclick='window.location.href=\"indexnew.html\"'>");
+            Response.Write("<span style='font-size:18px; font-weight:bold'>好评有礼真情回馈,恭喜您获得我们送出的首次订购赠送的<font color=red>【" + sendMsg + "】</font>条短信,感谢您的使用，您的支持是我们的最大动力！</span><hr><input type=button value='开始使用服务' onclick='window.location.href=\"indexnew.html\"'>");
             Response.End();
         }
         else
