@@ -298,7 +298,7 @@ public partial class top_review_msg : System.Web.UI.Page
             //增加默认值
             if (giftcontent.Length == 0)
             {
-                giftcontent = "[shopname]:亲,恭喜您获得我店[gift],感谢您的及时优质评价";
+                giftcontent = "[shopname]:亲,恭喜您获得我店[gift],下次购物可抵现金,有效期请您在淘宝中-我的优惠卡券 中查看";
             }
             if (shippingcontent.Length == 0)
             {
@@ -306,7 +306,7 @@ public partial class top_review_msg : System.Web.UI.Page
             }
             if (reviewcontent.Length == 0)
             {
-                reviewcontent = "[shopname]:亲,您购买的宝贝已经收到很多天了,请帮忙确认,满分好评+优质评价,即可获赠[gift]";
+                reviewcontent = "[shopname]:亲,您购买的宝贝已经签收多日,请帮忙确认,满分好评+优质评价,即可获赠[gift]";
             }
             if (fahuocontent.Length == 0)
             {
