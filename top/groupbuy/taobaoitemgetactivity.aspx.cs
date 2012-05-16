@@ -219,7 +219,7 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
             {
                
                 //先判断该商品是否已经参团（状态为：进行中和暂停中）
-                string sql = "SELECT *  FROM  tete_activitylist where ProductID=" + product.Content[i].NumIid.ToString() + " and (Status=3 or Status=1 or Status=0)";
+                string sql = "SELECT *  FROM  tete_activitylist where ProductID=" + product.Content[i].NumIid.ToString() + " and (Status=3 or Status=1 or Status=0) and nick='"+taobaoNick+"'";
                 DataTable dtNew2 = utils.ExecuteDataTable(sql);
                 // 取得促销价格
                 if (dtNew2 != null && dtNew2.Rows.Count > 0)
