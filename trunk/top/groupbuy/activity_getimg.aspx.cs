@@ -50,8 +50,11 @@ public partial class top_groupbuy_activity_getimg : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt != null && dt.Rows.Count > 0)
         {
-            //try
-            //{
+            try
+            {
+                Response.Write(dt.Rows[0]["enddate"].ToString());
+                Response.End();
+
                 endDate = DateTime.Parse(dt.Rows[0]["enddate"].ToString());
                 startDate = DateTime.Parse(date);
                 TimeSpan tdays = endDate - startDate;  //得到时间差 当前时间与团购结束时间
@@ -80,12 +83,12 @@ public partial class top_groupbuy_activity_getimg : System.Web.UI.Page
                 //    //输出淘宝图片地址
                 //    Response.Write(dt.Rows[0]["taobaoImageUrl"].ToString());
                 //}
-            //}
-            //catch(Exception e)
-            //{
-            //    Response.Write(e.Message.ToString());
-            //    Response.End();
-            //}
+            }
+            catch(Exception e)
+            {
+                Response.Write(e.Message.ToString());
+                Response.End();
+            }
 
         }
     }
