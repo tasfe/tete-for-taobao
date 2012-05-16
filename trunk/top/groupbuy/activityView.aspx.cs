@@ -172,11 +172,11 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
                     else if (Request.QueryString["tp"].ToString().Trim() == "del")//删除
                     {
                         //更新活动，更新活动商品，及同步淘宝，做服务控制
-                       // string sql = "update tete_activity set Status=4,isok=0 where ID=" + activityID;//删除进行中
+                        string sql = "update tete_activity set Status=4,isok=1 where ID=" + activityID;//删除进行中
 
-                        //utils.ExecuteNonQuery(sql); //更新活动成功
+                        utils.ExecuteNonQuery(sql); //更新活动成功
 
-                        string sql = "select * from tete_activitylist where ActivityID=" + activityID;
+                         sql = "select * from tete_activitylist where ActivityID=" + activityID;
                         DataTable dt34 = utils.ExecuteDataTable(sql);
                         if (dt34 != null && dt34.Rows.Count > 0)
                         {
