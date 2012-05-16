@@ -174,7 +174,7 @@ public partial class top_containergroupbuy : System.Web.UI.Page
         cookie.setCookie("top_sessiongroupbuy", top_session, 999999);
         cookie.setCookie("nick", nick, 999999);
 
-        Response.Redirect("indexgroup.html");
+        Response.Redirect("indexgroup2.html");
     }
 
 
