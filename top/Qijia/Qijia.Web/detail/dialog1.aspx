@@ -302,7 +302,7 @@
                 return false;
             }
 
-            if (Obj("txt3").value == "") {
+            if (checkNull("txt3")) {
                 alert("请输入产品名称！");
                 Obj("txt3").focus();
                 return false;
@@ -313,7 +313,7 @@
                 return false;
             }
 
-            if (Obj("txt4").value == "") {
+            if (checkNull("txt4")) {
                 alert("请输入材质！");
                 Obj("txt4").focus();
                 return false;
@@ -325,7 +325,7 @@
             }
 
 
-            if (Obj("txt5").value == "") {
+            if (checkNull("txt5")) {
                 alert("请输入规格！");
                 Obj("txt5").focus();
                 return false;
@@ -336,7 +336,7 @@
                 return false;
             }
 
-            if (Obj("txt6").value == "") {
+            if (checkNull("txt6")) {
                 alert("请输入图层工艺！");
                 Obj("txt6").focus();
                 return false;
@@ -347,7 +347,7 @@
                 return false;
             }
 
-            if (Obj("txt7").value == "") {
+            if (checkNull("txt7")) {
                 alert("请输入适用范围！");
                 Obj("txt7").focus();
                 return false;
@@ -358,7 +358,7 @@
                 return false;
             }
 
-            if (Obj("txt8").value == "") {
+            if (checkNull("txt8")) {
                 alert("请输入计价单位！");
                 Obj("txt8").focus();
                 return false;
@@ -369,7 +369,7 @@
                 return false;
             }
 
-            if (Obj("txt9").value == "") {
+            if (checkNull("txt9")) {
                 alert("请输入产地！");
                 Obj("txt9").focus();
                 return false;
@@ -380,7 +380,7 @@
                 return false;
             }
 
-            if (Obj("txt10").value == "") {
+            if (checkNull("txt10")) {
                 alert("请输入是否带不干胶！");
                 Obj("txt10").focus();
                 return false;
@@ -391,7 +391,7 @@
                 return false;
             }
 
-            if (Obj("txt11").value == "") {
+            if (checkNull("txt11")) {
                 alert("请输入产品介绍！");
                 Obj("txt11").focus();
                 return false;
@@ -402,7 +402,7 @@
                 return false;
             }
 
-            if (Obj("txt12").value == "") {
+            if (checkNull("txt12")) {
                 alert("请输入文字1！");
                 Obj("txt12").focus();
                 return false;
@@ -413,7 +413,7 @@
                 return false;
             }
 
-            if (Obj("txt13").value == "") {
+            if (checkNull("txt13")) {
                 alert("请输入文字2！");
                 Obj("txt13").focus();
                 return false;
@@ -424,7 +424,7 @@
                 return false;
             }
 
-            if (Obj("txt14").value == "") {
+            if (checkNull("txt14")) {
                 alert("请输入文字3！");
                 Obj("txt14").focus();
                 return false;
@@ -435,7 +435,7 @@
                 return false;
             }
 
-            if (Obj("txt15").value == "") {
+            if (checkNull("txt15")) {
                 alert("请输入文字4！");
                 Obj("txt15").focus();
                 return false;
@@ -446,7 +446,7 @@
                 return false;
             }
 
-            if (Obj("txt16").value == "") {
+            if (checkNull("txt16")) {
                 alert("请输入文字5！");
                 Obj("txt16").focus();
                 return false;
@@ -457,7 +457,7 @@
                 return false;
             }
 
-            if (Obj("textarea1").value == "") {
+            if (checkNull("textarea1")) {
                 alert("请输入文字6！");
                 return false;
             }
@@ -466,7 +466,7 @@
                 return false;
             }
 
-            if (Obj("textarea2").value == "") {
+            if (checkNull("textarea2")) {
                 alert("请输入文字7！");
                 return false;
             }
