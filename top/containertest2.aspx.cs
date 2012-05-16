@@ -84,7 +84,7 @@ public partial class top_containertest2 : System.Web.UI.Page
         cookie.setCookie("top_sessiongroupbuy", session, 999999);
         cookie.setCookie("nick", nick, 999999);
 
-        Response.Redirect("indexgroup.html");
+        Response.Redirect("indexgroup2.html");
     }
 
     /// <summary>
