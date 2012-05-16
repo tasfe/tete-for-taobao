@@ -519,8 +519,8 @@
             }
 
             if (tag == 'text') {
-                document.getElementById("text1").value = strArray[6];
-                document.getElementById("text2").value = strArray[7];
+                document.getElementById("textarea1").value = strArray[6];
+                document.getElementById("textarea2").value = strArray[7];
             }
         }
 
