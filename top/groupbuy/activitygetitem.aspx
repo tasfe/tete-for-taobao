@@ -107,7 +107,7 @@
                 success: function (msg) {
                     if (msg == 'true') {
                         $('#del' + iid).hide();
-                        parent.window.location.reload();
+                         window.location.reload();
                     } else {
                         $('#del' + iid).html('删除失败:' + msg + '<a href="javascript:delItemAction(' + iid + ')">重试</a>');
                     }
