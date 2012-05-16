@@ -50,10 +50,11 @@ public partial class top_groupbuy_activity_getimg : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt != null && dt.Rows.Count > 0)
         {
-            try
-            {
+            //try
+            //{
                 Response.Write(dt.Rows[0]["enddate"].ToString());
                 Response.End();
+                return;
 
                 endDate = DateTime.Parse(dt.Rows[0]["enddate"].ToString());
                 startDate = DateTime.Parse(date);
@@ -83,12 +84,12 @@ public partial class top_groupbuy_activity_getimg : System.Web.UI.Page
                 //    //输出淘宝图片地址
                 //    Response.Write(dt.Rows[0]["taobaoImageUrl"].ToString());
                 //}
-            }
-            catch(Exception e)
-            {
-                Response.Write(e.Message.ToString());
-                Response.End();
-            }
+            //}
+            //catch(Exception e)
+            //{
+            //    Response.Write(e.Message.ToString());
+            //    Response.End();
+            //}
 
         }
     }
