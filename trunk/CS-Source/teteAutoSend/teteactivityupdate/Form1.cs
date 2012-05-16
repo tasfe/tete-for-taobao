@@ -174,7 +174,7 @@ namespace teteactivityupdate
                 }
                 dt1s3.Dispose();
                 //休息后继续循环-默认1分半钟一次
-                Thread.Sleep(300000);
+                Thread.Sleep(90000);
 
                 Thread newThread44 = new Thread(activityupdateStart);
                 newThread44.Start();
@@ -186,7 +186,7 @@ namespace teteactivityupdate
                 //MessageBox.Show("\r\n" + e.StackTrace);
                 Thread newThread44 = new Thread(activityupdateStart);
                 //休息后继续循环-默认1分半钟一次 
-                Thread.Sleep(300000);
+                Thread.Sleep(90000);
                 newThread44.Start();
             }
         }
