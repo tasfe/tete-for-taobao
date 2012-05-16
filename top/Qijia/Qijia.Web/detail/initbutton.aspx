@@ -2,7 +2,7 @@
 // JavaScript Document
 var nick = 'test';
 var str = '<img src="http://qijia.7fshop.com/detail/u3.png" onclick="showTeteDialog(event)" style="cursor:pointer" /> <br />';
-str += '<div id="alphaArea" style="display:none; position:absolute; top:0px; left:0px;z-index:99999; width:1324px; height:3000px; background-color:#ccc;"></div>';
+str += '<div id="alphaArea" style="display:none; position:absolute; top:0px; left:0px;z-index:99999; width:1424px; height:3000px; background-color:#ccc;"></div>';
 str += '<div id="showArea" style="display:none; position:absolute; top:1083px; left:305px; background-color:White; border:solid 1px #000; width:870px; height:800px; border:solid 2px #f48120; z-index:99999"><div style="text-align:right"><a href="javascript:CloseShowWindow();" style="font-size:14px; font-weight:bold;">关闭窗口</a></div><iframe id="showFrame" src="" width="866" height="750" frameborder="0"></iframe></div>';
 document.write(str);
 
