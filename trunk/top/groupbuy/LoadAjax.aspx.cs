@@ -137,9 +137,9 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
 
             if (result.IndexOf("error_response") != -1)
             {
-                sql = "delete from    [tete_activitylist]    WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
+               // sql = "delete from    [tete_activitylist]    WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
 
-                utils.ExecuteNonQuery(sql);
+               // utils.ExecuteNonQuery(sql);
 
                 string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
                 if (err == "")

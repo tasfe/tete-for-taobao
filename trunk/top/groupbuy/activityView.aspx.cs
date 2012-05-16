@@ -164,11 +164,21 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
                     else if (Request.QueryString["tp"].ToString().Trim() == "del")//删除
                     {
                         //更新活动，更新活动商品，及同步淘宝，做服务控制
-                        string sql = "update tete_activity set Status=4,isok=0 where ID=" + activityID;//删除进行中
+                       // string sql = "update tete_activity set Status=4,isok=0 where ID=" + activityID;//删除进行中
 
-                        utils.ExecuteNonQuery(sql); //更新活动成功
-                        sql = "update tete_activitylist set  Status=4 ,isok=0 where ActivityID=" + activityID;
-                        utils.ExecuteNonQuery(sql); //更新活动商品
+                        //utils.ExecuteNonQuery(sql); //更新活动成功
+
+                        string sql = "select * from tete_activitylist where ActivityID=" + activityID;
+                        DataTable dt34 = utils.ExecuteDataTable(sql);
+                        if (dt34 != null && dt34.Rows.Count > 0)
+                        {
+                            for (int j = 0; j < dt34.Rows.Count; j++)
+                            {
+                                delactivity(activityID, dt34.Rows[j]["ProductID"].ToString());
+                            }
+                        }
+                       // sql = "update tete_activitylist set  Status=4 ,isok=0 where ActivityID=" + activityID;
+                       // utils.ExecuteNonQuery(sql); //更新活动商品
                         Response.Redirect("activityList.aspx");
           
                     }
@@ -178,6 +188,7 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
                         string sql = "update tete_activity set Status=1,isok=0 where ID=" + activityID;//活动进行中
 
                         utils.ExecuteNonQuery(sql); //更新活动成功
+                       
                         sql = "update tete_activitylist set  Status=1 ,isok=0 where ActivityID=" + activityID;
                         utils.ExecuteNonQuery(sql); //更新活动商品
                         Response.Redirect("activityList.aspx");
@@ -255,6 +266,36 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
 
     }
 
+    /// <summary> 
+    /// 删除活动 
+    /// </summary>
+    /// <param name="actionId"></param>
+    /// <param name="iid"></param>
+    public void delactivity(string actionId,string iid)
+    {
+        //删除活动
+        string appkey = "12287381";
+        string secret = "d3486dac8198ef01000e7bd4504601a4";
+        IDictionary<string, string> param = new Dictionary<string, string>();
+        Common.Cookie cookie = new Common.Cookie();
+        string session = cookie.getCookie("top_sessiongroupbuy");
+
+        //通过数据库查询获取活动ID actionId iid
+        string sql = "SELECT promotionID FROM tete_activitylist WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
+        string promotion_id = utils.ExecuteString(sql);
+
+        //删除活动
+        param = new Dictionary<string, string>();
+        param.Add("promotion_id", promotion_id);
+        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.delete", session, param);
+
+        //删除活动
+        sql = "update  tete_activitylist set Status=4 ,isok=1  WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
+        utils.ExecuteNonQuery(sql);
+
+ 
+
+    }
 
     /// <summary>
     /// 验证是否数字类型
