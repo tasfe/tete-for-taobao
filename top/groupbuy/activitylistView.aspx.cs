@@ -189,11 +189,13 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
                     {
                         discountType = "";
                         discountTypeStr = "checked";
+                        typediscountType.Value = "2";
                     }
                     else
                     {
                         discountType = "checked";
                         discountTypeStr = "";
+                        typediscountType.Value = "1";
                     }
                     zhe = dt.Rows[i]["discountValue"].ToString();
                     yuan = dt.Rows[i]["discountValue"].ToString();
