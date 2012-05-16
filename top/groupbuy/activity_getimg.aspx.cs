@@ -70,7 +70,7 @@ public partial class top_groupbuy_activity_getimg : System.Web.UI.Page
                 {
                     imageName = m;
                 }
-                Response.Write(imageName + "-" + type);
+                //Response.Write(imageName + "-" + type);
                 OutPutImage(imageName, type);
                 ////淘宝图片地址
                 //sql = "SELECT imageName,taobaoImageUrl,Type FROM taobaoImageUrl WHERE Type = " + type + " AND imageName='" + imageName + "'";
@@ -81,9 +81,9 @@ public partial class top_groupbuy_activity_getimg : System.Web.UI.Page
                 //    Response.Write(dt.Rows[0]["taobaoImageUrl"].ToString());
                 //}
             }
-            catch
+            catch(Exception e)
             {
-                Response.Write("");
+                Response.Write(e.Message.ToString());
                 Response.End();
             }
 
