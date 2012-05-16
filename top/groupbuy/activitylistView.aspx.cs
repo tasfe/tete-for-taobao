@@ -142,9 +142,58 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
             if (dt != null && dt.Rows.Count > 0)
             {
                 delactivity(dt.Rows[0]["ActivityID"].ToString(), dt.Rows[0]["ProductID"].ToString());
-                sql = "update tete_activitylist set startDate='" + startDate + "',endDate='" + endDate + "',discountType='" + discountType + "',discountValue='" + discountValue + "',tagId='" + tagId + "',Rcount=" + rcount + ",Status=1,decreaseNum='" + decreaseNum + "',isok=0 where ID=" + ID;
 
-                utils.ExecuteNonQuery(sql);//修改活动商品  '延长修改活动 Status=1 和 isok=0 '
+                //创建活动及相关人群
+                string appkey = "12287381";
+                string secret = "d3486dac8198ef01000e7bd4504601a4";
+
+
+
+                //创建活动相关人群
+                string guid = Guid.NewGuid().ToString().Substring(0, 4);
+                IDictionary<string, string> param = new Dictionary<string, string>();
+
+                string tagid = "1"; //new Regex(@"<tag_id>([^<]*)</tag_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+
+                //创建活动
+                param = new Dictionary<string, string>();
+                param.Add("num_iids", dt.Rows[0]["ProductID"].ToString());
+                param.Add("discount_type", discountType);
+                param.Add("discount_value", discountValue);
+                param.Add("start_date", DateTime.Parse(startDate).ToString("yyyy-MM-dd hh:mm:ss"));
+                param.Add("end_date", DateTime.Parse(endDate).ToString("yyyy-MM-dd hh:mm:ss"));
+                param.Add("promotion_title", dt.Rows[0]["Name"].ToString());
+                param.Add("decrease_num", decreaseNum);
+
+
+                param.Add("tag_id", tagid);
+                string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.add", session, param);
+
+
+                if (result.IndexOf("error_response") != -1)
+                {
+                    string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                    if (err == "")
+                    {
+                        Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12287381&scope=promotion' target='_parent'>重新授权</a>");
+                        Response.End();
+                    }
+
+                    Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>" + err + "</font><br><a href='activityadd.aspx'>重新添加</a>");
+                    Response.End();
+                    return;
+                }
+
+                string promotionid = new Regex(@"<promotion_id>([^<]*)</promotion_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+
+                //更新活动
+                //sql = "update  tete_activitylist set Status=1 ,isok=1,promotionID=" + promotionid + "  WHERE ActivityID = " + actionId + " and Status<>4  and  ProductID=" + dt.Rows[0]["ProductID"].ToString();
+               // utils.ExecuteNonQuery(sql);
+
+
+                sql = "update tete_activitylist set startDate='" + startDate + "',endDate='" + endDate + "',discountType='" + discountType + "',discountValue='" + discountValue + "',tagId='" + tagId + "',Rcount=" + rcount + ",Status=1,decreaseNum='" + decreaseNum + "',isok=1,promotionID=" + promotionid + " where ID=" + ID;
+
+                utils.ExecuteNonQuery(sql);//修改活动商品  
             }
 
 
