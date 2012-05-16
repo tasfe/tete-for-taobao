@@ -48,7 +48,7 @@
 			<tr class="itemDetail">
 				<th class="required">促销方式：</th>
 				<td style="height: 55px;">
-					<input type="radio" id="noStyle" class="dzRadio" name="discountType" value="DISCOUNT"  checked="<%= discountType %>" onclick="showPrice(1)"/>打折 <input id="noStyle" class="jjRadio" type="radio" name="discountType" value="PRICE" checked="<%= discountTypeStr %>" onclick="showPrice(2)"/>减价
+					<input type="radio" id="noStyle" class="dzRadio" name="discountType" value="DISCOUNT"  <%= discountType %> onclick="showPrice(1)"/>打折 <input id="noStyle" class="jjRadio" type="radio" name="discountType" value="PRICE" <%= discountTypeStr %> onclick="showPrice(2)"/>减价
 				</td>
 			</tr>
 			<tr class="itemDetail">
@@ -94,6 +94,7 @@
                    <input type="submit" value="立刻修改活动" onclick="return checkValue();"/><span id="errorMsg" style="color: red"></span>
                    <input type="hidden" name="act" id="hact"  value="" />
                    <input type="hidden" name="Detailtype" id="Detailtype"  value="1" runat="server" />
+                         <input type="hidden" name="typediscountType" id="typediscountType"  value="1" runat="server" />
 				</td>
 			</tr>
 		</tfoot>
@@ -103,13 +104,30 @@
 
         //活动形式
         showDetail(document.getElementById("Detailtype").value);
-
+        showPrice(document.getElementById("typediscountType").value);
         document.getElementById("hact").value = "";
         function showDetail(n) {
             if (n == 1) {
                 $(".itemDetail").show();
             } else {
                 $(".itemDetail").hide();
+            }
+        }
+
+        function showPrice(n) {
+            if (n == 1) {
+                $('#dz').show();
+                $('#dzDecreaseNumDIV').show();
+                $('#jj').hide();
+                $('#jjDecreaseNumDIV').hide();
+
+            }
+            if (n == 2) {
+                $('#jj').show();
+                $('#jjDecreaseNumDIV').show();
+                $('#dz').hide();
+                $('#dzDecreaseNumDIV').hide();
+
             }
         }
 
