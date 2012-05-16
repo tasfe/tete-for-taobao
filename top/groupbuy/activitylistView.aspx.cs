@@ -145,8 +145,8 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
 
                 //创建活动及相关人群
                 string appkey = "12287381";
-                string secret = "d3486dac8198ef01000e7bd4504601a4";
-
+                string secret = "d3486dac8198ef01000e7bd4504601a4"; 
+                string session = cookie.getCookie("top_sessiongroupbuy");
 
 
                 //创建活动相关人群
