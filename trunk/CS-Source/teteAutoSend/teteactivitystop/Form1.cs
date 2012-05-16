@@ -94,9 +94,43 @@ namespace teteactivitystop
                         DBSql.getInstance().ExecSql(sql1);
                     }
                 }
+
+                #region  删除的活动  需要把活动商品删除掉
+                sql1 = "select * from tete_activity where status=4 and isok=0  "; //删除的活动
+                  dt1 = DBSql.getInstance().GetTable(sql1);
+                if (dt1 != null && dt1.Rows.Count > 0)
+                {
+                    for (int i = 0; i < dt1.Rows.Count; i++)
+                    {
+                        string sql2 = " select * from tete_activitylist where ActivityID=" + dt1.Rows[i]["ID"].ToString();//更新该活动下的商品
+                        DataTable dt1s2 = DBSql.getInstance().GetTable(sql2);
+                        if (dt1s2 != null && dt1s2.Rows.Count > 0)
+                        {
+                            for (int j = 0; j < dt1s2.Rows.Count; j++)
+                            {
+                                string sqlstr1 = "SELECT session FROM TopTaobaoShop WHERE nick = '" + dt1s2.Rows[j]["nick"].ToString() + "'";
+
+                                DataTable dtnick = db.GetTable(sqlstr1);
+                                if (dtnick.Rows.Count != 0)
+                                {
+                                    session = dtnick.Rows[0]["session"].ToString();
+                                }
+
+                                //删除活动
+                                promotionStop(dt1s2.Rows[j]["promotionID"].ToString(), session, dt1s2.Rows[j]["ActivityID"].ToString(), dt1s2.Rows[j]["ProductID"].ToString());
+                            }
+                        }
+
+                        sql1 = "update tete_activity set Status=4 , isok=1 where id=" + dt1.Rows[i]["ID"].ToString(); //删除的活动
+                        DBSql.getInstance().ExecSql(sql1);
+                    }
+                }
+                #endregion
+
+
                 dt1.Dispose();
                 //休息后继续循环-默认1分半钟一次
-                Thread.Sleep(300000);
+                Thread.Sleep(90000);
                 Thread newThread5 = new Thread(activityStop);
                 newThread5.Start();
             }
@@ -107,7 +141,7 @@ namespace teteactivitystop
                 //MessageBox.Show("\r\n" + e.StackTrace);
                 Thread newThread5 = new Thread(activityStop);
                 //休息后继续循环-默认1分半钟一次 
-                Thread.Sleep(300000);
+                Thread.Sleep(90000);
                 newThread5.Start();
             }
         }
