@@ -53,6 +53,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Top4Net">
+      <HintPath>..\teteWriteItem\bin\Debug\Top4Net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="db.cs" />
