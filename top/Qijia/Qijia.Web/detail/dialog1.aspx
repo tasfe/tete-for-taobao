@@ -280,7 +280,7 @@
                 return false;
             }
 
-            if (Obj("txt1").value == "") {
+            if (checkNull("txt1")) {
                 alert("请输入产品编号！");
                 Obj("txt1").focus();
                 return false;
@@ -291,7 +291,7 @@
                 return false;
             }
 
-            if (Obj("txt2").value == "") {
+            if (checkNull("txt2")) {
                 alert("请输入产品品牌！");
                 Obj("txt2").focus();
                 return false;
@@ -544,7 +544,14 @@
         }
 
         InitPropertyText('<%=property %>','property');
-        InitPropertyText('<%=text %>','text');
+        InitPropertyText('<%=text %>', 'text');
+
+        function checkNull(id) {
+            if (Obj(id).value.replace(/\s/g, "") == "") {
+                return true;
+            }
+            return false;
+        }
     </script>
 
 </body>
