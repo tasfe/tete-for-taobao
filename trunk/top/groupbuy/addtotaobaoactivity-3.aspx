@@ -51,7 +51,7 @@
     </ul>
   </div>
   <div id="main-content">
-  宝贝描述更新完成&nbsp;&nbsp;&nbsp;&nbsp;   <a href=missionlist.aspx>返回列表</a>
+  宝贝描述更新完成&nbsp;&nbsp;&nbsp;&nbsp;   <a href="activitymissionlist.aspx">返回列表</a>
         <table bgcolor="#dddddd" height=20 ALIGN=CENTER BORDER="0" WIDTH="500">
             <tr>
                 <td align=left >
