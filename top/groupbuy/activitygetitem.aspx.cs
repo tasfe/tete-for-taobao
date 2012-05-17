@@ -162,7 +162,7 @@ public partial class top_groupbuy_activitygetitem : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         taobaoNick = encode.Decrypt(taobaoNick);
 
-        taobaoNick = HttpUtility.UrlEncode(taobaoNick);
+       // taobaoNick = HttpUtility.UrlEncode(taobaoNick);
 
         string page = utils.NewRequest("page", utils.RequestType.QueryString);
         int pageNow = 1;

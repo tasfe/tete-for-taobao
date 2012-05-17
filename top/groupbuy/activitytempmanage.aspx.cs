@@ -20,6 +20,8 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
                 string id = Request.QueryString["id"].ToString();
                 string aid = Request.QueryString["aid"].ToString();
                 //删除模板
+
+
                 utils.ExecuteNonQuery("update tete_shoptemplet set Isdelete=1 where id=" + id);
                 //删除模板列表,10天后再删除
                 //utils.ExecuteNonQuery("delete from tete_shoptempletlist where shoptempletID=" + id);
