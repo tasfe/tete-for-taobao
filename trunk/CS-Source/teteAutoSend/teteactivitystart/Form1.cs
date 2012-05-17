@@ -785,7 +785,7 @@ namespace teteactivitystart
         {
 
             string tempStr = logUrl + "/activity" + nick + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
-            string tempFile = tempStr + "/delactivitypromotion" + mid + "" + nick + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+            string tempFile = tempStr + "/delactivitypromotion" + mid + DateTime.Now.ToString("yyyyMMdd") + ".txt";
             //if (type == "1")
             //{
             //    tempFile = tempStr + "/activitypromotionErr" + nick + DateTime.Now.ToString("yyyyMMdd") + ".txt";
