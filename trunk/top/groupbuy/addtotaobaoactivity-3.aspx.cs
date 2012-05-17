@@ -637,6 +637,15 @@ public partial class top_groupbuy_addtotaobaoactivity_3 : System.Web.UI.Page
         str = str.Replace("{oldprice}", price);
         str = str.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
         str = str.Replace("{leftprice}", proprice.Split('.')[0]);
+        if (proprice.Split('.').Length < 2)
+        {
+            str = str.Replace("{rightprice}","00");
+        }
+        else
+        {
+            str = str.Replace("{rightprice}", proprice.Split('.')[1]);
+        }
+
         str = str.Replace("{rightprice}", proprice.Split('.')[1]);
         str = str.Replace("{newprice}", (decimal.Parse(price) - decimal.Parse(proprice)).ToString());
         str = str.Replace("{buycount}", rcount);
@@ -666,7 +675,15 @@ public partial class top_groupbuy_addtotaobaoactivity_3 : System.Web.UI.Page
         smailtempStr = smailtempStr.Replace("{oldprice}", price);
         smailtempStr = smailtempStr.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
         smailtempStr = smailtempStr.Replace("{leftprice}", proprice.Split('.')[0]);
-        smailtempStr = smailtempStr.Replace("{rightprice}", proprice.Split('.')[1]);
+        if (proprice.Split('.').Length < 2)
+        {
+            smailtempStr = smailtempStr.Replace("{rightprice}", "00");
+        }
+        else
+        {
+            smailtempStr = smailtempStr.Replace("{rightprice}", proprice.Split('.')[1]);
+        }
+       
         smailtempStr = smailtempStr.Replace("{newprice}", (decimal.Parse(price) - decimal.Parse(proprice)).ToString());
         smailtempStr = smailtempStr.Replace("{buycount}", rcount);
         smailtempStr = smailtempStr.Replace("{producturl}", producturl);
