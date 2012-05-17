@@ -623,8 +623,17 @@ namespace teteactivity
 
             str = str.Replace("{name}", name);
             str = str.Replace("{oldprice}", price);
-            str = str.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
-            str = str.Replace("{leftprice}", proprice.Split('.')[0]);
+            try
+            {
+                str = str.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
+            }
+            catch
+            { }
+            try
+            {
+                str = str.Replace("{leftprice}", proprice.Split('.')[0]);
+            }
+            catch { }
             if (proprice.Split('.')[1].Length < 2)
             {
                 str = str.Replace("{rightprice}", "00");
@@ -660,9 +669,16 @@ namespace teteactivity
         {
             smailtempStr = smailtempStr.Replace("{name}", name);
             smailtempStr = smailtempStr.Replace("{oldprice}", price);
-            smailtempStr = smailtempStr.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
-
-            smailtempStr = smailtempStr.Replace("{leftprice}", proprice.Split('.')[0]);
+            try
+            {
+                smailtempStr = smailtempStr.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
+            }
+            catch { }
+            try
+            {
+                smailtempStr = smailtempStr.Replace("{leftprice}", proprice.Split('.')[0]);
+            }
+            catch { }
             if (proprice.Split('.')[1].Length < 2)
             {
                 smailtempStr = smailtempStr.Replace("{rightprice}", "00");
