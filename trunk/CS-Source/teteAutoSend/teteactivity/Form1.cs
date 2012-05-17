@@ -72,9 +72,18 @@ namespace teteactivity
                         {
                             session = dtnick.Rows[0]["session"].ToString();
                         }
-                        //添加活动
-                        addpromotion(dt1.Rows[i]["ProductID"].ToString(), dt1.Rows[i]["discountType"].ToString(), dt1.Rows[i]["discountValue"].ToString(), dt1.Rows[i]["startDate"].ToString(), dt1.Rows[i]["endDate"].ToString(), dt1.Rows[i]["Name"].ToString(), dt1.Rows[i]["decreaseNum"].ToString(), session, dt1.Rows[i]["ActivityID"].ToString());
-
+                        sqlstr1 = "select * from tete_activitylist where ProductID=" + dt1.Rows[i]["ProductID"].ToString() + " and status=1 and promotionID<>0";
+                        dtnick = db.GetTable(sqlstr1);
+                        if (dtnick != null && dtnick.Rows.Count != 0)
+                        {
+                            sqlstr1 = "update tete_activitylist set status=4 where id=" + dt1.Rows[i]["ID"].ToString();
+                            db.ExecSql(sqlstr1);
+                        }
+                        else
+                        {
+                            //添加活动
+                            addpromotion(dt1.Rows[i]["ProductID"].ToString(), dt1.Rows[i]["discountType"].ToString(), dt1.Rows[i]["discountValue"].ToString(), dt1.Rows[i]["startDate"].ToString(), dt1.Rows[i]["endDate"].ToString(), dt1.Rows[i]["Name"].ToString(), dt1.Rows[i]["decreaseNum"].ToString(), session, dt1.Rows[i]["ActivityID"].ToString());
+                        }
                     }
                 }
 
@@ -238,6 +247,14 @@ namespace teteactivity
                         html = File.ReadAllText(template2htmlUrl);
                         smailtempStr += html;
                         smailtempStr = cxhtmlReplace(smailtempStr, dt.Rows[i]["name"].ToString(), dt.Rows[i]["price"].ToString(), dt.Rows[i]["proprice"].ToString(), dt.Rows[i]["rcount"].ToString(), dt.Rows[i]["producturl"].ToString(), dt.Rows[i]["productimg"].ToString(), id, dt.Rows[0]["templetID"].ToString());
+                    }
+
+                    //是多商品团购模板
+                    if (dt.Rows[i]["templetID"].ToString() == "1")
+                    {
+                        html = File.ReadAllText(templatehtmlUrl);
+                        str = str + html;
+                        str = tuanhtmlReplace(str, dt.Rows[i]["name"].ToString(), dt.Rows[i]["price"].ToString(), dt.Rows[i]["proprice"].ToString(), dt.Rows[i]["rcount"].ToString(), dt.Rows[i]["producturl"].ToString(), dt.Rows[i]["productimg"].ToString(), id, dt.Rows[0]["templetID"].ToString());
                     }
 
                 }
@@ -608,7 +625,15 @@ namespace teteactivity
             str = str.Replace("{oldprice}", price);
             str = str.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
             str = str.Replace("{leftprice}", proprice.Split('.')[0]);
-            str = str.Replace("{rightprice}", proprice.Split('.')[1]);
+            if (proprice.Split('.')[1].Length < 2)
+            {
+                str = str.Replace("{rightprice}", "00");
+            }
+            else
+            {
+                str = str.Replace("{rightprice}", proprice.Split('.')[1]);
+            }
+
             str = str.Replace("{newprice}", (decimal.Parse(price) - decimal.Parse(proprice)).ToString());
             str = str.Replace("{buycount}", rcount);
             str = str.Replace("{producturl}", producturl);
@@ -636,8 +661,17 @@ namespace teteactivity
             smailtempStr = smailtempStr.Replace("{name}", name);
             smailtempStr = smailtempStr.Replace("{oldprice}", price);
             smailtempStr = smailtempStr.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
+
             smailtempStr = smailtempStr.Replace("{leftprice}", proprice.Split('.')[0]);
-            smailtempStr = smailtempStr.Replace("{rightprice}", proprice.Split('.')[1]);
+            if (proprice.Split('.')[1].Length < 2)
+            {
+                smailtempStr = smailtempStr.Replace("{rightprice}", "00");
+            }
+            else
+            {
+                smailtempStr = smailtempStr.Replace("{rightprice}", proprice.Split('.')[1]);
+            }
+
             smailtempStr = smailtempStr.Replace("{newprice}", (decimal.Parse(price) - decimal.Parse(proprice)).ToString());
             smailtempStr = smailtempStr.Replace("{buycount}", rcount);
             smailtempStr = smailtempStr.Replace("{producturl}", producturl);
