@@ -250,6 +250,14 @@ namespace teteactivitystart
                         smailtempStr = cxhtmlReplace(smailtempStr, dt.Rows[i]["name"].ToString(), dt.Rows[i]["price"].ToString(), dt.Rows[i]["proprice"].ToString(), dt.Rows[i]["rcount"].ToString(), dt.Rows[i]["producturl"].ToString(), dt.Rows[i]["productimg"].ToString(), id, dt.Rows[0]["templetID"].ToString());
                     }
 
+                    //是多商品团购模板
+                    if (dt.Rows[i]["templetID"].ToString() == "1")
+                    {
+                        html = File.ReadAllText(templatehtmlUrl);
+                        str = str + html;
+                        str = tuanhtmlReplace(str, dt.Rows[i]["name"].ToString(), dt.Rows[i]["price"].ToString(), dt.Rows[i]["proprice"].ToString(), dt.Rows[i]["rcount"].ToString(), dt.Rows[i]["producturl"].ToString(), dt.Rows[i]["productimg"].ToString(), id, dt.Rows[0]["templetID"].ToString());
+                    }
+
                 }
             }
             str = str.Replace("{productlist}", smailtempStr);//一大三小模板，商品列表替换
@@ -616,10 +624,29 @@ namespace teteactivitystart
 
             str = str.Replace("{name}", name);
             str = str.Replace("{oldprice}", price);
-            str = str.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
-            str = str.Replace("{leftprice}", proprice.Split('.')[0]);
-            str = str.Replace("{rightprice}", proprice.Split('.')[1]);
-            str = str.Replace("{newprice}", (decimal.Parse(price) - decimal.Parse(proprice)).ToString());
+            try
+            {
+                str = str.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
+            }
+            catch { 
+            }
+            try
+            {
+                str = str.Replace("{leftprice}", proprice.Split('.')[0]);
+            }
+            catch { }
+            if (proprice.Split('.').Length < 2)
+            {
+                str = str.Replace("{rightprice}","00");
+            }
+            else {
+                str = str.Replace("{rightprice}", proprice.Split('.')[1]);
+            }
+            try
+            {
+                str = str.Replace("{newprice}", (decimal.Parse(price) - decimal.Parse(proprice)).ToString());
+            }
+            catch { }
             str = str.Replace("{buycount}", rcount);
             str = str.Replace("{producturl}", producturl);
             str = str.Replace("{productimg}", productimg);
@@ -645,10 +672,30 @@ namespace teteactivitystart
         {
             smailtempStr = smailtempStr.Replace("{name}", name);
             smailtempStr = smailtempStr.Replace("{oldprice}", price);
-            smailtempStr = smailtempStr.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
-            smailtempStr = smailtempStr.Replace("{leftprice}", proprice.Split('.')[0]);
-            smailtempStr = smailtempStr.Replace("{rightprice}", proprice.Split('.')[1]);
-            smailtempStr = smailtempStr.Replace("{newprice}", (decimal.Parse(price) - decimal.Parse(proprice)).ToString());
+            try
+            {
+                smailtempStr = smailtempStr.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
+            }
+            catch { }
+
+            try
+            {
+                smailtempStr = smailtempStr.Replace("{leftprice}", proprice.Split('.')[0]);
+            }
+            catch { }
+            if (proprice.Split('.').Length < 2)
+            {
+                smailtempStr = smailtempStr.Replace("{rightprice}", "00");
+            }
+            else
+            {
+                smailtempStr = smailtempStr.Replace("{rightprice}", proprice.Split('.')[1]);
+            }
+            try
+            {
+                smailtempStr = smailtempStr.Replace("{newprice}", (decimal.Parse(price) - decimal.Parse(proprice)).ToString());
+            }
+            catch { }
             smailtempStr = smailtempStr.Replace("{buycount}", rcount);
             smailtempStr = smailtempStr.Replace("{producturl}", producturl);
             smailtempStr = smailtempStr.Replace("{productimg}", productimg);
@@ -1036,80 +1083,9 @@ namespace teteactivitystart
 
         }
 
+ 
         /// <summary>
-        /// 写日志
-        /// </summary>
-        /// <param name="value">日志内容</param>
-        /// <param name="type">类型 0(成功日志),1(错误日志) 可传空文本默认为0</param>
-        /// <returns></returns>
-        public static void WriteLog3(string message, string type)
-        {
-            string tempStr = logUrl + "/Write" + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
-            string tempFile = tempStr + "/promotionID" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-            if (type == "1")
-            {
-                tempFile = tempStr + "/ErrpromotionID" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-            }
-            if (!Directory.Exists(tempStr))
-            {
-                Directory.CreateDirectory(tempStr);
-            }
-
-            if (System.IO.File.Exists(tempFile))
-            {
-                ///如果日志文件已经存在，则直接写入日志文件
-                StreamWriter sr = System.IO.File.AppendText(tempFile);
-                sr.WriteLine("\n");
-                sr.WriteLine(DateTime.Now + "\n" + message);
-                sr.Close();
-            }
-            else
-            {
-                ///创建日志文件
-                StreamWriter sr = System.IO.File.CreateText(tempFile);
-                sr.WriteLine(DateTime.Now + "\n" + message);
-                sr.Close();
-            }
-
-        }
-
-        /// <summary>
-        /// 写日志
-        /// </summary>
-        /// <param name="value">日志内容</param>
-        /// <param name="type">类型 0(成功日志),1(错误日志) 可传空文本默认为0</param>
-        /// <returns></returns>
-        public static void WriteLog4(string message, string type)
-        {
-            string tempStr = logUrl + "/Write" + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
-            string tempFile = tempStr + "/promotionID" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-            if (type == "1")
-            {
-                tempFile = tempStr + "/ErrpromotionID" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-            }
-            if (!Directory.Exists(tempStr))
-            {
-                Directory.CreateDirectory(tempStr);
-            }
-
-            if (System.IO.File.Exists(tempFile))
-            {
-                ///如果日志文件已经存在，则直接写入日志文件
-                StreamWriter sr = System.IO.File.AppendText(tempFile);
-                sr.WriteLine("\n");
-                sr.WriteLine(DateTime.Now + "\n" + message);
-                sr.Close();
-            }
-            else
-            {
-                ///创建日志文件
-                StreamWriter sr = System.IO.File.CreateText(tempFile);
-                sr.WriteLine(DateTime.Now + "\n" + message);
-                sr.Close();
-            }
-
-        }
-
+        
 
         /// <summary>
         /// 写日志
