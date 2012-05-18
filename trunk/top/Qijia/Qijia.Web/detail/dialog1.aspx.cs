@@ -73,7 +73,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         string newStr = string.Empty;
         string propertyText = str.Substring(1, str.Length - 2); //剔除{}
         string[] chars = Regex.Split(propertyText, "{,}");
-        for (int i = 0; i < chars.Length;i++ )
+        for (int i = 0; i < chars.Length; i++)
         {
             if (i == 0)
             {
@@ -141,7 +141,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         UploadFileCommon(FileUpload6, "{item6}", dateName, "480*310");
     }
 
-    private void UploadFileCommon(FileUpload fileUpload1, string tag, string dateName,string wihe)
+    private void UploadFileCommon(FileUpload fileUpload1, string tag, string dateName, string wihe)
     {
         string url = "http://qijia.7fshop.com/detail/";
 
@@ -153,14 +153,16 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             //保存原图
             fileUpload1.PostedFile.SaveAs(Server.MapPath(picName));
             string picsName = "~/temp/" + imgId + "_s.jpg";
-            
+
             //生成合理尺寸图(对照模板)
             string[] widhei = wihe.Split('*');
             HttpUtil.MakeThumbnail(picName, Server.MapPath(picsName), int.Parse(widhei[0]), int.Parse(widhei[1]), "Cut");
-            imgCus.JiaImg = url + picName;
             imgCus.ItemId = id;
             imgCus.Tag = tag;
             imgCus.Guid = Guid.NewGuid().ToString();
+            imgCus.MyImg = url + picName;
+
+            imgCus.JiaImg = "http://qijia.7fshop.com/temp/" + imgId + "_s.jpg";
 
             //发送图片到齐家网站
             List<Parameter> list = new List<Parameter>();
@@ -231,16 +233,16 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
                 {
                     if (i == 1)
                     {
-                        result = Request.Form[p].Trim() + ":";
+                        result = Request.Form[p] + ":";
                     }
                     else
                     {
-                        result += "{,}" + Request.Form[p].Trim() + ":";
+                        result += "{,}" + Request.Form[p] + ":";
                     }
                 }
                 else
                 {
-                    result += Request.Form[p].Trim();
+                    result += Request.Form[p];
                 }
             }
         }
@@ -263,16 +265,16 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
                 {
                     if (i == 1)
                     {
-                        result = Request.Form[p].Trim() + ":";
+                        result = Request.Form[p] + ":";
                     }
                     else
                     {
-                        result += "{,}" + Request.Form[p].Trim() + ":";
+                        result += "{,}" + Request.Form[p] + ":";
                     }
                 }
                 else
                 {
-                    result += Request.Form[p].Trim();
+                    result += Request.Form[p];
                 }
             }
         }
@@ -284,7 +286,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
 
     private string GetRealItemInfo()
     {
-        //如果是编辑则调用宝贝ID，如果是添加则生成随机数 
+        //如果是编辑则调用宝贝ID，如果是添加则生成随机数
         if (id == "0")
         {
             id = nick;
