@@ -8,7 +8,6 @@ public partial class Web_detail_initbutton : System.Web.UI.Page
 {
     public string cid = string.Empty;
     public string id = string.Empty;
-    public string cid = string.Empty;
     public string nick = string.Empty;
     public string nickid = string.Empty;
     public string tplid = string.Empty;
