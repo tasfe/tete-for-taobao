@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="dialog1.aspx.cs" Inherits="Web_detail_dialog1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="dialog1.aspx.cs" Inherits="Web_detail_dialog1" ValidateRequest="false" %>
 
 <html>
 <head runat="server">
