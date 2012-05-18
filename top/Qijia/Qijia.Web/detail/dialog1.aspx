@@ -26,7 +26,7 @@
 <br />
 【商品图片1】：
 <span id="addFileUpload1">
-    <asp:FileUpload ID="FileUpload1" runat="server" /> 
+    <asp:FileUpload ID="FileUpload1" runat="server" unselectable="on" /> 
     <input id="returnFileUpload1" type="button" style="display:none;" value="返回" onclick="ShowViewArea('FileUpload1')" /> 
 </span> 
 
@@ -40,7 +40,7 @@
 
 【商品图片2】：
 <span id="addFileUpload2">
-    <asp:FileUpload ID="FileUpload2" runat="server" /> 
+    <asp:FileUpload ID="FileUpload2" runat="server" unselectable="on" /> 
     <input id="returnFileUpload2" type="button" style="display:none;" value="返回" onclick="ShowViewArea('FileUpload2')" /> 
 </span> 
 
@@ -54,7 +54,7 @@
 【商品图片3】：
 
 <span id="addFileUpload3">
-    <asp:FileUpload ID="FileUpload3" runat="server" /> 
+    <asp:FileUpload ID="FileUpload3" runat="server" unselectable="on" /> 
     <input id="returnFileUpload3" type="button" style="display:none;" value="返回" onclick="ShowViewArea('FileUpload3')" /> 
 </span> 
 
@@ -69,7 +69,7 @@
 【商品图片4】：
 
 <span id="addFileUpload4">
-    <asp:FileUpload ID="FileUpload4" runat="server" /> 
+    <asp:FileUpload ID="FileUpload4" runat="server" unselectable="on" /> 
     <input id="returnFileUpload4" type="button" style="display:none;" value="返回" onclick="ShowViewArea('FileUpload4')" /> 
 </span> 
 
@@ -84,7 +84,7 @@
 【商品图片5】：
 
 <span id="addFileUpload5">
-    <asp:FileUpload ID="FileUpload5" runat="server" /> 
+    <asp:FileUpload ID="FileUpload5" runat="server" unselectable="on" /> 
     <input id="returnFileUpload5" type="button" style="display:none;" value="返回" onclick="ShowViewArea('FileUpload5')" /> 
 </span> 
 
@@ -99,7 +99,7 @@
 【商品图片6】：
 
 <span id="addFileUpload6">
-    <asp:FileUpload ID="FileUpload6" runat="server" /> 
+    <asp:FileUpload ID="FileUpload6" runat="server" unselectable="on" /> 
     <input id="returnFileUpload6" type="button" style="display:none;" value="返回" onclick="ShowViewArea('FileUpload6')" /> 
 </span> 
 
