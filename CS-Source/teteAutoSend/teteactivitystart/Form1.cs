@@ -635,13 +635,18 @@ namespace teteactivitystart
                 str = str.Replace("{leftprice}", proprice.Split('.')[0]);
             }
             catch { }
-            if (proprice.Split('.').Length < 2)
+            try
             {
-                str = str.Replace("{rightprice}","00");
+                if (proprice.Split('.').Length < 2)
+                {
+                    str = str.Replace("{rightprice}", "00");
+                }
+                else
+                {
+                    str = str.Replace("{rightprice}", proprice.Split('.')[1]);
+                }
             }
-            else {
-                str = str.Replace("{rightprice}", proprice.Split('.')[1]);
-            }
+            catch { }
             try
             {
                 str = str.Replace("{newprice}", (decimal.Parse(price) - decimal.Parse(proprice)).ToString());
@@ -683,14 +688,18 @@ namespace teteactivitystart
                 smailtempStr = smailtempStr.Replace("{leftprice}", proprice.Split('.')[0]);
             }
             catch { }
-            if (proprice.Split('.').Length < 2)
+            try
             {
-                smailtempStr = smailtempStr.Replace("{rightprice}", "00");
+                if (proprice.Split('.').Length < 2)
+                {
+                    smailtempStr = smailtempStr.Replace("{rightprice}", "00");
+                }
+                else
+                {
+                    smailtempStr = smailtempStr.Replace("{rightprice}", proprice.Split('.')[1]);
+                }
             }
-            else
-            {
-                smailtempStr = smailtempStr.Replace("{rightprice}", proprice.Split('.')[1]);
-            }
+            catch { }
             try
             {
                 smailtempStr = smailtempStr.Replace("{newprice}", (decimal.Parse(price) - decimal.Parse(proprice)).ToString());
