@@ -8,9 +8,11 @@ public partial class Web_detail_initbutton : System.Web.UI.Page
 {
     public string cid = string.Empty;
     public string id = string.Empty;
+    public string cid = string.Empty;
     public string nick = string.Empty;
     public string nickid = string.Empty;
     public string tplid = string.Empty;
+    public string html = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -18,5 +20,11 @@ public partial class Web_detail_initbutton : System.Web.UI.Page
         nick = Request.QueryString["nick"] == null ? "0" : Request.QueryString["nick"].ToString();
         nickid = Request.QueryString["nickid"] == null ? "0" : Request.QueryString["nickid"].ToString();
         tplid = Request.QueryString["tplid"] == null ? "0" : Request.QueryString["tplid"].ToString();
+        cid = Request.QueryString["cid"] == null ? "0" : Request.QueryString["cid"].ToString();
+
+        if (cid == "1002200101")
+        {
+            html = "document.write(str);";
+        }
     }
 }
