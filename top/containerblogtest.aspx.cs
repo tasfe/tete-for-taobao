@@ -43,12 +43,12 @@ public partial class top_containerblog : System.Web.UI.Page
         string agreementsign = utils.NewRequest("agreementsign", utils.RequestType.QueryString).Replace(" ", "+");
 
 
-        if (!Taobao.Top.Api.Util.TopUtils.VerifyTopResponse(top_parameters, top_session, top_sign, top_appkey, app_secret))
-        {
-            Response.Write("top签名验证不通过，请不要非法注入");
-            Response.End();
-            return;
-        }
+        //if (!Taobao.Top.Api.Util.TopUtils.VerifyTopResponse(top_parameters, top_session, top_sign, top_appkey, app_secret))
+        //{
+        //    Response.Write("top签名验证不通过，请不要非法注入");
+        //    Response.End();
+        //    return;
+        //}
 
         //验证客户版本参数是否正确
         if (versionNo != "")
@@ -98,6 +98,8 @@ public partial class top_containerblog : System.Web.UI.Page
     /// <returns></returns>
     private string GetVersion(string u)
     {
+        u = "wsplll201";
+
         string appkey = "12159997";
         string secret = "614e40bfdb96e9063031d1a9e56fbed5";
 
@@ -108,6 +110,10 @@ public partial class top_containerblog : System.Web.UI.Page
         param.Add("nick", u);
         param.Add("article_code", "service-0-22904");
         string resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.vas.subscribe.get", "", param);
+
+        Response.Write(resultnew);
+        Response.End();
+
         if (resultnew.IndexOf("invali") != -1)
         {
             //到期了
