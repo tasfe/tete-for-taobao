@@ -61,7 +61,6 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         {
             property = CreateProperty(dt.Rows[0]["propertyText"].ToString());
             text = CreateProperty(dt.Rows[0]["charText"].ToString());
-            text1 = dt.Rows[0]["charText"].ToString();
         }
     }
 
@@ -93,7 +92,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
     {
         if (s.IndexOf(":")!=-1)
         {
-            return s.Substring(s.IndexOf(':') + 1, s.Length - s.IndexOf(':') - 1).Replace("'", "\'");
+            return s.Substring(s.IndexOf(':') + 1, s.Length - s.IndexOf(':') - 1).Replace("'", "\\\'");
         }
         else
         {
