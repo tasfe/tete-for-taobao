@@ -30,6 +30,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
     public string item6 = string.Empty;
     public string property = string.Empty;
     public string text = string.Empty;
+    public string text1 = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -60,6 +61,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         {
             property = CreateProperty(dt.Rows[0]["propertyText"].ToString());
             text = CreateProperty(dt.Rows[0]["charText"].ToString());
+            text1 = dt.Rows[0]["charText"].ToString();
         }
     }
 
