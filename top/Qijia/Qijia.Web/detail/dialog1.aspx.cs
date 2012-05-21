@@ -188,6 +188,8 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
                 picList.Add(Server.MapPath(picsName));
                 cList.Add(imgCus);
 
+                realPicList.Add(imgCus.JiaImg);
+
                 //可做删除生成的图片操作(暂未做)
             }
         }
@@ -203,31 +205,37 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         {
             string realUrl = UploadFile.HttpPostWithFile("http://mall.jia.com/site/upload_describe_image", "", pList);
             LogHelper.LogInfo.Add("图片集合", realUrl);
-            //string[] chars = Regex.Split(realUrl, "=>");
+            string[] chars = Regex.Split(realUrl, "[\\d+] =>");
 
-            //string JiaImg = chars[2].Replace(")", "").Trim();
-            //realPicList.Add(JiaImg);
+            for (int i = 0; i < chars.Length; i++)
+            {
+                if (chars[i].Contains("http://"))
+                {
+                    string JiaImg = chars[i].Replace(")", "").Trim();
+                    realPicList[i] = JiaImg;
+                }
+            }
         }
         catch (Exception ex)
         {
             LogHelper.LogInfo.Add("用户上传图片错误", ex.Message);
         }
 
-        //for (int i = 0; i < cList.Count; i++)
-        //{
-        //    cList[i].JiaImg = realPicList[i];
-        //    string sql = "SELECT * FROM Jia_ImgCustomer WHERE ItemId = '" + id + "' AND tag = '" + imgCus.Tag + "'";
-        //    DataTable dt = DBHelper.ExecuteDataTable(sql);
-        //    if (dt.Rows.Count == 0)
-        //    {
-        //        icDal.AddJia_ImgCustomer(cList[i]);
-        //    }
-        //    else
-        //    {
-        //        cList[i].Guid = dt.Rows[0]["guid"].ToString();
-        //        icDal.ModifyJia_ImgCustomer(cList[i]);
-        //    }
-        //}
+        for (int i = 0; i < cList.Count; i++)
+        {
+            cList[i].JiaImg = realPicList[i];
+            string sql = "SELECT * FROM Jia_ImgCustomer WHERE ItemId = '" + id + "' AND tag = '" + cList[i].Tag + "'";
+            DataTable dt = DBHelper.ExecuteDataTable(sql);
+            if (dt.Rows.Count == 0)
+            {
+                icDal.AddJia_ImgCustomer(cList[i]);
+            }
+            else
+            {
+                cList[i].Guid = dt.Rows[0]["guid"].ToString();
+                icDal.ModifyJia_ImgCustomer(cList[i]);
+            }
+        }
     }
 
     private void UploadFileCommon(FileUpload fileUpload1, string tag, string dateName, string wihe)
