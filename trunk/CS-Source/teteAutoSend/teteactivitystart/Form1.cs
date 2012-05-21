@@ -738,13 +738,13 @@ namespace teteactivitystart
                 {
                     session = dt.Rows[i]["sessiongroupbuy"].ToString();
                     sql = "SELECT * FROM Tete_ActivityWriteContent WHERE shoptempletID= '" + dt.Rows[i]["shoptempletID"].ToString() + "' and  ActivityID = '" + dt.Rows[i]["ActivityID"].ToString() + "'";
-                    WriteLog("活动清除进行中。。" + sql, "1", "err", "");
+ 
                     dtWrite = db.GetTable(sql);
                     if (dtWrite != null)
                     {
                         for (int j = 0; j < dtWrite.Rows.Count; j++)
                         {
-                            WriteLog("活动清除进行中....." + sql, "1", "err", "");
+ 
                             styleHtml = CreateGroupbuyHtml(dt.Rows[i]["shoptempletID"].ToString());//生成HTML
                             try
                             {
@@ -800,7 +800,7 @@ namespace teteactivitystart
                                     }
                                     else
                                     {
-                                        WriteLog("itemid:" + dtWrite.Rows[j]["itemid"].ToString() + resultpro, "", dt.Rows[i]["nick"].ToString(), dtWrite.Rows[j]["ActivityMissionID"].ToString());
+                                        WriteLog("删除itemid:" + dtWrite.Rows[j]["itemid"].ToString() + resultpro, "", dt.Rows[i]["nick"].ToString(), dtWrite.Rows[j]["ActivityMissionID"].ToString());
                                         //更新状态
                                         sql = "UPDATE Tete_ActivityWriteContent SET isok = 1 WHERE id = " + dtWrite.Rows[j]["id"].ToString();
                                         db.ExecSql(sql);
