@@ -87,12 +87,11 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         return newStr;
     }
 
-    private string GetRight(string p)
+    private string GetRight(string s)
     {
-        string[] ary = p.Split(':');
-        if (ary.Length > 1)
+        if (s.IndexOf(":")!=-1)
         {
-            return ary[1].Replace("'", "\'");
+            return s.Substring(s.IndexOf(':') + 1, s.Length - s.IndexOf(':') - 1).Replace("'", "\'");
         }
         else
         {
