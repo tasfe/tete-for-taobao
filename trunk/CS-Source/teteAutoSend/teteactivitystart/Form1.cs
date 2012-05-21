@@ -165,9 +165,9 @@ namespace teteactivitystart
             }
             catch (Exception e)
             {
-
-                WriteLog2("自动取消活动运行错误*****************************************" + e.StackTrace + e.Message + "----error!!!", "1");
-                WriteLog(e.Message, "1", "err", "");
+                 
+                WriteLog("activitystart自动取消活动运行错误*****************************************。" + e.StackTrace + e.Message + "----error!!!", "1", "err", "");
+      
                 //MessageBox.Show("\r\n" + e.StackTrace);
                 Thread newThread3 = new Thread(activityStart);
                 //休息后继续循环-默认1分半钟一次 
@@ -624,34 +624,38 @@ namespace teteactivitystart
 
             str = str.Replace("{name}", name);
             str = str.Replace("{oldprice}", price);
-            try
+            if (proprice != "")
             {
-                str = str.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
-            }
-            catch { 
-            }
-            try
-            {
-                str = str.Replace("{leftprice}", proprice.Split('.')[0]);
-            }
-            catch { }
-            try
-            {
-                if (proprice.Split('.').Length < 2)
+                try
                 {
-                    str = str.Replace("{rightprice}", "00");
+                    str = str.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
                 }
-                else
+                catch
                 {
-                    str = str.Replace("{rightprice}", proprice.Split('.')[1]);
                 }
+                try
+                {
+                    str = str.Replace("{leftprice}", proprice.Split('.')[0]);
+                }
+                catch { }
+                try
+                {
+                    if (proprice.Split('.').Length < 2)
+                    {
+                        str = str.Replace("{rightprice}", "00");
+                    }
+                    else
+                    {
+                        str = str.Replace("{rightprice}", proprice.Split('.')[1]);
+                    }
+                }
+                catch { }
+                try
+                {
+                    str = str.Replace("{newprice}", (decimal.Parse(price) - decimal.Parse(proprice)).ToString());
+                }
+                catch { }
             }
-            catch { }
-            try
-            {
-                str = str.Replace("{newprice}", (decimal.Parse(price) - decimal.Parse(proprice)).ToString());
-            }
-            catch { }
             str = str.Replace("{buycount}", rcount);
             str = str.Replace("{producturl}", producturl);
             str = str.Replace("{productimg}", productimg);
@@ -677,34 +681,37 @@ namespace teteactivitystart
         {
             smailtempStr = smailtempStr.Replace("{name}", name);
             smailtempStr = smailtempStr.Replace("{oldprice}", price);
-            try
+            if (proprice != "")
             {
-                smailtempStr = smailtempStr.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
-            }
-            catch { }
+                try
+                {
+                    smailtempStr = smailtempStr.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
+                }
+                catch { }
 
-            try
-            {
-                smailtempStr = smailtempStr.Replace("{leftprice}", proprice.Split('.')[0]);
-            }
-            catch { }
-            try
-            {
-                if (proprice.Split('.').Length < 2)
+                try
                 {
-                    smailtempStr = smailtempStr.Replace("{rightprice}", "00");
+                    smailtempStr = smailtempStr.Replace("{leftprice}", proprice.Split('.')[0]);
                 }
-                else
+                catch { }
+                try
                 {
-                    smailtempStr = smailtempStr.Replace("{rightprice}", proprice.Split('.')[1]);
+                    if (proprice.Split('.').Length < 2)
+                    {
+                        smailtempStr = smailtempStr.Replace("{rightprice}", "00");
+                    }
+                    else
+                    {
+                        smailtempStr = smailtempStr.Replace("{rightprice}", proprice.Split('.')[1]);
+                    }
                 }
+                catch { }
+                try
+                {
+                    smailtempStr = smailtempStr.Replace("{newprice}", (decimal.Parse(price) - decimal.Parse(proprice)).ToString());
+                }
+                catch { }
             }
-            catch { }
-            try
-            {
-                smailtempStr = smailtempStr.Replace("{newprice}", (decimal.Parse(price) - decimal.Parse(proprice)).ToString());
-            }
-            catch { }
             smailtempStr = smailtempStr.Replace("{buycount}", rcount);
             smailtempStr = smailtempStr.Replace("{producturl}", producturl);
             smailtempStr = smailtempStr.Replace("{productimg}", productimg);
@@ -719,7 +726,7 @@ namespace teteactivitystart
         /// </summary>
         private void DeleteTaobao()
         {
-
+            WriteLog("活动清除进行中", "1", "err", "");
             //获取正在进行中的宝贝同步任务        
             string appkey = "12287381";
             string secret = "d3486dac8198ef01000e7bd4504601a4";
@@ -731,7 +738,7 @@ namespace teteactivitystart
             DataTable dt = db.GetTable(sql);
             DataTable dtWrite = null;
             string styleHtml = string.Empty;
-            WriteLog("活动清除进行中", "1", "err", "");
+         
             if (dt != null)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -793,7 +800,7 @@ namespace teteactivitystart
                                     if (resultpro.IndexOf("ITEM_PROPERTIES_ERROR") != -1)
                                     {
                                        
-                                        WriteLog("删除宝贝描述：宝贝ID：" + dtWrite.Rows[j]["itemid"].ToString() + "返回的错误信息" + resultpro, "", dt.Rows[i]["nick"].ToString(), dtWrite.Rows[j]["ActivityMissionID"].ToString());
+                                        WriteLog("errID：" + dtWrite.Rows[j]["itemid"].ToString() + "errinfo" + resultpro, "", dt.Rows[i]["nick"].ToString(), dtWrite.Rows[j]["ActivityMissionID"].ToString());
                                         //更新宝贝错误数
                                         sql = "UPDATE Tete_ActivityMission SET fail = fail + 1,isok = -1  WHERE id = " + dt.Rows[i]["id"].ToString();
                                         db.ExecSql(sql);
@@ -814,8 +821,8 @@ namespace teteactivitystart
                             }
                             catch (Exception e)
                             {
-                                WriteLog(e.Message, "1", dt.Rows[i]["nick"].ToString(), dtWrite.Rows[j]["ActivityMissionID"].ToString());
-                                WriteLog(e.StackTrace, "1", dt.Rows[i]["nick"].ToString(), dtWrite.Rows[j]["ActivityMissionID"].ToString());
+                                WriteLog("失败"+e.Message, "1", dt.Rows[i]["nick"].ToString(), dtWrite.Rows[j]["ActivityMissionID"].ToString());
+                                WriteLog("失败"+e.StackTrace, "1", dt.Rows[i]["nick"].ToString(), dtWrite.Rows[j]["ActivityMissionID"].ToString());
                                 sql = "UPDATE Tete_ActivityMission SET fail = fail + 1,isok = -1  WHERE id = " + dt.Rows[i]["id"].ToString();
                                 db.ExecSql(sql);
                                 continue;
@@ -1055,162 +1062,13 @@ namespace teteactivitystart
 
         }
 
-        /// <summary>
-        /// 写日志
-        /// </summary>
-        /// <param name="value">日志内容</param>
-        /// <param name="type">类型 0(成功日志),1(错误日志) 可传空文本默认为0</param>
-        /// <returns></returns>
-        public static void WriteLog2(string message, string type)
-        {
-            string tempStr = logUrl + "/Write" + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
-            string tempFile = tempStr + "/stapromotionID" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-            if (type == "1")
-            {
-                tempFile = tempStr + "/ErrstapromotionID" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-            }
-            if (!Directory.Exists(tempStr))
-            {
-                Directory.CreateDirectory(tempStr);
-            }
-
-            if (System.IO.File.Exists(tempFile))
-            {
-                ///如果日志文件已经存在，则直接写入日志文件
-                StreamWriter sr = System.IO.File.AppendText(tempFile);
-                sr.WriteLine("\n");
-                sr.WriteLine(DateTime.Now + "\n" + message);
-                sr.Close();
-            }
-            else
-            {
-                ///创建日志文件
-                StreamWriter sr = System.IO.File.CreateText(tempFile);
-                sr.WriteLine(DateTime.Now + "\n" + message);
-                sr.Close();
-            }
-
-        }
 
  
         /// <summary>
         
 
-        /// <summary>
-        /// 写日志
-        /// </summary>
-        /// <param name="value">日志内容</param>
-        /// <param name="type">类型 0(成功日志),1(错误日志) 可传空文本默认为0</param>
-        /// <returns></returns>
-        public static void WriteDeleteLog(string message, string type)
-        {
-            string tempStr = logUrl + "/Write" + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
-            string tempFile = tempStr + "/DeletepromotionID" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-            if (type == "1")
-            {
-                tempFile = tempStr + "/DeleteErrpromotionID" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-            }
-            if (!Directory.Exists(tempStr))
-            {
-                Directory.CreateDirectory(tempStr);
-            }
-
-            if (System.IO.File.Exists(tempFile))
-            {
-                ///如果日志文件已经存在，则直接写入日志文件
-                StreamWriter sr = System.IO.File.AppendText(tempFile);
-                sr.WriteLine("\n");
-                sr.WriteLine(DateTime.Now + "\n" + message);
-                sr.Close();
-            }
-            else
-            {
-                ///创建日志文件
-                StreamWriter sr = System.IO.File.CreateText(tempFile);
-                sr.WriteLine(DateTime.Now + "\n" + message);
-                sr.Close();
-            }
-
-        }
 
 
-
-        /// <summary>
-        /// 更新宝贝详细日志
-        /// </summary>
-        /// <param name="message">返回结果</param>
-        /// <param name="type">成功、错误</param>
-        /// <param name="groupbuyID">活动ID</param>
-        public static void WriteLog(string message, string type, string groupbuyID)
-        {
-            string tempStr = logUrl + "/Write" + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
-            string tempFile = tempStr + "/stapromotionID" + groupbuyID + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-            if (type == "1")
-            {
-                tempFile = tempStr + "/ErrstapromotionID" + groupbuyID + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-            }
-            if (!Directory.Exists(tempStr))
-            {
-                Directory.CreateDirectory(tempStr);
-            }
-
-            if (System.IO.File.Exists(tempFile))
-            {
-                ///如果日志文件已经存在，则直接写入日志文件
-                StreamWriter sr = System.IO.File.AppendText(tempFile);
-                sr.WriteLine("\n");
-                sr.WriteLine(DateTime.Now + "\n" + message);
-                sr.Close();
-            }
-            else
-            {
-                ///创建日志文件
-                StreamWriter sr = System.IO.File.CreateText(tempFile);
-                sr.WriteLine(DateTime.Now + "\n" + message);
-                sr.Close();
-            }
-        }
-
-
-        /// <summary>
-        /// 写日志
-        /// </summary>
-        /// <param name="value">日志内容</param>
-        /// <param name="type">类型 0(成功日志),1(错误日志) 可传空文本默认为0</param>
-        /// <param name="groupbuyID">活动ID</param>
-        /// <returns></returns>
-        public static void WriteDeleteLog(string message, string type, string groupbuyID)
-        {
-            string tempStr = logUrl + "/Write" + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
-            string tempFile = tempStr + "/DeletepromotionID" + groupbuyID + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-            if (type == "1")
-            {
-                tempFile = tempStr + "/DeleteErrpromotionID" + groupbuyID + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-            }
-            if (!Directory.Exists(tempStr))
-            {
-                Directory.CreateDirectory(tempStr);
-            }
-
-            if (System.IO.File.Exists(tempFile))
-            {
-                ///如果日志文件已经存在，则直接写入日志文件
-                StreamWriter sr = System.IO.File.AppendText(tempFile);
-                sr.WriteLine("\n");
-                sr.WriteLine("Encoding: {0}", sr.Encoding.ToString());
-
-                sr.WriteLine(DateTime.Now + "\n" + message);
-                sr.Close();
-            }
-            else
-            {
-                ///创建日志文件
-                StreamWriter sr = System.IO.File.CreateText(tempFile);
-                sr.WriteLine(DateTime.Now + "\n" + message);
-                sr.Close();
-            }
-
-        }
 
 
         #endregion
