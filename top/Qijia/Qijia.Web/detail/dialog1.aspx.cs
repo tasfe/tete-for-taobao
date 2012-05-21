@@ -187,7 +187,6 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
 
                 picList.Add(Server.MapPath(picsName));
                 cList.Add(imgCus);
-                LogHelper.LogInfo.Add("clist个数", cList.Count.ToString());
                 realPicList.Add(imgCus.JiaImg);
 
                 //可做删除生成的图片操作(暂未做)
@@ -207,12 +206,12 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             LogHelper.LogInfo.Add("图片集合", realUrl);
             string[] chars = Regex.Split(realUrl, @"\[\d+\] =>");
 
-            for (int i = 0; i < chars.Length; i++)
+            for (int i = 1; i < chars.Length; i++)
             {
                 if (chars[i].Contains("http://"))
                 {
                     string JiaImg = chars[i].Replace(")", "").Trim();
-                    realPicList[i] = JiaImg;
+                    realPicList[i - 1] = JiaImg;
                 }
             }
         }
