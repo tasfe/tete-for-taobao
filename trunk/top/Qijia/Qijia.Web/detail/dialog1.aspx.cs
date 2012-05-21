@@ -205,7 +205,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         {
             string realUrl = UploadFile.HttpPostWithFile("http://mall.jia.com/site/upload_describe_image", "", pList);
             LogHelper.LogInfo.Add("图片集合", realUrl);
-            string[] chars = Regex.Split(realUrl, "[\\d+] =>");
+            string[] chars = Regex.Split(realUrl, @"\[\d+\] =>");
 
             for (int i = 0; i < chars.Length; i++)
             {
