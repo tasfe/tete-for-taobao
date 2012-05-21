@@ -290,6 +290,11 @@
                 Obj("txt1").focus();
                 return false;
             }
+            if (Obj("txt1").value.indexOf("<") != -1 || Obj("txt1").value.indexOf(">") != -1) {
+                alert("产品编号里不能包含尖括号！");
+                Obj("txt1").focus();
+                return false;
+            }
 
             if (checkNull("txt2")) {
                 alert("请输入产品品牌！");
