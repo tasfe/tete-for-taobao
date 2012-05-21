@@ -726,7 +726,7 @@ namespace teteactivitystart
         /// </summary>
         private void DeleteTaobao()
         {
-            WriteLog("活动清除进行中", "1", "err", "");
+            WriteLog("活动清除进行", "1", "err", "");
             //获取正在进行中的宝贝同步任务        
             string appkey = "12287381";
             string secret = "d3486dac8198ef01000e7bd4504601a4";
@@ -741,14 +741,16 @@ namespace teteactivitystart
          
             if (dt != null)
             {
+                WriteLog("活动清除进行中", "1", "err", "");
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     session = dt.Rows[i]["sessiongroupbuy"].ToString();
                     sql = "SELECT * FROM Tete_ActivityWriteContent WHERE shoptempletID= '" + dt.Rows[i]["shoptempletID"].ToString() + "' and  ActivityID = '" + dt.Rows[i]["ActivityID"].ToString() + "'";
- 
+                    WriteLog(sql, "1", "err", "");
                     dtWrite = db.GetTable(sql);
                     if (dtWrite != null)
                     {
+                        WriteLog("商品总数" + dtWrite.Rows.Count.ToString(), "1", "err", "");
                         for (int j = 0; j < dtWrite.Rows.Count; j++)
                         {
  
@@ -776,6 +778,7 @@ namespace teteactivitystart
                                     //更新状态
                                     // WriteDeleteLog2("http://item.taobao.com/item.htm?id=" + dtWrite.Rows[j]["itemid"].ToString() + " 不含需要清除的代码", "");
                                     //更新状态
+                                    WriteLog("http://item.taobao.com/item.htm?id=" + dtWrite.Rows[j]["itemid"].ToString() + " 不含需要清除的代码" + dtWrite.Rows.Count.ToString(), "1", "err", "");
                                     sql = "UPDATE Tete_ActivityWriteContent SET isok = 1 WHERE id = " + dtWrite.Rows[j]["id"].ToString();
                                     db.ExecSql(sql);
 
