@@ -636,6 +636,8 @@
         InitPropertyText('<%=property %>','property');
         InitPropertyText('<%=text %>', 'text');
 
+        var a = '<%=text1 %>'
+
         function checkNull(id) {
             if (Obj(id).value.replace(/\s/g, "") == "") {
                 return true;
