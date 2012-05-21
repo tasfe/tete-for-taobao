@@ -110,7 +110,7 @@
             </td>
           </tr>
 
-          <tr>
+         <!-- <tr>
             <td height="30">选择关联团购活动：</td>
             <td>
                 <select id="myads" name="myads">
@@ -121,7 +121,7 @@
                     </asp:Repeater>
         	    </select>
             </td>
-          </tr>
+          </tr>-->
           <tr>
             <td height="30">选择关联活动模板：</td>
             <td>

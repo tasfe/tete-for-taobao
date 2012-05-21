@@ -32,8 +32,7 @@ public partial class top_groupbuy_addtotaobaoactivity_2 : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        id = utils.NewRequest("id", Common.utils.RequestType.QueryString);
-        url = "addtotaobaoactivity-3.aspx?id=" + id;
+
 
         style = utils.NewRequest("style", Common.utils.RequestType.Form);
         size = utils.NewRequest("size", Common.utils.RequestType.Form);
@@ -45,7 +44,21 @@ public partial class top_groupbuy_addtotaobaoactivity_2 : System.Web.UI.Page
         items = utils.NewRequest("itemsStr", Common.utils.RequestType.Form);
         ads = utils.NewRequest("myads", Common.utils.RequestType.Form);
         myadstemp = utils.NewRequest("myadstemp", Common.utils.RequestType.Form);
+        if(myadstemp=="")
+        {
+            Response.Write("请重新同步！");
+            Response.End();
+        }
+        id = utils.NewRequest("id", Common.utils.RequestType.QueryString);
+        string sql4 = "select * from tete_shoptemplet where id=" + myadstemp;
+        DataTable dt4 = utils.ExecuteDataTable(sql4);
+        if (dt4 != null && dt4.Rows.Count > 0)
+        {
+            id = dt4.Rows[0]["ActivityID"].ToString();
+        }
 
+       
+        url = "addtotaobaoactivity-3.aspx?id=" + id;
         //过滤items中的0
         if (items.Length > 2)
         {
@@ -55,7 +68,7 @@ public partial class top_groupbuy_addtotaobaoactivity_2 : System.Web.UI.Page
         //BindData(items, ads);
 
         //判断是否为编辑状态
-        id = utils.NewRequest("id", Common.utils.RequestType.QueryString);
+        //id = utils.NewRequest("id", Common.utils.RequestType.QueryString);
 
         if (id != "" && !utils.IsInt32(id))
         {
