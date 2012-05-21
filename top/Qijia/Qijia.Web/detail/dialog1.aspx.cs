@@ -133,12 +133,101 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             Directory.CreateDirectory(Server.MapPath(dateName));
         }
 
-        UploadFileCommon(FileUpload1, "{item1}", dateName, "720*583");
-        UploadFileCommon(FileUpload2, "{item2}", dateName, "324*316");
-        UploadFileCommon(FileUpload3, "{item3}", dateName, "190*130");
-        UploadFileCommon(FileUpload4, "{item4}", dateName, "480*310");
-        UploadFileCommon(FileUpload5, "{item5}", dateName, "190*130");
-        UploadFileCommon(FileUpload6, "{item6}", dateName, "480*310");
+        //UploadFileCommon(FileUpload1, "{item1}", dateName, "720*583");
+        //UploadFileCommon(FileUpload2, "{item2}", dateName, "324*316");
+        //UploadFileCommon(FileUpload3, "{item3}", dateName, "190*130");
+        //UploadFileCommon(FileUpload4, "{item4}", dateName, "480*310");
+        //UploadFileCommon(FileUpload5, "{item5}", dateName, "190*130");
+        //UploadFileCommon(FileUpload6, "{item6}", dateName, "480*310");
+
+        List<FileUpload> list = new List<FileUpload>();
+        list.Add(FileUpload1);
+        list.Add(FileUpload2);
+        list.Add(FileUpload3);
+        list.Add(FileUpload4);
+        list.Add(FileUpload5);
+        list.Add(FileUpload6);
+        List<string> sizeList = new List<string>();
+        sizeList.Add("720*583");
+        sizeList.Add("324*316");
+        sizeList.Add("190*130");
+        sizeList.Add("480*310");
+        sizeList.Add("190*130");
+        sizeList.Add("480*310");
+
+        UploadFileArray(list, sizeList, dateName);
+    }
+
+    private void UploadFileArray(List<FileUpload> list, List<string> sizeList, string dateName)
+    {
+        string url = "http://qijia.7fshop.com/detail/";
+        IList<Jia_ImgCustomer> cList = new List<Jia_ImgCustomer>();
+        List<string> picList = new List<string>();
+        List<string> realPicList = new List<string>();
+        for (int i = 1; i < 7; i++)
+        {
+            if (CheckFileIsSave(list[i - 1]))
+            {
+                Jia_ImgCustomer imgCus = new Jia_ImgCustomer();
+                Guid imgId = Guid.NewGuid();
+                string picName = dateName + "/" + imgId + ".jpg";
+                //保存原图
+                list[i - 1].PostedFile.SaveAs(Server.MapPath(picName));
+                string picsName = "~/temp/" + imgId + "_s.jpg";
+
+                //生成合理尺寸图(对照模板)
+                string[] widhei = sizeList[i - 1].Split('*');
+                HttpUtil.MakeThumbnail(picName, Server.MapPath(picsName), int.Parse(widhei[0]), int.Parse(widhei[1]), "Cut");
+                imgCus.ItemId = id;
+                imgCus.Tag = "{item" + i + "}";
+                imgCus.Guid = Guid.NewGuid().ToString();
+                imgCus.MyImg = url + picName;
+
+                imgCus.JiaImg = "http://qijia.7fshop.com/temp/" + imgId + "_s.jpg";
+
+                picList.Add(Server.MapPath(picsName));
+                cList.Add(imgCus);
+
+                //可做删除生成的图片操作(暂未做)
+            }
+        }
+
+        //发送图片到齐家网站
+        List<Parameter> pList = new List<Parameter>();
+        foreach (string picpath in picList)
+        {
+            Parameter paramter = new Parameter("image", picpath);
+            pList.Add(paramter);
+        }
+        try
+        {
+            string realUrl = UploadFile.HttpPostWithFile("http://mall.jia.com/site/upload_describe_image", "", pList);
+            LogHelper.LogInfo.Add("图片集合", realUrl);
+            //string[] chars = Regex.Split(realUrl, "=>");
+
+            //string JiaImg = chars[2].Replace(")", "").Trim();
+            //realPicList.Add(JiaImg);
+        }
+        catch (Exception ex)
+        {
+            LogHelper.LogInfo.Add("用户上传图片错误", ex.Message);
+        }
+
+        //for (int i = 0; i < cList.Count; i++)
+        //{
+        //    cList[i].JiaImg = realPicList[i];
+        //    string sql = "SELECT * FROM Jia_ImgCustomer WHERE ItemId = '" + id + "' AND tag = '" + imgCus.Tag + "'";
+        //    DataTable dt = DBHelper.ExecuteDataTable(sql);
+        //    if (dt.Rows.Count == 0)
+        //    {
+        //        icDal.AddJia_ImgCustomer(cList[i]);
+        //    }
+        //    else
+        //    {
+        //        cList[i].Guid = dt.Rows[0]["guid"].ToString();
+        //        icDal.ModifyJia_ImgCustomer(cList[i]);
+        //    }
+        //}
     }
 
     private void UploadFileCommon(FileUpload fileUpload1, string tag, string dateName, string wihe)
