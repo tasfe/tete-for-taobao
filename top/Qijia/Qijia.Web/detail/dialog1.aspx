@@ -306,6 +306,11 @@
                 Obj("txt2").focus();
                 return false;
             }
+            if (Obj("txt2").value.indexOf("<") != -1 || Obj("txt2").value.indexOf(">") != -1) {
+                alert("产品品牌里不能包含尖括号！");
+                Obj("txt2").focus();
+                return false;
+            }
 
             if (checkNull("txt3")) {
                 alert("请输入产品名称！");
@@ -317,6 +322,11 @@
                 Obj("txt3").focus();
                 return false;
             }
+            if (Obj("txt3").value.indexOf("<") != -1 || Obj("txt3").value.indexOf(">") != -1) {
+                alert("产品名称里不能包含尖括号！");
+                Obj("txt3").focus();
+                return false;
+            }
 
             if (checkNull("txt4")) {
                 alert("请输入材质！");
@@ -325,6 +335,11 @@
             }
             if (Obj("txt4").value.length > 15) {
                 alert("材质不能超过15个字符！");
+                Obj("txt4").focus();
+                return false;
+            }
+            if (Obj("txt4").value.indexOf("<") != -1 || Obj("txt4").value.indexOf(">") != -1) {
+                alert("材质里不能包含尖括号！");
                 Obj("txt4").focus();
                 return false;
             }
@@ -340,6 +355,11 @@
                 Obj("txt5").focus();
                 return false;
             }
+            if (Obj("txt5").value.indexOf("<") != -1 || Obj("txt5").value.indexOf(">") != -1) {
+                alert("规格里不能包含尖括号！");
+                Obj("txt5").focus();
+                return false;
+            }
 
             if (checkNull("txt6")) {
                 alert("请输入图层工艺！");
@@ -348,6 +368,11 @@
             }
             if (Obj("txt6").value.length > 15) {
                 alert("图层工艺不能超过15个字符！");
+                Obj("txt6").focus();
+                return false;
+            }
+            if (Obj("txt6").value.indexOf("<") != -1 || Obj("txt6").value.indexOf(">") != -1) {
+                alert("图层工艺里不能包含尖括号！");
                 Obj("txt6").focus();
                 return false;
             }
@@ -362,6 +387,11 @@
                 Obj("txt7").focus();
                 return false;
             }
+            if (Obj("txt7").value.indexOf("<") != -1 || Obj("txt7").value.indexOf(">") != -1) {
+                alert("适用范围里不能包含尖括号！");
+                Obj("txt7").focus();
+                return false;
+            }
 
             if (checkNull("txt8")) {
                 alert("请输入计价单位！");
@@ -370,6 +400,11 @@
             }
             if (Obj("txt8").value.length > 15) {
                 alert("计价单位不能超过15个字符！");
+                Obj("txt8").focus();
+                return false;
+            }
+            if (Obj("txt8").value.indexOf("<") != -1 || Obj("txt8").value.indexOf(">") != -1) {
+                alert("计价单位里不能包含尖括号！");
                 Obj("txt8").focus();
                 return false;
             }
@@ -384,6 +419,11 @@
                 Obj("txt9").focus();
                 return false;
             }
+            if (Obj("txt9").value.indexOf("<") != -1 || Obj("txt9").value.indexOf(">") != -1) {
+                alert("产地里不能包含尖括号！");
+                Obj("txt9").focus();
+                return false;
+            }
 
             if (checkNull("txt10")) {
                 alert("请输入是否带不干胶！");
@@ -392,6 +432,11 @@
             }
             if (Obj("txt10").value.length > 15) {
                 alert("是否带不干胶不能超过15个字符！");
+                Obj("txt10").focus();
+                return false;
+            }
+            if (Obj("txt10").value.indexOf("<") != -1 || Obj("txt10").value.indexOf(">") != -1) {
+                alert("是否带不干胶里不能包含尖括号！");
                 Obj("txt10").focus();
                 return false;
             }
@@ -406,6 +451,11 @@
                 Obj("txt11").focus();
                 return false;
             }
+            if (Obj("txt11").value.indexOf("<") != -1 || Obj("txt11").value.indexOf(">") != -1) {
+                alert("内容里不能包含尖括号！");
+                Obj("txt11").focus();
+                return false;
+            }
 
             if (checkNull("txt12")) {
                 alert("请输入文字1！");
@@ -414,6 +464,11 @@
             }
             if (Obj("txt12").value.length > 50) {
                 alert("文字1不能超过50个字符！");
+                Obj("txt12").focus();
+                return false;
+            }
+            if (Obj("txt12").value.indexOf("<") != -1 || Obj("txt12").value.indexOf(">") != -1) {
+                alert("内容里不能包含尖括号！");
                 Obj("txt12").focus();
                 return false;
             }
@@ -428,6 +483,11 @@
                 Obj("txt13").focus();
                 return false;
             }
+            if (Obj("txt13").value.indexOf("<") != -1 || Obj("txt13").value.indexOf(">") != -1) {
+                alert("内容里不能包含尖括号！");
+                Obj("txt13").focus();
+                return false;
+            }
 
             if (checkNull("txt14")) {
                 alert("请输入文字3！");
@@ -436,6 +496,11 @@
             }
             if (Obj("txt14").value.length > 50) {
                 alert("文字3不能超过50个字符！");
+                Obj("txt14").focus();
+                return false;
+            }
+            if (Obj("txt14").value.indexOf("<") != -1 || Obj("txt14").value.indexOf(">") != -1) {
+                alert("内容里不能包含尖括号！");
                 Obj("txt14").focus();
                 return false;
             }
@@ -450,6 +515,11 @@
                 Obj("txt15").focus();
                 return false;
             }
+            if (Obj("txt15").value.indexOf("<") != -1 || Obj("txt15").value.indexOf(">") != -1) {
+                alert("内容里不能包含尖括号！");
+                Obj("txt15").focus();
+                return false;
+            }
 
             if (checkNull("txt16")) {
                 alert("请输入文字5！");
@@ -458,6 +528,11 @@
             }
             if (Obj("txt16").value.length > 50) {
                 alert("文字5不能超过50个字符！");
+                Obj("txt16").focus();
+                return false;
+            }
+            if (Obj("txt16").value.indexOf("<") != -1 || Obj("txt16").value.indexOf(">") != -1) {
+                alert("内容里不能包含尖括号！");
                 Obj("txt16").focus();
                 return false;
             }
@@ -470,6 +545,11 @@
                 alert("文字6不能超过50个字符！");
                 return false;
             }
+            if (Obj("textarea1").value.indexOf("<") != -1 || Obj("textarea1").value.indexOf(">") != -1) {
+                alert("文字6里不能包含尖括号！");
+                Obj("textarea1").focus();
+                return false;
+            }
 
             if (checkNull("textarea2")) {
                 alert("请输入文字7！");
@@ -477,6 +557,11 @@
             }
             if (Obj("textarea2").value.length > 50) {
                 alert("文字7不能超过50个字符！");
+                return false;
+            }
+            if (Obj("textarea2").value.indexOf("<") != -1 || Obj("textarea2").value.indexOf(">") != -1) {
+                alert("文字7里不能包含尖括号！");
+                Obj("textarea2").focus();
                 return false;
             }
 
