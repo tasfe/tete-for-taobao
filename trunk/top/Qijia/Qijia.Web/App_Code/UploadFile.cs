@@ -52,13 +52,14 @@ public class UploadFile
 
             memStream.Write(boundarybytes, 0, boundarybytes.Length);
 
-            string headerTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\nContent-Type: \"{2}\"\r\n\r\n";
+            string headerTemplate = "Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\nContent-Type: {2}\r\n\r\n";
 
             foreach (Parameter param in files)
             {
                 string name = param.Name;
                 string filePath = param.Value;
-                string file = Path.GetFileName(filePath);
+                //string file = Path.GetFileName(filePath);
+                string file = filePath;
                 string contentType = HttpUtil.GetContentType(file);
 
                 string header = string.Format(headerTemplate, name, file, contentType);
