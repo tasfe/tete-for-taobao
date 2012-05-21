@@ -194,9 +194,9 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
 
         //发送图片到齐家网站
         List<Parameter> pList = new List<Parameter>();
-        foreach (string picpath in picList)
+        for (int i = 1; i <= picList.Count; i++)
         {
-            Parameter paramter = new Parameter("image", picpath);
+            Parameter paramter = new Parameter("image" + i, picList[i - 1]);
             pList.Add(paramter);
         }
         try
