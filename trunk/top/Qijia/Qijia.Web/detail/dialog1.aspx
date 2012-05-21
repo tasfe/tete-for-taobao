@@ -592,7 +592,7 @@
         function InitPropertyText(str, tag) {
             var index = 0;
             var indexAry = 0;
-            var strArray = str.split("|");
+            var strArray = str.split("{||}");
             if(str.length == 0){
                 return;
             }else{

@@ -82,7 +82,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             }
             else
             {
-                newStr += "|" + GetRight(chars[i]);
+                newStr += "{||}" + GetRight(chars[i]);
             }
         }
         return newStr;
