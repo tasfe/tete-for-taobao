@@ -92,7 +92,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
         string[] ary = p.Split(':');
         if (ary.Length > 1)
         {
-            return ary[1];
+            return ary[1].Replace("'", "\'");
         }
         else
         {
