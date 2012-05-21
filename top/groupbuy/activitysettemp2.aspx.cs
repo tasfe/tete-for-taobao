@@ -36,8 +36,15 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
         if (Request.Form["selstr"].ToString() != "" && Request.Form["selstr"].ToString() != "0")
         {
             hdID = Request.Form["selstr"].ToString();
-            sql = "select * from tete_activitylist where ActivityID=" + Request.Form["selstr"].ToString();
+            sql = "select * from tete_shoptemplet where ActivityID=" + hdID + " and templetID=" + templetid + " and Isdelete=0 ";
             DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                Response.Write("这个活动已经创建了这套模板.请从新选择模板！  <a href=\"activitysettemp1.aspx\">返回</a>");
+                Response.End();
+            }
+            sql = "select * from tete_activitylist where ActivityID=" + Request.Form["selstr"].ToString();
+            dt = utils.ExecuteDataTable(sql);
             if (dt != null)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
