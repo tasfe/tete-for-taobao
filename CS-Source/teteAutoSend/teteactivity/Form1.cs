@@ -100,7 +100,7 @@ namespace teteactivity
             catch (Exception e)
             {
 
-                WriteLog("自动取消活动运行错误*****************************************" + e.StackTrace + e.Message+e + "----error!!!", "1");
+                WriteLog("activity自动取消活动运行错误*****************************************" + e.StackTrace + e.Message+e + "----error!!!", "1");
                 //MessageBox.Show("\r\n" + e.StackTrace);
                 Thread newThread11 = new Thread(activitynotStart);
                 //休息后继续循环-默认1分半钟一次 
@@ -158,7 +158,7 @@ namespace teteactivity
                 string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
                 if (err == "")
                 {
-                    WriteLog("活动创建失败，错误原因：您的session已经失效，需要重新授权", "1");
+                    WriteLog("活动创建失败，错误原因：您的session已经失效，需要重新授权" + actionId, "1");
 
                 }
                 else {
@@ -623,29 +623,32 @@ namespace teteactivity
 
             str = str.Replace("{name}", name);
             str = str.Replace("{oldprice}", price);
-            try
+            if (proprice != "")
             {
-                str = str.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
-            }
-            catch
-            { }
-            try
-            {
-                str = str.Replace("{leftprice}", proprice.Split('.')[0]);
-            }
-            catch { }
-            try
-            {
-                if (proprice.Split('.')[1].Length < 2)
+                try
                 {
-                    str = str.Replace("{rightprice}", "00");
+                    str = str.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
                 }
-                else
+                catch
+                { }
+                try
                 {
-                    str = str.Replace("{rightprice}", proprice.Split('.')[1]);
+                    str = str.Replace("{leftprice}", proprice.Split('.')[0]);
                 }
+                catch { }
+                try
+                {
+                    if (proprice.Split('.')[1].Length < 2)
+                    {
+                        str = str.Replace("{rightprice}", "00");
+                    }
+                    else
+                    {
+                        str = str.Replace("{rightprice}", proprice.Split('.')[1]);
+                    }
+                }
+                catch { }
             }
-            catch { }
             str = str.Replace("{newprice}", (decimal.Parse(price) - decimal.Parse(proprice)).ToString());
             str = str.Replace("{buycount}", rcount);
             str = str.Replace("{producturl}", producturl);
@@ -672,29 +675,31 @@ namespace teteactivity
         {
             smailtempStr = smailtempStr.Replace("{name}", name);
             smailtempStr = smailtempStr.Replace("{oldprice}", price);
-            try
+            if (proprice != "")
             {
-                smailtempStr = smailtempStr.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
-            }
-            catch { }
-            try
-            {
-                smailtempStr = smailtempStr.Replace("{leftprice}", proprice.Split('.')[0]);
-            }
-            catch { }
-            try
-            {
-                if (proprice.Split('.')[1].Length < 2)
+                try
                 {
-                    smailtempStr = smailtempStr.Replace("{rightprice}", "00");
+                    smailtempStr = smailtempStr.Replace("{zhekou}", Math.Round(decimal.Parse(proprice) / decimal.Parse(price) * 10, 1).ToString());
                 }
-                else
+                catch { }
+                try
                 {
-                    smailtempStr = smailtempStr.Replace("{rightprice}", proprice.Split('.')[1]);
+                    smailtempStr = smailtempStr.Replace("{leftprice}", proprice.Split('.')[0]);
                 }
+                catch { }
+                try
+                {
+                    if (proprice.Split('.')[1].Length < 2)
+                    {
+                        smailtempStr = smailtempStr.Replace("{rightprice}", "00");
+                    }
+                    else
+                    {
+                        smailtempStr = smailtempStr.Replace("{rightprice}", proprice.Split('.')[1]);
+                    }
+                }
+                catch { }
             }
-            catch { }
-
             smailtempStr = smailtempStr.Replace("{newprice}", (decimal.Parse(price) - decimal.Parse(proprice)).ToString());
             smailtempStr = smailtempStr.Replace("{buycount}", rcount);
             smailtempStr = smailtempStr.Replace("{producturl}", producturl);
