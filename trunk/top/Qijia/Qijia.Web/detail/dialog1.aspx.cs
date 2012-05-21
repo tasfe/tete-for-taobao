@@ -187,7 +187,7 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
 
                 picList.Add(Server.MapPath(picsName));
                 cList.Add(imgCus);
-
+                LogHelper.LogInfo.Add("clist个数", cList.Count.ToString());
                 realPicList.Add(imgCus.JiaImg);
 
                 //可做删除生成的图片操作(暂未做)
