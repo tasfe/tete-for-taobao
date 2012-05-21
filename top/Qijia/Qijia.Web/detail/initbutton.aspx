@@ -7,6 +7,12 @@ str += '<div id="showArea" style="display:none; position:absolute; top:1083px; l
 
 <%=html %>
 
+if(window.XMLHttpRequest){//Mozilla, Safari,IE7
+
+}else{
+    document.getElementById("alphaArea").style.width = "1600px";
+}
+
 
 function showTeteDialog(event){
 if(navigator.userAgent.indexOf("MSIE")>0) {
