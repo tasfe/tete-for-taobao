@@ -171,7 +171,9 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             try
             {
                 string realUrl = UploadFile.HttpPostWithFile("http://mall.jia.com/site/upload_describe_image", "", list);
-                imgCus.JiaImg = realUrl;
+                string[] chars = Regex.Split(realUrl, "=>");
+
+                imgCus.JiaImg = chars[2].Replace(")", "").Trim();
             }
             catch (Exception ex)
             {
