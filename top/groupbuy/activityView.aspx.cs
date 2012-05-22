@@ -446,7 +446,7 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
 
         try
         {
-            Convert.ToInt32(obj);
+            Convert.ToDecimal(obj);
             return true;
         }
         catch
