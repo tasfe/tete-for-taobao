@@ -53,8 +53,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="left" width="120"></td>
-                <td>
+                <td align="left" colspan="2">
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="创建会员分组" />
                 </td>
             </tr>
