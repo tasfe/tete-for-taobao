@@ -43,13 +43,13 @@
             <tr>
                 <td align="left" width="120">满足金额：</td>
                 <td>
-                    <input name="cuidate" type="text" value="0" /> 元
+                    <input name="cuidate" type="text" value="0" size="6" /> 元
                 </td>
             </tr>
             <tr>
                 <td align="left" width="120">满足交易数：</td>
                 <td>
-                    <input name="cuidate" type="text" value="0" /> 笔
+                    <input name="cuidate" type="text" value="0" size="6" /> 笔
                 </td>
             </tr>
             <tr>
