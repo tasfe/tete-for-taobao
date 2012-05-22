@@ -40,19 +40,19 @@
                     <input name="cuidate" type="text" value="" />
                 </td>
             </tr>
-            <tr style="display:none;">
+            <tr>
                 <td align="left" width="120">满足金额：</td>
                 <td>
                     <input name="cuidate" type="text" value="0" /> 元
                 </td>
             </tr>
-            <tr style="display:none;">
+            <tr>
                 <td align="left" width="120">满足交易数：</td>
                 <td>
                     <input name="cuidate" type="text" value="0" /> 笔
                 </td>
             </tr>
-            <tr style="display:none;">
+            <tr>
                 <td align="left" width="120"></td>
                 <td>
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="创建会员分组" />
