@@ -81,9 +81,10 @@ namespace teteactivityupdate
 
             if (result.IndexOf("error_response") != -1)
             {
-                //string sql = "delete from    [tete_activitylist]    WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
+                
+                string sql = "update  tete_activitylist set Status=4 ,isok=1   WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
 
-                //DBSql.getInstance().ExecSql(sql);
+                DBSql.getInstance().ExecSql(sql);
 
                 string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
                 if (err == "")
