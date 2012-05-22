@@ -143,8 +143,14 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
                 sql = "update tete_activitylist set Name='" + name + "',Remark='" + memo + "',startDate='" + startDate + "',endDate='" + endDate + "',itemType='" + itemType + "',discountType='" + discountType + "',discountValue='" + discountValue + "',tagId='" + tagId + "',Rcount=" + rcount + ",nick='" + nick + "',Status=1,decreaseNum='" + decreaseNum + "',isok=0 where ActivityID=" + activityID;
                  
                 utils.ExecuteNonQuery(sql);//修改活动商品  '延长修改活动 Status=1 和 isok=0 '
+                for (int j = 0; j < dt.Rows.Count; j++)
+                {
+                    //删除活动
+                    delactivity2(activityID, dt.Rows[j]["ProductID"].ToString());
+                }
+                //添加活动
+                addactivity(activityID);
             }
- 
 
             Response.Redirect("activityList.aspx");
  
@@ -160,12 +166,20 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
                     if (Request.QueryString["tp"].ToString().Trim() == "pause") //暂停
                     {
                         //更新活动，更新活动商品，及同步到淘宝，做服务控制
-                        string sql = "update tete_activity set Status=3,isok=0 where ID=" + activityID;//暂停进行中
+                        string sql = "update tete_activity set Status=3,isok=1 where ID=" + activityID;//暂停进行
 
                         utils.ExecuteNonQuery(sql); //更新活动成功
-                        sql = "update tete_activitylist set  Status=3 ,isok=0 where ActivityID=" + activityID;
-                        utils.ExecuteNonQuery(sql); //更新活动商品
-
+                        //暂停就是删除活动
+                        sql = "select * from tete_activitylist where Status<>4 and ActivityID=" + activityID;
+                        DataTable dt34 = utils.ExecuteDataTable(sql);
+                        if (dt34 != null && dt34.Rows.Count > 0)
+                        {
+                            for (int j = 0; j < dt34.Rows.Count; j++)
+                            {
+                                //删除活动
+                                delactivity2(activityID, dt34.Rows[j]["ProductID"].ToString());
+                            }
+                        }
                         Response.Redirect("activityList.aspx");
                        
                     }
@@ -176,29 +190,29 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
 
                         utils.ExecuteNonQuery(sql); //更新活动成功
 
-                         sql = "select * from tete_activitylist where ActivityID=" + activityID;
+                        sql = "select * from tete_activitylist where Status<>4 and ActivityID=" + activityID;
                         DataTable dt34 = utils.ExecuteDataTable(sql);
                         if (dt34 != null && dt34.Rows.Count > 0)
                         {
                             for (int j = 0; j < dt34.Rows.Count; j++)
                             {
+                                //删除活动
                                 delactivity(activityID, dt34.Rows[j]["ProductID"].ToString());
                             }
                         }
-                       // sql = "update tete_activitylist set  Status=4 ,isok=0 where ActivityID=" + activityID;
-                       // utils.ExecuteNonQuery(sql); //更新活动商品
                         Response.Redirect("activityList.aspx");
           
                     }
                     else if (Request.QueryString["tp"].ToString().Trim() == "hf")//恢复  暂停恢复
                     {
                         //更新活动，更新活动商品，及同步淘宝，做服务控制
-                        string sql = "update tete_activity set Status=1,isok=0 where ID=" + activityID;//活动进行中
+                        string sql = "update tete_activity set Status=1,isok=1 where ID=" + activityID;//活动进行中
 
                         utils.ExecuteNonQuery(sql); //更新活动成功
-                       
-                        sql = "update tete_activitylist set  Status=1 ,isok=0 where ActivityID=" + activityID;
-                        utils.ExecuteNonQuery(sql); //更新活动商品
+                        //恢复添加活动
+                        addactivity(activityID);
+                        //sql = "update tete_activitylist set  Status=1 ,isok=0 where ActivityID=" + activityID;
+                        //utils.ExecuteNonQuery(sql); //更新活动商品
                         Response.Redirect("activityList.aspx");
               
                     }
@@ -269,6 +283,120 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
                 }
             }
         }
+
+
+
+    }
+
+    /// <summary>
+    /// 添加活动
+    /// </summary>
+    public void addactivity( string actionId)
+    {
+        string sql = string.Empty;
+        Common.Cookie cookie = new Common.Cookie();
+        string taobaoNick = cookie.getCookie("nick");
+        string session = cookie.getCookie("top_sessiongroupbuy");
+        Rijndael_ encode = new Rijndael_("tetesoft");
+        taobaoNick = encode.Decrypt(taobaoNick);
+
+        sql = "select * from tete_activitylist where Status=3 and ActivityID=" + actionId;
+        DataTable dt = utils.ExecuteDataTable(sql);
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+ 
+                discountType = dt.Rows[i]["discountType"].ToString();//DISCOUNT 或PRICE
+                discountValue = dt.Rows[i]["discountValue"].ToString();//促销力度
+                decreaseNum = dt.Rows[i]["decreaseNum"].ToString(); //是否优惠限制
+                string rcounts = dt.Rows[i]["Rcount"].ToString(); //团购人数
+
+                //创建活动及相关人群
+                string appkey = "12287381";
+                string secret = "d3486dac8198ef01000e7bd4504601a4";
+
+
+
+                //创建活动相关人群
+                string guid = Guid.NewGuid().ToString().Substring(0, 4);
+                IDictionary<string, string> param = new Dictionary<string, string>();
+
+                string tagid = "1"; //new Regex(@"<tag_id>([^<]*)</tag_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+
+                //创建活动
+                param = new Dictionary<string, string>();
+                param.Add("num_iids", dt.Rows[i]["ProductID"].ToString());
+                param.Add("discount_type", discountType);
+                param.Add("discount_value", discountValue);
+                param.Add("start_date", DateTime.Parse(dt.Rows[i]["startDate"].ToString()).ToString("yyyy-MM-dd hh:mm:ss"));
+                param.Add("end_date", DateTime.Parse(dt.Rows[i]["endDate"].ToString()).ToString("yyyy-MM-dd hh:mm:ss"));
+                param.Add("promotion_title", dt.Rows[i]["Name"].ToString());
+                param.Add("decrease_num", decreaseNum);
+
+
+                param.Add("tag_id", tagid);
+                string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.add", session, param);
+
+
+                if (result.IndexOf("error_response") != -1)
+                {
+                    string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                    if (err == "")
+                    {
+                        Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12287381&scope=promotion' target='_parent'>重新授权</a>");
+                        Response.End();
+                    }
+
+                    Response.Write("<b>活动创建失败，错误原因：</b><br><font color='red'>" + err + "</font><br><a href='activityadd.aspx'>重新添加</a>");
+                    Response.End();
+                    return;
+                }
+
+                string promotionid = new Regex(@"<promotion_id>([^<]*)</promotion_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+
+                //更新活动
+                sql = "update  tete_activitylist set Status=1 ,isok=1,promotionID=" + promotionid + "  WHERE ActivityID = " + actionId + " and Status<>4  and  ProductID=" + dt.Rows[i]["ProductID"].ToString();
+                utils.ExecuteNonQuery(sql);
+
+            }
+                Response.Write("true");
+                Response.End();
+            
+        }
+        else
+        {
+            Response.Write("null");
+            Response.End();
+        }
+    }
+
+    /// <summary> 
+    /// 暂停活动 
+    /// </summary>
+    /// <param name="actionId"></param>
+    /// <param name="iid"></param>
+    public void delactivity2(string actionId, string iid)
+    {
+        //删除活动
+        string appkey = "12287381";
+        string secret = "d3486dac8198ef01000e7bd4504601a4";
+        IDictionary<string, string> param = new Dictionary<string, string>();
+        Common.Cookie cookie = new Common.Cookie();
+        string session = cookie.getCookie("top_sessiongroupbuy");
+
+        //通过数据库查询获取活动ID actionId iid
+        string sql = "SELECT promotionID FROM tete_activitylist WHERE ActivityID = " + actionId + " and Status<>4 and  ProductID=" + iid;
+        string promotion_id = utils.ExecuteString(sql);
+
+        //删除活动
+        param = new Dictionary<string, string>();
+        param.Add("promotion_id", promotion_id);
+        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.delete", session, param);
+
+        //删除活动
+        sql = "update  tete_activitylist set Status=3 ,isok=1  WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
+        utils.ExecuteNonQuery(sql);
 
 
 
