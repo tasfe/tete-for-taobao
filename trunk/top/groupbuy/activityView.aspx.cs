@@ -306,6 +306,16 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
         {
             for (int i = 0; i < dt.Rows.Count; i++)
             {
+                //查询商品是否在参加活动
+                sql = "select * from Tete_activitylist where Status<>4 and Status<>3 and Status<>2 and  ProductID=" + dt.Rows[i]["ProductID"].ToString();
+                DataTable dttest = utils.ExecuteDataTable(sql);
+                if (dttest != null && dttest.Rows.Count > 0)
+                {
+                    //如果在参加把这个要参加活动的商品删除
+                    sql = "delete from Tete_activitylist where id=" + dt.Rows[i]["id"].ToString();
+                    utils.ExecuteNonQuery(sql);
+                    continue;
+                }
  
                 discountType = dt.Rows[i]["discountType"].ToString();//DISCOUNT 或PRICE
                 discountValue = dt.Rows[i]["discountValue"].ToString();//促销力度
