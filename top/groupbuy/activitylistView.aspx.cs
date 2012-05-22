@@ -141,6 +141,7 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
+                //先删除活动在添加
                 delactivity(dt.Rows[0]["ActivityID"].ToString(), dt.Rows[0]["ProductID"].ToString());
 
                 //创建活动及相关人群
