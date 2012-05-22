@@ -370,14 +370,7 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
                 utils.ExecuteNonQuery(sql);
 
             }
-                Response.Write("true");
-                Response.End();
             
-        }
-        else
-        {
-            Response.Write("null");
-            Response.End();
         }
     }
 
