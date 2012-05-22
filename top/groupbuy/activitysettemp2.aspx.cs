@@ -43,7 +43,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
                 Response.Write("这个活动已经创建了这套模板.请从新选择模板！  <a href=\"activitysettemp1.aspx\">返回</a>");
                 Response.End();
             }
-            sql = "select * from tete_activitylist where ActivityID=" + Request.Form["selstr"].ToString();
+            sql = "select * from tete_activitylist where status<>4 and ActivityID=" + Request.Form["selstr"].ToString();
             dt = utils.ExecuteDataTable(sql);
             if (dt != null)
             {
