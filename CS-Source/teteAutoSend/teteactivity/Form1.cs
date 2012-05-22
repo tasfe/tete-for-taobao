@@ -81,8 +81,8 @@ namespace teteactivity
                         }
                         else
                         {
-                            //添加活动
-                            addpromotion(dt1.Rows[i]["ProductID"].ToString(), dt1.Rows[i]["discountType"].ToString(), dt1.Rows[i]["discountValue"].ToString(), dt1.Rows[i]["startDate"].ToString(), dt1.Rows[i]["endDate"].ToString(), dt1.Rows[i]["Name"].ToString(), dt1.Rows[i]["decreaseNum"].ToString(), session, dt1.Rows[i]["ActivityID"].ToString());
+                            //添加活动,现在不需要了,添加的时候就已经添加活动了
+                            //addpromotion(dt1.Rows[i]["ProductID"].ToString(), dt1.Rows[i]["discountType"].ToString(), dt1.Rows[i]["discountValue"].ToString(), dt1.Rows[i]["startDate"].ToString(), dt1.Rows[i]["endDate"].ToString(), dt1.Rows[i]["Name"].ToString(), dt1.Rows[i]["decreaseNum"].ToString(), session, dt1.Rows[i]["ActivityID"].ToString());
                         }
                     }
                 }
