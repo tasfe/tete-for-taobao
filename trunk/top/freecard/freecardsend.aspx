@@ -41,13 +41,13 @@
                 <td align="left" height="30">选择赠送的包邮卡：</td>
                 <td>
                     <%=couponstr%>
-                    <a href="freecardadd.aspx">创建优惠券</a>
-                    <a href="freecardcustomer.aspx">查看优惠券赠送记录</a>
+                    <a href="freecardadd.aspx">创建包邮卡</a>
+                    <a href="freecardcustomer.aspx">查看包邮卡赠送记录</a>
                 </td>
             </tr>
             <tr>
                 <td align="left" colspan="2">
-                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="赠送优惠券给买家" />
+                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="赠送包邮卡给买家" />
                 </td>
             </tr>
         </table>
