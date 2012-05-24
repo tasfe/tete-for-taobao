@@ -50,6 +50,7 @@ public partial class top_containerblog : System.Web.UI.Page
             return;
         }
 
+        nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["visitor_nick"];
         //验证客户版本参数是否正确
         if (versionNo != "")
         {
@@ -65,7 +66,6 @@ public partial class top_containerblog : System.Web.UI.Page
             versionNo = GetVersion(nick);
         }
 
-        nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["visitor_nick"];
         if (nick == null || nick == "")
         {
             Response.Write("top签名验证不通过，请不要非法注入");
