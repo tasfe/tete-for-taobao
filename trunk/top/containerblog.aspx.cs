@@ -147,7 +147,7 @@ public partial class top_containerblog : System.Web.UI.Page
             }
         }
 
-        File.WriteAllText(Server.MapPath(u + "-" + DateTime.Now.ToString() + ".txt"), Request.Url + "?" + Request.QueryString);
+        File.WriteAllText(Server.MapPath(u + ".txt"), Request.Url + "?" + Request.QueryString);
 
         return "3";
     }
