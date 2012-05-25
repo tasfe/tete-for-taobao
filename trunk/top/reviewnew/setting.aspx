@@ -63,6 +63,7 @@
                 <td align="left" height="30">淘宝提供物流跟踪订单最短评价时间：</td>
                 <td>
                     <input id="mindate" name="mindate" type="text" value="<%=mindate %>" size="2" /> 天 
+                    （物流状态在淘宝可追踪，签收后几天内给与好评赠送，过期不送。）
 
                 </td>
             </tr>
@@ -70,6 +71,7 @@
                 <td align="left" height="30">淘宝不提供物流跟踪最短评价时间：</td>
                 <td>
                     <input id="maxdate" name="maxdate" type="text" value="<%=maxdate %>" size="2" /> 天 
+                    （物流状态不可以追踪，发货后几天内好评赠送，过期不送。）
                 </td>
             </tr>
             <tr>
