@@ -235,9 +235,13 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                         itemtype2 = "<select onchange=\"changeSelect(" + product.Content[i].NumIid.ToString() + ")\" id=\"discountType" + product.Content[i].NumIid.ToString() + "\" name=\"discountType\" > <option selected=\"selected\" value=\"DISCOUNT\">打折</option><option value=\"PRICE\">减价</option> </select>";
 
                         itemtypevalue2 = " <div id=\"zheDiv" + product.Content[i].NumIid.ToString() + "\" style=\"display: block;\"><input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeZhe" + product.Content[i].NumIid.ToString() + "\" value=\"" + discountValue + "\"  name=\"discountValue\" style=\"width:30px\">折</div><div  style=\"display: none;\" id=\"jianDiv" + product.Content[i].NumIid.ToString() + "\">减<input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeJian" + product.Content[i].NumIid.ToString() + "\" name=\"discountValue\" style=\"width:30px\" >元</div>";
-                        newPrice2 = (decimal.Parse(price2) * decimal.Parse(discountValue) * 0.1m).ToString();
-
-
+                        if (discountValue != "")
+                        {
+                            newPrice2 = (decimal.Parse(price2) * decimal.Parse(discountValue) * 0.1m).ToString();
+                        }
+                        else {
+                            newPrice2 = price2;
+                        }
 
                         yhCount = " <span id=\"duojian" + product.Content[i].NumIid.ToString() + "\" style=\"display: inline;\">多件<input type=\"hidden\" id=\"decreaseNumHiden" + product.Content[i].NumIid.ToString() + "\" value=\"0\" name=\"decreaseNumHiden\"></span> <span  style=\"display: none;\" id=\"yijian" + product.Content[i].NumIid.ToString() + "\"><select onchange=\"decreaseNumChange(" + product.Content[i].NumIid.ToString() + ")\" id=\"decreaseNumSel" + product.Content[i].NumIid.ToString() + "\" name=\"decreaseNumSel\"> <option selected=\"selected\" value=\"0\">多件</option> <option value=\"1\">一件</option> </select></span>";
                     }
@@ -253,8 +257,14 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                             yhCount = " <span id=\"duojian" + product.Content[i].NumIid.ToString() + "\" style=\"display: none;\">多件<input type=\"hidden\" id=\"decreaseNumHiden" + product.Content[i].NumIid.ToString() + "\" value=\"0\" name=\"decreaseNumHiden\"></span> <span style=\"display: inline;\" id=\"yijian" + product.Content[i].NumIid.ToString() + "\"><select onchange=\"decreaseNumChange(" + product.Content[i].NumIid.ToString() + ")\" id=\"decreaseNumSel" + product.Content[i].NumIid.ToString() + "\" name=\"decreaseNumSel\"> <option value=\"0\">多件</option> <option value=\"1\"  selected=\"selected\">一件</option> </select></span>";
                         }
                         itemtypevalue2 = " <div id=\"zheDiv" + product.Content[i].NumIid.ToString() + "\" style=\"display: none;\" ><input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeZhe" + product.Content[i].NumIid.ToString() + "\" value=\"9\" name=\"discountValue\" style=\"width:30px\">折</div><div style=\"display: block;\" id=\"jianDiv" + product.Content[i].NumIid.ToString() + "\">减<input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeJian" + product.Content[i].NumIid.ToString() + "\" name=\"discountValue\" style=\"width:30px\" value=\"" + discountValue + "\" >元</div>";
-                        newPrice2 = (decimal.Parse(price2) -decimal.Parse(discountValue)).ToString();
-                        
+                       
+                        if (discountValue != "")
+                        {
+                            newPrice2 = (decimal.Parse(price2) - decimal.Parse(discountValue)).ToString();
+                        }
+                        else {
+                            newPrice2 = price2;
+                        }
                     
                     }
                 }
@@ -279,8 +289,14 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                                 yhCount = " <span id=\"duojian" + product.Content[i].NumIid.ToString() + "\" style=\"display: none;\">多件<input type=\"hidden\" id=\"decreaseNumHiden" + product.Content[i].NumIid.ToString() + "\" value=\"0\" name=\"decreaseNumHiden\"></span> <span  style=\"display: inline;\" id=\"yijian" + product.Content[i].NumIid.ToString() + "\"><select onchange=\"decreaseNumChange(" + product.Content[i].NumIid.ToString() + ")\" id=\"decreaseNumSel" + product.Content[i].NumIid.ToString() + "\" name=\"decreaseNumSel\"> <option  value=\"0\">多件</option> <option value=\"1\" selected=\"selected\">一件</option> </select></span>";
                             }
 
-                            
-                            newPrice2 = (decimal.Parse(product.Content[i].Price) - decimal.Parse(yuandiscountValue)).ToString();
+                            if (discountValue != "")
+                            {
+                                newPrice2 = (decimal.Parse(product.Content[i].Price) - decimal.Parse(yuandiscountValue)).ToString();
+                            }
+                            else
+                            {
+                                newPrice2 = product.Content[i].Price;
+                            }
                         }
                         else
                         {
@@ -289,8 +305,13 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                             yhCount = " <span id=\"duojian" + product.Content[i].NumIid.ToString() + "\" style=\"display: inline;\">多件<input type=\"hidden\" id=\"decreaseNumHiden" + product.Content[i].NumIid.ToString() + "\" value=\"0\" name=\"decreaseNumHiden\"></span> <span  style=\"display: none;\" id=\"yijian" + product.Content[i].NumIid.ToString() + "\"><select onchange=\"decreaseNumChange(" + product.Content[i].NumIid.ToString() + ")\" id=\"decreaseNumSel" + product.Content[i].NumIid.ToString() + "\" name=\"decreaseNumSel\"> <option selected=\"selected\" value=\"0\">多件</option> <option value=\"1\">一件</option> </select></span>";
 
                             itemtypevalue2 = " <div id=\"zheDiv" + product.Content[i].NumIid.ToString() + "\" style=\"display: block;\"><input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeZhe" + product.Content[i].NumIid.ToString() + "\" value=\""+yuandiscountValue+"\" name=\"discountValue\" style=\"width:30px\">折</div><div  style=\"display: none;\" id=\"jianDiv" + product.Content[i].NumIid.ToString() + "\">减<input type=\"text\" onkeyup=\"blurValue(" + product.Content[i].NumIid.ToString() + ")\" id=\"changeJian" + product.Content[i].NumIid.ToString() + "\" name=\"discountValue\" style=\"width:30px\" value=\"\" >元</div>";
-                            newPrice2 = (decimal.Parse(product.Content[i].Price) * decimal.Parse(yuandiscountValue) * 0.1m).ToString();
-                     
+                            if (discountValue != "")
+                            {
+                                newPrice2 = (decimal.Parse(product.Content[i].Price) * decimal.Parse(yuandiscountValue) * 0.1m).ToString();
+                            }
+                            else {
+                                newPrice2 = product.Content[i].Price;
+                            }
                         }
                     }
                     else
