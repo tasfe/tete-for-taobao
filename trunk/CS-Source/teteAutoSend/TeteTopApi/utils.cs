@@ -12,6 +12,7 @@ using QWeiboSDK;
 using System.IO;
 using System.Web.Security;
 using System.Net;
+using System.Web;
 
 namespace TeteTopApi
 {
@@ -66,8 +67,6 @@ namespace TeteTopApi
         /// <param name="secret"></param>
         public void SendMicroBlog(string nick, string content, string filepath, string key, string secret)
         {
-            try
-            {
                 string appKey = "d3225497956249cbb13a7cb7375d62bd";
                 string appSecret = "6cf7a3274cb676328e77dff3e203061d";
 
@@ -82,37 +81,33 @@ namespace TeteTopApi
                 oauthKey.tokenKey = key;
                 oauthKey.tokenSecrect = secret;
 
+                Console.Write(filepath + "---sending...\r\n");
                 //图片信息
                 List<Parameter> files = new List<Parameter>();
                 if (filepath != "")
                 {
-                    files.Add(new Parameter("pic", DownPic(filepath)));
-                    //files.Add(new Parameter("pic", filepath));
+                    
+                        files.Add(new Parameter("pic", DownPic(filepath)));
+                        //files.Add(new Parameter("pic", filepath));
                 }
 
                 Console.Write("send weibo msg...[" + filepath + "]-[" + content + "]\r\n");
-
+                
                 QWeiboRequest request = new QWeiboRequest();
                 int nKey = 0;
                 if (request.AsyncRequest("http://open.t.qq.com/api/t/add_pic", "POST", oauthKey, parameters, files, new AsyncRequestCallback(RequestCallback), out nKey))
                 {
 
                 }
-            }
-            catch (Exception e)
-            {
-            }
+            
         }
 
         private string DownPic(string url)
         {
             string strHtml = string.Empty;
 
-            WebRequest request = WebRequest.Create(url);
-            WebResponse response = request.GetResponse();
-            Stream reader = response.GetResponseStream();
-
             string time = DateTime.Now.ToString("yyyy-MM-dd");
+            Console.Write(time + "\r\n");
 
             //创建文件夹
             if (!Directory.Exists("pic/" + time + "/"))
@@ -121,9 +116,15 @@ namespace TeteTopApi
             }
 
             string fileName = "pic/" + time + "/" + MD5(url) + ".jpg";
+            Console.Write(fileName + "\r\n");
 
             if (!File.Exists(fileName))
             {
+                Console.Write(url + "\r\n");
+                WebRequest request = WebRequest.Create(url);
+                WebResponse response = request.GetResponse();
+                Stream reader = response.GetResponseStream();
+
                 FileStream writer = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
                 byte[] buff = new byte[512];
                 int c = 0; //实际读取的字节数
@@ -157,6 +158,7 @@ namespace TeteTopApi
 
             //更新微博发送记录和写入发送日志
             Console.Write(result + "\r\n");
+
         }
 
         /// <summary>

@@ -58,6 +58,8 @@
   <ItemGroup>
     <Compile Include="Api.cs" />
     <Compile Include="DataContract\CouponData.cs" />
+    <Compile Include="DataContract\CustomerData.cs" />
+    <Compile Include="DataContract\FreeCardData.cs" />
     <Compile Include="DataContract\FreeShopData.cs" />
     <Compile Include="DataContract\LogData.cs" />
     <Compile Include="DataContract\MessageData.cs" />
@@ -65,18 +67,23 @@
     <Compile Include="DataContract\TradeData.cs" />
     <Compile Include="DataContract\TradeRateData.cs" />
     <Compile Include="DataContract\WeiboData.cs" />
+    <Compile Include="Entity\Alipay.cs" />
+    <Compile Include="Entity\AlipayDetail.cs" />
     <Compile Include="Entity\Coupon.cs" />
+    <Compile Include="Entity\Customer.cs" />
     <Compile Include="Entity\Item.cs" />
     <Compile Include="Entity\ShopInfo.cs" />
     <Compile Include="Entity\Trade.cs" />
     <Compile Include="Entity\TradeRate.cs" />
     <Compile Include="Entity\Weibo.cs" />
     <Compile Include="Entity\WeiboID.cs" />
+    <Compile Include="Logic\GetUserData.cs" />
     <Compile Include="Logic\LostMessageGet.cs" />
     <Compile Include="Logic\ShippingSuccess.cs" />
     <Compile Include="Logic\ShopAlert.cs" />
     <Compile Include="Logic\ShopTotalSend.cs" />
     <Compile Include="Logic\TopApi\TopApiFree.cs" />
+    <Compile Include="Logic\TradeCreate.cs" />
     <Compile Include="Logic\TradeSuccess.cs" />
     <Compile Include="Logic\TradeSellerShip.cs" />
     <Compile Include="Logic\WaitSellerConfirm.cs" />
