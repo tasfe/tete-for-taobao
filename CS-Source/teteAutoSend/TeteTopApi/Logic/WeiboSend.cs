@@ -123,6 +123,7 @@ namespace TeteTopApi.Logic
             {
                 if (data.IsCanSendMsg(nick, weiboids[i], index))
                 {
+                    Console.Write("sending...\r\n");
                     utils uti = new utils();
                     uti.SendMicroBlog(nick, content, imgUrl, weiboids[i].Key, weiboids[i].Secret);
                     //记录发送数量

@@ -34,6 +34,12 @@ namespace TeteTopApi.Logic
                     {
                         Trade trade = listTrade[j];
 
+                        //判断如果是分销的订单，则不处理
+                        if (trade.OrderType.ToLower() == "fenxiao")
+                        {
+                            return;
+                        }
+
                         //发送短信-上LOCK锁定
                         lock (padlock4)
                         {
