@@ -14,7 +14,8 @@ namespace TeteTopApi
 {
     public class WebPost
     {
-        //private static object padlock = new object();
+        //private static object padlock = new object();
+
         protected static string CreateSign(IDictionary<string, string> parameters, string secret)
         {
             parameters.Remove("sign");
@@ -237,7 +238,7 @@ namespace TeteTopApi
                     reader = new StreamReader(stream, encoding);
                     result = reader.ReadLine();
                 }
-                catch
+                catch(Exception e)
                 {
                     Console.Write("通讯中断，重新启动");
                     return "";
@@ -360,6 +361,13 @@ namespace TeteTopApi
                             resultOld = result;
                             string resultNew = result;
                             Console.Write("\r\n[" + DateTime.Now.ToString() + "]-[" + i.ToString() + "]--[" + resultNew + "]\r\n");
+                            LogData dbLog = new LogData();
+                            string status = utils.GetValueByProperty(resultNew, "status");
+                            string nick = utils.GetValueByProperty(resultNew, "nick");
+                            if (nick.Length != 0)
+                            {
+                                dbLog.InsertMsgLogInfo(nick, status, resultNew);
+                            }
 
                             ThreadPool.QueueUserWorkItem(new WaitCallback(StartReceiveMessageFree), resultNew);
                         }

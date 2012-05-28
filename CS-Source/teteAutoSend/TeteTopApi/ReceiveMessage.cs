@@ -26,10 +26,43 @@ namespace TeteTopApi
             string typ = utils.GetMsgType(this.Msg);
 
             switch (typ)
-            { 
+            {
                 case "notify_trade":
                     ActOrderInfo();
                     break;
+            }
+        }
+
+        /// <summary>
+        /// 根据消息内容做出相应的逻辑处理
+        /// </summary>
+        public string ActDataResult()
+        {
+            string typ = utils.GetMsgType(this.Msg);
+
+            switch (typ)
+            {
+                case "notify_trade":
+                    return ActOrderInfoResult();
+                default:
+                    return "";
+            }
+        }
+
+
+        /// <summary>
+        /// 处理订单类型的数据
+        /// </summary>
+        private string ActOrderInfoResult()
+        {
+            Trade trade = utils.GetTrade(this.Msg);
+
+            switch (trade.Status)
+            {
+                case "TradeCreate":
+                    return ActTradeCreateResult(trade);
+                default:
+                    return "";
             }
         }
 
@@ -42,6 +75,9 @@ namespace TeteTopApi
 
             switch (trade.Status)
             {
+                case "TradeCreate":
+                    ActTradeCreate(trade);
+                    break;
                 case "TradeSellerShip":
                     ActTradeSellerShip(trade);
                     break;
@@ -52,6 +88,28 @@ namespace TeteTopApi
                     ActTradeSuccess(trade);
                     break;
             }
+        }
+
+        /// <summary>
+        /// 催单有礼的逻辑
+        /// </summary>
+        /// <param name="trade"></param>
+        private void ActTradeCreate(Trade trade)
+        {
+            TradeCreate act = new TradeCreate(trade);
+            act.Start();
+        }
+
+
+
+        /// <summary>
+        /// 催单有礼的逻辑
+        /// </summary>
+        /// <param name="trade"></param>
+        private string ActTradeCreateResult(Trade trade)
+        {
+            TradeCreate act = new TradeCreate(trade);
+            return act.Start();
         }
 
         /// <summary>
