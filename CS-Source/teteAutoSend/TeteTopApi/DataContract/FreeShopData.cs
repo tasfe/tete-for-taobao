@@ -16,7 +16,7 @@ namespace TeteTopApi.DataContract
         /// <returns></returns>
         public ShopInfo ShopInfoGetByNick(string nick)
         {
-            string sql = "SELECT session FROM TopTaobaoShop WHERE nick = '" + nick + "'";
+            string sql = "SELECT sessionmarket FROM TopTaobaoShop WHERE nick = '" + nick + "'";
             Console.Write(sql + "\r\n");
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count != 0)
@@ -38,7 +38,7 @@ namespace TeteTopApi.DataContract
         {
             ShopInfo info = new ShopInfo();
 
-            info.Session = dt.Rows[0]["session"].ToString();
+            info.Session = dt.Rows[0]["sessionmarket"].ToString();
 
             return info;
         }

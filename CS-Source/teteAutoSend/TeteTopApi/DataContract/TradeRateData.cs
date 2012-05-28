@@ -37,6 +37,28 @@ namespace TeteTopApi.DataContract
         }
 
         /// <summary>
+        /// 记录优惠券赠送的结果
+        /// </summary>
+        /// <param name="tradeRate"></param>
+        /// <param name="result"></param>
+        public void UpdateTradeRateResult(TradeRate tradeRate, string result)
+        {
+            string sql = "UPDATE TCS_TradeRate SET sendresult = '" + result + "' WHERE orderid = '" + tradeRate.Tid + "'";
+            utils.ExecuteNonQuery(sql);
+        }
+
+        /// <summary>
+        /// 记录淘宝红包赠送的结果
+        /// </summary>
+        /// <param name="tradeRate"></param>
+        /// <param name="result"></param>
+        public void UpdateTradeRateResultAlipay(TradeRate tradeRate, string result)
+        {
+            string sql = "UPDATE TCS_TradeRate SET sendresultalipay = '" + result + "' WHERE orderid = '" + tradeRate.Tid + "'";
+            utils.ExecuteNonQuery(sql);
+        }
+
+        /// <summary>
         /// 判断该评价信息是否已经记录过
         /// </summary>
         /// <param name="tradeRate"></param>

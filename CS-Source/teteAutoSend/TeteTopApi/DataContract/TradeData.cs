@@ -28,6 +28,12 @@ namespace TeteTopApi.DataContract
                                 "couponprice, " +
                                 "shippingshort, " +
                                 "shippingnumber, " +
+                                "ordertype, " +
+                                "receiver_name, " +
+                                "receiver_state, " +
+                                "receiver_city, " +
+                                "receiver_district, " +
+                                "receiver_address, " +
                                 "mobile " +
                             " ) VALUES ( " +
                                 " '" + trade.Nick + "', " +
@@ -41,6 +47,12 @@ namespace TeteTopApi.DataContract
                                 " '" + trade.CouponPrice + "', " +
                                 " '" + trade.ShippingCompanyShort + "', " +
                                 " '" + trade.ShippingNumber + "', " +
+                                " '" + trade.OrderType + "', " +
+                                " '" + trade.receiver_name + "', " +
+                                " '" + trade.receiver_state + "', " +
+                                " '" + trade.receiver_city + "', " +
+                                " '" + trade.receiver_district + "', " +
+                                " '" + trade.receiver_address + "', " +
                                 " '" + trade.Mobile + "' " +
                             ") ";
             Console.Write(sql + "\r\n");
@@ -94,6 +106,29 @@ namespace TeteTopApi.DataContract
 
                 return boolResult;
             }
+        }
+
+        /// <summary>
+        /// 更新订单的促销相关信息
+        /// </summary>
+        /// <param name="trade"></param>
+        /// <param name="typ"></param>
+        /// <param name="status"></param>
+        public void UpdateTradeCouponInfo(Trade trade, string price, string couponid)
+        {
+            string sql = "SELECT COUNT(*) FROM TCS_CouponSend WHERE taobaonumber = '" + couponid + "'";
+            string count = utils.ExecuteString(sql);
+            if (count == "0")
+            {
+                sql = "UPDATE TCS_Trade SET iscoupon = 2,couponprice='" + price + "',couponnumber ='" + couponid + "' WHERE orderid = '" + trade.Tid + "'";
+            }
+            else
+            {
+                sql = "UPDATE TCS_Trade SET iscoupon = 1,couponprice='" + price + "',couponnumber ='" + couponid + "' WHERE orderid = '" + trade.Tid + "'";
+            }
+
+            Console.Write(sql + "\r\n");
+            utils.ExecuteNonQuery(sql);
         }
 
         /// <summary>
@@ -250,6 +285,7 @@ namespace TeteTopApi.DataContract
                 info.BuyNick = dt.Rows[i]["buynick"].ToString();
                 info.Tid = dt.Rows[i]["orderid"].ToString();
                 info.Nick = dt.Rows[i]["nick"].ToString();
+                info.OrderType = dt.Rows[i]["ordertype"].ToString();
 
                 infoList.Add(info);
             }
