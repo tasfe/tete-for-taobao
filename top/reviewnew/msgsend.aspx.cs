@@ -99,7 +99,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
         string max = utils.ExecuteString(sql);
 
         //判断该用户是否超过了最大赠送
-        sql = "SELECT guid FROM TCS_CouponSend WITH (NOLOCK) WHERE buynick= '" + buynick + "' AND guid = '" + guid + "' AND taobaonumber NOT IN (SELECT couponnumber FROM TCS_Trade WHERE nick = '" + nick + "' AND iscoupon = 1))";
+        sql = "SELECT guid FROM TCS_CouponSend WITH (NOLOCK) WHERE buynick= '" + buynick + "' AND guid = '" + guid + "' AND taobaonumber NOT IN (SELECT couponnumber FROM TCS_Trade WHERE nick = '" + nick + "' AND iscoupon = 1)";
         DataTable dtCoupon = utils.ExecuteDataTable(sql);
         if (dtCoupon.Rows.Count >= int.Parse(max))
         {
