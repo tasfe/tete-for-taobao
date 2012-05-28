@@ -24,6 +24,7 @@ namespace tetegroupbuyRemove
             //获取到期团购,创建取消团购任务
             Thread newThread1 = new Thread(DelGroupbuy);
             newThread1.Start();
+          
         }
 
  
@@ -36,22 +37,30 @@ namespace tetegroupbuyRemove
             {
                 //获取正在进行中的团购项目        
                 string appkey = "12287381";//"12287381";
-                string secret = "d3486dac8198ef01000e7bd4504601a4";//d3486dac8198ef01000e7bd4504601a4";
+                string secret = "d3486dac8198ef01000e7bd4504601a4";
                 string session = string.Empty;
 
                 //获取已经结束的团购活动并取消
                 DBSql db = DBSql.getInstance();
-                string sql = "SELECT * FROM TopGroupBuy WHERE DATEDIFF(s,GETDATE(),endtime) < 0  AND isdelete = 0";
-
-                #region 取消活动 创建取消任务 删除该活动关联的用户群 将该团购标志为已结束 AND promotionid <> 0
-                //WriteLog(sql, "");
-                DataTable enddt = db.GetTable(sql);
+                string sql = "SELECT top 500 * FROM TopGroupBuy WHERE DATEDIFF(s,GETDATE(),endtime) < 0    AND isdelete = 0 and nick<>'' ";
+                WriteLog("自动取消活动开始运行。。" + sql, "");
+                #region 取消活动 创建取消任务 删除该活动关联的用户群 将该团购标志为已结束 
+              
+                DataTable enddt = db.GetTable(sql); 
+                if (enddt == null)
+                {
+                    WriteLog("自动取消活动开始运行结束 没有到期活动", "");
+                    return;
+                }
+                WriteLog("自动取消活动开始运行结束  到期活动" + enddt.Rows.Count.ToString() + "个", "");
                 //通过接口将该用户加入人群
                 for (int y = 0; y < enddt.Rows.Count; y++)
                 {
+ 
                     //活动id为空
                     if (enddt.Rows[y]["promotionid"].ToString().Trim() == "0")
                     {
+                        WriteLog("自动取消活动运行中。。promotionid为空" + enddt.Rows[y]["nick"].ToString(), "");
                         sql = "UPDATE TopGroupBuy SET isdelete = 1 WHERE id = " + enddt.Rows[y]["id"].ToString();
                         db.ExecSql(sql);
                         continue;
@@ -60,20 +69,22 @@ namespace tetegroupbuyRemove
                     if (enddt.Rows[y]["nick"].ToString().Trim() == "")
                     {
                         sql = "UPDATE TopGroupBuy SET isdelete = 1 WHERE id = " + enddt.Rows[y]["id"].ToString();
+                        WriteLog("自动取消活动运行中。。nick为空" + enddt.Rows[y]["nick"].ToString(), "");
                         db.ExecSql(sql);
                         continue;
                     }
                     sql = "SELECT session FROM TopTaobaoShop WHERE nick = '" + enddt.Rows[y]["nick"].ToString() + "'";
 
-                    WriteLog("清除代码:" + sql, "");
+                    WriteLog("自动取消活动运行中。。" + sql, "");
                     DataTable dtnick = db.GetTable(sql);
                     if (dtnick.Rows.Count != 0)
                     {
-                        session = db.GetTable(sql).Rows[0][0].ToString();
+                        session = db.GetTable(sql).Rows[0]["session"].ToString();
                     }
                     //店铺session为空
                     if (session == "")
                     {
+                        WriteLog("自动取消活动运行中。。session为空" + enddt.Rows[y]["nick"].ToString(), "");
                         sql = "UPDATE TopGroupBuy SET isdelete = 1 WHERE id = " + enddt.Rows[y]["id"].ToString();
                         db.ExecSql(sql);
                         continue;
@@ -82,9 +93,8 @@ namespace tetegroupbuyRemove
                     IDictionary<string, string> paramnew = new Dictionary<string, string>();
                     paramnew.Add("promotion_id", enddt.Rows[y]["promotionid"].ToString());
                     string resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.delete", session, paramnew);
-
-                    WriteLog("清除代码:" + resultnew, "");
-
+                     
+                    WriteLog("自动取消活动运行中。。清除代码" + resultnew, "");
                     //创建删除活动关联的宝贝描述
                     Delete(enddt.Rows[y]["nick"].ToString(), enddt.Rows[y]["id"].ToString());
                     //将该团购标志为已结束
@@ -97,7 +107,7 @@ namespace tetegroupbuyRemove
 
                 enddt.Dispose();
 
-                WriteLog("**********************************************************", "");
+                WriteLog("自动取消活动运行结束*************************************************", "");
                 //休息后继续循环-默认15分钟一次
                 Thread.Sleep(600000);
 
@@ -107,7 +117,7 @@ namespace tetegroupbuyRemove
             catch (Exception e)
             {
 
-                WriteLog("**********************************************************" + e.StackTrace + "----error!!!", "1");
+                WriteLog("自动取消活动运行错误*****************************************" + e.StackTrace+e.Message + "----error!!!", "1");
                 //MessageBox.Show("\r\n" + e.StackTrace);
                 Thread newThread = new Thread(DelGroupbuy);
                 //休息后继续循环-默认10分钟一次
@@ -125,7 +135,8 @@ namespace tetegroupbuyRemove
         private void Delete(string taobaoNick, string id)
         {
 
-            string sql = "SELECT COUNT(*) as count FROM TopMission WHERE groupbuyid = " + id + " AND typ='delete' AND isok = 0 AND nick<>''";
+            WriteLog("自动取消活动 开始创建任务*************************************************", "");
+            string sql = "SELECT COUNT(*) as count FROM TopMission WHERE groupbuyid = " + id + " AND typ='delete' AND isok = 0 AND nick<>'' ";
 
             DBSql db = DBSql.getInstance();
             DataTable dt3 = db.GetTable(sql);
@@ -133,16 +144,22 @@ namespace tetegroupbuyRemove
             {
                 if (dt3.Rows[0]["count"].ToString().Trim() != "0")
                 {
+                    WriteLog("活动已经创建任务了*************************************************" + dt3.Rows[0]["count"].ToString().Trim(), "");
                     return;
                 }
             }
 
             sql = "INSERT INTO TopMission (typ, nick, groupbuyid) VALUES ('delete', '" + taobaoNick + "', '" + id + "')";
+            WriteLog("活动创建任务了*************************************************" + sql, "");
             db.ExecSql(sql);
 
 
-            sql = "SELECT TOP 1 ID FROM TopMission ORDER BY ID DESC";
+            sql = "SELECT TOP 1 ID FROM TopMission where nick='" + taobaoNick + "' ORDER BY ID DESC";
             dt3 = db.GetTable(sql);
+            if (dt3 == null)
+            {
+                return;
+            }
             if (dt3 != null && dt3.Rows.Count > 0)
             {
                 string missionid = dt3.Rows[0]["ID"].ToString();
@@ -166,6 +183,8 @@ namespace tetegroupbuyRemove
                 }
 
             }
+
+            WriteLog("活动创建任务完成*************************************************" + sql, "");
 
         }
 
@@ -327,11 +346,11 @@ namespace tetegroupbuyRemove
         /// <returns></returns>
         public static void WriteLog(string message, string type)
         {
-            string tempStr = logUrl + "/Write" + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
-            string tempFile = tempStr + "/" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+            string tempStr = logUrl + "/ZDWrite" + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
+            string tempFile = tempStr + "/ZD" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
             if (type == "1")
             {
-                tempFile = tempStr + "/Err" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+                tempFile = tempStr + "/ZDErr" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
             }
             if (!Directory.Exists(tempStr))
             {
@@ -356,43 +375,7 @@ namespace tetegroupbuyRemove
 
         }
 
-
-        /// <summary>
-        /// 写日志
-        /// </summary>
-        /// <param name="value">日志内容</param>
-        /// <param name="type">类型 0(成功日志),1(错误日志) 可传空文本默认为0</param>
-        /// <returns></returns>
-        public static void WriteDeleteLog(string message, string type)
-        {
-            string tempStr = logUrl + "/Write" + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
-            string tempFile = tempStr + "/Delete" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-            if (type == "1")
-            {
-                tempFile = tempStr + "/DeleteErr" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-            }
-            if (!Directory.Exists(tempStr))
-            {
-                Directory.CreateDirectory(tempStr);
-            }
-
-            if (System.IO.File.Exists(tempFile))
-            {
-                ///如果日志文件已经存在，则直接写入日志文件
-                StreamWriter sr = System.IO.File.AppendText(tempFile);
-                sr.WriteLine("\n");
-                sr.WriteLine(DateTime.Now + "\n" + message);
-                sr.Close();
-            }
-            else
-            {
-                ///创建日志文件
-                StreamWriter sr = System.IO.File.CreateText(tempFile);
-                sr.WriteLine(DateTime.Now + "\n" + message);
-                sr.Close();
-            }
-
-        }
+         
         #endregion
 
     }
