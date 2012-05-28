@@ -114,5 +114,35 @@ namespace TeteTopApi.Entity
         /// 订单总金额
         /// </summary>
         public string OrderPrice { get; set; }
+
+        /// <summary>
+        /// 订单类型 fixed(一口价) auction(拍卖) guarantee_trade(一口价、拍卖) auto_delivery(自动发货) independent_simple_trade(旺店入门版交易) independent_shop_trade(旺店标准版交易) ec(直冲) cod(货到付款) fenxiao(分销) game_equipment(游戏装备) shopex_trade(ShopEX交易) netcn_trade(万网交易) external_trade(统一外部交易)
+        /// </summary>
+        public string OrderType { get; set; }
+
+        /// <summary>
+        /// 收货人姓名
+        /// </summary>
+        public string receiver_name { get; set; }
+
+        /// <summary>
+        /// 省
+        /// </summary>
+        public string receiver_state { get; set; }
+
+        /// <summary>
+        /// 市
+        /// </summary>
+        public string receiver_city { get; set; }
+
+        /// <summary>
+        /// 区
+        /// </summary>
+        public string receiver_district { get; set; }
+
+        /// <summary>
+        /// 地址
+        /// </summary>
+        public string receiver_address { get; set; }
     }
 }

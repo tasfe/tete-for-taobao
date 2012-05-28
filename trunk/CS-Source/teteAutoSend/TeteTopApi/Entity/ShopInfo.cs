@@ -41,6 +41,11 @@ namespace TeteTopApi.Entity
         public string CouponID { get; set; }
 
         /// <summary>
+        /// 支付宝红包ID
+        /// </summary>
+        public string AlipayID { get; set; }
+
+        /// <summary>
         /// 最小评价时间（物流到货）
         /// </summary>
         public string MinDateSystem { get; set; }
@@ -59,6 +64,11 @@ namespace TeteTopApi.Entity
         /// 优惠券自动赠送开关
         /// </summary>
         public string IsCoupon { get; set; }
+
+        /// <summary>
+        /// 支付宝红包赠送开关
+        /// </summary>
+        public string IsAlipay { get; set; }
 
         /// <summary>
         /// 系统自动评价或者短评价不赠送开关
@@ -116,9 +126,19 @@ namespace TeteTopApi.Entity
         public string IsKeyword { get; set; }
 
         /// <summary>
+        /// 是否为判断差评
+        /// </summary>
+        public string KeywordIsBad { get; set; }
+
+        /// <summary>
         /// 好评判断关键字
         /// </summary>
         public string Keyword { get; set; }
+
+        /// <summary>
+        /// 差评判断关键字
+        /// </summary>
+        public string BadKeyword { get; set; }
 
         /// <summary>
         /// 好评判断评价字数长度
@@ -129,5 +149,30 @@ namespace TeteTopApi.Entity
         /// 卖家手机号码
         /// </summary>
         public string Mobile { get; set; }
+
+        /// <summary>
+        /// 是否开启催单有礼
+        /// </summary>
+        public string IsCui { get; set; }
+
+        /// <summary>
+        /// 催单有礼赠送免邮卡ID
+        /// </summary>
+        public string CuiFreeCard { get; set; }
+
+        /// <summary>
+        /// 催单有礼赠送优惠券ID
+        /// </summary>
+        public string CuiCouponId { get; set; }
+
+        /// <summary>
+        /// 催单有礼赠送支付宝红包ID
+        /// </summary>
+        public string CuiAlipayId { get; set; }
+
+        /// <summary>
+        /// 卖家订购信息
+        /// </summary>
+        public string Plus { get; set; }
     }
 }
