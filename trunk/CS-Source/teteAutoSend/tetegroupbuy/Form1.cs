@@ -15,7 +15,7 @@ namespace tetegroupbuy
 {
     public partial class Form1 : Form
     {
-        public static string logUrl = "D:/svngroupbuy/website/ErrLog";
+        public static string logUrl = "D:/svngroupbuy/website/ErrLog"; 
         public Form1()
         {
             InitializeComponent();
@@ -158,66 +158,53 @@ namespace tetegroupbuy
                 DBSql db = DBSql.getInstance();
                 string sql = "SELECT * FROM TopGroupBuy WHERE DATEDIFF(s,GETDATE(),endtime) < 0 AND promotionid <> 0 AND isdelete = 0";
 
-                #region 取消活动 删除该活动关联的用户群 将该团购标志为已结束
-                //WriteLog(sql, "");
-                DataTable enddt = db.GetTable(sql);
-                //通过接口将该用户加入人群
-                for (int y = 0; y < enddt.Rows.Count; y++)
-                {
-                    sql = "SELECT session FROM TopTaobaoShop WHERE nick = '" + enddt.Rows[y]["nick"].ToString() + "'";
+                #region 取消活动 删除该活动关联的用户群 将该团购标志为已结束  这段代码由tetegroupbuyRemove服务代替
+                ////WriteLog(sql, "");
+                //DataTable enddt = db.GetTable(sql);
+                ////通过接口将该用户加入人群
+                //for (int y = 0; y < enddt.Rows.Count; y++)
+                //{
+                //    sql = "SELECT session FROM TopTaobaoShop WHERE nick = '" + enddt.Rows[y]["nick"].ToString() + "'";
 
-                    WriteLog("清除代码:" + sql, "");
-                    DataTable dtnick = db.GetTable(sql);
-                    if (dtnick.Rows.Count != 0)
-                    {
-                        session = db.GetTable(sql).Rows[0][0].ToString();
-                    }
-                    //取消该活动
-                    IDictionary<string, string> paramnew = new Dictionary<string, string>();
-                    paramnew.Add("promotion_id", enddt.Rows[y]["promotionid"].ToString());
-                    string resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.delete", session, paramnew);
+                //    WriteLog("清除代码:" + sql, "");
+                //    DataTable dtnick = db.GetTable(sql);
+                //    if (dtnick.Rows.Count != 0)
+                //    {
+                //        session = db.GetTable(sql).Rows[0][0].ToString();
+                //    }
+                //    //取消该活动
+                //    IDictionary<string, string> paramnew = new Dictionary<string, string>();
+                //    paramnew.Add("promotion_id", enddt.Rows[y]["promotionid"].ToString());
+                //    string resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.delete", session, paramnew);
 
-                    WriteLog("清除代码:" + resultnew, "");
+                //    WriteLog("清除代码:" + resultnew, "");
 
-                    //删除该活动关联的用户群
-                    //paramnew = new Dictionary<string, string>();
-                    //if (enddt.Rows[y]["tagid"].ToString() != "1")
-                    //{
-                    //    paramnew.Add("tag_id", enddt.Rows[y]["tagid"].ToString());
-                    //}
-                    //resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.tag.delete", session, paramnew);
+                //    //删除该活动关联的用户群
+                //    //paramnew = new Dictionary<string, string>();
+                //    //if (enddt.Rows[y]["tagid"].ToString() != "1")
+                //    //{
+                //    //    paramnew.Add("tag_id", enddt.Rows[y]["tagid"].ToString());
+                //    //}
+                //    //resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.tag.delete", session, paramnew);
 
-                    //WriteLog("清除代码:" + resultnew, "");
+                //    //WriteLog("清除代码:" + resultnew, "");
 
-                    //将该团购标志为已结束
-                    sql = "UPDATE TopGroupBuy SET isdelete = 1 WHERE id = " + enddt.Rows[y]["id"].ToString();
-                    //textBox2.AppendText("\r\n" + sql);
-                    db.ExecSql(sql);
-                }
+                //    //将该团购标志为已结束
+                //    sql = "UPDATE TopGroupBuy SET isdelete = 1 WHERE id = " + enddt.Rows[y]["id"].ToString();
+                //    //textBox2.AppendText("\r\n" + sql);
+                //    db.ExecSql(sql);
+                //}
                 #endregion
 
                 //获取正在进行中的团购活动
                 sql = "SELECT * FROM TopGroupBuy WHERE DATEDIFF(s,GETDATE(),starttime) < 0 AND DATEDIFF(s,GETDATE(),endtime) > 0 AND promotionid <> 0 AND isdelete = 0";
-
-                WriteLog(sql, "");
+                 
                 DataTable dt = db.GetTable(sql);
                 for (int k = 0; k < dt.Rows.Count; k++)
                 {
-                    //获取买家团购记录信息表
-                    sql = "SELECT * FROM TopGroupBuyDetail WHERE groupbuyid = " + dt.Rows[k]["id"].ToString();
 
-                    WriteLog(sql, "");
-                    DataTable dtdetail = db.GetTable(sql);
-                    if (dtdetail.Rows.Count == 0)
-                    {
-                        //如果还没有购买记录则继续-为了保持卖家的SESION长期有效，所以必须使用订单查询接口进行查询
-                        //continue;
-                    }
-
-                    //通过接口将该用户加入人群
                     sql = "SELECT session FROM TopTaobaoShop WHERE nick = '" + dt.Rows[k]["nick"].ToString() + "'";
 
-                    WriteLog(sql, "");
                     DataTable dtnick = db.GetTable(sql);
                     if (dtnick.Rows.Count != 0)
                     {
@@ -253,13 +240,11 @@ namespace tetegroupbuy
                         enddate = DateTime.Now.AddMinutes(-2);
                     }
 
-                    WriteLog(startdate.ToString("yyyy-MM-dd HH:mm:ss") + "-" + enddate.ToString("yyyy-MM-dd HH:mm:ss"), "");
 
                     //更新数据中记录的判断时间
                     sql = "UPDATE TopGroupBuy SET updatedate = '" + enddate.ToString() + "' WHERE id = " + dt.Rows[k]["id"].ToString();
                     db.ExecSql(sql);
 
-                    WriteLog(sql, "");
 
                     //通过接口获取用户下单信息(此处使用查询效率最高的30分钟间距作为查询条件)
                     IDictionary<string, string> param = new Dictionary<string, string>();
@@ -328,7 +313,7 @@ namespace tetegroupbuy
         }
 
         /// <summary>
-        /// 记录数据库
+        /// 记录参团人数到数据库
         /// </summary>
         /// <param name="buynick"></param>
         /// <param name="groupbuyid"></param>
