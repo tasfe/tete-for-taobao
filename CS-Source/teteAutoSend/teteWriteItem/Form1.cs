@@ -167,7 +167,9 @@ namespace teteWriteItem
                         ItemGetRequest requestItem = new ItemGetRequest();
                         requestItem.Fields = "desc";
                         requestItem.NumIid = long.Parse(dtWrite.Rows[j]["itemid"].ToString());
+                        WriteLog("更新准备中", "1");
                         Item product = client.ItemGet(requestItem, session);
+                        WriteLog("更新准备中。。。", "1");
                         string newContent = string.Empty;
                         string groupid = dtWrite.Rows[j]["groupbuyid"].ToString();
                         string tetegroupbuyGuid = groupid;
@@ -197,7 +199,9 @@ namespace teteWriteItem
                         IDictionary<string, string> param = new Dictionary<string, string>();
                         param.Add("num_iid", dtWrite.Rows[j]["itemid"].ToString());
                         param.Add("desc", newContent);
+                        WriteLog("更新准备", "1");
                         string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update", session, param);
+                        WriteLog("更新准备。。。", "1");
                         string resultpro2 = resultpro;
 
                         //插入宝贝错误日志
@@ -451,7 +455,7 @@ namespace teteWriteItem
                         {
                             PageList<Item> product = client.ItemsOnsaleGet(request, session);
 
-                            WriteDeleteLog(taobaoNick+"INGCount：" + product.Content.Count.ToString(), "1");
+                            WriteDeleteLog(DateTime.Now.ToString() + taobaoNick + "INGCount：" + product.Content.Count.ToString(), "1");
                             for (int num = 0; num < product.Content.Count; num++)
                             {
                                 RecordMissionDetail(id, missionid, product.Content[num].NumIid.ToString(), html);
@@ -475,7 +479,7 @@ namespace teteWriteItem
                     sql = "SELECT DISTINCT itemid FROM TopWriteContent WHERE groupbuyid = '" + dt.Rows[i]["groupbuyid"].ToString() + "' AND isok = 1";
                     dtWrite = db.GetTable(sql);
                 }
-                WriteDeleteLog("ING：" + dtWrite.Rows.Count.ToString(), "1");
+                WriteDeleteLog(DateTime.Now.ToString() + "ING：" + dtWrite.Rows.Count.ToString(), "1");
                 for (int j = 0; j < dtWrite.Rows.Count; j++)
                 {
                     try
@@ -505,7 +509,7 @@ namespace teteWriteItem
                         {
                             //更新状态
 
-                            WriteDeleteLog("http://item.taobao.com/item.htm?id=" + dtWrite.Rows[j]["itemid"].ToString() + " 不含需要清除的代码", "");
+                            WriteDeleteLog(DateTime.Now.ToString() + "http://item.taobao.com/item.htm?id=" + dtWrite.Rows[j]["itemid"].ToString() + " 不含需要清除的代码", "");
                             sql = "UPDATE TopMission SET success = success + 1,isok = 1 WHERE id = " + dt.Rows[i]["id"].ToString();
                             db.ExecSql(sql);
                             continue;
@@ -528,20 +532,16 @@ namespace teteWriteItem
                         if (resultpro.ToLower().IndexOf("ITEM_PROPERTIES_ERROR") != -1)
                         {
 
-                            WriteDeleteLog("删除活动更新宝贝描述：宝贝ID：" + dtWrite.Rows[j]["itemid"].ToString() + "返回的错误信息" + resultpro.Replace("<?xml version=\"1.0\" encoding=\"utf-8\" ?>",""), "1", groupid);              
+                            WriteDeleteLog(DateTime.Now.ToString() + "删除活动更新宝贝描述：宝贝ID：" + dtWrite.Rows[j]["itemid"].ToString() + "返回的错误信息" + resultpro.Replace("<?xml version=\"1.0\" encoding=\"utf-8\" ?>", ""), "1", groupid);              
                         }
                         else
                         {
-                            WriteDeleteLog("删除活动更新宝贝描述：宝贝ID：" + dtWrite.Rows[j]["itemid"].ToString() + "返回的成功信息" + resultpro.Replace("<?xml version=\"1.0\" encoding=\"utf-8\" ?>", ""), "", groupid);
+                            WriteDeleteLog(DateTime.Now.ToString()+ "删除活动更新宝贝描述：宝贝ID：" + dtWrite.Rows[j]["itemid"].ToString() + "返回的成功信息" + resultpro.Replace("<?xml version=\"1.0\" encoding=\"utf-8\" ?>", ""), "", groupid);
                         }
 
                         if (resultpro.IndexOf("ITEM_PROPERTIES_ERROR") != -1)
                         {
-                            //WriteDeleteLog("删除宝贝更新宝贝描述结果：宝贝ID：" + dtWrite.Rows[j]["itemid"].ToString() + "返回的错误信息" + resultpro, "");
-
-                            ////插入宝贝错误日志
-                            //sql = "insert TopMissionErrDetail (TopMissionID,itemid,nick,ErrDetail) values('" + dt.Rows[i]["id"].ToString() + "','" + dtWrite.Rows[j]["itemid"].ToString() + "','" + dt.Rows[i]["nick"].ToString() + "','" + resultpro + "')";
-                            //db.ExecSql(sql);
+                            WriteDeleteLog(DateTime.Now.ToString() + "删除宝贝更新宝贝描述结果：宝贝ID：" + dtWrite.Rows[j]["itemid"].ToString() + "返回的错误信息" + resultpro, "");
 
                             //更新宝贝错误数
                             sql = "UPDATE TopMission SET fail = fail + 1,isok = -1  WHERE id = " + dt.Rows[i]["id"].ToString();
@@ -562,8 +562,8 @@ namespace teteWriteItem
                     }
                     catch (Exception e)
                     {
-                        WriteDeleteLog("删除宝贝" + e.StackTrace, "1");
-                        WriteDeleteLog("删除宝贝" + e.Message, "1");
+                        WriteDeleteLog(DateTime.Now.ToString() + "删除宝贝" + e.StackTrace, "1");
+                        WriteDeleteLog(DateTime.Now.ToString() + "删除宝贝" + e.Message, "1");
                         sql = "UPDATE TopMission SET fail = fail + 1,isok = -1 WHERE id = " + dt.Rows[i]["id"].ToString();
                         db.ExecSql(sql);
                         continue;
