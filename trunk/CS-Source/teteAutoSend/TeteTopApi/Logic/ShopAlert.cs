@@ -89,7 +89,7 @@ namespace TeteTopApi.Logic
             {
                 ShopInfo shop = list[i];
                 //告之这些卖家他们的优惠券已经过期，需要重新设置
-                string msg = "好评有礼:亲爱的" + shop.Nick + "，您的短信已用完，请尽快充值以免影响正常使用，3月短信特惠一律8折详情请联系客户人员";
+                string msg = "好评有礼:亲爱的" + shop.Nick + "，您的短信已用完，请尽快充值以免影响正常使用，4月活动5分好评就送100条短信，详情请联系客服！";
 
                 //如果7天内已经发送过类似短信的话则不再提醒
                 if (!dbMessage.IsSendMsgNearDays(shop, typ))
@@ -222,33 +222,39 @@ namespace TeteTopApi.Logic
                     continue;
                 }
 
-                TopApiHaoping api = new TopApiHaoping(shop.Session);
-                List<Trade> listTrade = dbTrade.GetTradeAllByNick(shop);
-                Console.Write("total:[" + listTrade.Count.ToString() + "]\r\n");
-                for (int j = 0; j < listTrade.Count; j++)
-                {
-                    //获取未审核的评价并发送消息
-                    string result = api.GetCouponTradeTotalByNick(listTrade[j]);
+                string sql = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + shop.Nick + "' AND iscoupon = 1";
+                string totalcount = utils.ExecuteString(sql);
 
-                    string couponid = new Regex(@"<promotion_id>([^\<]*)</promotion_id><promotion_name>店铺优惠券", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-                    string price = new Regex(@"<total_fee>([^\<]*)</total_fee>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-                    Console.Write(".");
-                    if (couponid != "")
-                    {
-                        Console.Write("\r\n"+couponid + "...........................................................\r\n");
-                        Console.Write(price + "...........................................................\r\n");
-                        couponOrderCount++;
-                        couponOrderPrice += decimal.Parse(price);
-                    }
-                }
+                sql = "SELECT SUM(Convert(decimal,totalprice)) FROM TCS_Trade WHERE nick = '" + shop.Nick + "' AND iscoupon = 1";
+                string totalprice = utils.ExecuteString(sql);
 
-                if (couponOrderCount == 0)
+                //TopApiHaoping api = new TopApiHaoping(shop.Session);
+                //List<Trade> listTrade = dbTrade.GetTradeAllByNick(shop);
+                //Console.Write("total:[" + listTrade.Count.ToString() + "]\r\n");
+                //for (int j = 0; j < listTrade.Count; j++)
+                //{
+                //    //获取未审核的评价并发送消息
+                //    string result = api.GetCouponTradeTotalByNick(listTrade[j]);
+
+                //    string couponid = new Regex(@"<promotion_id>([^\<]*)</promotion_id><promotion_name>店铺优惠券", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                //    string price = new Regex(@"<total_fee>([^\<]*)</total_fee>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                //    Console.Write(".");
+                //    if (couponid != "")
+                //    {
+                //        Console.Write("\r\n"+couponid + "...........................................................\r\n");
+                //        Console.Write(price + "...........................................................\r\n");
+                //        couponOrderCount++;
+                //        couponOrderPrice += decimal.Parse(price);
+                //    }
+                //}
+
+                if (totalcount == "0")
                 {
                     Console.Write("该卖家没有优惠券产生2次订购，先不消息提示..\r\n");
                     continue;
                 }
 
-                string msg = "好评有礼:" + shop.Nick + ",最近14天共赠送了" + sendcount + "张优惠券," + couponOrderCount.ToString() + "个客户使用优惠券产生了二次购买总额" + couponOrderPrice + "元";
+                string msg = "好评有礼:" + shop.Nick + ",共赠送了" + sendcount + "张优惠券," + totalcount + "个客户使用优惠券产生了二次购买总额" + totalprice + "元";
                 Console.Write(msg + "...........................................................\r\n");
                 //如果14天内已经发送过类似短信的话则不再提醒
                 if (!dbMessage.IsSendMsgNearDays(shop, typ))
@@ -284,7 +290,7 @@ namespace TeteTopApi.Logic
 
                     TopApiHaoping api = new TopApiHaoping(shop.Session);
                     string result = api.GetUserExpiredDate(shop);
-                    Console.Write(result + "\r\n");
+                    //Console.Write(result + "\r\n");
                     //判断是否过期
                     if (result.IndexOf("\"article_user_subscribes\":{}") != -1)
                     {
@@ -294,29 +300,52 @@ namespace TeteTopApi.Logic
                     else
                     {
                         int isok = 0;
-                        Regex reg = new Regex(@"""item_code"":""([^""]*)""", RegexOptions.IgnoreCase);
+                        Regex reg = new Regex(@"""item_code"":""([^""]*)"",""deadline"":""([^""]*)""", RegexOptions.IgnoreCase);
                         //更新店铺的版本号
                         MatchCollection match = reg.Matches(result);
                         for (int j = 0; j < match.Count; j++)
                         {
-                            shop.Version = match[j].Groups[1].ToString().Replace("service-0-22904-", "");
+                            string version = match[j].Groups[1].ToString();
+                            string enddate = match[j].Groups[2].ToString();
 
-                            if (shop.Version == "9")
+
+                            if (version == "service-0-22904-9")
                             {
                                 shop.Version = "3";
                             }
 
-                            if (int.Parse(shop.Version) <= 3)
+                            if (version == "service-0-22904-1" || version == "service-0-22904-2" || version == "service-0-22904-3")
                             {
+                                shop.Version = version.Replace("service-0-22904-", "");
+
+                                //所有版本都为专业版
+                                if (shop.Version == "1")
+                                {
+                                    shop.Version = "2";
+                                }
+
                                 isok = 1;
-                                break;
+                                continue;
+                            }
+
+                            //判断是否有没加的短信
+                            if (version == "service-0-22904-4" || version == "service-0-22904-5" || version == "service-0-22904-6" || version == "service-0-22904-7" || version == "service-0-22904-8")
+                            {
+                                if (!dbShop.IsInitMessage(version, enddate, shop))
+                                {
+                                    string count = GetInitMessageCount(version, enddate);
+                                    //短信充值
+                                    dbShop.InitShopMessage(version, count, enddate, shop);
+
+                                    //Console.ReadLine();
+                                }
                             }
                         }
 
-                        if (isok == 0)
-                        {
-                            shop.Version = "0";
-                        }
+                        //if (isok == 0)
+                        //{
+                        //    shop.Version = "0";
+                        //}
 
                         dbShop.ActiveShopVersion(shop);
                     }
@@ -326,6 +355,49 @@ namespace TeteTopApi.Logic
                     Console.Write(ex.Message.ToString() + "\r\n");
                 }
             }
+        }
+
+        /// <summary>
+        /// 根据到期时间判断充了几个月的短信
+        /// </summary>
+        /// <param name="p"></param>
+        /// <param name="p_2"></param>
+        /// <returns></returns>
+        private string GetInitMessageCount(string version, string enddate)
+        {
+            string count = "0";
+
+            switch (version)
+            {
+                case "service-0-22904-4":
+                    count = "100";
+                    break;
+                case "service-0-22904-5":
+                    count = "510";
+                    break;
+                case "service-0-22904-6":
+                    count = "1030";
+                    break;
+                case "service-0-22904-7":
+                    count = "5200";
+                    break;
+                case "service-0-22904-8":
+                    count = "10500";
+                    break;
+            }
+
+            int day = (int)(DateTime.Parse(enddate) - DateTime.Now).TotalDays;
+
+            //Console.Write(day + "\r\n");
+            //如果订购了不止1个月
+            //if (day / 31 > 0)
+            //{
+            //    int month = day / 31 + 1;
+            //    count = (int.Parse(count) * month).ToString();
+            //    //Console.Write(month + "\r\n");
+            //    //Console.Write(count + "\r\n");
+            //}
+            return count;
         }
     }
 }

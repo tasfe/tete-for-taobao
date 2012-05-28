@@ -12,98 +12,100 @@ namespace TeteTopApi.Logic
 {
     public class LostMessageGet
     {
-        public void Start()
+        public void Start(string start, string end)
         {
-            string status = string.Empty;
+            string AppKey = "12159997";
+            string Secret = "614e40bfdb96e9063031d1a9e56fbed5";
+            string Session = "";
+            string Url = "http://gw.api.taobao.com/router/rest";
+            string result = string.Empty;
             string nick = string.Empty;
-            string start = "2011-12-03 00:00:00";
-            string end = "2011-12-03 23:59:59";
-            string insertDate = string.Empty;
 
-            //nick = "artka官方旗舰店";
-            //ShopData dbShop = new ShopData();
-            //List<ShopInfo> shopList = dbShop.GetShopInfoNormalUsedAll();
-            string sql = "SELECT * FROM TCS_Shopconfig WHERE sessionold IS NULL AND isdel = 0 AND LEN(couponid) > 0 ORDER BY starttime DESC";
-            DataTable dt = utils.ExecuteDataTable(sql);
+            Api top = new Api(AppKey, Secret, Session, Url);
 
-            for (int i = 0; i < dt.Rows.Count; i++)
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            Regex reg = new Regex(@"""user_id"":([0-9]*)", RegexOptions.IgnoreCase);
+
+            string sql = "SELECT nick,session FROM TCS_ShopSession WHERE version <> -1 AND sid = 0 AND session <> ''";
+
+            param = new Dictionary<string, string>();
+            param.Add("start", start);
+            param.Add("end", end);
+
+            result = top.CommonTopApi("taobao.comet.discardinfo.get", param, Session);
+
+            Console.Write(result + "-");
+            MatchCollection match = reg.Matches(result);
+            for (int i = 0; i < match.Count; i++)
             {
-                nick = dt.Rows[i]["nick"].ToString();
-                insertDate = dt.Rows[i]["starttime"].ToString();
-                //按照时间进行遍历
-                DateTime startDate = DateTime.Parse(insertDate);
-                while (!(startDate.Day == DateTime.Now.Day))
+                string sid = match[i].Groups[1].ToString();
+                //Console.Write(match[i].Groups[1].ToString() + "\r\n");
+
+                sql = "SELECT nick FROM TCS_ShopSession WHERE sid = '" + sid + "'";
+                DataTable dt = utils.ExecuteDataTable(sql);
+                if (dt.Rows.Count != 0)
                 {
-                    if (startDate.Day.ToString().Length == 1)
+                    nick = dt.Rows[0][0].ToString();
+                    //Console.Write(nick + "\r\n\r\n"); taobao.increment.trades.get
+                    param = new Dictionary<string, string>();
+                    param.Add("start_modified", start);
+                    param.Add("end_modified", end);
+                    param.Add("nick", nick);
+                    param.Add("page_no", "1");
+                    param.Add("page_size", "200");
+                    result = top.CommonTopApi("taobao.increment.trades.get", param, Session);
+
+                    Regex reg1 = new Regex(@"\{""buyer_nick""[^\}]*\}", RegexOptions.IgnoreCase);
+                    MatchCollection match1 = reg1.Matches(result);
+                    for (int j = 0; j < match1.Count; j++)
                     {
-                        start = startDate.Year + "-" + startDate.Month + "-0" + startDate.Day + " 00:00:00";
-                        end = startDate.Year + "-" + startDate.Month + "-0" + startDate.Day + " 23:59:59";
-
-                        status = "TradeSellerShip";
-                        GetMessage(status, nick, start, end);
-                        status = "TradeRated";
-                        GetMessage(status, nick, start, end);
-                        Console.Write(start + "-" + end + "\r\n");
-                    }
-                    startDate = startDate.AddDays(1);
-                }
-
-                //start = "2011-12-04 00:00:00";
-                //end = "2011-12-04 18:21:00";
-                //status = "TradeSellerShip";
-                //GetMessage(status, nick, start, end);
-                //status = "TradeRated";
-                //GetMessage(status, nick, start, end);
-            }
-        }
-
-        private void GetMessage(string status, string nick, string start, string end)
-        {
-            try
-            {
-                TopApiHaoping api = new TopApiHaoping("");
-
-                string result = api.GetLostMessage(nick, status, "1", start, end);
-                Console.Write(result + "\r\n");
-                MatchCollection match = new Regex(@"{""buyer[^\}]*""}", RegexOptions.IgnoreCase).Matches(result);
-                for (int i = 0; i < match.Count; i++)
-                {
-                    Console.Write("\"msg\":{\"notify_trade\":" + match[i].Groups[0].ToString() + "}" + "\r\n");
-                    ReceiveMessage msg = new ReceiveMessage("\"msg\":{\"notify_trade\":" + match[i].Groups[0].ToString() + "}");
-                    msg.ActData();
-                }
-
-                string totalpage = new Regex(@"""total_results"":([0-9]*)", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-                //Console.Write(totalpage + "\r\n");
-                if (int.Parse(totalpage) > 40)
-                {
-                    int page = 0;
-
-                    if (int.Parse(totalpage) % 40 == 0)
-                    {
-                        page = int.Parse(totalpage) / 40;
-                    }
-                    else
-                    {
-                        page = int.Parse(totalpage) / 40 + 1;
+                        Console.Write(match1[j].Groups[0].ToString() + "\r\n");
+                        string resultNew = "\"msg\":{\"notify_trade\":" + match1[j].Groups[0].ToString() + "}";
+                        LogData dbLog = new LogData();
+                        Trade trade = utils.GetTrade(resultNew);
+                        dbLog.InsertMsgLogInfo(trade.Nick, trade.Status, resultNew);
                     }
 
-                    //有多页数据，继续获取
-                    for (int j = 2; j <= page; j++)
+                    string totalpage = new Regex(@"""total_results"":([0-9]*)", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                    if (int.Parse(totalpage) > 200)
                     {
-                        result = api.GetLostMessage(nick, status, j.ToString(), start, end);
-                        Console.Write(result + "\r\n");
-                        match = new Regex(@"{""buyer[^\}]*""}", RegexOptions.IgnoreCase).Matches(result);
-                        for (int i = 0; i < match.Count; i++)
+                        int page = 0;
+
+                        if (int.Parse(totalpage) % 200 == 0)
                         {
-                            Console.Write("\"msg\":{\"notify_trade\":" + match[i].Groups[0].ToString() + "}" + "\r\n");
-                            ReceiveMessage msg = new ReceiveMessage("\"msg\":{\"notify_trade\":" + match[i].Groups[0].ToString() + "}");
-                            msg.ActData();
+                            page = int.Parse(totalpage) / 200;
+                        }
+                        else
+                        {
+                            page = int.Parse(totalpage) / 200 + 1;
+                        }
+
+                        //有多页数据，继续获取
+                        for (int j = 2; j <= page; j++)
+                        {
+                            param = new Dictionary<string, string>();
+                            param.Add("start_modified", start);
+                            param.Add("end_modified", end);
+                            param.Add("nick", nick);
+                            param.Add("page_no", page.ToString());
+                            param.Add("page_size", "200");
+                            result = top.CommonTopApi("taobao.increment.trades.get", param, Session);
+
+                            Console.Write(result + "\r\n");
+                            reg1 = new Regex(@"\{""buyer_nick""[^\}]*\}", RegexOptions.IgnoreCase);
+                            match1 = reg1.Matches(result);
+                            for (int k = 0; k < match1.Count; k++)
+                            {
+                                Console.Write(match1[k].Groups[0].ToString() + "\r\n");
+                                string resultNew = "\"msg\":{\"notify_trade\":" + match1[k].Groups[0].ToString() + "}";
+                                LogData dbLog = new LogData();
+                                Trade trade = utils.GetTrade(resultNew);
+                                dbLog.InsertMsgLogInfo(trade.Nick, trade.Status, resultNew);
+                            }
                         }
                     }
                 }
             }
-            catch { }
         }
     }
 }
