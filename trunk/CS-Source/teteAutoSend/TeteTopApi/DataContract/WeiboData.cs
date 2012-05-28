@@ -100,6 +100,7 @@ namespace TeteTopApi.DataContract
         public bool IsCanSendMsg(string nick, WeiboID weibo, string index)
         {
             string sql = "SELECT * FROM TopMicroBlogSendLog WHERE DATEDIFF(hh, adddate, GETDATE()) < 8 AND nick = '" + nick + "' AND uid = '" + weibo.ID + "' AND typ = '" + weibo.Typ + "' AND auto = '" + index + "'";
+            Console.Write(sql + "\r\n");
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count != 0)
             {

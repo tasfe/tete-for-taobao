@@ -17,19 +17,133 @@ namespace TeteTopApi.DataContract
         /// <returns></returns>
         public ShopInfo ShopInfoGetByNick(string nick)
         {
-            lock (padlockshop)
+            string sql = "[ShopInfoGetByNick] '" + nick + "'";
+            Console.Write(sql + "\r\n");
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
             {
-                string sql = "SELECT * FROM TCS_ShopConfig r WITH (NOLOCK) INNER JOIN TCS_ShopSession s WITH (NOLOCK) ON s.nick = r.nick WHERE r.nick = '" + nick + "'";
-                Console.Write(sql + "\r\n");
-                DataTable dt = utils.ExecuteDataTable(sql);
-                if (dt.Rows.Count != 0)
-                {
-                    return FormatData(dt);
-                }
-                else
-                {
-                    return new ShopInfo();
-                }
+                return FormatData(dt);
+            }
+            else
+            {
+                return new ShopInfo();
+            }
+        }
+
+        /// <summary>
+        /// 判断是否加过该短信记录
+        /// </summary>
+        /// <param name="typ"></param>
+        /// <param name="endDate"></param>
+        /// <param name="shop"></param>
+        /// <returns></returns>
+        public bool IsInitMessage(string typ, string endDate, ShopInfo shop)
+        {
+            string sql = "SELECT COUNT(*) FROM TCS_PayLog WHERE nick = '" + shop.Nick + "' AND typ = '" + typ + "' AND enddate = '" + endDate + "'";
+            Console.Write(sql + "\r\n");
+            string count = utils.ExecuteString(sql);
+
+            if (count != "0")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 店铺短信充值
+        /// </summary>
+        /// <param name="typ"></param>
+        /// <param name="count"></param>
+        /// <param name="endDate"></param>
+        /// <param name="shop"></param>
+        public void InitShopMessage(string typ, string count, string endDate, ShopInfo shop)
+        {
+            //插入充值记录并更新短信条数
+            string sql = "INSERT INTO TCS_PayLog (" +
+                            "typ, " +
+                            "enddate, " +
+                            "nick, " +
+                            "count " +
+                        " ) VALUES ( " +
+                            " '" + typ + "', " +
+                            " '" + endDate + "', " +
+                            " '" + shop.Nick + "', " +
+                            " '" + count + "' " +
+                      ") ";
+            Console.Write(sql + "\r\n");
+            utils.ExecuteNonQuery(sql);
+
+            //更新短信条数
+            sql = "UPDATE TCS_ShopConfig SET total = total + " + count + " WHERE nick = '" + shop.Nick + "'";
+            Console.Write(sql + "\r\n");
+            utils.ExecuteNonQuery(sql);
+        }
+
+        /// <summary>
+        /// 判断客户是否开启了催单短信提醒
+        /// </summary>
+        /// <param name="shop"></param>
+        /// <returns></returns>
+        public bool IsCuiByShop(Trade trade)
+        {
+            string sql = "SELECT COUNT(*) FROM TCS_Mission WHERE nick = '" + trade.Nick + "' AND isdel = 0 AND isstop = 0 AND typ = 'unpay'";
+            Console.Write(sql + "\r\n");
+
+            string count = utils.ExecuteString(sql);
+            if (count == "0")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+
+        /// <summary>
+        /// 获取客户催单内容
+        /// </summary>
+        /// <param name="shop"></param>
+        /// <returns></returns>
+        public string GetCuiContentByShop(ShopInfo shop)
+        {
+            string sql = "SELECT content FROM TCS_Mission WHERE nick = '" + shop.Nick + "' AND isdel = 0 AND isstop = 0 AND typ = 'unpay'";
+            Console.Write(sql + "\r\n");
+
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                return dt.Rows[0][0].ToString();
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        /// <summary>
+        /// 获取客户催单时间
+        /// </summary>
+        /// <param name="shop"></param>
+        /// <returns></returns>
+        public string GetCuiDateByShop(ShopInfo shop)
+        {
+            string sql = "SELECT timecount FROM TCS_Mission WHERE nick = '" + shop.Nick + "' AND isdel = 0 AND isstop = 0 AND typ = 'unpay'";
+            Console.Write(sql + "\r\n");
+
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                return dt.Rows[0][0].ToString();
+            }
+            else
+            {
+                return "0";
             }
         }
 
@@ -268,6 +382,17 @@ namespace TeteTopApi.DataContract
             info.IsKeyword = dt.Rows[0]["IsKeyword"].ToString();
             info.IsCoupon = dt.Rows[0]["IsCoupon"].ToString();
             info.Mobile = dt.Rows[0]["phone"].ToString();
+            info.IsAlipay = dt.Rows[0]["IsAlipay"].ToString();
+            info.AlipayID = dt.Rows[0]["AlipayID"].ToString();
+
+            info.BadKeyword = dt.Rows[0]["BadKeyword"].ToString();
+            info.KeywordIsBad = dt.Rows[0]["KeywordIsBad"].ToString();
+
+            info.IsCui = dt.Rows[0]["IsCui"].ToString();
+            info.CuiAlipayId = dt.Rows[0]["CuiAlipayId"].ToString();
+            info.CuiCouponId = dt.Rows[0]["CuiCouponId"].ToString();
+            info.CuiFreeCard = dt.Rows[0]["CuiFreeCard"].ToString();
+            info.Plus = dt.Rows[0]["Plus"].ToString();
 
             Console.Write(dt.Rows[0]["session"].ToString() + "@@@@@@@@@@@@@\r\n");
             Console.Write(info.Session + "############\r\n");
@@ -312,6 +437,17 @@ namespace TeteTopApi.DataContract
                 info.WordCount = dt.Rows[i]["WordCount"].ToString();
                 info.IsCoupon = dt.Rows[i]["IsCoupon"].ToString();
                 info.Mobile = dt.Rows[i]["phone"].ToString();
+                info.IsAlipay = dt.Rows[i]["IsAlipay"].ToString();
+                info.AlipayID = dt.Rows[i]["AlipayID"].ToString();
+
+                info.BadKeyword = dt.Rows[i]["BadKeyword"].ToString();
+                info.KeywordIsBad = dt.Rows[i]["KeywordIsBad"].ToString();
+
+                info.IsCui = dt.Rows[i]["IsCui"].ToString();
+                info.CuiAlipayId = dt.Rows[i]["CuiAlipayId"].ToString();
+                info.CuiCouponId = dt.Rows[i]["CuiCouponId"].ToString();
+                info.CuiFreeCard = dt.Rows[i]["CuiFreeCard"].ToString();
+                info.Plus = dt.Rows[i]["Plus"].ToString();
 
                 infoList.Add(info);
             }
