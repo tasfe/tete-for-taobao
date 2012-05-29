@@ -126,7 +126,7 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
                     //判断是否增加过该图片
                     string newcontent = CreateDescDelList(item.Desc);
 
-                    Response.Write(newcontent);
+                    Response.Write(item.Desc);
                     return;
 
                     if (newcontent == "")
@@ -140,8 +140,10 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
                     param.Add("desc", newcontent);
                     string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update", session, param);
                 }
-                catch
-                { }
+                catch(Exception e)
+                {
+                    Response.Write(e.Message);
+                }
             }
             Response.Write(product.Content.Count.ToString() + "<br>");
             if (product.Content.Count < 200)
