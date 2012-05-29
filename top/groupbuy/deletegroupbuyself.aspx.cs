@@ -124,7 +124,7 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
                     Item item = client.ItemGet(requestItem, session);
 
                     //判断是否增加过该图片
-                    string newcontent = CreateDescDel(item.Desc);
+                    string newcontent = CreateDescDelList(item.Desc);
 
                     if (newcontent == "")
                     {
@@ -186,14 +186,30 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
     private string CreateDescDel(string desc)
     {
         string newdesc = string.Empty;
-        if (!Regex.IsMatch(desc, @"<div>[\s]*<a name=[""]*tetesoft-area-start-[0-9]*[""]*>[\s]*</a>[\s]*</div>[\s]*([\s\S]*)<div>[\s]*<a name=[""]*tetesoft-area-end-[0-9]*[""]*>[\s]*</a>[\s]*</div>"))
+        if (!Regex.IsMatch(desc, @"<div>[\s]*<a name=""tetesoft-area-start-[0-9]*"">[\s]*</a>[\s]*</div>[\s]*([\s\S]*)<div>[\s]*<a name=""tetesoft-area-end-[0-9]*"">[\s]*</a>[\s]*</div>"))
         {
             newdesc = desc;
             return "";
         }
         else
         {
-            newdesc = Regex.Replace(desc, @"<div>[\s]*<a name=[""]*tetesoft-area-start-[0-9]*[""]*>[\s]*</a>[\s]*</div>[\s]*([\s\S]*)<div>[\s]*<a name=[""]*tetesoft-area-end-[0-9]*[""]*>[\s]*</a>[\s]*</div>", @"");
+            newdesc = Regex.Replace(desc, @"<div>[\s]*<a name=""tetesoft-area-start-[0-9]*"">[\s]*</a>[\s]*</div>[\s]*([\s\S]*)<div>[\s]*<a name=""tetesoft-area-end-[0-9]*"">[\s]*</a>[\s]*</div>", @"");
+        }
+
+        return newdesc;
+    }
+
+    private string CreateDescDelList(string desc)
+    {
+        string newdesc = string.Empty;
+        if (!Regex.IsMatch(desc, @"<div>[\s]*<a name=tetesoft-area-start-[0-9]*>[\s]*</a>[\s]*</div>[\s]*([\s\S]*)<div>[\s]*<a name=tetesoft-area-end-[0-9]*>[\s]*</a>[\s]*</div>"))
+        {
+            newdesc = desc;
+            return "";
+        }
+        else
+        {
+            newdesc = Regex.Replace(desc, @"<div>[\s]*<a name=tetesoft-area-start-[0-9]*>[\s]*</a>[\s]*</div>[\s]*([\s\S]*)<div>[\s]*<a name=tetesoft-area-end-[0-9]*>[\s]*</a>[\s]*</div>", @"");
         }
 
         return newdesc;
