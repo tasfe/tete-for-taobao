@@ -6,7 +6,9 @@
 <head id="Head1" runat="server">
     <title>我要推广</title>
 <link href="../css/common.css" rel="stylesheet" />
-
+  <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script> 
+     
+    <script type="text/javascript" src="js/cal.js"></script>
 </head>
 <body style="padding:0px; margin:0px;">
 
