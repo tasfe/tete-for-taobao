@@ -123,7 +123,9 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
     /// <returns></returns>
     public string outShowHtml(string ID,string aid)
     {
-        string html = "<div>  <a  target=_blank href=\"activitytempView.aspx?tid=" + ID + "\")\">获取代码</a>   <a  target=_blank  href=\"activitytempView.aspx?ytid=" + ID + "\")\">预览</a>      <a href=\"activitytempmanage.aspx?act=del&aid=" + aid + "&id=" + ID + "\")\">删除</a>   <a href=\"activitytempmanage.aspx?act=delitem&aid=" + aid + "&id=" + ID + "\")\" ' onclick=\"return confirm('您确认要清除关联描述，该操作不可恢复？')\">清除宝贝描述</a></div>";
+        //string html = "<div>  <a  target=_blank href=\"activitytempView.aspx?tid=" + ID + "\")\">获取代码</a>   <a  target=_blank  href=\"activitytempView.aspx?ytid=" + ID + "\")\">预览</a>      <a href=\"activitytempmanage.aspx?act=del&aid=" + aid + "&id=" + ID + "\")\">删除</a>   <a href=\"activitytempmanage.aspx?act=delitem&aid=" + aid + "&id=" + ID + "\")\" ' onclick=\"return confirm('您确认要清除关联描述，该操作不可恢复？')\">清除宝贝描述</a><div id=\"del" + ID + "\"></div></div>";//javascript:addItemAction(12305275000)
+
+        string html = "<div>  <a  target=_blank href=\"activitytempView.aspx?tid=" + ID + "\")\">获取代码</a>   <a  target=_blank  href=\"activitytempView.aspx?ytid=" + ID + "\")\">预览</a>      <a href=\"activitytempmanage.aspx?act=del&aid=" + aid + "&id=" + ID + "\")\">删除</a>   <a href=\"javascript:delItemtemp('delitem','" + aid + "','" + ID + "')\"  onclick=\"return confirm('您确认要清除关联描述，该操作不可恢复？')\">清除宝贝描述</a><div id=\"del" + ID + "\"></div></div>";
 
         return html;
     }
