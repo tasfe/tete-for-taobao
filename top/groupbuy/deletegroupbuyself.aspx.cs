@@ -105,7 +105,7 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
         string secret = "d3486dac8198ef01000e7bd4504601a4";
         //上传到宝贝描述
         TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
-        for (int j = 1; j <= 5; j++)
+        for (int j = 1; j <= 2; j++)
         {
             ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
             request.Fields = "num_iid";
