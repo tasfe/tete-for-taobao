@@ -8,8 +8,7 @@
     <link href="js/calendar.css" rel="stylesheet" />
     <link href="js/groupbuy.css" rel="stylesheet" />
     <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script> 
-
-    <script language="javascript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
+     
     <script type="text/javascript" src="js/cal.js"></script>
     <style>
         td{font-size:12px;}
