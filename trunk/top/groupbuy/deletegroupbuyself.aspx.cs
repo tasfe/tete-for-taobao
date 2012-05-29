@@ -142,10 +142,10 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
                 }
                 catch(Exception e)
                 {
-                    Response.Write(e.Message);
+                    //Response.Write(e.Message);
                 }
             }
-            Response.Write(product.Content.Count.ToString() + "<br>");
+            //Response.Write(product.Content.Count.ToString() + "<br>");
             if (product.Content.Count < 200)
             {
                 break;
