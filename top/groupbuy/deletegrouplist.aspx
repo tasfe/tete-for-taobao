@@ -65,6 +65,7 @@
                     活动已取消 | <a href='grouplist.aspx?id=<%#Eval("id").ToString()%>&act=del' onclick="return confirm('有的时候取消活动因为网络问题可能失败，点此再次发送取消请求')">取消</a> <br />
                     <a href='groupbuydetail.aspx?id=<%#Eval("id").ToString()%>'>查看团购订单</a>  |  <a href="javascript:delItemtemp('delitem','<%#Eval("id").ToString()%>')" onclick="return confirm('您确认要清除关联描述，该操作不可恢复？')">清除关联描述</a>
                     |  <a href="javascript:delItemtemp('del','<%#Eval("id").ToString()%>')" onclick="return confirm('您确认要清除关联描述，该操作不可恢复？')">强力清除描述</a>
+                       <div id="del<%#Eval("id").ToString()%>"></div>
                 </td>
             </tr>
             </ItemTemplate>
