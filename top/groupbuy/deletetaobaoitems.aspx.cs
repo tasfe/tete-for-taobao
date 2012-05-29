@@ -63,7 +63,9 @@ public partial class top_groupbuy_deletetaobaoitems : System.Web.UI.Page
 
             if (count != "0")
             {
-                Response.Write("创建任务失败，有同类型的任务正在执行中，请等待其完成后再创建新的任务！");
+                //删除宝贝描述
+                DeleteTaobaoitmes(taobaoNick);
+                Response.Write("true");
                 Response.End();
             }
 
