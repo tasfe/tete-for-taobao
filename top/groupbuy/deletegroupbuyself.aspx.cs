@@ -37,7 +37,66 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
 
     protected void Button2_Click(object sender, EventArgs e)
     {
+        nick = this.TextBox1.Text;
+        session = this.TextBox2.Text;
 
+        string appkey = "12132145";
+        string secret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
+        //上传到宝贝描述
+        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
+        for (int j = 1; j <= 500; j++)
+        {
+            ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
+            request.Fields = "num_iid";
+            request.PageSize = 200;
+            request.PageNo = j;
+            PageList<Item> product = client.ItemsOnsaleGet(request, session);
+
+            for (int i = 0; i < product.Content.Count; i++)
+            {
+                try
+                {
+                    //获取商品详细
+                    ItemGetRequest requestItem = new ItemGetRequest();
+                    requestItem.Fields = "desc";
+                    requestItem.NumIid = product.Content[i].NumIid;
+                    Item item = client.ItemGet(requestItem, session);
+
+                    //判断是否增加过该图片
+                    string newcontent = CreateDescDelHaoping(item.Desc);
+
+                    //if (product.Content[i].NumIid.ToString() == "10002247109")
+                    //{
+                    //    Response.Write(item.Desc);
+                    //    Response.Write("**************************************************");
+                    //    Response.Write(newcontent);
+                    //    return;
+                    //}
+
+                    if (newcontent == "")
+                    {
+                        continue;
+                    }
+
+                    //更新宝贝描述
+                    IDictionary<string, string> param = new Dictionary<string, string>();
+                    param.Add("num_iid", product.Content[i].NumIid.ToString());
+                    param.Add("desc", newcontent);
+                    string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update", session, param);
+                }
+                catch
+                { }
+            }
+
+            if (product.Content.Count < 200)
+            {
+                break;
+            }
+        }
+
+
+        Response.Write("<script>alert('清除成功！');</script>");
+        Response.End();
     }
 
     private void DeleteTaobaAuto(string session)
@@ -92,6 +151,31 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
         Response.End();
     }
 
+
+
+
+
+    /// <summary>
+    /// 获取调整过的宝贝描述
+    /// </summary>
+    /// <param name="p"></param>
+    /// <returns></returns>
+    private string CreateDescDelHaoping(string desc)
+    {
+        string newdesc = string.Empty;
+
+        if (!Regex.IsMatch(desc, @"<div>[\s]*<a name=""tetehaoping-start"">[\s]*</a>[\s]*</div>[\s]*<div>[\s]*<img src=""([\s\S]*)"">[\s]*</div>[\s]*<div>[\s]*<a name=""tetehaoping-end"">[\s]*</a>[\s]*</div>"))
+        {
+            newdesc = desc;
+            return "";
+        }
+        else
+        {
+            newdesc = Regex.Replace(desc, @"<div>[\s]*<a name=""tetehaoping-start"">[\s]*</a>[\s]*</div>[\s]*<div>[\s]*<img src=""([\s\S]*)"">[\s]*</div>[\s]*<div>[\s]*<a name=""tetehaoping-end"">[\s]*</a>[\s]*</div>", @"");
+        }
+
+        return newdesc;
+    }
 
 
     /// <summary>
