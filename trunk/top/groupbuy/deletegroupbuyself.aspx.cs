@@ -126,8 +126,8 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
                     //判断是否增加过该图片
                     string newcontent = CreateDescDel(item.Desc);
 
-                    Response.Write(newcontent);
-                    return;
+                    //Response.Write(newcontent);
+                    //return;
 
                     if (newcontent == "")
                     {
