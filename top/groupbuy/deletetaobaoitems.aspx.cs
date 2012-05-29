@@ -27,7 +27,7 @@ public partial class top_groupbuy_deletetaobaoitems : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         id = utils.NewRequest("id", Common.utils.RequestType.QueryString);
-        ty = utils.NewRequest("type", Common.utils.RequestType.QueryString);
+        ty = utils.NewRequest("act", Common.utils.RequestType.QueryString);
 
         if (id != "" && !utils.IsInt32(id))
         {
