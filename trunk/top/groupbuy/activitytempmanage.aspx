@@ -60,6 +60,33 @@
                     </div>
         </div>
     </div>
+    <script type="text/javascript">
+     function delItemtemp(act,aid,iid) {
+         var actionID = aid;
+                        $.ajax({
+                            url: 'LoadAjax.aspx?act=' + act + '&aid=' + actionID + '&id=' + iid + '&t=' + new Date().getTime() + '',
+                            type: 'GET',
+                            dataType: 'text',
+                            async: true,
+                            timeout: 2000000,
+                            beforeSend: function () {
+                                $('#del' + iid).html('正在清除...');
+                            },
+                            error: function () {
+                                alert('网络错误，请重试！');
+                            },
+                            success: function (msg) {
+                                if (msg == 'true') {
+                                    $('#del' + iid).html('清除成功...');
+ 
+                                } else {
+                                    $('#del' + iid).html('清除失败:' + msg + '<a href="javascript:delItemtemp(' + act + ',' + aid + ',' + iid + ')">重试</a>');
+                                }
+                            }
+                        });
+                    } 
+
+            </script>
     </form>
 </body>
 </html>
