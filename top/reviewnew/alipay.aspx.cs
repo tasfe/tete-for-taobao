@@ -106,8 +106,18 @@ public partial class top_reviewnew_alipay : System.Web.UI.Page
 
     private void DeleteGroup()
     {
+        //如果是基本设置里面绑定的则无法删除
+        string sql = "SELECT alipayid FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
+        string alipayId = utils.ExecuteString(sql);
+
+        if (alipayId == id)
+        {
+            Response.Write("<script>alert('默认赠送的支付宝红包无法删除，请您到“基本设置”里面更改默认红包后再删除！');history.go(-1);</script>");
+            return;
+        }
+
         //通过数据库查询获取活动ID
-        string sql = "UPDATE TCS_Alipay SET isdel = 1 WHERE guid = '" + id + "'";
+        sql = "UPDATE TCS_Alipay SET isdel = 1 WHERE guid = '" + id + "'";
         utils.ExecuteNonQuery(sql);
 
         Response.Write("<script>alert('取消成功！');window.location.href='alipay.aspx';</script>");
