@@ -18,6 +18,7 @@ public partial class top_groupbuy_grouplist : System.Web.UI.Page
 {
     public string nickencode = string.Empty;
 
+    public string logUrl = "D:/groupbuy.7fshop.com/wwwroot/top/groupbuy/ErrLog";
     protected void Page_Load(object sender, EventArgs e)
     {
         Common.Cookie cookie = new Common.Cookie();
@@ -172,7 +173,228 @@ public partial class top_groupbuy_grouplist : System.Web.UI.Page
         count = utils.ExecuteString(sql);
         sql = "UPDATE TopMission SET total = '" + count + "' WHERE id = " + missionid;
         utils.ExecuteNonQuery(sql);
+        //清除宝贝描述
+        DeleteTaobao(taobaoNick);
         
+    }
+
+
+    /// <summary>
+    /// 记录该任务的详细关联商品
+    /// </summary>
+    private void RecordMissionDetail(string groupbuyid, string missionid, string itemid, string html)
+    {
+        string sql = "INSERT INTO TopWriteContent (groupbuyid, missionid, itemid, html,isok) VALUES ('" + groupbuyid + "', '" + missionid + "', '" + itemid + "', '" + html + "',1)";
+        utils.ExecuteNonQuery(sql);
+    }
+
+
+
+    /// <summary>
+    /// 写日志
+    /// </summary>
+    /// <param name="value">日志内容</param>
+    /// <param name="type">类型 0(成功日志),1(错误日志) 可传空文本默认为0</param>
+    /// <returns></returns>
+    public void WriteLog(string message, string type, string nick, string mid)
+    {
+
+        string tempStr = logUrl + "/groupbuy" + nick + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
+        string tempFile = tempStr + "/delgroupbuypromotion" + mid + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+        //if (type == "1")
+        //{
+        //    tempFile = tempStr + "/activitypromotionErr" + nick + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+        //}
+        if (!Directory.Exists(tempStr))
+        {
+            Directory.CreateDirectory(tempStr);
+        }
+
+        if (System.IO.File.Exists(tempFile))
+        {
+            ///如果日志文件已经存在，则直接写入日志文件
+            StreamWriter sr = System.IO.File.AppendText(tempFile);
+            sr.WriteLine("\n");
+            sr.WriteLine(DateTime.Now + "\n" + message);
+            sr.Close();
+        }
+        else
+        {
+            ///创建日志文件
+            StreamWriter sr = System.IO.File.CreateText(tempFile);
+            sr.WriteLine(DateTime.Now + "\n" + message);
+            sr.Close();
+        }
+
+    }
+
+    private void DeleteTaobao(string nick2)
+    {
+        //try
+        //{
+        //获取正在进行中的宝贝同步任务        
+        string appkey = "12287381";
+        string secret = "d3486dac8198ef01000e7bd4504601a4";
+        string session = string.Empty;
+        string id = string.Empty;
+        string missionid = string.Empty;
+        string html = string.Empty;
+        string shopcat = "0";
+        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
+
+        string sql = "SELECT  top 300  t.*, s.sessiongroupbuy,s.sid FROM TopMission t INNER JOIN TopTaobaoShop s ON s.nick = t.nick WHERE t.isok = 0 AND t.typ = 'delete' and  s.nick='" + nick2 + "' ORDER BY t.id ASC";
+
+        DataTable dt = utils.ExecuteDataTable(sql);
+        DataTable dtWrite = null;
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+
+            id = dt.Rows[i]["groupbuyid"].ToString();
+            session = dt.Rows[i]["sessiongroupbuy"].ToString();
+            missionid = dt.Rows[i]["id"].ToString();
+            html = "";
+
+            sql = "SELECT DISTINCT itemid FROM TopWriteContent WHERE groupbuyid = '" + dt.Rows[i]["groupbuyid"].ToString() + "' AND isok = 1";
+            dtWrite = utils.ExecuteDataTable(sql);
+            if (dtWrite == null || dtWrite.Rows.Count < 1)
+            {
+                for (int j = 1; j <= 500; j++)
+                {
+                    ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
+                    request.Fields = "num_iid,title,price,pic_url";
+                    request.PageSize = 200;
+                    request.PageNo = j;
+
+                    string taobaoNick = dt.Rows[i]["nick"].ToString();
+                    try
+                    {
+                        PageList<Item> product = client.ItemsOnsaleGet(request, session);
+
+                        WriteLog(taobaoNick + "INGCount：" + product.Content.Count.ToString(), "1", nick2, "");
+                        for (int num = 0; num < product.Content.Count; num++)
+                        {
+                            RecordMissionDetail(id, missionid, product.Content[num].NumIid.ToString(), html);
+                        }
+
+                        if (product.Content.Count < 200)
+                        {
+                            break;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        WriteLog(e.StackTrace, "1", nick2, "");
+                        WriteLog(e.Message, "1", nick2, "");
+                        sql = "UPDATE TopMission SET fail = fail + 1,isok = -1 WHERE id = " + dt.Rows[i]["id"].ToString();
+                        utils.ExecuteNonQuery(sql);
+                        break;
+                    }
+                }
+
+                sql = "SELECT DISTINCT itemid FROM TopWriteContent WHERE groupbuyid = '" + dt.Rows[i]["groupbuyid"].ToString() + "' AND isok = 1";
+                dtWrite = utils.ExecuteDataTable(sql);
+            }
+            WriteLog("ING：" + dtWrite.Rows.Count.ToString(), "1", nick2, "");
+            for (int j = 0; j < dtWrite.Rows.Count; j++)
+            {
+                try
+                {
+                    //获取原宝贝描述
+                    ItemGetRequest requestItem = new ItemGetRequest();
+                    requestItem.Fields = "desc";
+                    requestItem.NumIid = long.Parse(dtWrite.Rows[j]["itemid"].ToString());
+                    WriteLog("更新删除准备中", "1", nick2, "");
+                    Item product = client.ItemGet(requestItem, session);
+                    WriteLog("更新删除准备中。。。。", "1", nick2, "");
+                    string newContent2 = string.Empty;
+                    string groupid = dt.Rows[i]["groupbuyid"].ToString();
+                    string tetegroupbuyGuid = groupid;
+                    string sqltemp = "SELECT * FROM TopGroupBuy WHERE id = '" + groupid + "'";
+                    DataTable dttemp = utils.ExecuteDataTable(sqltemp);
+                    if (dttemp == null)
+                    {
+                        continue;
+
+                    }
+                    //判断团购是多模板
+                    if (dttemp.Rows[0]["groupbuyGuid"].ToString() != "")
+                    {
+                        tetegroupbuyGuid = dttemp.Rows[0]["groupbuyGuid"].ToString();
+                    }
+
+                    if (!Regex.IsMatch(product.Desc, @"<div>[\s]*<a name=""tetesoft-area-start-" + tetegroupbuyGuid + @""">[\s]*</a>[\s]*</div>[\s]*([\s\S]*)<div>[\s]*<a name=""tetesoft-area-end-" + tetegroupbuyGuid + @""">[\s]*</a>[\s]*</div>"))
+                    {
+                        //更新状态
+
+                        WriteLog(DateTime.Now.ToString() + "http://item.taobao.com/item.htm?id=" + dtWrite.Rows[j]["itemid"].ToString() + " 不含需要清除的代码", "", nick2, "");
+                        sql = "UPDATE TopMission SET success = success + 1,isok = 1 WHERE id = " + dt.Rows[i]["id"].ToString();
+                        utils.ExecuteNonQuery(sql);
+                        continue;
+                    }
+                    else
+                    {
+
+                        newContent2 = Regex.Replace(product.Desc, @"<div>[\s]*<a name=""tetesoft-area-start-" + tetegroupbuyGuid + @""">[\s]*</a>[\s]*</div>[\s]*([\s\S]*)<div>[\s]*<a name=""tetesoft-area-end-" + tetegroupbuyGuid + @""">[\s]*</a>[\s]*</div>", @"");
+
+                    }
+
+                    //更新宝贝描述
+                    IDictionary<string, string> param = new Dictionary<string, string>();
+                    param.Add("num_iid", dtWrite.Rows[j]["itemid"].ToString());
+                    param.Add("desc", newContent2);
+                    string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update", session, param);
+
+
+                    //插入宝贝错误日志
+                    if (resultpro.ToLower().IndexOf("ITEM_PROPERTIES_ERROR") != -1)
+                    {
+
+                        WriteLog("删除活动更新宝贝描述：宝贝ID：" + dtWrite.Rows[j]["itemid"].ToString() + "返回的错误信息" + resultpro.Replace("<?xml version=\"1.0\" encoding=\"utf-8\" ?>", ""), "1", nick2, "");
+                    }
+                    else
+                    {
+                        WriteLog("删除活动更新宝贝描述：宝贝ID：" + dtWrite.Rows[j]["itemid"].ToString() + "返回的成功信息" + resultpro.Replace("<?xml version=\"1.0\" encoding=\"utf-8\" ?>", ""), "", nick2, "");
+                    }
+
+                    if (resultpro.IndexOf("ITEM_PROPERTIES_ERROR") != -1)
+                    {
+                        WriteLog("删除宝贝更新宝贝描述结果：宝贝ID：" + dtWrite.Rows[j]["itemid"].ToString() + "返回的错误信息" + resultpro, "", nick2, "");
+
+                        //更新宝贝错误数
+                        sql = "UPDATE TopMission SET fail = fail + 1,isok = -1  WHERE id = " + dt.Rows[i]["id"].ToString();
+                        utils.ExecuteNonQuery(sql);
+                    }
+                    else
+                    {
+
+                        //更新状态
+                        sql = "UPDATE TopWriteContent SET isok = 1 WHERE id = " + dtWrite.Rows[j]["itemid"].ToString();
+                        utils.ExecuteNonQuery(sql);
+
+
+                        //更新状态
+                        sql = "UPDATE TopMission SET success = success + 1,isok = 1 WHERE id = " + dt.Rows[i]["id"].ToString();
+                        utils.ExecuteNonQuery(sql);
+                    }
+                }
+                catch (Exception e)
+                {
+                    WriteLog("删除宝贝" + e.StackTrace, "1", nick2, "");
+                    WriteLog("删除宝贝" + e.Message, "1", nick2, "");
+                    sql = "UPDATE TopMission SET fail = fail + 1,isok = -1 WHERE id = " + dt.Rows[i]["id"].ToString();
+                    utils.ExecuteNonQuery(sql);
+                    continue;
+                }
+            }
+            dtWrite.Dispose();
+
+
+        }
+        dt.Dispose();
+
+
+        WriteLog("**********************************************************", "", nick2, "");
+
     }
 
     private string InitPageStr(int total, string url)
