@@ -105,7 +105,7 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
         string secret = "d3486dac8198ef01000e7bd4504601a4";
         //上传到宝贝描述
         TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
-        for (int j = 1; j <= 500; j++)
+        for (int j = 1; j <= 5; j++)
         {
             ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
             request.Fields = "num_iid";
@@ -140,14 +140,14 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
                 catch
                 { }
             }
-
+            Response.Write(product.Content.Count.ToString() + "<br>");
             if (product.Content.Count < 200)
             {
                 break;
             }
         }
 
-        Response.Write("<script>alert('清除成功！');history.go(-1);</script>");
+        Response.Write("<script>alert('清除成功！');</script>");
         Response.End();
     }
 
