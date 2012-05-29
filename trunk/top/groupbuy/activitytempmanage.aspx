@@ -64,7 +64,7 @@
      function delItemtemp(act,aid,iid) {
          var actionID = aid;
                         $.ajax({
-                            url: 'LoadAjax.aspx?act=' + act + '&aid=' + actionID + '&id=' + iid + '&t=' + new Date().getTime() + '',
+                            url: 'deletetaobao.aspx?act=' + act + '&aid=' + actionID + '&id=' + iid + '&t=' + new Date().getTime() + '',
                             type: 'GET',
                             dataType: 'text',
                             async: true,
