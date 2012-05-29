@@ -61,8 +61,8 @@
                 <td><%#Eval("endtime").ToString() %></td>
                 <td>
                     活动已取消 | <a href='grouplist.aspx?id=<%#Eval("id").ToString()%>&act=del' onclick="return confirm('有的时候取消活动因为网络问题可能失败，点此再次发送取消请求')">取消</a> <br />
-                    <a href='groupbuydetail.aspx?id=<%#Eval("id").ToString()%>'>查看团购订单</a>  |  <a href='deletetaobao.aspx?id=<%#Eval("id").ToString()%>' onclick="return confirm('您确认要清除关联描述，该操作不可恢复？')">清除关联描述</a>
-                    |  <a href='deletetaobao.aspx?type=dle&id=<%#Eval("id").ToString()%>' onclick="return confirm('您确认要清除关联描述，该操作不可恢复？')">强力清除描述</a>
+                    <a href='groupbuydetail.aspx?id=<%#Eval("id").ToString()%>'>查看团购订单</a>  |  <a href="javascript:delItemtemp('delitem','<%#Eval("id").ToString()%>')" onclick="return confirm('您确认要清除关联描述，该操作不可恢复？')">清除关联描述</a>
+                    |  <a href="javascript:delItemtemp('del','<%#Eval("id").ToString()%>')" onclick="return confirm('您确认要清除关联描述，该操作不可恢复？')">强力清除描述</a>
                 </td>
             </tr>
             </ItemTemplate>
@@ -75,6 +75,33 @@
 
     </div>
 </div>
+    <script type="text/javascript">
+        function delItemtemp(act, iid) {
+
+            $.ajax({
+                url: 'deletetaobaogroupitems.aspx?act=' + act + '&id=' + iid + '&t=' + new Date().getTime() + '',
+                type: 'GET',
+                dataType: 'text',
+                async: true,
+                timeout: 2000000,
+                beforeSend: function () {
+                    $('#del' + iid).html('正在清除...');
+                },
+                error: function () {
+                    alert('网络错误，请重试！');
+                },
+                success: function (msg) {
+                    if (msg == 'true') {
+                        $('#del' + iid).html('清除成功...');
+
+                    } else {
+                        $('#del' + iid).html('清除失败:' + msg + '<a href="javascript:delItemtemp(' + act + ',' + aid + ',' + iid + ')">重试</a>');
+                    }
+                }
+            });
+        } 
+
+            </script>
 </form>
 
 </body>
