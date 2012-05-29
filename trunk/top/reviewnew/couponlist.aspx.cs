@@ -80,8 +80,17 @@ public partial class top_review_couponlist : System.Web.UI.Page
         Common.Cookie cookie = new Common.Cookie();
         string session = cookie.getCookie("top_sessiongroupbuy");
 
+        string sql = "SELECT couponid FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
+        string couponid = utils.ExecuteString(sql);
+
+        if (couponid == id)
+        {
+            Response.Write("<script>alert('默认赠送的优惠券无法删除，请您到“基本设置”里面更改默认优惠券后再删除！');history.go(-1);</script>");
+            return;
+        }
+
         //通过数据库查询获取活动ID
-        string sql = "UPDATE TCS_Coupon SET isdel = 1 WHERE guid = '" + id + "'";
+        sql = "UPDATE TCS_Coupon SET isdel = 1 WHERE guid = '" + id + "'";
         utils.ExecuteNonQuery(sql);
 
         Response.Write("<script>alert('取消成功！');window.location.href='couponlist.aspx';</script>");
