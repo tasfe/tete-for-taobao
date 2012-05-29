@@ -32,6 +32,71 @@ public partial class top_groupbuy_deletetaobaogroupitems : System.Web.UI.Page
             return;
         }
         //老版清除团购
+
+        if (ty == "del")
+        {
+            DeleteTaobaolist(id);
+
+            Common.Cookie cookie = new Common.Cookie();
+            string taobaoNick = cookie.getCookie("nick");
+            string session = cookie.getCookie("top_sessiongroupbuy");
+
+            //COOKIE过期判断
+            if (taobaoNick == "")
+            {
+                //SESSION超期 跳转到登录页
+                Response.Write("<a href='http://container.open.taobao.com/container?appkey=12287381'> 请重新授权</a></script>");
+                Response.End();
+            }
+
+            Rijndael_ encode = new Rijndael_("tetesoft");
+            taobaoNick = encode.Decrypt(taobaoNick);
+
+            string sql = "SELECT COUNT(*) FROM TopMission WHERE groupbuyid = " + id + " AND typ='delete' AND isok = 0 AND nick<>''";
+            string count = utils.ExecuteString(sql);
+
+            if (count != "0")
+            {
+                //删除宝贝描述
+                DeleteTaobao(taobaoNick);
+                Response.Write("true");
+                Response.End();
+            }
+
+
+            if (taobaoNick.Trim() == "")
+            {
+                //SESSION超期 跳转到登录页
+                Response.Write("<a href='http://container.open.taobao.com/container?appkey=12287381'> 请重新授权</a></script>");
+                Response.End();
+            }
+            sql = "INSERT INTO TopMission (typ, nick, groupbuyid) VALUES ('delete', '" + taobaoNick + "', '" + id + "')";
+            utils.ExecuteNonQuery(sql);
+
+
+            sql = "SELECT TOP 1 ID FROM TopMission ORDER BY ID DESC";
+            string missionid = utils.ExecuteString(sql);
+
+            //获取团购信息并更新
+            sql = "SELECT name,productimg,productid FROM TopGroupBuy WHERE id = '" + id + "'";
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                sql = "UPDATE TopMission SET groupbuyname = '" + dt.Rows[0]["name"].ToString() + "',groupbuypic = '" + dt.Rows[0]["productimg"].ToString() + "',itemid = '" + dt.Rows[0]["productid"].ToString() + "' WHERE id = " + missionid;
+                utils.ExecuteNonQuery(sql);
+            }
+
+            //更新任务总数
+            sql = "SELECT COUNT(*) FROM TopWriteContent WHERE groupbuyid = '" + id + "' AND isok = 1";
+            count = utils.ExecuteString(sql);
+            sql = "UPDATE TopMission SET total = '" + count + "' WHERE id = " + missionid;
+            utils.ExecuteNonQuery(sql);
+            //删除宝贝描述
+            DeleteTaobao(taobaoNick);
+            Response.Write("true");
+            Response.End();
+        }
+
         if (ty == "delitem")
         {
 
@@ -93,6 +158,71 @@ public partial class top_groupbuy_deletetaobaogroupitems : System.Web.UI.Page
             DeleteTaobao(taobaoNick);
             Response.Write("true");
             Response.End();
+        }
+    }
+
+    /// <summary>
+    /// 删除团购任务列表
+    /// </summary>
+    /// <param name="gid">团购ID</param>
+    private void DeleteTaobaolist(string gid)
+    {
+        //获取正在进行中的宝贝同步任务        
+        string appkey = "12287381";
+        string secret = "d3486dac8198ef01000e7bd4504601a4";
+        string session = string.Empty;
+        string id = string.Empty;
+        string missionid = string.Empty;
+        string html = string.Empty;
+        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
+
+        string sql = "SELECT t.*, s.sessiongroupbuy FROM TopMission t INNER JOIN TopTaobaoShop s ON s.nick = t.nick WHERE groupbuyid=" + gid;
+
+        DataTable dt = utils.ExecuteDataTable(sql);
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+
+            id = dt.Rows[i]["groupbuyid"].ToString();
+
+            session = dt.Rows[i]["sessiongroupbuy"].ToString();
+            missionid = dt.Rows[i]["id"].ToString();
+            html = "";
+
+            sql = "delete from TopWriteContent where groupbuyid =  '" + dt.Rows[i]["groupbuyid"].ToString() + "'";
+            utils.ExecuteNonQuery(sql);
+            if (dt.Rows[i]["itemid"] != null && dt.Rows[i]["itemid"].ToString() != "" && dt.Rows[i]["itemid"].ToString() != "NULL")
+            {
+                RecordMissionDetail(id, missionid, dt.Rows[i]["itemid"].ToString(), "");
+            }
+            for (int j = 1; j <= 500; j++)
+            {
+                ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
+                request.Fields = "num_iid,title,price,pic_url";
+                request.PageSize = 200;
+                request.PageNo = j;
+
+                Common.Cookie cookie = new Common.Cookie();
+                string taobaoNick = dt.Rows[i]["nick"].ToString();
+                try
+                {
+                    PageList<Item> product = client.ItemsOnsaleGet(request, session);
+                    for (int num = 0; num < product.Content.Count; num++)
+                    {
+                        RecordMissionDetail(id, missionid, product.Content[num].NumIid.ToString(), html);
+                    }
+                    if (product.Content.Count < 200)
+                    {
+                        break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    sql = "UPDATE TopMission SET fail = fail + 1,isok = -1 WHERE id = " + dt.Rows[i]["id"].ToString();
+                    utils.ExecuteNonQuery(sql);
+                    break;
+                }
+            }
+
         }
     }
 
