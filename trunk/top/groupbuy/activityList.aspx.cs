@@ -133,7 +133,7 @@ public partial class top_groupbuy_activityList : System.Web.UI.Page
         int pageCount = 5;
         int dataCount = (pageNow - 1) * pageCount;
 
-        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.id DESC) AS rownumber FROM tete_activity b WHERE b.nick = '" + taobaoNick + "' " + statusStr + " and Status<>4 ) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY id DESC";
+        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.id DESC) AS rownumber FROM tete_activity b WHERE b.nick = '" + taobaoNick + "' " + statusStr + " ) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY id DESC";
 
 
         DataTable dtNew = utils.ExecuteDataTable(sqlNew);
@@ -141,7 +141,7 @@ public partial class top_groupbuy_activityList : System.Web.UI.Page
         rptArticle.DataBind();
 //
         //分页数据初始化
-        sqlNew = "SELECT COUNT(*) FROM tete_activity WHERE nick = '" + taobaoNick + "' " + statusStr + "  and Status<>4 ";
+        sqlNew = "SELECT COUNT(*) FROM tete_activity WHERE nick = '" + taobaoNick + "' " + statusStr + " ";
         int totalCount =   int.Parse(utils.ExecuteString(sqlNew));
 
         lbPage.Text = InitPageStr(totalCount, "activityList.aspx");
