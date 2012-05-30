@@ -29,7 +29,7 @@ public partial class top_groupbuy_activityList : System.Web.UI.Page
             if (Request.QueryString["actionType"].ToString() == "all")
             {
                 liID.Value = "li1";
-                statusStr = "";
+                statusStr = " and [Status]<>4 ";
 
             }
             if (Request.QueryString["actionType"].ToString() == "before")
