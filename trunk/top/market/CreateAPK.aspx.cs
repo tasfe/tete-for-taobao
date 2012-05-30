@@ -94,6 +94,7 @@ public partial class CreateAPK : System.Web.UI.Page
             xmlDoc.Save(@"D:\APKTool\" + dir + @"\res\values\strings.xml");
 
             Btn_Create.Visible = true;
+            Btn_Sign.Visible = true;
         }
         else
         {
@@ -112,7 +113,8 @@ public partial class CreateAPK : System.Web.UI.Page
             return false;
         }
     }
-    protected void Unnamed2_Click(object sender, EventArgs e)
+
+    private void CreateUserAPK()
     {
         //解密NICK
         Rijndael_ encode = new Rijndael_("tetesoft");
@@ -163,5 +165,16 @@ public partial class CreateAPK : System.Web.UI.Page
         //Console.WriteLine(strOutput);
         //p.WaitForExit();
         p.Close();
+    }
+
+    protected void Btn_Create_Click(object sender, EventArgs e)
+    {
+        CreateUserAPK();
+    }
+
+    protected void Btn_Sign_Click(object sender, EventArgs e)
+    {
+        CreateUserAPK();
+        Lbl_Suc.Visible = true;
     }
 }
