@@ -24,7 +24,7 @@ public partial class CreateAPK : System.Web.UI.Page
             p.StartInfo.RedirectStandardError = true;
             p.StartInfo.CreateNoWindow = true;
             p.Start();
-            string strOutput = null;
+            //string strOutput = null;
             //进入目录
             p.StandardInput.WriteLine("d:");
             p.StandardInput.WriteLine(@"cd D:\APKTool");
@@ -33,7 +33,7 @@ public partial class CreateAPK : System.Web.UI.Page
             //p.StandardInput.WriteLine(@"copy sourceAPK\TeceraNew.apk TeceraNew.apk /y");
 
             //解压APK
-            p.StandardInput.WriteLine("apktool d TeceraNew.apk");
+            //p.StandardInput.WriteLine("apktool d TeceraNew.apk");
             //创建目录
             //解密NICK
             Rijndael_ encode = new Rijndael_("tetesoft");
@@ -43,9 +43,9 @@ public partial class CreateAPK : System.Web.UI.Page
             p.StandardInput.WriteLine(@"xcopy TeceraNew\*.* " + nick + " /E");
 
             p.StandardInput.WriteLine("exit");
-            strOutput = p.StandardOutput.ReadToEnd();
-            Console.WriteLine(strOutput);
-            p.WaitForExit();
+            //strOutput = p.StandardOutput.ReadToEnd();
+            //Console.WriteLine(strOutput);
+            //p.WaitForExit();
             p.Close();
 
 
