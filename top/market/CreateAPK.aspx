@@ -47,9 +47,21 @@
             </tr>
             <tr>
               <td colspan="2">
-                 <asp:Button runat="server" ID="Btn_Create" Text="重新生成手机安装文件" onclick="Unnamed2_Click" Visible="false" />
+              第二步：
+                 <asp:Button runat="server" ID="Btn_Create" Text="重新生成手机安装文件" Visible="false" 
+                      onclick="Btn_Create_Click" />
               </td>
             </tr>
+             <tr>
+              <td colspan="2">
+              第三步：
+                 <asp:Button runat="server" ID="Btn_Sign" Text="为该文件签名" Visible="false" 
+                      onclick="Btn_Sign_Click" />
+              </td>
+            </tr>
+            <tr><td colspan="2">
+            <asp:Label Visible="false" Text="恭喜您成功生成安装文件" runat="server" ID="Lbl_Suc" />
+            </td></tr>
         </table>
     </div>
     </form>
