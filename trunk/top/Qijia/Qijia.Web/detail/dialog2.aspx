@@ -188,15 +188,15 @@
 <strong>请输入文字属性：</strong><br />
 <input name="text1" value="text2" type="hidden" />
 【文字1】：
-<input name="text2" id="txt12" maxlength="50" value="" /><br />
+<input name="text2" id="txt12" maxlength="75" value="" /><br />
 
 <input name="text3" value="text3" type="hidden" />
 【文字2】：
-<input name="text4" id="txt13" maxlength="50" value="" /><br />
+<input name="text4" id="txt13" maxlength="75" value="" /><br />
 
 <input name="text5" value="text4" type="hidden" />
 【文字3】：
-<input name="text6" id="txt14" maxlength="50" value="" /><br />
+<input name="text6" id="txt14" maxlength="75" value="" /><br />
 
 
 </td>
@@ -399,8 +399,8 @@
                 Obj("txt12").focus();
                 return false;
             }
-            if (Obj("txt12").value.length > 50) {
-                alert("文字1不能超过50个字符！");
+            if (Obj("txt12").value.length > 75) {
+                alert("文字1不能超过75个字符！");
                 Obj("txt12").focus();
                 return false;
             }
@@ -415,8 +415,8 @@
                 Obj("txt13").focus();
                 return false;
             }
-            if (Obj("txt13").value.length > 50) {
-                alert("文字2不能超过50个字符！");
+            if (Obj("txt13").value.length > 75) {
+                alert("文字2不能超过75个字符！");
                 Obj("txt13").focus();
                 return false;
             }
@@ -431,8 +431,8 @@
                 Obj("txt14").focus();
                 return false;
             }
-            if (Obj("txt14").value.length > 50) {
-                alert("文字3不能超过50个字符！");
+            if (Obj("txt14").value.length > 75) {
+                alert("文字3不能超过75个字符！");
                 Obj("txt14").focus();
                 return false;
             }
