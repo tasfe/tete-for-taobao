@@ -45,6 +45,8 @@ public partial class CreateAPK : System.Web.UI.Page
                 //复制文件到该目录
                 p.StandardInput.WriteLine(@"xcopy TeceraNew\*.* " + nick + " /E /y");
 
+                p.StandardInput.WriteLine(@"xcopy autosign\*.* " + nick + @"\dist /E /y");
+
                 p.StandardInput.WriteLine("exit");
                 //strOutput = p.StandardOutput.ReadToEnd();
                 //Console.WriteLine(strOutput);
@@ -136,8 +138,22 @@ public partial class CreateAPK : System.Web.UI.Page
 
         p.StandardInput.WriteLine(@"copy " + dir + @"\res\drawable-hdpi\icon.png " + dir + @"\res\drawable-mdpi\icon.png /y");
 
+        //build文件夹
+        p.StandardInput.WriteLine(@"copy " + dir + @"\res\drawable-hdpi\icon.png " + dir + @"build\apk\res\drawable-hdpi\icon.png /y");
+        p.StandardInput.WriteLine(@"copy " + dir + @"\res\drawable-hdpi\img_top.jpg " + dir + @"build\apk\res\drawable-hdpi\img_top.jpg /y");
+        p.StandardInput.WriteLine(@"copy " + dir + @"\res\drawable-hdpi\img_first.png " + dir + @"build\apk\res\drawable-hdpi\img_first.png /y");
+
+        p.StandardInput.WriteLine(@"copy " + dir + @"\res\drawable-hdpi\icon.png " + dir + @"build\apk\res\drawable-ldpi\icon.png /y");
+
+        p.StandardInput.WriteLine(@"copy " + dir + @"\res\drawable-hdpi\icon.png " + dir + @"build\apk\res\drawable-mdpi\icon.png /y");
+
         //重新生成APK
         p.StandardInput.WriteLine("apktool b " + dir);
+
+        //添加签名
+        p.StandardInput.WriteLine("ren TeceraNew.apk TeceraNew.zip");
+        p.StandardInput.WriteLine("Sign.bat");
+
         //这边复制成nick加apk文件
         p.StandardInput.WriteLine(@"copy " + dir + @"\dist\TeceraNew.apk userAPK\" + dir + ".apk /y");
 
