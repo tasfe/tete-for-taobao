@@ -158,7 +158,7 @@ public partial class CreateAPK : System.Web.UI.Page
         //这边复制成nick加apk文件
         p.StandardInput.WriteLine("cd..");
         p.StandardInput.WriteLine("cd..");
-        p.StandardInput.WriteLine(@"copy " + dir + @"\dist\TeceraNew.apk userAPK\" + dir + ".apk /y");
+        p.StandardInput.WriteLine(@"copy " + dir + @"\dist\update_signed.zip userAPK\" + dir + ".apk /y");
 
         p.StandardInput.WriteLine("exit");
         //strOutput = p.StandardOutput.ReadToEnd();
