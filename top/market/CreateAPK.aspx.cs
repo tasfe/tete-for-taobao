@@ -94,7 +94,6 @@ public partial class CreateAPK : System.Web.UI.Page
             xmlDoc.Save(@"D:\APKTool\" + dir + @"\res\values\strings.xml");
 
             Btn_Create.Visible = true;
-            Btn_Sign.Visible = true;
         }
         else
         {
@@ -155,11 +154,6 @@ public partial class CreateAPK : System.Web.UI.Page
         p.StandardInput.WriteLine("ren TeceraNew.apk TeceraNew.zip");
         p.StandardInput.WriteLine("Sign.bat");
 
-        //这边复制成nick加apk文件
-        p.StandardInput.WriteLine("cd..");
-        p.StandardInput.WriteLine("cd..");
-        p.StandardInput.WriteLine(@"copy " + dir + @"\dist\update_signed.zip userAPK\" + dir + ".apk /y");
-
         p.StandardInput.WriteLine("exit");
         //strOutput = p.StandardOutput.ReadToEnd();
         //Console.WriteLine(strOutput);
@@ -170,11 +164,33 @@ public partial class CreateAPK : System.Web.UI.Page
     protected void Btn_Create_Click(object sender, EventArgs e)
     {
         CreateUserAPK();
+        Lbl_Suc.Visible = true;
     }
 
     protected void Btn_Sign_Click(object sender, EventArgs e)
     {
-        CreateUserAPK();
-        Lbl_Suc.Visible = true;
+        //这边复制成nick加apk文件
+        //解密NICK
+        Rijndael_ encode = new Rijndael_("tetesoft");
+        string dir = encode.Decrypt(Request.Cookies["nick"].Value);
+        //string dir = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+        Process p = new Process();
+        p.StartInfo.FileName = "cmd.exe";
+        p.StartInfo.UseShellExecute = false;
+        p.StartInfo.RedirectStandardInput = true;
+        p.StartInfo.RedirectStandardOutput = true;
+        p.StartInfo.RedirectStandardError = true;
+        p.StartInfo.CreateNoWindow = true;
+        p.Start();
+        //string strOutput = null;
+        //进入目录
+        p.StandardInput.WriteLine("d:");
+        p.StandardInput.WriteLine(@"cd D:\APKTool");
+        p.StandardInput.WriteLine(@"copy " + dir + @"\dist\update_signed.zip userAPK\" + dir + ".apk /y");
+        p.StandardInput.WriteLine("exit");
+        //strOutput = p.StandardOutput.ReadToEnd();
+        //Console.WriteLine(strOutput);
+        //p.WaitForExit();
+        p.Close();
     }
 }

@@ -52,16 +52,16 @@
                       onclick="Btn_Create_Click" />
               </td>
             </tr>
+             <tr><td colspan="2">
+            <asp:Label Visible="false" Text="恭喜您成功生成安装文件" runat="server" ID="Lbl_Suc" />
+            </td></tr>
              <tr>
               <td colspan="2">
               第三步：
-                 <asp:Button runat="server" ID="Btn_Sign" Text="为该文件签名" Visible="false" 
+                 <asp:Button runat="server" ID="Btn_Sign" Text="生成下载链接二维码" Visible="false" 
                       onclick="Btn_Sign_Click" />
               </td>
             </tr>
-            <tr><td colspan="2">
-            <asp:Label Visible="false" Text="恭喜您成功生成安装文件" runat="server" ID="Lbl_Suc" />
-            </td></tr>
         </table>
     </div>
     </form>
