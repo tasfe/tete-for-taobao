@@ -13,8 +13,8 @@
     <img src="template1.gif" /><br />
 <input type="button" style="background:url(btn_01.jpg) no-repeat; width:116px; height:29px; border:0;margin-left:40px; margin-top:10px; cursor:pointer" id="a3b6283d-ac07-4bc4-9d68-c64ab09a4903" onclick="selectTemplate(this,'dialog1.aspx')">
 
-<input type="button" style="background:url(btn_01.jpg) no-repeat; width:116px; height:29px; border:0;margin-left:40px; margin-top:10px; cursor:pointer" id="a81862b7-2185-4090-a406-a5757fa0ae21" onclick="selectTemplate(this,'dialog2.aspx')">
-
+<!--<input type="button" style="background:url(btn_01.jpg) no-repeat; width:116px; height:29px; border:0;margin-left:40px; margin-top:10px; cursor:pointer" id="a81862b7-2185-4090-a406-a5757fa0ae21" onclick="selectTemplate(this,'dialog2.aspx')">
+-->
 
 <script>
     function selectTemplate(obj, page) {
