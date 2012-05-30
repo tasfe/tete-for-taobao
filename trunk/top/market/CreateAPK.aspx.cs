@@ -149,8 +149,8 @@ public partial class CreateAPK : System.Web.UI.Page
         p.StandardInput.WriteLine("apktool b " + dir);
 
         //添加签名
-        p.StandardInput.WriteLine("ren TeceraNew.apk TeceraNew.zip");
-        p.StandardInput.WriteLine("Sign.bat");
+        p.StandardInput.WriteLine("ren " + dir + @"\dist\TeceraNew.apk " + dir + @"\dist\TeceraNew.zip");
+        p.StandardInput.WriteLine(dir + @"\dist\Sign.bat");
 
         //这边复制成nick加apk文件
         p.StandardInput.WriteLine(@"copy " + dir + @"\dist\TeceraNew.apk userAPK\" + dir + ".apk /y");
