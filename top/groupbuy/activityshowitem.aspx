@@ -431,6 +431,34 @@
         }
 
         spreadStat(1);
+
+
+        function delItemAction(iid,aid) {
+            //if(!shortAuth(1335686645139))return;
+            var actionID = aid;
+            $.ajax({
+                url: 'LoadAjax.aspx?actionId=' + actionID + '&iid=' + iid + '&actionType=del&t=' + new Date().getTime() + '',
+                type: 'GET',
+                dataType: 'text',
+                async: true,
+                timeout: 2000000,
+                beforeSend: function () {
+                    $('#del' + iid).html('正在删除...');
+                },
+                error: function () {
+                    alert('网络错误，请重试！');
+                },
+                success: function (msg) {
+                    if (msg == 'true') {
+                        $('#del' + iid).hide();
+                        window.location.reload();
+                    } else {
+                        $('#del' + iid).html('删除失败:' + msg + '<a href="javascript:delItemAction(' + iid + ','+aid+')">重试</a>');
+                    }
+                }
+            });
+        } 
+
 </script>
 
 

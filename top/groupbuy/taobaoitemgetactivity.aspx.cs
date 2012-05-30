@@ -56,7 +56,7 @@ public partial class top_groupbuy_taobaoitemgetactivity : System.Web.UI.Page
                DataTable dt = utils.ExecuteDataTable(sql);
                if (dt != null && dt.Rows.Count > 0)
                {
-                   tempstr = " <font color=green> 已参加促销活动</font>";
+                   tempstr = " <font color=green> 已参加促销活动</font><a href=\"javascript:delItemAction(" + product.Content[i].NumIid.ToString().Trim() + "," + dt.Rows[0]["ActivityID"].ToString() + ")\">删除此促销活动</a><div id='del" +product.Content[i].NumIid.ToString().Trim() + "'></div>";
                }
 
                string str = " <table  width=\"800px;\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"margin:0px; padding:0px\">  <tr><td style=\" width:100px;\"><img width=50px src=" + product.Content[i].PicUrl + "_80x80.jpg></td><td  style=\" width:300px;\"><a   href=\"http://item.taobao.com/item.htm?id=" + product.Content[i].NumIid.ToString() + "\" target=\"_blank\">" + product.Content[i].Title + "</a></td><td  style=\" width:150px;\">" + product.Content[i].Price.ToString() + "</td><td  style=\" width:250px;\">" + tempstr + "</td></tr> </table><hr/>";
