@@ -36,7 +36,7 @@
 </span> 
 
 <br />
-<span>第1张大图，图片尺寸720*583</span><br /><br />
+<span>第1张大图，图片尺寸707*481</span><br /><br />
 
 【商品图片2】：
 <span id="addFileUpload2">
@@ -49,7 +49,7 @@
     <input type="button" value="更改图片" onclick="ShowUploadButton('FileUpload2')" /> 
 </span> 
 <br />
-<span>商品详情图，图片尺寸324*316</span><br /><br />
+<span>商品详情图，463*383</span><br /><br />
 
 【商品图片3】：
 
@@ -64,7 +64,7 @@
 </span> 
 
 <br />
-<span>第1张局部小图，图片尺寸190*130</span><br /><br />
+<span>第1张局部小图，图片尺寸233*204</span><br /><br />
 
 【商品图片4】：
 
@@ -79,7 +79,7 @@
 </span> 
 
 <br />
-<span>第1张局部大图，图片尺寸480*310</span><br /><br />
+<span>第1张局部大图，图片尺寸233*204</span><br /><br />
 
 【商品图片5】：
 
@@ -94,7 +94,7 @@
 </span> 
 
 <br />
-<span>第2张局部小图，图片尺寸190*130</span><br /><br />
+<span>第2张局部小图，图片尺寸463*385</span><br /><br />
 
 【商品图片6】：
 
@@ -109,7 +109,7 @@
 </span> 
 
 <br />
-<span>第2张局部大图，图片尺寸480*310</span><br /><br />
+<span>第2张局部大图，图片尺寸467*384</span><br /><br />
 
 【商品图片7】：
 
@@ -124,7 +124,7 @@
 </span> 
 
 <br />
-<span>第2张局部大图，图片尺寸480*310</span><br /><br />
+<span>第2张局部大图，图片尺寸235*204</span><br /><br />
 
 
 </td>

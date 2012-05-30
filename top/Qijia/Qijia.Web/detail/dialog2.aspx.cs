@@ -135,13 +135,13 @@ public partial class Web_detail_dialog1 : System.Web.UI.Page
             Directory.CreateDirectory(Server.MapPath(dateName));
         }
 
-        UploadFileCommon(FileUpload1, "{item1}", dateName, "720*583");
-        UploadFileCommon(FileUpload2, "{item2}", dateName, "324*316");
-        UploadFileCommon(FileUpload3, "{item3}", dateName, "190*130");
-        UploadFileCommon(FileUpload4, "{item4}", dateName, "480*310");
-        UploadFileCommon(FileUpload5, "{item5}", dateName, "190*130");
-        UploadFileCommon(FileUpload6, "{item6}", dateName, "480*310");
-        UploadFileCommon(FileUpload7, "{item7}", dateName, "480*310");
+        UploadFileCommon(FileUpload1, "{item1}", dateName, "707*481");
+        UploadFileCommon(FileUpload2, "{item2}", dateName, "463*383");
+        UploadFileCommon(FileUpload3, "{item3}", dateName, "233*204");
+        UploadFileCommon(FileUpload4, "{item4}", dateName, "233*204");
+        UploadFileCommon(FileUpload5, "{item5}", dateName, "463*385");
+        UploadFileCommon(FileUpload6, "{item6}", dateName, "467*384");
+        UploadFileCommon(FileUpload7, "{item7}", dateName, "235*204");
     }
 
     private void UploadFileCommon(FileUpload fileUpload1, string tag, string dateName, string wihe)
