@@ -219,7 +219,7 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
         string session = cookie.getCookie("top_sessiongroupbuy");
 
         //通过数据库查询获取活动ID actionId iid
-        string sql = "SELECT promotionID FROM tete_activitylist WHERE Status<>4 and ActivityID = " + actionId + " and  ProductID=" + iid;
+        string sql = "SELECT promotionID FROM tete_activitylist WHERE Status<>4 and ActivityID = " + actionId + " and  ProductID='" + iid + "'";
         string promotion_id = utils.ExecuteString(sql);
 
         //删除活动
