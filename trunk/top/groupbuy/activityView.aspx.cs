@@ -136,20 +136,24 @@ public partial class top_groupbuy_activityView : System.Web.UI.Page
 
           
             utils.ExecuteNonQuery(sql);
-            sql = "select * from tete_activitylist where ActivityID=" + activityID;
-              dt = utils.ExecuteDataTable(sql);
-            if (dt != null && dt.Rows.Count > 0)
+            //每个参加活动的宝贝设置相同促销力度
+            if (Request.Form["itemType"].ToString() == "same")
             {
-                sql = "update tete_activitylist set Name='" + name + "',Remark='" + memo + "',startDate='" + startDate + "',endDate='" + endDate + "',itemType='" + itemType + "',discountType='" + discountType + "',discountValue='" + discountValue + "',tagId='" + tagId + "',Rcount=" + rcount + ",nick='" + nick + "',Status=1,decreaseNum='" + decreaseNum + "',isok=0 where ActivityID=" + activityID;
-                 
-                utils.ExecuteNonQuery(sql);//修改活动商品  '延长修改活动 Status=1 和 isok=0 '
-                for (int j = 0; j < dt.Rows.Count; j++)
+                sql = "select * from tete_activitylist where ActivityID=" + activityID;
+                dt = utils.ExecuteDataTable(sql);
+                if (dt != null && dt.Rows.Count > 0)
                 {
-                    //删除活动
-                    delactivity2(activityID, dt.Rows[j]["ProductID"].ToString());
+                    sql = "update tete_activitylist set Name='" + name + "',Remark='" + memo + "',startDate='" + startDate + "',endDate='" + endDate + "',itemType='" + itemType + "',discountType='" + discountType + "',discountValue='" + discountValue + "',tagId='" + tagId + "',Rcount=" + rcount + ",nick='" + nick + "',Status=1,decreaseNum='" + decreaseNum + "',isok=0 where ActivityID=" + activityID;
+
+                    utils.ExecuteNonQuery(sql);//修改活动商品  '延长修改活动 Status=1 和 isok=0 '
+                    for (int j = 0; j < dt.Rows.Count; j++)
+                    {
+                        //删除活动
+                        delactivity2(activityID, dt.Rows[j]["ProductID"].ToString());
+                    }
+                    //添加活动
+                    addactivity(activityID);
                 }
-                //添加活动
-                addactivity(activityID);
             }
 
             Response.Redirect("activityList.aspx");
