@@ -118,7 +118,7 @@
     <input id="returnFileUpload7" type="button" style="display:none;" value="返回" onclick="ShowViewArea('FileUpload7')" /> 
 </span> 
 
-<span id="Span2" style="display:none;"> 
+<span id="modifyFileUpload7" style="display:none;"> 
     <a href='<%=item7 %>' target="_blank">点击查看图片</a> 
     <input type="button" value="更改图片" onclick="ShowUploadButton('FileUpload7')" /> 
 </span> 
