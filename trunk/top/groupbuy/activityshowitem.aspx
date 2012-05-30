@@ -29,7 +29,9 @@
         a{color:Blue; text-decoration:none;}
         th{text-align:left; height:40px;}
     </style>
-     
+         <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script> 
+
+    <script type="text/javascript" src="js/cal.js"></script>
 </head>
 <body style="margin:0px; padding:0px;">
     <form id="form1" runat="server">
