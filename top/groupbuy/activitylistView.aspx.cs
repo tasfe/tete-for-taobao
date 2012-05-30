@@ -105,6 +105,10 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
                     return;
                 }
                 discountValue = zhe;
+                if (discountValue == "")
+                {
+                    discountValue = "10";
+                }
             }
             else
             {
@@ -114,6 +118,10 @@ public partial class top_groupbuy_activitylistView : System.Web.UI.Page
                     return;
                 }
                 discountValue = yuan;
+                if (discountValue == "")
+                {
+                    discountValue = "0";
+                }
             }
 
             if (!isNumber(rcount))
