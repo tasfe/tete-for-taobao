@@ -52,6 +52,11 @@ public partial class top_groupbuy_activityList : System.Web.UI.Page
                 liID.Value = "li5";
                 statusStr = " and [Status]=2 ";
             }
+            if (Request.QueryString["actionType"].ToString() == "stop")
+            {
+                liID.Value = "li6";
+                statusStr = " and [Status]=4 ";
+            }
         }
         //获取买家的促销信息清单
         BindData();

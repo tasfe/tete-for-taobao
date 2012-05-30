@@ -52,7 +52,7 @@
 			<li id="li3"><a hidefocus="true" href="activityList.aspx?actionType=start">进行中的活动</a></li>
 			<li id="li4"><a hidefocus="true" href="activityList.aspx?actionType=pause">已暂停的活动</a></li>
             <li id="li5"><a hidefocus="true" href="activityList.aspx?actionType=stop">已结束的活动</a></li>
-         
+          <li id="li6"><a hidefocus="true" href="activityList.aspx?actionType=delete">已删除的活动</a></li>
               
 		</ul>
 	</div>
