@@ -165,7 +165,6 @@ public partial class CreateAPK : System.Web.UI.Page
     protected void Btn_Create_Click(object sender, EventArgs e)
     {
         CreateUserAPK();
-        System.Threading.Thread.Sleep(TimeSpan.FromSeconds(3));
         Lbl_Suc.Visible = true;
         Btn_Sign.Visible = true;
     }
