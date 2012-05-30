@@ -185,7 +185,7 @@
 <table width="100%" style="font-size:12px; color:#555;">
 <tr>
 <td valign="top" width="500">
-<strong>请输入长度属性：</strong><br />
+<strong>请输入文字属性：</strong><br />
 <input name="text1" value="text2" type="hidden" />
 【文字1】：
 <input name="text2" id="txt12" maxlength="50" value="" /><br />
