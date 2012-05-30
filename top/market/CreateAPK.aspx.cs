@@ -45,8 +45,6 @@ public partial class CreateAPK : System.Web.UI.Page
                 //复制文件到该目录
                 p.StandardInput.WriteLine(@"xcopy TeceraNew\*.* " + nick + " /E /y");
 
-                p.StandardInput.WriteLine(@"xcopy autosign\*.* " + nick + @"\dist /E /y");
-
                 p.StandardInput.WriteLine("exit");
                 //strOutput = p.StandardOutput.ReadToEnd();
                 //Console.WriteLine(strOutput);
