@@ -149,7 +149,7 @@ public partial class top_groupbuy_activitygetitem : System.Web.UI.Page
     /// <returns></returns>
     public string outShowHtml(string ID, string actionID,string pid)
     {
-        string html = "<div> <a href=\"activitylistView.aspx?activityID=" + actionID + "&ID=" + ID + "\" >修改此活动 <br /><a href=\"javascript:delItemAction(" + pid + ")\">删除此促销活动</a></div>";
+        string html = "<div> <a href=\"activitylistView.aspx?activityID=" + actionID + "&ID=" + ID + "\" >修改此活动 <br /><a href=\"javascript:delItemAction(" + pid + ")\">删除此促销活动</a> <div id='del"+pid+"'></div></div>";
         
         return html;
     }
