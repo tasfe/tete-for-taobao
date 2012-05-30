@@ -137,13 +137,13 @@ public partial class CreateAPK : System.Web.UI.Page
         p.StandardInput.WriteLine(@"copy " + dir + @"\res\drawable-hdpi\icon.png " + dir + @"\res\drawable-mdpi\icon.png /y");
 
         //build文件夹
-        p.StandardInput.WriteLine(@"copy " + dir + @"\res\drawable-hdpi\icon.png " + dir + @"build\apk\res\drawable-hdpi\icon.png /y");
-        p.StandardInput.WriteLine(@"copy " + dir + @"\res\drawable-hdpi\img_top.jpg " + dir + @"build\apk\res\drawable-hdpi\img_top.jpg /y");
-        p.StandardInput.WriteLine(@"copy " + dir + @"\res\drawable-hdpi\img_first.png " + dir + @"build\apk\res\drawable-hdpi\img_first.png /y");
+        p.StandardInput.WriteLine(@"copy " + dir + @"\res\drawable-hdpi\icon.png " + dir + @"\build\apk\res\drawable-hdpi\icon.png /y");
+        p.StandardInput.WriteLine(@"copy " + dir + @"\res\drawable-hdpi\img_top.jpg " + dir + @"\build\apk\res\drawable-hdpi\img_top.jpg /y");
+        p.StandardInput.WriteLine(@"copy " + dir + @"\res\drawable-hdpi\img_first.png " + dir + @"\build\apk\res\drawable-hdpi\img_first.png /y");
 
-        p.StandardInput.WriteLine(@"copy " + dir + @"\res\drawable-hdpi\icon.png " + dir + @"build\apk\res\drawable-ldpi\icon.png /y");
+        p.StandardInput.WriteLine(@"copy " + dir + @"\res\drawable-hdpi\icon.png " + dir + @"\build\apk\res\drawable-ldpi\icon.png /y");
 
-        p.StandardInput.WriteLine(@"copy " + dir + @"\res\drawable-hdpi\icon.png " + dir + @"build\apk\res\drawable-mdpi\icon.png /y");
+        p.StandardInput.WriteLine(@"copy " + dir + @"\res\drawable-hdpi\icon.png " + dir + @"\build\apk\res\drawable-mdpi\icon.png /y");
 
         //重新生成APK
         p.StandardInput.WriteLine("apktool b " + dir);
