@@ -505,11 +505,45 @@ public partial class top_groupbuy_deletetaobaogroupitems : System.Web.UI.Page
                 }
                 postData.Append(name);
                 postData.Append("=");
-                postData.Append(Uri.EscapeDataString(value));
+                //postData.Append(Uri.EscapeDataString(value));
+                postData.Append(GetUriFormate(value));
                 hasParam = true;
             }
         }
         return postData.ToString();
+    }
+
+    /// <summary>
+    /// 将参数转换成 uri 格式
+    /// </summary>
+    /// <param name="inputString">string类型的字符串</param>
+    /// <returns>编码后的string</returns>
+    private static string GetUriFormate(string inputString)
+    {
+        StringBuilder strBuilder = new StringBuilder();
+        string sourceStr = inputString;
+        int len = sourceStr.Length;
+        do
+        {
+            if (len - 21766 <= 0)
+            {
+                strBuilder.Append(Uri.EscapeDataString(sourceStr));
+            }
+            else
+            {
+                strBuilder.Append(Uri.EscapeDataString(sourceStr.Substring(0, 21766)));
+
+                sourceStr = sourceStr.Substring(21766);
+                len = sourceStr.Length;
+                if (len - 21766 < 0)
+                {
+                    strBuilder.Append(Uri.EscapeDataString(sourceStr));
+                }
+            }
+        }
+        while (len - 21766 > 0);
+
+        return strBuilder.ToString();
     }
     /// <summary> 
     /// TOP API POST 请求 
