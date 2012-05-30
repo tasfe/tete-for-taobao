@@ -171,6 +171,7 @@ public partial class CreateAPK : System.Web.UI.Page
 
     protected void Btn_Sign_Click(object sender, EventArgs e)
     {
+        CreateUserAPK();
         //这边复制成nick加apk文件
         //解密NICK
         Rijndael_ encode = new Rijndael_("tetesoft");
