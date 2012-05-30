@@ -52,7 +52,7 @@ public partial class top_groupbuy_activityList : System.Web.UI.Page
                 liID.Value = "li5";
                 statusStr = " and [Status]=2 ";
             }
-            if (Request.QueryString["actionType"].ToString() == "stop")
+            if (Request.QueryString["actionType"].ToString() == "delete")
             {
                 liID.Value = "li6";
                 statusStr = " and [Status]=4 ";
