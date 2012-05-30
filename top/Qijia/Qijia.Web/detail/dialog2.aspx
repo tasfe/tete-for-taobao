@@ -145,31 +145,31 @@
 【　商品名称　】：
 <input name="text121" id="txt1" maxlength="15" value="" /><br />
 
-<input name="property1" value="【产品型号】" type="hidden" />
+<input name="property1" value="产品型号" type="hidden" />
 【　产品型号　】：
 <input name="property2" id="txt2" maxlength="15" value="" /><br />
 
-<input name="property3" value="【产品规格】" type="hidden" />
+<input name="property3" value="产品规格" type="hidden" />
 【　产品规格　】：
 <input name="property4" id="txt3" maxlength="15" value="" /><br />
 
-<input name="property5" value="【产品材质】" type="hidden" />
+<input name="property5" value="产品材质" type="hidden" />
 【　产品材质　】：
 <input name="property6" id="txt4" maxlength="15" value="" /><br />
 
-<input name="property7" value="【适用部位】" type="hidden" />
+<input name="property7" value="适用部位" type="hidden" />
 【　适用部位　】：
 <input name="property8" id="txt5" maxlength="15" value="" /><br />
 
-<input name="property9" value="【产品功能】" type="hidden" />
+<input name="property9" value="产品功能" type="hidden" />
 【　产品功能　】：
 <input name="property10" id="txt6" maxlength="15" value="" /><br />
 
-<input name="property11" value="【产品搭配】" type="hidden" />
+<input name="property11" value="产品搭配" type="hidden" />
 【　产品搭配　】：
 <input name="property12" id="txt7" maxlength="15" value="" /><br />
 
-<input name="property13" value="【产品优势】" type="hidden" />
+<input name="property13" value="产品优势" type="hidden" />
 【　产品优势　】：
 <input name="property14" id="txt8" maxlength="15" value="" /><br />
 
