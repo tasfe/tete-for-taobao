@@ -166,6 +166,7 @@ public partial class CreateAPK : System.Web.UI.Page
     {
         CreateUserAPK();
         Lbl_Suc.Visible = true;
+        Btn_Sign.Visible = true;
     }
 
     protected void Btn_Sign_Click(object sender, EventArgs e)
