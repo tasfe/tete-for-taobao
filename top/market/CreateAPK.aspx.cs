@@ -3,6 +3,7 @@ using System.Web.UI.WebControls;
 using System.Diagnostics;
 using System.Xml;
 using System.Web;
+using Common;
 
 public partial class CreateAPK : System.Web.UI.Page
 {
@@ -25,6 +26,7 @@ public partial class CreateAPK : System.Web.UI.Page
             p.Start();
             //string strOutput = null;
             //进入目录
+            p.StandardInput.WriteLine("d:");
             p.StandardInput.WriteLine(@"cd D:\APKTool");
 
             //复制APK
@@ -33,7 +35,9 @@ public partial class CreateAPK : System.Web.UI.Page
             //解压APK
             p.StandardInput.WriteLine("apktool d TeceraNew.apk");
             //创建目录
-            string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+            //解密NICK
+            Rijndael_ encode = new Rijndael_("tetesoft");
+            string nick = encode.Decrypt(Request.Cookies["nick"].Value);
             p.StandardInput.WriteLine("md " + nick);
             //复制文件到该目录
             p.StandardInput.WriteLine(@"xcopy TeceraNew\*.* " + nick + " /E");
@@ -52,7 +56,10 @@ public partial class CreateAPK : System.Web.UI.Page
     {
         if ((CheckFileIsSave(Fud_logo, "jpg") || CheckFileIsSave(Fud_logo, "jpeg")) && CheckFileIsSave(Fud_load, "png") && CheckFileIsSave(Fud_head, "png"))
         {
-            string dir = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+            //解密NICK
+            Rijndael_ encode = new Rijndael_("tetesoft");
+            string dir = encode.Decrypt(Request.Cookies["nick"].Value);
+            //string dir = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
 
             try
             {
@@ -104,7 +111,10 @@ public partial class CreateAPK : System.Web.UI.Page
     }
     protected void Unnamed2_Click(object sender, EventArgs e)
     {
-        string dir = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+        //解密NICK
+        Rijndael_ encode = new Rijndael_("tetesoft");
+        string dir = encode.Decrypt(Request.Cookies["nick"].Value);
+        //string dir = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         Process p = new Process();
         p.StartInfo.FileName = "cmd.exe";
         p.StartInfo.UseShellExecute = false;
@@ -115,6 +125,7 @@ public partial class CreateAPK : System.Web.UI.Page
         p.Start();
         //string strOutput = null;
         //进入目录
+        p.StandardInput.WriteLine("d:");
         p.StandardInput.WriteLine(@"cd D:\APKTool");
 
         //替换相关文件
