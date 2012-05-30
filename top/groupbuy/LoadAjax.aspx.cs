@@ -241,12 +241,13 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
             Response.End();
             return;
         }
-
+        Response.Write(result);
+       
         //删除活动
-        sql = "update  tete_activitylist set Status=4 ,isok=1  WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
-        utils.ExecuteNonQuery(sql);
+        //sql = "update  tete_activitylist set Status=4 ,isok=1  WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
+        //utils.ExecuteNonQuery(sql);
 
-        Response.Write("true");
+       // Response.Write("true");
         Response.End();
 
     }
