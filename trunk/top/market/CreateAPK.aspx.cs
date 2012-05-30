@@ -69,7 +69,7 @@ public partial class CreateAPK : System.Web.UI.Page
                 Fud_logo.PostedFile.SaveAs(@"D:\APKTool\" + dir + @"\res\drawable-hdpi\img_top.jpg");
                 Fud_head.PostedFile.SaveAs(@"D:\APKTool\" + dir + @"\res\drawable-hdpi\icon.png");
 
-                Fud_load.PostedFile.SaveAs(@"D:\APKTool" + dir + @"\res\drawable-hdpi\img_first.png");
+                Fud_load.PostedFile.SaveAs(@"D:\APKTool\" + dir + @"\res\drawable-hdpi\img_first.png");
             }
             catch (Exception ex)
             {
