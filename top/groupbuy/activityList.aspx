@@ -113,6 +113,7 @@
         document.getElementById('li3').className = "";
         document.getElementById('li4').className = "";
         document.getElementById('li5').className = "";
+        document.getElementById('li6').className = "";
         document.getElementById(id).className = "selected";
     }
     setSelect();
