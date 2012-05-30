@@ -155,6 +155,9 @@ public partial class CreateAPK : System.Web.UI.Page
         p.StandardInput.WriteLine("Sign.bat");
         p.StandardInput.WriteLine("cd..");
         p.StandardInput.WriteLine("cd..");
+        p.StandardInput.WriteLine(@"copy " + dir + @"\dist\update_signed.zip userAPK\" + dir + ".apk /y");
+        p.StandardInput.WriteLine("cd..");
+        p.StandardInput.WriteLine("c:");
         p.StandardInput.WriteLine("exit");
         //strOutput = p.StandardOutput.ReadToEnd();
         //Console.WriteLine(strOutput);
