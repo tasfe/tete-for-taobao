@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Xml;
 using System.Web;
 using Common;
+using System.IO;
 
 public partial class CreateAPK : System.Web.UI.Page
 {
@@ -15,40 +16,42 @@ public partial class CreateAPK : System.Web.UI.Page
             {
                 return;
             }
-
-            Process p = new Process();
-            p.StartInfo.FileName = "cmd.exe";
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.RedirectStandardInput = true;
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.RedirectStandardError = true;
-            p.StartInfo.CreateNoWindow = true;
-            p.Start();
-            //string strOutput = null;
-            //进入目录
-            p.StandardInput.WriteLine("d:");
-            p.StandardInput.WriteLine(@"cd D:\APKTool");
-
-            //复制APK
-            //p.StandardInput.WriteLine(@"copy sourceAPK\TeceraNew.apk TeceraNew.apk /y");
-
-            //解压APK
-            //p.StandardInput.WriteLine("apktool d TeceraNew.apk");
-            //创建目录
+            
             //解密NICK
             Rijndael_ encode = new Rijndael_("tetesoft");
             string nick = encode.Decrypt(Request.Cookies["nick"].Value);
-            p.StandardInput.WriteLine("md " + nick);
-            //复制文件到该目录
-            p.StandardInput.WriteLine(@"xcopy TeceraNew\*.* " + nick + " /E");
+            if (!Directory.Exists(@"D:\APKTool\" + nick))
+            {
+                Process p = new Process();
+                p.StartInfo.FileName = "cmd.exe";
+                p.StartInfo.UseShellExecute = false;
+                p.StartInfo.RedirectStandardInput = true;
+                p.StartInfo.RedirectStandardOutput = true;
+                p.StartInfo.RedirectStandardError = true;
+                p.StartInfo.CreateNoWindow = true;
+                p.Start();
+                //string strOutput = null;
+                //进入目录
+                p.StandardInput.WriteLine("d:");
+                p.StandardInput.WriteLine(@"cd D:\APKTool");
 
-            p.StandardInput.WriteLine("exit");
-            //strOutput = p.StandardOutput.ReadToEnd();
-            //Console.WriteLine(strOutput);
-            //p.WaitForExit();
-            p.Close();
+                //复制APK
+                //p.StandardInput.WriteLine(@"copy sourceAPK\TeceraNew.apk TeceraNew.apk /y");
 
+                //解压APK
+                //p.StandardInput.WriteLine("apktool d TeceraNew.apk");
+                //创建目录
+                p.StandardInput.WriteLine("md " + nick);
+                //复制文件到该目录
+                p.StandardInput.WriteLine(@"xcopy TeceraNew\*.* " + nick + " /E /y");
 
+                p.StandardInput.WriteLine("exit");
+                //strOutput = p.StandardOutput.ReadToEnd();
+                //Console.WriteLine(strOutput);
+                //p.WaitForExit();
+                p.Close();
+
+            }
         }
     }
 
