@@ -30,7 +30,7 @@ public partial class CreateAPK : System.Web.UI.Page
                 p.StartInfo.RedirectStandardError = true;
                 p.StartInfo.CreateNoWindow = true;
                 p.Start();
-                //string strOutput = null;
+                string strOutput = null;
                 //进入目录
                 p.StandardInput.WriteLine("d:");
                 p.StandardInput.WriteLine(@"cd D:\APKTool");
@@ -46,9 +46,9 @@ public partial class CreateAPK : System.Web.UI.Page
                 p.StandardInput.WriteLine(@"xcopy TeceraNew\*.* " + nick + " /E /y");
 
                 p.StandardInput.WriteLine("exit");
-                //strOutput = p.StandardOutput.ReadToEnd();
+                strOutput = p.StandardOutput.ReadToEnd();
                 //Console.WriteLine(strOutput);
-                //p.WaitForExit();
+                p.WaitForExit();
                 p.Close();
 
             }
@@ -127,7 +127,7 @@ public partial class CreateAPK : System.Web.UI.Page
         p.StartInfo.RedirectStandardError = true;
         p.StartInfo.CreateNoWindow = true;
         p.Start();
-        //string strOutput = null;
+        string strOutput = null;
         //进入目录
         p.StandardInput.WriteLine("d:");
         p.StandardInput.WriteLine(@"cd D:\APKTool");
@@ -156,9 +156,9 @@ public partial class CreateAPK : System.Web.UI.Page
         p.StandardInput.WriteLine("cd..");
         p.StandardInput.WriteLine("cd..");
         p.StandardInput.WriteLine("exit");
-        //strOutput = p.StandardOutput.ReadToEnd();
+        strOutput = p.StandardOutput.ReadToEnd();
         //Console.WriteLine(strOutput);
-        //p.WaitForExit();
+        p.WaitForExit();
         p.Close();
     }
 
@@ -171,7 +171,6 @@ public partial class CreateAPK : System.Web.UI.Page
 
     protected void Btn_Sign_Click(object sender, EventArgs e)
     {
-        CreateUserAPK();
         //这边复制成nick加apk文件
         //解密NICK
         Rijndael_ encode = new Rijndael_("tetesoft");
@@ -185,15 +184,15 @@ public partial class CreateAPK : System.Web.UI.Page
         p.StartInfo.RedirectStandardError = true;
         p.StartInfo.CreateNoWindow = true;
         p.Start();
-        //string strOutput = null;
+        string strOutput = null;
         //进入目录
         p.StandardInput.WriteLine("d:");
         p.StandardInput.WriteLine(@"cd D:\APKTool");
         p.StandardInput.WriteLine(@"copy " + dir + @"\dist\update_signed.zip userAPK\" + dir + ".apk /y");
         p.StandardInput.WriteLine("exit");
-        //strOutput = p.StandardOutput.ReadToEnd();
+        strOutput = p.StandardOutput.ReadToEnd();
         //Console.WriteLine(strOutput);
-        //p.WaitForExit();
+        p.WaitForExit();
         p.Close();
     }
 }
