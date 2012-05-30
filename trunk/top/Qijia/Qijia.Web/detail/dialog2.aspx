@@ -198,9 +198,6 @@
 【文字3】：
 <input name="text6" id="txt14" maxlength="50" value="" /><br />
 
-<input name="text7" value="text5" type="hidden" />
-【文字4】：
-<input name="text8" id="txt15" maxlength="50" value="" /><br />
 
 </td>
 <td align="left" valign="top">
@@ -442,38 +439,6 @@
             if (Obj("txt14").value.indexOf("<") != -1 || Obj("txt14").value.indexOf(">") != -1) {
                 alert("内容里不能包含尖括号！");
                 Obj("txt14").focus();
-                return false;
-            }
-
-            if (checkNull("txt15")) {
-                alert("请输入文字4！");
-                Obj("txt15").focus();
-                return false;
-            }
-            if (Obj("txt15").value.length > 50) {
-                alert("文字4不能超过50个字符！");
-                Obj("txt15").focus();
-                return false;
-            }
-            if (Obj("txt15").value.indexOf("<") != -1 || Obj("txt15").value.indexOf(">") != -1) {
-                alert("内容里不能包含尖括号！");
-                Obj("txt15").focus();
-                return false;
-            }
-
-            if (checkNull("txt16")) {
-                alert("请输入文字5！");
-                Obj("txt16").focus();
-                return false;
-            }
-            if (Obj("txt16").value.length > 50) {
-                alert("文字5不能超过50个字符！");
-                Obj("txt16").focus();
-                return false;
-            }
-            if (Obj("txt16").value.indexOf("<") != -1 || Obj("txt16").value.indexOf(">") != -1) {
-                alert("内容里不能包含尖括号！");
-                Obj("txt16").focus();
                 return false;
             }
 
