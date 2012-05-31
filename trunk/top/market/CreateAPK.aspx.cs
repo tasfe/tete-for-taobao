@@ -190,13 +190,11 @@ public partial class CreateAPK : System.Web.UI.Page
         p.StandardInput.WriteLine("d:");
         p.StandardInput.WriteLine(@"cd D:\APKTool");
         p.StandardInput.WriteLine("del " + dir + @"\dist\TeceraNew.zip");
-        p.StandardInput.WriteLine("del " + @"userAPK\" + Request.Cookies["nick"].Value + ".apk");
-        p.StandardInput.WriteLine("copy " + dir + @"\dist\update_signed.zip userAPK\" + dir + ".apk /y");
+        p.StandardInput.WriteLine("del " + @"userAPK\" + Request.Cookies["nick"].Value.Replace("=", ".") + ".apk");
+        p.StandardInput.WriteLine("copy " + dir + @"\dist\update_signed.zip userAPK\" + Request.Cookies["nick"].Value.Replace("=", ".") + ".apk /y");
         //用完删除
         p.StandardInput.WriteLine("del " + dir + @"\dist\update_signed.zip");
-        p.StandardInput.WriteLine("cd userAPK");
-        p.StandardInput.WriteLine("ren " + dir + ".apk " + Request.Cookies["nick"].Value + ".apk");
-        p.StandardInput.WriteLine("cd..");
+        //p.StandardInput.WriteLine("cd..");
         p.StandardInput.WriteLine("exit");
         strOutput = p.StandardOutput.ReadToEnd();
         //Console.WriteLine(strOutput);
@@ -206,7 +204,7 @@ public partial class CreateAPK : System.Web.UI.Page
         string fpath = Server.MapPath("~/apkimg") + "/" + Request.Cookies["nick"].Value + ".jpg";
         if (!File.Exists(fpath))
         {
-            System.Drawing.Image img = GCode("http://www.7fshop.com/userAPK/" + Request.Cookies["nick"].Value + ".apk");
+            System.Drawing.Image img = GCode("http://www.7fshop.com/userAPK/" + Request.Cookies["nick"].Value.Replace("=", ".") + ".apk");
             img.Save(fpath);
             Btn_AddCa.Visible = true;
         }
