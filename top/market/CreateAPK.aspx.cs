@@ -221,12 +221,12 @@ public partial class CreateAPK : System.Web.UI.Page
         qrCodeEncoder.QRCodeVersion = 4;
 
         qrCodeEncoder.QRCodeErrorCorrect = QRCodeEncoder.ERROR_CORRECTION.M;
-        var pbImg = qrCodeEncoder.Encode(data);
-        var width = pbImg.Width / 10;
-        var dwidth = width * 2;
+        Bitmap pbImg = qrCodeEncoder.Encode(data);
+        int width = pbImg.Width / 10;
+        int dwidth = width * 2;
         Bitmap bmp = new Bitmap(pbImg.Width + dwidth, pbImg.Height + dwidth);
         Graphics g = Graphics.FromImage(bmp);
-        var c = System.Drawing.Color.White;
+        Color c = System.Drawing.Color.White;
         g.FillRectangle(new SolidBrush(c), 0, 0, pbImg.Width + dwidth, pbImg.Height + dwidth);
         g.DrawImage(pbImg, width, width);
         g.Dispose();
