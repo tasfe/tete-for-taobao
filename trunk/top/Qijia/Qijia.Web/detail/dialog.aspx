@@ -12,7 +12,7 @@
     <div>
     
 
-
+    <%=html %>
 
 <script>
     function selectTemplate(obj, page) {
