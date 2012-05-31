@@ -35,6 +35,14 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
         DeleteTaobaAuto(session);
     }
 
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        nick = this.TextBox1.Text;
+        session = this.TextBox2.Text;
+
+        DeleteTaobaAutoOld(session);
+    }
+
     protected void Button2_Click(object sender, EventArgs e)
     {
         nick = this.TextBox1.Text;
@@ -105,7 +113,7 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
         string secret = "d3486dac8198ef01000e7bd4504601a4";
         //上传到宝贝描述
         TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
-        for (int j = 1; j <= 2; j++)
+        for (int j = 1; j <= 3; j++)
         {
             ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
             request.Fields = "num_iid";
@@ -127,7 +135,6 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
                     string newcontent = CreateDescDel(item.Desc);
 
                     //Response.Write(newcontent);
-                    //return;
 
                     if (newcontent == "")
                     {
@@ -139,12 +146,13 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
                     param.Add("num_iid", product.Content[i].NumIid.ToString());
                     param.Add("desc", newcontent);
                     string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update", session, param);
-                    Response.Write(resultpro + "<br>");
+                    Response.Write(product.Content[i].NumIid.ToString() + "----" +resultpro + "<br>");
+                    //return;
                     //return;
                 }
                 catch(Exception e)
                 {
-                    //Response.Write(e.Message);
+                    Response.Write(e.Message);
                 }
             }
             //Response.Write(product.Content.Count.ToString() + "<br>");
@@ -159,6 +167,64 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
     }
 
 
+    private void DeleteTaobaAutoOld(string session)
+    {
+        string appkey = "12132145";
+        string secret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
+        //上传到宝贝描述
+        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
+        for (int j = 1; j <= 3; j++)
+        {
+            ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
+            request.Fields = "num_iid";
+            request.PageSize = 200;
+            request.PageNo = j;
+            PageList<Item> product = client.ItemsOnsaleGet(request, session);
+
+            for (int i = 0; i < product.Content.Count; i++)
+            {
+                try
+                {
+                    //获取商品详细
+                    ItemGetRequest requestItem = new ItemGetRequest();
+                    requestItem.Fields = "desc";
+                    requestItem.NumIid = product.Content[i].NumIid;
+                    Item item = client.ItemGet(requestItem, session);
+
+                    //判断是否增加过该图片
+                    string newcontent = CreateDescDel(item.Desc);
+
+                    //Response.Write(newcontent);
+
+                    if (newcontent == "")
+                    {
+                        continue;
+                    }
+
+                    //更新宝贝描述
+                    IDictionary<string, string> param = new Dictionary<string, string>();
+                    param.Add("num_iid", product.Content[i].NumIid.ToString());
+                    param.Add("desc", newcontent);
+                    string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update", session, param);
+                    Response.Write(product.Content[i].NumIid.ToString() + "----" + resultpro + "<br>");
+                    //return;
+                    //return;
+                }
+                catch (Exception e)
+                {
+                    Response.Write(e.Message);
+                }
+            }
+            //Response.Write(product.Content.Count.ToString() + "<br>");  
+            if (product.Content.Count < 200)
+            {
+                break;
+            }
+        }
+
+        Response.Write("<script>alert('清除成功！');</script>");
+        Response.End();
+    }
 
 
 
@@ -224,7 +290,7 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
 
 
 
-
+    #region TOP API
     /// <summary> 
     /// 给TOP请求签名 API v2.0 
     /// </summary> 
@@ -284,13 +350,14 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
                 }
                 postData.Append(name);
                 postData.Append("=");
-                //postData.Append(Uri.EscapeDataString(value));
+                // postData.Append(Uri.EscapeDataString(value));
                 postData.Append(GetUriFormate(value));
                 hasParam = true;
             }
         }
         return postData.ToString();
     }
+
     /// <summary>
     /// 将参数转换成 uri 格式
     /// </summary>
@@ -323,7 +390,6 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
 
         return strBuilder.ToString();
     }
-
     /// <summary> 
     /// TOP API POST 请求 
     /// </summary> 
@@ -353,7 +419,7 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
         req.Method = "POST";
         req.KeepAlive = true;
         req.Timeout = 300000;
-        req.ContentType = "application/x-www-form-urlencoded;charset=utf-8";
+        req.ContentType = "application/x-www-form-urlencoded;charset=gb2312";
         byte[] postData = Encoding.UTF8.GetBytes(PostData(param));
         Stream reqStream = req.GetRequestStream();
         reqStream.Write(postData, 0, postData.Length);
@@ -371,4 +437,5 @@ public partial class top_market_deletegroupbuy : System.Web.UI.Page
         #endregion
         return Regex.Replace(result, @"[\x00-\x08\x0b-\x0c\x0e-\x1f]", "");
     }
+    #endregion
 }

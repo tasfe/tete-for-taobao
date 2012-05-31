@@ -15,6 +15,7 @@
         session:<asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
         <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="一键删除团购" />
         <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Text="一键删除好评" />
+        <asp:Button ID="Button3" runat="server" onclick="Button3_Click" Text="一键删除老团购" />
         <asp:Label ID="Label1" runat="server" Visible="false"></asp:Label>
         <asp:Label ID="Label2" runat="server" Visible="false"></asp:Label>
     </div>
