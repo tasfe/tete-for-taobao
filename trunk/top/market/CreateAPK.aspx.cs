@@ -204,7 +204,7 @@ public partial class CreateAPK : System.Web.UI.Page
         string fpath = Server.MapPath("~/apkimg") + "/" + Request.Cookies["nick"].Value + ".jpg";
         if (!File.Exists(fpath))
         {
-            System.Drawing.Image img = GCode("http://www.7fshop.com/apkimg/" + Request.Cookies["nick"].Value + ".apk");
+            System.Drawing.Image img = GCode("http://www.7fshop.com/userAPK/" + Request.Cookies["nick"].Value + ".apk");
             img.Save(fpath);
             Btn_AddCa.Visible = true;
         }
@@ -217,8 +217,8 @@ public partial class CreateAPK : System.Web.UI.Page
 
         qrCodeEncoder.QRCodeEncodeMode = QRCodeEncoder.ENCODE_MODE.BYTE;
 
-        qrCodeEncoder.QRCodeScale = 1;
-        qrCodeEncoder.QRCodeVersion = 4;
+        qrCodeEncoder.QRCodeScale = 4;
+        qrCodeEncoder.QRCodeVersion = 8;
 
         qrCodeEncoder.QRCodeErrorCorrect = QRCodeEncoder.ERROR_CORRECTION.M;
         Bitmap pbImg = qrCodeEncoder.Encode(data);
