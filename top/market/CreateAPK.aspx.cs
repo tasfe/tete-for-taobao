@@ -153,7 +153,7 @@ public partial class CreateAPK : System.Web.UI.Page
         //添加签名
         p.StandardInput.WriteLine("ren TeceraNew.apk TeceraNew.zip");
         p.StandardInput.WriteLine("Sign.bat");
-        //p.StandardInput.WriteLine("cd..");
+        p.StandardInput.WriteLine("cd..");
         //p.StandardInput.WriteLine("cd..");
         p.StandardInput.WriteLine("exit");
         strOutput = p.StandardOutput.ReadToEnd();
