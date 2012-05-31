@@ -206,7 +206,7 @@ public partial class CreateAPK : System.Web.UI.Page
         string fpath = Server.MapPath("~/apkimg") + "/" + Request.Cookies["nick"].Value + ".jpg";
         if (!File.Exists(fpath))
         {
-            System.Drawing.Image img = GCode("http://www.7fshop.com/apkimg/" + Request.Cookies["nick"].Value + ".apk");
+            System.Drawing.Image img = GCode("http://www.7fshop.com/userAPK/" + Request.Cookies["nick"].Value + ".apk");
             img.Save(fpath);
             Btn_AddCa.Visible = true;
         }
