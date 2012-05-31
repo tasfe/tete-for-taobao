@@ -62,6 +62,16 @@
                       onclick="Btn_Sign_Click" />
               </td>
             </tr>
+            <tr>
+              <td colspan="2">
+              第四步：
+                 <asp:Button runat="server" ID="Btn_AddCa" Text="添加到左侧分类" Visible="false" onclick="Btn_AddCa_Click" 
+                       />
+              </td>
+            </tr>
+              <tr><td colspan="2">
+            <asp:Label Visible="false" Text="完成" runat="server" ID="Lbl_Over" />
+            </td></tr>
         </table>
     </div>
     </form>

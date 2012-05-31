@@ -5,6 +5,8 @@ using System.Xml;
 using System.Web;
 using Common;
 using System.IO;
+using ThoughtWorks.QRCode.Codec;
+using System.Drawing;
 
 public partial class CreateAPK : System.Web.UI.Page
 {
@@ -188,8 +190,8 @@ public partial class CreateAPK : System.Web.UI.Page
         p.StandardInput.WriteLine("d:");
         p.StandardInput.WriteLine(@"cd D:\APKTool");
         p.StandardInput.WriteLine("del " + dir + @"\dist\TeceraNew.zip");
-        p.StandardInput.WriteLine("del " + @"userAPK\" + @".apk");
-        p.StandardInput.WriteLine(@"copy " + dir + @"\dist\update_signed.zip userAPK\" + dir + ".apk /y");
+        p.StandardInput.WriteLine("del " + @"userAPK\" + ".apk");
+        p.StandardInput.WriteLine("copy " + dir + @"\dist\update_signed.zip userAPK\" + dir + ".apk /y");
         //用完删除
         p.StandardInput.WriteLine("del " + dir + @"\dist\update_signed.zip");
         //p.StandardInput.WriteLine("cd..");
@@ -198,5 +200,44 @@ public partial class CreateAPK : System.Web.UI.Page
         //Console.WriteLine(strOutput);
         p.WaitForExit();
         p.Close();
+
+        string fpath = Server.MapPath("~/apkimg")+ "/" + dir + ".jpg";
+        if (!File.Exists(fpath))
+        {
+            System.Drawing.Image img = GCode("http://www.7fshop.com/userAPK/" + dir + ".apk");
+            img.Save(fpath);
+            Btn_AddCa.Visible = true;
+        }
+
+    }
+
+    private System.Drawing.Image GCode(string data)
+    {
+        QRCodeEncoder qrCodeEncoder = new QRCodeEncoder();
+
+        qrCodeEncoder.QRCodeEncodeMode = QRCodeEncoder.ENCODE_MODE.BYTE;
+
+        qrCodeEncoder.QRCodeScale = 1;
+        qrCodeEncoder.QRCodeVersion = 4;
+
+        qrCodeEncoder.QRCodeErrorCorrect = QRCodeEncoder.ERROR_CORRECTION.M;
+        var pbImg = qrCodeEncoder.Encode(data);
+        var width = pbImg.Width / 10;
+        var dwidth = width * 2;
+        Bitmap bmp = new Bitmap(pbImg.Width + dwidth, pbImg.Height + dwidth);
+        Graphics g = Graphics.FromImage(bmp);
+        var c = System.Drawing.Color.White;
+        g.FillRectangle(new SolidBrush(c), 0, 0, pbImg.Width + dwidth, pbImg.Height + dwidth);
+        g.DrawImage(pbImg, width, width);
+        g.Dispose();
+
+
+        return bmp;
+    }
+
+
+    protected void Btn_AddCa_Click(object sender, EventArgs e)
+    {
+        Lbl_Over.Visible = true;
     }
 }
