@@ -154,7 +154,7 @@ public partial class CreateAPK : System.Web.UI.Page
         p.StandardInput.WriteLine("ren TeceraNew.apk TeceraNew.zip");
         p.StandardInput.WriteLine("Sign.bat");
         //用完删除
-        p.StandardInput.WriteLine("del  " + dir + @"\dist\TeceraNew.zip");
+        p.StandardInput.WriteLine("del TeceraNew.zip");
         //p.StandardInput.WriteLine("cd..");
         //p.StandardInput.WriteLine("cd..");
         p.StandardInput.WriteLine("exit");
@@ -190,9 +190,11 @@ public partial class CreateAPK : System.Web.UI.Page
         //进入目录
         p.StandardInput.WriteLine("d:");
         p.StandardInput.WriteLine(@"cd D:\APKTool");
+        //p.StandardInput.WriteLine("del " + dir + @"\dist\TeceraNew.zip");
+        p.StandardInput.WriteLine("del " + @"userAPK\" + @".apk");
         p.StandardInput.WriteLine(@"copy " + dir + @"\dist\update_signed.zip userAPK\" + dir + ".apk /y");
         //用完删除
-        p.StandardInput.WriteLine("del  " + dir + @"\dist\update_signed.zip");
+        p.StandardInput.WriteLine("del " + dir + @"\dist\update_signed.zip");
         p.StandardInput.WriteLine("exit");
         strOutput = p.StandardOutput.ReadToEnd();
         //Console.WriteLine(strOutput);
