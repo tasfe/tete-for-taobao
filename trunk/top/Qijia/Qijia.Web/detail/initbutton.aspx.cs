@@ -21,10 +21,10 @@ public partial class Web_detail_initbutton : System.Web.UI.Page
         tplid = Request.QueryString["tplid"] == null ? "0" : Request.QueryString["tplid"].ToString();
         cid = Request.QueryString["cid"] == null ? "0" : Request.QueryString["cid"].ToString();
 
-        if (cid.IndexOf("10020701") != -1 || Request.UserHostAddress.ToString() == "112.65.166.194" || Request.UserHostAddress.ToString() == "117.81.173.220")
-        //if (cid == "1002200101")
-        {
+        //if (cid.IndexOf("10020701") != -1 || Request.UserHostAddress.ToString() == "112.65.166.194" || Request.UserHostAddress.ToString() == "117.81.173.220")
+        ////if (cid == "1002200101")
+        //{
             html = "document.write(str);";
-        }
+        //}
     }
 }
