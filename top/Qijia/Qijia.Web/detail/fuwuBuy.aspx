@@ -9,8 +9,8 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <b>宝贝描述模板管理</b><br /><br />
-        您可以使用此功能来快速创建漂亮的宝贝描述<br /><br />
+        <b>商品描述模板管理</b><br /><br />
+        您可以使用此功能来快速创建漂亮的商品描述<br /><br />
         <asp:Button ID="Button1" runat="server" Text="免费试用" Height="45px" 
             onclick="Button1_Click" Width="135px" />
     </div>
