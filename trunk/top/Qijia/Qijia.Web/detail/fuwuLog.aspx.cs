@@ -33,7 +33,7 @@ public partial class detail_fuwuLog : System.Web.UI.Page
     {
         if (id == "0")
         {
-            this.Label1.Text = "您可以在发布商品时使用我们的生成宝贝描述模板功能！";
+            this.Label1.Text = "您可以在发布或者编辑商品时使用我们的生成宝贝描述模板功能！";
         }
         else
         {
