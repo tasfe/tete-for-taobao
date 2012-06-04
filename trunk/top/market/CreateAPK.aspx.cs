@@ -172,7 +172,8 @@ public partial class CreateAPK : System.Web.UI.Page
         //string dir = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         if (!File.Exists(@"D:\APKTool\" + dir + @"\dist\TeceraNew.zip"))
         {
-           FileStream fs =  File.Create(@"D:\APKTool\" + dir + @"\dist\apk.bat");
+           FileStream fs =  new FileStream(@"D:\APKTool\" + dir + @"\dist\apk.bat",FileMode.Create, FileAccess.Write);//创建写入文件 
+
            StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.UTF8);
            sw.WriteLine("d:");
            sw.WriteLine(@"cd D:\APKTool");
@@ -180,6 +181,9 @@ public partial class CreateAPK : System.Web.UI.Page
            sw.WriteLine("cd " + dir + @"\dist");
            sw.WriteLine("ren TeceraNew.apk TeceraNew.zip");
            sw.WriteLine("call Sign.bat");
+           sw.Close();
+           fs.Close();
+           
            Process p = new Process();
            p.StartInfo.FileName = "cmd.exe";
            p.StartInfo.UseShellExecute = false;
