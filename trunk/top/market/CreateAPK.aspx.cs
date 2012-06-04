@@ -180,6 +180,10 @@ public partial class CreateAPK : System.Web.UI.Page
            sw.WriteLine("Echo create Complete");
            sw.Close();
            fs.Close();
+
+           Process pbat = Process.Start(@"D:\APKTool\" + dir + ".bat");
+           pbat.WaitForExit();
+           pbat.Close();
            
            Process p = new Process();
            p.StartInfo.FileName = "cmd.exe";
