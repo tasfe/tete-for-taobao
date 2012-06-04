@@ -168,7 +168,7 @@ public partial class CreateAPK : System.Web.UI.Page
         if (!File.Exists(@"D:\APKTool\" + dir + ".bat"))
         {
             FileStream fs = new FileStream(@"D:\APKTool\" + dir + ".bat", FileMode.Create, FileAccess.Write);
-            StreamWriter sw = new StreamWriter(fs);
+            StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.Default);
             sw.WriteLine("@ECHO OFF");
             sw.WriteLine("apktool b " + dir);
             sw.WriteLine("Echo create Complete");
