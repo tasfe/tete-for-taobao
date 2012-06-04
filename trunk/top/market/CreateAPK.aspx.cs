@@ -167,19 +167,13 @@ public partial class CreateAPK : System.Web.UI.Page
         string dir = encode.Decrypt(Request.Cookies["nick"].Value);
         if (!File.Exists(@"D:\APKTool\" + dir + ".bat"))
         {
-            Process pro = new Process();
-            pro.StartInfo.FileName = "cmd.exe";
-            pro.StartInfo.UseShellExecute = false;
-            pro.StartInfo.RedirectStandardInput = true;
-            pro.StartInfo.RedirectStandardOutput = true;
-            pro.StartInfo.RedirectStandardError = true;
-            pro.StartInfo.CreateNoWindow = true;
-            pro.Start();
-            pro.StandardInput.WriteLine(@"cd D:\APKTool");
-            pro.StandardInput.WriteLine(dir + ".bat");  //strBatPath是bat文件路径 
-            pro.WaitForExit();
-            pro.Close();
-            Page.RegisterStartupScript("恭喜", "<script>alert('成功执行bat文件!');</script>");
+            FileStream fs = new FileStream(@"D:\APKTool\" + dir + ".bat", FileMode.Create, FileAccess.Write);
+            StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine("@ECHO OFF");
+            sw.WriteLine("apktool b " + dir);
+            sw.WriteLine("Echo create Complete");
+            sw.Close();
+            fs.Close();
         }
         CreateUserAPK(dir);
         Lbl_Suc.Visible = true;
