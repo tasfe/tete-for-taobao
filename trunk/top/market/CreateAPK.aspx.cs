@@ -168,18 +168,21 @@ public partial class CreateAPK : System.Web.UI.Page
         if (File.Exists(@"D:\APKTool\" + dir + ".bat"))
         {
             Process pro = new Process();
-            pro.StartInfo.UseShellExecute = true;
-            pro.StartInfo.FileName = @"D:\APKTool\" + dir + ".bat";  //strBatPath是bat文件路径 
+            pro.StartInfo.FileName = "cmd.exe";
+            pro.StartInfo.UseShellExecute = false;
+            pro.StartInfo.RedirectStandardInput = true;
+            pro.StartInfo.RedirectStandardOutput = true;
+            pro.StartInfo.RedirectStandardError = true;
             pro.StartInfo.CreateNoWindow = true;
-            if (pro.Start())
-            {
-                Page.RegisterStartupScript("恭喜", "<script>alert('成功执行bat文件!');</script>");
-            }
-            else
-            {
-                Page.RegisterStartupScript("抱歉", "<script>alert('执行bat文件失败!');</script>");
-            }
+            pro.Start();
+            pro.StandardInput.WriteLine(@"cd D:\APKTool");
+            pro.StandardInput.WriteLine(dir + ".bat");  //strBatPath是bat文件路径 
+            pro.StandardOutput.ReadToEnd();
+            pro.WaitForExit();
+            pro.Close();
+            Page.RegisterStartupScript("恭喜", "<script>alert('成功执行bat文件!');</script>");
         }
+
         CreateUserAPK(dir);
         //string dir = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         if (!File.Exists(@"D:\APKTool\" + dir + @"\dist\TeceraNew.apk"))
@@ -219,9 +222,14 @@ public partial class CreateAPK : System.Web.UI.Page
             strOutput = p.StandardOutput.ReadToEnd();
             p.WaitForExit();
             p.Close();
+
+            Lbl_Suc.Visible = true;
+            Btn_Sign.Visible = true;
         }
-        Lbl_Suc.Visible = true;
-        Btn_Sign.Visible = true;
+        else
+        {
+            Page.RegisterStartupScript("抱歉", "<script>alert('安装文件生成失败，请再次点击!');</script>");
+        }
     }
 
     protected void Btn_Sign_Click(object sender, EventArgs e)
