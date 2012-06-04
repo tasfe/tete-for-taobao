@@ -19,9 +19,10 @@ public partial class top_review_testapi : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string appkey = "12132145";
-        string secret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
-        string session = "6101920f4127ce602b57fe7a2b3e191d8ecdad8730f2343742108849";
+        string appkey = "12159997";
+        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+
+        string session = "61005035bd51b9021a63f350c63f06e46ad912558661dbb21613548";
 
 
         //91599347271901
@@ -31,22 +32,22 @@ public partial class top_review_testapi : System.Web.UI.Page
 
         IDictionary<string, string> param = new Dictionary<string, string>();
 
-        param.Add("promotion_id", "97049550");
+        param.Add("promotion_id", "5690851");
 
-        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotions.delete", session, param);
+        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupons.get", session, param);
         //<coupon_number>1323930538</coupon_number>
 
         Response.Write("<textarea>" + result + "</textarea>");
 
-        param = new Dictionary<string, string>();
-        param.Add("promotion_id", "97038901");
-        result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotions.delete", session, param);
-        Response.Write("<textarea>" + result + "</textarea>");
+        //param = new Dictionary<string, string>();
+        //param.Add("promotion_id", "97038901");
+        //result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotions.delete", session, param);
+        //Response.Write("<textarea>" + result + "</textarea>");
 
-        param = new Dictionary<string, string>();
-        param.Add("promotion_id", "97049550");
-        result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotions.delete", session, param);
-        Response.Write("<textarea>" + result + "</textarea>");
+        //param = new Dictionary<string, string>();
+        //param.Add("promotion_id", "97049550");
+        //result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotions.delete", session, param);
+        //Response.Write("<textarea>" + result + "</textarea>");
 
         ////IDictionary<string, string> param = new Dictionary<string, string>();
         ////param.Add("tid", "88346138077381");
@@ -73,9 +74,9 @@ public partial class top_review_testapi : System.Web.UI.Page
 
         //Response.Write("<textarea>" + result + "</textarea>");
 
-        string txt = @"<?xml version=""1.0"" encoding=""utf-8"" ?><error_response><args list=""true""><arg><key>app_key</key><value>12159997</value></arg><arg><key>fields</key><value>delivery_start,delivery_end,status</value></arg><arg><key>format</key><value>xml</value></arg><arg><key>method</key><value>taobao.logistics.orders.get</value></arg><arg><key>session</key><value>508312894419b8bd5d07d89e7c65e1c439e36KFsf109a97618794262</value></arg><arg><key>sign</key><value>901E73FB0655390CA336769BA149C420</value></arg><arg><key>sign_method</key><value>md5</value></arg><arg><key>tid</key><value>76048779201050</value></arg><arg><key>timestamp</key><value>2011-09-05 11:38:11</value></arg><arg><key>v</key><value>2.0</value></arg></args><code>550</code><msg>Remote service error</msg><sub_code>isv.invalid-parameter:trade_id:P07</sub_code><sub_msg>查询不到结果,或者交易id不存在</sub_msg></error_response><!--top202077.cm3-->";
+        //string txt = @"<?xml version=""1.0"" encoding=""utf-8"" ?><error_response><args list=""true""><arg><key>app_key</key><value>12159997</value></arg><arg><key>fields</key><value>delivery_start,delivery_end,status</value></arg><arg><key>format</key><value>xml</value></arg><arg><key>method</key><value>taobao.logistics.orders.get</value></arg><arg><key>session</key><value>508312894419b8bd5d07d89e7c65e1c439e36KFsf109a97618794262</value></arg><arg><key>sign</key><value>901E73FB0655390CA336769BA149C420</value></arg><arg><key>sign_method</key><value>md5</value></arg><arg><key>tid</key><value>76048779201050</value></arg><arg><key>timestamp</key><value>2011-09-05 11:38:11</value></arg><arg><key>v</key><value>2.0</value></arg></args><code>550</code><msg>Remote service error</msg><sub_code>isv.invalid-parameter:trade_id:P07</sub_code><sub_msg>查询不到结果,或者交易id不存在</sub_msg></error_response><!--top202077.cm3-->";
 
-        Response.Write(txt.IndexOf("不存在").ToString());
+        //Response.Write(txt.IndexOf("不存在").ToString());
     }
 
 
