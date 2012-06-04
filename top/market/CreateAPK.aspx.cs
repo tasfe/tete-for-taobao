@@ -169,38 +169,6 @@ public partial class CreateAPK : System.Web.UI.Page
     protected void Btn_Create_Click(object sender, EventArgs e)
     {
         CreateUserAPK();
-        //解密NICK
-        Rijndael_ encode = new Rijndael_("tetesoft");
-        string dir = encode.Decrypt(Request.Cookies["nick"].Value);
-        if (!File.Exists(@"D:\APKTool\" + dir + @"\dist\TeceraNew.zip"))
-        {
-            Process p = new Process();
-            p.StartInfo.FileName = "cmd.exe";
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.RedirectStandardInput = true;
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.RedirectStandardError = true;
-            p.StartInfo.CreateNoWindow = true;
-            p.Start();
-            string strOutput = null;
-            //进入目录
-            p.StandardInput.WriteLine("d:");
-            p.StandardInput.WriteLine(@"cd D:\APKTool");
-            //重新生成APK
-            p.StandardInput.WriteLine("apktool b " + dir);
-
-            p.StandardInput.WriteLine("cd " + dir + @"\dist");
-            //添加签名
-            p.StandardInput.WriteLine("ren TeceraNew.apk TeceraNew.zip");
-            p.StandardInput.WriteLine("Sign.bat");
-            p.StandardInput.WriteLine("cd..");
-            p.StandardInput.WriteLine("exit");
-            strOutput = p.StandardOutput.ReadToEnd();
-            //Console.WriteLine(strOutput);
-            p.WaitForExit();
-            p.Close();
-        }
-
         Lbl_Suc.Visible = true;
         Btn_Sign.Visible = true;
     }
@@ -221,9 +189,28 @@ public partial class CreateAPK : System.Web.UI.Page
         p.StartInfo.CreateNoWindow = true;
         p.Start();
         string strOutput = null;
-        //进入目录
-        p.StandardInput.WriteLine("d:");
-        p.StandardInput.WriteLine(@"cd D:\APKTool");
+
+        if (!File.Exists(@"D:\APKTool\" + dir + @"\dist\TeceraNew.zip"))
+        {
+            //进入目录
+            p.StandardInput.WriteLine("d:");
+            p.StandardInput.WriteLine(@"cd D:\APKTool");
+            //重新生成APK
+            p.StandardInput.WriteLine("apktool b " + dir);
+
+            p.StandardInput.WriteLine("cd " + dir + @"\dist");
+            //添加签名
+            p.StandardInput.WriteLine("ren TeceraNew.apk TeceraNew.zip");
+            p.StandardInput.WriteLine("Sign.bat");
+            p.StandardInput.WriteLine("cd..");
+            p.StandardInput.WriteLine("cd..");
+        }
+        else
+        {
+            //进入目录
+            p.StandardInput.WriteLine("d:");
+            p.StandardInput.WriteLine(@"cd D:\APKTool");
+        }
         p.StandardInput.WriteLine("del " + dir + @"\dist\TeceraNew.zip");
         p.StandardInput.WriteLine("del " + @"userAPK\" + Request.Cookies["nick"].Value.Replace("=", ".") + ".apk");
         p.StandardInput.WriteLine("copy " + dir + @"\dist\update_signed.zip userAPK\" + Request.Cookies["nick"].Value.Replace("=", ".") + ".apk /y");
