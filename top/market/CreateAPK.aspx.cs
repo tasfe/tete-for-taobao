@@ -115,11 +115,8 @@ public partial class CreateAPK : System.Web.UI.Page
         }
     }
 
-    private void CreateUserAPK()
+    private void CreateUserAPK(string dir)
     {
-        //解密NICK
-        Rijndael_ encode = new Rijndael_("tetesoft");
-        string dir = encode.Decrypt(Request.Cookies["nick"].Value);
         //string dir = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         Process p = new Process();
         p.StartInfo.FileName = "cmd.exe";
@@ -165,46 +162,54 @@ public partial class CreateAPK : System.Web.UI.Page
 
     protected void Btn_Create_Click(object sender, EventArgs e)
     {
-        CreateUserAPK();
         //解密NICK
         Rijndael_ encode = new Rijndael_("tetesoft");
         string dir = encode.Decrypt(Request.Cookies["nick"].Value);
-        //string dir = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
-        if (!File.Exists(@"D:\APKTool\" + dir + @"\dist\TeceraNew.zip"))
+        if (File.Exists(@"D:\APKTool\" + dir + ".bat"))
         {
-           FileStream fs =  new FileStream(@"D:\APKTool\" + dir + ".bat",FileMode.Create, FileAccess.Write);//创建写入文件 
+            Process pbat = Process.Start(@"D:\APKTool\" + dir + ".bat");
+            pbat.WaitForExit();
+            pbat.Close();
+        }
+        CreateUserAPK(dir);
+        //string dir = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+        if (!File.Exists(@"D:\APKTool\" + dir + @"\dist\TeceraNew.apk"))
+        {
+            if (!File.Exists(@"D:\APKTool\" + dir + ".bat"))
+            {
+                FileStream fs = new FileStream(@"D:\APKTool\" + dir + ".bat", FileMode.Create, FileAccess.Write);//创建写入文件 
 
-           StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.Default);
-           sw.WriteLine("@ECHO OFF");
-           sw.WriteLine("apktool b " + dir);
-           sw.WriteLine("Echo create Complete");
-           sw.Close();
-           fs.Close();
+                StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.Default);
+                sw.WriteLine("@ECHO OFF");
+                sw.WriteLine("apktool b " + dir);
+                sw.WriteLine("Echo create Complete");
+                sw.Close();
+                fs.Close();
+            }
+            Process pbat = Process.Start(@"D:\APKTool\" + dir + ".bat");
+            pbat.WaitForExit();
+            pbat.Close();
 
-           Process pbat = Process.Start(@"D:\APKTool\" + dir + ".bat");
-           pbat.WaitForExit();
-           pbat.Close();
-           
-           Process p = new Process();
-           p.StartInfo.FileName = "cmd.exe";
-           p.StartInfo.UseShellExecute = false;
-           p.StartInfo.RedirectStandardInput = true;
-           p.StartInfo.RedirectStandardOutput = true;
-           p.StartInfo.RedirectStandardError = true;
-           p.StartInfo.CreateNoWindow = true;
-           p.Start();
-           string strOutput = null;
-           p.StandardInput.WriteLine(@"cd D:\APKTool");
-           p.StandardInput.WriteLine(dir + ".bat");
-           p.StandardInput.WriteLine("cd " + dir + @"\dist");
-           //添加签名
-           p.StandardInput.WriteLine("ren TeceraNew.apk TeceraNew.zip");
-           p.StandardInput.WriteLine("Sign.bat");
-           p.StandardInput.WriteLine("cd..");
-           p.StandardInput.WriteLine("exit");
-           strOutput = p.StandardOutput.ReadToEnd();
-           p.WaitForExit();
-           p.Close();
+            Process p = new Process();
+            p.StartInfo.FileName = "cmd.exe";
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.RedirectStandardInput = true;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.RedirectStandardError = true;
+            p.StartInfo.CreateNoWindow = true;
+            p.Start();
+            string strOutput = null;
+            p.StandardInput.WriteLine(@"cd D:\APKTool");
+            p.StandardInput.WriteLine(dir + ".bat");
+            p.StandardInput.WriteLine("cd " + dir + @"\dist");
+            //添加签名
+            p.StandardInput.WriteLine("ren TeceraNew.apk TeceraNew.zip");
+            p.StandardInput.WriteLine("Sign.bat");
+            p.StandardInput.WriteLine("cd..");
+            p.StandardInput.WriteLine("exit");
+            strOutput = p.StandardOutput.ReadToEnd();
+            p.WaitForExit();
+            p.Close();
         }
         Lbl_Suc.Visible = true;
         Btn_Sign.Visible = true;
