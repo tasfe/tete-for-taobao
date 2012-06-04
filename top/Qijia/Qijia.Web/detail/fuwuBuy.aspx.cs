@@ -33,6 +33,7 @@ public partial class detail_fuwuBuy : System.Web.UI.Page
     {
         //如果没有该客户记录则增加记录
         string sql = "SELECT COUNT(*) FROM Jia_Shop WHERE nick = '" + nick + "'";
+        Response.Write(sql);
         string count = DBHelper.ExecuteDataTable(sql).Rows[0][0].ToString();
         if (count == "0")
         {
