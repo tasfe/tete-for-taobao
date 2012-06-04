@@ -26,5 +26,7 @@ public partial class Web_detail_initbutton : System.Web.UI.Page
         //{
             html = "document.write(str);";
         //}
+
+            nick = HttpUtility.UrlEncode(nick);
     }
 }
