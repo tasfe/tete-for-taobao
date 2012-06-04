@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="getuserinfo.aspx.cs" Inherits="top_market_getuserinfo" %>
