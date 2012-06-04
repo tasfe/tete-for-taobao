@@ -14,8 +14,8 @@
 
     <%=html %>
 
-    <br />
-    <a href='jiaocheng1/jiaocheng1.html' target="_blank">查看使用教程</a>
+    <!--<br />
+    <a href='jiaocheng1/jiaocheng1.html' target="_blank">查看使用教程</a>-->
 
 <script>
     function selectTemplate(obj, page) {
