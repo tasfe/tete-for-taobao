@@ -172,15 +172,12 @@ public partial class CreateAPK : System.Web.UI.Page
         //string dir = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         if (!File.Exists(@"D:\APKTool\" + dir + @"\dist\TeceraNew.zip"))
         {
-           FileStream fs =  new FileStream(@"D:\APKTool\" + dir + @"\dist\apk.bat",FileMode.Create, FileAccess.Write);//创建写入文件 
+           FileStream fs =  new FileStream(@"D:\APKTool\" + dir + ".bat",FileMode.Create, FileAccess.Write);//创建写入文件 
 
-           StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.UTF8);
-           sw.WriteLine("d:");
-           sw.WriteLine(@"cd D:\APKTool");
+           StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.Default);
+           sw.WriteLine("@ECHO OFF");
            sw.WriteLine("apktool b " + dir);
-           sw.WriteLine("cd " + dir + @"\dist");
-           sw.WriteLine("ren TeceraNew.apk TeceraNew.zip");
-           sw.WriteLine("call Sign.bat");
+           sw.WriteLine("Echo create Complete");
            sw.Close();
            fs.Close();
            
@@ -193,8 +190,13 @@ public partial class CreateAPK : System.Web.UI.Page
            p.StartInfo.CreateNoWindow = true;
            p.Start();
            string strOutput = null;
-           p.StandardInput.WriteLine(@"cd D:\APKTool\" + dir + @"\dist");
-           p.StandardInput.WriteLine("apk.bat");
+           p.StandardInput.WriteLine(@"cd D:\APKTool");
+           p.StandardInput.WriteLine(dir + ".bat");
+           p.StandardInput.WriteLine("cd " + dir + @"\dist");
+           //添加签名
+           p.StandardInput.WriteLine("ren TeceraNew.apk TeceraNew.zip");
+           p.StandardInput.WriteLine("Sign.bat");
+           p.StandardInput.WriteLine("cd..");
            p.StandardInput.WriteLine("exit");
            strOutput = p.StandardOutput.ReadToEnd();
            p.WaitForExit();
