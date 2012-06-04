@@ -47,5 +47,7 @@ public partial class Web_detail_dialog : System.Web.UI.Page
         {
             Response.Redirect("fuwuBuy.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&nickid=" + nickid + "&id=" + id); 
         }
+
+        nick = HttpUtility.UrlEncode(nick);
     }
 }
