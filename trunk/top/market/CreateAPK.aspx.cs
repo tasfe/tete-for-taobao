@@ -177,59 +177,14 @@ public partial class CreateAPK : System.Web.UI.Page
             pro.Start();
             pro.StandardInput.WriteLine(@"cd D:\APKTool");
             pro.StandardInput.WriteLine(dir + ".bat");  //strBatPath是bat文件路径 
-            pro.StandardOutput.ReadToEnd();
             pro.WaitForExit();
             pro.Close();
             Page.RegisterStartupScript("恭喜", "<script>alert('成功执行bat文件!');</script>");
         }
-
         CreateUserAPK(dir);
-        //string dir = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
-        if (!File.Exists(@"D:\APKTool\" + dir + @"\dist\TeceraNew.apk"))
-        {
-            if (!File.Exists(@"D:\APKTool\" + dir + ".bat"))
-            {
-                FileStream fs = new FileStream(@"D:\APKTool\" + dir + ".bat", FileMode.Create, FileAccess.Write);//创建写入文件 
+        Lbl_Suc.Visible = true;
+        Btn_Sign.Visible = true;
 
-                StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.Default);
-                sw.WriteLine("@ECHO OFF");
-                sw.WriteLine("apktool b " + dir);
-                sw.WriteLine("Echo create Complete");
-                sw.Close();
-                fs.Close();
-            }
-            Process pbat = Process.Start(@"D:\APKTool\" + dir + ".bat");
-            pbat.WaitForExit();
-            pbat.Close();
-
-            Process p = new Process();
-            p.StartInfo.FileName = "cmd.exe";
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.RedirectStandardInput = true;
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.RedirectStandardError = true;
-            p.StartInfo.CreateNoWindow = true;
-            p.Start();
-            string strOutput = null;
-            p.StandardInput.WriteLine(@"cd D:\APKTool");
-            p.StandardInput.WriteLine(dir + ".bat");
-            p.StandardInput.WriteLine("cd " + dir + @"\dist");
-            //添加签名
-            p.StandardInput.WriteLine("ren TeceraNew.apk TeceraNew.zip");
-            p.StandardInput.WriteLine("Sign.bat");
-            p.StandardInput.WriteLine("cd..");
-            p.StandardInput.WriteLine("exit");
-            strOutput = p.StandardOutput.ReadToEnd();
-            p.WaitForExit();
-            p.Close();
-
-            Lbl_Suc.Visible = true;
-            Btn_Sign.Visible = true;
-        }
-        else
-        {
-            Page.RegisterStartupScript("抱歉", "<script>alert('安装文件生成失败，请再次点击!');</script>");
-        }
     }
 
     protected void Btn_Sign_Click(object sender, EventArgs e)
