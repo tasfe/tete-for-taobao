@@ -165,7 +165,7 @@ public partial class CreateAPK : System.Web.UI.Page
         //解密NICK
         Rijndael_ encode = new Rijndael_("tetesoft");
         string dir = encode.Decrypt(Request.Cookies["nick"].Value);
-        if (File.Exists(@"D:\APKTool\" + dir + ".bat"))
+        if (!File.Exists(@"D:\APKTool\" + dir + ".bat"))
         {
             Process pro = new Process();
             pro.StartInfo.FileName = "cmd.exe";
