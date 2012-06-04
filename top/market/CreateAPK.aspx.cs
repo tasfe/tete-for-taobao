@@ -166,6 +166,38 @@ public partial class CreateAPK : System.Web.UI.Page
     protected void Btn_Create_Click(object sender, EventArgs e)
     {
         CreateUserAPK();
+        //解密NICK
+        Rijndael_ encode = new Rijndael_("tetesoft");
+        string dir = encode.Decrypt(Request.Cookies["nick"].Value);
+        if (File.Exists(@"D:\APKTool\" + dir + @"\dist\TeceraNew.zip"))
+        {
+            Process p = new Process();
+            p.StartInfo.FileName = "cmd.exe";
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.RedirectStandardInput = true;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.RedirectStandardError = true;
+            p.StartInfo.CreateNoWindow = true;
+            p.Start();
+            string strOutput = null;
+            //进入目录
+            p.StandardInput.WriteLine("d:");
+            p.StandardInput.WriteLine(@"cd D:\APKTool");
+            //重新生成APK
+            p.StandardInput.WriteLine("apktool b " + dir);
+
+            p.StandardInput.WriteLine("cd " + dir + @"\dist");
+            //添加签名
+            p.StandardInput.WriteLine("ren TeceraNew.apk TeceraNew.zip");
+            p.StandardInput.WriteLine("Sign.bat");
+            p.StandardInput.WriteLine("cd..");
+            p.StandardInput.WriteLine("exit");
+            strOutput = p.StandardOutput.ReadToEnd();
+            //Console.WriteLine(strOutput);
+            p.WaitForExit();
+            p.Close();
+        }
+
         Lbl_Suc.Visible = true;
         Btn_Sign.Visible = true;
     }
@@ -238,6 +270,19 @@ public partial class CreateAPK : System.Web.UI.Page
 
     protected void Btn_AddCa_Click(object sender, EventArgs e)
     {
-        Lbl_Over.Visible = true;
+
+        Rijndael_ encode = new Rijndael_("tetesoft");
+        string nick = encode.Decrypt(Request.Cookies["nick"].Value);
+        if(true)
+        //if (TaoBaoAPI.AddCID(nick, Request.Cookies["nicksession"].Value))
+        {
+            Page.RegisterStartupScript("恭喜", "<script>alert('添加成功!');</script>");
+
+            Lbl_Over.Visible = true;
+        }
+        else
+        {
+            Page.RegisterStartupScript("抱歉", "<script>alert('添加失败!');</script>");
+        }
     }
 }
