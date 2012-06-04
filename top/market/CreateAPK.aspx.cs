@@ -96,6 +96,8 @@ public partial class CreateAPK : System.Web.UI.Page
             xmlDoc.Save(@"D:\APKTool\" + dir + @"\res\values\strings.xml");
 
             Btn_Create.Visible = true;
+
+            Page.RegisterStartupScript("恭喜", "<script>alert('图片上传成功!');</script>");
         }
         else
         {
@@ -161,6 +163,7 @@ public partial class CreateAPK : System.Web.UI.Page
         //Console.WriteLine(strOutput);
         p.WaitForExit();
         p.Close();
+        Page.RegisterStartupScript("恭喜", "<script>alert('生成安装文件成功!');</script>");
     }
 
     protected void Btn_Create_Click(object sender, EventArgs e)
@@ -169,7 +172,7 @@ public partial class CreateAPK : System.Web.UI.Page
         //解密NICK
         Rijndael_ encode = new Rijndael_("tetesoft");
         string dir = encode.Decrypt(Request.Cookies["nick"].Value);
-        if (File.Exists(@"D:\APKTool\" + dir + @"\dist\TeceraNew.zip"))
+        if (!File.Exists(@"D:\APKTool\" + dir + @"\dist\TeceraNew.zip"))
         {
             Process p = new Process();
             p.StartInfo.FileName = "cmd.exe";
