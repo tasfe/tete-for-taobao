@@ -60,6 +60,7 @@ public partial class CreateAPK : BasePage
         if ((CheckFileIsSave(Fud_logo, "jpg") || CheckFileIsSave(Fud_logo, "jpeg")) && CheckFileIsSave(Fud_load, "png") && CheckFileIsSave(Fud_head, "png"))
         {
             string dir = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+            Page.RegisterStartupScript("error", "<script>alert('" + dir+');</script>");
 
             try
             {
