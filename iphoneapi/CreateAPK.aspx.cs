@@ -19,9 +19,7 @@ public partial class CreateAPK : BasePage
                 return;
             }
             
-            //解密NICK
-            Rijndael_ encode = new Rijndael_("tetesoft");
-            string nick = encode.Decrypt(Request.Cookies["nick"].Value);
+            string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
             if (!Directory.Exists(@"D:\APKTool\" + nick))
             {
                 Process p = new Process();
@@ -61,10 +59,7 @@ public partial class CreateAPK : BasePage
     {
         if ((CheckFileIsSave(Fud_logo, "jpg") || CheckFileIsSave(Fud_logo, "jpeg")) && CheckFileIsSave(Fud_load, "png") && CheckFileIsSave(Fud_head, "png"))
         {
-            //解密NICK
-            Rijndael_ encode = new Rijndael_("tetesoft");
-            string dir = encode.Decrypt(Request.Cookies["nick"].Value);
-            //string dir = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+            string dir = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
 
             try
             {
@@ -166,9 +161,7 @@ public partial class CreateAPK : BasePage
 
     protected void Btn_Create_Click(object sender, EventArgs e)
     {
-        //解密NICK
-        Rijndael_ encode = new Rijndael_("tetesoft");
-        string dir = encode.Decrypt(Request.Cookies["nick"].Value);
+        string dir = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         if (!File.Exists(@"D:\APKTool\" + dir + ".bat"))
         {
             FileStream fs = new FileStream(@"D:\APKTool\" + dir + ".bat", FileMode.Create, FileAccess.Write);
@@ -188,10 +181,7 @@ public partial class CreateAPK : BasePage
     protected void Btn_Sign_Click(object sender, EventArgs e)
     {
         //这边复制成nick加apk文件
-        //解密NICK
-        Rijndael_ encode = new Rijndael_("tetesoft");
-        string dir = encode.Decrypt(Request.Cookies["nick"].Value);
-        //string dir = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+        string dir = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         Process p = new Process();
         p.StartInfo.FileName = "cmd.exe";
         p.StartInfo.UseShellExecute = false;
