@@ -198,7 +198,7 @@ public partial class CreateAPK : BasePage
         p.StandardInput.WriteLine(@"cd D:\APKTool");
         p.StandardInput.WriteLine("del " + dir + @"\dist\TeceraNew.zip");
         p.StandardInput.WriteLine("del " + @"userAPK\" + Request.Cookies["nick"].Value.Replace("=", ".") + ".apk");
-        p.StandardInput.WriteLine("copy " + dir + @"\dist\update_signed.zip userAPK\" + Request.Cookies["nick"].Value.Replace("=", ".") + ".apk /y");
+        p.StandardInput.WriteLine("copy " + dir + @"\dist\update_signed.zip userAPK\" + dir + ".apk /y");
         //用完删除
         p.StandardInput.WriteLine("del " + dir + @"\dist\update_signed.zip");
         //p.StandardInput.WriteLine("cd..");
@@ -211,7 +211,7 @@ public partial class CreateAPK : BasePage
         string fpath = Server.MapPath("~/apkimg") + "/" + dir + ".jpg";
         if (!File.Exists(fpath))
         {
-            System.Drawing.Image img = GCode("http://www.7fshop.com/userAPK/" + Request.Cookies["nick"].Value.Replace("=", ".") + ".apk");
+            System.Drawing.Image img = GCode("http://www.7fshop.com/userAPK/" + Request.Cookies["nick"].Value + ".apk");
             img.Save(fpath);
         }
 
