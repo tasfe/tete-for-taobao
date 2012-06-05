@@ -22,6 +22,9 @@ public partial class CreateAPK : System.Web.UI.Page
             //解密NICK
             Rijndael_ encode = new Rijndael_("tetesoft");
             string nick = encode.Decrypt(Request.Cookies["nick"].Value);
+
+            Response.Redirect("http://iphone.tetesoft.com/CreateAPK.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&nicksession=" + Request.Cookies["top_session"].Value);
+
             if (!Directory.Exists(@"D:\APKTool\" + nick))
             {
                 Process p = new Process();
@@ -89,7 +92,11 @@ public partial class CreateAPK : System.Web.UI.Page
                 if (xe.GetAttribute("name") == "app_name")
                 {
                     xe.InnerText = Tb_AppName.Text;
-                    break;
+                }
+
+                if (xe.GetAttribute("name") == "user_nick")
+                {
+                    xe.InnerText = dir;
                 }
             }
 
@@ -218,9 +225,9 @@ public partial class CreateAPK : System.Web.UI.Page
         {
             System.Drawing.Image img = GCode("http://www.7fshop.com/userAPK/" + Request.Cookies["nick"].Value.Replace("=", ".") + ".apk");
             img.Save(fpath);
-            Btn_AddCa.Visible = true;
         }
 
+        Btn_AddCa.Visible = true;
     }
 
     private System.Drawing.Image GCode(string data)
