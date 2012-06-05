@@ -208,14 +208,14 @@ public partial class CreateAPK : BasePage
         p.WaitForExit();
         p.Close();
 
-        string fpath = Server.MapPath("~/apkimg") + "/" + Request.Cookies["nick"].Value + ".jpg";
+        string fpath = Server.MapPath("~/apkimg") + "/" + dir + ".jpg";
         if (!File.Exists(fpath))
         {
             System.Drawing.Image img = GCode("http://www.7fshop.com/userAPK/" + Request.Cookies["nick"].Value.Replace("=", ".") + ".apk");
             img.Save(fpath);
         }
 
-        Img_Apk.ImageUrl = "http://iphone.7fshop.com/apkimg/" + Request.Cookies["nick"].Value + ".jpg";
+        Img_Apk.ImageUrl = "http://iphone.7fshop.com/apkimg/" + dir + ".jpg";
         Img_Apk.Visible = true;
         Btn_AddCa.Visible = true;
     }
