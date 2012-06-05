@@ -420,7 +420,7 @@ public partial class api_Default : System.Web.UI.Page
         }
 
         sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY id DESC) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY id DESC";
-        //Response.Write(sql);
+        Response.Write(sql);
         //sql = "SELECT * FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
