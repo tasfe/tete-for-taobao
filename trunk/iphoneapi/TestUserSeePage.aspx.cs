@@ -11,26 +11,26 @@ public partial class TestUserSeePage : System.Web.UI.Page
         {
             //PostIphoneMsg pmsg = new PostIphoneMsg(Tb_UserNick);
             //pmsg.PostMsg("sddfs");
-            int width = 160;
+            //int width = 160;
 
-            QRCodeEncoder qrCodeEncoder = new QRCodeEncoder();
+            //QRCodeEncoder qrCodeEncoder = new QRCodeEncoder();
 
-            qrCodeEncoder.QRCodeEncodeMode = QRCodeEncoder.ENCODE_MODE.BYTE;
+            //qrCodeEncoder.QRCodeEncodeMode = QRCodeEncoder.ENCODE_MODE.BYTE;
 
-            qrCodeEncoder.QRCodeScale = 1;
-            qrCodeEncoder.QRCodeVersion = 4;
+            //qrCodeEncoder.QRCodeScale = 1;
+            //qrCodeEncoder.QRCodeVersion = 4;
 
-            qrCodeEncoder.QRCodeErrorCorrect = QRCodeEncoder.ERROR_CORRECTION.M;
-            var pbImg = qrCodeEncoder.Encode("{\"coupon\":\"F90B057C-F36A-430F-8030-0E2C995930A1\"}");
-            var dwidth = width * 2;
-            Bitmap bmp = new Bitmap(pbImg.Width + dwidth, pbImg.Height + dwidth);
-            Graphics g = Graphics.FromImage(bmp);
-            var c = System.Drawing.Color.White;
-            g.FillRectangle(new SolidBrush(c), 0, 0, pbImg.Width + dwidth, pbImg.Height + dwidth);
-            g.DrawImage(pbImg, width, width);
-            g.Dispose();
+            //qrCodeEncoder.QRCodeErrorCorrect = QRCodeEncoder.ERROR_CORRECTION.M;
+            //var pbImg = qrCodeEncoder.Encode("{\"coupon\":\"F90B057C-F36A-430F-8030-0E2C995930A1\"}");
+            //var dwidth = width * 2;
+            //Bitmap bmp = new Bitmap(pbImg.Width + dwidth, pbImg.Height + dwidth);
+            //Graphics g = Graphics.FromImage(bmp);
+            //var c = System.Drawing.Color.White;
+            //g.FillRectangle(new SolidBrush(c), 0, 0, pbImg.Width + dwidth, pbImg.Height + dwidth);
+            //g.DrawImage(pbImg, width, width);
+            //g.Dispose();
 
-            bmp.Save(HttpRuntime.AppDomainAppPath + "two.jpg");
+            //bmp.Save(HttpRuntime.AppDomainAppPath + "two.jpg");
 
         }
     }
