@@ -7,6 +7,7 @@ using Common;
 using System.IO;
 using ThoughtWorks.QRCode.Codec;
 using System.Drawing;
+using System.Security.Cryptography;
 
 public partial class CreateAPK : BasePage
 {
@@ -88,7 +89,7 @@ public partial class CreateAPK : BasePage
 
                 if (xe.GetAttribute("name") == "user_nick")
                 {
-                    xe.InnerText = dir;
+                    xe.InnerText = Encrypt(Request.QueryString["nick"]);
                 }
             }
 
@@ -174,6 +175,7 @@ public partial class CreateAPK : BasePage
             fs.Close();
         }
         CreateUserAPK(dir);
+        Page.RegisterStartupScript("恭喜", "<script>alert('生成成功!');</script>");
         Lbl_Suc.Visible = true;
         Btn_Sign.Visible = true;
 
@@ -249,7 +251,7 @@ public partial class CreateAPK : BasePage
 
         Rijndael_ encode = new Rijndael_("tetesoft");
         string nick = encode.Decrypt(Request.Cookies["nick"].Value);
-        if(true)
+        if (true)
         //if (TaoBaoAPI.AddCID(nick, Request.Cookies["nicksession"].Value))
         {
             Page.RegisterStartupScript("恭喜", "<script>alert('添加成功!');</script>");
