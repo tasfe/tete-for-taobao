@@ -21,7 +21,7 @@ public partial class UpdateGoods : BasePage
 
         TeteShopCategoryService cateDal = new TeteShopCategoryService();
 
-        IList<TeteShopInfo> list = CacheCollection.GetNickSessionList().Where(o => o.Nick == nick && o.Session == session).ToList();
+        IList<TeteShopInfo> list = CacheCollection.GetNickSessionList().Where(o => o.Short == nick && o.Session == session).ToList();
 
         TeteShopInfo info = null;
         if (list.Count > 0)
