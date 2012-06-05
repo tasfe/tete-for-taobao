@@ -26,6 +26,18 @@ public class BasePage : System.Web.UI.Page
             HttpCookie cookieSe = new HttpCookie("nicksession", Request.QueryString["nicksession"]);
             cookieSe.Expires = DateTime.Now.AddDays(1);
             Response.Cookies.Add(cookieSe);
+
+            TeteShopService tss = new TeteShopService();
+            if (tss.GetShopInfo(Request.QueryString["nick"]) == null)
+            {
+                TeteShopInfo info = new TeteShopInfo();
+                info.Nick = Request.QueryString["nick"];
+                info.Session = Request.QueryString["nicksession"];
+                info.Adddate = DateTime.Now;
+                info.Appkey = "1421367737";
+                info.Appsecret = "2be4da41eb329b6327b7b2ac56ffbe6e";
+                tss.InsertShop(info);
+            }
         }
         else
         {
