@@ -34,8 +34,8 @@ public class BasePage : System.Web.UI.Page
                 info.Nick = Request.QueryString["nick"];
                 info.Session = Request.QueryString["nicksession"];
                 info.Adddate = DateTime.Now;
-                info.Appkey = "1421367737";
-                info.Appsecret = "2be4da41eb329b6327b7b2ac56ffbe6e";
+                info.Appkey = "12132145";
+                info.Appsecret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
                 tss.InsertShop(info);
             }
         }

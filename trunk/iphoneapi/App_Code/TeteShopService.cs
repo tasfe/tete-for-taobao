@@ -50,11 +50,9 @@ public class TeteShopService
         {
             TeteShopInfo info = new TeteShopInfo();
             info.Nick = dr["nick"].ToString();
-            info.Sid = dr["sid"].ToString();
             info.Appkey = dr["appkey"].ToString();
             info.Appsecret = dr["appsecret"].ToString();
             info.Session = dr["session"].ToString();
-            info.Short = dr["short"].ToString();
 
             list.Add(info);
         }
