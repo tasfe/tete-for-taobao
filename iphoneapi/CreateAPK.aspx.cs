@@ -215,7 +215,7 @@ public partial class CreateAPK : BasePage
             img.Save(fpath);
         }
 
-        Img_Apk.ImageUrl = "http://iphone.tetesoft.com/apkimg/" + Request.Cookies["nick"].Value + ".jpg";
+        Img_Apk.ImageUrl = "http://iphone.7fshop.com/apkimg/" + Request.Cookies["nick"].Value + ".jpg";
         Img_Apk.Visible = true;
         Btn_AddCa.Visible = true;
     }
