@@ -159,7 +159,7 @@ public partial class UpdateGoods : BasePage
     private static void InitItem(string nick, GoodsInfo cinfo, TeteShopItemInfo ainfo)
     {
         ainfo.Itemid = cinfo.num_iid;
-        ainfo.Nick = nick;
+        ainfo.Nick = Encrypt(nick);
         ainfo.Price = (double)cinfo.price;
         ainfo.Picurl = cinfo.pic_url;
         ainfo.Itemname = cinfo.title;
@@ -173,6 +173,6 @@ public partial class UpdateGoods : BasePage
         ainfo.Parentid = cinfo.parent_cid;
         ainfo.Catename = cinfo.name;
         ainfo.Catepicurl = cinfo.pic_url;
-        ainfo.Nick = nick;
+        ainfo.Nick = Encrypt(nick);
     }
 }
