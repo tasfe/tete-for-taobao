@@ -9,6 +9,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using System.Security.Cryptography;
 
 /// <summary>
 /// Summary description for BasePage
@@ -31,8 +32,9 @@ public class BasePage : System.Web.UI.Page
             if (tss.GetShopInfo(Request.QueryString["nick"]) == null)
             {
                 TeteShopInfo info = new TeteShopInfo();
-                info.Nick = Request.QueryString["nick"];
+                info.Nick = Encrypt(Request.QueryString["nick"]);
                 info.Session = Request.QueryString["nicksession"];
+                info.Short = Request.QueryString["nick"];
                 info.Adddate = DateTime.Now;
                 info.Appkey = "12132145";
                 info.Appsecret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
@@ -52,4 +54,18 @@ public class BasePage : System.Web.UI.Page
         //    Session["session"] = Request.Cookies["nicksession"].Value;
         //}
     }
+
+    public static string Encrypt(string strPwd)
+    {
+        MD5 md5 = new MD5CryptoServiceProvider();
+        byte[] data = System.Text.Encoding.Default.GetBytes(strPwd);//将字符编码为一个字节序列 
+        byte[] md5data = md5.ComputeHash(data);//计算data字节数组的哈希值 
+        md5.Clear();
+        string str = "";
+        for (int i = 0; i < md5data.Length - 1; i++)
+        {
+            str += md5data[i].ToString("x").PadLeft(2, '0');
+        }
+        return str;
+    } 
 }
