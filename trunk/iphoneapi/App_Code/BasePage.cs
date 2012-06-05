@@ -30,16 +30,9 @@ public class BasePage : System.Web.UI.Page
         else
         {
 
-            if (Request.Cookies["nick"] == null || Request.Cookies["nicksession"].Value != null)
+            if (Request.Cookies["nick"] == null || Request.Cookies["nicksession"].Value == null)
                 Response.Redirect("buy.aspx?msg=" + msg);
-            else
-            {
-                if (Request.Cookies["nick"] == null || string.IsNullOrEmpty(Request.Cookies["nick"].Value))
-                    Response.Redirect("http://fuwu.taobao.com/serv/my_service.htm");
-                else
-                {
-                }
-            }
+           
         }
         //else
         //{
