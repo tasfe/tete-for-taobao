@@ -70,7 +70,7 @@ public partial class CreateAPK : BasePage
             }
             catch (Exception ex)
             {
-                Page.RegisterStartupScript("error", "<script>alert('图片上传失败,请重试!" + ex.Message.ToString() + "');</script>");
+                Page.RegisterStartupScript("error", "<script>alert(" + dir + "'图片上传失败,请重试!" + ex.Message.ToString() + "');</script>");
                 return;
             }
             XmlDocument xmlDoc = new XmlDocument();
