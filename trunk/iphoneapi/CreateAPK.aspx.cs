@@ -63,38 +63,46 @@ public partial class CreateAPK : BasePage
 
             try
             {
-                Fud_logo.PostedFile.SaveAs(@"D:\APKTool\" + dir + @"\res\drawable-hdpi\img_top.jpg");
-                Fud_head.PostedFile.SaveAs(@"D:\APKTool\" + dir + @"\res\drawable-hdpi\icon.png");
 
-                Fud_load.PostedFile.SaveAs(@"D:\APKTool\" + dir + @"\res\drawable-hdpi\img_first.png");
+                try
+                {
+                    Fud_logo.PostedFile.SaveAs(@"D:\APKTool\" + dir + @"\res\drawable-hdpi\img_top.jpg");
+                    Fud_head.PostedFile.SaveAs(@"D:\APKTool\" + dir + @"\res\drawable-hdpi\icon.png");
+
+                    Fud_load.PostedFile.SaveAs(@"D:\APKTool\" + dir + @"\res\drawable-hdpi\img_first.png");
+                }
+                catch (Exception ex)
+                {
+                    Page.RegisterStartupScript("error", "<script>alert(" + dir + "'图片上传失败,请重试!" + ex.Message.ToString() + "');</script>");
+                    return;
+                }
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(@"D:\APKTool\" + dir + @"\res\values\strings.xml");
+
+                XmlNodeList xnl = xmlDoc.SelectSingleNode("resources").ChildNodes;
+
+                foreach (XmlNode xn in xnl)
+                {
+                    XmlElement xe = (XmlElement)xn;
+                    if (xe.GetAttribute("name") == "app_name")
+                    {
+                        xe.InnerText = Tb_AppName.Text;
+                    }
+
+                    if (xe.GetAttribute("name") == "user_nick")
+                    {
+                        xe.InnerText = dir;
+                    }
+                }
+
+                xmlDoc.Save(@"D:\APKTool\" + dir + @"\res\values\strings.xml");
+
+                Btn_Create.Visible = true;
             }
             catch (Exception ex)
             {
-                Page.RegisterStartupScript("error", "<script>alert(" + dir + "'图片上传失败,请重试!" + ex.Message.ToString() + "');</script>");
-                return;
+                Page.RegisterStartupScript("error", "<script>alert(" + dir + "'失败,请重试!" + ex.Message.ToString() + "');</script>");
             }
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(@"D:\APKTool\" + dir + @"\res\values\strings.xml");
-
-            XmlNodeList xnl = xmlDoc.SelectSingleNode("resources").ChildNodes;
-
-            foreach (XmlNode xn in xnl)
-            {
-                XmlElement xe = (XmlElement)xn;
-                if (xe.GetAttribute("name") == "app_name")
-                {
-                    xe.InnerText = Tb_AppName.Text;
-                }
-
-                if (xe.GetAttribute("name") == "user_nick")
-                {
-                    xe.InnerText = dir;
-                }
-            }
-
-            xmlDoc.Save(@"D:\APKTool\" + dir + @"\res\values\strings.xml");
-
-            Btn_Create.Visible = true;
         }
         else
         {
