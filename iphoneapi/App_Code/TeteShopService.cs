@@ -23,7 +23,7 @@ public class TeteShopService
 
     const string SQL_UPDATE = "UPDATE TeteShop SET ads=@ads,logo=@logo WHERE guid=@guid";
 
-    const string SQL_INSERT = "INSERT TeteShop([guid],nick,appkey,appsecret,session,adddate) VALUES(@guid,@nick,@appkey,@appsecret,@session,@adddate)";
+    const string SQL_INSERT = "INSERT TeteShop([guid],nick,appkey,appsecret,session,adddate,short) VALUES(@guid,@nick,@appkey,@appsecret,@session,@adddate,@short)";
 
     public int InsertShop(TeteShopInfo info)
     {
@@ -31,6 +31,7 @@ public class TeteShopService
         {
             new SqlParameter("@guid",Guid.NewGuid()),
             new SqlParameter("@nick",info.Nick),
+            new SqlParameter("@short",info.Short),
             new SqlParameter("@appkey",info.Appkey),
             new SqlParameter("@appsecret",info.Appsecret),
             new SqlParameter("@session",info.Session),

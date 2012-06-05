@@ -29,7 +29,7 @@ public class BasePage : System.Web.UI.Page
             Response.Cookies.Add(cookieSe);
 
             TeteShopService tss = new TeteShopService();
-            if (tss.GetShopInfo(Request.QueryString["nick"]) == null)
+            if (tss.GetShopInfo(Encrypt(Request.QueryString["nick"])) == null)
             {
                 TeteShopInfo info = new TeteShopInfo();
                 info.Nick = Encrypt(Request.QueryString["nick"]);
