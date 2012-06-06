@@ -228,8 +228,8 @@ public partial class CreateAPK : BasePage
 
         qrCodeEncoder.QRCodeEncodeMode = QRCodeEncoder.ENCODE_MODE.BYTE;
 
-        qrCodeEncoder.QRCodeScale = 4;
-        qrCodeEncoder.QRCodeVersion = 8;
+        qrCodeEncoder.QRCodeScale = 1;
+        qrCodeEncoder.QRCodeVersion = 4;
 
         qrCodeEncoder.QRCodeErrorCorrect = QRCodeEncoder.ERROR_CORRECTION.M;
         Bitmap pbImg = qrCodeEncoder.Encode(data);
