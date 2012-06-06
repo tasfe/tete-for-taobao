@@ -19,6 +19,8 @@ public class GoodsInfo
 
     public string nick { set; get; }
 
+    public string seller_cids { set; get; }
+
     public decimal price { set; get; }
 
     public string cid { set; get; }
