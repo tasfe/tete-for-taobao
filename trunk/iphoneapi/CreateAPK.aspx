@@ -11,7 +11,7 @@
         <table>
             <tr>
                 <td>
-                    Logo：
+                    头部图片：
                 </td>
                 <td>
                     <asp:FileUpload ID="Fud_logo" runat="server" /> jpg图片
@@ -27,7 +27,7 @@
             </tr>
             <tr>
                 <td>
-                    头部图片：
+                    Logo：
                 </td>
                 <td>
                     <asp:FileUpload ID="Fud_head" runat="server" /> png图片
