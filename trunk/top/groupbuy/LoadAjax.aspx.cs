@@ -238,6 +238,10 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
                 Response.End();
             }
 
+            sql = "update  [tete_activitylist] set  Status=4  WHERE Status=1 and ActivityID = " + actionId + " and  ProductID=" + iid;
+
+            utils.ExecuteNonQuery(sql);
+
             Response.Write("<b>活动删除失败，错误原因：</b><br><font color='red'>" + err + "</font>");
             Response.End();
             return;
