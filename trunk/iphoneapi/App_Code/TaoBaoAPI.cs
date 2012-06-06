@@ -283,7 +283,7 @@ public class TaoBaoAPI
             page_no++;
             Dictionary<string, string> dic = new Dictionary<string, string>();
             dic.Add("nick", nick);
-            dic.Add("fields", "num_iid,title,cid,pic_url,price");
+            dic.Add("fields", "num_iid,title,seller_cids,pic_url,price");
             dic.Add("page_no", page_no.ToString());
             dic.Add("page_size", "200");
             string text = Post(nick, "taobao.items.onsale.get", session, dic, DataFormatType.json, appkey, appSecret);
