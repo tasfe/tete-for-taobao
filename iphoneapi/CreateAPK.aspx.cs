@@ -228,8 +228,8 @@ public partial class CreateAPK : BasePage
 
         qrCodeEncoder.QRCodeEncodeMode = QRCodeEncoder.ENCODE_MODE.BYTE;
 
-        qrCodeEncoder.QRCodeScale = 1;
-        qrCodeEncoder.QRCodeVersion = 4;
+        qrCodeEncoder.QRCodeScale = 4;
+        qrCodeEncoder.QRCodeVersion = 8;
 
         qrCodeEncoder.QRCodeErrorCorrect = QRCodeEncoder.ERROR_CORRECTION.M;
         Bitmap pbImg = qrCodeEncoder.Encode(data);
@@ -238,7 +238,7 @@ public partial class CreateAPK : BasePage
         Bitmap bmp = new Bitmap(pbImg.Width + dwidth, pbImg.Height + dwidth);
         Graphics g = Graphics.FromImage(bmp);
         Color c = System.Drawing.Color.White;
-        g.FillRectangle(new SolidBrush(c), 0, 0, pbImg.Width + dwidth, pbImg.Height + dwidth);
+        g.FillRectangle(new SolidBrush(c), 0, 0, 160, 160);//pbImg.Width + dwidth, pbImg.Height + dwidth);
         g.DrawImage(pbImg, width, width);
         g.Dispose();
 
