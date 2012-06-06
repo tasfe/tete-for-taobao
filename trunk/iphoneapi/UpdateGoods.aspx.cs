@@ -80,19 +80,19 @@ public partial class UpdateGoods : BasePage
         }
 
         //删除
-        List<TeteShopCategoryInfo> delList = new List<TeteShopCategoryInfo>();
-        foreach (TeteShopCategoryInfo cinfo in cateList)
-        {
-            if (upList.Where(o => o.Cateid == cinfo.Cateid).ToList().Count == 0)
-            {
-                delList.Add(cinfo);
-            }
-        }
+        //List<TeteShopCategoryInfo> delList = new List<TeteShopCategoryInfo>();
+        //foreach (TeteShopCategoryInfo cinfo in cateList)
+        //{
+        //    if (upList.Where(o => o.Cateid == cinfo.Cateid).ToList().Count == 0)
+        //    {
+        //        delList.Add(cinfo);
+        //    }
+        //}
 
-        foreach (TeteShopCategoryInfo cinfo in upList)
-        {
-            cateDal.DeleteTeteShopCategory(cinfo.Id);
-        }
+        //foreach (TeteShopCategoryInfo cinfo in upList)
+        //{
+        //    cateDal.DeleteTeteShopCategory(cinfo.Id);
+        //}
 
         //更新商品
         ActionGoods(nick, session, info);
@@ -141,19 +141,19 @@ public partial class UpdateGoods : BasePage
         }
 
         //删除
-        List<TeteShopItemInfo> delList = new List<TeteShopItemInfo>();
-        foreach (TeteShopItemInfo cinfo in itemList)
-        {
-            if (upList.Where(o => o.Itemid == cinfo.Itemid).ToList().Count == 0)
-            {
-                delList.Add(cinfo);
-            }
-        }
+        //List<TeteShopItemInfo> delList = new List<TeteShopItemInfo>();
+        //foreach (TeteShopItemInfo cinfo in itemList)
+        //{
+        //    if (upList.Where(o => o.Itemid == cinfo.Itemid).ToList().Count == 0)
+        //    {
+        //        delList.Add(cinfo);
+        //    }
+        //}
 
-        foreach (TeteShopItemInfo cinfo in upList)
-        {
-            itemDal.DeleteTeteShopItem(cinfo.Id);
-        }
+        //foreach (TeteShopItemInfo cinfo in upList)
+        //{
+        //    itemDal.DeleteTeteShopItem(cinfo.Id);
+        //}
     }
 
     private static void InitItem(string nick, GoodsInfo cinfo, TeteShopItemInfo ainfo)
