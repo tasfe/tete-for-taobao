@@ -23,7 +23,7 @@ public partial class CreateAPK : System.Web.UI.Page
             Rijndael_ encode = new Rijndael_("tetesoft");
             string nick = encode.Decrypt(Request.Cookies["nick"].Value);
 
-            Response.Redirect("http://iphone.tetesoft.com/CreateAPK.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&nicksession=" + Request.Cookies["top_session"].Value);
+            Response.Redirect("http://iphone.7fshop.com/CreateAPK.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&nicksession=" + Request.Cookies["top_session"].Value);
 
             if (!Directory.Exists(@"D:\APKTool\" + nick))
             {
