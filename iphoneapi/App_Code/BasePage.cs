@@ -28,6 +28,10 @@ public class BasePage : System.Web.UI.Page
             cookieSe.Expires = DateTime.Now.AddDays(1);
             Response.Cookies.Add(cookieSe);
 
+            HttpCookie cookieM = new HttpCookie("mobile", Request.QueryString["nicksession"]);
+            cookieM.Expires = DateTime.Now.AddDays(1);
+            Response.Cookies.Add(cookieM);
+
             TeteShopService tss = new TeteShopService();
             if (tss.GetShopInfo(Encrypt(Request.QueryString["nick"])) == null)
             {
@@ -44,7 +48,7 @@ public class BasePage : System.Web.UI.Page
         }
         else
         {
-            if (Request.Cookies["nick"] == null || Request.Cookies["nicksession"].Value == null)
+            if (Request.Cookies["nick"] == null || Request.Cookies["nicksession"] == null || Request.Cookies["mobile"] == null)
                 Response.Redirect("http://www.7fshop.com/top/market/buy.aspx?msg=" + msg);
 
         }
