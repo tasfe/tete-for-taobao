@@ -163,7 +163,7 @@ public partial class UpdateGoods : BasePage
         ainfo.Price = (double)cinfo.price;
         ainfo.Picurl = cinfo.pic_url;
         ainfo.Itemname = cinfo.title;
-        ainfo.Cateid = cinfo.cid;
+        ainfo.Cateid = cinfo.seller_cids;
         ainfo.Linkurl = "http://item.taobao.com/item.htm?id=" + ainfo.Itemid;
     }
 
