@@ -235,10 +235,10 @@ public partial class CreateAPK : BasePage
         Bitmap pbImg = qrCodeEncoder.Encode(data);
         int width = pbImg.Width / 10;
         int dwidth = width * 2;
-        Bitmap bmp = new Bitmap(pbImg.Width + dwidth, pbImg.Height + dwidth);
+        Bitmap bmp = new Bitmap(160, 160);//pbImg.Width + dwidth, pbImg.Height + dwidth);
         Graphics g = Graphics.FromImage(bmp);
         Color c = System.Drawing.Color.White;
-        g.FillRectangle(new SolidBrush(c), 0, 0, 160, 160);//pbImg.Width + dwidth, pbImg.Height + dwidth);
+        g.FillRectangle(new SolidBrush(c), 0, 0, pbImg.Width + dwidth, pbImg.Height + dwidth);
         g.DrawImage(pbImg, width, width);
         g.Dispose();
 
