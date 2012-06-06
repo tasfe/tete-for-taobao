@@ -33,68 +33,68 @@ public partial class api_Default : System.Web.UI.Page
     {
         //try
         //{
-            act = utils.NewRequest("act", utils.RequestType.QueryString);
-            uid = utils.NewRequest("uid", utils.RequestType.QueryString);   
-            cid = utils.NewRequest("cid", utils.RequestType.QueryString);
-            itemid = utils.NewRequest("itemid", utils.RequestType.QueryString);
-            page = utils.NewRequest("page", utils.RequestType.QueryString);
-            pagesize = utils.NewRequest("pagesize", utils.RequestType.QueryString);
-            direct = utils.NewRequest("direct", utils.RequestType.QueryString);
-            token = utils.NewRequest("token", utils.RequestType.QueryString);
-            typ = utils.NewRequest("typ", utils.RequestType.QueryString);
-            msgid = utils.NewRequest("msgid", utils.RequestType.QueryString);
-            buynick = utils.NewRequest("buynick", utils.RequestType.QueryString);
-            couponid = utils.NewRequest("couponid", utils.RequestType.QueryString);
-            mobile = utils.NewRequest("mobile", utils.RequestType.QueryString);
-            qrcode = utils.NewRequest("qrcode", utils.RequestType.QueryString);
+        act = utils.NewRequest("act", utils.RequestType.QueryString);
+        uid = utils.NewRequest("uid", utils.RequestType.QueryString);
+        cid = utils.NewRequest("cid", utils.RequestType.QueryString);
+        itemid = utils.NewRequest("itemid", utils.RequestType.QueryString);
+        page = utils.NewRequest("page", utils.RequestType.QueryString);
+        pagesize = utils.NewRequest("pagesize", utils.RequestType.QueryString);
+        direct = utils.NewRequest("direct", utils.RequestType.QueryString);
+        token = utils.NewRequest("token", utils.RequestType.QueryString);
+        typ = utils.NewRequest("typ", utils.RequestType.QueryString);
+        msgid = utils.NewRequest("msgid", utils.RequestType.QueryString);
+        buynick = utils.NewRequest("buynick", utils.RequestType.QueryString);
+        couponid = utils.NewRequest("couponid", utils.RequestType.QueryString);
+        mobile = utils.NewRequest("mobile", utils.RequestType.QueryString);
+        qrcode = utils.NewRequest("qrcode", utils.RequestType.QueryString);
 
-            err = utils.NewRequest("err", utils.RequestType.Form);
+        err = utils.NewRequest("err", utils.RequestType.Form);
 
-            switch (act)
-            {
-                case "ads":
-                    ShowAdsInfo();
-                    break;
-                case "cate":
-                    ShowCateInfo();
-                    break;
-                case "list":
-                    ShowListInfo();
-                    break;
-                case "special":
-                    ShowSpecialListInfo();
-                    break;
-                case "detail":
-                    ShowDetailInfo();
-                    break;
-                case "near":
-                    ShowNearInfo();
-                    break;
-                case "token":
-                    RecordTokenInfo();
-                    break;
-                case "err":
-                    RecordErrInfo();
-                    break;
-                case "msgcount":
-                    ShowMsgCountInfo();
-                    break;
-                case "msglist":
-                    ShowMsgListInfo();
-                    break;
-                case "msgdetail":
-                    ShowMsgDetailInfo();
-                    break;
-                case "getcoupon":
-                    GetCouponInfo();
-                    break;
-                case "couponlist":
-                    ShowCouponListInfo();
-                    break;
-                //case "bindtoken":
-                //    BindToken();
-                //    break;
-            }
+        switch (act)
+        {
+            case "ads":
+                ShowAdsInfo();
+                break;
+            case "cate":
+                ShowCateInfo();
+                break;
+            case "list":
+                ShowListInfo();
+                break;
+            case "special":
+                ShowSpecialListInfo();
+                break;
+            case "detail":
+                ShowDetailInfo();
+                break;
+            case "near":
+                ShowNearInfo();
+                break;
+            case "token":
+                RecordTokenInfo();
+                break;
+            case "err":
+                RecordErrInfo();
+                break;
+            case "msgcount":
+                ShowMsgCountInfo();
+                break;
+            case "msglist":
+                ShowMsgListInfo();
+                break;
+            case "msgdetail":
+                ShowMsgDetailInfo();
+                break;
+            case "getcoupon":
+                GetCouponInfo();
+                break;
+            case "couponlist":
+                ShowCouponListInfo();
+                break;
+            //case "bindtoken":
+            //    BindToken();
+            //    break;
+        }
         //}
         //catch
         //{
@@ -184,7 +184,7 @@ public partial class api_Default : System.Web.UI.Page
         //给客户赠送优惠券并给出提示
         string number = "110";
         sql = "SELECT taobaocouponid FROM TeteCoupon WHERE guid = '" + couponid + "'";
-        
+
         string taobaocouponid = utils.ExecuteString(sql);
         //执行优惠券赠送行为
         string appkey = "12159997";
@@ -214,7 +214,7 @@ public partial class api_Default : System.Web.UI.Page
         if (dt.Rows.Count != 0)
         {
             str += "{\"id\":\"" + dt.Rows[0]["id"].ToString() + "\",\"html\":\"" + dt.Rows[0]["html"].ToString() + "\"}";
-            
+
             //更新标记为已读
             sql = "UPDATE TeteUserMsg SET isread = 1 WHERE nick = '" + uid + "' AND id = " + msgid + "";
             utils.ExecuteNonQuery(sql);
@@ -283,7 +283,7 @@ public partial class api_Default : System.Web.UI.Page
 
         sql = "INSERT INTO TeteUserErr (err, token, nick) VALUES ('" + err + "', '" + token + "', '" + uid + "')";
         utils.ExecuteNonQuery(sql);
-        
+
 
         string str = "{\"result\":\"ok\"}";
         Response.Write(str);
