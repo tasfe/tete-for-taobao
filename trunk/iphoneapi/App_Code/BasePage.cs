@@ -18,7 +18,7 @@ public class BasePage : System.Web.UI.Page
 {
     protected override void InitializeCulture()
     {
-        string msg = "尊敬的用户您好，非常抱歉的告诉您，您尚未订购该功能，如需继续使用请购买该服务:<br><br>9元/月  <a href=' http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6;' target='_blank'>立即购买</a><br>";
+        string msg = "尊敬的用户您好，非常抱歉的告诉您，您尚未订购该功能，如需继续使用请购买该服务:<br><br>9元/月  <a href=' http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1;' target='_blank'>立即购买</a><br>";
         if (!string.IsNullOrEmpty(Request.QueryString["nick"]) && !string.IsNullOrEmpty(Request.QueryString["nicksession"]) && !string.IsNullOrEmpty(Request.QueryString["mobile"]))
         {
             HttpCookie cookie = new HttpCookie("nick", HttpUtility.UrlEncode(Request.QueryString["nick"]));
