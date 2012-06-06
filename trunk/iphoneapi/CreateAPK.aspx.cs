@@ -280,7 +280,7 @@ public partial class CreateAPK : BasePage
     /// <param name="mode">生成缩略图的方式</param>    
     public static void MakeThumbnail(string originalImagePath, string thumbnailPath, int width, int height, string mode)
     {
-        System.Drawing.Image originalImage = System.Drawing.Image.FromFile(HttpContext.Current.Server.MapPath(originalImagePath));
+        System.Drawing.Image originalImage = System.Drawing.Image.FromFile(originalImagePath);
 
         int towidth = width;
         int toheight = height;
