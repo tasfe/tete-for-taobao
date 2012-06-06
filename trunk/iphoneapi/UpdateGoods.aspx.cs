@@ -34,7 +34,7 @@ public partial class UpdateGoods : BasePage
             return;
         }
 
-        IList<TeteShopCategoryInfo> cateList = cateDal.GetAllTeteShopCategory(nick);
+        IList<TeteShopCategoryInfo> cateList = cateDal.GetAllTeteShopCategory(Encrypt(nick));
         IList<GoodsClassInfo> classList = TaoBaoAPI.GetGoodsClassInfoList(info.Short, session, info.Appkey, info.Appsecret);
 
         if (classList == null)
@@ -105,7 +105,7 @@ public partial class UpdateGoods : BasePage
         TeteShopItemService itemDal = new TeteShopItemService();
 
         List<GoodsInfo> glist = TaoBaoAPI.GetGoodsInfoListByNick(info.Short, session, info.Appkey, info.Appsecret);
-        IList<TeteShopItemInfo> itemList = itemDal.GetAllTeteShopItem(nick);
+        IList<TeteShopItemInfo> itemList = itemDal.GetAllTeteShopItem(Encrypt(nick));
 
         List<TeteShopItemInfo> addList = new List<TeteShopItemInfo>();
         List<TeteShopItemInfo> upList = new List<TeteShopItemInfo>();
