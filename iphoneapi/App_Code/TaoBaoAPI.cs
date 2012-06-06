@@ -338,6 +338,39 @@ public class TaoBaoAPI
         Regex regex = new Regex("\\d+");
         return regex.Match(text).Value;
     }
+
+    public static bool AddCID(string nick, string session, string appkey, string appSecret, string imgurl)
+    {
+        List<GoodsClassInfo> list = (List<GoodsClassInfo>)GetGoodsClassInfoList(nick, session, appkey, appSecret);
+        if (list == null)
+        {
+            return false;
+        }
+
+        //判断该店铺是否增加过该分类
+        string cname = "手机客户端";
+        List<GoodsClassInfo> mylist = list.Where(o => o.name == cname).ToList();
+        if (mylist.Count == 0)
+        {
+            mylist = list.Where(o => o.parent_cid == "0").ToList();
+            Dictionary<string, string> param = new Dictionary<string, string>();
+            param.Add("name", cname);
+            param.Add("pict_url", imgurl);
+
+            int order = mylist.Max(o => o.sort_order) + 1;
+            param.Add("sort_order", order.ToString());
+
+            string result = Post(nick, "taobao.sellercats.list.add", session, param, DataFormatType.json, appkey, appSecret);
+            if (result.Contains("error_response"))
+            {
+                LogInfo.WriteLog("添加分类出错：" + "session:" + session + "nick：" + nick, result);
+                return false;
+            }
+            return true;
+        }
+
+        return true;
+    }
 }
 
 public enum DataFormatType
