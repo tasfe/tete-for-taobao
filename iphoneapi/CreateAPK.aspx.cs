@@ -258,7 +258,7 @@ public partial class CreateAPK : BasePage
             return;
         }
 
-        if (TaoBaoAPI.AddCID(nick, Request.Cookies["nicksession"].Value, info.Appkey, info.Appsecret, "http://iphone.7fshop.com/apkimg/" + nick + ".jpg"))
+        if (TaoBaoAPI.AddCID(nick, Request.Cookies["nicksession"].Value, info.Appkey, info.Appsecret, "http://iphone.7fshop.com/apkimg/" + nick + "_s.jpg"))
         {
             Page.RegisterStartupScript("恭喜", "<script>alert('添加成功!');</script>");
 
