@@ -39,6 +39,7 @@ public class BasePage : System.Web.UI.Page
                 info.Appkey = "12132145";
                 info.Appsecret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
                 tss.InsertShop(info);
+                CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLNICKSESSIONINFO);
             }
         }
         else
