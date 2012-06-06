@@ -390,7 +390,7 @@ public partial class top_container : System.Web.UI.Page
                 //手机客户端
                 if (match[i].Groups[1].ToString() == "service-0-22762-6")
                 {
-                    cookie.setCookie("istongji", "1", 999999);
+                    cookie.setCookie("mobile", "1", 999999);
                 }
             }
             catch { }
