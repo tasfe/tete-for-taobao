@@ -19,7 +19,7 @@ public class TeteShopService
 {
     const string SQL_SELECT = "SELECT nick,sid,appkey,appsecret,session,short FROM TeteShop";
 
-    const string SQL_SELECT_BY_NICK = "SELECT guid,ads,logo FROM TeteShop WHERE nick=@nick";
+    const string SQL_SELECT_BY_NICK = "SELECT guid,ads,logo,appkey,appsecret FROM TeteShop WHERE nick=@nick";
 
     const string SQL_UPDATE = "UPDATE TeteShop SET ads=@ads,logo=@logo WHERE guid=@guid";
 
@@ -74,6 +74,8 @@ public class TeteShopService
             info.Guid = new Guid(dr["guid"].ToString());
             info.Logo = dr["logo"].ToString();
             info.Ads = dr["ads"].ToString();
+            info.Appsecret = dr["appsecret"].ToString();
+            info.Appkey = dr["appkey"].ToString();
         }
 
         return info;
