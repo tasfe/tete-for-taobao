@@ -248,11 +248,15 @@ public partial class CreateAPK : BasePage
 
     protected void Btn_AddCa_Click(object sender, EventArgs e)
     {
+        string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+        TeteShopInfo info = new TeteShopService().GetShopInfo(Encrypt(nick));
+        if (info == null)
+        {
+            Page.RegisterStartupScript("抱歉", "<script>alert('您还未购买!');</script>");
+            return;
+        }
 
-        Rijndael_ encode = new Rijndael_("tetesoft");
-        string nick = encode.Decrypt(Request.Cookies["nick"].Value);
-        if (true)
-        //if (TaoBaoAPI.AddCID(nick, Request.Cookies["nicksession"].Value))
+        if (TaoBaoAPI.AddCID(nick, Request.Cookies["nicksession"].Value, info.Appkey, info.Appsecret, "http://iphone.7fshop.com/apkimg/" + nick + ".jpg"))
         {
             Page.RegisterStartupScript("恭喜", "<script>alert('添加成功!');</script>");
 
