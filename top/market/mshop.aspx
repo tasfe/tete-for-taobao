@@ -95,9 +95,7 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);
 </tr></table>
 <br />
 
-<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1' target='_blank'>
-<img src='buy.jpg' width=180 border=0>
-</a>
+
 
 <asp:ImageButton ImageUrl="buy.jpg" width="180" BorderWidth="0" runat="server" ID="Img_Buy" OnClientClick="return CheckNull()" OnClick="CheckNull" />
 
