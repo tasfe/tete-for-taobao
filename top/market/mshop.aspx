@@ -23,13 +23,15 @@
     </ul>
   </div>
     <div id="main-content">
-    <b style="font-size:22px; color:Red;">他们都有自己的APP了，你再不拥有就OUT了...</b><br />
+    <img alt="" src="http://a.tbcdn.cn/sys/wangwang/smiley/48x48/17.gif" />
+    <b style="font-size:24px; color:Red;">他们都有自己的APP了，你再不拥有就OUT了...</b><br />
     <a href='http://iphone.tetesoft.com/down/sfznhbx/mshop.apk' target="_blank"><img src='images/mshop/mshop1.jpg' style='border:solid 1px black;' /></a>
     <a href='http://haoping.7fshop.com/top/test/Tacera.apk' target="_blank"><img src='images/mshop/mshop2.jpg' style='border:solid 1px black;' /></a>
     <a href='http://iphone.tetesoft.com/down/xnttd/mshop.apk' target="_blank"><img src='images/mshop/mshop3.jpg' style='border:solid 1px black;' /></a>
     <br />
         <div id="ggArea" style="  z-index: 10003; background-color:white; padding:5px">
-<span style="font-size:18px; font-weight:bold; color:red;">6月特价，店铺APP最低只要9元，让您的网店直接入驻买家手机</span><br>
+<span style="font-size:18px; font-weight:bold; color:red;">6月特价，店铺APP最低只要9元，让您的网店直接入驻买家手机</span>
+<img alt="" src="http://a.tbcdn.cn/sys/wangwang/smiley/48x48/12.gif" /><br>
 
 
 
