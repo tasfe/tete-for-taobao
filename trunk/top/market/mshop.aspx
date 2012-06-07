@@ -30,7 +30,21 @@
     <br />
         <div id="ggArea" style="  z-index: 10003; background-color:white; padding:5px">
 <span style="font-size:18px; font-weight:bold; color:red;">6月特价，店铺APP最低只要9元<br>让您的网店直接入驻买家手机</span><br>
-<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1' target='_blank'><img src='images/gg2.jpg' border=0></a><br>
+
+<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1' target='_blank'>
+<img src='图片1.png' width=220 border=0>
+</a>
+<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1' target='_blank'>
+<img src='图片2.png' width=220 border=0>
+</a>
+<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1' target='_blank'>
+<img src='图片3.png' width=220 border=0>
+</a>
+<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1' target='_blank'>
+<img src='图片4.png' width=220 border=0>
+</a>
+
+<br>
 
 
 
