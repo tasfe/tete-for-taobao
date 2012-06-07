@@ -30,6 +30,8 @@ public partial class top_market_mshop : System.Web.UI.Page
 
     protected void CheckNull(object sender, ImageClickEventArgs e)
     {
-        Response.Redirect("http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1;");
+        Page.RegisterStartupScript("ss", "<script>open('http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1;','_blank');</script>");
+
+        //Response.Redirect("http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1;", false);
     }
 }
