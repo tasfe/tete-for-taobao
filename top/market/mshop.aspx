@@ -31,7 +31,9 @@
     <br />
         <div id="ggArea" style="  z-index: 10003; background-color:white; padding:5px">
 <span style="font-size:18px; font-weight:bold; color:red;">6月特价，店铺APP最低只要9元，让您的网店直接入驻买家手机</span>
-<img alt="" src="http://a.tbcdn.cn/sys/wangwang/smiley/48x48/12.gif" /><br>
+<img alt="" src="http://a.tbcdn.cn/sys/wangwang/smiley/48x48/12.gif" />
+<a name="chooseimg"></a>
+<br>
 
 选择加载图：<input id="user_load" type=file onchange="InitImg(this,'bg1')" size=12 />
 选择头部广告：<input id="user_head" type=file onchange="InitImg(this,'bg2')" size=10 />
@@ -76,6 +78,7 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);
     function CheckNull() {
         if (document.getElementById("user_load").value == "" || document.getElementById("user_head").value == "" || document.getElementById("").value == "user_logo") {
             alert("请选择属于您自己的店铺图片");
+            location.hash = "chooseimg";
             return false;
         }
         return true;
