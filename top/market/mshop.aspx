@@ -40,7 +40,7 @@
 <script>
     function InitImg(obj, id) {
         document.getElementById(id).style.display = '';
-        document.getElementById(id).style.backgroundImage = obj.value;
+        document.getElementById(id).src = obj.value;
     }
 </script>
 
