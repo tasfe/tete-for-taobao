@@ -73,7 +73,7 @@ public partial class top_review_oldkefulist : System.Web.UI.Page
             return;
         }
 
-        string sqlNew = "SELECT * FROM TCS_TradeRateCheck WHERE nick = '" + nick + "' AND ischeck = 1 ORDER BY checkdate DESC";
+        string sqlNew = "SELECT * FROM TCS_TradeRateCheck WHERE buynick = '" + search.Text.Trim().Replace("'", "''") + "' AND ischeck = 1 ORDER BY checkdate DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
