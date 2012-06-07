@@ -76,13 +76,13 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);
 
 <table><tr>
 <td id="testbg" style="background:url('图片2.png'); width:240px; height:400px;" valign=top>
-<img id="bg1" src='' width=223 height=330 style="margin:28px 0 0 18px; display:none" />
+<div id="bg1" width=223 height=330 style="margin:28px 0 0 18px; display:none" ></div>
 </td>
 <td style="background:url('图片3.png'); width:240px; height:400px;" valign=top>
-<img id="bg2" src='' width=228 height=150 style="margin:28px 0 0 10px; display:none" />
+<div id="bg2" width=228 height=150 style="margin:28px 0 0 10px; display:none" ></div>
 </td>
 <td style="background:url('tupian5.jpg') repeat-x; width:220px;" valign=top>
-<img id="bg3" src='' width=34 height=34 style="margin:21px 0 0 7px; display:none" />
+<div id="bg3" width=34 height=34 style="margin:21px 0 0 7px; display:none" ></div>
 </td>
 </tr></table>
 <br />
