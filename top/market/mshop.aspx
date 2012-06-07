@@ -36,11 +36,14 @@
 
 
 <table><tr>
-<td style="background:url(图片2.png)">
+<td style="background:url('图片2.png'); width:240px; height:400px;">
+&nbsp;
 </td>
-<td style="background:url(图片3.png)">
+<td style="background:url('图片3.png'); width:240px; height:400px;">
+&nbsp;
 </td>
-<td style="background:url('图片4.png')">
+<td style="background:url('图片4.png'); width:240px; height:400px;">
+&nbsp;
 </td>
 </tr></table>
 <br />
