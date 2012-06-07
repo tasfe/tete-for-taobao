@@ -29,22 +29,29 @@
     <a href='http://iphone.tetesoft.com/down/xnttd/mshop.apk' target="_blank"><img src='images/mshop/mshop3.jpg' style='border:solid 1px black;' /></a>
     <br />
         <div id="ggArea" style="  z-index: 10003; background-color:white; padding:5px">
-<span style="font-size:18px; font-weight:bold; color:red;">6月特价，店铺APP最低只要9元<br>让您的网店直接入驻买家手机</span><br>
+<span style="font-size:18px; font-weight:bold; color:red;">6月特价，店铺APP最低只要9元，让您的网店直接入驻买家手机</span><br>
 
+
+
+<table><tr>
+<td valign="top">
 <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1' target='_blank'>
 <img src='图片1.png' width=220 border=0>
 </a>
 <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1' target='_blank'>
 <img src='图片2.png' width=220 border=0>
 </a>
+</td>
+
+<td valign="top">
 <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1' target='_blank'>
 <img src='图片3.png' width=220 border=0>
 </a>
 <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1' target='_blank'>
 <img src='图片4.png' width=220 border=0>
 </a>
-
-<br>
+</td>
+</tr></table>
 
 
 
