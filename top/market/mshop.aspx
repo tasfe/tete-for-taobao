@@ -38,6 +38,7 @@
     </div>
 </div>
 </form>
+<script src="http://s84.cnzz.com/stat.php?id=4211299&web_id=4211299&show=pic" language="JavaScript"></script>
 
 </body>
 </html>
