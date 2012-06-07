@@ -35,24 +35,16 @@
 
 <table><tr>
 <td valign="top">
-<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1' target='_blank'>
 <img src='图片1.png' width=220 border=0>
-</a>
-<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1' target='_blank'>
-<img src='图片2.png' width=220 border=0>
-</a>
-</td></tr>
-<tr>
-<td valign="top">
-<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1' target='_blank'>
 <img src='图片3.png' width=220 border=0>
-</a>
-<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1' target='_blank'>
 <img src='图片4.png' width=220 border=0>
-</a>
 </td>
 </tr></table>
+<br />
 
+<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1' target='_blank'>
+<img src='buy.jpg' width=220 border=0>
+</a>
 
 
 </div>
