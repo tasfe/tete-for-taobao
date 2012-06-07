@@ -12,20 +12,20 @@ public partial class top_market_mshop : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            //if (Request.Cookies["nick"] == null)
-            //{
-            //    Response.Write("请登录");
-            //    Response.End();
-            //    return;
-            //}
-            ////解密NICK
-            //Rijndael_ encode = new Rijndael_("tetesoft");
-            //string nick = encode.Decrypt(Request.Cookies["nick"].Value);
+            if (Request.Cookies["nick"] == null)
+            {
+                Response.Write("请登录");
+                Response.End();
+                return;
+            }
+            //解密NICK
+            Rijndael_ encode = new Rijndael_("tetesoft");
+            string nick = encode.Decrypt(Request.Cookies["nick"].Value);
 
-            //if (Request.Cookies["mobile"] != null && Request.Cookies["mobile"].Value == "1")
-            //{
-            //    Response.Redirect("http://iphone.7fshop.com/CreateAPK.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&nicksession=" + Request.Cookies["top_session"].Value + "&mobile=1");
-            //}
+            if (Request.Cookies["mobile"] != null && Request.Cookies["mobile"].Value == "1")
+            {
+                Response.Redirect("http://iphone.7fshop.com/CreateAPK.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&nicksession=" + Request.Cookies["top_session"].Value + "&mobile=1");
+            }
         }
     }
 

@@ -29,15 +29,18 @@
     <a href='http://haoping.7fshop.com/top/test/Tacera.apk' target="_blank"><img src='images/mshop/mshop2.jpg' style='border:solid 1px black;' /></a>
     <a href='http://iphone.tetesoft.com/down/xnttd/mshop.apk' target="_blank"><img src='images/mshop/mshop3.jpg' style='border:solid 1px black;' /></a>
     <br />
+    <b style="font-size:24px; color:Red;">点击以上图标下载安装，查看他们的应用效果</b>
+    <p />
+     <b style="font-size:24px; color:blue;">选择自己的图片，立即生成属于自己店铺的手机安装文件</b>
         <div id="ggArea" style="  z-index: 10003; background-color:white; padding:5px">
-<span style="font-size:18px; font-weight:bold; color:red;">6月特价，店铺APP最低只要9元，让您的网店直接入驻买家手机</span>
-<img alt="" src="http://a.tbcdn.cn/sys/wangwang/smiley/48x48/12.gif" />
+<%--<span style="font-size:18px; font-weight:bold; color:red;">6月特价，店铺APP最低只要9元，让您的网店直接入驻买家手机</span>
+<img alt="" src="http://a.tbcdn.cn/sys/wangwang/smiley/48x48/12.gif" />--%>
 <a name="chooseimg"></a>
-<br>
+<br />
 
-选择加载图：<input id="user_load" type=file onchange="InitImg(this,'bg1')" size=12 />
-选择头部广告：<input id="user_head" type=file onchange="InitImg(this,'bg2')" size=10 />
-选择LOGO：<input id="user_logo" type=file onchange="InitImg(this,'bg3')" size=10 />
+<font color="blue"> 选择加载图：</font><input id="user_load" type=file onchange="InitImg(this,'bg1')" size=12 />
+<font color="blue"> 选择头部广告：</font><input id="user_head" type=file onchange="InitImg(this,'bg2')" size=10 />
+<font color="blue"> 选择LOGO：</font><input id="user_logo" type=file onchange="InitImg(this,'bg3')" size=10 />
 <style type="text/css">    
 #bg1    
 {    
