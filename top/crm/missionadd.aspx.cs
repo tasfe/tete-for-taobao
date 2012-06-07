@@ -59,8 +59,8 @@ public partial class top_crm_missionadd : System.Web.UI.Page
         {
             now = DateTime.Now.AddHours(1).ToString();
 
-            string sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND mobile <> ''";
-            totalcustomer = utils.ExecuteString(sql);
+            //string sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND mobile <> ''";
+            //totalcustomer = utils.ExecuteString(sql);
         }
     }
 
