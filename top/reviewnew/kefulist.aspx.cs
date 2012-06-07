@@ -1014,7 +1014,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
             return;
         }
 
-        string sqlNew = "SELECT * FROM TCS_TradeRateCheck WHERE ischeck = 0 AND buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
+        sqlNew = "SELECT b.*,c.giftcount,c.couponcount FROM TCS_TradeRateCheck b INNER JOIN TCS_Customer c ON c.buynick = b.buynick WHERE b.buynick = '" + search.Text.Trim().Replace("'", "''") + "' AND b.ischeck = 0 ORDER BY reviewdate DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
