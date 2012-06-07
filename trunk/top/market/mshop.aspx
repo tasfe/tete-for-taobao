@@ -36,10 +36,11 @@
 
 
 <table><tr>
-<td>
-<img valign="top" src='图片2.png' width=220 border=0>
-<img valign="top" src='图片3.png' width=220 border=0>
-<img valign="top" src='图片4.png' width=220 border=0>
+<td style="background:url(图片2.png)">
+</td>
+<td style="background:url(图片3.png)">
+</td>
+<td style="background:url('图片4.png')">
 </td>
 </tr></table>
 <br />
