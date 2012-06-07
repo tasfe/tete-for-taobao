@@ -36,11 +36,24 @@
 选择加载图：<input type=file onchange="InitImg(this,'bg1')" size=12 />
 选择头部广告：<input type=file onchange="InitImg(this,'bg2')" size=10 />
 选择LOGO：<input type=file onchange="InitImg(this,'bg3')" size=10 />
-
+<style type="text/css">    
+#bg1    
+{    
+filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);    
+}   
+#bg2   
+{    
+filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);    
+}   
+#bg3    
+{    
+filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);    
+}    
+</style> 
 <script>
     function InitImg(obj, id) {
-        document.getElementById(id).style.display = '';
-        document.getElementById(id).src = getPath(obj);
+        document.getElementById(id).filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = getPath(obj);
+        document.getElementById(id).style.display = '';  
     }
 
 
@@ -62,14 +75,14 @@
 </script>
 
 <table><tr>
-<td style="background:url('图片2.png'); width:240px; height:400px;" valign=top>
-<img id="bg1" src='' width=223 height=330 style="margin:28px 0 0 18px; display:none" />
+<td id="testbg" style="background:url('图片2.png'); width:240px; height:400px;" valign=top>
+<img id="bg1" src='http://a.tbcdn.cn/sys/wangwang/smiley/48x48/12.gif' width=223 height=330 style="margin:28px 0 0 18px; display:none" />
 </td>
 <td style="background:url('图片3.png'); width:240px; height:400px;" valign=top>
-<img id="bg2" src='' width=228 height=150 style="margin:28px 0 0 10px; display:none" />
+<img id="bg2" src='http://a.tbcdn.cn/sys/wangwang/smiley/48x48/12.gif' width=228 height=150 style="margin:28px 0 0 10px; display:none" />
 </td>
 <td style="background:url('tupian5.jpg') repeat-x; width:220px;" valign=top>
-<img id="bg3" src='' width=34 height=34 style="margin:21px 0 0 7px; display:none" />
+<img id="bg3" src='http://a.tbcdn.cn/sys/wangwang/smiley/48x48/12.gif' width=34 height=34 style="margin:21px 0 0 7px; display:none" />
 </td>
 </tr></table>
 <br />
