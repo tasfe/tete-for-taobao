@@ -1014,7 +1014,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
             return;
         }
 
-        string sqlNew = "SELECT * FROM TopOrder WITH (NOLOCK) WHERE nick = '" + nick + "' AND issend = 2 AND kefustatus = 0 AND buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
+        string sqlNew = "SELECT * FROM TCS_TradeRateCheck WHERE ischeck = 0 AND buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
