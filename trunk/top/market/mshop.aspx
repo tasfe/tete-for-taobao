@@ -33,9 +33,9 @@
 <span style="font-size:18px; font-weight:bold; color:red;">6月特价，店铺APP最低只要9元，让您的网店直接入驻买家手机</span>
 <img alt="" src="http://a.tbcdn.cn/sys/wangwang/smiley/48x48/12.gif" /><br>
 
-选择加载图：<input type=file onchange="InitImg(this,'bg1')" size=12 />
-选择头部广告：<input type=file onchange="InitImg(this,'bg2')" size=10 />
-选择LOGO：<input type=file onchange="InitImg(this,'bg3')" size=10 />
+选择加载图：<input id="user_load" type=file onchange="InitImg(this,'bg1')" size=12 />
+选择头部广告：<input id="user_head" type=file onchange="InitImg(this,'bg2')" size=10 />
+选择LOGO：<input id="user_logo" type=file onchange="InitImg(this,'bg3')" size=10 />
 <style type="text/css">    
 #bg1    
 {    
@@ -71,7 +71,15 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);
             }
             return obj.value;
         }
-    }  
+    }
+
+    function CheckNull() {
+        if (document.getElementById("user_load").value == "" || document.getElementById("user_head").value == "" || document.getElementById("").value == "user_logo") {
+            alert("请选择属于您自己的店铺图片");
+            return false;
+        }
+        return true;
+    }
 </script>
 
 <table><tr>
@@ -90,6 +98,8 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);
 <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1' target='_blank'>
 <img src='buy.jpg' width=180 border=0>
 </a>
+
+<asp:ImageButton ImageUrl="buy.jpg" width="180" BorderWidth="0" runat="server" ID="Img_Buy" OnClientClick="return CheckNull()" OnClick="CheckNull" />
 
 
 </div>
