@@ -23,7 +23,7 @@
     </ul>
   </div>
     <div id="main-content">
-    <b style="font-size:16px; color:Red;">他们都有自己的APP了，你再不拥有就OUT了...</b><br />
+    <b style="font-size:22px; color:Red;">他们都有自己的APP了，你再不拥有就OUT了...</b><br />
     <a href='http://iphone.tetesoft.com/down/sfznhbx/mshop.apk' target="_blank"><img src='images/mshop/mshop1.jpg' style='border:solid 1px black;' /></a>
     <a href='http://haoping.7fshop.com/top/test/Tacera.apk' target="_blank"><img src='images/mshop/mshop2.jpg' style='border:solid 1px black;' /></a>
     <a href='http://iphone.tetesoft.com/down/xnttd/mshop.apk' target="_blank"><img src='images/mshop/mshop3.jpg' style='border:solid 1px black;' /></a>
@@ -34,16 +34,16 @@
 
 
 <table><tr>
-<td valign="top">
-<img src='图片1.png' width=220 border=0>
-<img src='图片3.png' width=220 border=0>
-<img src='图片4.png' width=220 border=0>
+<td>
+<img valign="top" src='图片2.png' width=220 border=0>
+<img valign="top" src='图片3.png' width=220 border=0>
+<img valign="top" src='图片4.png' width=220 border=0>
 </td>
 </tr></table>
 <br />
 
 <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22762-6:1' target='_blank'>
-<img src='buy.jpg' width=220 border=0>
+<img src='buy.jpg' width=180 border=0>
 </a>
 
 
