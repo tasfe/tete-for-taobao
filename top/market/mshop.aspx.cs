@@ -26,6 +26,10 @@ public partial class top_market_mshop : System.Web.UI.Page
             {
                 Response.Redirect("http://iphone.7fshop.com/CreateAPK.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&nicksession=" + Request.Cookies["top_session"].Value + "&mobile=1");
             }
+            else
+            {
+                RecodeLog(Request.ServerVariables["REMOTE_ADDR"] + "打开");
+            }
         }
     }
 
