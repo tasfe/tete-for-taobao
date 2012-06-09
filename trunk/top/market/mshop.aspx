@@ -24,7 +24,7 @@
   </div>
     <div id="main-content">
     <img alt="" src="http://a.tbcdn.cn/sys/wangwang/smiley/48x48/17.gif" />
-    <b style="font-size:24px; color:Red;">他们都有自己的APP了，你再不拥有就OUT了...</b><br />
+    <b style="font-size:24px; color:Red;">他们都有自己的APP了，你还在犹豫什么...</b><br />
     <a href='http://iphone.tetesoft.com/down/sfznhbx/mshop.apk' target="_blank"><img src='images/mshop/mshop1.jpg' style='border:solid 1px black;' /></a>
     <a href='http://haoping.7fshop.com/top/test/Tacera.apk' target="_blank"><img src='images/mshop/mshop2.jpg' style='border:solid 1px black;' /></a>
     <a href='http://iphone.tetesoft.com/down/xnttd/mshop.apk' target="_blank"><img src='images/mshop/mshop3.jpg' style='border:solid 1px black;' /></a>
