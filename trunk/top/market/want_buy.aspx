@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <img src="visitforever.jpg" />
+        <img src="visitforever.jpg" width="765px"/>
         
          <p />
     <b style="font-size:24px; color:Red;">
