@@ -86,7 +86,7 @@ public partial class top_crm_grouplist : System.Web.UI.Page
             }
 
             //获取总数并更新
-            sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TCS_Customer WHERE guid = '" + dt.Rows[i]["guid"].ToString() + "') WHERE guid = '" + dt.Rows[i]["guid"].ToString() + "'";
+            sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TCS_Customer WHERE groupguid = '" + dt.Rows[i]["guid"].ToString() + "') WHERE guid = '" + dt.Rows[i]["guid"].ToString() + "'";
             Response.Write(sql);
             utils.ExecuteNonQuery(sql);
         }
