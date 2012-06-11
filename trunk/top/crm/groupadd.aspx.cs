@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Common;
+using System.Data;
 
 public partial class top_crm_groupadd : System.Web.UI.Page
 {
@@ -49,19 +50,28 @@ public partial class top_crm_groupadd : System.Web.UI.Page
     {
         string name = utils.NewRequest("name", utils.RequestType.Form);
         string price = utils.NewRequest("price", utils.RequestType.Form);
-        string num = utils.NewRequest("num", utils.RequestType.Form);
         string id = Guid.NewGuid().ToString();
+        string str = string.Empty;
 
-        string sql = "INSERT INTO TCS_Group (guid,name,nick,price,num) VALUES ('" + id + "','" + name + "','" + nick + "','" + price + "','" + num + "')";
+        string sql = "SELECT COUNT(*) FROM TCS_Group WHERE nick = '" + nick + "' AND price = '" + price + "'";
+        string count = utils.ExecuteString(sql);
+        if (count != "0")
+        {
+            Response.Write("<script>alert('该价格的会员组已经存在，请修改价格！');history.go(-1);</script>");
+            Response.End();
+            return;
+        }
+            
+        sql = "INSERT INTO TCS_Group (guid,name,nick,price) VALUES ('" + id + "','" + name + "','" + nick + "','" + price + "')";
         utils.ExecuteNonQuery(sql);
 
-        //获取符合条件的会员并更新会员分组ID
-        sql = "UPDAET TS_Customer SET groupguid = '" + id + "' WHERE nick = '" + nick + "' AND tradeamount > " + price + " AND tradecount > " + num + "";
-        utils.ExecuteNonQuery(sql);
+        ////获取符合条件的会员并更新会员分组ID
+        //sql = "UPDAET TS_Customer SET groupguid = '" + id + "' WHERE nick = '" + nick + "' AND tradeamount > " + price + "";
+        //utils.ExecuteNonQuery(sql);
 
-        //获取总数并更新
-        sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TS_Customer WHERE guid = '" + id + "')";
-        utils.ExecuteNonQuery(sql);
+        ////获取总数并更新
+        //sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TS_Customer WHERE guid = '" + id + "')";
+        //utils.ExecuteNonQuery(sql);
 
         Response.Redirect("grouplist.aspx");
     }
