@@ -39,7 +39,6 @@ public partial class top_crm_grouplist : System.Web.UI.Page
         //过期判断
         if (!IsBuy(nick))
         {
-
             string msg = "尊敬的" + nick + "，非常抱歉的告诉您，只有VIP版本才能使用【客户关系营销】功能，如需继续使用请<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-3:1;' target='_blank'>购买高级会员服务</a>，谢谢！";
             Response.Redirect("buy.aspx?msg=" + HttpUtility.UrlEncode(msg));
             Response.End();
@@ -52,6 +51,10 @@ public partial class top_crm_grouplist : System.Web.UI.Page
             {
                 UpdateData();
             }
+            else if (act == "del")
+            {
+                DeleteData();
+            }
             else
             {
                 BindData();
@@ -60,12 +63,27 @@ public partial class top_crm_grouplist : System.Web.UI.Page
     }
 
     /// <summary>
+    /// 删除数据
+    /// </summary>
+    private void DeleteData()
+    {
+        string sql = "UPDATE TCS_Group SET isdel = 1 WHERE nick = '" + nick + "' AND guid = '"+id+"'";
+        utils.ExecuteNonQuery(sql);
+
+        sql = "UPDATE TCS_Customer SET groupguid = '' WHERE nick = '" + nick + "' AND groupguid = '" + id + "'";
+        utils.ExecuteNonQuery(sql);
+
+        Response.Write("<script>alert('删除成功！');window.location.href='grouplist.aspx';</script>");
+        Response.End();
+    }
+
+    /// <summary>
     /// 更新数据
     /// </summary>
     private void UpdateData()
     {
         string sql = "SELECT * FROM TCS_Group WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY price ASC";
-        Response.Write(sql);
+        //Response.Write(sql);
         DataTable dt = utils.ExecuteDataTable(sql);
         for (int i = 0; i < dt.Rows.Count; i++)
         {
@@ -74,20 +92,20 @@ public partial class top_crm_grouplist : System.Web.UI.Page
             {
                 //获取符合条件的会员并更新会员分组ID
                 sql = "UPDATE TCS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount <> '' AND tradecount > 0 AND cast(tradeamount as decimal(18,2)) >= " + dt.Rows[i]["price"].ToString() + "";
-                Response.Write(sql);
+                //Response.Write(sql);
                 utils.ExecuteNonQuery(sql);
             }
             else
             {
                 //获取符合条件的会员并更新会员分组ID
                 sql = "UPDATE TCS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount <> '' AND tradecount > 0 AND cast(tradeamount as decimal(18,2)) >= " + dt.Rows[i]["price"].ToString() + " AND cast(tradeamount as decimal(18,2)) < " + dt.Rows[i + 1]["price"].ToString() + "";
-                Response.Write(sql);
+                //Response.Write(sql);
                 utils.ExecuteNonQuery(sql);
             }
 
             //获取总数并更新
             sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TCS_Customer WHERE groupguid = '" + dt.Rows[i]["guid"].ToString() + "') WHERE guid = '" + dt.Rows[i]["guid"].ToString() + "'";
-            Response.Write(sql);
+            //Response.Write(sql);
             utils.ExecuteNonQuery(sql);
         }
 
