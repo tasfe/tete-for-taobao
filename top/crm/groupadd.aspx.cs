@@ -75,4 +75,31 @@ public partial class top_crm_groupadd : System.Web.UI.Page
 
         Response.Redirect("grouplist.aspx");
     }
+
+    /// <summary>
+    /// 判断该用户是否订购了该服务
+    /// </summary>
+    /// <param name="nick"></param>
+    /// <returns></returns>
+    private bool IsBuy(string nick)
+    {
+        string sql = "SELECT plus FROM TCS_ShopSession WHERE nick = '" + nick + "'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        if (dt.Rows.Count != 0)
+        {
+            string plus = dt.Rows[0][0].ToString();
+            if (plus.IndexOf("crm") != -1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
