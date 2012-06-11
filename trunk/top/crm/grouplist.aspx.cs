@@ -91,7 +91,7 @@ public partial class top_crm_grouplist : System.Web.UI.Page
             utils.ExecuteNonQuery(sql);
         }
 
-        //Response.Write("<script>alert('会员组会员更新成功！');window.location.href='grouplist.aspx';</script>");
+        Response.Write("<script>alert('会员组会员更新成功！');window.location.href='grouplist.aspx';</script>");
         Response.End();
     }
 
