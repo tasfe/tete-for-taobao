@@ -34,27 +34,32 @@
             <tr>
                 <td align="left" width="120">分组名称：</td>
                 <td>
-                    <input name="name" type="text" value="" />
+                    <input name="name" type="text" value="<%=name %>" />
                 </td>
             </tr>
             <tr>
                 <td align="left" width="120">满足金额：</td>
                 <td>
-                    <input name="price" type="text" value="0" size="4" /> 元
-                </td>
-            </tr>
-            <tr>
-                <td align="left" width="120">满足交易数：</td>
-                <td>
-                    <input name="num" type="text" value="0" size="4" /> 笔
+                    <input name="price" type="text" value="<%=price %>" size="4" /> 元
                 </td>
             </tr>
             <tr>
                 <td align="left" colspan="2">
-                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="创建会员分组" />
+                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="创建会员分组" OnClientClick="return check()" />
                 </td>
             </tr>
         </table>
+
+        <script>
+            function check() {
+                if (document.getElementById("groupname").value == '') {
+                    alert('请收入分组名称！');
+                    document.getElementById("groupname").focus();
+                    return false;
+                }
+                return true;
+            }
+        </script>
 
     </div>
 
