@@ -43,13 +43,13 @@
             <tr>
                 <td align="left" width="120">满足金额：</td>
                 <td>
-                    <input name="price" type="text" value="0" size="4" /> 元  （填0为不限制）
+                    <input name="price" type="text" value="0" size="4" /> 元  
                 </td>
             </tr>
             <tr>
                 <td align="left" width="120">满足交易数：</td>
                 <td>
-                    <input name="num" type="text" value="0" size="4" /> 笔  （填0为不限制）
+                    <input name="num" type="text" value="0" size="4" /> 笔  
                 </td>
             </tr>
             <tr>
