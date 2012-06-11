@@ -73,20 +73,20 @@ public partial class top_crm_grouplist : System.Web.UI.Page
             if (i == dt.Rows.Count - 1)
             {
                 //获取符合条件的会员并更新会员分组ID
-                sql = "UPDAET TS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount >= " + dt.Rows[i]["price"].ToString() + "";
+                sql = "UPDAET TCS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount >= " + dt.Rows[i]["price"].ToString() + "";
                 Response.Write(sql);
                 utils.ExecuteNonQuery(sql);
             }
             else
             {
                 //获取符合条件的会员并更新会员分组ID
-                sql = "UPDAET TS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount >= " + dt.Rows[i]["price"].ToString() + " AND tradeamount < " + dt.Rows[i + 1]["price"].ToString() + "";
+                sql = "UPDAET TCS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount >= " + dt.Rows[i]["price"].ToString() + " AND tradeamount < " + dt.Rows[i + 1]["price"].ToString() + "";
                 Response.Write(sql);
                 utils.ExecuteNonQuery(sql);
             }
 
             //获取总数并更新
-            sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TS_Customer WHERE guid = '" + dt.Rows[i]["guid"].ToString() + "') WHERE guid = '" + dt.Rows[i]["guid"].ToString() + "'";
+            sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TCS_Customer WHERE guid = '" + dt.Rows[i]["guid"].ToString() + "') WHERE guid = '" + dt.Rows[i]["guid"].ToString() + "'";
             Response.Write(sql);
             utils.ExecuteNonQuery(sql);
         }
