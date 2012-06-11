@@ -96,6 +96,20 @@ public partial class UpdateGoods : BasePage
 
         //更新商品
         ActionGoods(nick, session, info);
+        //更新商品分类包含商品数量
+        IList<TeteShopCategoryInfo> nowCateList = cateDal.GetAllTeteShopCategory(Encrypt(nick));
+        TeteShopItemService itemDal = new TeteShopItemService();
+        for (int i = 0; i < nowCateList.Count; i++)
+        {
+            int count = itemDal.GetItemCountByCId(nowCateList[i].Cateid);
+            nowCateList[i].Catecount = count;
+        }
+
+        //修改
+        foreach (TeteShopCategoryInfo cinfo in nowCateList)
+        {
+            cateDal.ModifyTeteShopCategory(cinfo);
+        }
 
         Page.RegisterStartupScript("更新提示", "<script>alert('更新成功!');</script>");
     }
