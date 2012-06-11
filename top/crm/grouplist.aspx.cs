@@ -13,18 +13,18 @@ public partial class top_crm_grouplist : System.Web.UI.Page
     public string id = string.Empty;
     public string now = string.Empty;
     public string totalcustomer = string.Empty;
+    public string act = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
+        string act = utils.NewRequest("act", utils.RequestType.QueryString);
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
         session = cookie.getCookie("top_sessiongroupbuy");
         string iscrm = cookie.getCookie("iscrm");
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
-
 
         //过期判断
         if (string.IsNullOrEmpty(taobaoNick))
@@ -48,15 +48,54 @@ public partial class top_crm_grouplist : System.Web.UI.Page
 
         if (!IsPostBack)
         {
-            BindData();
+            if (act == "update")
+            {
+                UpdateData();
+            }
+            else
+            {
+                BindData();
+            }
         }
+    }
+
+    /// <summary>
+    /// 更新数据
+    /// </summary>
+    private void UpdateData()
+    {
+        string sql = "SELECT * FROM TCS_Group WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY price ASC";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            //如果是最后一个
+            if (i == dt.Rows.Count - 1)
+            {
+                //获取符合条件的会员并更新会员分组ID
+                sql = "UPDAET TS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount >= " + dt.Rows[i]["price"].ToString() + "";
+                utils.ExecuteNonQuery(sql);
+            }
+            else
+            {
+                //获取符合条件的会员并更新会员分组ID
+                sql = "UPDAET TS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount >= " + dt.Rows[i]["price"].ToString() + " AND tradeamount < " + dt.Rows[i+1]["price"].ToString() + "";
+                utils.ExecuteNonQuery(sql);
+            }
+
+            //获取总数并更新
+            sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TS_Customer WHERE guid = '" + dt.Rows[i]["guid"].ToString() + "')";
+            utils.ExecuteNonQuery(sql);
+        }
+
+        Response.Write("<script>alert('会员组会员更新成功！');window.location.href='grouplist.aspx';</script>");
+        Response.End();
     }
 
     private void BindData()
     {
-        string sql = "SELECT * FROM TCS_Group WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY price DESC";
+        string sql = "SELECT * FROM TCS_Group WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY price ASC";
         DataTable dt = utils.ExecuteDataTable(sql);
-        Response.Write(sql);
+
         rptArticle.DataSource = dt;
         rptArticle.DataBind();
     }
