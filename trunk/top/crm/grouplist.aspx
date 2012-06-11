@@ -30,8 +30,6 @@
 
         <hr />
 
-    </div>
-
     
         <table width="740" cellpadding="0" cellspacing="0">
         <tr>
@@ -53,6 +51,9 @@
     </table>
 
 
+        </div>
+
+        </div>
         </div>
     </div>
     </form>
