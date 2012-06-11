@@ -34,9 +34,9 @@
         <table width="740" cellpadding="0" cellspacing="0">
         <tr>
                 <td width="100"><b>组名</b></td>
-                <td width="50"><b>满足金额</b></td>
-                <td width="85"><b>会员数</b></td>
-                <td width="60"><b>操作</b></td>
+                <td width="150"><b>满足金额</b></td>
+                <td width="185"><b>会员数</b></td>
+                <td width="160"><b>操作</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
