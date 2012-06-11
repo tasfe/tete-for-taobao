@@ -30,7 +30,7 @@
 
         <hr />
       <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
-          您可以在这里创建可以客户组，满足您设置条件的客户都将加入到该组内
+          您可以在这里创建可以客户组，满足您设置条件的客户都将加入到该组内。
       </div>
 
       <table width="100%">
@@ -44,12 +44,6 @@
                 <td align="left" width="120">满足金额：</td>
                 <td>
                     <input name="price" type="text" value="0" size="4" /> 元  
-                </td>
-            </tr>
-            <tr>
-                <td align="left" width="120">满足交易数：</td>
-                <td>
-                    <input name="num" type="text" value="0" size="4" /> 笔  
                 </td>
             </tr>
             <tr>
