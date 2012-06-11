@@ -54,7 +54,7 @@ public partial class top_crm_grouplist : System.Web.UI.Page
 
     private void BindData()
     {
-        string sql = "SELECT * FROM TCS_Group WHERE nick = '" + nick + "' AND isdel = 0 ORDER price DESC";
+        string sql = "SELECT * FROM TCS_Group WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY price DESC";
         DataTable dt = utils.ExecuteDataTable(sql);
         Response.Write(sql);
         rptArticle.DataSource = dt;
