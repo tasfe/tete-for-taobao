@@ -73,14 +73,14 @@ public partial class top_crm_grouplist : System.Web.UI.Page
             if (i == dt.Rows.Count - 1)
             {
                 //获取符合条件的会员并更新会员分组ID
-                sql = "UPDATE TCS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount <> '' AND cast(tradeamount as decimal(18,2)) >= " + dt.Rows[i]["price"].ToString() + "";
+                sql = "UPDATE TCS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount <> '' AND tradecount > 0 AND cast(tradeamount as decimal(18,2)) >= " + dt.Rows[i]["price"].ToString() + "";
                 Response.Write(sql);
                 utils.ExecuteNonQuery(sql);
             }
             else
             {
                 //获取符合条件的会员并更新会员分组ID
-                sql = "UPDATE TCS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount <> '' AND cast(tradeamount as decimal(18,2)) >= " + dt.Rows[i]["price"].ToString() + " AND cast(tradeamount as decimal(18,2)) < " + dt.Rows[i + 1]["price"].ToString() + "";
+                sql = "UPDATE TCS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount <> '' AND tradecount > 0 AND cast(tradeamount as decimal(18,2)) >= " + dt.Rows[i]["price"].ToString() + " AND cast(tradeamount as decimal(18,2)) < " + dt.Rows[i + 1]["price"].ToString() + "";
                 Response.Write(sql);
                 utils.ExecuteNonQuery(sql);
             }
