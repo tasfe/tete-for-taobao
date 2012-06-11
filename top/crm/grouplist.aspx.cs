@@ -65,6 +65,7 @@ public partial class top_crm_grouplist : System.Web.UI.Page
     private void UpdateData()
     {
         string sql = "SELECT * FROM TCS_Group WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY price ASC";
+        Response.Write(sql);
         DataTable dt = utils.ExecuteDataTable(sql);
         for (int i = 0; i < dt.Rows.Count; i++)
         {
@@ -73,17 +74,20 @@ public partial class top_crm_grouplist : System.Web.UI.Page
             {
                 //获取符合条件的会员并更新会员分组ID
                 sql = "UPDAET TS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount >= " + dt.Rows[i]["price"].ToString() + "";
+                Response.Write(sql);
                 utils.ExecuteNonQuery(sql);
             }
             else
             {
                 //获取符合条件的会员并更新会员分组ID
-                sql = "UPDAET TS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount >= " + dt.Rows[i]["price"].ToString() + " AND tradeamount < " + dt.Rows[i+1]["price"].ToString() + "";
+                sql = "UPDAET TS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount >= " + dt.Rows[i]["price"].ToString() + " AND tradeamount < " + dt.Rows[i + 1]["price"].ToString() + "";
+                Response.Write(sql);
                 utils.ExecuteNonQuery(sql);
             }
 
             //获取总数并更新
             sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TS_Customer WHERE guid = '" + dt.Rows[i]["guid"].ToString() + "')";
+            Response.Write(sql);
             utils.ExecuteNonQuery(sql);
         }
 
