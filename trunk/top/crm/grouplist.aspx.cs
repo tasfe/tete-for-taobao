@@ -73,14 +73,14 @@ public partial class top_crm_grouplist : System.Web.UI.Page
             if (i == dt.Rows.Count - 1)
             {
                 //获取符合条件的会员并更新会员分组ID
-                sql = "UPDAET TCS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount >= " + dt.Rows[i]["price"].ToString() + "";
+                sql = "UPDATE TCS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount >= " + dt.Rows[i]["price"].ToString() + "";
                 Response.Write(sql);
                 utils.ExecuteNonQuery(sql);
             }
             else
             {
                 //获取符合条件的会员并更新会员分组ID
-                sql = "UPDAET TCS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount >= " + dt.Rows[i]["price"].ToString() + " AND tradeamount < " + dt.Rows[i + 1]["price"].ToString() + "";
+                sql = "UPDATE TCS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount >= " + dt.Rows[i]["price"].ToString() + " AND tradeamount < " + dt.Rows[i + 1]["price"].ToString() + "";
                 Response.Write(sql);
                 utils.ExecuteNonQuery(sql);
             }
@@ -91,7 +91,7 @@ public partial class top_crm_grouplist : System.Web.UI.Page
             utils.ExecuteNonQuery(sql);
         }
 
-        //Response.Write("<script>alert('会员组会员更新成功！');window.location.href='grouplist.aspx';</script>");
+        Response.Write("<script>alert('会员组会员更新成功！');window.location.href='grouplist.aspx';</script>");
         Response.End();
     }
 
