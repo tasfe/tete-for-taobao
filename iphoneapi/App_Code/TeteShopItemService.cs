@@ -34,6 +34,14 @@ public class TeteShopItemService
         IList<TeteShopItemInfo> list = TeteShopItemPropertity(sql);
         return list.Count == 0 ? null : list[0];
     }
+
+    public int GetItemCountByCId(string cid)
+    {
+        string sql = "select count(*) from TeteShopItem where charindex(@cid,cateid)>0";
+        SqlParameter param = new SqlParameter("@cid", cid);
+        return DBHelper.ExecuteScalar(sql, param);
+    }
+
     private SqlParameter[] CreateParameter(TeteShopItemInfo teteshopitem)
     {
         SqlParameter[] param = new SqlParameter[]

@@ -33,7 +33,7 @@ public class BasePage : System.Web.UI.Page
             Response.Cookies.Add(cookieM);
 
             TeteShopService tss = new TeteShopService();
-            if (tss.GetShopInfo(Encrypt(Request.QueryString["nick"])) == null)
+            if (CacheCollection.GetNickSessionList().Where(o => o.Short == Request.QueryString["nick"]).ToList().Count == 0)
             {
                 TeteShopInfo info = new TeteShopInfo();
                 info.Nick = Encrypt(Request.QueryString["nick"]);

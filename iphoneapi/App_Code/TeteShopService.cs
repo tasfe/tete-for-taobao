@@ -72,8 +72,8 @@ public class TeteShopService
         {
             info = new TeteShopInfo();
             info.Guid = new Guid(dr["guid"].ToString());
-            info.Logo = dr["logo"].ToString();
-            info.Ads = dr["ads"].ToString();
+            info.Logo = dr["logo"] == DBNull.Value ? "" : dr["logo"].ToString();
+            info.Ads = dr["ads"] == DBNull.Value ? "" : dr["ads"].ToString();
             info.Appsecret = dr["appsecret"].ToString();
             info.Appkey = dr["appkey"].ToString();
         }
