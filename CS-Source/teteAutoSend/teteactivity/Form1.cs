@@ -747,7 +747,8 @@ namespace teteactivity
                                 Item product = client.ItemGet(requestItem, session);
                                 string newContent = string.Empty;
                                 string ActivityMissionID = dtWrite.Rows[j]["ActivityMissionID"].ToString();
-                                string tetegroupbuyGuid = ActivityMissionID;
+                                //string tetegroupbuyGuid = ActivityMissionID;
+                                string tetegroupbuyGuid = dtWrite.Rows[j]["ActivityID"].ToString();
                                 string sqltemp = "SELECT * FROM Tete_ActivityMission WHERE id = '" + ActivityMissionID + "'";
                                 DataTable dttemp = db.GetTable(sqltemp);
                                 if (dttemp == null)
