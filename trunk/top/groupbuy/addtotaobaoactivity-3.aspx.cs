@@ -819,7 +819,8 @@ public partial class top_groupbuy_addtotaobaoactivity_3 : System.Web.UI.Page
                             Item product = client.ItemGet(requestItem, session);
                             string newContent = string.Empty;
                             string ActivityMissionID = dtWrite.Rows[j]["ActivityMissionID"].ToString();
-                            string tetegroupbuyGuid = ActivityMissionID;
+                            //string tetegroupbuyGuid = ActivityMissionID;
+                            string tetegroupbuyGuid = dtWrite.Rows[j]["ActivityID"].ToString();
                             string sqltemp = "SELECT * FROM Tete_ActivityMission WHERE id = '" + ActivityMissionID + "'";
                             DataTable dttemp = utils.ExecuteDataTable(sqltemp);
                             if (dttemp == null)
