@@ -51,7 +51,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
                 {
                     html += "<div id='div" + dt.Rows[i]["ProductID"].ToString() + "' width=\"700px\"><table width=\"700px\"><tr ><td width=\"200px\"><a href=\"http://item.taobao.com/item.htm?id=" + dt.Rows[i]["ProductID"].ToString() + "\" target=\"_blank\">" + dt.Rows[i]["Productname"].ToString() + "</a><input type=\"hidden\" id=\"pname" + dt.Rows[i]["Productname"].ToString() + "\" name=\"pname\" value=\"" + dt.Rows[i]["Productname"].ToString() + "\"></td>";
 
-                    html += "<td width=\"100px\"> " + dt.Rows[i]["Productprice"].ToString() + "元 <input   type=\"hidden\" id=\"productid" + dt.Rows[i]["ProductID"].ToString() + "\" name=\"productid\"  value=\"" + dt.Rows[i]["ProductID"].ToString() + "\"><input type=\"hidden\" id=\"price" + dt.Rows[i]["ProductID"].ToString() + "\" name=\"price\" value=\"" + dt.Rows[i]["Productprice"].ToString() + "\"><input type=\"hidden\" id=\"pimg" + dt.Rows[i]["ProductID"].ToString() + "\" name=\"pimg\" value=\"" + dt.Rows[i]["ProductImg"].ToString() + "\"></td>";
+                    html += "<td width=\"100px\"> <input type=\"text\" size=\"10\" id=\"price" + dt.Rows[i]["ProductID"].ToString() + "\" name=\"price\" value=\"" + dt.Rows[i]["Productprice"].ToString() + "\">元 <input   type=\"hidden\" id=\"productid" + dt.Rows[i]["ProductID"].ToString() + "\" name=\"productid\"  value=\"" + dt.Rows[i]["ProductID"].ToString() + "\"><input type=\"hidden\" id=\"pimg" + dt.Rows[i]["ProductID"].ToString() + "\" name=\"pimg\" value=\"" + dt.Rows[i]["ProductImg"].ToString() + "\"></td>";
                     try
                     {
                         if (dt.Rows[i]["discountType"].ToString() == "DISCOUNT") //discountValue
