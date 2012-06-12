@@ -154,17 +154,54 @@ public partial class top_groupbuy_deletetaobaoitems : System.Web.UI.Page
                             if (!Regex.IsMatch(product.Desc, @"<div>[\s]*<a name=""tetesoft-area-start-" + tetegroupbuyGuid + @""">[\s]*</a>[\s]*</div>[\s]*([\s\S]*)<div>[\s]*<a name=""tetesoft-area-end-" + tetegroupbuyGuid + @""">[\s]*</a>[\s]*</div>"))
                             {
                                 //如果没有代码
-                                //更新状态
-                                // WriteDeleteLog2("http://item.taobao.com/item.htm?id=" + dtWrite.Rows[j]["itemid"].ToString() + " 不含需要清除的代码", "");
-                                //更新状态
-                                WriteLog("http://item.taobao.com/item.htm?id=" + dtWrite.Rows[j]["itemid"].ToString() + " 不含需要清除的代码" + dtWrite.Rows.Count.ToString(), "1", "err", "");
-                                sql = "UPDATE Tete_ActivityWriteContent SET isok = 1 WHERE id = " + dtWrite.Rows[j]["id"].ToString();
-                                utils.ExecuteNonQuery(sql);
+                                tetegroupbuyGuid = dtWrite.Rows[j]["ActivityID"].ToString();
+                                if (!Regex.IsMatch(product.Desc, @"<div>[\s]*<a name=""tetesoft-area-start-" + tetegroupbuyGuid + @""">[\s]*</a>[\s]*</div>[\s]*([\s\S]*)<div>[\s]*<a name=""tetesoft-area-end-" + tetegroupbuyGuid + @""">[\s]*</a>[\s]*</div>"))
+                                {
+                                    //更新状态
+                                    // WriteDeleteLog2("http://item.taobao.com/item.htm?id=" + dtWrite.Rows[j]["itemid"].ToString() + " 不含需要清除的代码", "");
+                                    //更新状态
+                                    WriteLog("http://item.taobao.com/item.htm?id=" + dtWrite.Rows[j]["itemid"].ToString() + " 不含需要清除的代码" + dtWrite.Rows.Count.ToString(), "1", "err", "");
+                                    sql = "UPDATE Tete_ActivityWriteContent SET isok = 1 WHERE id = " + dtWrite.Rows[j]["id"].ToString();
+                                    utils.ExecuteNonQuery(sql);
 
-                                //更新状态
-                                sql = "UPDATE Tete_ActivityMission SET success = success + 1 WHERE id = " + dt.Rows[i]["id"].ToString();
-                                utils.ExecuteNonQuery(sql);
-                                continue;
+                                    //更新状态
+                                    sql = "UPDATE Tete_ActivityMission SET success = success + 1 WHERE id = " + dt.Rows[i]["id"].ToString();
+                                    utils.ExecuteNonQuery(sql);
+                                    continue;
+                                }
+                                else
+                                {
+                                    newContent = Regex.Replace(product.Desc, @"<div>[\s]*<a name=""tetesoft-area-start-" + tetegroupbuyGuid + @""">[\s]*</a>[\s]*</div>[\s]*([\s\S]*)<div>[\s]*<a name=""tetesoft-area-end-" + tetegroupbuyGuid + @""">[\s]*</a>[\s]*</div>", @"");
+
+
+
+                                    //更新宝贝描述
+                                    IDictionary<string, string> param = new Dictionary<string, string>();
+                                    param.Add("num_iid", dtWrite.Rows[j]["itemid"].ToString());
+                                    param.Add("desc", newContent);
+
+                                    string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update ", session, param);
+                                    //插入宝贝错误日志
+                                    if (resultpro.IndexOf("ITEM_PROPERTIES_ERROR") != -1)
+                                    {
+
+                                        WriteLog("errID：" + dtWrite.Rows[j]["itemid"].ToString() + "errinfo" + resultpro, "", dt.Rows[i]["nick"].ToString(), dtWrite.Rows[j]["ActivityMissionID"].ToString());
+                                        //更新宝贝错误数
+                                        sql = "UPDATE Tete_ActivityMission SET fail = fail + 1,isok = -1  WHERE id = " + dt.Rows[i]["id"].ToString();
+                                        utils.ExecuteNonQuery(sql);
+                                    }
+                                    else
+                                    {
+                                        WriteLog("删除itemid:" + dtWrite.Rows[j]["itemid"].ToString() + resultpro, "", dt.Rows[i]["nick"].ToString(), dtWrite.Rows[j]["ActivityMissionID"].ToString());
+                                        //更新状态
+                                        sql = "UPDATE Tete_ActivityWriteContent SET isok = 1 WHERE id = " + dtWrite.Rows[j]["id"].ToString();
+                                        utils.ExecuteNonQuery(sql);
+
+                                        //更新状态
+                                        sql = "UPDATE Tete_ActivityMission SET success = success + 1 WHERE id = " + dt.Rows[i]["id"].ToString();
+                                        utils.ExecuteNonQuery(sql);
+                                    }
+                                }
                             }
                             else
                             {
