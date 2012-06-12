@@ -38,6 +38,13 @@
                 <td>
                     <select name="typ" onchange="InitUserCount(this)">
                         <option value="all" title="<%=count1 %>">所有会员</option>
+                        <optgroup label="自定义会员组">
+                        <asp:Repeater ID="rptGroup" runat="server">
+                            <ItemTemplate>
+                                <option value="<%#Eval("guid") %>" title="<%#Eval("count") %>"><%#Eval("name") %></option>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                        </optgroup>
                         <optgroup label="按购买次数区别">
                             <option value="0" title="<%=count2 %>">未成功购买的会员</option>
                             <option value="1" title="<%=count3 %>">购买过一次的会员</option>
