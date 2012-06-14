@@ -224,6 +224,7 @@ public partial class CreateAPK : BasePage
         Img_Apk.ImageUrl = "http://iphone.7fshop.com/apkimg/" + dir + "_s.jpg";
         Img_Apk.Visible = true;
         Btn_AddCa.Visible = true;
+        UpdateGoods();
     }
 
     private System.Drawing.Image GCode(string data)
