@@ -146,7 +146,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
         //sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 4";
         //count9 = utils.ExecuteString(sql);
 
-        sql = "SELECT * FROM TCS_Grade WHERE nick = '" + nick + "' AND isdel = 0";
+        sql = "SELECT * FROM TCS_Group WHERE nick = '" + nick + "' AND isdel = 0";
         DataTable dt = utils.ExecuteDataTable(sql);
 
         rptGroup.DataSource = dt;
