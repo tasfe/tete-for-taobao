@@ -348,6 +348,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
         if (isbirth == "1")
         {
             orderby = "birthday";
+            pageUrl += "&isbirth=1";
         }
         else
         {
