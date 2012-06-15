@@ -9,7 +9,7 @@
         <table>
             <tr>
                 <td>
-
+                <img src='images/frametop.jpg' />
         您好，亲爱的<%=buynick %> <br />
         优惠券数量： 0张<br />
         支付宝红包： 0张<br />
@@ -26,14 +26,14 @@
                 
                 <table>
                     <tr>
-                        <td><a href='#'><img src='http://img01.taobaocdn.com/bao/uploaded/i1/T1NXS7XdRrXXaY4Bo0_035941.jpg_160x160.jpg' /></a></td>
+                        <td><a href='#'><img src='http://img01.taobaocdn.com/bao/uploaded/i1/T1NXS7XdRrXXaY4Bo0_035941.jpg_160x160.jpg' height=120 /></a></td>
                         <td>宝贝名称<br /> 买家评价 <br /> 分享到： ----- 买家信息 星级</td>
                     </tr>
                 </table>
                 <br />
                 <table>
                     <tr>
-                        <td><a href='#'><img src='http://img01.taobaocdn.com/bao/uploaded/i1/T1NXS7XdRrXXaY4Bo0_035941.jpg_160x160.jpg' /></a></td>
+                        <td><a href='#'><img src='http://img01.taobaocdn.com/bao/uploaded/i1/T1NXS7XdRrXXaY4Bo0_035941.jpg_160x160.jpg' height=120 /></a></td>
                         <td>宝贝名称<br /> 买家评价 <br /> 分享到： ----- 买家信息 星级</td>
                     </tr>
                 </table>
