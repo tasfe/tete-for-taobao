@@ -31,8 +31,8 @@
                 <ItemTemplate>
                 <table>
                     <tr>
-                        <td><a href='http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>'><img border=0 src='http://img01.taobaocdn.com/bao/uploaded/i1/T1NXS7XdRrXXaY4Bo0_035941.jpg_160x160.jpg' height=120 /></a></td>
-                        <td><%#Eval("itemid") %><br /> <%#Eval("content") %> <br /> 分享到： ----- <%#Eval("buynick") %></td>
+                        <td><a href='http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>' target="_blank"><img border=0 src='http://img01.taobaocdn.com/bao/uploaded/i1/T1NXS7XdRrXXaY4Bo0_035941.jpg_160x160.jpg' height=120 /></a></td>
+                        <td><%#Eval("itemid") %><br /> <%#Eval("content") %> <br />  ----- <%#Eval("buynick") %></td>
                     </tr>
                 </table>
                 </ItemTemplate>
