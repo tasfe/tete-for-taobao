@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Common;
+using System.Text.RegularExpressions;
 
 public partial class top_callback : System.Web.UI.Page
 {
@@ -13,7 +14,9 @@ public partial class top_callback : System.Web.UI.Page
 
         string result = Base64Decode(top_parameters);
 
-        Response.Write(result);
+        string vistor = Regex.Match(result, "visitor_nick=([^&]*)").Groups[1].ToString();
+
+        Response.Write("您好，亲爱的" + vistor);
     }
 
     /// <summary>
