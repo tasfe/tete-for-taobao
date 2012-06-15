@@ -19,7 +19,7 @@
         <marquee direction="top">
             <asp:Repeater ID="rptTradeRate" runat="server">
                 <ItemTemplate>
-                    <%#Eval("buynick") %> 于 <%#Eval("senddate") %>获得优惠券1张，编号<%#Eval("number") %><br />
+                    <%#Eval("buynick") %> 于 <%#Eval("senddate") %>获得优惠券1张，编号<%#Eval("taobaonumber")%><br />
                 </ItemTemplate>
             </asp:Repeater>
         </marquee>
