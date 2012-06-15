@@ -36,7 +36,7 @@
         <tr>
                 <td width="100"><b>优惠券编号</b></td>
                 <td width="150"><b>买家</b></td>
-                <td width="150"><b>金额</b></td>
+                <td width="70"><b>金额</b></td>
                 <td width="150"><b>订单号</b></td>
                 <td width="150"><b>赠送日期 </b></td>
             </tr>
@@ -45,7 +45,7 @@
             <tr>
                 <td height="30"><%#Eval("taobaonumber") %></td>
                 <td><%#Eval("buynick") %></td>
-                <td><%#Eval("num") %></td>
+                <td>满<%#Eval("condition") %>元减<%#Eval("num") %>元</td>
                 <td><%#Eval("orderid") %></td>
                 <td><%#Eval("senddate") %></td>
             </tr>
