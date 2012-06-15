@@ -48,7 +48,7 @@
                 <td><%#Eval("buynick") %></td>
                 <td>满<%#Eval("condition") %>元减<%#Eval("num") %>元</td>
                 <td><%#Eval("orderid") %></td>
-                <td><%#Eval("price") %></td>
+                <td><%#Eval("totalprice")%></td>
                 <td><%#Eval("senddate") %></td>
             </tr>
             </ItemTemplate>
