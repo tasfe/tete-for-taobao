@@ -17,8 +17,11 @@
         <hr />
         最新获奖：<br />
         <marquee direction="top">
-            te**st 与 2012年6月15日 12:13分获得满100减10元的优惠券1张，编号299**021<br />
-            te**st 与 2012年6月15日 12:11分获得满100减10元的优惠券1张，编号299**011<br />
+            <asp:Repeater ID="rptTradeRate" runat="server">
+                <ItemTemplate>
+                    <%#Eval("buynick") %> 于 <%#Eval("senddate") %>获得优惠券1张，编号<%#Eval("number") %><br />
+                </ItemTemplate>
+            </asp:Repeater>
         </marquee>
 
                 </td>
