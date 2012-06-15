@@ -9,6 +9,9 @@ using System.Text.RegularExpressions;
 public partial class top_callback : System.Web.UI.Page
 {
     public string buynick = string.Empty;
+    public string coupon = string.Empty;
+    public string alipay = string.Empty;
+    public string freecard = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -17,6 +20,17 @@ public partial class top_callback : System.Web.UI.Page
 
         string result = Base64Decode(top_parameters);
         buynick = Regex.Match(result, "visitor_nick=([^&]*)").Groups[1].ToString();
+
+        string sql = "SELECT COUNT(*) FROM TCS_CouponSend WHERE nick = '" + nick + "' AND buynick = '" + buynick + "'";
+        coupon = utils.ExecuteString(sql);
+
+
+        sql = "SELECT COUNT(*) FROM TCS_AlipayDetail WHERE nick = '" + nick + "' AND buynick = '" + buynick + "'";
+        coupon = utils.ExecuteString(sql);
+
+
+        sql = "SELECT COUNT(*) FROM TCS_Freecard WHERE nick = '" + nick + "' AND buynick = '" + buynick + "'";
+        coupon = utils.ExecuteString(sql);
     }
 
     /// <summary>
