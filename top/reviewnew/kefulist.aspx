@@ -50,7 +50,7 @@
                 <td width="90"><b>买家</b></td>
                 <td width="70"><b>回头客</b></td>
                 <td width="120"><b>订单号</b></td>
-                <td width="50"><b>订单号</b></td>
+                <td width="50"><b>金额</b></td>
                 <td width="60"><b>下单日期 </b></td>
                 <td width="60"><b>评价日期 </b></td>
                 <td width="60"><b>评价等级 </b></td>
