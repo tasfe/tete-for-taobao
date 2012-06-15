@@ -378,7 +378,7 @@ public class DataHelper
                 max = now.AddDays(-6);
             }
 
-            List<TaoBaoAPIHelper.TalkContent> allcontent = trDal.GetAllContent(now.AddHours(-16), now, nick, fromNick);
+            List<TaoBaoAPIHelper.TalkContent> allcontent = trDal.GetAllContent(max.AddHours(-16), max, nick, fromNick);
 
             List<TaoBaoAPIHelper.TalkObj> objList = TaoBaoAPIHelper.TaoBaoAPI.GetTalkObjList(fromNick.Replace("cntaobao", ""), session, max, now);
             foreach (TaoBaoAPIHelper.TalkObj obj in objList)
