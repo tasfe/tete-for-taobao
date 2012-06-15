@@ -17,7 +17,7 @@
     <input type="hidden" name="t" id="t" value="" />
 <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="javascript:;" class="nolink">特特CRM_客户关系营销</a> 手动赠送优惠券 </div>
+  <div class="crumbs"><a href="javascript:;" class="nolink">特特CRM_客户关系营销</a> 批量赠送优惠券 </div>
   <div class="absright">
     <ul>
       <li>
