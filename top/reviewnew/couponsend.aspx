@@ -35,10 +35,11 @@
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
                 <td width="100"><b>优惠券编号</b></td>
-                <td width="150"><b>买家</b></td>
-                <td width="70"><b>金额</b></td>
-                <td width="150"><b>订单号</b></td>
-                <td width="150"><b>赠送日期 </b></td>
+                <td width="120"><b>买家</b></td>
+                <td width="70"><b>优惠金额</b></td>
+                <td width="120"><b>订单号</b></td>
+                <td width="70"><b>订单金额</b></td>
+                <td width="120"><b>赠送日期 </b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
@@ -47,6 +48,7 @@
                 <td><%#Eval("buynick") %></td>
                 <td>满<%#Eval("condition") %>元减<%#Eval("num") %>元</td>
                 <td><%#Eval("orderid") %></td>
+                <td><%#Eval("price") %></td>
                 <td><%#Eval("senddate") %></td>
             </tr>
             </ItemTemplate>
