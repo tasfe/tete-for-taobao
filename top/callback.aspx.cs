@@ -44,7 +44,7 @@ public partial class top_callback : System.Web.UI.Page
         freecard = utils.ExecuteString(sql);
 
 
-        sql = "SELECT TOP 10 * FROM TCS_CouponSend WHERE nick = '" + nick + "' ORDER BY ordernumber DESC";
+        sql = "SELECT TOP 10 * FROM TCS_CouponSend WHERE nick = '" + nick + "' ORDER BY taobaonumber DESC";
         DataTable dt = utils.ExecuteDataTable(sql);
 
         rptTradeRate.DataSource = dt;
