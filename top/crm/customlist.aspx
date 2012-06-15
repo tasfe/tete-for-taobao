@@ -31,7 +31,7 @@
 </div>
 
 买家类型：
-<select name="typ" runat="server">
+<select name="typ">
     <option value="all">所有会员</option>
     <optgroup label="按购买次数区别">
         <option value="0">未成功购买的会员</option>
