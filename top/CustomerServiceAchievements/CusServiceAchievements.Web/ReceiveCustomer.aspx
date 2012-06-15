@@ -52,7 +52,7 @@
                 <ul>
                     <li><a href="CustomerList.aspx" class="report">接待人数</a></li>
                     <li><a href="GoodsOrderList.aspx" class="report_seo">成功订单</a></li>
-                    <li><a href="#" class="report_seo">付款金额</a></li>
+                    <li><a href="OrderTotal.aspx" class="report_seo">付款金额</a></li>
                 </ul>
             </div>
         </div>
@@ -126,7 +126,7 @@
                         <ul>
                             <li><a href="#" class="report">接待人数</a></li>
                             <li><a href="GoodsOrderList.aspx" class="report">成功订单</a></li>
-                            <li><a href="#" class="report">付款金额</a></li>
+                            <li><a href="OrderTotal.aspx" class="report">付款金额</a></li>
                         </ul>
                     </li>
                     <li>

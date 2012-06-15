@@ -35,7 +35,7 @@
                 </ul>
             </div>
             <h2>
-                聊天记录</h2>
+                订单查看</h2>
             <div id="topmenu">
                 <ul>
                     <li><a href="default2.aspx">主页</a></li>
@@ -51,7 +51,7 @@
                 <ul>
                     <li><a href="CustomerList.aspx" class="report">接待人数</a></li>
                     <li><a href="#" class="report_seo">成功订单</a></li>
-                    <li><a href="#" class="report_seo">付款金额</a></li>
+                    <li><a href="OrderTotal.aspx" class="report_seo">付款金额</a></li>
                 </ul>
             </div>
         </div>
@@ -85,7 +85,7 @@
                                     实际支付
                                 </th>
                                 <th style="width:200px">
-                                    收获地址
+                                    收货地址
                                 </th>
                                 <th style="width:115px">
                                     接待人
@@ -139,7 +139,7 @@
                         <ul>
                             <li><a href="ReceiveCustomer.aspx" class="report">接待人数</a></li>
                             <li><a href="GoodsOrderList.aspx" class="report">成功订单</a></li>
-                            <li><a href="#" class="report">付款金额</a></li>
+                            <li><a href="OrderTotal.aspx" class="report">付款金额</a></li>
                         </ul>
                     </li>
                     <li>

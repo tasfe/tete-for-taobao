@@ -1,12 +1,15 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="YejiTotal2.aspx.cs" Inherits="YejiTotal2" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="OrderTotal.aspx.cs" Inherits="OrderTotal" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<head id="Head1" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>客服绩效考核</title>
     <link href="css/css1.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="jxkh/css/theme.css" />
     <link rel="stylesheet" type="text/css" href="jxkh/css/style.css" />
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
     <script type="text/javascript">
         var start = document.cookie.indexOf('theme=');
@@ -17,14 +20,11 @@
     <!--[if IE]>
 <link rel="stylesheet" type="text/css" href="jxkh/css/ie-sucks.css" />
 <![endif]-->
-
-    <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
-
 </head>
 <body>
     <div id="container">
         <div id="header">
-            <div id="site-nav" style="margin-bottom:-15px;">
+           <div id="site-nav" style="margin-bottom:-15px;">
                 <p class="login-info">
                     <font color="white">在线客服：</font> <a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid=叶儿随清风&site=cntaobao&s=1&charset=utf-8">
                         <img border="0" align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=叶儿随清风&site=cntaobao&s=1&charset=utf-8"
@@ -34,13 +34,13 @@
                     <li><a href="help/help.html" style="color:White">帮助教程</a></li>
                 </ul>
             </div>
-          
-            <h2>业绩统计</h2>
+            
+            <h2>付款金额</h2>
             <div id="topmenu">
                 <ul>
                     <li><a href="default2.aspx">主页</a></li>
-                    <li><a href="ReceiveCustomer.aspx">日统计</a></li>
-                    <li class="current"><a href="#">业绩统计</a></li>
+                    <li class="current"><a href="#">日统计</a></li>
+                    <li><a href="YejiTotal2.aspx">业绩统计</a></li>
                     <li><a href="AllTalkContent.aspx">聊天记录</a></li>
                     <li><a href="GroupReceiveCustomer.aspx">客服对比</a></li>
                 </ul>
@@ -49,86 +49,82 @@
         <div id="top-panel">
             <div id="panel">
                 <ul>
-                    <li><a href="GoodsOrderList.aspx" class="folder_table">成功订单</a></li>
-                    <li><a href="#" class="folder_table">接待人次</a></li>
-                    <li><a href="#" class="folder_table">日统计</a></li>
-                    <li><a href="#" class="folder_table">月统计</a></li>
-                    <li><a href="#" class="folder_table">年统计</a></li>
+                    <li><a href="CustomerList.aspx" class="report">接待人数</a></li>
+                    <li><a href="GoodsOrderList.aspx" class="report_seo">成功订单</a></li>
+                    <li><a href="#" class="report_seo">付款金额</a></li>
                 </ul>
             </div>
         </div>
         <div id="wrapper">
             <div id="content">
                 <form id="form1" runat="server">
-                <div id="rightnow">
-                    <asp:Button ID="Btn_LastMonth" runat="server" Text="上 月" OnClick="Btn_LastMonth_Click" />&nbsp;
-                    <asp:TextBox ID="TB_Start" runat="server" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})"
-                        class="Wdate" Width="120px"></asp:TextBox>
-                    至
-                    <asp:TextBox ID="TB_End" runat="server" Width="120px" class="Wdate" onFocus="WdatePicker({minDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})"></asp:TextBox>
-                    &nbsp;<asp:Button ID="Btn_Select" runat="server" Text="检 索" OnClick="Btn_Select_Click" />
-                </div>
-                <div>
-                    <table style="margin: 0; width: 740px; margin-top: 5px;">
-                        <thead>
-                            <tr>
-                                <th style="width: 25%">
-                                    客服
-                                </th>
-                                <th style="width: 15%">
-                                    付款金额
-                                </th>
-                                <th style="width: 10%">
-                                    宝贝金额
-                                </th>
-                                <th style="width: 10%">
-                                    运费
-                                </th>
-                                <th style="width: 10%">
-                                    订单数
-                                </th>
-                                <th style="width: 10%">
-                                    宝贝数
-                                </th>
-                                <th style="width: 10%">
-                                    回复次数
-                                </th>
-                                <th style="width: 10%">
-                                    接待人数
-                                </th>
-                            </tr>
-                        </thead>
-                        <asp:Repeater ID="Rpt_KefuTotal" runat="server">
-                            <ItemTemplate>
-                                <tr>
-                                    <td>
-                                        <%# Eval("Nick") %>
-                                    </td>
-                                    <td>
-                                        <%# Eval("Payment") %>
-                                    </td>
-                                    <td>
-                                        <%# Eval("GoodsPay") %>
-                                    </td>
-                                    <td>
-                                        <%# Eval("PostFee") %>
-                                    </td>
-                                    <td>
-                                        <%# Eval("OrderCount") %>
-                                    </td>
-                                    <td>
-                                        <%# Eval("GoodsCount") %>
-                                    </td>
-                                    <td>
-                                        <%# Eval("ReceiveCount") %>
-                                    </td>
-                                    <td>
-                                        <%# Eval("CustomerCount") %>
-                                    </td>
-                                </tr>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </table>
+
+                <script type="text/javascript">
+            var chart;
+            $(document).ready(function() {
+                chart = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'divchart',
+                        defaultSeriesType: 'column',
+                        marginRight: 130,
+                        marginBottom: 25
+                    },
+                    title: {
+                        text: '订单统计',
+                        x: -20 //center
+                    },
+                    subtitle: {
+                        text: '下单率',
+                        x: -20
+                    },
+                    xAxis: {
+                        categories:<%=DateText %>
+                    },
+                    yAxis: {
+                        title: {
+                            text: '下单率'
+                        },
+                        plotLines: [{
+                            value: 0,
+                            width: 1,
+                            color: '#808080'
+}]
+                        },
+                        tooltip: {
+                            formatter: function() {
+                                return '<b>' + this.series.name + '</b>：' + this.y;
+                            }
+                        },
+                        legend: {
+                            layout: 'vertical',
+                            align: 'right',
+                            verticalAlign: 'top',
+                            x: -10,
+                            y: 100,
+                            borderWidth: 0
+                        },
+                        series:<%=SeriseText %>
+                        });
+                    });
+
+                </script>
+
+                <script type="text/javascript" src="js/highcharts.js"></script>
+
+                <script type="text/javascript" src="js/modules/exporting.js"></script>
+<div id="rightnow">
+      <asp:Button ID="Btn_Month" runat="server" OnClick="Btn_Month_Click" Text="按月" />&nbsp;
+       <asp:Button ID="Btn_Year" runat="server" OnClick="Btn_Year_Click" Text="按年" />&nbsp;
+     <asp:Button ID="Btn_3Days" runat="server" OnClick="Btn_3Days_Click" Text="最近3天" />&nbsp;
+     <asp:Button ID="Btn_7Days" runat="server" OnClick="Btn_7Days_Click" Text="最近7天" />&nbsp;
+     <asp:Button ID="Btn_30Days" runat="server" OnClick="Btn_30Days_Click" Text="最近30天" />&nbsp;
+     
+     <asp:TextBox 
+                ID="TB_Start" runat="server" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})" class="Wdate" Width="120px"></asp:TextBox> 至 
+            <asp:TextBox ID="TB_End" runat="server" Width="120px" class="Wdate" onFocus="WdatePicker({minDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})"></asp:TextBox>
+       &nbsp;<asp:Button ID="Btn_Select" runat="server" Text="检索"  onclick="Btn_Select_Click" />
+     </div>  
+                <div id="divchart" style="width: 740px; height: 400px; margin: 0 auto">
                 </div>
                 </form>
             </div>
@@ -138,9 +134,9 @@
                         <h3>
                             <a href="#" class="report">日统计</a></h3>
                         <ul>
-                            <li><a href="CustomerList.aspx" class="report">接待人数</a></li>
-                            <li><a href="#" class="report">成功订单</a></li>
-                            <li><a href="OrderTotal.aspx" class="report">付款金额</a></li>
+                            <li><a href="#" class="report">接待人数</a></li>
+                            <li><a href="GoodsOrderList.aspx" class="report">成功订单</a></li>
+                            <li><a href="#" class="report">付款金额</a></li>
                         </ul>
                     </li>
                     <li>
@@ -148,7 +144,7 @@
                             <a href="#" class="folder_table">业绩统计</a></h3>
                         <ul>
                             <li><a href="GoodsOrderList.aspx" class="folder_table">成功订单</a></li>
-                            <li><a href="#" class="folder_table">接待人次</a></li>
+                            <li><a href="" class="folder_table">接待人次</a></li>
                             <li><a href="#" class="folder_table">日统计</a></li>
                             <li><a href="#" class="folder_table">月统计</a></li>
                             <li><a href="#" class="folder_table">年统计</a></li>
@@ -167,7 +163,7 @@
                     </li>
                     <li>
                         <h3>
-                            <a href="GroupReceiveCustomer.aspx" class="user">客服对比</a></h3>
+                            <a href="#" class="user">客服对比</a></h3>
                         <ul>
                             <li><a href="#" class="user">接待人数</a></li>
                             <li><a href="#" class="user">平均首次响应速度</a></li>
