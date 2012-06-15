@@ -8,15 +8,15 @@ using System.Text.RegularExpressions;
 
 public partial class top_callback : System.Web.UI.Page
 {
-    public string vistor = string.Empty;
+    public string buynick = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
         string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString);
+        string nick = utils.NewRequest("seller_nick", utils.RequestType.QueryString);
 
         string result = Base64Decode(top_parameters);
-
-        vistor = Regex.Match(result, "visitor_nick=([^&]*)").Groups[1].ToString();
+        buynick = Regex.Match(result, "visitor_nick=([^&]*)").Groups[1].ToString();
     }
 
     /// <summary>
