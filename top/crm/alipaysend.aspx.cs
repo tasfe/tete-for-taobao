@@ -229,6 +229,7 @@ public partial class top_crm_alipaysend : System.Web.UI.Page
         }
 
         sql = "SELECT * FROM TCS_Customer b WHERE b.nick = '" + nick + "' " + condition + "";
+        Response.Write(sql);
         dt = utils.ExecuteDataTable(sql);
         for (int i = 0; i < dt.Rows.Count; i++)
         {
@@ -304,6 +305,10 @@ public partial class top_crm_alipaysend : System.Web.UI.Page
                                 utils.ExecuteNonQuery(sql);
 
                                 index++;
+                            }
+                            else
+                            {
+                                err++;
                             }
                         }
                         else
