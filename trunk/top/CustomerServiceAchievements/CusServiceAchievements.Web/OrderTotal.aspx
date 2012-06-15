@@ -108,7 +108,7 @@
                     });
 
                 </script>
-
+  <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
                 <script type="text/javascript" src="js/highcharts.js"></script>
 
                 <script type="text/javascript" src="js/modules/exporting.js"></script>
