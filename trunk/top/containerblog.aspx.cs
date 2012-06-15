@@ -149,7 +149,7 @@ public partial class top_containerblog : System.Web.UI.Page
 
         File.WriteAllText(Server.MapPath(u + ".txt"), Request.Url + "?" + Request.QueryString);
 
-        return "3";
+        return "2";
     }
 
     private bool VersionVerify(string app_secret, string top_sign, string appkey, string leaseId, string timestamp, string versionNo)
