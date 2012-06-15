@@ -8,7 +8,7 @@
     <div style="border:solid 1px red;">
         <table>
             <tr>
-                <td>
+                <td valign=top>
                 <img src='images/frametop.jpg' />
         您好，亲爱的<%=buynick %> <br />
         优惠券数量： <%=coupon %>张<br />
@@ -25,14 +25,14 @@
         </marquee>
 
                 </td>
-                <td>
+                <td valign=top>
                 
             <asp:Repeater ID="Repeater1" runat="server">
                 <ItemTemplate>
                 <table>
                     <tr>
-                        <td><a href='http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>' target="_blank"><img border=0 src='http://img01.taobaocdn.com/bao/uploaded/i1/T1NXS7XdRrXXaY4Bo0_035941.jpg_160x160.jpg' height=120 /></a></td>
-                        <td><%#Eval("itemid") %><br /> <%#Eval("content") %> <br />  ----- <%#Eval("buynick") %></td>
+                        <td><a href='http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>' target="_blank"><img border=0 src='<%#Eval("itemsrc") %>' height=100 /></a></td>
+                        <td><%#Eval("itemname") %><br /> <%#Eval("content") %> <br />  ----- <%#Eval("buynick") %> <img src='http://haoping.7fshop.com/top/crm/level/<%#Eval("userlevel") %>.gif' /></td>
                     </tr>
                 </table>
                 </ItemTemplate>
