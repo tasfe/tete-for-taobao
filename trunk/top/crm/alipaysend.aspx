@@ -86,7 +86,7 @@
             </tr>-->
             <tr>
                 <td align="left" colspan="2">
-                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="赠送优惠券给买家" />
+                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="赠送支付宝红包给买家" />
                 </td>
             </tr>
         </table>
