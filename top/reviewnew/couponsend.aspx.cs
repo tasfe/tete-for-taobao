@@ -70,7 +70,7 @@ public partial class top_review_couponsend : System.Web.UI.Page
 
     private void ShowSearchData(string buynick)
     {
-        string sqlNew = "SELECT * FROM TCS_CouponSend WHERE nick = '" + nick + "' AND buynick = '" + buynick + "' ORDER BY taobaonumber DESC";
+        string sqlNew = "SELECT s.*,c.num,c.condition FROM TCS_CouponSend s LEFT JOIN TCS_Coupon c ON c.guid = s.guid WHERE s.nick = '" + nick + "' AND s.buynick = '" + buynick + "' ORDER BY s.taobaonumber DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
