@@ -26,11 +26,11 @@ public partial class top_callback : System.Web.UI.Page
 
 
         sql = "SELECT COUNT(*) FROM TCS_AlipayDetail WHERE nick = '" + nick + "' AND buynick = '" + buynick + "'";
-        coupon = utils.ExecuteString(sql);
+        alipay = utils.ExecuteString(sql);
 
 
         sql = "SELECT COUNT(*) FROM TCS_Freecard WHERE nick = '" + nick + "' AND buynick = '" + buynick + "'";
-        coupon = utils.ExecuteString(sql);
+        freecard = utils.ExecuteString(sql);
     }
 
     /// <summary>
