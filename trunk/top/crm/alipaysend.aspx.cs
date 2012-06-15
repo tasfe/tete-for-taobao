@@ -316,6 +316,10 @@ public partial class top_crm_alipaysend : System.Web.UI.Page
                         err++;
                     }
                 }
+                else
+                {
+                    err++;
+                }
             }
             else
             {
