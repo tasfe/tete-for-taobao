@@ -5,9 +5,11 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Common;
 using System.Text.RegularExpressions;
+using System.Data;
 
 public partial class top_callback : System.Web.UI.Page
 {
+    public string nick = string.Empty;
     public string buynick = string.Empty;
     public string coupon = string.Empty;
     public string alipay = string.Empty;
@@ -16,11 +18,16 @@ public partial class top_callback : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString);
-        string nick = utils.NewRequest("seller_nick", utils.RequestType.QueryString);
+        nick = utils.NewRequest("seller_nick", utils.RequestType.QueryString);
 
         string result = Base64Decode(top_parameters);
         buynick = Regex.Match(result, "visitor_nick=([^&]*)").Groups[1].ToString();
 
+        BindData();
+    }
+
+    private void BindData()
+    {
         string sql = "SELECT COUNT(*) FROM TCS_CouponSend WHERE nick = '" + nick + "' AND buynick = '" + buynick + "'";
         coupon = utils.ExecuteString(sql);
 
@@ -31,6 +38,13 @@ public partial class top_callback : System.Web.UI.Page
 
         sql = "SELECT COUNT(*) FROM TCS_Freecard WHERE nick = '" + nick + "' AND buynick = '" + buynick + "'";
         freecard = utils.ExecuteString(sql);
+
+
+        sql = "SELECT TOP 2 * FROM TCS_CouponSend WHERE nick = '" + nick + "' ORDER BY ordernumber DESC";
+        DataTable dt = utils.ExecuteDataTable(sql);
+
+        rptTradeRate.DataSource = dt;
+        rptTradeRate.DataBind();
     }
 
     /// <summary>
