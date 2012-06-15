@@ -31,7 +31,7 @@
 </div>
 
 买家类型：
-<select name="typ">
+<select name="typ" runat="server">
     <option value="all">所有会员</option>
     <optgroup label="按购买次数区别">
         <option value="0">未成功购买的会员</option>
@@ -63,7 +63,7 @@
                 <td width="50"><b>交易量</b></td>
                 <td width="50"><b>交易额</b></td>
                 <td width="55"><b>最后交易</b></td>
-                <td width="55"><a href="customlist.aspx"><b>生日</b></a></td>
+                <td width="55"><a href="customlist.aspx?isbirth=1"><b>生日</b></a></td>
                 <td width="60"><b>操作</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">

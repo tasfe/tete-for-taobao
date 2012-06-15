@@ -303,8 +303,10 @@ public partial class top_crm_customlist : System.Web.UI.Page
     private void BindData()
     {
         string count = utils.NewRequest("count", utils.RequestType.QueryString);
+        string isbirth = utils.NewRequest("isbirth", utils.RequestType.QueryString);
         typ = count;
         string condition = string.Empty;
+        string orderby = string.Empty;
         string pageUrl = "customlist.aspx?1=1";
 
         switch (count)
@@ -343,6 +345,15 @@ public partial class top_crm_customlist : System.Web.UI.Page
                 break;
         }
 
+        if (isbirth == "1")
+        {
+            orderby = "birthday";
+        }
+        else
+        {
+            orderby = "lastorderdate";
+        }
+
         string page = utils.NewRequest("page", utils.RequestType.QueryString);
         int pageNow = 1;
         if (page == "")
@@ -356,7 +367,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
         int pageCount = 12;
         int dataCount = (pageNow - 1) * pageCount;
 
-        string sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.lastorderdate DESC) AS rownumber FROM TCS_Customer b WITH (NOLOCK) WHERE b.nick = '" + nick + "' " + condition + ") AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY lastorderdate DESC";
+        string sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b." + orderby + " DESC) AS rownumber FROM TCS_Customer b WITH (NOLOCK) WHERE b.nick = '" + nick + "' " + condition + ") AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY " + orderby + " DESC";
         DataTable dt = utils.ExecuteDataTable(sql);
 
         rptArticle.DataSource = dt;
