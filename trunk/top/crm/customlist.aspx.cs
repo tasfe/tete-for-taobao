@@ -347,7 +347,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
 
         if (isbirth == "1")
         {
-            orderby = "MONTH(b.birthday)";
+            orderby = "MONTH(b.birthday) DESC, DAY(b.birthday) DESC";
             pageUrl += "&isbirth=1";
         }
         else
@@ -368,7 +368,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
         int pageCount = 12;
         int dataCount = (pageNow - 1) * pageCount;
 
-        string sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY " + orderby + " DESC) AS rownumber FROM TCS_Customer b WITH (NOLOCK) WHERE b.nick = '" + nick + "' " + condition + ") AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY " + orderby.Replace("b.","") + " DESC";
+        string sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY " + orderby + ") AS rownumber FROM TCS_Customer b WITH (NOLOCK) WHERE b.nick = '" + nick + "' " + condition + ") AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY " + orderby.Replace("b.","") + "";
         DataTable dt = utils.ExecuteDataTable(sql);
 
         rptArticle.DataSource = dt;
