@@ -16,7 +16,7 @@
         包邮卡： <%=freecard %>张<br />
         <hr />
         最新获奖：<br />
-        <marquee direction="top">
+        <marquee direction="up">
             <asp:Repeater ID="rptTradeRate" runat="server">
                 <ItemTemplate>
                     <%#Eval("buynick") %> 于 <%#Eval("senddate") %>获得优惠券1张，编号<%#Eval("taobaonumber")%><br />
