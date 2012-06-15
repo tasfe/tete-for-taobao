@@ -16,7 +16,7 @@ public partial class top_callback : System.Web.UI.Page
 
         string result = Base64Decode(top_parameters);
 
-        string vistor = Regex.Match(result, "visitor_nick=([^&]*)").Groups[1].ToString();
+        vistor = Regex.Match(result, "visitor_nick=([^&]*)").Groups[1].ToString();
     }
 
     /// <summary>
