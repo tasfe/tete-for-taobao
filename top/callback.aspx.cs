@@ -8,6 +8,8 @@ using System.Text.RegularExpressions;
 
 public partial class top_callback : System.Web.UI.Page
 {
+    public string vistor = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString);
@@ -15,8 +17,6 @@ public partial class top_callback : System.Web.UI.Page
         string result = Base64Decode(top_parameters);
 
         string vistor = Regex.Match(result, "visitor_nick=([^&]*)").Groups[1].ToString();
-
-        Response.Write("您好，亲爱的" + vistor);
     }
 
     /// <summary>
