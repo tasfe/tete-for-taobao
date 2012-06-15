@@ -203,6 +203,11 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
                 break;
         }
 
+        if (typ.Length > 2)
+        {
+            condition = " AND b.groupguid = '" + typ + "'";
+        }
+
         int index = 0;
         int err = 0;
         string errtext = string.Empty;
