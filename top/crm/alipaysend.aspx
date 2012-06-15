@@ -18,7 +18,7 @@
     <input type="hidden" name="t" id="t" value="" />
 <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="javascript:;" class="nolink">特特CRM_客户关系营销</a> 手动赠送优惠券 </div>
+  <div class="crumbs"><a href="javascript:;" class="nolink">特特CRM_客户关系营销</a> 批量赠送支付宝红包 </div>
   <div class="absright">
     <ul>
       <li>
@@ -39,6 +39,13 @@
                 <td>
                     <select name="typ" onchange="InitUserCount(this)">
                         <option value="all" title="<%=count1 %>">所有会员</option>
+                        <optgroup label="自定义会员组">
+                        <asp:Repeater ID="rptGroup" runat="server">
+                            <ItemTemplate>
+                                <option value="<%#Eval("guid") %>" title="<%#Eval("count") %>"><%#Eval("name") %></option>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                        </optgroup>
                         <optgroup label="按购买次数区别">
                             <option value="0" title="<%=count2 %>">未成功购买的会员</option>
                             <option value="1" title="<%=count3 %>">购买过一次的会员</option>
@@ -55,11 +62,11 @@
                 </td>
             </tr>
             <tr>
-                <td align="left" height="30">选择赠送的优惠券：</td>
+                <td align="left" height="30">选择赠送的支付宝红包：</td>
                 <td>
                     <%=couponstr%>
-                    <a href="../reviewnew/couponadd.aspx">创建优惠券</a>
-                    <a href="../reviewnew/couponsend.aspx">查看优惠券赠送记录</a>
+                    <a href="../reviewnew/couponadd.aspx">创建支付宝红包</a>
+                    <a href="../reviewnew/couponsend.aspx">查看支付宝红包赠送记录</a>
                 </td>
             </tr>
             <tr>
