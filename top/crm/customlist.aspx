@@ -48,9 +48,7 @@
 </select>
     请输入买家昵称：<asp:TextBox ID="search" runat="server"></asp:TextBox>
     <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Text="搜索" />
-    <input type="button" value="优惠券赠送" onclick="window.location.href='msgsend.aspx?typ=<%=typ %>'" />
-        <asp:Button ID="Button1" runat="server" Text="导出全部会员数据" 
-            onclick="Button1_Click" />
+        <asp:Button ID="Button1" runat="server" Text="导出全部" onclick="Button1_Click" />
         <hr />
 
         <table width="740" cellpadding="0" cellspacing="0">
@@ -65,7 +63,7 @@
                 <td width="50"><b>交易量</b></td>
                 <td width="50"><b>交易额</b></td>
                 <td width="55"><b>最后交易</b></td>
-                <td width="55"><b>生日</b></td>
+                <td width="55"><a href="customlist.aspx"><b>生日</b></a></td>
                 <td width="60"><b>操作</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
