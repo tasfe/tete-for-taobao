@@ -23,6 +23,10 @@ public partial class top_callback : System.Web.UI.Page
         string result = Base64Decode(top_parameters);
         buynick = Regex.Match(result, "visitor_nick=([^&]*)").Groups[1].ToString();
 
+        //test
+        nick = "vancl凡客诚品旗舰店";
+        buynick = "妮妮开心每一天";
+
         BindData();
     }
 
