@@ -204,7 +204,7 @@ public partial class top_crm_alipaysend : System.Web.UI.Page
                 break;
         }
 
-        if (typ.Length > 2)
+        if (typ.Length > 10)
         {
             condition = " AND b.groupguid = '" + typ + "'";
         }
