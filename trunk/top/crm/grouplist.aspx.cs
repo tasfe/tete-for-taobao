@@ -17,7 +17,7 @@ public partial class top_crm_grouplist : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        string id = utils.NewRequest("id", utils.RequestType.QueryString);
+        id = utils.NewRequest("id", utils.RequestType.QueryString);
         string act = utils.NewRequest("act", utils.RequestType.QueryString);
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
