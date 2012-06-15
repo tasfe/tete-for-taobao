@@ -51,7 +51,7 @@ public partial class top_callback : System.Web.UI.Page
         rptTradeRate.DataBind();
 
 
-        sql = "SELECT TOP 2 * FROM TCS_TradeRate WHERE nick = '" + nick + "' ORDER BY orderid DESC";
+        sql = "SELECT TOP 2 * FROM TCS_TradeRate WHERE nick = '" + nick + "' ORDER BY reviewdate DESC";
         dt = utils.ExecuteDataTable(sql);
 
         Repeater1.DataSource = dt;
