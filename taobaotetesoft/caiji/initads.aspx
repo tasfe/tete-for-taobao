@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="initads.aspx.cs" Inherits="taobaotetesoft_caiji_initads" %>
