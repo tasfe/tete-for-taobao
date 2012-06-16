@@ -8,6 +8,6 @@ public partial class taobaotetesoft_caiji_show : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Response.Write("http://gg.7fshop.com/zhaozu.jpg");
+        Response.Redirect("http://gg.7fshop.com/zhaozu.jpg");
     }
 }
