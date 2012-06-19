@@ -143,10 +143,10 @@ a:active {
             <div style="font-size:12px; color:#666; margin:6px 0px 0px 0px; line-height:20px;">已售<span class="text2">1</span>件<br />
               <span class="text3">￥178.00</span></div>
             </a>
-            <div class="share_btn_box" rid="109199846748230"></div></td>
+            <div class="share_btn_box" rid="<%#Eval("itemid") %>"></div></td>
         </tr>
       </table>
-      <div class="rate_box"><span class="rate_ico"></span><span class="vip_text">[好评]</span><a href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" target="_blank"><span class="rate_content"><%#Eval("content") %></span><span class="params" num_iid="4537379718" pic_url="http://img02.taobaocdn.com/bao/uploaded/i2/T1SOJxXXpiXXcCddjb_093429.jpg"></span></a></div></td>
+      <div class="rate_box"><span class="rate_ico"></span><span class="vip_text">[好评]</span><a href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" target="_blank"><span class="rate_content"><%#Eval("content") %></span><span class="params" num_iid="<%#Eval("itemid") %>" pic_url="http://img02.taobaocdn.com/bao/uploaded/i2/T1SOJxXXpiXXcCddjb_093429.jpg"></span></a></div></td>
   </tr>
   <tr>
     <td valign="bottom"><div class="buyer_box"><%#Eval("buynick") %> <img src='http://haoping.7fshop.com/top/crm/level/<%#Eval("userlevel") %>.gif' /><br />
