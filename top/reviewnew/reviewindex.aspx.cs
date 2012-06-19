@@ -121,9 +121,11 @@ public partial class top_reviewnew_reviewindex : System.Web.UI.Page
         string userlevel = utils.ExecuteString(sql);
 
         sql = "UPDATE TCS_TradeRate SET isshow = 1,itemname='" + product.Title + "',itemsrc='" + product.PicUrl + "',price='" + product.Price + "',sale='" + sale + "',showcontent = '" + showcontent + "',userlevel='" + userlevel + "' WHERE orderid = '" + id + "' AND nick = '" + nick + "'";
+        Response.Write(sql);
+        
         utils.ExecuteNonQuery(sql);
 
-        Response.Redirect("reviewindex.aspx");
+        //Response.Redirect("reviewindex.aspx");
     }
 
     public static string left(string str)
