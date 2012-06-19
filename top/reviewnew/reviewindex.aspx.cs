@@ -15,6 +15,7 @@ public partial class top_reviewnew_reviewindex : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
+        string act = utils.NewRequest("act", utils.RequestType.QueryString);
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
         session = cookie.getCookie("top_sessiongroupbuy");
@@ -44,7 +45,41 @@ public partial class top_reviewnew_reviewindex : System.Web.UI.Page
             }
         }
 
+        if (act == "add")
+        {
+            InitTradeRateData(id);
+            return;
+        }
+
+        if (act == "del")
+        {
+            DelTradeRateData(id);
+            return;
+        }
+
         BindData();
+    }
+
+    /// <summary>
+    /// 删除首页展示的评价信息
+    /// </summary>
+    /// <param name="id"></param>
+    private void DelTradeRateData(string id)
+    {
+        string sql = "UPDATE TCS_TradeRate SET isshow = 0 WHERE orderid = '" + id + "' AND nick = '" + nick + "'";
+        utils.ExecuteNonQuery(sql);
+
+        Response.Redirect("reviewindex.aspx");
+    }
+
+    /// <summary>
+    /// 加入首页展示的评价信息
+    /// </summary>
+    /// <param name="id"></param>
+    private void InitTradeRateData(string id)
+    {
+
+        Response.Redirect("reviewindex.aspx");
     }
 
     public static string left(string str)
