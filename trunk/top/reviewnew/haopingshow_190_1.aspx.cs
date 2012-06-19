@@ -24,4 +24,19 @@ public partial class top_reviewnew_haopingshow_190_1 : System.Web.UI.Page
         rptTradeRate.DataSource = dt;
         rptTradeRate.DataBind();
     }
+
+    public static string hidden(string str)
+    {
+        if (str.Length > 2)
+        {
+            str = str.Substring(0, 1);
+            for (int i = 0; i < (str.Length - 2); i++)
+            {
+                str += "*";
+            }
+            str += str.Substring(str.Length - 1, 1);
+        }
+
+        return str;
+    }
 }
