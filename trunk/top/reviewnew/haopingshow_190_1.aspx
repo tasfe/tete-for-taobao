@@ -127,10 +127,10 @@ a:active {
 <div style="overflow:hidden;position:relative;border:solid 1px #E6E6E6;height:498px;">
 
 <div style="width:100%; z-index:10;background-image: url(/medias/images/title_bar.png); margin:0px; line-height:110px; height:110px; font-size:12px; padding:0px 0px 0px 0px; font-weight:bold;"><a href="http://fuwu.taobao.com/serv/detail.htm?service_id=4545" target="_blank">
-<img src='../images/frametop.jpg' width=190 border=0 />
+<img src='../images/frametop.jpg' width=188 border=0 />
 </a></div>
 
-  <div id="hp_box" style="position:absolute; z-index:2; top:20px; padding:0px 8px 0px 8px;">
+  <div id="hp_box" style="z-index:2; top:20px; padding:0px 8px 0px 8px;">
     
 <asp:Repeater ID="rptTradeRate" runat="server">
     <ItemTemplate>
