@@ -52,10 +52,8 @@
             </ItemTemplate>
         </asp:Repeater>
     </table>
-
-    <div>
-        <asp:Label ID="lbPage" runat="server"></asp:Label>
-    </div>
+    <input type="hidden" name="action" value="save" />
+    <input type=submit value="保存" />
     </div>
 </div>
 </form>

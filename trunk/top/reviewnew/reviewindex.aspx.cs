@@ -54,6 +54,12 @@ public partial class top_reviewnew_reviewindex : System.Web.UI.Page
             }
         }
 
+        string action = utils.NewRequest("action", utils.RequestType.Form);
+        if (action == "save")
+        {
+            SaveIndexInfo();
+        }
+
         if (act == "add")
         {
             InitTradeRateData(id);
@@ -67,6 +73,22 @@ public partial class top_reviewnew_reviewindex : System.Web.UI.Page
         }
 
         BindData();
+    }
+
+    private void SaveIndexInfo()
+    {
+        string sql = "SELECT TOP 20 * FROM TCS_TradeRate WHERE nick = '" + nick + "' AND isshow = 1 ORDER BY showindex,reviewdate DESC";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        string index = string.Empty;
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            index = utils.NewRequest("index_" + dt.Rows[i]["orderid"].ToString(), utils.RequestType.Form);
+            if (index.Length != 0)
+            {
+                sql = "UPDATE TCS_TradeRate SET showindex = '" + index + "' WHERE orderid = '" + dt.Rows[i]["orderid"].ToString() + "'";
+                utils.ExecuteNonQuery(sql);
+            }
+        }
     }
 
     /// <summary>
@@ -120,7 +142,7 @@ public partial class top_reviewnew_reviewindex : System.Web.UI.Page
         sql = "SELECT buyerlevel FROM TCS_Customer WHERE buynick = '" + buynick + "'";
         string userlevel = utils.ExecuteString(sql);
 
-        sql = "UPDATE TCS_TradeRate SET isshow = 1,itemname='" + product.Title + "',itemsrc='" + product.PicUrl + "',price='" + product.Price + "',sale='" + sale + "',showcontent = '" + showcontent + "',userlevel='" + userlevel + "' WHERE orderid = '" + id + "' AND nick = '" + nick + "'";
+        sql = "UPDATE TCS_TradeRate SET isshow = 1,itemname='" + product.Title + "',itemsrc='" + product.PicUrl + "',price='" + product.Price + "',sale='" + sale + "',showcontent = '" + showcontent + "',userlevel='" + userlevel + "',showindex=100 WHERE orderid = '" + id + "' AND nick = '" + nick + "'";
         //Response.Write(sql);
         
         utils.ExecuteNonQuery(sql);
