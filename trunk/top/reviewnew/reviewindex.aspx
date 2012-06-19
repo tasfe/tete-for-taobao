@@ -44,9 +44,9 @@
             <ItemTemplate>
             <tr>
                 <td height="30"><%#Eval("buynick") %></td>
-                <td><%#Eval("content")%></td>
+                <td><%#left(Eval("content").ToString())%></td>
                 <td><textarea name="content_<%#Eval("orderid")%>"><%#Eval("showcontent")%></textarea></td>
-                <td><input name="index_<%#Eval("orderid")%>" value="<%#Eval("showindex") %>" /></td>
+                <td><input name="index_<%#Eval("orderid")%>" size=4 value="<%#Eval("showindex") %>" /></td>
                 <td><a href="reviewindex.aspx?act=del&id=<%#Eval("orderid")%>">删除</a></td>
             </tr>
             </ItemTemplate>

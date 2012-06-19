@@ -47,6 +47,19 @@ public partial class top_reviewnew_reviewindex : System.Web.UI.Page
         BindData();
     }
 
+    public static string left(string str)
+    {
+        string newstr = string.Empty;
+        if (str.Length < 25)
+        {
+            newstr = str;
+        }
+        else
+        {
+            newstr = "<span title='" + str + "'>" + str.Substring(0, 25) + "..</span>";
+        }
+        return newstr;
+    }
 
     private void BindData()
     {
