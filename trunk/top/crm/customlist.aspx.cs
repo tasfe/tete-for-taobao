@@ -352,7 +352,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
         }
         else
         {
-            orderby = "b.lastorderdate";
+            orderby = "b.lastorderdate DESC";
         }
 
         string page = utils.NewRequest("page", utils.RequestType.QueryString);
