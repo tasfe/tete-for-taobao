@@ -27,6 +27,7 @@ public partial class top_reviewnew_haopingshow_190_1 : System.Web.UI.Page
 
     public static string hidden(string str)
     {
+        string oldstr = str;
         if (str.Length > 2)
         {
             int len = str.Length;
@@ -35,7 +36,7 @@ public partial class top_reviewnew_haopingshow_190_1 : System.Web.UI.Page
             {
                 str += "*";
             }
-            str += str.Substring(len - 2, 1);
+            str += oldstr.Substring(len - 1, 1);
         }
 
         return str;
