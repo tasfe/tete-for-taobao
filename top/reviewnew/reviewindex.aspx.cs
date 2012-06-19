@@ -58,6 +58,7 @@ public partial class top_reviewnew_reviewindex : System.Web.UI.Page
         if (action == "save")
         {
             SaveIndexInfo();
+            return;
         }
 
         if (act == "add")
@@ -86,6 +87,7 @@ public partial class top_reviewnew_reviewindex : System.Web.UI.Page
             if (index.Length != 0)
             {
                 sql = "UPDATE TCS_TradeRate SET showindex = '" + index + "' WHERE orderid = '" + dt.Rows[i]["orderid"].ToString() + "'";
+                Response.Write(sql + "<br>");
                 utils.ExecuteNonQuery(sql);
             }
         }
