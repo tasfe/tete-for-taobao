@@ -32,9 +32,9 @@ public partial class top_reviewnew_haopingshow_190_1 : System.Web.UI.Page
             str = str.Substring(0, 1);
             for (int i = 0; i < (str.Length - 2); i++)
             {
-                str += "*";
+                str = str + "*";
             }
-            str += str.Substring(str.Length - 1, 1);
+            str = str + str.Substring(str.Length - 1, 1);
         }
 
         return str;
