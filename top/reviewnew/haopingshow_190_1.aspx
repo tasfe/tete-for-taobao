@@ -151,7 +151,7 @@ a:active {
       </td>
   </tr>
   <tr>
-    <td valign="bottom"><div class="buyer_box"><%#Eval("buynick") %> <img src='http://haoping.7fshop.com/top/crm/level/<%#Eval("userlevel") %>.gif' /><br />
+    <td valign="bottom"><div class="buyer_box"><%# hidden(Eval("buynick").ToString()) %> <img src='http://haoping.7fshop.com/top/crm/level/<%#Eval("userlevel") %>.gif' /><br />
       </div></td>
   </tr>
 </table>
