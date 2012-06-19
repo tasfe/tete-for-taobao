@@ -123,8 +123,8 @@ a:active {
 }
 </style>
 <body style="background-color:#FFF;">
-<div style="position:absolute; width:100%; z-index:10;background-image: url(/medias/images/title_bar.png); margin:0px; line-height:30px; height:30px; font-size:12px; padding:0px 0px 0px 10px; font-weight:bold;"><a href="http://fuwu.taobao.com/serv/detail.htm?service_id=4545" target="_blank">
-<img src='../images/frametop.jpg' border=0 />
+<div style="position:absolute; width:100%; z-index:10;background-image: url(/medias/images/title_bar.png); margin:0px; line-height:110px; height:110px; font-size:12px; padding:0px 0px 0px 10px; font-weight:bold;"><a href="http://fuwu.taobao.com/serv/detail.htm?service_id=4545" target="_blank">
+<img src='../images/frametop.jpg' width=190 border=0 />
 </a></div>
 <div style="overflow:hidden;position:relative;border:solid 1px #E6E6E6;height:498px;">
   <div id="hp_box" style="position:absolute; z-index:2; top:20px; padding:0px 8px 0px 8px;">
