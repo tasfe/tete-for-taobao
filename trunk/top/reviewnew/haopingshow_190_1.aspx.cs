@@ -35,7 +35,7 @@ public partial class top_reviewnew_haopingshow_190_1 : System.Web.UI.Page
             {
                 str += "*";
             }
-            str += str.Substring(len - 1, 1);
+            str += str.Substring(len - 2, 1);
         }
 
         return str;
