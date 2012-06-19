@@ -18,7 +18,7 @@ public partial class top_reviewnew_haopingshow_190_1 : System.Web.UI.Page
         nick = utils.NewRequest("nick", utils.RequestType.QueryString);
         buynick = utils.NewRequest("buynick", utils.RequestType.QueryString);
 
-        string sql = "SELECT TOP 5 * FROM TCS_TradeRate WHERE nick = '" + nick + "' AND isshow = 1 ORDER BY reviewdate DESC";
+        string sql = "SELECT TOP 20 * FROM TCS_TradeRate WHERE nick = '" + nick + "' AND isshow = 1 ORDER BY reviewdate DESC";
         DataTable dt = utils.ExecuteDataTable(sql);
 
         rptTradeRate.DataSource = dt;
