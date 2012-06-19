@@ -45,16 +45,13 @@
             <tr>
                 <td height="30"><%#Eval("buynick") %></td>
                 <td><%#left(Eval("content").ToString())%></td>
-                <td><textarea name="content_<%#Eval("orderid")%>"><%#Eval("showcontent")%></textarea></td>
+                <td><%#Eval("showcontent")%></td>
                 <td><input name="index_<%#Eval("orderid")%>" size=4 value="<%#Eval("showindex") %>" /></td>
                 <td><a href="reviewindex.aspx?act=del&id=<%#Eval("orderid")%>">删除</a></td>
             </tr>
             </ItemTemplate>
         </asp:Repeater>
     </table>
-    <br />
-    <input type="hidden" name="act" value="save" />
-    <input type="submit" value="保存" />
 
     <div>
         <asp:Label ID="lbPage" runat="server"></asp:Label>
