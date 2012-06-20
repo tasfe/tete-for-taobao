@@ -92,6 +92,7 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
             string buynick = arrDetail[1].Replace("\"", "");
             //判断该顾客信息是否录入过
             sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '"+nick+"' AND buynick = '"+buynick+"'";
+            Response.Write(sql + "<br>");
             string count = utils.ExecuteString(sql);
             if (count == "0")
             { 
@@ -99,7 +100,6 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
                 InsertUserData(buynick);
                 break;
             }
-
         }
     }
 
