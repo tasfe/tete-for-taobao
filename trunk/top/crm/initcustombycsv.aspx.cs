@@ -76,7 +76,7 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
             return;
         }
 
-        string[] arr = Regex.Split(content, "\r\n");
+        string[] arr = Regex.Split(content, "\r");
         if (arr.Length == 1)
         {
             Response.Write("<script>alert('您上传的文件订单数量为0！');history.go(-1);</script>");
