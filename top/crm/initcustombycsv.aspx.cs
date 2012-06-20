@@ -85,6 +85,7 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
         }
 
         string sql = string.Empty;
+        int index = 0;
 
         for (int i = 1; i < arr.Length; i++)
         {
@@ -92,15 +93,18 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
             string buynick = arrDetail[1].Replace("\"", "");
             //判断该顾客信息是否录入过
             sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '"+nick+"' AND buynick = '"+buynick+"'";
-            Response.Write(sql + "<br>");
+            //Response.Write(sql + "<br>");
             string count = utils.ExecuteString(sql);
             if (count == "0")
             { 
                 //执行插入操作
                 InsertUserData(buynick);
-                break;
+                index++;
             }
         }
+
+        Response.Write("<script>alert('导入成功，共导入" + index.ToString() + "名会员！');window.location.href='customlist.aspx';</script>");
+        Response.End();
     }
 
     /// <summary>
@@ -120,7 +124,6 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
         string sql = string.Empty;
 
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.crm.members.search", session, param);
-        Response.Write(result);
         Regex reg = new Regex(@"<crm_member>([\s\S]*?)</crm_member>", RegexOptions.IgnoreCase);
         MatchCollection match = reg.Matches(result);
         for (int i = 0; i < match.Count; i++)
@@ -229,7 +232,6 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
                                     " '" + receiver_city + "', " +
                                     " '" + receiver_district + "'" +
                                 ") ";
-            Response.Write(sql);
             utils.ExecuteNonQuery(sql);
         }
     }
