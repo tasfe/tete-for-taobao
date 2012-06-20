@@ -57,7 +57,7 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
         //先判断支付宝红包格式是否合法
         string guid = Guid.NewGuid().ToString();
 
-        if (fuAlipay.PostedFile.ContentType != "text/plain" && fuAlipay.PostedFile.FileName.IndexOf(".csv") == -1)
+        if (fuAlipay.PostedFile.FileName.IndexOf(".csv") == -1)
         {
             Response.Write("<script>alert('您上传的格式不正确！');history.go(-1);</script>");
             Response.End();
