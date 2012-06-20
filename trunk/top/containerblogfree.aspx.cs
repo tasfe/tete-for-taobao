@@ -37,6 +37,7 @@ public partial class top_containerblogfree : System.Web.UI.Page
             return;
         }
 
+        nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["visitor_nick"];
         if (nick == null || nick == "")
         {
             Response.Write("top签名验证不通过，请不要非法注入");
