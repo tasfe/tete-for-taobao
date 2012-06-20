@@ -20,6 +20,8 @@ public partial class top_reviewnew_alipayadd : System.Web.UI.Page
     public string session = string.Empty;
     public string nick = string.Empty;
     public string id = string.Empty;
+    public string endsenddate = string.Empty;
+    public string enddate = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -28,6 +30,8 @@ public partial class top_reviewnew_alipayadd : System.Web.UI.Page
         session = cookie.getCookie("top_sessiongroupbuy");
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
+
+        endsenddate = DateTime.Now.AddMonths(2).ToString("yyyy-MM-dd");
 
         //过期判断
         if (string.IsNullOrEmpty(taobaoNick))
@@ -129,7 +133,7 @@ public partial class top_reviewnew_alipayadd : System.Web.UI.Page
             return;
         }
 
-        string sql = "INSERT INTO TCS_Alipay (guid, nick, name, count, num, enddate, per) VALUES ('" + guid + "','" + nick + "','" + utils.NewRequest("name", utils.RequestType.Form) + "','" + (arr.Length -1).ToString() + "','" + utils.NewRequest("num", utils.RequestType.Form) + "','" + DateTime.Now.AddDays(int.Parse(utils.NewRequest("end_time", utils.RequestType.Form))) + "','" + utils.NewRequest("per", utils.RequestType.Form) + "')";
+        string sql = "INSERT INTO TCS_Alipay (guid, nick, name, count, num, enddate, per) VALUES ('" + guid + "','" + nick + "','" + utils.NewRequest("name", utils.RequestType.Form) + "','" + (arr.Length - 1).ToString() + "','" + utils.NewRequest("num", utils.RequestType.Form) + "','" + utils.NewRequest("end_time", utils.RequestType.Form) + "','" + utils.NewRequest("per", utils.RequestType.Form) + "')";
         utils.ExecuteNonQuery(sql);
 
         for (int i = 1; i < arr.Length; i++)
