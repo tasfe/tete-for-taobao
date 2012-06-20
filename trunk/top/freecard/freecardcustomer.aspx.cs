@@ -95,10 +95,109 @@ public partial class top_freecard_freecardcustomer : System.Web.UI.Page
 
     private void BindData()
     {
-        string sql = "SELECT * FROM TCS_FreeCard WHERE nick = '" + nick + "' AND isdel = 0";
+        string count = utils.NewRequest("count", utils.RequestType.QueryString);
+        string isbirth = utils.NewRequest("isbirth", utils.RequestType.QueryString);
+        string condition = string.Empty;
+        string orderby = string.Empty;
+        string pageUrl = "freecardcustomer.aspx?1=1";
+
+        string page = utils.NewRequest("page", utils.RequestType.QueryString);
+        int pageNow = 1;
+        if (page == "")
+        {
+            pageNow = 1;
+        }
+        else
+        {
+            pageNow = int.Parse(page);
+        }
+        int pageCount = 12;
+        int dataCount = (pageNow - 1) * pageCount;
+
+        string sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY startdate DESC) AS rownumber FROM TCS_FreeCard b WITH (NOLOCK) WHERE b.nick = '" + nick + "' AND isdel = 0 ) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY startdate DESC";
         DataTable dt = utils.ExecuteDataTable(sql);
 
         rptArticle.DataSource = dt;
         rptArticle.DataBind();
+
+        //分页数据初始化
+        sql = "SELECT COUNT(*) FROM TCS_FreeCard b WHERE b.nick = '" + nick + "' AND isdel = 0";
+        int totalCount = int.Parse(utils.ExecuteString(sql));
+
+        lbPage.Text = InitPageStr(totalCount, pageUrl);
+
+        //string sql = "SELECT * FROM TCS_FreeCard WHERE nick = '" + nick + "' AND isdel = 0";
+        //DataTable dt = utils.ExecuteDataTable(sql);
+
+        //rptArticle.DataSource = dt;
+        //rptArticle.DataBind();
+    }
+
+
+    private string InitPageStr(int total, string url)
+    {
+        //分页数据初始化
+        string str = string.Empty;
+        int pageCount = 12;
+        int pageSize = 0;
+        int pageNow = 1;
+        string page = utils.NewRequest("page", utils.RequestType.QueryString);
+        if (page == "")
+        {
+            pageNow = 1;
+        }
+        else
+        {
+            pageNow = int.Parse(page);
+        }
+
+        //取总分页数
+        if (total % pageCount == 0)
+        {
+            pageSize = total / pageCount;
+        }
+        else
+        {
+            pageSize = total / pageCount + 1;
+        }
+
+        //如果总页面大于20，则最大页面差不超过20
+        int start = 1;
+        int end = 20;
+
+        if (pageSize < end)
+        {
+            end = pageSize;
+        }
+        else
+        {
+            if (pageNow > 15)
+            {
+                start = pageNow - 10;
+
+                if (pageNow < (pageSize - 10))
+                {
+                    end = pageNow + 10;
+                }
+                else
+                {
+                    end = pageSize;
+                }
+            }
+        }
+
+        for (int i = start; i <= end; i++)
+        {
+            if (i.ToString() == pageNow.ToString())
+            {
+                str += i.ToString() + " ";
+            }
+            else
+            {
+                str += "<a href='" + url + "&page=" + i.ToString() + "'>[" + i.ToString() + "]</a> ";
+            }
+        }
+
+        return str;
     }
 }
