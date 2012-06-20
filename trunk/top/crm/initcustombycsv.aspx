@@ -30,7 +30,7 @@
     请上传淘宝后台导出的订单CSV文件来导入历史会员数据
 </div>
 
-<asp:FileUpload ID="fuAlipay" Width="300px" runat="server" />  当历史数据很大的时候导入时间会很长，请您耐心等待。。。
+<asp:FileUpload ID="fuAlipay" Width="200px" runat="server" />  当历史数据很大的时候导入时间会很长，请您耐心等待。。。
 
 <br />
 <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="导入会员数据" />
