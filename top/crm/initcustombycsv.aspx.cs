@@ -76,7 +76,7 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
             return;
         }
 
-        string[] arr = Regex.Split(content, "\r");
+        string[] arr = Regex.Split(content, "\n");
         if (arr.Length == 1)
         {
             Response.Write("<script>alert('您上传的文件订单数量为0！');history.go(-1);</script>");
@@ -97,9 +97,9 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
             { 
                 //执行插入操作
                 InsertUserData(buynick);
+                break;
             }
 
-            break;
         }
     }
 
@@ -227,6 +227,7 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
                                     " '" + receiver_city + "', " +
                                     " '" + receiver_district + "'" +
                                 ") ";
+            Response.Write(sql);
             utils.ExecuteNonQuery(sql);
         }
     }
