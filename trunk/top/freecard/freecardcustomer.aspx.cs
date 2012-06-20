@@ -48,6 +48,24 @@ public partial class top_freecard_freecardcustomer : System.Web.UI.Page
         BindData();
     }
 
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        if (search.Text.Trim() == "")
+        {
+            Response.Redirect("freecardcustomer.aspx");
+            return;
+        }
+
+        string sqlNew = "SELECT * FROM TCS_FreeCard WITH (NOLOCK) WHERE nick = '" + nick + "' AND buynick = '" + search.Text.Trim().Replace("'", "''") + "' AND isdel = 0";
+        DataTable dt = utils.ExecuteDataTable(sqlNew);
+
+        rptArticle.DataSource = dt;
+        rptArticle.DataBind();
+
+        lbPage.Text = "";
+    }
+
     /// <summary>
     /// 判断该用户是否订购了该服务
     /// </summary>

@@ -25,6 +25,8 @@
     </ul>
   </div>
     <div id="main-content">
+    请输入买家昵称：<asp:TextBox ID="search" Width="90px" runat="server"></asp:TextBox>
+    <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Text="搜索" />
                 <input type="button" value="返回列表" onclick="window.location.href='freecardlist.aspx'" />
                 <input type="button" value="手动赠送" onclick="window.location.href='freecardsend.aspx'" />
     
