@@ -162,8 +162,8 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
             param.Add("nick", nick);
             param.Add("buyer_nick", buyer_nick);
             param.Add("page_size", "1");
-            param.Add("start_created", DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd") + " 00:00:00");
-            param.Add("end_created", DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+            //param.Add("start_created", DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd") + " 00:00:00");
+            //param.Add("end_created", DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
 
             nickresult = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.trades.sold.get", session, param);
 
