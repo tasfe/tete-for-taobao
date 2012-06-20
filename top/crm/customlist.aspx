@@ -49,6 +49,7 @@
     请输入买家昵称：<asp:TextBox ID="search" runat="server"></asp:TextBox>
     <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Text="搜索" />
         <asp:Button ID="Button1" runat="server" Text="导出全部" onclick="Button1_Click" />
+        <input type=button value="淘宝订单CSV文件批量导入" onclick="window.location.href='initcustombycsv.aspx'" />
         <hr />
 
         <table width="740" cellpadding="0" cellspacing="0">
