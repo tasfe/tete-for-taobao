@@ -46,7 +46,7 @@ public partial class top_containerblogfree : System.Web.UI.Page
         }
 
         //判断跳转，判断客户是否订购了好评有礼
-        string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "' AND isdel = 0";
+        string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "' AND version > 1";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
