@@ -69,10 +69,6 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
 
         string content = File.ReadAllText(filename, Encoding.Default);
 
-        Response.Write(content);
-        Response.End();
-        return;
-
         if (content.IndexOf("订单编号\",\"买家会员名\",\"买家支付宝账号\"") == -1)
         {
             Response.Write("<script>alert('您上传的文件格式不正确！');history.go(-1);</script>");
