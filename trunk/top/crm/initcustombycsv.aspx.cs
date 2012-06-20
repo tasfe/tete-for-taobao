@@ -87,7 +87,7 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
         string sql = string.Empty;
         int index = 0;
 
-        for (int i = 1; i < arr.Length; i++)
+        for (int i = 1; i < arr.Length-1; i++)
         {
             string[] arrDetail = arr[i].Split(',');
             string buynick = arrDetail[1].Replace("\"", "");
