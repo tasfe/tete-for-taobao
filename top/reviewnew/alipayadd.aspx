@@ -55,7 +55,7 @@
             <tr>
                 <td align="left" height="30">发送截至日期：</td>
                 <td>
-                    <input name="end_time" type="text" value="<%=endsenddate %>" style="width:90px" /> 此处指您的红包赠送的截至天数，一般此天数小于红包有效期，日期格式：2012-01-01 (系统在这个时间以后就不赠送红包)
+                    <input name="end_time" type="text" value="<%=endsenddate %>" style="width:90px" /> 日期格式：2012-01-01 (系统在这个时间以后就不赠送红包)
                 </td>
             </tr>
             <tr>
