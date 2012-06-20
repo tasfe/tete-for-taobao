@@ -119,6 +119,7 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
         string sql = string.Empty;
 
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.crm.members.search", session, param);
+        Response.Write(result);
         Regex reg = new Regex(@"<crm_member>([\s\S]*?)</crm_member>", RegexOptions.IgnoreCase);
         MatchCollection match = reg.Matches(result);
         for (int i = 0; i < match.Count; i++)
