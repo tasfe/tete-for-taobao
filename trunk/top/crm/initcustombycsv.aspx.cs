@@ -114,6 +114,7 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
 
         IDictionary<string, string> param = new Dictionary<string, string>();
         param.Add("page_size", "1");
+        param.Add("current_page", "1");
         param.Add("buyer_nick", buynick);
 
         string sql = string.Empty;
