@@ -68,7 +68,7 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
         fuAlipay.PostedFile.SaveAs(filename);
 
         string content = File.ReadAllText(filename);
-        if (content.IndexOf("\"订单编号\",\"买家会员名\",\"买家支付宝账号\"") == -1)
+        if (content.IndexOf("订单编号") == -1)
         {
             Response.Write("<script>alert('您上传的文件格式不正确！');history.go(-1);</script>");
             Response.End();
