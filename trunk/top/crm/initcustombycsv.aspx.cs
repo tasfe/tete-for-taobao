@@ -67,7 +67,7 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
         string filename = Server.MapPath("oldcsv/" + guid + ".txt");
         fuAlipay.PostedFile.SaveAs(filename);
 
-        string content = File.ReadAllText(filename);
+        string content = File.ReadAllText(filename, Encoding.Default);
 
         Response.Write(content);
         Response.End();
