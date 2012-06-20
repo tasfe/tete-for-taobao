@@ -59,7 +59,7 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
 
         if (fuAlipay.PostedFile.ContentType != "text/plain" && fuAlipay.PostedFile.FileName.IndexOf(".csv") == -1)
         {
-            Response.Write("<script>alert('您上传的文件格式不正确！');history.go(-1);</script>");
+            Response.Write("<script>alert('您上传的格式不正确！');history.go(-1);</script>");
             Response.End();
             return;
         }
@@ -78,7 +78,7 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
         string[] arr = Regex.Split(content, "\r\n");
         if (arr.Length == 1)
         {
-            Response.Write("<script>alert('您上传的文件格式不正确！');history.go(-1);</script>");
+            Response.Write("<script>alert('您上传的文件订单数量为0！');history.go(-1);</script>");
             Response.End();
             return;
         }
