@@ -24,6 +24,8 @@ public class UserAdsService
 
     const string SQL_SELECT_USEDADS = "SELECT FeeId,Nick FROM BangT_UserAds WHERE UserAdsState=1 AND FeeId IN (SELECT FeeId FROM BangT_Fee WHERE AdsType=5)";
 
+    const string SQL_SELECT_TAOCLASS_ADSINFO = "SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[AliWang],AdsPic FROM BangT_UserAds WHERE UserAdsState=@UserAdsState AND CHARINDEX(@CateId,CateIds,0)>0";
+
     public IList<UserAdsInfo> SelectAllUserAds(string nick)
     {
         IList<UserAdsInfo> list = new List<UserAdsInfo>();
@@ -43,6 +45,33 @@ public class UserAdsService
             info.SellCateName = dr["SellCateName"].ToString();
             info.AddTime = DateTime.Parse(dr["AddTime"].ToString());
             info.FeeId = new Guid(dr["FeeId"].ToString());
+            info.AdsPic = dr["AdsPic"].ToString();
+
+            list.Add(info);
+        }
+
+        return list;
+    }
+
+    public IList<UserAdsInfo> SelectAllTouUserAds(string cid,int state)
+    {
+        IList<UserAdsInfo> list = new List<UserAdsInfo>();
+
+        SqlParameter[] param = new SqlParameter[]
+        {
+            new SqlParameter("@UserAdsState", state),
+            new SqlParameter("@CateId",cid)
+        };
+
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_TAOCLASS_ADSINFO, param);
+        foreach (DataRow dr in dt.Rows)
+        {
+            UserAdsInfo info = new UserAdsInfo();
+            info.Id = new Guid(dr["Id"].ToString());
+            info.AdsTitle = dr["AdsTitle"].ToString();
+            info.AdsUrl = dr["AdsUrl"].ToString();
+            info.AdsId = new Guid(dr["AdsId"].ToString());
+            info.AliWang = dr["AliWang"].ToString();
             info.AdsPic = dr["AdsPic"].ToString();
 
             list.Add(info);
