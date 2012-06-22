@@ -1,0 +1,99 @@
+Log created at: 2012/6/19 16:44:54
+
+Log Entry : 2012/6/19 16:44:54 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified WHERE Nick=@Nick 列名 'Nick' 无效。
+列名 'GoodsId' 无效。
+列名 'GoodsName' 无效。
+列名 'GoodsPrice' 无效。
+列名 'GoodsCount' 无效。
+列名 'GoodsPic' 无效。
+列名 'Modified' 无效。
+-------------------------------
+
+Log Entry : 2012/6/19 16:48:51 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified WHERE Nick=@Nick 列名 'Nick' 无效。
+列名 'GoodsId' 无效。
+列名 'GoodsName' 无效。
+列名 'GoodsPrice' 无效。
+列名 'GoodsCount' 无效。
+列名 'GoodsPic' 无效。
+列名 'Modified' 无效。
+-------------------------------
+
+Log Entry : 2012/6/19 16:49:30 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified WHERE Nick=@Nick 列名 'Nick' 无效。
+列名 'GoodsId' 无效。
+列名 'GoodsName' 无效。
+列名 'GoodsPrice' 无效。
+列名 'GoodsCount' 无效。
+列名 'GoodsPic' 无效。
+列名 'Modified' 无效。
+-------------------------------
+
+Log Entry : 2012/6/20 17:57:10 INSERT BangT_UserAds([Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,Nick) VALUES(@Id,@AdsTitle,@AdsUrl,@AdsId,@UserAdsState,@AdsShowStartTime,@AdsShowFinishTime,@AliWang,@SellCateName,@AddTime,@FeeId,@Nick) 参数化查询 '(@Id uniqueidentifier,@AdsTitle nvarchar(34),@AdsUrl nvarchar(46' 需要参数 '@AliWang'，但未提供该参数。
+-------------------------------
+
+Log Entry : 2012/6/20 18:06:57 SELECT FeeId,Fee,SiteCount,AdsCount,ShowStartTime,ShowFinishTime,AdsType FROM BangT_Fee 列名 'ShowStartTime' 无效。
+列名 'ShowFinishTime' 无效。
+-------------------------------
+
+Log Entry : 2012/6/20 18:08:04 SELECT FeeId,Fee,SiteCount,AdsCount,ShowStartTime,ShowFinishTime,AdsType FROM BangT_Fee 列名 'ShowStartTime' 无效。
+列名 'ShowFinishTime' 无效。
+-------------------------------
+
+Log Entry : 2012/6/20 18:12:11 SELECT [name],[is_parent],[parent_cid] FROM [BangT_TaoBaoGoodsClass] WHERE [CId]=@cid 参数化查询 '(@cid nvarchar(4000))SELECT [name],[is_parent],[parent_cid] FROM' 需要参数 '@cid'，但未提供该参数。
+-------------------------------
+
+Log Entry : 2012/6/20 18:12:44 SELECT [name],[is_parent],[parent_cid] FROM [BangT_TaoBaoGoodsClass] WHERE [CId]=@cid 参数化查询 '(@cid nvarchar(4000))SELECT [name],[is_parent],[parent_cid] FROM' 需要参数 '@cid'，但未提供该参数。
+-------------------------------
+
+Log Entry : 2012/6/20 18:14:15 SELECT [name],[is_parent],[parent_cid] FROM [BangT_TaoBaoGoodsClass] WHERE [CId]=@cid 参数化查询 '(@cid nvarchar(4000))SELECT [name],[is_parent],[parent_cid] FROM' 需要参数 '@cid'，但未提供该参数。
+-------------------------------
+
+Log Entry : 2012/6/20 18:22:51 SELECT [name],[is_parent],[parent_cid] FROM [BangT_TaoBaoGoodsClass] WHERE [CId]=@cid 参数化查询 '(@cid nvarchar(4000))SELECT [name],[is_parent],[parent_cid] FROM' 需要参数 '@cid'，但未提供该参数。
+-------------------------------
+
+Log Entry : 2012/6/20 18:24:51 SELECT [name],[is_parent],[parent_cid] FROM [BangT_TaoBaoGoodsClass] WHERE [CId]=@cid 参数化查询 '(@cid nvarchar(4000))SELECT [name],[is_parent],[parent_cid] FROM' 需要参数 '@cid'，但未提供该参数。
+-------------------------------
+
+Log Entry : 2012/6/20 18:24:51 INSERT BangT_UserAds([Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,Nick,CateIds) VALUES(@Id,@AdsTitle,@AdsUrl,@AdsId,@UserAdsState,@AdsShowStartTime,@AdsShowFinishTime,@AliWang,@SellCateName,@AddTime,@FeeId,@Nick,@CateIds) 参数化查询 '(@Id uniqueidentifier,@AdsTitle nvarchar(34),@AdsUrl nvarchar(46' 需要参数 '@CateIds'，但未提供该参数。
+-------------------------------
+
+Log Entry : 2012/6/20 18:26:10 SELECT [name],[is_parent],[parent_cid] FROM [BangT_TaoBaoGoodsClass] WHERE [CId]=@cid 参数化查询 '(@cid nvarchar(4000))SELECT [name],[is_parent],[parent_cid] FROM' 需要参数 '@cid'，但未提供该参数。
+-------------------------------
+
+Log Entry : 2012/6/20 18:26:24 INSERT BangT_UserAds([Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,Nick,CateIds) VALUES(@Id,@AdsTitle,@AdsUrl,@AdsId,@UserAdsState,@AdsShowStartTime,@AdsShowFinishTime,@AliWang,@SellCateName,@AddTime,@FeeId,@Nick,@CateIds) 参数化查询 '(@Id uniqueidentifier,@AdsTitle nvarchar(34),@AdsUrl nvarchar(46' 需要参数 '@CateIds'，但未提供该参数。
+-------------------------------
+
+Log Entry : 2012/6/20 18:28:46 SELECT [name],[is_parent],[parent_cid] FROM [BangT_TaoBaoGoodsClass] WHERE [CId]=@cid 参数化查询 '(@cid nvarchar(4000))SELECT [name],[is_parent],[parent_cid] FROM' 需要参数 '@cid'，但未提供该参数。
+-------------------------------
+
+Log Entry : 2012/6/20 18:28:56 INSERT BangT_UserAds([Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,Nick,CateIds) VALUES(@Id,@AdsTitle,@AdsUrl,@AdsId,@UserAdsState,@AdsShowStartTime,@AdsShowFinishTime,@AliWang,@SellCateName,@AddTime,@FeeId,@Nick,@CateIds) 参数化查询 '(@Id uniqueidentifier,@AdsTitle nvarchar(34),@AdsUrl nvarchar(46' 需要参数 '@CateIds'，但未提供该参数。
+-------------------------------
+
+Log Entry : 2012/6/21 14:38:27 SELECT AdsId,SiteId,AdsName,AdsSize,AdsType,SiteId,,AdsPic FROM BangT_Ads ',' 附近有语法错误。
+-------------------------------
+
+Log Entry : 2012/6/21 14:39:23 SELECT AdsId,SiteId,AdsName,AdsSize,AdsType,SiteId,,AdsPic FROM BangT_Ads ',' 附近有语法错误。
+-------------------------------
+
+Log Entry : 2012/6/21 17:03:57 SELECT [name],[is_parent],[parent_cid] FROM [BangT_TaoBaoGoodsClass] WHERE [CId]=@cid 参数化查询 '(@cid nvarchar(4000))SELECT [name],[is_parent],[parent_cid] FROM' 需要参数 '@cid'，但未提供该参数。
+-------------------------------
+
+Log Entry : 2012/6/21 17:04:19 INSERT BangT_UserAds([Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,Nick,CateIds,AdsPic) VALUES(@Id,@AdsTitle,@AdsUrl,@AdsId,@UserAdsState,@AdsShowStartTime,@AdsShowFinishTime,@AliWang,@SellCateName,@AddTime,@FeeId,@Nick,@CateIds,@AdsPic) 参数化查询 '(@Id uniqueidentifier,@AdsTitle nvarchar(8),@AdsUrl nvarchar(7),' 需要参数 '@CateIds'，但未提供该参数。
+-------------------------------
+
+Log Entry : 2012/6/21 17:06:07 SELECT [name],[is_parent],[parent_cid] FROM [BangT_TaoBaoGoodsClass] WHERE [CId]=@cid 参数化查询 '(@cid nvarchar(4000))SELECT [name],[is_parent],[parent_cid] FROM' 需要参数 '@cid'，但未提供该参数。
+-------------------------------
+
+Log Entry : 2012/6/21 17:06:07 INSERT BangT_UserAds([Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,Nick,CateIds,AdsPic) VALUES(@Id,@AdsTitle,@AdsUrl,@AdsId,@UserAdsState,@AdsShowStartTime,@AdsShowFinishTime,@AliWang,@SellCateName,@AddTime,@FeeId,@Nick,@CateIds,@AdsPic) 参数化查询 '(@Id uniqueidentifier,@AdsTitle nvarchar(3),@AdsUrl nvarchar(5),' 需要参数 '@CateIds'，但未提供该参数。
+-------------------------------
+
+Log Entry : 2012/6/21 17:06:39 SELECT [name],[is_parent],[parent_cid] FROM [BangT_TaoBaoGoodsClass] WHERE [CId]=@cid 参数化查询 '(@cid nvarchar(4000))SELECT [name],[is_parent],[parent_cid] FROM' 需要参数 '@cid'，但未提供该参数。
+-------------------------------
+
+Log Entry : 2012/6/21 17:06:39 INSERT BangT_UserAds([Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,Nick,CateIds,AdsPic) VALUES(@Id,@AdsTitle,@AdsUrl,@AdsId,@UserAdsState,@AdsShowStartTime,@AdsShowFinishTime,@AliWang,@SellCateName,@AddTime,@FeeId,@Nick,@CateIds,@AdsPic) 参数化查询 '(@Id uniqueidentifier,@AdsTitle nvarchar(3),@AdsUrl nvarchar(5),' 需要参数 '@CateIds'，但未提供该参数。
+-------------------------------
+
+Log Entry : 2012/6/21 17:06:56 SELECT [name],[is_parent],[parent_cid] FROM [BangT_TaoBaoGoodsClass] WHERE [CId]=@cid 参数化查询 '(@cid nvarchar(4000))SELECT [name],[is_parent],[parent_cid] FROM' 需要参数 '@cid'，但未提供该参数。
+-------------------------------
+
+Log Entry : 2012/6/21 17:06:56 INSERT BangT_UserAds([Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,Nick,CateIds,AdsPic) VALUES(@Id,@AdsTitle,@AdsUrl,@AdsId,@UserAdsState,@AdsShowStartTime,@AdsShowFinishTime,@AliWang,@SellCateName,@AddTime,@FeeId,@Nick,@CateIds,@AdsPic) 参数化查询 '(@Id uniqueidentifier,@AdsTitle nvarchar(3),@AdsUrl nvarchar(5),' 需要参数 '@CateIds'，但未提供该参数。
+-------------------------------
