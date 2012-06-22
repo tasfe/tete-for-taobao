@@ -23,7 +23,16 @@
     </table>
     
     <table>
-    
+       <asp:Repeater ID="RPT_AdsList" runat="server">
+         <ItemTemplate>
+            <tr>
+               <td>
+                  
+               
+               </td>
+            </tr>
+         </ItemTemplate>
+       </asp:Repeater>
     </table>
     </div>
     </form>
