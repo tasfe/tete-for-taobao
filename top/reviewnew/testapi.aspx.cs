@@ -40,8 +40,8 @@ public partial class top_review_testapi : System.Web.UI.Page
         //Response.Write("<textarea>" + result + "</textarea>");
 
         param = new Dictionary<string, string>();
-        param.Add("coupon_id", "5475371");
-        param.Add("buyer_nick", "tomoya517");
+        param.Add("coupon_id", "5607877");
+        param.Add("buyer_nick", "馨蕾aa");
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupondetail.get", session, param);
         Response.Write("<textarea>" + result + "</textarea>");
 
