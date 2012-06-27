@@ -17,11 +17,6 @@
     <form id="form1" runat="server">
 
 
-    
-
-<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
- 您共有<%=c %>个广告位，已经投放了<%=a %>个广告，还有个广告<%=b %>没有投放，<a href='http://www.7fshop.com/top/market/qubie.html'>点击马上开始投放</a>！
-</div>
 
   <div class="crumbs"><a href="#" class="nolink">帮推广</a> 推广中的宝贝 </div>
   <div class="absright">
@@ -35,6 +30,10 @@
   </div>
 
     <div id="main-content">
+
+    <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
+ 您共有<%=c %>个广告位，已经投放了<%=a %>个广告，还有个广告<%=b %>没有投放，<a href='http://www.7fshop.com/top/market/qubie.html'>点击马上开始投放</a>！
+</div>
     
     <input type=button onclick="window.location.href='useradslist.aspx?istou=1'" value="投放中的广告" />
     <input type=button onclick="window.location.href='useradslist.aspx'" value="等待投放的广告" />
