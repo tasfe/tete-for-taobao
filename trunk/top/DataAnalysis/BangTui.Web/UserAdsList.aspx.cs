@@ -15,9 +15,9 @@ using System.Collections.Generic;
 public partial class UserAdsList : System.Web.UI.Page
 {
     UserAdsService uasDal = new UserAdsService();
-    string a = string.Empty;
-    string b = string.Empty;
-    string c = string.Empty;
+    public string a = string.Empty;
+    public string b = string.Empty;
+    public string c = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
