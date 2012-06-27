@@ -94,7 +94,7 @@ public partial class UserAddAds : System.Web.UI.Page
                     int count = feeInfo.AdsCount > list.Count ? list.Count : feeInfo.AdsCount;
 
                     //已经投放了的该收费类型的广告集合
-                    IList<UserAdsInfo> myUseradsList = useradsList.Where(o => o.FeeId == feeInfo.FeeId).ToList();
+                    IList<UserAdsInfo> myUseradsList = useradsList.Where(o => o.FeeId == feeInfo.FeeId && o.UserAdsState == 1).ToList();
 
                     //真正可以添加的广告数量
                     int realcount = count - myUseradsList.Count;
