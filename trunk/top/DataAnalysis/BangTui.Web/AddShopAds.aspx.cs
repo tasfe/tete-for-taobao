@@ -20,7 +20,7 @@ public partial class AddShopAds : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            string nick = "nick"; //HttpUtility.UrlDecode(Request.Cookies["Nick"].Value);
+            string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value); //"nick"; 
 
             ViewState["shopcid"] = "50023878";
 
@@ -28,7 +28,7 @@ public partial class AddShopAds : System.Web.UI.Page
     }
     protected void BTN_Tui_Click(object sender, EventArgs e)
     {
-        string nick = "nick"; //HttpUtility.UrlDecode(Request.Cookies["Nick"].Value);
+        string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value);  //"nick";
 
         //购买类型
         IList<BuyInfo> buyList = CacheCollection.GetAllBuyInfo().Where(o => o.Nick == nick).ToList();

@@ -20,9 +20,9 @@ public partial class UserAddAds : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            //string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value);
+            string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value);
 
-            IList<CateInfo> cateList = new CateService().SelectAllCateByNick("nick");
+            IList<CateInfo> cateList = new CateService().SelectAllCateByNick(nick);
             DDL_GoodsClass.DataSource = cateList;
             DDL_GoodsClass.DataTextField = "CateName";
             DDL_GoodsClass.DataValueField = "CateId";
@@ -40,7 +40,7 @@ public partial class UserAddAds : System.Web.UI.Page
     {
         IList<UserAdsInfo> list = new List<UserAdsInfo>();
 
-        string nick = "nick";// HttpUtility.UrlDecode(Request.Cookies["Nick"].Value);
+        string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value);
 
         CateService cateDal = new CateService();
         IList<CateInfo> cateList = cateDal.SelectAllCateByNick("nick").ToList();
@@ -213,7 +213,7 @@ public partial class UserAddAds : System.Web.UI.Page
 
     protected void BTN_SELECT_Click(object sender, EventArgs e)
     {
-        string nick = "nick";// HttpUtility.UrlDecode(Request.Cookies["Nick"].Value);
+        string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value);
         IList<GoodsInfo> list = new List<GoodsInfo>();
         if (string.IsNullOrEmpty(TB_StartTime.Text) || string.IsNullOrEmpty(TB_EndTime.Text))
         {
