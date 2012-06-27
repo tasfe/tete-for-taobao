@@ -25,6 +25,14 @@ public partial class ShowAds : System.Web.UI.Page
                 {
                     AdsInfo info = list[0];
                     ViewState["ImgUrl"] = info.AdsPic;
+                    IList<SiteInfo> sitelist = CacheCollection.GetAllSiteList().Where(o => o.SiteId == info.SiteId).ToList();
+                    LB_SiteName.Text = sitelist[0].SiteName;
+                    LB_SiteName1.Text = sitelist[0].SiteName;
+
+                    LB_SiteUrl1.Text = sitelist[0].SiteUrl;
+                    LB_SiteUrl.Text = sitelist[0].SiteUrl;
+
+                    LB_AdsTitleSize.Text = CacheCollection.GetAllAdsInfo().Where(o => o.AdsId == info.AdsId).ToList()[0].AdsName;
                 }
             }
         }
