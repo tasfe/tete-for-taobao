@@ -57,8 +57,8 @@
        <asp:Repeater ID="RPT_AdsList" runat="server">
          <ItemTemplate>
          <li>
-                <a href="#"><img src='http://img04.taobaocdn.com/bao/uploaded/i4/T1RBu9XeRoXXa3rKg8_100228.jpg_210x210.jpg' width="210" height="210" /></a><br />
-                <span><a href="#"><%# Eval("AdsTitle") %></a></span>
+                <a href="#"><img src='<%# Eval("AdsPic") %>' width="210" height="210" /></a><br />
+                <span><a href='<%# Eval("AdsUrl") %>'><%# Eval("AdsTitle") %></a></span>
                 <div> <a target="_blank" href='http://amos.im.alisoft.com/msg.aw?v=2&uid=<%# Eval("AliWang") %>&site=cntaobao&s=1&charset=utf-8' ><img align="top" border="0" 
 align="absmiddle" src='http://amos.im.alisoft.com/online.aw?v=2&uid=<%# Eval("AliWang") %>&site=cntaobao&s=1&charset=utf-8'  /></a></div>
             </li>
