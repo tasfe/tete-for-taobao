@@ -105,7 +105,7 @@ public partial class UserAdsList : System.Web.UI.Page
         {
             Guid id = new Guid(e.CommandArgument.ToString());
             UserAdsInfo info = uasDal.SelectUserAdsById(id);
-            string nick = "nick";// HttpUtility.UrlDecode(Request.Cookies["Nick"].Value);
+            string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value);
             IList<BuyInfo> buyList = CacheCollection.GetAllBuyInfo().Where(o => o.Nick == nick).ToList();
 
             //投放的广告
