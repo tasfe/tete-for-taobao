@@ -450,6 +450,7 @@ public partial class top_review_html : System.Web.UI.Page
     {
         string appkey = "12132145";
         string secret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
+        session = utils.NewRequest("session", utils.RequestType.QueryString);
         //上传到宝贝描述
         TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
         for (int j = 1; j <= 500; j++)
