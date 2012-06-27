@@ -19,6 +19,8 @@ public class GoodsService
 {
     const string SQL_SELECT_ALLGOODS = "SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId FROM [BangT_Goods] WHERE Nick=@Nick";
 
+    const string SQL_INSERT = "INSERT BangT_Goods(GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId,Nick) VALUES(@GoodsId,@GoodsName,@GoodsPrice,@GoodsCount,@GoodsPic,@Modified,@CateId,@TaoBaoCId,@Nick)";
+
     public IList<GoodsInfo> SelectAllGoodsByNick(string nick)
     {
         DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_ALLGOODS, new SqlParameter("@Nick", nick));
@@ -80,5 +82,28 @@ public class GoodsService
         }
 
         return list;
+    }
+
+    public int InsertGoodsInfo(TaoBaoGoodsInfo info, string nick)
+    {
+        return DBHelper.ExecuteNonQuery(SQL_INSERT, CreateParameter(info, nick));
+    }
+
+    private static SqlParameter[] CreateParameter(TaoBaoGoodsInfo info, string nick)
+    {
+        SqlParameter[] param = new[]
+        {
+            new SqlParameter("@GoodsId",info.num_iid),
+            new SqlParameter("@GoodsName",info.title),
+            new SqlParameter("@GoodsPrice",info.price),
+            new SqlParameter("@GoodsCount",info.num),
+            new SqlParameter("@GoodsPic",info.pic_url),
+            new SqlParameter("@Modified",info.modified),
+            new SqlParameter("@CateId",info.seller_cids),
+            new SqlParameter("@TaoBaoCId",info.cid),
+            new SqlParameter("@Nick",nick)
+        };
+
+        return param;
     }
 }
