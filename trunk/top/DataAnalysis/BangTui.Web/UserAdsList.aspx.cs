@@ -20,8 +20,19 @@ public partial class UserAdsList : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            
             string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value); //"nick";
             IList<UserAdsInfo> list = uasDal.SelectAllUserAds(nick);
+
+            IList<UserAdsInfo> useradsList = uasDal.SelectAllUserAds(nick);
+            IList<BuyInfo> buyList = CacheCollection.GetAllBuyInfo().Where(o => o.Nick == nick).ToList();
+
+            ViewState["toucount"] = useradsList.Where(o=>o.UserAdsState==1).ToList().Count;
+            ViewState["notoucount"] =useradsList.Where(o=>o.UserAdsState!=1).ToList().Count;
+            if (buyList.Count > 0)
+            {
+                ViewState["adscount"] = CacheCollection.GetAllFeeInfo().Where(o => o.FeeId == buyList[0].FeeId).ToList()[0].AdsCount;
+            }
 
             if (Request.QueryString["istou"] == "1")
                 list = list.Where(o => o.UserAdsState == 1).ToList();
@@ -30,6 +41,30 @@ public partial class UserAdsList : System.Web.UI.Page
             RPT_AdsList.DataSource = list;
             RPT_AdsList.DataBind();
         }
+    }
+
+    /// <summary>
+    /// 已投放数量
+    /// </summary>
+    protected int TouCount
+    {
+        get { return int.Parse(ViewState["toucount"].ToString()); }
+    }
+
+    /// <summary>
+    /// 未投放数量
+    /// </summary>
+    protected int NoTouCount
+    {
+        get { return int.Parse(ViewState["notoucount"].ToString()); }
+    }
+
+    /// <summary>
+    /// 可放广告数量
+    /// </summary>
+    protected int AdsCount
+    {
+        get { return ViewState["adscount"] == null ? 0 : int.Parse(ViewState["adscount"].ToString()); }
     }
 
     protected string GetSite(string adsId)
