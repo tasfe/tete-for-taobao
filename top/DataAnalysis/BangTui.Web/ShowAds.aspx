@@ -32,7 +32,12 @@
   </div>
 
     <div id="main-content">
+    
+    <input type=button onclick="window.location.href='useradslist.aspx?istou=1'" value="投放中的广告" />
+    <input type=button onclick="window.location.href='useradslist.aspx'" value="等待投放的广告" />
+    <input type=button onclick="window.location.href='UserAddAds.aspx'" value="投放新广告" />
 
+    <hr />
    <b style="font-size:14px;"> 您的广告投在“<asp:Label runat="server" ID="LB_SiteName" />”(<asp:Label runat="server" ID="LB_SiteUrl" />)上，位置在“<asp:Label runat="server" ID="LB_AdsTitleSize" />”,请按如下操作查看您的广告投放情况：</b>
    <br />
 第一步 打开“<asp:Label runat="server" ID="LB_SiteName1" />”网站，网址：<asp:Label runat="server" ID="LB_SiteUrl1" />
