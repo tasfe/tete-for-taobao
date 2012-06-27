@@ -31,6 +31,9 @@ public partial class ShowGoods : System.Web.UI.Page
 
                 //获取分类下所有用户投放的广告
                 IList<UserAdsInfo> adsList = uadsDal.SelectAllTouUserAds(cid, 1);
+
+                RPT_AdsList.DataSource = list;
+                RPT_AdsList.DataBind();
             }
         }
     }
