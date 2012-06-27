@@ -222,8 +222,8 @@ public partial class UserAdsList : System.Web.UI.Page
     {
         if (list.Count == 1)
             return list[0].AdsId;
-        Random rand = new Random(list.Count - 1);
-        return list[rand.Next()].AdsId;
+        Random rand = new Random();
+        return list[rand.Next(list.Count - 1)].AdsId;
     }
 
     private string GetTaoBaoCId(string taoId, ref string cids)

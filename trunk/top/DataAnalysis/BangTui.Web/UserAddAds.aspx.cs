@@ -208,8 +208,8 @@ public partial class UserAddAds : System.Web.UI.Page
     {
         if (list.Count == 1)
             return list[0].AdsId;
-        Random rand = new Random(list.Count - 1);
-        return list[rand.Next()].AdsId;
+        Random rand = new Random();
+        return list[rand.Next(list.Count - 1)].AdsId;
     }
 
     protected void BTN_SELECT_Click(object sender, EventArgs e)
