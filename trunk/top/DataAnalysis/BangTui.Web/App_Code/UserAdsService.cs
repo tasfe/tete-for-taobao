@@ -30,7 +30,7 @@ public class UserAdsService
 
     const string SQL_UPDATE_ADS_STATE = "UPDATE BangT_UserAds SET UserAdsState=@UserAdsState WHERE Id=@Id";
 
-    const string SQL_SELECT_USERADS = "SELECT [AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic WHERE Id=@Id";
+    const string SQL_SELECT_USERADS = "SELECT [AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic FROM BangT_UserAds WHERE Id=@Id";
 
     public IList<UserAdsInfo> SelectAllUserAds(string nick)
     {
