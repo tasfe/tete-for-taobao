@@ -14,6 +14,8 @@
 </head>
 <body style="padding:0px; margin:0px;">
 
+<div class="navigation" style="height:600px;">
+
     <form id="form1" runat="server">
 
 
@@ -32,7 +34,7 @@
     <div id="main-content">
 
     <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
- 您共有<%=c %>个广告位，已经投放了<%=a %>个广告，还有个广告<%=b %>没有投放，<a href='http://www.7fshop.com/top/market/qubie.html'>点击马上开始投放</a>！
+ 您共有<%=c %>个广告位，已经投放了<%=a %>个广告，还有<%=b %>个广告没有投放，<a href='http://www.7fshop.com/top/market/qubie.html'>点击马上开始投放</a>！
 </div>
     
     <input type=button onclick="window.location.href='useradslist.aspx?istou=1'" value="投放中的广告" />
