@@ -84,7 +84,87 @@ public partial class top_container : System.Web.UI.Page
         }
 
         //判断跳转
+        GetVersion(nick);
         GetData(nick);
+    }
+
+
+    /// <summary>
+    /// 当没有版本号传入的时候获取客户版本号
+    /// </summary>
+    /// <returns></returns>
+    private string GetVersion(string u)
+    {
+        string appkey = "12159997";
+        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+
+        //判断该店铺是B店还是C店
+        IDictionary<string, string> param = new Dictionary<string, string>();
+        string sql = string.Empty;
+        //判断短信购买及充值情况
+        param.Add("nick", u);
+        param.Add("article_code", "service-0-22762");
+        string resultnew = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.vas.subscribe.get", "", param);
+        if (resultnew.IndexOf("invali") != -1)
+        {
+            //到期了
+            return "-1";
+        }
+        else
+        {
+            Regex reg = new Regex(@"<item_code>([^<]*)</item_code><deadline>([^<]*)</deadline>", RegexOptions.IgnoreCase);
+            string guid = "";
+            //更新日期
+            MatchCollection match = reg.Matches(resultnew);
+            for (int i = 0; i < match.Count; i++)
+            {
+                try
+                {
+                    //10元
+                    if (match[i].Groups[1].ToString() == "service-0-22762-1")
+                    {
+                        guid = "28F46E17-3117-44E7-847F-79D0BB0BEF69";
+                    }
+                    //10元
+                    if (match[i].Groups[1].ToString() == "service-0-22762-9xx")
+                    {
+                        guid = "C7FCB728-C736-4AF5-935B-14AB24AE37AA";
+                    }
+                    //10元
+                    if (match[i].Groups[1].ToString() == "service-0-22762-10xx")
+                    {
+                        guid = "DB6964D2-A4CB-47C8-B97C-1EB4EC056B56";
+                    }
+                    //10元
+                    if (match[i].Groups[1].ToString() == "service-0-22762-11")
+                    {
+                        guid = "F021E717-4ED7-49D7-9289-2B62D2F6119D";
+                    }
+                }
+                catch { }
+            }
+
+            if (guid.Length != 0)
+            {
+                sql = "SELECT COUNT(*) FROM [BangT_Buys] WHERE nick = '" + u + "'";
+                string count = utils.ExecuteString(sql);
+
+                if (count != "0")
+                {
+                    //update
+                }
+                else
+                { 
+                    //插入
+                    sql = "INSERT INTO BangT_Buys ([Nick],[FeeId],[BuyTime],[IsExpied]) VALUES ('"+u+"','"+guid+"',GETDATE(),0)";
+                    utils.ExecuteNonQuery(sql);
+                }
+            }
+        }
+
+        File.WriteAllText(Server.MapPath(u + ".txt"), Request.Url + "?" + Request.QueryString);
+
+        return "2";
     }
 
     private bool VersionVerify(string app_secret, string top_sign, string appkey, string leaseId, string timestamp, string versionNo)
