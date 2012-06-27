@@ -20,7 +20,7 @@ public partial class UserAdsList : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            string nick = "nick";
+            string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value); //"nick";
             IList<UserAdsInfo> list = uasDal.SelectAllUserAds(nick);
 
             if (Request.QueryString["istou"] == "1")

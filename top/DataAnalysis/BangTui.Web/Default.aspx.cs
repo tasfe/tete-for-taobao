@@ -21,9 +21,18 @@ public partial class _Default : System.Web.UI.Page
             {
                 string nick = Request.QueryString["nick"];
                 string session = Request.QueryString["session"];
-                IList<TaoBaoGoodsInfo> list = TopAPI.GetGoodsInfoListByNick(nick, session);
+
+                IList<TaoBaoGoodsClassInfo> classList = TopAPI.GetGoodsClassInfoList(nick, session);
 
                 GoodsService goodsDal = new GoodsService();
+                TaoBaoGoodsClassService tbgcDal = new TaoBaoGoodsClassService();
+
+                foreach (TaoBaoGoodsClassInfo cinfo in classList)
+                {
+                    tbgcDal.InsertGoodsClass(cinfo, nick);
+                }
+
+                IList<TaoBaoGoodsInfo> list = TopAPI.GetGoodsInfoListByNick(nick, session);
 
                 foreach (TaoBaoGoodsInfo info in list)
                 {
