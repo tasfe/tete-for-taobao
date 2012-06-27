@@ -28,9 +28,11 @@ public class UserAdsService
 
     const string SQL_DELETE_USERADS = "DELETE FROM BangT_UserAds WHERE Id=@Id";
 
-    const string SQL_UPDATE_ADS_STATE = "UPDATE BangT_UserAds SET UserAdsState=@UserAdsState WHERE Id=@Id";
+    const string SQL_UPDATE_ADS_STATE = "UPDATE BangT_UserAds SET UserAdsState=@UserAdsState,AdsShowStartTime=@AdsShowStartTime,AdsShowFinishTime=@AdsShowFinishTime,AddTime=@AddTime,FeeId=@FeeId WHERE Id=@Id";
 
     const string SQL_SELECT_USERADS = "SELECT [AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic FROM BangT_UserAds WHERE Id=@Id";
+
+    const string SQL_STOP = "UPDATE BangT_UserAds SET UserAdsState=@UserAdsState WHERE Id=@Id";
 
     public IList<UserAdsInfo> SelectAllUserAds(string nick)
     {
@@ -135,12 +137,27 @@ public class UserAdsService
         return DBHelper.ExecuteNonQuery(SQL_DELETE_USERADS, new SqlParameter("@Id", id));
     }
 
-    public int UpdateUserAdsState(int state, Guid id)
+    public int StopUserAds(int state, Guid id)
     {
         SqlParameter[] param = new[]
         {
             new SqlParameter("@Id",id),
             new SqlParameter("@UserAdsState",state)
+        };
+
+        return DBHelper.ExecuteNonQuery(SQL_STOP, param);
+    }
+
+    public int UpdateUserAdsState(UserAdsInfo info)
+    {
+        SqlParameter[] param = new[]
+        {
+            new SqlParameter("@Id",info.Id),
+            new SqlParameter("@UserAdsState",info.UserAdsState),
+            new SqlParameter("@AdsShowStartTime",info.AdsShowStartTime==DateTime.MinValue?DateTime.Parse("1990-1-1"):info.AdsShowStartTime),
+            new SqlParameter("@AdsShowFinishTime",info.AdsShowFinishTime==DateTime.MinValue?DateTime.Parse("1990-1-1"):info.AdsShowFinishTime),
+            new SqlParameter("@AddTime",info.AddTime==DateTime.MinValue?DateTime.Parse("1990-1-1"):info.AddTime),
+            new SqlParameter("@FeeId",string.IsNullOrEmpty(info.FeeId.ToString())?Guid.Empty:info.FeeId)
         };
 
         return DBHelper.ExecuteNonQuery(SQL_UPDATE_ADS_STATE, param);
