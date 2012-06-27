@@ -20,7 +20,7 @@ public class UserAdsService
 
     const string SQL_SELECT_ALL_USERADS = "SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic FROM BangT_UserAds WHERE Nick=@Nick";
 
-    const string SQL_INSERT = "INSERT BangT_UserAds([Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,Nick,CateIds,AdsPic) VALUES(@Id,@AdsTitle,@AdsUrl,@AdsId,@UserAdsState,@AdsShowStartTime,@AdsShowFinishTime,@AliWang,@SellCateName,@AddTime,@FeeId,@Nick,@CateIds,@AdsPic)";
+    const string SQL_INSERT = "INSERT BangT_UserAds([Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,Nick,CateIds,AdsPic,Price) VALUES(@Id,@AdsTitle,@AdsUrl,@AdsId,@UserAdsState,@AdsShowStartTime,@AdsShowFinishTime,@AliWang,@SellCateName,@AddTime,@FeeId,@Nick,@CateIds,@AdsPic,@Price)";
 
     const string SQL_SELECT_USEDADS = "SELECT FeeId,Nick FROM BangT_UserAds WHERE UserAdsState=1 AND FeeId IN (SELECT FeeId FROM BangT_Fee WHERE AdsType=5)";
 
@@ -34,7 +34,7 @@ public class UserAdsService
 
     const string SQL_STOP = "UPDATE BangT_UserAds SET UserAdsState=@UserAdsState WHERE Id=@Id";
 
-    const string SQL_SELECT_USERADS_BY_ADSID = "SELECT [Id],[AdsTitle],[AdsUrl],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic FROM BangT_UserAds WHERE AdsId=@AdsId AND UserAdsState=@UserAdsState";
+    const string SQL_SELECT_USERADS_BY_ADSID = "SELECT [Id],[AdsTitle],[AdsUrl],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,Price FROM BangT_UserAds WHERE AdsId=@AdsId AND UserAdsState=@UserAdsState";
 
     public IList<UserAdsInfo> SelectAllUserAds(string nick)
     {
@@ -85,6 +85,7 @@ public class UserAdsService
             info.AddTime = DateTime.Parse(dr["AddTime"].ToString());
             info.FeeId = new Guid(dr["FeeId"].ToString());
             info.AdsPic = dr["AdsPic"].ToString();
+            info.Price = dr["Price"] == DBNull.Value ? 0 : decimal.Parse(dr["Price"].ToString());
 
             list.Add(info);
         }
@@ -216,7 +217,8 @@ public class UserAdsService
             new SqlParameter("@FeeId",string.IsNullOrEmpty(info.FeeId.ToString())?Guid.Empty:info.FeeId),
             new SqlParameter("@Nick",info.Nick),
             new SqlParameter("@CateIds",info.CateIds),
-            new SqlParameter("@AdsPic",info.AdsPic)
+            new SqlParameter("@AdsPic",info.AdsPic),
+            new SqlParameter("@Price",info.Price)
         };
 
         return param;

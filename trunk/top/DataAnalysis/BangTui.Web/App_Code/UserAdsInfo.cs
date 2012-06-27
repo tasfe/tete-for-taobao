@@ -61,4 +61,9 @@ public class UserAdsInfo
     /// </summary>
     public String AdsPic { set; get; }
 
+    /// <summary>
+    /// 价格,针对商品
+    /// </summary>
+    public decimal Price { set; get; }
+
 }
