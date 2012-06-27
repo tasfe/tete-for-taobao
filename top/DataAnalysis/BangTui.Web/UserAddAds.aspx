@@ -41,6 +41,11 @@
       </div>
       <br>
     <table width="700" cellpadding="0" cellspacing="0">
+         
+         <tr>
+           <td colspan="5" align="left"><asp:Button Text="开始推广选中的宝贝" ID="Button1" 
+                   runat="server" onclick="BTN_ShowGoods_Click" /></td>
+         </tr>
          <tr>
            <td height="35"><b>选择</b></td>
            <td><b>宝贝图片</b></td>
@@ -71,7 +76,7 @@
          </asp:Repeater>
          
          <tr>
-           <td colspan="5" align="center"><asp:Button Text="推广宝贝" ID="BTN_ShowGoods" 
+           <td colspan="5" align="left"><asp:Button Text="开始推广选中的宝贝" ID="BTN_ShowGoods" 
                    runat="server" onclick="BTN_ShowGoods_Click" /></td>
          </tr>
          
