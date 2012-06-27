@@ -95,8 +95,8 @@ public partial class top_container : System.Web.UI.Page
     /// <returns></returns>
     private string GetVersion(string u)
     {
-        string appkey = "12159997";
-        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+        string appkey = "12132145";
+        string secret = "1fdd2aadd5e2ac2909db2967cbb71e7f";
 
         //判断该店铺是B店还是C店
         IDictionary<string, string> param = new Dictionary<string, string>();
