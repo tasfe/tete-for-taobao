@@ -56,15 +56,15 @@
                 <td align="left">
                        <img src='<%# Eval("AdsPic") %>' height="80" width="80" />
                      <br>
-                        标题 <%# Eval("AdsTitle")%>
+                        <%# Eval("AdsTitle")%>
                      <br>
-                        网址 <%# Eval("AdsUrl")%>
+                        <%# Eval("AdsUrl")%>
                      <br>
-                        旺旺 <%# Eval("AliWang")%>
+                        <%# Eval("AliWang")%>
                      <br>
-                        分类 <%# Eval("SellCateName")%>
+                        <%# Eval("SellCateName")%>
                      <br>
-                        有效时间 <%# Eval("AdsShowStartTime")%> 至 <%# Eval("AdsShowFinishTime")%>
+                        <%# Eval("AdsShowStartTime")%> 至 <%# Eval("AdsShowFinishTime")%>
                   
                 </td>
                 <td><%# GetSite(Eval("AdsId").ToString()) %></td>
