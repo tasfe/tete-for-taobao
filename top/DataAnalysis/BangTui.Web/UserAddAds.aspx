@@ -68,7 +68,7 @@
                    </td>
                    <td height="85"><img src='<%# Eval("GoodsPic") %>_80x80.jpg' /></td>
                    <td><asp:Label ID="LB_GoodsName" Text='<%# Eval("GoodsName") %>' runat="server" /></td>
-                   <td><%# Eval("GoodsPrice")%></td>
+                   <td><asp:Label ID="LB_Price" Text='<%# Eval("GoodsPrice")%>' runat="server" /></td>
                    <td><%# Eval("GoodsCount")%></td>
                 </tr>
             </ItemTemplate>
