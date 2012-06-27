@@ -30,7 +30,7 @@ public partial class UserAddAds : System.Web.UI.Page
 
             DDL_GoodsClass.Items.Insert(0, new ListItem("全部", "0"));
 
-            IList<GoodsInfo> list = goodsDal.SelectAllGoodsByNick("nick");
+            IList<GoodsInfo> list = goodsDal.SelectAllGoodsByNick(nick);
             Rpt_GoodsList.DataSource = list;
             Rpt_GoodsList.DataBind();
         }
@@ -164,6 +164,8 @@ public partial class UserAddAds : System.Web.UI.Page
         {
             userAdsDal.InsertUserAds(info);
         }
+
+        Response.Redirect("UserAdsList.aspx?istou=1");
 
     }
 
