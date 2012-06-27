@@ -34,6 +34,8 @@ public class UserAdsService
 
     const string SQL_STOP = "UPDATE BangT_UserAds SET UserAdsState=@UserAdsState WHERE Id=@Id";
 
+    const string SQL_SELECT_USERADS_BY_ADSID = "SELECT [Id],[AdsTitle],[AdsUrl],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic FROM BangT_UserAds WHERE AdsId=@AdsId AND UserAdsState=@UserAdsState";
+
     public IList<UserAdsInfo> SelectAllUserAds(string nick)
     {
         IList<UserAdsInfo> list = new List<UserAdsInfo>();
@@ -47,6 +49,35 @@ public class UserAdsService
             info.AdsUrl = dr["AdsUrl"].ToString();
             info.AdsId = new Guid(dr["AdsId"].ToString());
             info.UserAdsState = int.Parse(dr["UserAdsState"].ToString());
+            info.AdsShowStartTime = DateTime.Parse(dr["AdsShowStartTime"].ToString());
+            info.AdsShowFinishTime = DateTime.Parse(dr["AdsShowFinishTime"].ToString());
+            info.AliWang = dr["AliWang"].ToString();
+            info.SellCateName = dr["SellCateName"].ToString();
+            info.AddTime = DateTime.Parse(dr["AddTime"].ToString());
+            info.FeeId = new Guid(dr["FeeId"].ToString());
+            info.AdsPic = dr["AdsPic"].ToString();
+
+            list.Add(info);
+        }
+
+        return list;
+    }
+
+    public IList<UserAdsInfo> SelectAllUserAdsByAdsId(Guid adsId, int state)
+    {
+        IList<UserAdsInfo> list = new List<UserAdsInfo>();
+        SqlParameter[] param = new[]
+            {
+                new SqlParameter("@AdsId", adsId),
+                new SqlParameter("@UserAdsState",state)
+            };
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_USERADS_BY_ADSID, param);
+        foreach (DataRow dr in dt.Rows)
+        {
+            UserAdsInfo info = new UserAdsInfo();
+            info.Id = new Guid(dr["Id"].ToString());
+            info.AdsTitle = dr["AdsTitle"].ToString();
+            info.AdsUrl = dr["AdsUrl"].ToString();
             info.AdsShowStartTime = DateTime.Parse(dr["AdsShowStartTime"].ToString());
             info.AdsShowFinishTime = DateTime.Parse(dr["AdsShowFinishTime"].ToString());
             info.AliWang = dr["AliWang"].ToString();
