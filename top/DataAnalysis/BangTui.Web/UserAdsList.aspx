@@ -40,7 +40,7 @@
 
     <table width="700" cellpadding="0" cellspacing="0">
       <tr>
-        <td style=font-size:14px;font-weight:bold width=171>广告信息</td>
+        <td style=font-size:14px;font-weight:bold width=210>广告信息</td>
         <td style=font-size:14px;font-weight:bold width=171>投放网站</td>
         <td style=font-size:14px;font-weight:bold width=91>广告标题</td>
         <td style=font-size:14px;font-weight:bold width=91>广告尺寸</td>
@@ -53,7 +53,7 @@
                     onitemcommand="RPT_AdsList_ItemCommand">
           <ItemTemplate>
              <tr>
-                <td align="left">
+                <td align="left" width=210>
                        <img src='<%# Eval("AdsPic") %>' height="80" width="80" />
                      <br>
                         <%# Eval("AdsTitle")%>
@@ -62,9 +62,7 @@
                      <br>
                         <%# Eval("AliWang")%>
                      <br>
-                        <%# Eval("SellCateName")%>
-                     <br>
-                        <%# Eval("AdsShowStartTime")%> 至 <%# Eval("AdsShowFinishTime")%>
+                        <%# Eval("AdsShowStartTime")%> 至 <br> <%# Eval("AdsShowFinishTime")%>
                   
                 </td>
                 <td><%# GetSite(Eval("AdsId").ToString()) %></td>
