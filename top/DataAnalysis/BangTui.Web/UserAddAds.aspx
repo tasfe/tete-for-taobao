@@ -5,6 +5,7 @@
 <head id="Head1" runat="server">
     <title>好评有礼</title>
     <link href="css/common.css" rel="stylesheet" />
+      <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
     <style>
         td{font-size:12px;}
         a{color:Blue; text-decoration:none;}
@@ -33,9 +34,9 @@
 
     <div>
       <div>
-        宝贝名：<asp:TextBox ID="TB_GoodsName" runat="server"></asp:TextBox>宝贝分类：<asp:DropDownList ID="DDL_GoodsClass" runat="server"></asp:DropDownList>
-        修改时间：<asp:TextBox runat="server" ID="TB_StartTime" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})" />至
-        <asp:TextBox ID="TB_EndTime" runat="server" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})" />
+        宝贝名：<asp:TextBox ID="TB_GoodsName" runat="server" Width="90px"></asp:TextBox>宝贝分类：<asp:DropDownList ID="DDL_GoodsClass" runat="server"></asp:DropDownList>
+        修改时间：<asp:TextBox runat="server" ID="TB_StartTime" Width="70px" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})" />至
+        <asp:TextBox ID="TB_EndTime" runat="server" Width="70px" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})" />
         <asp:Button ID="BTN_SELECT" runat="server" Text="查询" onclick="BTN_SELECT_Click" />
       </div>
     <table width="700" cellpadding="0" cellspacing="0">
