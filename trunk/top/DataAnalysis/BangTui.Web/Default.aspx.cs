@@ -39,7 +39,7 @@ public partial class _Default : System.Web.UI.Page
                     goodsDal.InsertGoodsInfo(info, nick);
                 }
 
-                if (Request.Cookies["nick"] != null)
+                if (Request.Cookies["nick"] == null)
                 {
                     HttpCookie cookie = new HttpCookie("nick", HttpUtility.UrlEncode(nick));
                     HttpCookie cooksession = new HttpCookie("nicksession", session);
