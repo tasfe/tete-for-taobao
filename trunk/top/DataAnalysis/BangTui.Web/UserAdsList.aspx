@@ -35,7 +35,7 @@
     
     <table width="700" cellpadding="0" cellspacing="0">
       <tr>
-        <td style=font-size:14px;font-weight:bold>广告信息</td>
+        <td style=font-size:14px;font-weight:bold width=171>广告信息</td>
         <td style=font-size:14px;font-weight:bold>投放网站</td>
         <td style=font-size:14px;font-weight:bold>广告标题</td>
         <td style=font-size:14px;font-weight:bold>广告尺寸</td>
