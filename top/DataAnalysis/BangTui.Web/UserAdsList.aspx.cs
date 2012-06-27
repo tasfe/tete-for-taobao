@@ -241,6 +241,10 @@ public partial class UserAdsList : System.Web.UI.Page
             {
                 Response.Redirect("http://www.7fshop.com/top/market/qubie.html");
             }
+            else
+            {
+                Response.Redirect("UserAdsList.aspx?istou=1");
+            }
         }
         if (e.CommandName == "Result")
         {
