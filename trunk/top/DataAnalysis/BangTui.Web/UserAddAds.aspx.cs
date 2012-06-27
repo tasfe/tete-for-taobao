@@ -67,6 +67,7 @@ public partial class UserAddAds : System.Web.UI.Page
                 info.AliWang = nick;
                 info.Nick = nick;
                 info.AdsPic = ((Label)item.FindControl("LB_Img")).Text;
+                info.Price = decimal.Parse(((Label)item.FindControl("LB_Price")).Text);
                 list.Add(info);
             }
         }
