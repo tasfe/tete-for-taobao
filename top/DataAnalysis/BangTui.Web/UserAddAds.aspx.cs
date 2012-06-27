@@ -43,7 +43,7 @@ public partial class UserAddAds : System.Web.UI.Page
         string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value);
 
         CateService cateDal = new CateService();
-        IList<CateInfo> cateList = cateDal.SelectAllCateByNick("nick").ToList();
+        IList<CateInfo> cateList = cateDal.SelectAllCateByNick(nick).ToList();
 
         UserAdsService userAdsDal = new UserAdsService();
 
@@ -59,9 +59,10 @@ public partial class UserAddAds : System.Web.UI.Page
                 info.AdsUrl = "http://item.taobao.com/item.htm?id=" + ((Label)item.FindControl("LB_GoodsId")).Text;
                 string cateId = ((Label)item.FindControl("LB_CateId")).Text;
 
-                CateInfo cinfo = cateList.Where(o => o.CateId == cateId).ToList()[0];
+                IList<CateInfo> thiscList = cateList.Where(o => o.CateId == cateId).ToList();
+
                 info.CateIds = ((Label)item.FindControl("LB_TaoBaoCId")).Text;
-                string cname = cinfo.CateName;
+                string cname = thiscList.Count == 0 ? "" : thiscList[0].CateName;
                 info.SellCateName = GetTaoBaoCName(info.CateIds, ref cname);
                 info.AliWang = nick;
                 info.Nick = nick;
