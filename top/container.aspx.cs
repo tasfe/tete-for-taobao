@@ -166,6 +166,8 @@ public partial class top_container : System.Web.UI.Page
         //更新用户订购信息
         CheckUser("1", nick);
 
+        string oldNick = nick;
+
         //加密NICK
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Encrypt(nick);
@@ -174,7 +176,8 @@ public partial class top_container : System.Web.UI.Page
         cookie.setCookie("top_session", top_session, 999999);
         cookie.setCookie("nick", nick, 999999);
 
-        Response.Redirect("index.html");
+        //Response.Redirect("index.html");
+        Response.Redirect("http://bang.7fshop.com/?session=" + top_session + "&nick=" + HttpUtility.UrlEncode(oldNick));
     }
 
     private void Tuijian(string nick)
