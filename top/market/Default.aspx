@@ -32,10 +32,10 @@
 <tr>
 <td width="100%"  align="left" style=font-size:16px;>
 
-<p>您好,欢迎您使用特推广平台!&nbsp;</p><br>
-<p>特推广平台是一个全智能的自动化推广平台,您可以将网店的推广工作全权委托给我们,您要做的仅需要提交宝贝/店铺给我们,我们的推广团队即可帮您推广到数十个优质合作网站中去!(点此<a href="adslist.html" target="_blank">查看广告投放一览</a>)</p><br>
-<p>*如果您是淘宝卖家,想推广淘宝宝贝或店铺,请单击 <a href="http://bang.7fshop.com/UserAddAds.aspx">提交宝贝</a>&nbsp;或者&nbsp;<a href="http://bang.7fshop.com/AddShopAds.aspx">提交店铺</a></p><br>
-<p>*如果您想推广第三方独立网店(包含淘宝客网站),请单击<a href="http://bang.7fshop.com/AddShopAds.aspx">提交网站</a></p>
+<p>您好,欢迎您使用特推广_店铺推广专家!&nbsp;</p>
+<p>特推广平台是一个全智能的自动化推广平台,您可以将网店的推广工作全权委托给我们,您要做的仅需要提交宝贝/店铺给我们,我们的推广团队即可帮您推广到数十个优质合作网站中去!(点此<a href="adslist.html" target="_blank">查看广告投放一览</a>)</p>
+<p>*如果您是淘宝卖家,想推广淘宝宝贝或店铺,请单击 <a href="http://bang.7fshop.com/UserAddAds.aspx">提交宝贝</a>&nbsp;或者&nbsp;<a href="http://bang.7fshop.com/AddShopAds.aspx">提交店铺</a></p>
+<p>*如果您想推广第三方独立网店(包含淘宝客网站),请单击<a href="http://bang.7fshop.com/AddShopAds.aspx">提交网站</a>
 
 <br>
 <table width="90%" style="border:solid 1px; margin-left:10px;" cellspacing="1" cellpadding="1"　align="center">
