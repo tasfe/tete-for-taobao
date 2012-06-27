@@ -243,6 +243,7 @@ public partial class UserAdsList : System.Web.UI.Page
         if (e.CommandName == "See")
         {
             Guid id = new Guid(e.CommandArgument.ToString());
+            Response.Redirect("ShowAds.aspx?adsid=" + id);
         }
         if (e.CommandName == "Stop")
         {
