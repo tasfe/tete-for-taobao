@@ -1,23 +1,46 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UserAdsList.aspx.cs" Inherits="UserAdsList" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Untitled Page</title>
+<head id="Head1" runat="server">
+    <title>帮推广</title>
+    <link href="css/common.css" rel="stylesheet" />
+      <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <style>
+        td{font-size:12px;}
+        a{color:Blue; text-decoration:none;}
+    </style>
 </head>
-<body>
+<body style="padding:0px; margin:0px;">
+
     <form id="form1" runat="server">
-    <div>
-     <table>
+
+
+    
+<div class="navigation" style="height:600px;">
+
+  <div class="crumbs"><a href="#" class="nolink">帮推广</a> 推广中的宝贝 </div>
+  <div class="absright">
+    <ul>
+      <li>
+        <div class="msg">
+            
+        </div>
+      </li>
+    </ul>
+  </div>
+
+    <div id="main-content">
+    
+    <table width="700" cellpadding="0" cellspacing="0">
       <tr>
-        <td>广告信息</td>
-        <td>投放网站</td>
-        <td>广告标题</td>
-        <td>广告尺寸</td>
-        <td>广告类型</td>
-        <td>状态</td>
-        <td>操作</td>
+        <td style=font-size:14px>广告信息</td>
+        <td style=font-size:14px>投放网站</td>
+        <td style=font-size:14px>广告标题</td>
+        <td style=font-size:14px>广告尺寸</td>
+        <td style=font-size:14px>广告类型</td>
+        <td style=font-size:14px>状态</td>
+        <td style=font-size:14px>操作</td>
       </tr>
        <asp:Repeater ID="RPT_AdsList" runat="server" 
                     onitemdatabound="RPT_AdsList_ItemDataBound" 
@@ -65,6 +88,8 @@
           </ItemTemplate>
        </asp:Repeater>
      </table>
+    </div>
+
     </div>
     </form>
 </body>

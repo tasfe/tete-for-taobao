@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>好评有礼</title>
+    <title>帮推广</title>
     <link href="css/common.css" rel="stylesheet" />
       <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
     <style>
@@ -47,11 +47,11 @@
                    runat="server" onclick="BTN_ShowGoods_Click" /></td>
          </tr>
          <tr>
-           <td height="35"><b>选择</b></td>
-           <td><b>宝贝图片</b></td>
-           <td><b>宝贝名称</b></td>
-           <td><b>价格(元)</b></td>
-           <td><b>数量</b></td>
+           <td height="35"><b style=font-size:14px>选择</b></td>
+           <td><b style=font-size:14px>宝贝图片</b></td>
+           <td><b style=font-size:14px>宝贝名称</b></td>
+           <td><b style=font-size:14px>价格(元)</b></td>
+           <td><b style=font-size:14px>数量</b></td>
          </tr>
          
          <asp:Repeater ID="Rpt_GoodsList" runat="server">
