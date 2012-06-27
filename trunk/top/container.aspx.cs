@@ -177,7 +177,7 @@ public partial class top_container : System.Web.UI.Page
         cookie.setCookie("nick", nick, 999999);
 
         //Response.Redirect("index.html");
-        Response.Redirect("http://bang.7fshop.com/?session=" + top_session + "&nick=" + HttpUtility.UrlEncode(oldNick));
+        Response.Redirect("http://bang.7fshop.com/?istongji=1&session=" + top_session + "&nick=" + HttpUtility.UrlEncode(oldNick));
     }
 
     private void Tuijian(string nick)
