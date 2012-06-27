@@ -39,6 +39,7 @@
     
     <input type=button onclick="window.location.href='useradslist.aspx?istou=1'" value="投放中的广告" />
     <input type=button onclick="window.location.href='useradslist.aspx'" value="等待投放的广告" />
+    <input type=button onclick="window.location.href='AddAds.aspx'" value="投放新广告" />
 
     <hr />
 

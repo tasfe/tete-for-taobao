@@ -1,18 +1,43 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AddShopAds.aspx.cs" Inherits="AddShopAds" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Untitled Page</title>
-    <style type="text/css">
-     .twid{width:100px}
+<head id="Head1" runat="server">
+    <title>帮推广</title>
+    <link href="css/common.css" rel="stylesheet" />
+      <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <style>
+        td{font-size:12px;}
+        a{color:Blue; text-decoration:none;}
+        dd,dl,dt{margin:0px;padding:0px;}
     </style>
 </head>
-<body>
+<body style="padding:0px; margin:0px;">
+
+<div class="navigation" style="height:600px;">
+
     <form id="form1" runat="server">
-    <div>
-      <table>
+
+
+
+  <div class="crumbs"><a href="#" class="nolink">帮推广</a> 推广店铺 </div>
+  <div class="absright">
+    <ul>
+      <li>
+        <div class="msg">
+            
+        </div>
+      </li>
+    </ul>
+  </div>
+
+    <div id="main-content">    
+    
+    <input type=button onclick="window.location.href='useradslist.aspx?istou=1'" value="投放中的广告" />
+    <input type=button onclick="window.location.href='useradslist.aspx'" value="等待投放的广告" />
+
+    <hr />
+    
+    <table width="700" cellpadding="0" cellspacing="0">
         <tr>
           <td class="twid">店铺名称</td>
           <td><asp:TextBox ID="TB_ShppName" runat="server" Width="300px"></asp:TextBox></td>
@@ -38,6 +63,8 @@
                   onclick="BTN_Tui_Click" /></td>
         </tr>
       </table>
+    </div>
+
     </div>
     </form>
 </body>
