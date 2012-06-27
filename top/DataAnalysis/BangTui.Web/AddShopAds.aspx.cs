@@ -33,7 +33,7 @@ public partial class AddShopAds : System.Web.UI.Page
         //购买类型
         IList<BuyInfo> buyList = CacheCollection.GetAllBuyInfo().Where(o => o.Nick == nick).ToList();
 
-        //提交的广告
+        //投放的广告
         IList<UserAdsInfo> useradsList = userAdsDal.SelectAllUserAds(nick);
 
         foreach (BuyInfo binfo in buyList)
@@ -47,7 +47,7 @@ public partial class AddShopAds : System.Web.UI.Page
                 if (feeInfo.AdsCount > 0)
                 {
 
-                    //已经投放了的广告集合
+                    //已经投放了的该收费类型的广告集合
                     IList<UserAdsInfo> myUseradsList = useradsList.Where(o => o.FeeId == feeInfo.FeeId).ToList();
 
                     //真正可以添加的广告数量
