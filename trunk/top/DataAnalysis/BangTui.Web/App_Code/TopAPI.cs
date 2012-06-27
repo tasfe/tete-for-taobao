@@ -183,4 +183,37 @@ public class TopAPI
         }
         return list;
     }
+
+    public static IList<TaoBaoGoodsClassInfo> GetGoodsClassInfoList(string nickNo, string session)
+    {
+        Dictionary<string, string> dic = new Dictionary<string, string>();
+        dic.Add("nick", nickNo);
+        dic.Add("fields", "cid,name,parent_cid");
+        string text = Post("taobao.sellercats.list.get", session, dic);
+
+        IList<TaoBaoGoodsClassInfo> classList = null;
+        if (!string.IsNullOrEmpty(text))
+        {
+            if (text.Contains("error_response"))
+            {
+                LogInfo.Add("查找商品销售分类出错", text);
+                return null;
+            }
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            text = text.Replace("{\"sellercats_list_get_response\":{\"seller_cats\":{\"seller_cat\":", "").Replace("]}}}", "") + "]";
+
+            try
+            {
+                classList = js.Deserialize<List<TaoBaoGoodsClassInfo>>(text);
+            }
+            catch (Exception ex)
+            {
+                LogInfo.Add("返回json转化为一个商品销售分类出错", text + ex.Message);
+                return null;
+            }
+        }
+
+        return classList;
+    }
+
 }
