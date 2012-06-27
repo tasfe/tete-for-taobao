@@ -39,7 +39,7 @@
         <asp:TextBox ID="TB_EndTime" runat="server" Width="70px" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})" />
         <asp:Button ID="BTN_SELECT" runat="server" Text="查询" onclick="BTN_SELECT_Click" />
       </div>
-      <br>
+      <hr>
     <table width="700" cellpadding="0" cellspacing="0">
          
          <tr>
