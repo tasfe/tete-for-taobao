@@ -52,7 +52,7 @@ public partial class UserAdsList : System.Web.UI.Page
     /// <summary>
     /// 已投放数量
     /// </summary>
-    protected int TouCount
+    private int TouCount
     {
         get { return int.Parse(ViewState["toucount"].ToString()); }
     }
@@ -60,7 +60,7 @@ public partial class UserAdsList : System.Web.UI.Page
     /// <summary>
     /// 未投放数量
     /// </summary>
-    protected int NoTouCount
+    private int NoTouCount
     {
         get { return int.Parse(ViewState["notoucount"].ToString()); }
     }
@@ -68,7 +68,7 @@ public partial class UserAdsList : System.Web.UI.Page
     /// <summary>
     /// 可放广告数量
     /// </summary>
-    protected int AdsCount
+    private int AdsCount
     {
         get { return ViewState["adscount"] == null ? 0 : int.Parse(ViewState["adscount"].ToString()); }
     }
