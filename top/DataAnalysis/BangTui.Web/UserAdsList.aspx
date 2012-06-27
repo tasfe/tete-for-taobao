@@ -33,6 +33,11 @@
 
     <div id="main-content">
     
+    <input type=button onclick="window.location.href='useradslist.aspx?istou=1'" value="投放中的广告" />
+    <input type=button onclick="window.location.href='useradslist.aspx'" value="等待投放的广告" />
+
+    <hr />
+
     <table width="700" cellpadding="0" cellspacing="0">
       <tr>
         <td style=font-size:14px;font-weight:bold width=171>广告信息</td>
