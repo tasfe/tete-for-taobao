@@ -58,7 +58,7 @@
          <ItemTemplate>
          <li>
                 <a href="#"><img src='http://img04.taobaocdn.com/bao/uploaded/i4/T1RBu9XeRoXXa3rKg8_100228.jpg_210x210.jpg' width="210" height="210" /></a><br />
-                <span><a href="#"><%# Eval("name") %><</a></span>
+                <span><a href="#"><%# Eval("goodsname") %><</a></span>
                 <div><em>гд4250.40</em>  <a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid=%E7%BE%8E%
 E6%9D%9C%E8%8E%8E%E4%B9%8B%E5%BF%83&site=cntaobao&s=1&charset=utf-8" ><img align="top" border="0" 
 align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=%E7%BE%8E%E6%9D%9C%E8%
