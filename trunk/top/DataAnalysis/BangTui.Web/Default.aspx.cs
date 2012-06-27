@@ -19,6 +19,7 @@ public partial class _Default : System.Web.UI.Page
         {
             if (!string.IsNullOrEmpty(Request.QueryString["istongji"]))
             {
+                CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLBUYNINFO);
                 string nick = Request.QueryString["nick"];
                 string session = Request.QueryString["session"];
                 if (Request.Cookies["nick"] == null)
