@@ -9,6 +9,7 @@
     <style>
         td{font-size:12px;}
         a{color:Blue; text-decoration:none;}
+        dd,dl,dt{margin:0px;padding:0px;}
     </style>
 </head>
 <body style="padding:0px; margin:0px;">
@@ -34,13 +35,13 @@
     
     <table width="700" cellpadding="0" cellspacing="0">
       <tr>
-        <td style=font-size:14px>广告信息</td>
-        <td style=font-size:14px>投放网站</td>
-        <td style=font-size:14px>广告标题</td>
-        <td style=font-size:14px>广告尺寸</td>
-        <td style=font-size:14px>广告类型</td>
-        <td style=font-size:14px>状态</td>
-        <td style=font-size:14px>操作</td>
+        <td style=font-size:14px;font-weight:bold>广告信息</td>
+        <td style=font-size:14px;font-weight:bold>投放网站</td>
+        <td style=font-size:14px;font-weight:bold>广告标题</td>
+        <td style=font-size:14px;font-weight:bold>广告尺寸</td>
+        <td style=font-size:14px;font-weight:bold>广告类型</td>
+        <td style=font-size:14px;font-weight:bold>状态</td>
+        <td style=font-size:14px;font-weight:bold>操作</td>
       </tr>
        <asp:Repeater ID="RPT_AdsList" runat="server" 
                     onitemdatabound="RPT_AdsList_ItemDataBound" 
