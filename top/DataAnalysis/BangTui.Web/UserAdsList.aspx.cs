@@ -185,8 +185,8 @@ public partial class UserAdsList : System.Web.UI.Page
                                 string taoId = info.CateIds;
                                 info.CateIds = GetTaoBaoCId(taoId, ref taoId);
                             }
-
-                            uasDal.UpdateUserAdsState(1, id);
+                            info.Id = id;
+                            uasDal.UpdateUserAdsState(info);
                             break;
                         }
                     }
@@ -204,7 +204,7 @@ public partial class UserAdsList : System.Web.UI.Page
         if (e.CommandName == "Stop")
         {
             Guid id = new Guid(e.CommandArgument.ToString());
-            uasDal.UpdateUserAdsState(2, id);
+            uasDal.StopUserAds(2, id);
             Response.Redirect("UserAdsList.aspx");
         }
         if (e.CommandName == "Add")
