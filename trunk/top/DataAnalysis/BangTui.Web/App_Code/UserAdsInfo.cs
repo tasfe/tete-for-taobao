@@ -23,6 +23,9 @@ public class UserAdsInfo
 
     public Guid AdsId { set; get; }
 
+    /// <summary>
+    /// 0：未投放；1：投放中;2:暂停投放
+    /// </summary>
     public int UserAdsState { set; get; }
 
     public DateTime AdsShowStartTime { set; get; }

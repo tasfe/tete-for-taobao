@@ -26,6 +26,12 @@ public class UserAdsService
 
     const string SQL_SELECT_TAOCLASS_ADSINFO = "SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[AliWang],AdsPic FROM BangT_UserAds WHERE UserAdsState=@UserAdsState AND CHARINDEX(@CateId,CateIds,0)>0";
 
+    const string SQL_DELETE_USERADS = "DELETE FROM BangT_UserAds WHERE Id=@Id";
+
+    const string SQL_UPDATE_ADS_STATE = "UPDATE BangT_UserAds SET UserAdsState=@UserAdsState WHERE Id=@Id";
+
+    const string SQL_SELECT_USERADS = "SELECT [AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic WHERE Id=@Id";
+
     public IList<UserAdsInfo> SelectAllUserAds(string nick)
     {
         IList<UserAdsInfo> list = new List<UserAdsInfo>();
@@ -51,6 +57,29 @@ public class UserAdsService
         }
 
         return list;
+    }
+
+    public UserAdsInfo SelectUserAdsById(Guid id)
+    {
+        UserAdsInfo info = null;
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_USERADS, new SqlParameter("@Id", id));
+        foreach (DataRow dr in dt.Rows)
+        {
+            info = new UserAdsInfo();
+            info.AdsTitle = dr["AdsTitle"].ToString();
+            info.AdsUrl = dr["AdsUrl"].ToString();
+            info.AdsId = new Guid(dr["AdsId"].ToString());
+            info.UserAdsState = int.Parse(dr["UserAdsState"].ToString());
+            info.AdsShowStartTime = DateTime.Parse(dr["AdsShowStartTime"].ToString());
+            info.AdsShowFinishTime = DateTime.Parse(dr["AdsShowFinishTime"].ToString());
+            info.AliWang = dr["AliWang"].ToString();
+            info.SellCateName = dr["SellCateName"].ToString();
+            info.AddTime = DateTime.Parse(dr["AddTime"].ToString());
+            info.FeeId = new Guid(dr["FeeId"].ToString());
+            info.AdsPic = dr["AdsPic"].ToString();
+        }
+
+        return info;
     }
 
     public IList<UserAdsInfo> SelectAllTouUserAds(string cid,int state)
@@ -101,6 +130,21 @@ public class UserAdsService
         return list;
     }
 
+    public int DelteUserAds(Guid id)
+    {
+        return DBHelper.ExecuteNonQuery(SQL_DELETE_USERADS, new SqlParameter("@Id", id));
+    }
+
+    public int UpdateUserAdsState(int state, Guid id)
+    {
+        SqlParameter[] param = new[]
+        {
+            new SqlParameter("@Id",id),
+            new SqlParameter("@UserAdsState",state)
+        };
+
+        return DBHelper.ExecuteNonQuery(SQL_UPDATE_ADS_STATE, param);
+    }
 
     public int InsertUserAds(UserAdsInfo info)
     {
