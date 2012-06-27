@@ -34,13 +34,13 @@
     <div id="main-content">
 
    <b style="font-size:14px;"> 您的广告投在“<asp:Label runat="server" ID="LB_SiteName" />”(<asp:Label runat="server" ID="LB_SiteUrl" />)上，位置在“<asp:Label runat="server" ID="LB_AdsTitleSize" />”,请按如下操作查看您的广告投放情况：</b>
-
+   <br />
 第一步 打开“<asp:Label runat="server" ID="LB_SiteName1" />”网站，网址：<asp:Label runat="server" ID="LB_SiteUrl1" />
 <br />
 第二步 您的广告目前投放的位置在“<asp:Label runat="server" ID="LB_AdsTitleSize1" />”，见下图所示：
-
-<img src='<%=ImgUrl %>'>' />
-
+<br />
+<img src='<%=ImgUrl %>'>
+<br />
 如果您看到不广告牌，很可能是您的浏览器或安全软件(如360安全卫士)设置了广告过滤规则，点击查看如何解决 
 <br />
 第三步 点击广告牌，在弹出的页面，即可<a href="UserAdsList.aspx?istou=1">查看您的广告投放</a> 
