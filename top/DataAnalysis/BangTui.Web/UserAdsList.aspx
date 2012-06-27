@@ -37,9 +37,9 @@
       <tr>
         <td style=font-size:14px;font-weight:bold width=171>广告信息</td>
         <td style=font-size:14px;font-weight:bold width=171>投放网站</td>
-        <td style=font-size:14px;font-weight:bold width=71>广告标题</td>
-        <td style=font-size:14px;font-weight:bold width=71>广告尺寸</td>
-        <td style=font-size:14px;font-weight:bold width=71>广告类型</td>
+        <td style=font-size:14px;font-weight:bold width=91>广告标题</td>
+        <td style=font-size:14px;font-weight:bold width=91>广告尺寸</td>
+        <td style=font-size:14px;font-weight:bold width=91>广告类型</td>
         <td style=font-size:14px;font-weight:bold width=71>状态</td>
         <td style=font-size:14px;font-weight:bold width=71>操作</td>
       </tr>
@@ -75,7 +75,7 @@
                 <td><%# GetSize(Eval("AdsId").ToString()) %></td>
                 <td><%# GetAdsType(Eval("AdsId").ToString())%></td>
                 <td><%# GetState(Eval("UserAdsState").ToString())%></td>
-                <td>
+                <td align="left">
                   <dt>
                      <dd><asp:Button ID="Btn_De" CommandName="De" CommandArgument='<%# Eval("Id") %>' runat="server" Text="删除投放" /></dd>
                      <dd><asp:Button ID="Btn_Insert" CommandName="Insert" CommandArgument='<%# Eval("Id") %>' runat="server" Text="我要投放" /></dd>
