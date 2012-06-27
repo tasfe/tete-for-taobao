@@ -21,6 +21,8 @@ public class TaoBaoGoodsClassService
 
     const string SQL_SELECT_GOODSCLASS_BYPARENTID = "SELECT CId,[name],[is_parent],[parent_cid] FROM BangT_TaoBaoGoodsClass WHERE parent_cid=@cid";
 
+    const string SQL_INSERT = "INSERT BangT_Category(CateId,CateName,ParentId,Nick) VALUES(@CateId,@CateName,@ParentId,@Nick)";
+
     public TaoBaoGoodsClassInfo SelectGoodsClass(string cid)
     {
         TaoBaoGoodsClassInfo info = null;
@@ -57,5 +59,18 @@ public class TaoBaoGoodsClassService
         }
 
         return list;
+    }
+
+    public int InsertGoodsClass(TaoBaoGoodsClassInfo info,string nick)
+    {
+        SqlParameter[] param = new[]
+        {
+            new SqlParameter("@CateId",info.cid),
+            new SqlParameter("@CateName",info.name),
+            new SqlParameter("@ParentId",info.parent_cid),
+            new SqlParameter("@Nick",nick)
+        };
+
+        return DBHelper.ExecuteNonQuery(SQL_INSERT, param);
     }
 }
