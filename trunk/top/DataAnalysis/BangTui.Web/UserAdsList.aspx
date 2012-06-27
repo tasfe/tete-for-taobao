@@ -53,7 +53,7 @@
                     onitemcommand="RPT_AdsList_ItemCommand">
           <ItemTemplate>
              <tr>
-                <td align="left" width=210>
+                <td align="left" width=210 height=180>
                        <img src='<%# Eval("AdsPic") %>' height="80" width="80" />
                      <br>
                         <%# Eval("AdsTitle")%>
