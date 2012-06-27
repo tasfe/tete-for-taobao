@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="top_market_Default" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -13,7 +15,7 @@
 <div class="navigation" style="height:600px;">
 
 
-  <div class="crumbs"><a href="javascript:;" class="nolink">特推广</a> 版本区别 </div>
+  <div class="crumbs"><a href="javascript:;" class="nolink">特推广</a> 首页 </div>
   <div class="absright">
     <ul>
       <li>
@@ -28,15 +30,13 @@
 <table cellSpacing=0 cellPadding=0 border=0>
  
 <tr>
-<td width="100%"  align="left">
-&nbsp;&nbsp;&nbsp;&nbsp;<img src="http://a.tbcdn.cn/sys/wangwang/smiley/48x48/68.gif" /> <span style="font-size:14px;">尊敬的淘宝卖家，由于帮推广在帮您做店铺推广的时候，需要用到大量的服务器资源，为了让每个用户都能更好的使用帮推广，现将用户分为以下几个版本：</span><br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<strong>优质广告位4个</strong>：一个月[28.00元]    一个季度[78.00元]    半年[148.00元]    一年[288.00元] <br>
-&nbsp;&nbsp;&nbsp;&nbsp;<strong>优质广告位8个</strong>：一个月[48.00元]    一个季度[138.00元]    半年[268.00元]    一年[518.00元] <br>
-&nbsp;&nbsp;&nbsp;&nbsp;<strong>优质广告位16个</strong>：一个月[88.00元]    一个季度[258.00元]    半年[508.00元]    一年[998.00元] <br>
+<td width="100%"  align="left" style=font-size:16px;>
 
- <br> <br>
+<p>您好,欢迎您使用特推广平台!&nbsp;</p><br>
+<p>特推广平台是一个全智能的自动化推广平台,您可以将网店的推广工作全权委托给我们,您要做的仅需要提交宝贝/店铺给我们,我们的推广团队即可帮您推广到数十个优质合作网站中去!(点此<a href="adslist.html" target="_blank">查看广告投放一览</a>)</p><br>
+<p>*如果您是淘宝卖家,想推广淘宝宝贝或店铺,请单击 <a href="http://bang.7fshop.com/UserAddAds.aspx">提交宝贝</a>&nbsp;或者&nbsp;<a href="http://bang.7fshop.com/AddShopAds.aspx">提交店铺</a></p><br>
+<p>*如果您想推广第三方独立网店(包含淘宝客网站),请单击<a href="http://bang.7fshop.com/AddShopAds.aspx">提交网站</a></p>
 
-&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size:14px">根据不同的用户等级，将采用不同的限额，以下是用户限额表：</span><br>
 <br>
 <table width="90%" style="border:solid 1px; margin-left:10px;" cellspacing="1" cellpadding="1"　align="center">
   <tr>
