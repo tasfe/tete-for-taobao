@@ -15,12 +15,14 @@ using System.Collections.Generic;
 public partial class UserAdsList : System.Web.UI.Page
 {
     UserAdsService uasDal = new UserAdsService();
+    string a = string.Empty;
+    string b = string.Empty;
+    string c = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
-            
             string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value); //"nick";
             IList<UserAdsInfo> list = uasDal.SelectAllUserAds(nick);
 
@@ -40,6 +42,10 @@ public partial class UserAdsList : System.Web.UI.Page
                 list = list.Where(o => o.UserAdsState != 1).ToList();
             RPT_AdsList.DataSource = list;
             RPT_AdsList.DataBind();
+
+            a = TouCount.ToString();
+            b = NoTouCount.ToString();
+            c = AdsCount.ToString();
         }
     }
 
