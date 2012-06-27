@@ -1,14 +1,36 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UserAddAds.aspx.cs" Inherits="UserAddAds" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Untitled Page</title>
-      <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+<head id="Head1" runat="server">
+    <title>好评有礼</title>
+    <link href="css/common.css" rel="stylesheet" />
+    <style>
+        td{font-size:12px;}
+        a{color:Blue; text-decoration:none;}
+    </style>
 </head>
-<body>
+<body style="padding:0px; margin:0px;">
+
     <form id="form1" runat="server">
+
+
+    
+<div class="navigation" style="height:600px;">
+
+  <div class="crumbs"><a href="#" class="nolink">帮推广</a> 请选择您要推广宝贝 </div>
+  <div class="absright">
+    <ul>
+      <li>
+        <div class="msg">
+            
+        </div>
+      </li>
+    </ul>
+  </div>
+
+    <div id="main-content">
+
     <div>
       <div>
         宝贝名：<asp:TextBox ID="TB_GoodsName" runat="server"></asp:TextBox>宝贝分类：<asp:DropDownList ID="DDL_GoodsClass" runat="server"></asp:DropDownList>
@@ -16,13 +38,13 @@
         <asp:TextBox ID="TB_EndTime" runat="server" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})" />
         <asp:Button ID="BTN_SELECT" runat="server" Text="查询" onclick="BTN_SELECT_Click" />
       </div>
-       <table>
+    <table width="700" cellpadding="0" cellspacing="0">
          <tr>
-           <td>选择    <td>选择</td>
-           <td>宝贝图片</td>
-           <td>宝贝名称</td>
-           <td>价格(元)</td>
-           <td>数量</td>
+           <td><b>选择</b></td>
+           <td><b>宝贝图片</b></td>
+           <td><b>宝贝名称</b></td>
+           <td><b>价格(元)</b></td>
+           <td><b>数量</b></td>
          </tr>
          
          <asp:Repeater ID="Rpt_GoodsList" runat="server">
@@ -52,6 +74,9 @@
          </tr>
          
        </table>
+    </div>
+
+    </div>
     </div>
     </form>
 </body>
