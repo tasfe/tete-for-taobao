@@ -21,20 +21,19 @@ public partial class ShowGoods : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            string cid = Request.QueryString["id"];
-            if (!string.IsNullOrEmpty(cid))
-            {
-                IList<TaoBaoGoodsClassInfo> list = tbgcDal.SelectAllGoodsClass("0");
+            string cid = Request.QueryString["cid"];
+            string adsId = Request.QueryString["adsid"];
 
-                RPT_GOODSCLASS.DataSource = list;
-                RPT_GOODSCLASS.DataBind();
+            IList<TaoBaoGoodsClassInfo> list = tbgcDal.SelectAllGoodsClass("0");
 
-                //获取分类下所有用户投放的广告
-                IList<UserAdsInfo> adsList = uadsDal.SelectAllTouUserAds(cid, 1);
+            RPT_GOODSCLASS.DataSource = list;
+            RPT_GOODSCLASS.DataBind();
 
-                RPT_AdsList.DataSource = list;
-                RPT_AdsList.DataBind();
-            }
+            //获取分类下所有用户投放的广告
+            IList<UserAdsInfo> adsList = uadsDal.SelectAllUserAdsByAdsId(new Guid(adsId), 1);
+            RPT_AdsList.DataSource = adsList;
+            RPT_AdsList.DataBind();
+
         }
     }
 }
