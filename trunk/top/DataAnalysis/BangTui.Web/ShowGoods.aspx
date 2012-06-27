@@ -53,9 +53,9 @@
 	<div class="left"></div>
     <div class="right">
     	<ul class="showlist">
-    
-     <asp:Repeater ID="RPT_GOODSCLASS" runat="server">
-       <ItemTemplate>
+
+       <asp:Repeater ID="RPT_AdsList" runat="server" Visible="false">
+         <ItemTemplate>
          <li>
                 <a href="#"><img src='http://img04.taobaocdn.com/bao/uploaded/i4/T1RBu9XeRoXXa3rKg8_100228.jpg_210x210.jpg' width="210" height="210" /></a><br />
                 <span><a href="#"><%# Eval("name") %><</a></span>
@@ -64,18 +64,20 @@ E6%9D%9C%E8%8E%8E%E4%B9%8B%E5%BF%83&site=cntaobao&s=1&charset=utf-8" ><img align
 align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=%E7%BE%8E%E6%9D%9C%E8%
 8E%8E%E4%B9%8B%E5%BF%83&site=cntaobao&s=1&charset=utf-8" alt="有问题请点这里" /></a></div>
             </li>
-         
-       </ItemTemplate>
-     </asp:Repeater>
-
-       <asp:Repeater ID="RPT_AdsList" runat="server" Visible="false">
-         <ItemTemplate>
          </ItemTemplate>
        </asp:Repeater>
 
     	</ul>
     </div>
 </div>
+
+
+    
+     <asp:Repeater ID="RPT_GOODSCLASS" runat="server">
+       <ItemTemplate>
+         
+       </ItemTemplate>
+     </asp:Repeater>
 </body>
 
 </html>
