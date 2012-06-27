@@ -53,11 +53,11 @@
                 <td><%# GetState(Eval("UserAdsState").ToString())%></td>
                 <td>
                   <dt>
-                     <dd><asp:Button ID="Btn_De" CommandName="De" runat="server" Text="删除投放" /></dd>
-                     <dd><asp:Button ID="Btn_Insert" CommandName="Insert" runat="server" Text="我要投放" /></dd>
-                     <dd><asp:Button ID="Btn_Result" CommandName="Result" runat="server" Text="效果分析" /></dd>
-                     <dd><asp:Button ID="Btn_See" CommandName="See" runat="server" Text="查看投放" /></dd>
-                     <dd><asp:Button ID="Btn_Stop" CommandName="Stop" runat="server" Text="暂停投放" /></dd>
+                     <dd><asp:Button ID="Btn_De" CommandName="De" CommandArgument='<%# Eval("Id") %>' runat="server" Text="删除投放" /></dd>
+                     <dd><asp:Button ID="Btn_Insert" CommandName="Insert" CommandArgument='<%# Eval("Id") %>' runat="server" Text="我要投放" /></dd>
+                     <dd><asp:Button ID="Btn_Result" CommandName="Result" CommandArgument='<%# Eval("Id") %>' runat="server" Text="效果分析" /></dd>
+                     <dd><asp:Button ID="Btn_See" CommandName="See" CommandArgument='<%# Eval("Id") %>' runat="server" Text="查看投放" /></dd>
+                     <dd><asp:Button ID="Btn_Stop" CommandName="Stop" CommandArgument='<%# Eval("Id") %>' runat="server" Text="暂停投放" /></dd>
                      <dd><asp:Button ID="Btn_Add" CommandName="Add" runat="server" Text="增加投放" /></dd>
                   </dt>
                 </td>
