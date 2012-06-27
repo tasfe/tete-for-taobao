@@ -11,8 +11,8 @@ public partial class taobaotetesoft_caiji_show : System.Web.UI.Page
     {
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
         if (id == "mm_10128191_208985_7882407")
-        { 
-            
+        {
+            Response.Redirect("http://www.fenseshenghuo.com/bkqq/adUpFile/ad/0-2.jpg");
         }
         else
         {
