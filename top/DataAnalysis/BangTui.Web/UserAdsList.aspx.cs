@@ -107,7 +107,7 @@ public partial class UserAdsList : System.Web.UI.Page
             UserAdsInfo info = uasDal.SelectUserAdsById(id);
             string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value);
             IList<BuyInfo> buyList = CacheCollection.GetAllBuyInfo().Where(o => o.Nick == nick).ToList();
-            bool noads = false;
+            bool noads = true;
             //投放的广告
             IList<UserAdsInfo> useradsList = uasDal.SelectAllUserAds(nick);
 
@@ -188,7 +188,7 @@ public partial class UserAdsList : System.Web.UI.Page
                             info.Id = id;
                             uasDal.UpdateUserAdsState(info);
                             //
-                            noads = true;
+                            noads = false;
 
                             break;
                         }
