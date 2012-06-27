@@ -39,9 +39,10 @@
         <asp:TextBox ID="TB_EndTime" runat="server" Width="70px" onFocus="WdatePicker({startDate:'%y-%M-01',maxDate:'%y-%M-%ld',dateFmt:'yyyy-MM-dd'})" />
         <asp:Button ID="BTN_SELECT" runat="server" Text="查询" onclick="BTN_SELECT_Click" />
       </div>
+      <br>
     <table width="700" cellpadding="0" cellspacing="0">
          <tr>
-           <td><b>选择</b></td>
+           <td height="35"><b>选择</b></td>
            <td><b>宝贝图片</b></td>
            <td><b>宝贝名称</b></td>
            <td><b>价格(元)</b></td>
@@ -60,7 +61,7 @@
                        
                        <asp:Label ID="LB_Img" runat="server" Text='<%# Eval("GoodsPic") %>' Visible="false" />
                    </td>
-                   <td><img src='<%# Eval("GoodsPic") %>_80x80.jpg' /></td>
+                   <td height="85"><img src='<%# Eval("GoodsPic") %>_80x80.jpg' /></td>
                    <td><asp:Label ID="LB_GoodsName" Text='<%# Eval("GoodsName") %>' runat="server" /></td>
                    <td><%# Eval("GoodsPrice")%></td>
                    <td><%# Eval("GoodsCount")%></td>
