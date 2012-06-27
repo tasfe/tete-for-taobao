@@ -53,6 +53,8 @@ public partial class _Default : System.Web.UI.Page
                     tongji.Expires = DateTime.Now.AddDays(1);
                     Response.Cookies.Add(tongji);
                 }
+
+                Response.Redirect("http://www.7fshop.com/top/index.html");
             }
         }
     }
