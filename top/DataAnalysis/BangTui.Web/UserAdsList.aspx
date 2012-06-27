@@ -48,27 +48,19 @@
                     onitemcommand="RPT_AdsList_ItemCommand">
           <ItemTemplate>
              <tr>
-                <td>
-                   <dl>
-                     <dt>
+                <td align="left">
                        <img src='<%# Eval("AdsPic") %>' height="80" width="80" />
-                     </dt>
-                     <dd>
+                     <br>
                         标题 <%# Eval("AdsTitle")%>
-                     </dd>
-                      <dd>
+                     <br>
                         网址 <%# Eval("AdsUrl")%>
-                     </dd>
-                      <dd>
+                     <br>
                         旺旺 <%# Eval("AliWang")%>
-                     </dd>
-                      <dd>
+                     <br>
                         分类 <%# Eval("SellCateName")%>
-                     </dd>
-                      <dd>
+                     <br>
                         有效时间 <%# Eval("AdsShowStartTime")%> 至 <%# Eval("AdsShowFinishTime")%>
-                     </dd>
-                   </dl>
+                  
                 </td>
                 <td><%# GetSite(Eval("AdsId").ToString()) %></td>
                 <td><a href='ShowAds.aspx?adsid=<%# Eval("AdsId") %>'><%# GetTitle(Eval("AdsId").ToString()) %></a></td>
@@ -76,14 +68,14 @@
                 <td><%# GetAdsType(Eval("AdsId").ToString())%></td>
                 <td><%# GetState(Eval("UserAdsState").ToString())%></td>
                 <td align="left">
-                  <dt>
-                     <dd><asp:Button ID="Btn_De" CommandName="De" CommandArgument='<%# Eval("Id") %>' runat="server" Text="删除投放" /></dd>
-                     <dd><asp:Button ID="Btn_Insert" CommandName="Insert" CommandArgument='<%# Eval("Id") %>' runat="server" Text="我要投放" /></dd>
-                     <dd><asp:Button ID="Btn_Result" CommandName="Result" CommandArgument='<%# Eval("Id") %>' runat="server" Text="效果分析" /></dd>
-                     <dd><asp:Button ID="Btn_See" CommandName="See" CommandArgument='<%# Eval("Id") %>' runat="server" Text="查看投放" /></dd>
-                     <dd><asp:Button ID="Btn_Stop" CommandName="Stop" CommandArgument='<%# Eval("Id") %>' runat="server" Text="暂停投放" /></dd>
-                     <dd><asp:Button ID="Btn_Add" CommandName="Add" runat="server" Text="增加投放" /></dd>
-                  </dt>
+                  
+                  <asp:Button ID="Btn_De" CommandName="De" CommandArgument='<%# Eval("Id") %>' runat="server" Text="删除投放" /><br>
+                  <asp:Button ID="Btn_Insert" CommandName="Insert" CommandArgument='<%# Eval("Id") %>' runat="server" Text="我要投放" /><br>
+                  <asp:Button ID="Btn_Result" CommandName="Result" CommandArgument='<%# Eval("Id") %>' runat="server" Text="效果分析" /><br>
+                  <asp:Button ID="Btn_See" CommandName="See" CommandArgument='<%# Eval("Id") %>' runat="server" Text="查看投放" /><br>
+                  <asp:Button ID="Btn_Stop" CommandName="Stop" CommandArgument='<%# Eval("Id") %>' runat="server" Text="暂停投放" /><br>
+                  <asp:Button ID="Btn_Add" CommandName="Add" runat="server" Text="增加投放" />
+                  
                 </td>
              </tr>
           </ItemTemplate>
