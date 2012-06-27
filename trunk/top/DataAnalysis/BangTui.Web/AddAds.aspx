@@ -1,25 +1,48 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AddAds.aspx.cs" Inherits="AddAds" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Untitled Page</title>
+<head id="Head1" runat="server">
+    <title>好评有礼</title>
+    <link href="css/common.css" rel="stylesheet" />
+    <style>
+        td{font-size:12px;}
+        a{color:Blue; text-decoration:none;}
+    </style>
 </head>
-<body>
+<body style="padding:0px; margin:0px;">
+
     <form id="form1" runat="server">
+
+
+    
+<div class="navigation" style="height:600px;">
+
+  <div class="crumbs"><a href="#" class="nolink">帮推广</a> 请选择您要推广宝贝 </div>
+  <div class="absright">
+    <ul>
+      <li>
+        <div class="msg">
+            
+        </div>
+      </li>
+    </ul>
+  </div>
+
+    <div id="main-content">
+
+
     <div>
        <div>
          网站： <asp:DropDownList ID="DDL_SiteList" runat="server" AutoPostBack="True" 
                ontextchanged="DDL_SiteList_TextChanged"></asp:DropDownList>
        </div>
-    <table>
-      <tr>
+    <table width="700" cellpadding="0" cellspacing="0">
+        <tr>
       
-         <td>广告名称</td>
-         <td>广告大小</td>
-         <td>归属网站</td>
-         <td>广告类型</td>
+         <td><b>广告名称</b></td>
+         <td><b>广告大小</b></td>
+         <td><b>归属网站</b></td>
+         <td><b>广告类型</b></td>
          <td></td>
       </tr>
       <asp:Repeater ID="RPT_AdsList" runat="server" onitemcommand="RPT_AdsList_ItemCommand">
@@ -82,6 +105,10 @@
     <script type="text/javascript">
         document.getElementById("TB_AdsName").focus();
     </script>
+    </div>
+    </div>
+
+
     </form>
 </body>
 </html>
