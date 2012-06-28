@@ -56,6 +56,8 @@ public partial class AddShopAds : System.Web.UI.Page
         //投放的广告
         IList<UserAdsInfo> useradsList = userAdsDal.SelectAllUserAds(nick);
 
+        bool notou = true;
+
         foreach (BuyInfo binfo in buyList)
         {
             //未过期的
@@ -145,14 +147,19 @@ public partial class AddShopAds : System.Web.UI.Page
                             string taoId = info.CateIds;
                             info.CateIds = GetTaoBaoCId(taoId, ref taoId);
                         }
+
+                        notou = false;
                     }
 
                     userAdsDal.InsertUserAds(info);
-                    Response.Redirect("UserAdsList.aspx?istou=1");
                 }
             }
         }
-        Response.Redirect("UserAdsList.aspx");
+
+        if (notou)
+            Response.Redirect("UserAdsList.aspx");
+        else
+            Response.Redirect("UserAdsList.aspx?istou=1");
     }
 
     private bool CheckImg()
