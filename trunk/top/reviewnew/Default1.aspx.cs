@@ -39,10 +39,46 @@ public partial class top_reviewnew_Default : System.Web.UI.Page
 
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.traderates.get", session, param);
 
-        Response.Write(result);
+        Regex reg = new Regex("<trade_rate>([^<]*)</trade_rate>", RegexOptions.IgnoreCase);
+
+        MatchCollection mat = reg.Matches(result);
+        for (int i = 0; i < mat.Count; i++) 
+        {
+            string sql = "INSERT INTO TCS_TradeRate (" +
+                "orderid, " +
+                "content, " +
+                "reviewdate, " +
+                "buynick, " +
+                "nick, " +
+                "itemid, " +
+                "result " +
+            " ) VALUES ( " +
+                " '" + GetValueByProperty(mat[i].Groups[1].ToString(), "tid") + "', " +
+                " '" + GetValueByProperty(mat[i].Groups[1].ToString(), "content") + "', " +
+                " '" + GetValueByProperty(mat[i].Groups[1].ToString(), "created") + "', " +
+                " '" + GetValueByProperty(mat[i].Groups[1].ToString(), "nick") + "', " +
+                " '" + GetValueByProperty(mat[i].Groups[1].ToString(), "rated_nick") + "', " +
+                " '" + GetValueByProperty(mat[i].Groups[1].ToString(), "num_iid") + "', " +
+                " '" + GetValueByProperty(mat[i].Groups[1].ToString(), "result") + "' " +
+            ") ";
+
+            Response.Write(sql + "<br>");
+            utils.ExecuteNonQuery(sql);
+        }
     }
 
-
+    public static string GetValueByProperty(string str, string prop)
+    {
+        Regex reg = new Regex("<" + prop + ">([^<]*)</" + prop + ">", RegexOptions.IgnoreCase);
+        if (reg.IsMatch(str))
+        {
+            return reg.Matches(str)[0].Groups[1].ToString().Replace("'", "''");
+        }
+        else
+        {
+            return "";
+        }
+    }
 
     /// <summary> 
     /// 给TOP请求签名 API v2.0 
