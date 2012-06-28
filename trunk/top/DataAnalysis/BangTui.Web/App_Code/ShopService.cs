@@ -27,6 +27,7 @@ public class ShopService
 
         foreach(DataRow dr in dt.Rows)
         {
+            info = new TaoBaoShopInfo();
             info.Description = dr["desc"].ToString();
             info.ShopId = dr["sid"].ToString();
             info.Name = dr["title"].ToString();
