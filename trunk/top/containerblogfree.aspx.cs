@@ -67,17 +67,17 @@ public partial class top_containerblogfree : System.Web.UI.Page
             string session = dt.Rows[0]["session"].ToString();
             if (session.Length != 0)
             {
-                //加密NICK
-                Rijndael_ encode = new Rijndael_("tetesoft");
-                nick = encode.Encrypt(nick);
+                ////加密NICK
+                //Rijndael_ encode = new Rijndael_("tetesoft");
+                //nick = encode.Encrypt(nick);
 
-                Cookie cookie = new Cookie();
-                cookie.setCookie("top_session", session, 999999);
-                cookie.setCookie("top_sessiongroupbuy", session, 999999);
-                cookie.setCookie("top_sessionblog", session, 999999);
-                cookie.setCookie("nick", nick, 999999);
+                //Cookie cookie = new Cookie();
+                //cookie.setCookie("top_session", session, 999999);
+                //cookie.setCookie("top_sessiongroupbuy", session, 999999);
+                //cookie.setCookie("top_sessionblog", session, 999999);
+                //cookie.setCookie("nick", nick, 999999);
 
-                Response.Redirect("indexnew1.html");
+                //Response.Redirect("indexnew1.html");
             }
             else
             {
