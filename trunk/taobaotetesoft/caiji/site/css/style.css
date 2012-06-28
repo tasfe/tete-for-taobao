@@ -1,0 +1,60 @@
+/*内容区*/
+.content{}
+.conL{ background: url(../images/BG-1.jpg) repeat-x; border:#eaeaea 1px solid; width:300px; height:233px;}
+.conL .listInfo{ padding:10px 13px;overflow:hidden; width:274px;}
+.conL .listInfo p{ margin-top:20px;}
+.conL .listInfo .mod_pic_list li a img{padding:3px;display:block;}
+.conL .listInfo .mod_pic_list li cite{ display:block;line-height:22px; width:273px;}
+.conL .listInfo .mod_pic_list li cite a{color:#666}
+.conL .listInfo .mod_pic_list li cite a:hover{color: #f1780a;}
+
+
+.conC{ background: url(../images/BG-1.jpg) repeat-x; border:#eaeaea 1px solid; width:312px; height:233px; margin-left:12px;}
+.conC .listInfo{ padding:10px 13px;overflow:hidden; width:280px;}
+.conC .listInfo p{ margin-top:20px;}
+.conC .listInfo .mod_pic_list li a img{padding:3px;display:block;}
+.conC .listInfo .mod_pic_list li cite{ display:block;line-height:22px; width:273px;}
+.conC .listInfo .mod_pic_list li cite a{color:#666}
+.conC .listInfo .mod_pic_list li cite a:hover{color: #f1780a;}
+
+
+.conR{ background: url(../images/BG-1.jpg) repeat-x; border:#eaeaea 1px solid; width:312px; height:233px}
+.conR{ background: url(../images/BG-1.jpg) repeat-x; border:#eaeaea 1px solid; width:312px; height:233px; margin-left:12px;}
+.conR .listInfo{ padding:10px 13px;overflow:hidden; width:270px;}
+.conR .listInfo p{ margin-top:20px;}
+.conR .listInfo .mod_pic_list li a img{padding:3px;display:block;}
+.conR .listInfo .mod_pic_list li cite{ display:block;line-height:22px; width:273px;}
+.conR .listInfo .mod_pic_list li cite a{color:#666}
+.conR .listInfo .mod_pic_list li cite a:hover{color: #f1780a;}
+/*内容区结束*/
+
+
+
+/*客户案例*/
+.clearfix{ margin-top:11px;}
+.col_l{ width:724px;}
+.col_1_c2 h2{height:30px;line-height:30px; background:url(../images/bt-1.jpg)}
+.col_1_c2 h2 span{padding-left:22px;display:block;background: url(../images/iconSprite.png) no-repeat -124px 67px;font-weight:bold;color:#e76d00; font-size:14px;}
+.col_1_c2 h2 a{position:absolute; right:10px; top:10px; display:block; width:60px; height:13px; background:url(../images/iconSprite.png) no-repeat 0 -67px; font-size:0;text-indent:-1000px; overflow:hidden}
+
+.col_1_c2 ul{}
+.col_1_c2 li{ float:left;margin-left:8px;}
+.col_1_c2 li a img{padding:3px;display:block;}
+.col_1_c2 li span a{display:block; text-align:center; line-height:23px}
+.col_1_c2 li span a:hover{color: #115ea5;}
+/*客户案例结束*/
+
+
+
+
+/*常见问题*/
+.col_r{ width:218px; height:315px; background:#f7f7f7;}
+.col_r_c2 h2{height:30px;line-height:30px; background:url(../images/bt-1.jpg)}
+.col_r_c2 h2 span{ padding-left:12px;display:block;font-weight:bold;color:#2f2f2f; float:left; width:206px;}
+.col_r_c2 h2 a{position:absolute; right:10px; top:10px; display:block; width:13px; height:14px; background:url(../images/iconSprite.png) no-repeat 0 0px; font-size:0;text-indent:-1000px; overflow:hidden}
+
+.mod_txt_list{ width:218px; height:278px;}
+.col_r_c2 .mod_txt_list span{ float:right; padding-left:18px; color:#989898;}
+.col_r_c2 .mod_txt_list ul{clear:both; }
+.col_r_c2 .mod_txt_list li{ line-height:26px; height:26px;background: url(../images/iconSprite-1.png) no-repeat left center; float:left; padding-left:8px;}
+/*常见问题结束*/
