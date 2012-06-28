@@ -33,6 +33,7 @@ public partial class ShowAds : System.Web.UI.Page
                     LB_SiteUrl.Text = sitelist[0].SiteUrl;
 
                     LB_AdsTitleSize.Text = CacheCollection.GetAllAdsInfo().Where(o => o.AdsId == info.AdsId).ToList()[0].AdsName;
+                    ViewState["SiteUrl"] = sitelist[0].SiteUrl;
                 }
             }
         }
@@ -43,6 +44,14 @@ public partial class ShowAds : System.Web.UI.Page
         get
         {
             return ViewState["ImgUrl"] == null ? "" : ViewState["ImgUrl"].ToString();
+        }
+    }
+
+    protected string SiteUrl
+    {
+        get
+        {
+            return ViewState["SiteUrl"] == null ? "" : ViewState["SiteUrl"].ToString();
         }
     }
 }
