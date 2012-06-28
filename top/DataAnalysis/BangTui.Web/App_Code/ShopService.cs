@@ -16,7 +16,7 @@ using System.Data.SqlClient;
 /// </summary>
 public class ShopService
 {
-    const string SQL_SELECT_BY_NICK = "SELECT sid,cid,title,desc,pic_path FROM TopTaobaoShop WHERE nick=@nick";
+    const string SQL_SELECT_BY_NICK = "SELECT sid,cid,title,[desc],pic_path FROM TopTaobaoShop WHERE nick=@nick";
 
     public TaoBaoShopInfo SelectShopByNick(string nick)
     {
