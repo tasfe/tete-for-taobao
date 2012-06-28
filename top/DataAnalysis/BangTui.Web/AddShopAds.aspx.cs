@@ -148,9 +148,11 @@ public partial class AddShopAds : System.Web.UI.Page
                     }
 
                     userAdsDal.InsertUserAds(info);
+                    Response.Redirect("UserAdsList.aspx?istou=1");
                 }
             }
         }
+        Response.Redirect("UserAdsList.aspx");
     }
 
     private bool CheckImg()
