@@ -102,7 +102,7 @@ h4 a {
             <br /><br />
             测试人员如果店铺内没有评价数据，请联系客户人员索取测试数据，非常感谢！
             <br /><br />
-            <a href='reviewlist.aspx'>查看评价列表</a>
+            <a href='reviewlistnew.aspx'>查看评价列表</a>
     </div>
 </div>
 
