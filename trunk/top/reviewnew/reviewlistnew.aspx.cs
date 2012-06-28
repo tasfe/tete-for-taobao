@@ -50,7 +50,7 @@ public partial class top_review_reviewlist : System.Web.UI.Page
     {
         if (search.Text.Trim() == "")
         {
-            Response.Redirect("reviewlist.aspx");
+            Response.Redirect("reviewlistnew.aspx");
             return;
         }
 
@@ -93,7 +93,7 @@ public partial class top_review_reviewlist : System.Web.UI.Page
         sqlNew = "SELECT COUNT(*) FROM TCS_TradeRate WHERE nick = '" + nick + "'";
         int totalCount = int.Parse(utils.ExecuteString(sqlNew));
 
-        lbPage.Text = InitPageStr(totalCount, "reviewlist.aspx");
+        lbPage.Text = InitPageStr(totalCount, "reviewlistnew.aspx");
     }
 
     private string InitPageStr(int total, string url)
