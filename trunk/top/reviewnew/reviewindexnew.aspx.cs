@@ -131,7 +131,7 @@ public partial class top_reviewnew_reviewindex : System.Web.UI.Page
 
         ////获取优惠券赠送信息
         //sql = "SELECT * FROM TCS_Coupon WHERE guid = (SELECT couponid FROM TCS_ShopConfig WHERE nick = '" + nick + "')";
-        //string showcontent = string.Empty;
+        string showcontent = string.Empty;
         //DataTable dt = utils.ExecuteDataTable(sql);
         //if (dt.Rows.Count != 0)
         //{
