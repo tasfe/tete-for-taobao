@@ -57,8 +57,8 @@
        <asp:Repeater ID="RPT_AdsList" runat="server">
          <ItemTemplate>
          <li>
-                <a href='<%# Eval("AdsUrl") %>' target="_blank"><img src='<%# Eval("AdsPic") %>_210x210.jpg' width="210" height="210" border=0 /></a><br />
-                <span><a href='<%# Eval("AdsUrl") %>' target="_blank"><%# Eval("AdsTitle") %></a></span>
+                <a href='getclick.aspx?id=<%# Eval("Id") %>&url=<%# Eval("AdsUrl") %>' target="_blank"><img src='<%# Eval("AdsPic") %>_210x210.jpg' width="210" height="210" border=0 /></a><br />
+                <span><a href='getclick.aspx?id=<%# Eval("Id") %>&url=<%# Eval("AdsUrl") %>' target="_blank"><%# Eval("AdsTitle") %></a></span>
                 <div><em>￥<%# Eval("Price") %></em>  <a target="_blank" href='http://amos.im.alisoft.com/msg.aw?v=2&uid=<%# Eval("AliWang") %>&site=cntaobao&s=1&charset=utf-8' ><img align="top" border="0" 
 align="absmiddle" src='http://amos.im.alisoft.com/online.aw?v=2&uid=<%# Eval("AliWang") %>&site=cntaobao&s=1&charset=utf-8'  /></a></div>
             </li>

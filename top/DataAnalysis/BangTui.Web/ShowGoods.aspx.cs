@@ -31,6 +31,8 @@ public partial class ShowGoods : System.Web.UI.Page
 
             //获取分类下所有用户投放的广告
             IList<UserAdsInfo> adsList = uadsDal.SelectAllUserAdsByAdsId(new Guid(adsId), 1);
+            //按时间倒序排列
+            adsList = adsList.OrderByDescending(o => o.AddTime).ToList();
             RPT_AdsList.DataSource = adsList;
             RPT_AdsList.DataBind();
 
