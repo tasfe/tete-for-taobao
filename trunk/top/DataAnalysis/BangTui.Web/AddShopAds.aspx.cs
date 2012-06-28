@@ -22,10 +22,30 @@ public partial class AddShopAds : System.Web.UI.Page
         {
             string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value); //"nick"; 
 
+            TaoBaoShopInfo info = new ShopService().SelectShopByNick(nick);
+
             ViewState["shopcid"] = "50023878";
 
+            if (info != null)
+            {
+                ViewState["shopcid"] = info.CateId;
+                TB_ShppName.Text = info.Name;
+                TB_Description.Text = info.Description;
+                TB_AliWang.Text = nick;
+                TB_ShowUrl.Text = "http://shop" + info.ShopId + ".taobao.com/";
+                ViewState["logourl"] = info.ShopLogo;
+            }
         }
     }
+
+    protected string ShopImg
+    {
+        get
+        {
+            return ViewState["logourl"] == null ? "" : ViewState["logourl"].ToString();
+        }
+    }
+
     protected void BTN_Tui_Click(object sender, EventArgs e)
     {
         string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value);  //"nick";
@@ -65,7 +85,14 @@ public partial class AddShopAds : System.Web.UI.Page
                     info.SellCateName = GetTaoBaoCName(info.CateIds, ref cname);
                     info.AliWang = nick;
                     info.Nick = nick;
-                    info.AdsPic = TB_ShowUrl.Text.Trim();
+                    info.AdsPic = ShopImg;
+                    //店铺图标
+                    if (!FUD_Img.HasFile || CheckImg())
+                    {
+                        FUD_Img.SaveAs(Server.MapPath("~/adsimg") + "/" + Guid.NewGuid() + ".jpg");
+                        info.AdsPic = "/adsimg/" + Guid.NewGuid() + ".jpg";
+                    }
+
                     if (realcount > 0)
                     {
                         if (feeInfo.AdsType == 5)
@@ -123,6 +150,18 @@ public partial class AddShopAds : System.Web.UI.Page
                     userAdsDal.InsertUserAds(info);
                 }
             }
+        }
+    }
+
+    private bool CheckImg()
+    {
+        if (FUD_Img.PostedFile.ContentType.IndexOf("jpeg") != -1 || FUD_Img.PostedFile.ContentType.IndexOf("jpg") != -1 || FUD_Img.PostedFile.ContentType.IndexOf("png") != -1 || FUD_Img.PostedFile.ContentType.IndexOf("gif") != -1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
