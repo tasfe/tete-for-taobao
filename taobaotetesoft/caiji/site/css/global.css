@@ -1,0 +1,84 @@
+/* 全局样式 */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote,p{ margin:0; padding:0;}
+body{ background:url(../images/top.jpg) repeat-x;color:#555;font:12px  Arial, Helvetica, sans-serif;}
+ul, ol { list-style: none;} 
+img,fieldset{vertical-align:top;border:0;}
+h1,h2,h3,h4,h5,h6 {font-size:100%; font-weight:normal;}
+address,cite,code,em,th {font-weight:normal; font-style:normal;}
+input,button,textarea,select{font:100% Arial,''; vertical-align:middle}
+table,td,tr,th{font-size:12px;}
+
+
+.fB{font-weight:bold;}
+.fK{ color:#C03;}
+.f12px{font-size:12px;}
+.f14px{font-size:14px;}
+
+.fl{ float: left;}
+.fr{ float: right;}
+.clear{ clear: both;}
+.b1{ border:#e4e4e4 solid 1px;}
+
+.blank10{ height:10px; line-height:10px; font-size:0; clear:both;overflow:hidden; display:block;}
+.blank20{ height:20px; line-height:20px; font-size:0; clear:both;overflow:hidden; display:block;}
+
+.rel{ position:relative;}
+
+.clearfix{*zoom:1;}
+.clearfix:after{display:block; overflow:hidden; clear:both; height:0; visibility:hidden; content:".";}
+
+
+/* 超链接样式*/
+a{color: #666; text-decoration:none;}
+a:hover {color: #ff0000;}
+
+a.gray{ color:#666}
+a.gray:hover{color: #c03;}
+
+a.key{ color:#0f8a2a}
+a.key:hover{ color:#ff0000}
+
+
+.layout{ width:954px; margin:0 auto}
+
+/* 头部样式*/
+
+.titler{ padding-top:18px; height:80px;}
+.subnav{line-height:18px; width:267px;}
+.subnav a{line-height:18px;color:#1f63a0; width:267px;}
+.subnav a:hover{line-height:18px;color:#f57e16; width:291px;}
+.thope{ height:73px; width:291px;}
+.thope p{ float:right; padding-top:15px;}
+.menu{ height:37px; background: url(../images/manu.jpg) repeat-x }
+.navBar{ height:37px;}
+ul.mNav li{float:left; line-height:37px; height:37px; width:112px; font-size:12px;position:relative; text-decoration:none;}
+ul.mNav li a{ color:#FFF;height:37px; display:block; padding-left:30px;font-weight:bold;}
+ul.mNav li a:hover{background: url(../images/aniu.png) no-repeat; color:#397cb9;width:112px; font-size:13px;font-weight:bold;}
+
+.banner{ clear:both; margin:0 auto;}
+
+.Android{ height:89px;background: url(../images/RJ.jpg) repeat-x;position:relative; width:954px;}
+.Android ul zb{padding-top:11px;padding-bottom:5px}
+.Android li{ float:left;margin-left:10px; margin-top:13px;}
+
+
+
+
+
+
+
+
+
+
+
+/* 底部样式*/
+.bottom{ background:#f4f4f4;}
+.footer{clear:both}
+.sub_footer{line-height:30px;height:30px; background: url(../images/footer.jpg) repeat-x;;color:#f0f0f0;padding:0 15px}
+.sub_footer a{color:#fff;}
+.sub_footer a:hover{color: #ffde00;}
+.sub_footer p{color:#fff}
+.sub_footer p em{color:#666}
+.sub_footer p a{color:#e40451;}
+.copyright{padding:12px;text-align:center;line-height:22px;color:#4e4e4e;border-top:none;}
+.copyright p img{margin-right:15px;margin-top:10px}
