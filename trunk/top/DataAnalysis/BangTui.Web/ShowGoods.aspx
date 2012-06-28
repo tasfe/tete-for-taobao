@@ -22,6 +22,7 @@
 		border:solid 1px #ccc;
 		margin:2px;
 		width: 210px;
+		height:308px;
 	}
 	.showlist li img{
 		border:0px;
