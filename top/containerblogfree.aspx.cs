@@ -45,6 +45,19 @@ public partial class top_containerblogfree : System.Web.UI.Page
             return;
         }
 
+        //加密NICK
+        Rijndael_ encode = new Rijndael_("tetesoft");
+        nick = encode.Encrypt(nick);
+
+        Cookie cookie = new Cookie();
+        cookie.setCookie("top_session", top_session, 999999);
+        cookie.setCookie("top_sessiongroupbuy", top_session, 999999);
+        cookie.setCookie("top_sessionblog", top_session, 999999);
+        cookie.setCookie("nick", nick, 999999);
+
+        Response.Redirect("indexnew1.html");
+        return;
+
         //判断跳转，判断客户是否订购了好评有礼
         string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "' AND version > 1";
         DataTable dt = utils.ExecuteDataTable(sql);
