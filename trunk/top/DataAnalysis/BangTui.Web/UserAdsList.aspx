@@ -80,7 +80,7 @@
                   <asp:Button ID="Btn_De" CommandName="De" CommandArgument='<%# Eval("Id") %>' runat="server" Text="删除投放" /><br>
                   <asp:Button ID="Btn_Insert" CommandName="Insert" CommandArgument='<%# Eval("Id") %>' runat="server" Text="我要投放" /><br>
                   <asp:Button ID="Btn_Result" CommandName="Result" CommandArgument='<%# Eval("Id") %>' runat="server" Text="效果分析" /><br>
-                  <asp:Button ID="Btn_See" CommandName="See" CommandArgument='<%# Eval("Id") %>' runat="server" Text="查看投放" /><br>
+                  <asp:Button ID="Btn_See" CommandName="See" CommandArgument='<%# Eval("AdsId") %>' runat="server" Text="查看投放" /><br>
                   <asp:Button ID="Btn_Stop" CommandName="Stop" CommandArgument='<%# Eval("Id") %>' runat="server" Text="暂停投放" /><br>
                   <asp:Button ID="Btn_Add" CommandName="Add" runat="server" Text="增加投放" Visible="false" />
                   
