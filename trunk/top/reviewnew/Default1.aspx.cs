@@ -65,6 +65,8 @@ public partial class top_reviewnew_Default : System.Web.UI.Page
             //Response.Write(sql + "<br>");
             utils.ExecuteNonQuery(sql);
         }
+
+        Response.Redirect("reviewlistnew.aspx");
     }
 
     public static string GetValueByProperty(string str, string prop)
