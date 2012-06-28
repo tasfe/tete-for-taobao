@@ -52,7 +52,7 @@
         </tr>
          <tr>
           <td>店铺图标</td>
-          <td><img src='<%=ShopImg %>' /><asp:FileUpload ID="FUD_Img" runat="server" />(仅支持gif,jpg,png) </td>
+          <td><img src='http://logo.taobao.com/shop-logo<%=ShopImg %>' /><asp:FileUpload ID="FUD_Img" runat="server" />(仅支持gif,jpg,png) </td>
         </tr>
          <tr>
           <td>店铺网址</td>
