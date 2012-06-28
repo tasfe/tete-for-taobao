@@ -42,7 +42,7 @@ public partial class ShowAds : System.Web.UI.Page
     {
         get
         {
-            return ViewState["ImgUrl"].ToString();
+            return ViewState["ImgUrl"] == null ? "" : ViewState["ImgUrl"].ToString();
         }
     }
 }
