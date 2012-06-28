@@ -22,7 +22,7 @@
 		border:solid 1px #ccc;
 		margin:2px;
 		width: 210px;
-		height:308px;
+		height:280px;
 	}
 	.showlist li img{
 		border:0px;
@@ -33,6 +33,7 @@
 		height: 42px;
 		overflow: hidden;
 		width: 210px;	
+		padding-top:4px;
 	}
 	.showlist li div{
 		line-height: 22px;
