@@ -81,7 +81,7 @@ public partial class AddShopAds : System.Web.UI.Page
 
                     TaoBaoGoodsClassInfo tcinfo = new TaoBaoGoodsClassService().SelectGoodsClass(cateId);
                     info.CateIds = ViewState["shopcid"].ToString();
-                    string cname = tcinfo.name;
+                    string cname = tcinfo == null ? "" : tcinfo.name;
                     info.SellCateName = GetTaoBaoCName(info.CateIds, ref cname);
                     info.AliWang = nick;
                     info.Nick = nick;
