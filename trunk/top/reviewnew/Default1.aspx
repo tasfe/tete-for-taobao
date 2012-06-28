@@ -98,7 +98,7 @@ h4 a {
     <div id="main-content" style="padding:0px; margin:0px;">
             
             首次进入的用户，请点击此处获取您最近的评价记录<asp:Button ID="Button1" 
-                runat="server" onclick="Button1_Click" Text="Button" />
+                runat="server" onclick="Button1_Click" Text="获取评价数据" />
             <br /><br />
             测试人员如果店铺内没有评价数据，请联系客户人员索取测试数据，非常感谢！
             <br /><br />
