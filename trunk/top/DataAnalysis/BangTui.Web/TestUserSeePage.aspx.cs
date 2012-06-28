@@ -29,6 +29,8 @@ public partial class TestUserSeePage : System.Web.UI.Page
             HttpCookie cookie = new HttpCookie("nick", nick);
             cookie.Expires = DateTime.Now.AddDays(1);
 
+            Response.Cookies.Add(cookie);
+
             Response.Redirect("http://www.7fshop.com/top/index.html");
         }
     }
