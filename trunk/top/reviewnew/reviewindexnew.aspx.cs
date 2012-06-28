@@ -123,7 +123,14 @@ public partial class top_reviewnew_reviewindex : System.Web.UI.Page
         ItemGetRequest request = new ItemGetRequest();
         request.Fields = "title,price,pic_url";
         request.NumIid = long.Parse(itemid);
-        Item product = client.ItemGet(request, session);
+        Item product = new Item();
+
+        try
+        {
+            product = client.ItemGet(request, session);
+        }
+        catch
+        { }
 
         //获取最近30天商品售出数量
         sql = "SELECT COUNT(*) FROM TCS_TradeRate WHERE itemid = '" + itemid + "'";
