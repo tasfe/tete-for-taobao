@@ -39,7 +39,7 @@ public partial class top_reviewnew_Default : System.Web.UI.Page
 
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.traderates.get", session, param);
 
-        Regex reg = new Regex("<trade_rate>([^<]*)</trade_rate>", RegexOptions.IgnoreCase);
+        Regex reg = new Regex(@"<trade_rate>([\s\S]*)</trade_rate>", RegexOptions.IgnoreCase);
 
         MatchCollection mat = reg.Matches(result);
         for (int i = 0; i < mat.Count; i++) 
