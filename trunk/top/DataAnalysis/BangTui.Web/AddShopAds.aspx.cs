@@ -33,7 +33,7 @@ public partial class AddShopAds : System.Web.UI.Page
                 TB_Description.Text = info.Description;
                 TB_AliWang.Text = nick;
                 TB_ShowUrl.Text = "http://shop" + info.ShopId + ".taobao.com/";
-                ViewState["logourl"] = info.ShopLogo;
+                ViewState["logourl"] = " http://logo.taobao.com/shop-logo" + info.ShopLogo;
             }
         }
     }
@@ -87,7 +87,7 @@ public partial class AddShopAds : System.Web.UI.Page
                     info.Nick = nick;
                     info.AdsPic = ShopImg;
                     //店铺图标
-                    if (!FUD_Img.HasFile || CheckImg())
+                    if (FUD_Img.HasFile && CheckImg())
                     {
                         FUD_Img.SaveAs(Server.MapPath("~/adsimg") + "/" + Guid.NewGuid() + ".jpg");
                         info.AdsPic = "/adsimg/" + Guid.NewGuid() + ".jpg";
