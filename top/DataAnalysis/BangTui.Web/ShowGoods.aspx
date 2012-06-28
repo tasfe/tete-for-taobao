@@ -33,7 +33,7 @@
 		height: 42px;
 		overflow: hidden;
 		width: 210px;	
-		padding-top:4px;
+		margin-top:4px;
 	}
 	.showlist li div{
 		line-height: 22px;
