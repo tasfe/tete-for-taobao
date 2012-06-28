@@ -62,7 +62,7 @@ public partial class top_reviewnew_Default : System.Web.UI.Page
                 " '" + GetValueByProperty(mat[i].Groups[1].ToString(), "result") + "' " +
             ") ";
 
-            Response.Write(sql + "<br>");
+            //Response.Write(sql + "<br>");
             utils.ExecuteNonQuery(sql);
         }
     }
