@@ -64,16 +64,16 @@ public partial class top_containerblogfree : System.Web.UI.Page
                 cookie.setCookie("top_sessionblog", session, 999999);
                 cookie.setCookie("nick", nick, 999999);
 
-                Response.Redirect("indexnew.html");
+                Response.Redirect("indexnew1.html");
             }
             else
             {
-                Response.Write("该版本是好评有礼的店铺展示模块，如果没有订购好评有礼该模块无法正常展示，<a href='http://fuwu.taobao.com/ser/detail.htm?service_id=4545'>点此订购好评有礼</a>，审核小二请联系客服获取测试数据，非常感谢！");
+                Response.Redirect("indexnew1.html");
             }
         }
         else
         {
-            Response.Write("该版本是好评有礼的店铺展示模块，如果没有订购好评有礼该模块无法正常展示，<a href='http://fuwu.taobao.com/ser/detail.htm?service_id=4545'>点此订购好评有礼</a>，审核小二请联系客服获取测试数据，非常感谢！");
+            Response.Redirect("indexnew1.html");
         }
     }
 }
