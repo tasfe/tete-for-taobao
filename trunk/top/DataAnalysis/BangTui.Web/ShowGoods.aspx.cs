@@ -42,6 +42,6 @@ public partial class ShowGoods : System.Web.UI.Page
 
     protected string GetParam(string id, string url)
     {
-        return pwd.Encrypt3DES("id=626bb08a-5f5b-40a6-b301-c2eb0b7e1ca1&url=http://item.taobao.com/item.htm?id=7591021349").Replace("+", "[jia]");
+        return pwd.Encrypt3DES("id=" + id + "&url=" + url).Replace("+", "[jia]");
     }
 }
