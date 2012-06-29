@@ -23,7 +23,7 @@ public partial class UserAdsList : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value); //"nick";
+            string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value); //"nick";
             IList<UserAdsInfo> list = uasDal.SelectAllUserAds(nick);
 
             IList<UserAdsInfo> useradsList = uasDal.SelectAllUserAds(nick);
@@ -146,7 +146,7 @@ public partial class UserAdsList : System.Web.UI.Page
         {
             Guid id = new Guid(e.CommandArgument.ToString());
             UserAdsInfo info = uasDal.SelectUserAdsById(id);
-            string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value);
+            string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
             IList<BuyInfo> buyList = CacheCollection.GetAllBuyInfo().Where(o => o.Nick == nick).ToList();
             bool noads = true;
             //投放的广告

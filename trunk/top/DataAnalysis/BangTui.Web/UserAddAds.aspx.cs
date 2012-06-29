@@ -20,7 +20,7 @@ public partial class UserAddAds : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value);
+            string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
 
             IList<CateInfo> cateList = new CateService().SelectAllCateByNick(nick);
             DDL_GoodsClass.DataSource = cateList;
@@ -40,7 +40,7 @@ public partial class UserAddAds : System.Web.UI.Page
     {
         IList<UserAdsInfo> list = new List<UserAdsInfo>();
 
-        string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value);
+        string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
 
         CateService cateDal = new CateService();
         IList<CateInfo> cateList = cateDal.SelectAllCateByNick(nick).ToList();
@@ -217,7 +217,7 @@ public partial class UserAddAds : System.Web.UI.Page
 
     protected void BTN_SELECT_Click(object sender, EventArgs e)
     {
-        string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value);
+        string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
         IList<GoodsInfo> list = new List<GoodsInfo>();
         if (string.IsNullOrEmpty(TB_StartTime.Text) || string.IsNullOrEmpty(TB_EndTime.Text))
         {

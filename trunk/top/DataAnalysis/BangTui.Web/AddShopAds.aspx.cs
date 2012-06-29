@@ -20,7 +20,7 @@ public partial class AddShopAds : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value); //"nick"; 
+            string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value); //"nick"; 
 
             TaoBaoShopInfo info = new ShopService().SelectShopByNick(nick);
 
@@ -48,7 +48,7 @@ public partial class AddShopAds : System.Web.UI.Page
 
     protected void BTN_Tui_Click(object sender, EventArgs e)
     {
-        string nick = HttpUtility.UrlDecode(Request.Cookies["Nick"].Value);  //"nick";
+        string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);  //"nick";
 
         //购买类型
         IList<BuyInfo> buyList = CacheCollection.GetAllBuyInfo().Where(o => o.Nick == nick).ToList();
