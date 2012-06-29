@@ -11,7 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Collections.Generic;
 
-public partial class _Default : System.Web.UI.Page 
+public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -40,20 +40,19 @@ public partial class _Default : System.Web.UI.Page
                     {
                         goodsDal.InsertGoodsInfo(info, nick);
                     }
-
-
-                    HttpCookie cookie = new HttpCookie("nick", HttpUtility.UrlEncode(nick));
-                    HttpCookie cooksession = new HttpCookie("nicksession", session);
-                    cookie.Expires = DateTime.Now.AddDays(1);
-                    cooksession.Expires = DateTime.Now.AddDays(1);
-
-                    Response.Cookies.Add(cookie);
-                    Response.Cookies.Add(cooksession);
-
-                    HttpCookie tongji = new HttpCookie("istongji", Request.QueryString["istongji"]);
-                    tongji.Expires = DateTime.Now.AddDays(1);
-                    Response.Cookies.Add(tongji);
                 }
+
+                HttpCookie cookie = new HttpCookie("nick", HttpUtility.UrlEncode(nick));
+                HttpCookie cooksession = new HttpCookie("nicksession", session);
+                cookie.Expires = DateTime.Now.AddDays(1);
+                cooksession.Expires = DateTime.Now.AddDays(1);
+
+                Response.Cookies.Add(cookie);
+                Response.Cookies.Add(cooksession);
+
+                HttpCookie tongji = new HttpCookie("istongji", Request.QueryString["istongji"]);
+                tongji.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(tongji);
 
                 Response.Redirect("http://www.7fshop.com/top/index.html");
             }
