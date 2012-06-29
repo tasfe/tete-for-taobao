@@ -12,7 +12,7 @@
       店铺：<asp:TextBox ID="Tb_UserNick" runat="server">
       </asp:TextBox>
       <p />
-      密码：<asp:TextBox ID="Tb_Pwd" runat="server">
+      密码：<asp:TextBox ID="Tb_Pwd" TextMode="Password" runat="server">
       </asp:TextBox>
       <p /> 
       <asp:Button ID="Btn_AddCookie" runat="server" Text="确 定" onclick="Btn_AddCookie_Click" />
