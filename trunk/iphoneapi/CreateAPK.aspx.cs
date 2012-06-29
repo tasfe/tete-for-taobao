@@ -103,7 +103,7 @@ public partial class CreateAPK : BasePage
         }
         else
         {
-            Page.RegisterStartupScript("error", "<script>alert('图片格式不对,如果您需要我们为您制作图片,请联系我们客服');</script>");
+            Page.RegisterStartupScript("error", "<script>alert('图片格式不对,如果您需要我们为您制作图片,请联系我们客服,我们将收取100元的制作费用');</script>");
         }
     }
 
