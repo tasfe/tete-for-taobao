@@ -13,6 +13,7 @@ using System.Xml.Linq;
 /// <summary>
 /// 用户投放广告信息
 /// </summary>
+[Serializable]
 public class UserAdsInfo
 {
     public Guid Id { set; get; }
@@ -66,4 +67,13 @@ public class UserAdsInfo
     /// </summary>
     public decimal Price { set; get; }
 
+    public override bool Equals(object obj)
+    {
+        UserAdsInfo info = obj as UserAdsInfo;
+        if (info == null)
+            return false;
+        if (info.Id == this.Id)
+            return true;
+        return base.Equals(obj);
+    }
 }
