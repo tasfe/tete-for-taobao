@@ -123,4 +123,8 @@ public partial class top_crm_groupmodify : System.Web.UI.Page
             return false;
         }
     }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        UpdateData();
+    }
 }
