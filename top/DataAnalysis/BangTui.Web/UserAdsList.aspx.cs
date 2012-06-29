@@ -241,6 +241,7 @@ public partial class UserAdsList : System.Web.UI.Page
         if (e.CommandName == "Result")
         {
             Guid id = new Guid(e.CommandArgument.ToString());
+            Response.Redirect("ShowClick.aspx?id=" + id);
         }
         if (e.CommandName == "See")
         {
