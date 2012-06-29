@@ -27,6 +27,8 @@ public class CacheCollection
     /// </summary>
     public const string KEY_ALLADSINFO = "CacheKey_AdsList";
 
+    public static Dictionary<Guid, int> UserADS_Index;
+
     /// <summary>
     ///  所有网站信息缓存(12小时更新一次)
     /// </summary>
