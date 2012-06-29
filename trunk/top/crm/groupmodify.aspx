@@ -45,7 +45,7 @@
             </tr>
             <tr>
                 <td align="left" colspan="2">
-                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="创建会员分组" OnClientClick="return check()" />
+                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="修改会员分组" OnClientClick="return check()" />
                 </td>
             </tr>
         </table>
