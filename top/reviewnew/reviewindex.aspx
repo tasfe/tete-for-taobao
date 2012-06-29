@@ -29,7 +29,7 @@
     <div id="main-content">
     
  <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
- 此处的评价会展示在前台店铺模块里面，最多可以展示20条评价。
+ 此处的评价会展示在前台店铺模块里面，最多可以展示20条评价，<a href='http://fuwu.taobao.com/serv/detail.htm?service_id=30642&tracelog=other_serv' target="_blank">点击免费订购好评秀秀</a>。
  </div>
 
     <table width="720" cellpadding="0" cellspacing="0">
