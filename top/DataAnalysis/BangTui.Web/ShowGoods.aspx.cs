@@ -44,4 +44,11 @@ public partial class ShowGoods : System.Web.UI.Page
     {
         return pwd.Encrypt3DES("id=" + id + "&url=" + url).Replace("+", "[jia]");
     }
+
+    protected string GetPic(string pic)
+    {
+        if (pic.Contains("http://"))
+            return pic+"_210x210.jpg";
+        return pic;
+    }
 }
