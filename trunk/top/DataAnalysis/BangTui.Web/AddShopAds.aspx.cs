@@ -93,8 +93,9 @@ public partial class AddShopAds : System.Web.UI.Page
                     //店铺图标
                     if (FUD_Img.HasFile && CheckImg())
                     {
-                        FUD_Img.SaveAs(Server.MapPath("~/adsimg") + "/" + Guid.NewGuid() + ".jpg");
-                        info.AdsPic = "/adsimg/" + Guid.NewGuid() + ".jpg";
+                        Guid imgurl = Guid.NewGuid();
+                        FUD_Img.SaveAs(Server.MapPath("~/adsimg") + "/" + imgurl + ".jpg");
+                        info.AdsPic = "/adsimg/" + imgurl + ".jpg";
                     }
 
                     if (realcount > 0)
