@@ -37,7 +37,7 @@
     
     请输入买家昵称：<asp:TextBox ID="search" runat="server"></asp:TextBox>
     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="搜索" />
-<input type="button" value="返回评价列表" onclick="window.location.href='reviewindex.aspx'" />
+<input type="button" value="查看展示中评价" onclick="window.location.href='reviewindex.aspx'" />
     
     <hr />
 
