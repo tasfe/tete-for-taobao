@@ -58,6 +58,8 @@ public partial class AddShopAds : System.Web.UI.Page
 
         bool notou = true;
 
+        int i = 0;
+
         foreach (BuyInfo binfo in buyList)
         {
             //未过期的
@@ -112,22 +114,18 @@ public partial class AddShopAds : System.Web.UI.Page
                                         hasads.Add(ainfo);
                                 }
 
-
-                                for (int i = 0; i < realcount; i++)
-                                {
-                                    info.AddTime = DateTime.Now;
-                                    info.AdsId = GetRand(hasads);
-                                    //不需要旺旺
-                                    info.AliWang = ""; //nick;
-                                    info.FeeId = binfo.FeeId;
-                                    info.AdsShowStartTime = DateTime.Now;
-                                    info.AdsShowFinishTime = DateTime.Now.AddDays(feeInfo.ShowDays);
-                                    info.Nick = nick;
-                                    info.UserAdsState = 1;
-                                    //不需要分类
-                                    //string taoId = list[i].CateIds;
-                                    info.CateIds = "";  // GetTaoBaoCId(taoId, ref taoId);
-                                }
+                                info.AddTime = DateTime.Now;
+                                info.AdsId = GetRand(hasads);
+                                //不需要旺旺
+                                info.AliWang = ""; //nick;
+                                info.FeeId = binfo.FeeId;
+                                info.AdsShowStartTime = DateTime.Now;
+                                info.AdsShowFinishTime = DateTime.Now.AddDays(feeInfo.ShowDays);
+                                info.Nick = nick;
+                                info.UserAdsState = 1;
+                                //不需要分类
+                                //string taoId = list[i].CateIds;
+                                info.CateIds = "";  // GetTaoBaoCId(taoId, ref taoId);
                             }
                             else
                             {
@@ -152,6 +150,7 @@ public partial class AddShopAds : System.Web.UI.Page
                     }
 
                     userAdsDal.InsertUserAds(info);
+                    break;
                 }
             }
         }

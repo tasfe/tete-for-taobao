@@ -187,22 +187,18 @@ public partial class UserAdsList : System.Web.UI.Page
                                             hasads.Add(ainfo);
                                     }
 
-
-                                    for (int i = 0; i < realcount; i++)
-                                    {
-                                        info.AddTime = DateTime.Now;
-                                        info.AdsId = GetRand(hasads);
-                                        //不需要旺旺
-                                        info.AliWang = ""; //nick;
-                                        info.FeeId = binfo.FeeId;
-                                        info.AdsShowStartTime = DateTime.Now;
-                                        info.AdsShowFinishTime = DateTime.Now.AddDays(feeInfo.ShowDays);
-                                        info.Nick = nick;
-                                        info.UserAdsState = 1;
-                                        //不需要分类
-                                        //string taoId = info.CateIds;
-                                        info.CateIds = "";  // GetTaoBaoCId(taoId, ref taoId);
-                                    }
+                                    info.AddTime = DateTime.Now;
+                                    info.AdsId = GetRand(hasads);
+                                    //不需要旺旺
+                                    info.AliWang = ""; //nick;
+                                    info.FeeId = binfo.FeeId;
+                                    info.AdsShowStartTime = DateTime.Now;
+                                    info.AdsShowFinishTime = DateTime.Now.AddDays(feeInfo.ShowDays);
+                                    info.Nick = nick;
+                                    info.UserAdsState = 1;
+                                    //不需要分类
+                                    //string taoId = info.CateIds;
+                                    info.CateIds = "";  // GetTaoBaoCId(taoId, ref taoId);
                                 }
                                 else
                                 {
@@ -211,21 +207,17 @@ public partial class UserAdsList : System.Web.UI.Page
                                 continue;
                             }
 
-                            //可以放多少个
-                            for (int i = 0; i < realcount; i++)
-                            {
+                            info.AddTime = DateTime.Now;
+                            info.AdsId = GetRand(CacheCollection.GetAllAdsInfo().Where(o => o.AdsType == 1).ToList());
+                            info.AliWang = nick;
+                            info.FeeId = binfo.FeeId;
+                            info.AdsShowStartTime = DateTime.Now;
+                            info.AdsShowFinishTime = DateTime.Now.AddDays(feeInfo.ShowDays);
+                            info.Nick = nick;
+                            info.UserAdsState = 1;
+                            string taoId = info.CateIds;
+                            info.CateIds = GetTaoBaoCId(taoId, ref taoId);
 
-                                info.AddTime = DateTime.Now;
-                                info.AdsId = GetRand(CacheCollection.GetAllAdsInfo().Where(o => o.AdsType == 1).ToList());
-                                info.AliWang = nick;
-                                info.FeeId = binfo.FeeId;
-                                info.AdsShowStartTime = DateTime.Now;
-                                info.AdsShowFinishTime = DateTime.Now.AddDays(feeInfo.ShowDays);
-                                info.Nick = nick;
-                                info.UserAdsState = 1;
-                                string taoId = info.CateIds;
-                                info.CateIds = GetTaoBaoCId(taoId, ref taoId);
-                            }
                             info.Id = id;
                             uasDal.UpdateUserAdsState(info);
                             //
