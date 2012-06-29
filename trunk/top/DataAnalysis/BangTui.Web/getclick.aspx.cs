@@ -20,11 +20,11 @@ public partial class getclick : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            //string[] s = Request.QueryString.GetValues(0);
+            string[] s = Request.QueryString.GetValues(0);
 
-            //if (s.Length != 1)
-            //    return;
-            string query = pwd.Decrypt3DES("X8mGogJJzxQuaiRUfu7TLmY1Yl/fhxVc0KVjqXcdlQHPiZ8rfhrOVLHkwbv/NCc7GqztQmTIRPY8NUj5VpymcZ8QbWGfCw91lS35uHaNX5E="); //pwd.Decrypt3DES(s[0].Replace("[jia]", "+"));
+            if (s.Length != 1)
+                return;
+            string query = pwd.Decrypt3DES(s[0].Replace("[jia]", "+"));
 
             if (query.Contains("id=") && query.Contains("url="))
             {
