@@ -21,7 +21,7 @@ public class PasswordParam
     {
         get
         {
-            return "qijia7fd";
+            return "bangbang";
         }
     }
 
