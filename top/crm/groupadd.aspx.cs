@@ -53,7 +53,7 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         string id = Guid.NewGuid().ToString();
         string str = string.Empty;
 
-        string sql = "SELECT COUNT(*) FROM TCS_Group WHERE nick = '" + nick + "' AND price = '" + price + "'";
+        string sql = "SELECT COUNT(*) FROM TCS_Group WHERE nick = '" + nick + "' AND price = '" + price + "' AND isdel = 0";
         string count = utils.ExecuteString(sql);
         if (count != "0")
         {
