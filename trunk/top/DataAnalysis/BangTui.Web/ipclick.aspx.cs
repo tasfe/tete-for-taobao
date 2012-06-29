@@ -27,30 +27,34 @@ public partial class ipclick : System.Web.UI.Page
             {
                 CacheCollection.UserADS_Index = new Dictionary<Guid, int>();
             }
-            foreach (AdsInfo info in adsList)
+            adsList = adsList.OrderByDescending(o => o.AdsId).ToList(); ;
+            for (int i = 0; i < adsList.Count; i++)
             {
-                if (!CacheCollection.UserADS_Index.ContainsKey(info.AdsId))
-                    CacheCollection.UserADS_Index.Add(info.AdsId, 0);
+                if (!CacheCollection.UserADS_Index.ContainsKey(adsList[i].AdsId))
+                    CacheCollection.UserADS_Index.Add(adsList[i].AdsId, 0);
 
-                IList<UserAdsInfo> list = uasDal.SelectAllUserAdsByAdsId(info.AdsId, 1);
+                IList<UserAdsInfo> list = uasDal.SelectAllUserAdsByAdsId(adsList[i].AdsId, 1);
 
                 //按时间倒序
                 list = list.OrderByDescending(o => o.AddTime).ToList();
 
                 //如果是最后一个，结束本次循环
-                if (CacheCollection.UserADS_Index[info.AdsId] == list.Count - 1)
+                if (CacheCollection.UserADS_Index[adsList[i].AdsId] == list.Count - 1)
+                {
+                    if (i == adsList.Count - 1)
+                    {
+                        //清空，开始新一轮的跳转
+                        CacheCollection.UserADS_Index = null;
+                    }
                     break;
+                }
 
                 //常量下标加1
-                CacheCollection.UserADS_Index[info.AdsId]++;
-                string param = "id=" + list[CacheCollection.UserADS_Index[info.AdsId] - 1].Id + "&url=" + list[CacheCollection.UserADS_Index[info.AdsId] - 1].AdsUrl;
+                CacheCollection.UserADS_Index[adsList[i].AdsId]++;
+                string param = "id=" + list[CacheCollection.UserADS_Index[adsList[i].AdsId] - 1].Id + "&url=" + list[CacheCollection.UserADS_Index[adsList[i].AdsId] - 1].AdsUrl;
                 Response.Redirect("getclick.aspx?" + pp.Encrypt3DES(param).Replace("+", "[jia]"));
 
             }
-
-            //清空，开始新一轮的跳转
-            CacheCollection.UserADS_Index = null;
-
         }
     }
 }
