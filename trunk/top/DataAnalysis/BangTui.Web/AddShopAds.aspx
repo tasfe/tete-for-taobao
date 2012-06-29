@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AddShopAds.aspx.cs" Inherits="AddShopAds" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AddShopAds.aspx.cs" Inherits="AddShopAds" ValidateRequest="false" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
