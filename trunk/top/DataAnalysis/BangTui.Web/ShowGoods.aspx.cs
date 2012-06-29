@@ -38,11 +38,10 @@ public partial class ShowGoods : System.Web.UI.Page
 
         }
     }
-    PasswordParam pwd = new PasswordParam();
 
     protected string GetParam(string id, string url)
     {
-        return pwd.Encrypt3DES("id=" + id + "&url=" + url).Replace("+", "[jia]");
+        return HttpUtility.UrlEncode(("id=" + id + "&url=" + url));
     }
 
     protected string GetPic(string pic)
