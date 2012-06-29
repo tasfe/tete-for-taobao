@@ -94,6 +94,6 @@ public partial class top_containerblogfree : System.Web.UI.Page
 
     private void ShowErrPage()
     {
-        Response.Write("亲，您好！<b style=font-size:14px; color:red>本服务用于：好评有礼-会员营销 的客户做前台展示，没有订购 <a href='http://fuwu.taobao.com/serv/detail.htm?service_id=4545&from=xiuxiu'>好评有礼-会员营销</a> 则不可使用本服务，给您带来的不便深感抱歉！</b> ");
+        Response.Write("亲，您好！<br> <b style='font-size:14px; color:red'>本服务用于：好评有礼-会员营销 的客户做前台展示，没有订购 <a href='http://fuwu.taobao.com/serv/detail.htm?service_id=4545&from=xiuxiu'>好评有礼-会员营销</a> 则不可使用本服务，给您带来的不便深感抱歉！</b> ");
     }
 }
