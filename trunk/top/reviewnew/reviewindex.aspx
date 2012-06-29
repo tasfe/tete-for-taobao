@@ -31,7 +31,12 @@
  <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
  此处的评价会展示在前台店铺模块里面，最多可以展示20条评价，<a href='http://fuwu.taobao.com/serv/detail.htm?service_id=30642&tracelog=other_serv' target="_blank">点击免费订购好评秀秀</a>。
  <br /> <a href='jiaocheng1.html'>好评秀秀使用教程</a>
- </div>
+ </div>  
+ 
+ <input type="button" value="返回评价列表" onclick="window.location.href='reviewlist.aspx'" />
+    
+    <hr />
+
 
     <table width="720" cellpadding="0" cellspacing="0">
         <tr>
