@@ -45,18 +45,18 @@ public partial class top_containerblogfree : System.Web.UI.Page
             return;
         }
 
-        //加密NICK
-        Rijndael_ encode = new Rijndael_("tetesoft");
-        nick = encode.Encrypt(nick);
+        ////加密NICK
+        //Rijndael_ encode = new Rijndael_("tetesoft");
+        //nick = encode.Encrypt(nick);
 
-        Cookie cookie = new Cookie();
-        cookie.setCookie("top_session", top_session, 999999);
-        cookie.setCookie("top_sessiongroupbuy", top_session, 999999);
-        cookie.setCookie("top_sessionblog", top_session, 999999);
-        cookie.setCookie("nick", nick, 999999);
+        //Cookie cookie = new Cookie();
+        //cookie.setCookie("top_session", top_session, 999999);
+        //cookie.setCookie("top_sessiongroupbuy", top_session, 999999);
+        //cookie.setCookie("top_sessionblog", top_session, 999999);
+        //cookie.setCookie("nick", nick, 999999);
 
-        Response.Redirect("indexnew1.html");
-        return;
+        //Response.Redirect("indexnew1.html");
+        //return;
 
         //判断跳转，判断客户是否订购了好评有礼
         string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "' AND version > 1";
@@ -67,26 +67,33 @@ public partial class top_containerblogfree : System.Web.UI.Page
             string session = dt.Rows[0]["session"].ToString();
             if (session.Length != 0)
             {
-                ////加密NICK
-                //Rijndael_ encode = new Rijndael_("tetesoft");
-                //nick = encode.Encrypt(nick);
+                //加密NICK
+                Rijndael_ encode = new Rijndael_("tetesoft");
+                nick = encode.Encrypt(nick);
 
-                //Cookie cookie = new Cookie();
-                //cookie.setCookie("top_session", session, 999999);
-                //cookie.setCookie("top_sessiongroupbuy", session, 999999);
-                //cookie.setCookie("top_sessionblog", session, 999999);
-                //cookie.setCookie("nick", nick, 999999);
+                Cookie cookie = new Cookie();
+                cookie.setCookie("top_session", session, 999999);
+                cookie.setCookie("top_sessiongroupbuy", session, 999999);
+                cookie.setCookie("top_sessionblog", session, 999999);
+                cookie.setCookie("nick", nick, 999999);
 
-                //Response.Redirect("indexnew1.html");
+                Response.Redirect("indexnew1.html");
             }
             else
             {
-                Response.Redirect("indexnew1.html");
+                ShowErrPage();
+                return;
             }
         }
         else
         {
-            Response.Redirect("indexnew1.html");
+            ShowErrPage();
+            return;
         }
+    }
+
+    private void ShowErrPage()
+    {
+        Response.Write("亲您好，本服务是提供给好评有礼的客户做前台展示用的，没有订购过好评有礼无法正常使用本服务，<a href='http://fuwu.taobao.com/serv/detail.htm?service_id=4545&from=xiuxiu'>好评有礼订购连接</a>，给您带来的不变我们深表抱歉！");
     }
 }
