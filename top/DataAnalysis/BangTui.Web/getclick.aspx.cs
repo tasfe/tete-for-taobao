@@ -24,7 +24,7 @@ public partial class getclick : System.Web.UI.Page
 
             if (s.Length != 1)
                 return;
-            string query = pwd.Decrypt3DES(s[0]);
+            string query = pwd.Decrypt3DES(s[0].Replace("[jia]", "+"));
 
             if (query.Contains("id=") && query.Contains("url="))
             {
