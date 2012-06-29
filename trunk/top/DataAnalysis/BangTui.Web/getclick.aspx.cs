@@ -54,8 +54,11 @@ public partial class getclick : System.Web.UI.Page
                 }
 
                 LogInfo.Add("刷IP", Request.ServerVariables["REMOTE_ADDR"]);
+                string url = query.Substring(query.IndexOf("url=") + 4);
 
-                Response.Redirect(query.Substring(query.IndexOf("url=") + 4));
+                Response.Write(@"<script language='javascript' type='text/javascript'  src='http://js.users.51.la/12120626.js'></script><script>if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)){
+var referLink=document.createElement('a');
+referLink.href='" + url + "&spm=2018.12167184.0.0';document.body.appendChild(referLink);referLink.click();}else{location.href='" + url + "&spm=2018.12167184.0.0';}</script>");
             }
         }
     }
