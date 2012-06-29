@@ -32,6 +32,10 @@
     新增加前台店铺展示模块，<a href='http://fuwu.taobao.com/serv/detail.htm?service_id=30642&tracelog=other_serv' target="_blank">点击免费订购好评秀秀</a>
      <br /> <a href='jiaocheng1.html'>好评秀秀使用教程</a>
 </div>
+
+<input type="button" value="返回评价列表" onclick="window.location.href='reviewindex.aspx'" />
+    
+    <hr />
     
     请输入买家昵称：<asp:TextBox ID="search" runat="server"></asp:TextBox>
     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="搜索" />
