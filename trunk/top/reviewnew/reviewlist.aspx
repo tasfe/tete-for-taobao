@@ -27,6 +27,10 @@
     </ul>
   </div>
     <div id="main-content">
+
+<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
+    新增加前台店铺展示模块，<a href='http://fuwu.taobao.com/serv/detail.htm?service_id=30642&tracelog=other_serv' target="_blank">点击免费订购好评秀秀</a>
+</div>
     
     请输入买家昵称：<asp:TextBox ID="search" runat="server"></asp:TextBox>
     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="搜索" />
@@ -48,7 +52,8 @@
                 <td><img src='<%#getimg(Eval("result").ToString())%>' /></td>
                 <td><%#left(Eval("content").ToString())%></td>
                 <td><%#Eval("reviewdate") %></td>
-                <td><a href="http://item.tmall.com/item.htm?id=<%#Eval("itemid") %>" title='<%#Eval("sendresult") %>' target="_blank">查看宝贝</a></td>
+                <td><a href="http://item.tmall.com/item.htm?id=<%#Eval("itemid") %>" title='<%#Eval("sendresult") %>' target="_blank">查看宝贝</a>|
+                <a href='reviewindex.aspx?act=add&id=<%#Eval("orderid") %>'>展示该评价</a></td>
             </tr>
             </ItemTemplate>
         </asp:Repeater>
