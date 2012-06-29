@@ -69,7 +69,7 @@ public partial class top_crm_groupmodify : System.Web.UI.Page
         string name = utils.NewRequest("name", utils.RequestType.Form);
         string price = utils.NewRequest("price", utils.RequestType.Form);
 
-        string sql = "SELECT COUNT(*) FROM TCS_Group WHERE nick = '" + nick + "' AND price = '" + price + "'";
+        string sql = "SELECT COUNT(*) FROM TCS_Group WHERE nick = '" + nick + "' AND price = '" + price + "' AND isdel = 0";
         string count = utils.ExecuteString(sql);
         if (count != "0")
         {
