@@ -16,7 +16,6 @@ public partial class ipclick : System.Web.UI.Page
 {
 
     UserAdsService uasDal = new UserAdsService();
-    PasswordParam pp = new PasswordParam();
     ClickService clickDal = new ClickService();
 
     protected void Page_Load(object sender, EventArgs e)
@@ -34,22 +33,25 @@ public partial class ipclick : System.Web.UI.Page
 
             foreach (ClickInfo cinfo in clickList)
             {
-
-            }
-
-            UserAdsInfo uinfo = list[rand.Next(list.Count - 1)];
-
-         
-            if (clickList.Count != 0)
-            {
-                if (clickList[0].ClickCount > 10)
+                if (cinfo.ClickCount >= 10)
                 {
-                    uinfo = list[rand.Next(list.Count - 1)];
+                    IList<UserAdsInfo> hadlist = list.Where(o => o.Id == cinfo.UserAdsId).ToList();
+                    if (hadlist.Count > 0)
+                    {
+                        list.Remove(hadlist[0]);
+                    }
                 }
             }
 
+            if (list.Count == 0)
+                return;
+
+            UserAdsInfo uinfo = list[0];
+            if (list.Count > 1)
+                uinfo = list[rand.Next(list.Count - 1)];
+
             string param = "id=" + uinfo.Id + "&url=" + uinfo.AdsUrl;
-            Response.Redirect("getclick.aspx?" + pp.Encrypt3DES(param).Replace("+", "[jia]"));
+            Response.Redirect("getclick.aspx?" + HttpUtility.UrlEncode(param));
         }
     }
 }
