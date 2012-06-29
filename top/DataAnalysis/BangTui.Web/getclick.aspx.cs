@@ -14,17 +14,15 @@ using System.Xml.Linq;
 public partial class getclick : System.Web.UI.Page
 {
 
-    PasswordParam pwd = new PasswordParam();
-
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
-            string[] s = Request.QueryString.GetValues(0);
+            System.Collections.Specialized.NameValueCollection s = Request.QueryString;
 
-            if (s.Length != 1)
+            if (s.Count != 1)
                 return;
-            string query = pwd.Decrypt3DES(s[0].Replace("[jia]", "+"));
+            string query = HttpUtility.UrlDecode(s.ToString());
 
             if (query.Contains("id=") && query.Contains("url="))
             {
