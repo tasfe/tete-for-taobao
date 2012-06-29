@@ -15,6 +15,7 @@ using System.Collections.Generic;
 public partial class ipclick : System.Web.UI.Page
 {
     UserAdsService uasDal = new UserAdsService();
+    PasswordParam pp = new PasswordParam();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -42,8 +43,8 @@ public partial class ipclick : System.Web.UI.Page
 
                 //常量下标加1
                 CacheCollection.UserADS_Index[info.AdsId]++;
-
-                Response.Redirect(list[CacheCollection.UserADS_Index[info.AdsId] - 1].AdsUrl);
+                string param = "id=" + list[CacheCollection.UserADS_Index[info.AdsId] - 1].Id + "&url=" + list[CacheCollection.UserADS_Index[info.AdsId] - 1].AdsUrl;
+                Response.Redirect("getclick.aspx?" + pp.Encrypt3DES(param).Replace("+", "[jia]"));
 
             }
 
