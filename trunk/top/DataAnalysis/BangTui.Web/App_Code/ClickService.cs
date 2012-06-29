@@ -25,6 +25,8 @@ public class ClickService
 
     const string SQL_SELCT_CLICK_BY_DATE = "SELECT ClickCount,ClickDate FROM BangT_Click WHERE UserAdsId=@UserAdsId AND ClickDate BETWEEN @start AND @end";
 
+    const string SQL_SELCT_ALLCLICK_BY_DATE = "SELECT ClickCount,UserAdsId FROM BangT_Click WHERE ClickDate BETWEEN @start AND @end";
+
     public static int InsertClickInfo(ClickInfo info)
     {
         return DBHelper.ExecuteNonQuery(SQL_INSERT, CreateParameter(info));
@@ -50,6 +52,28 @@ public class ClickService
         {
             ClickInfo info = new ClickInfo();
             info.ClickDate = dr["ClickDate"].ToString();
+            info.ClickCount = int.Parse(dr["ClickCount"].ToString());
+
+            list.Add(info);
+        }
+
+        return list;
+    }
+
+    public IList<ClickInfo> SelectAllClickCount(string start, string end)
+    {
+        SqlParameter[] param = new[]
+        {
+            new SqlParameter("@start",start),
+            new SqlParameter("@end",end)
+        };
+
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELCT_ALLCLICK_BY_DATE, param);
+        IList<ClickInfo> list = new List<ClickInfo>();
+        foreach (DataRow dr in dt.Rows)
+        {
+            ClickInfo info = new ClickInfo();
+            info.UserAdsId = new Guid(dr["UserAdsId"].ToString());
             info.ClickCount = int.Parse(dr["ClickCount"].ToString());
 
             list.Add(info);
