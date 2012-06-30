@@ -111,4 +111,39 @@ public class ClickService
 
         return param;
     }
+
+    const string SQL_INSERT_CLICKIP = "INSERT BangT_ClickIP(UserAdsId,VisitIP,VisitDate,ClickId) VALUES(@UserAdsId,@VisitIP,@VisitDate,@ClickId)";
+
+    const string SQL_SELECT_CLICKIP_BY_DATE = "SELECT UserAdsId,VisitIP FROM BangT_ClickIP WHERE VisitDate=@VisitDate";
+
+    public int InsertClickIP(ClickIPInfo info)
+    {
+        SqlParameter[] param = new[]
+            {
+                new SqlParameter("@UserAdsId",info.UserAdsId),
+                new SqlParameter("@VisitIP",info.VisitIP),
+                new SqlParameter("@VisitDate",info.VisitDate),
+                new SqlParameter("@ClickId",info.ClickId)
+            };
+
+        return DBHelper.ExecuteNonQuery(SQL_INSERT_CLICKIP, param);
+    }
+
+    public IList<ClickIPInfo> SelectAllClickIPByDate(string date)
+    {
+        IList<ClickIPInfo> list = new List<ClickIPInfo>();
+
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_CLICKIP_BY_DATE, new SqlParameter("@VisitDate", date));
+
+        foreach (DataRow dr in dt.Rows)
+        {
+            ClickIPInfo info = new ClickIPInfo();
+            info.UserAdsId = new Guid(dr["UserAdsId"].ToString());
+            info.VisitIP = dr["VisitIP"].ToString();
+
+            list.Add(info);
+        }
+
+        return list;
+    }
 }
