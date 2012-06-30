@@ -34,7 +34,7 @@
     <div id="main-content">
 
     <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
- 您共有<%=c %>个广告位，已经投放了<%=a %>个广告，还有<%=b %>个广告没有投放，<a href='http://www.7fshop.com/top/market/qubie.html'>点击增加投放广告位</a>！
+ 您共有<%=AdsCount %>个广告位，已经投放了<%=TouCount%>个广告，还有<%=NoTouCount %>个广告没有投放，<a href='http://www.7fshop.com/top/market/qubie.html'>点击增加投放广告位</a>！
 </div>
     
     <input type=button onclick="window.location.href='useradslist.aspx?istou=1'" value="投放中的广告" />
