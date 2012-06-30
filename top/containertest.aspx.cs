@@ -88,6 +88,7 @@ public partial class top_containertest : System.Web.UI.Page
         cookie.setCookie("iscrm", "1", 999999);
         cookie.setCookie("istongji", "1", 999999);
         cookie.setCookie("mobile", "1", 999999);
+        cookie.setCookie("mircoblog", "1", 999999);
 
         Response.Redirect("index.html");
     }
