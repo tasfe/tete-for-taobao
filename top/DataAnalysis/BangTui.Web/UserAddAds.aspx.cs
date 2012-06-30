@@ -99,7 +99,10 @@ public partial class UserAddAds : System.Web.UI.Page
                     IList<UserAdsInfo> myUseradsList = useradsList.Where(o => o.FeeId == feeInfo.FeeId && o.UserAdsState == 1).ToList();
 
                     //真正可以添加的广告数量
-                    int realcount = (feeInfo.AdsCount - myUseradsList.Count) >= count ? count : feeInfo.AdsCount - myUseradsList.Count;
+                    int realcount = 0;
+                    if (feeInfo.AdsCount - myUseradsList.Count <= 0)
+                        realcount = 0;
+                    realcount = (feeInfo.AdsCount - myUseradsList.Count) >= count ? count : feeInfo.AdsCount - myUseradsList.Count;
 
                     if (realcount > 0)
                     {
