@@ -189,7 +189,7 @@ public class UserAdsService
             new SqlParameter("@AdsShowStartTime",info.AdsShowStartTime==DateTime.MinValue?DateTime.Parse("1990-1-1"):info.AdsShowStartTime),
             new SqlParameter("@AdsShowFinishTime",info.AdsShowFinishTime==DateTime.MinValue?DateTime.Parse("1990-1-1"):info.AdsShowFinishTime),
             new SqlParameter("@AddTime",info.AddTime==DateTime.MinValue?DateTime.Parse("1990-1-1"):info.AddTime),
-            new SqlParameter("@FeeId",string.IsNullOrEmpty(info.FeeId.ToString())?Guid.Empty:info.FeeId)
+            new SqlParameter("@FeeId",info.FeeId)
         };
 
         return DBHelper.ExecuteNonQuery(SQL_UPDATE_ADS_STATE, param);
