@@ -102,7 +102,8 @@ public partial class UserAddAds : System.Web.UI.Page
                     int realcount = 0;
                     if (feeInfo.AdsCount - myUseradsList.Count <= 0)
                         realcount = 0;
-                    realcount = (feeInfo.AdsCount - myUseradsList.Count) >= count ? count : feeInfo.AdsCount - myUseradsList.Count;
+                    else
+                        realcount = (feeInfo.AdsCount - myUseradsList.Count) >= count ? count : feeInfo.AdsCount - myUseradsList.Count;
 
                     if (realcount > 0)
                     {
