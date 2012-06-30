@@ -154,6 +154,9 @@ public partial class top_container : System.Web.UI.Page
                     //update
                     sql = "UPDATE BangT_Buys SET feeid = '" + guid + "' WHERE nick = '" + u + "'";
                     utils.ExecuteNonQuery(sql);
+
+                    sql = "UPDATE BangT_UserAds SET feeid='" + guid + "' WHERE nick='" + u + "' AND  UserAdsState<>0";
+                    utils.ExecuteNonQuery(sql);
                 }
                 else
                 { 
