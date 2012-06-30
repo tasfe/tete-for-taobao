@@ -65,7 +65,7 @@ public partial class UserAddAds : System.Web.UI.Page
 
                 info.CateIds = ((Label)item.FindControl("LB_TaoBaoCId")).Text;
                 string cname = thiscList.Count == 0 ? "" : thiscList[0].CateName;
-                info.SellCateName = GetTaoBaoCName(info.CateIds, ref cname);
+                info.SellCateName = GetTaoBaoCName(info.CateIds, cname);
                 info.AliWang = nick;
                 info.Nick = nick;
                 info.AdsPic = ((Label)item.FindControl("LB_Img")).Text;
@@ -159,7 +159,7 @@ public partial class UserAddAds : System.Web.UI.Page
                             list[i].Nick = nick;
                             list[i].UserAdsState = 1;
                             string taoId = list[i].CateIds;
-                            list[i].CateIds = GetTaoBaoCId(taoId, ref taoId);
+                            list[i].CateIds = GetTaoBaoCId(taoId, taoId);
 
                         }
                     }
@@ -176,36 +176,38 @@ public partial class UserAddAds : System.Web.UI.Page
 
     }
 
-    private string GetTaoBaoCId(string taoId,ref string cids)
+    private string GetTaoBaoCId(string taoId, string cids)
     {
+        string returncids = cids;
         TaoBaoGoodsClassInfo info = new TaoBaoGoodsClassService().SelectGoodsClass(taoId);
         if (info != null)
         {
             if (info.parent_cid != "0")
             {
-                cids += "," + info.parent_cid;
-                GetTaoBaoCId(info.parent_cid,ref cids);
+                returncids += "," + info.parent_cid;
+                GetTaoBaoCId(info.parent_cid, returncids);
             }
-            return cids;
+            return returncids;
 
         }
-        return cids;
+        return returncids;
     }
 
-    private string GetTaoBaoCName(string taoId, ref string cname)
+    private string GetTaoBaoCName(string taoId, string cname)
     {
+        string returnName = cname;
         TaoBaoGoodsClassInfo info = new TaoBaoGoodsClassService().SelectGoodsClass(taoId);
         if (info != null)
         {
             if (info.parent_cid != "0")
             {
-                cname = info.name + "->" + cname;
-                GetTaoBaoCName(info.parent_cid, ref cname);
+                returnName = info.name + (cname == "" ? "" : ("->" + cname));
+                GetTaoBaoCName(info.parent_cid, returnName);
             }
-            return cname;
+            return returnName;
 
         }
-        return cname;
+        return returnName;
     }
 
     /// <summary>

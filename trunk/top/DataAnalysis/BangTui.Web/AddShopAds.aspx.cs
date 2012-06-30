@@ -86,7 +86,7 @@ public partial class AddShopAds : System.Web.UI.Page
                     TaoBaoGoodsClassInfo tcinfo = new TaoBaoGoodsClassService().SelectGoodsClass(cateId);
                     info.CateIds = ViewState["shopcid"].ToString();
                     string cname = tcinfo == null ? "" : tcinfo.name;
-                    info.SellCateName = GetTaoBaoCName(info.CateIds, ref cname);
+                    info.SellCateName = GetTaoBaoCName(info.CateIds, cname);
                     info.AliWang = nick;
                     info.Nick = nick;
                     info.AdsPic = ShopImg;
@@ -144,7 +144,7 @@ public partial class AddShopAds : System.Web.UI.Page
                             info.Nick = nick;
                             info.UserAdsState = 1;
                             string taoId = info.CateIds;
-                            info.CateIds = GetTaoBaoCId(taoId, ref taoId);
+                            info.CateIds = GetTaoBaoCId(taoId, taoId);
                         }
 
                         notou = false;
@@ -187,35 +187,37 @@ public partial class AddShopAds : System.Web.UI.Page
         return list[rand.Next(list.Count - 1)].AdsId;
     }
 
-    private string GetTaoBaoCId(string taoId, ref string cids)
+    private string GetTaoBaoCId(string taoId, string cids)
     {
+        string returncids = cids;
         TaoBaoGoodsClassInfo info = new TaoBaoGoodsClassService().SelectGoodsClass(taoId);
         if (info != null)
         {
             if (info.parent_cid != "0")
             {
-                cids += "," + info.parent_cid;
-                GetTaoBaoCId(info.parent_cid, ref cids);
+                returncids += "," + info.parent_cid;
+                GetTaoBaoCId(info.parent_cid, returncids);
             }
-            return cids;
+            return returncids;
 
         }
-        return cids;
+        return returncids;
     }
 
-    private string GetTaoBaoCName(string taoId, ref string cname)
+    private string GetTaoBaoCName(string taoId, string cname)
     {
+        string returnName = cname;
         TaoBaoGoodsClassInfo info = new TaoBaoGoodsClassService().SelectGoodsClass(taoId);
         if (info != null)
         {
             if (info.parent_cid != "0")
             {
-                cname = info.name + "->" + cname;
-                GetTaoBaoCName(info.parent_cid, ref cname);
+                returnName = info.name + (cname == "" ? "" : ("->" + cname));
+                GetTaoBaoCName(info.parent_cid, returnName);
             }
-            return cname;
+            return returnName;
 
         }
-        return cname;
+        return returnName;
     }
 }
