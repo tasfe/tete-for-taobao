@@ -15,9 +15,6 @@ using System.Collections.Generic;
 public partial class UserAdsList : System.Web.UI.Page
 {
     UserAdsService uasDal = new UserAdsService();
-    public string a = string.Empty;
-    public string b = string.Empty;
-    public string c = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -42,17 +39,13 @@ public partial class UserAdsList : System.Web.UI.Page
                 list = list.Where(o => o.UserAdsState != 1).ToList();
             RPT_AdsList.DataSource = list;
             RPT_AdsList.DataBind();
-
-            a = TouCount.ToString();
-            b = NoTouCount.ToString();
-            c = AdsCount.ToString();
         }
     }
 
     /// <summary>
     /// 已投放数量
     /// </summary>
-    private int TouCount
+    protected int TouCount
     {
         get { return int.Parse(ViewState["toucount"].ToString()); }
     }
@@ -60,7 +53,7 @@ public partial class UserAdsList : System.Web.UI.Page
     /// <summary>
     /// 未投放数量
     /// </summary>
-    private int NoTouCount
+    protected int NoTouCount
     {
         get { return int.Parse(ViewState["notoucount"].ToString()); }
     }
@@ -68,7 +61,7 @@ public partial class UserAdsList : System.Web.UI.Page
     /// <summary>
     /// 可放广告数量
     /// </summary>
-    private int AdsCount
+    protected int AdsCount
     {
         get { return ViewState["adscount"] == null ? 0 : int.Parse(ViewState["adscount"].ToString()); }
     }
