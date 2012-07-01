@@ -201,7 +201,7 @@ public partial class UserAdsList : System.Web.UI.Page
                             }
 
                             info.AddTime = DateTime.Now;
-                            info.AdsId = GetRand(CacheCollection.GetAllAdsInfo().Where(o => o.AdsType == 1).ToList());
+                            info.AdsId = info.AdsId == Guid.Empty ? GetRand(CacheCollection.GetAllAdsInfo().Where(o => o.AdsType == 1).ToList()) : info.AdsId;
                             info.AliWang = nick;
                             info.FeeId = binfo.FeeId;
                             info.AdsShowStartTime = DateTime.Now;
