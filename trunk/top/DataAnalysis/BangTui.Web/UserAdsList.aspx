@@ -13,12 +13,9 @@
     </style>
 </head>
 <body style="padding:0px; margin:0px;">
+<form id="form1" runat="server">
 
 <div class="navigation" style="height:600px;">
-
-    <form id="form1" runat="server">
-
-
 
   <div class="crumbs"><a href="#" class="nolink">帮推广</a> 推广中的宝贝 </div>
   <div class="absright">
@@ -90,6 +87,14 @@
        </asp:Repeater>
      </table>
     </div>
+    
+        <div style="background-color:#dedede; margin-top:15px">
+            <asp:label ID="lblCurrentPage" runat="server"></asp:label>
+            <asp:HyperLink id="lnkFrist" runat="server">首页</asp:HyperLink>
+            <asp:HyperLink id="lnkPrev" runat="server">上一页</asp:HyperLink>
+            <asp:HyperLink id="lnkNext" runat="server">下一页</asp:HyperLink> 
+            <asp:HyperLink id="lnkEnd" runat="server">尾页</asp:HyperLink>
+        </div>
 
     </div>
     </form>
