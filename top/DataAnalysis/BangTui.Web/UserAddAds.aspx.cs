@@ -305,6 +305,7 @@ public partial class UserAddAds : System.Web.UI.Page
         {
             //list = goodsDal.SearchGoods(nick, TB_GoodsName.Text.Trim(), DDL_GoodsClass.SelectedValue == "0" ? "" : DDL_GoodsClass.SelectedValue);
 
+            ViewState["page"] = 1;
             Bind(TB_GoodsName.Text.Trim(), DDL_GoodsClass.SelectedValue == "0" ? "" : DDL_GoodsClass.SelectedValue, DateTime.MinValue, DateTime.MinValue);
         }
 
@@ -312,6 +313,7 @@ public partial class UserAddAds : System.Web.UI.Page
         {
             //list = goodsDal.SearchGoods(nick, TB_GoodsName.Text.Trim(), DDL_GoodsClass.SelectedValue == "0" ? "" : DDL_GoodsClass.SelectedValue, new DateTime[] { DateTime.Parse(TB_StartTime.Text), DateTime.Parse(TB_EndTime.Text) });
 
+            ViewState["page"] = 1;
             Bind(TB_GoodsName.Text.Trim(), DDL_GoodsClass.SelectedValue == "0" ? "" : DDL_GoodsClass.SelectedValue, DateTime.Parse(TB_StartTime.Text), DateTime.Parse(TB_EndTime.Text));
         }
         //Rpt_GoodsList.DataSource = list;
