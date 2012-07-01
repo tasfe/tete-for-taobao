@@ -32,10 +32,84 @@ public partial class UserAddAds : System.Web.UI.Page
 
             DDL_GoodsClass.Items.Insert(0, new ListItem("全部", "0"));
 
-            IList<GoodsInfo> list = goodsDal.SelectAllGoodsByNick(nick);
-            Rpt_GoodsList.DataSource = list;
-            Rpt_GoodsList.DataBind();
+            //IList<GoodsInfo> list = goodsDal.SelectAllGoodsByNick(nick);
+            //Rpt_GoodsList.DataSource = list;
+            //Rpt_GoodsList.DataBind();
+
+            if (string.IsNullOrEmpty(Request.QueryString["start"]))
+                Bind(Request.QueryString["goods"], Request.QueryString["gclass"], DateTime.MinValue, DateTime.MinValue);
+            else
+                Bind(Request.QueryString["goods"], Request.QueryString["gclass"], DateTime.Parse(Request.QueryString["start"]), DateTime.Parse(Request.QueryString["end"]));
         }
+    }
+
+    private void Bind(string goodsName,string className,DateTime start,DateTime end)
+    {
+        int TotalCount = 0;//总记录数
+        int TotalPage = 1; //总页数
+        string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+        int page = 1;
+        try
+        {
+            page = int.Parse(Request.QueryString["Page"]);
+            if (ViewState["page"] != null)
+            {
+                page = int.Parse(ViewState["page"].ToString());
+                ViewState["page"] = null;
+            }
+        }
+        catch { }
+
+        IList<GoodsInfo> list = new List<GoodsInfo>();
+
+        if (start==DateTime.MinValue)
+        {
+            list = goodsDal.SearchGoods(nick, goodsName, className);
+        }
+
+        if (!string.IsNullOrEmpty(TB_StartTime.Text) && !string.IsNullOrEmpty(TB_EndTime.Text))
+        {
+            list = goodsDal.SearchGoods(nick, goodsName, className, new DateTime[] { start, end });
+        }
+
+        TotalCount = list.Count;
+        pds.DataSource = list;
+        pds.AllowPaging = true;
+        pds.PageSize = 10;
+
+        if (TotalCount == 0)
+            TotalPage = 1;
+        else
+        {
+            if (TotalCount % pds.PageSize == 0)
+                TotalPage = TotalCount / pds.PageSize;
+            else
+                TotalPage = TotalCount / pds.PageSize + 1;
+        }
+
+        pds.CurrentPageIndex = page - 1;
+        lblCurrentPage.Text = "共" + TotalCount.ToString() + "条记录 当前页：" + page + "/" + TotalPage;
+
+        string paramArray = string.Empty;
+        if (!string.IsNullOrEmpty(goodsName))
+            paramArray += "&goods=" + goodsName;
+        if (!string.IsNullOrEmpty(className))
+            paramArray += "&gclass=" + className;
+        if (start != DateTime.MinValue)
+            paramArray += "&start=" + start.ToShortDateString();
+        if (end != DateTime.MinValue)
+            paramArray += "&start=" + end.ToShortDateString();
+
+        lnkFrist.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=1" + paramArray;
+        if (!pds.IsFirstPage)
+            lnkPrev.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + (page - 1) + paramArray;
+
+        if (!pds.IsLastPage)
+            lnkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + (page + 1) + paramArray;
+        lnkEnd.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + TotalPage + paramArray;
+
+        Rpt_GoodsList.DataSource = pds;
+        Rpt_GoodsList.DataBind();
     }
 
     protected void BTN_ShowGoods_Click(object sender, EventArgs e)
@@ -229,14 +303,18 @@ public partial class UserAddAds : System.Web.UI.Page
         IList<GoodsInfo> list = new List<GoodsInfo>();
         if (string.IsNullOrEmpty(TB_StartTime.Text) || string.IsNullOrEmpty(TB_EndTime.Text))
         {
-            list = goodsDal.SearchGoods(nick, TB_GoodsName.Text.Trim(), DDL_GoodsClass.SelectedValue == "0" ? "" : DDL_GoodsClass.SelectedValue);
+            //list = goodsDal.SearchGoods(nick, TB_GoodsName.Text.Trim(), DDL_GoodsClass.SelectedValue == "0" ? "" : DDL_GoodsClass.SelectedValue);
+
+            Bind(TB_GoodsName.Text.Trim(), DDL_GoodsClass.SelectedValue == "0" ? "" : DDL_GoodsClass.SelectedValue, DateTime.MinValue, DateTime.MinValue);
         }
 
         if (!string.IsNullOrEmpty(TB_StartTime.Text) && !string.IsNullOrEmpty(TB_EndTime.Text))
         {
-            list = goodsDal.SearchGoods(nick, TB_GoodsName.Text.Trim(), DDL_GoodsClass.SelectedValue == "0" ? "" : DDL_GoodsClass.SelectedValue, new DateTime[] { DateTime.Parse(TB_StartTime.Text), DateTime.Parse(TB_EndTime.Text) });
+            //list = goodsDal.SearchGoods(nick, TB_GoodsName.Text.Trim(), DDL_GoodsClass.SelectedValue == "0" ? "" : DDL_GoodsClass.SelectedValue, new DateTime[] { DateTime.Parse(TB_StartTime.Text), DateTime.Parse(TB_EndTime.Text) });
+
+            Bind(TB_GoodsName.Text.Trim(), DDL_GoodsClass.SelectedValue == "0" ? "" : DDL_GoodsClass.SelectedValue, DateTime.Parse(TB_StartTime.Text), DateTime.Parse(TB_EndTime.Text));
         }
-        Rpt_GoodsList.DataSource = list;
-        Rpt_GoodsList.DataBind();
+        //Rpt_GoodsList.DataSource = list;
+        //Rpt_GoodsList.DataBind();
     }
 }
