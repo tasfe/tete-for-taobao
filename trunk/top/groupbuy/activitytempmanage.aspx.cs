@@ -64,7 +64,7 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
                 //更新模板图片到服务器
                 updateimg(id);
                 //返回列表
-                Response.Redirect("activitytempmanage.aspx");
+                Response.Write("更新成功！");
             }
         }
 
