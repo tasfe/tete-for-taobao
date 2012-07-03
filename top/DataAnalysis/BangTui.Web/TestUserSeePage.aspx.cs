@@ -18,12 +18,12 @@ public partial class TestUserSeePage : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-
+            
         }
     }
     protected void Btn_AddCookie_Click(object sender, EventArgs e)
     {
-        if (Tb_Pwd.Text == "lvxinpwd1")
+        if (Tb_Pwd.Text == "lvxinpwd123")
         {
             string nick = HttpUtility.UrlEncode(Tb_UserNick.Text);
             HttpCookie cookie = new HttpCookie("nick", nick);
