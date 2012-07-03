@@ -51,9 +51,7 @@ public partial class getclick : System.Web.UI.Page
                     ClickService.InsertClickInfo(info);
                 }
 
-                LogInfo.Add("刷IP", Request.ServerVariables["REMOTE_ADDR"]);
                 string url = query.Substring(query.IndexOf("url=") + 4);
-
                 url = url.Contains("?") ? url + "&" : url + "?";
 
                 Response.Write(@"<script language='javascript' type='text/javascript'  src='http://js.users.51.la/12120626.js'></script><script>if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)){
