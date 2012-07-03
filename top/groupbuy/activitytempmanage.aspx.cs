@@ -109,8 +109,8 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
             return;
         }
         string categoryid = new Regex(@"<picture_category_id>([^<]*)</picture_category_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-    
-      
+
+
         if (categoryid == "")
         {
             //创建特特图片分类
@@ -137,6 +137,22 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
 
         string sql = "select * from  tete_templetimg where templetID=" + templetid;
         DataTable dts3 = utils.ExecuteDataTable(sql);
+        if (dts3 != null && dts3.Rows.Count > 0)
+        {
+            //如上传图片，返回图片地址，创建本地店铺模板图片地址
+            for (int j = 0; j < dts3.Rows.Count; j++)
+            {
+                //上传图片
+                string newurl = TaobaoUpload(dts3.Rows[j]["url"].ToString(), "temp" + templetid.ToString() + "" + j.ToString(), long.Parse(categoryid));
+                //创建本地店铺模板图片地址
+                sql = "insert into tete_shoptempletimg ([templetID],[url] ,[taobaourl] ,[nick]) VALUES (" + templetid + ",'" + dts3.Rows[j]["url"].ToString() + "','" + newurl + "','" + taobaoNick + "')";
+                utils.ExecuteNonQuery(sql);
+            }
+        }
+
+        //上传模板公用图片
+        sql = "select * from  tete_templetimg where templetID=0";
+        dts3 = utils.ExecuteDataTable(sql);
         if (dts3 != null && dts3.Rows.Count > 0)
         {
             //如上传图片，返回图片地址，创建本地店铺模板图片地址
