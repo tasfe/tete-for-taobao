@@ -109,8 +109,7 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
             return;
         }
         string categoryid = new Regex(@"<picture_category_id>([^<]*)</picture_category_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-        Response.Write("result="+result);
-        Response.Write("categoryid=" + categoryid);
+    
       
         if (categoryid == "")
         {
@@ -134,8 +133,8 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
             }
             categoryid = new Regex(@"<picture_category_id>([^<]*)</picture_category_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
         }
-        Response.Write("categoryid=" + categoryid);
-        Response.End();
+
+
         string sql = "select * from  tete_templetimg where templetID=" + templetid;
         DataTable dts3 = utils.ExecuteDataTable(sql);
         if (dts3 != null && dts3.Rows.Count > 0)
