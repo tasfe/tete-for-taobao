@@ -48,7 +48,9 @@ public partial class _Default : System.Web.UI.Page
                 cooksession.Expires = DateTime.Now.AddDays(1);
 
                 Response.Cookies.Add(cookie);
-                LogInfo.Add("添加了cookie", cookie.Value);
+                LogInfo.Add("添加了cookie", nick);
+
+                Session["snick"] = nick;
                 Response.Cookies.Add(cooksession);
 
                 HttpCookie tongji = new HttpCookie("istongji", Request.QueryString["istongji"]);
