@@ -21,7 +21,16 @@ public partial class UserAdsList : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value); //"nick";
+            string nick = "";
+            if (Request.Cookies["nick"] != null)
+                nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value); //"nick"; 
+            else
+                nick = Session["snick"].ToString();
+            if (nick == "")
+            {
+                Response.Write("请重新登录");
+                return;
+            }
             IList<UserAdsInfo> list = uasDal.SelectAllUserAds(nick);
 
             IList<UserAdsInfo> useradsList = uasDal.SelectAllUserAds(nick);
@@ -149,6 +158,8 @@ public partial class UserAdsList : System.Web.UI.Page
             return "投放中";
         if (adsState == "2")
             return "暂停投放";
+        if (adsState == "3")
+            return "已下线";
         return "";
     }
 
@@ -179,7 +190,11 @@ public partial class UserAdsList : System.Web.UI.Page
         {
             Guid id = new Guid(e.CommandArgument.ToString());
             UserAdsInfo info = uasDal.SelectUserAdsById(id);
-            string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
+            string nick = "";
+            if (Request.Cookies["nick"] != null)
+                nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value); //"nick"; 
+            else
+                nick = Session["snick"].ToString();
             IList<BuyInfo> buyList = CacheCollection.GetAllBuyInfo().Where(o => o.Nick == nick).ToList();
             bool noads = true;
             //投放的广告
