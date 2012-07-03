@@ -13,11 +13,15 @@ using System.IO;
 using System.Text.RegularExpressions;
 using Taobao.Top.Api.Request;
 using Taobao.Top.Api.Domain;
+using Taobao.Top.Api.Util;
 
 public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
 {
 
     public string logUrl = "D:/groupbuy.7fshop.com/wwwroot/top/groupbuy/ErrLog";
+    string appkey = "12287381";
+    string secret = "d3486dac8198ef01000e7bd4504601a4";
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Request.QueryString["act"] != null&&Request.QueryString["act"].ToString()=="del")
@@ -50,10 +54,135 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
                 
             }
         }
+
+        if (Request.QueryString["act"] != null && Request.QueryString["act"].ToString() == "uplmg")
+        {
+            if (Request.QueryString["tid"] != null)
+            {
+                string id = Request.QueryString["tid"].ToString();
+                //删除模板图片
+                //更新模板图片到服务器
+                updateimg(id);
+                //返回列表
+                Response.Redirect("activitytempmanage.aspx");
+            }
+        }
+
         if (!IsPostBack)
         {
             BindData();
         }
+    }
+
+
+    public void updateimg(string templetid)
+    {
+        Common.Cookie cookie = new Common.Cookie();
+        string taobaoNick = cookie.getCookie("nick");
+
+        Rijndael_ encode = new Rijndael_("tetesoft");
+        taobaoNick = encode.Decrypt(taobaoNick);
+        string session = cookie.getCookie("top_sessiongroupbuy");
+
+        utils.ExecuteNonQuery("delete from tete_shoptempletimg  where nick='" + taobaoNick + "' and  templetID=" + templetid);
+
+        //获取分类ID，上传图片，返回图片地址，创建本地店铺模板图片地址
+        IDictionary<string, string> param = new Dictionary<string, string>();
+        //创建活动
+        param = new Dictionary<string, string>();
+        param.Add("picture_category_name", "特特团购模板图片勿删");
+
+        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.picture.category.get", session, param);
+
+
+        if (result.IndexOf("error_response") != -1)
+        {
+            string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+            if (err == "")
+            {
+                Response.Write("<b>模板创建失败，错误原因：</b><br><font color='red'>您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12287381&scope=promotion' target='_parent'>重新授权</a>");
+                Response.End();
+            }
+
+            Response.Write("<b>模板创建失败，错误原因：</b><br><font color='red'>" + err + "</font><br><a href='activityadd.aspx'>重新添加</a>");
+            Response.End();
+            return;
+        }
+        string categoryid = new Regex(@"<picture_category_id>([^<]*)</picture_category_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+        Response.Write("result="+result);
+        Response.Write("categoryid=" + categoryid);
+      
+        if (categoryid == "")
+        {
+            //创建特特图片分类
+            param = new Dictionary<string, string>();
+            param.Add("picture_category_name", "特特团购模板图片勿删");
+
+            result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.picture.category.add", session, param);
+            if (result.IndexOf("error_response") != -1)
+            {
+                string err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                if (err == "")
+                {
+                    Response.Write("<b>模板创建失败，错误原因：</b><br><font color='red'>您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12287381&scope=promotion' target='_parent'>重新授权</a>");
+                    Response.End();
+                }
+
+                Response.Write("<b>模板创建失败，错误原因：</b><br><font color='red'>" + err + "</font><br><a href='activityadd.aspx'>重新添加</a>");
+                Response.End();
+                return;
+            }
+            categoryid = new Regex(@"<picture_category_id>([^<]*)</picture_category_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+        }
+        Response.Write("categoryid=" + categoryid);
+        Response.End();
+        string sql = "select * from  tete_templetimg where templetID=" + templetid;
+        DataTable dts3 = utils.ExecuteDataTable(sql);
+        if (dts3 != null && dts3.Rows.Count > 0)
+        {
+            //如上传图片，返回图片地址，创建本地店铺模板图片地址
+            for (int j = 0; j < dts3.Rows.Count; j++)
+            {
+                //上传图片
+                string newurl = TaobaoUpload(dts3.Rows[j]["url"].ToString(), "temp" + templetid.ToString() + "" + j.ToString(), long.Parse(categoryid));
+                //创建本地店铺模板图片地址
+                sql = "insert into tete_shoptempletimg ([templetID],[url] ,[taobaourl] ,[nick]) VALUES (" + templetid + ",'" + dts3.Rows[j]["url"].ToString() + "','" + newurl + "','" + taobaoNick + "')";
+                utils.ExecuteNonQuery(sql);
+            }
+        }
+
+    }
+
+    /// <summary>
+    /// 图片上传
+    /// </summary>
+    /// <param name="picurl"></param>
+    /// <param name="picname"></param>
+    /// <param name="CategoryId"></param>
+    /// <returns></returns>
+    public string TaobaoUpload(string picurl, string picname, long CategoryId)
+    {
+        Common.Cookie cookie = new Common.Cookie();
+        string session = cookie.getCookie("top_sessiongroupbuy");
+        TopXmlRestClient clientaa = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
+        PictureUploadRequest request = new PictureUploadRequest();
+
+        string filepath = Server.MapPath("images/" + picurl);
+
+        request.Img = new FileItem(filepath, File.ReadAllBytes(filepath));
+        request.ImageInputTitle = picurl;
+        request.PictureCategoryId = CategoryId;
+        request.Title = picname;
+
+        clientaa.PictureUpload(request, session);
+
+
+        PictureGetRequest request1 = new PictureGetRequest();
+        request1.Title = picname;
+        string path = string.Empty;
+        path = clientaa.PictureGet(request1, session).Content[0].PicturePath;
+
+        return path;
     }
 
     /// <summary>
@@ -325,11 +454,11 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
     /// <param name="actionID"></param>
     /// <param name="pid"></param>
     /// <returns></returns>
-    public string outShowHtml(string ID,string aid)
+    public string outShowHtml(string ID,string aid,string tid)
     {
         //string html = "<div>  <a  target=_blank href=\"activitytempView.aspx?tid=" + ID + "\")\">获取代码</a>   <a  target=_blank  href=\"activitytempView.aspx?ytid=" + ID + "\")\">预览</a>      <a href=\"activitytempmanage.aspx?act=del&aid=" + aid + "&id=" + ID + "\")\">删除</a>   <a href=\"activitytempmanage.aspx?act=delitem&aid=" + aid + "&id=" + ID + "\")\" ' onclick=\"return confirm('您确认要清除关联描述，该操作不可恢复？')\">清除宝贝描述</a><div id=\"del" + ID + "\"></div></div>";//javascript:addItemAction(12305275000)
 
-        string html = "<div>  <a  target=_blank href=\"activitytempView.aspx?tid=" + ID + "\")\">获取代码</a>   <a  target=_blank  href=\"activitytempView.aspx?ytid=" + ID + "\")\">预览</a>      <a href=\"activitytempmanage.aspx?act=del&aid=" + aid + "&id=" + ID + "\")\">删除</a>   <a href=\"javascript:delItemtemp('delitem','" + aid + "','" + ID + "')\"  onclick=\"return confirm('您确认要清除关联描述，该操作不可恢复？')\">清除宝贝描述</a><div id=\"del" + ID + "\"></div></div>";
+        string html = "<div> <a  target=_blank href=\"activitytempmanage.aspx?act=uplmg&tid=" + tid + "\")\">图片更新</a> <a  target=_blank href=\"activitytempView.aspx?tid=" + ID + "\")\">获取代码</a>   <a  target=_blank  href=\"activitytempView.aspx?ytid=" + ID + "\")\">预览</a>      <a href=\"activitytempmanage.aspx?act=del&aid=" + aid + "&id=" + ID + "\")\">删除</a>   <a href=\"javascript:delItemtemp('delitem','" + aid + "','" + ID + "')\"  onclick=\"return confirm('您确认要清除关联描述，该操作不可恢复？')\">清除宝贝描述</a><div id=\"del" + ID + "\"></div></div>";
 
         return html;
     }
