@@ -46,7 +46,7 @@
                                     </td>
                                     <td  width="300px">
                                         <div id="del"></div>
-                                        <%# outShowHtml(Eval("ID").ToString(), Eval("ActivityID").ToString())%>
+                                        <%# outShowHtml(Eval("ID").ToString(), Eval("ActivityID").ToString(), Eval("templetID").ToString())%>
                                     </td>
                                  </tr>
                                 
