@@ -173,8 +173,17 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
         request.PictureCategoryId = CategoryId;
         request.Title = picname;
 
-        clientaa.PictureUpload(request, session);
+        try
+        {
+            clientaa.PictureUpload(request, session);
 
+        }
+        catch (Exception ex)
+        {
+
+            Response.Write(ex.Message.ToString());
+            Response.End();
+        }
 
         PictureGetRequest request1 = new PictureGetRequest();
         request1.Title = picname;
