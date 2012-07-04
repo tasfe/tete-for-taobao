@@ -54,26 +54,26 @@ public partial class ipclick : System.Web.UI.Page
             foreach (ClickInfo cinfo in clickList)
             {
 
-                if (cinfo.ClickCount >= 10)
+                if (cinfo.ClickCount >= rand.Next(6,14))//10)
                 {
                     IList<UserAdsInfo> hadlist = list.Where(o => o.Id == cinfo.UserAdsId).ToList();
 
                     if (hadlist.Count > 0)
                     {
-                        FeeInfo finfo =CacheCollection.GetAllFeeInfo().Where(o=>o.FeeId==hadlist[0].FeeId).ToList()[0];
+                        FeeInfo finfo = CacheCollection.GetAllFeeInfo().Where(o => o.FeeId == hadlist[0].FeeId).ToList()[0];
                         if (finfo.AdsType == 1)
                         {
                             if (finfo.AdsCount == 1)
                                 list.Remove(hadlist[0]);
                             else
                             {
-                                if(cinfo.ClickCount>=18)
+                                if (cinfo.ClickCount >= rand.Next(14, 22))//18)
                                     list.Remove(hadlist[0]);
                             }
                         }
                         if (finfo.AdsType == 5)
                         {
-                            if (cinfo.ClickCount >= 27)
+                            if (cinfo.ClickCount >= rand.Next(22, 32)) //27)
                                 list.Remove(hadlist[0]);
                         }
                     }
