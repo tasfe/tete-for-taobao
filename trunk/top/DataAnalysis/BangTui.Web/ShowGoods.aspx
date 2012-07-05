@@ -72,6 +72,8 @@ align="absmiddle" src='http://amos.im.alisoft.com/online.aw?v=2&uid=<%# Eval("Al
     </div>
 </div>
 
+<br clear="all" />
+
  <div style="background-color:#dedede; margin-top:15px">
             <asp:label ID="lblCurrentPage" runat="server"></asp:label>
             <asp:HyperLink id="lnkFrist" runat="server">首页</asp:HyperLink>
