@@ -34,7 +34,7 @@ public class UserAdsService
 
     const string SQL_STOP = "UPDATE BangT_UserAds SET UserAdsState=@UserAdsState WHERE Id=@Id";
 
-    const string SQL_SELECT_USERADS_BY_ADSID = "SELECT [Id],[AdsTitle],[AdsUrl],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,Price FROM BangT_UserAds WHERE AdsId=@AdsId AND UserAdsState=@UserAdsState";
+    const string SQL_SELECT_USERADS_BY_ADSID = "SELECT [Id],[AdsTitle],[AdsUrl],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,Price,Nick FROM BangT_UserAds WHERE AdsId=@AdsId AND UserAdsState=@UserAdsState";
 
     public IList<UserAdsInfo> SelectAllUserAds(string nick)
     {
@@ -85,6 +85,7 @@ public class UserAdsService
             info.AddTime = DateTime.Parse(dr["AddTime"].ToString());
             info.FeeId = new Guid(dr["FeeId"].ToString());
             info.AdsPic = dr["AdsPic"].ToString();
+            info.Nick = dr["Nick"].ToString();
             info.Price = dr["Price"] == DBNull.Value ? 0 : decimal.Parse(dr["Price"].ToString());
 
             list.Add(info);
