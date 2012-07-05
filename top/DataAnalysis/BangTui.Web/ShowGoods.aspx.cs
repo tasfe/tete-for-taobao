@@ -38,13 +38,13 @@ public partial class ShowGoods : System.Web.UI.Page
 
             if (Request.Cookies["nick"] != null)
             {
-                ShowLoginAds(adsList);
+                ShowLoginAds(adsList, HttpUtility.UrlDecode(Request.Cookies["nick"].Value));
             }
             else
             {
                 if (Session["snick"] != null)
                 {
-                    ShowLoginAds(adsList);
+                    ShowLoginAds(adsList, Session["snick"].ToString());
                 }
             }
 
@@ -93,9 +93,9 @@ public partial class ShowGoods : System.Web.UI.Page
         }
     }
 
-    private void ShowLoginAds(IList<UserAdsInfo> adsList)
+    private void ShowLoginAds(IList<UserAdsInfo> adsList, string nick)
     {
-        IList<UserAdsInfo> list = adsList.Where(o => o.Nick == HttpUtility.UrlDecode(Request.Cookies["nick"].Value)).ToList();
+        IList<UserAdsInfo> list = adsList.Where(o => o.Nick == nick).ToList();
         foreach (UserAdsInfo info in list)
         {
             adsList.Remove(info);
