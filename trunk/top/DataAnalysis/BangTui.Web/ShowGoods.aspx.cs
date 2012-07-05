@@ -16,6 +16,7 @@ public partial class ShowGoods : System.Web.UI.Page
 {
     TaoBaoGoodsClassService tbgcDal = new TaoBaoGoodsClassService();
     UserAdsService uadsDal = new UserAdsService();
+    PagedDataSource pds = new PagedDataSource();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -29,11 +30,52 @@ public partial class ShowGoods : System.Web.UI.Page
             RPT_GOODSCLASS.DataSource = list;
             RPT_GOODSCLASS.DataBind();
 
+
             //获取分类下所有用户投放的广告
             IList<UserAdsInfo> adsList = uadsDal.SelectAllUserAdsByAdsId(new Guid(adsId), 1);
             //按时间倒序排列
             adsList = adsList.OrderByDescending(o => o.AddTime).ToList();
-            RPT_AdsList.DataSource = adsList;
+
+            int TotalCount = list.Count;
+            int TotalPage = 1; //总页数
+
+            int page = 1;
+            try
+            {
+                if (!string.IsNullOrEmpty(Request.QueryString["Page"]))
+                    page = int.Parse(Request.QueryString["Page"]);
+            }
+            catch { }
+
+            pds.DataSource = adsList;
+            pds.AllowPaging = true;
+            pds.PageSize = 80;
+
+            if (TotalCount == 0)
+                TotalPage = 1;
+            else
+            {
+                if (TotalCount % pds.PageSize == 0)
+                    TotalPage = TotalCount / pds.PageSize;
+                else
+                    TotalPage = TotalCount / pds.PageSize + 1;
+            }
+
+            pds.CurrentPageIndex = page - 1;
+            lblCurrentPage.Text = "共" + TotalCount.ToString() + "条记录 当前页：" + page + "/" + TotalPage;
+
+            string paramArray = "&adsId=" + adsId;
+
+            lnkFrist.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=1" + paramArray;
+            if (!pds.IsFirstPage)
+                lnkPrev.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + (page - 1) + paramArray;
+
+            if (!pds.IsLastPage)
+                lnkNext.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + (page + 1) + paramArray;
+            lnkEnd.NavigateUrl = Request.CurrentExecutionFilePath + "?Page=" + TotalPage + paramArray;
+
+
+            RPT_AdsList.DataSource = pds;
             RPT_AdsList.DataBind();
 
         }
