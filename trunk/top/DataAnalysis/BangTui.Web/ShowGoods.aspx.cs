@@ -25,9 +25,9 @@ public partial class ShowGoods : System.Web.UI.Page
             string cid = Request.QueryString["cid"];
             string adsId = Request.QueryString["adsid"];
 
-            IList<TaoBaoGoodsClassInfo> list = tbgcDal.SelectAllGoodsClass("0");
+            //IList<TaoBaoGoodsClassInfo> list = tbgcDal.SelectAllGoodsClass("0");
 
-            RPT_GOODSCLASS.DataSource = list;
+            RPT_GOODSCLASS.DataSource = new List<TaoBaoGoodsClassInfo>();
             RPT_GOODSCLASS.DataBind();
 
 
