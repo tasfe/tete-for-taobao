@@ -36,6 +36,18 @@ public partial class ShowGoods : System.Web.UI.Page
             //按时间倒序排列
             adsList = adsList.OrderByDescending(o => o.AddTime).ToList();
 
+            if (Request.Cookies["nick"] != null)
+            {
+                ShowLoginAds(adsList);
+            }
+            else
+            {
+                if (Session["snick"] != null)
+                {
+                    ShowLoginAds(adsList);
+                }
+            }
+
             int TotalCount = adsList.Count;
             int TotalPage = 1; //总页数
 
@@ -78,6 +90,20 @@ public partial class ShowGoods : System.Web.UI.Page
             RPT_AdsList.DataSource = pds;
             RPT_AdsList.DataBind();
 
+        }
+    }
+
+    private void ShowLoginAds(IList<UserAdsInfo> adsList)
+    {
+        IList<UserAdsInfo> list = adsList.Where(o => o.Nick == HttpUtility.UrlDecode(Request.Cookies["nick"].Value)).ToList();
+        foreach (UserAdsInfo info in list)
+        {
+            adsList.Remove(info);
+        }
+
+        foreach (UserAdsInfo info in list)
+        {
+            adsList.Insert(0, info);
         }
     }
 
