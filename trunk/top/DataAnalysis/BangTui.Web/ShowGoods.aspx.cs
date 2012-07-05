@@ -36,7 +36,7 @@ public partial class ShowGoods : System.Web.UI.Page
             //按时间倒序排列
             adsList = adsList.OrderByDescending(o => o.AddTime).ToList();
 
-            int TotalCount = list.Count;
+            int TotalCount = adsList.Count;
             int TotalPage = 1; //总页数
 
             int page = 1;
