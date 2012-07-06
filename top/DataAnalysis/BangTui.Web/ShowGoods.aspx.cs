@@ -105,6 +105,24 @@ public partial class ShowGoods : System.Web.UI.Page
         {
             adsList.Insert(0, info);
         }
+
+        Random rand = new Random();
+        int count = adsList.Count;
+        int min = 0;
+        int max = 80;
+        if (count > 5)
+            min = 6;
+        if (count < 80)
+            max = count;
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (i == 0)
+            {
+                adsList.Insert(0, list[i]);
+                continue;
+            }
+            adsList.Insert(rand.Next(min, max), list[i]);
+        }
     }
 
     protected string GetParam(string id, string url)
