@@ -101,10 +101,10 @@ public partial class ShowGoods : System.Web.UI.Page
             adsList.Remove(info);
         }
 
-        foreach (UserAdsInfo info in list)
-        {
-            adsList.Insert(0, info);
-        }
+        //foreach (UserAdsInfo info in list)
+        //{
+        //    adsList.Insert(0, info);
+        //}
 
         Random rand = new Random();
         int count = adsList.Count;
