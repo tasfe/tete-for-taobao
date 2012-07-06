@@ -26,14 +26,17 @@ public partial class _Default : System.Web.UI.Page
                 {
                     IList<TaoBaoGoodsClassInfo> classList = TopAPI.GetGoodsClassInfoList(nick, session);
 
-                    GoodsService goodsDal = new GoodsService();
-                    TaoBaoGoodsClassService tbgcDal = new TaoBaoGoodsClassService();
-
-                    foreach (TaoBaoGoodsClassInfo cinfo in classList)
+                    if (classList != null)
                     {
-                        tbgcDal.InsertGoodsClass(cinfo, nick);
+                        TaoBaoGoodsClassService tbgcDal = new TaoBaoGoodsClassService();
+
+                        foreach (TaoBaoGoodsClassInfo cinfo in classList)
+                        {
+                            tbgcDal.InsertGoodsClass(cinfo, nick);
+                        }
                     }
 
+                    GoodsService goodsDal = new GoodsService();
                     IList<TaoBaoGoodsInfo> list = TopAPI.GetGoodsInfoListByNick(nick, session);
 
                     foreach (TaoBaoGoodsInfo info in list)
