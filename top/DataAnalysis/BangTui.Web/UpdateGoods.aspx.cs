@@ -43,7 +43,7 @@ public partial class UpdateGoods : System.Web.UI.Page
             nick = Session["snick"].ToString();
             session = Session["ssession"].ToString();
         }
-        if (nick == "")
+        if (nick == "" || session == "")
         {
             Response.Write("请重新登录");
             return;
@@ -60,6 +60,8 @@ public partial class UpdateGoods : System.Web.UI.Page
             {
                 tbgcDal.InsertGoodsClass(cinfo, nick);
             }
+
+            Response.Redirect("UserAddAds.aspx");
         }
 
         
@@ -78,7 +80,7 @@ public partial class UpdateGoods : System.Web.UI.Page
             nick = Session["snick"].ToString();
             session = Session["ssession"].ToString();
         }
-        if (nick == "")
+        if (nick == "" || session == "")
         {
             Response.Write("请重新登录");
             return;
@@ -93,5 +95,6 @@ public partial class UpdateGoods : System.Web.UI.Page
         {
             goodsDal.InsertGoodsInfo(info, nick);
         }
+        Response.Redirect("UserAddAds.aspx");
     }
 }
