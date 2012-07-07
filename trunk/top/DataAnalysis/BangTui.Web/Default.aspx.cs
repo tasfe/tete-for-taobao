@@ -54,6 +54,8 @@ public partial class _Default : System.Web.UI.Page
                 LogInfo.Add("添加了cookie", nick);
 
                 Session["snick"] = nick;
+                Session["ssession"] = session;
+
                 Response.Cookies.Add(cooksession);
 
                 HttpCookie tongji = new HttpCookie("istongji", Request.QueryString["istongji"]);
