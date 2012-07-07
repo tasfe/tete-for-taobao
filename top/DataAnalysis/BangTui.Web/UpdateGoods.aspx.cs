@@ -36,7 +36,7 @@ public partial class UpdateGoods : System.Web.UI.Page
         if (Request.Cookies["nick"] != null)
         {
             nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value); //"nick"; 
-            session = Request.Cookies["session"].Value;
+            session = Request.Cookies["nicksession"].Value;
         }
         else
         {
@@ -73,7 +73,7 @@ public partial class UpdateGoods : System.Web.UI.Page
         if (Request.Cookies["nick"] != null)
         {
             nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value); //"nick"; 
-            session = Request.Cookies["session"].Value;
+            session = Request.Cookies["nicksession"].Value;
         }
         else
         {
