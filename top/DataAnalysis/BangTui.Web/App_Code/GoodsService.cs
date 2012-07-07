@@ -21,6 +21,13 @@ public class GoodsService
 
     const string SQL_INSERT = "INSERT BangT_Goods(GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId,Nick) VALUES(@GoodsId,@GoodsName,@GoodsPrice,@GoodsCount,@GoodsPic,@Modified,@CateId,@TaoBaoCId,@Nick)";
 
+    const string SQL_DELETE = "DELETE FROM BangT_Goods WHERE Nick=@Nick";
+
+    public int DeleteGoodsByNick(string nick)
+    {
+        return DBHelper.ExecuteNonQuery(SQL_DELETE, new SqlParameter("@Nick", nick));
+    }
+
     public IList<GoodsInfo> SelectAllGoodsByNick(string nick)
     {
         DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_ALLGOODS, new SqlParameter("@Nick", nick));

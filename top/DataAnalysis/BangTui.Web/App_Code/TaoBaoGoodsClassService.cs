@@ -23,6 +23,13 @@ public class TaoBaoGoodsClassService
 
     const string SQL_INSERT = "INSERT BangT_Category(CateId,CateName,ParentId,Nick) VALUES(@CateId,@CateName,@ParentId,@Nick)";
 
+    const string SQL_DELETE = "DELETE FROM BangT_Category WHERE Nick=@Nick";
+
+    public int DeleteClassByNick(string nick)
+    {
+        return DBHelper.ExecuteNonQuery(SQL_DELETE, new SqlParameter("@Nick", nick));
+    }
+
     public TaoBaoGoodsClassInfo SelectGoodsClass(string cid)
     {
         TaoBaoGoodsClassInfo info = null;
