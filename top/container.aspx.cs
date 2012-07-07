@@ -149,6 +149,8 @@ public partial class top_container : System.Web.UI.Page
                 sql = "SELECT COUNT(*) FROM [BangT_Buys] WHERE nick = '" + u + "'";
                 string count = utils.ExecuteString(sql);
 
+                //UPDATE BangT_UsedInfo SET UsedTimes=0 WHERE nick=@nick
+
                 if (count != "0")
                 {
                     //update
@@ -157,6 +159,18 @@ public partial class top_container : System.Web.UI.Page
 
                     sql = "UPDATE BangT_UserAds SET feeid='" + guid + "' WHERE nick='" + u + "' AND   UserAdsState<>0";
                     utils.ExecuteNonQuery(sql);
+
+                    //update xufei
+                    sql = "SELECT COUNT(*) FROM BangT_Buys WHERE nick = '" + u + "' AND feeid <> '28F46E17-3117-44E7-847F-79D0BB0BEF69' AND isexpied = 1";
+                    string count1 = utils.ExecuteString(sql);
+                    if (count1 != "0")
+                    {
+                        sql = "UPDATE BangT_UsedInfo SET UsedTimes=0 WHERE nick='" + u + "'";
+                        utils.ExecuteNonQuery(sql);
+
+                        sql = "UPDATE BangT_Buys SET isexpied=0,buytime=GETDATE() WHERE nick='" + u + "'";
+                        utils.ExecuteNonQuery(sql);
+                    }
                 }
                 else
                 { 
