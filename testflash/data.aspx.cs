@@ -66,7 +66,7 @@ public partial class testflash_data : System.Web.UI.Page
         }
         else
         {
-            sql = "select id,name ,startDate,enddate,productname,productprice,productimg,producturl,productid,nick,rcount as maxcount,rcount as buycount,discountType,discountValue ,tagid,promotionid,rcount as groupbyPcount from tete_activitylist WHERE nick = '" + nick + "' AND status=1 AND enddate>getdate() ORDER BY ID  DESC";
+            sql = "select id,name ,startDate,enddate as endtime,productname,productprice,productimg,producturl,productid,nick,rcount as maxcount,rcount as buycount,discountType,discountValue ,tagid,promotionid,rcount as groupbyPcount from tete_activitylist WHERE nick = '" + nick + "' AND status=1 AND enddate>getdate() ORDER BY ID  DESC";
              dt = utils.ExecuteDataTable(sql);
              if (dt.Rows.Count != 0)
              {
@@ -82,7 +82,7 @@ public partial class testflash_data : System.Web.UI.Page
                  {
                      try
                      {
-                         newprice = (decimal.Parse(productprice) * decimal.Parse(discountValue) * 0.1m).ToString();
+                         newprice = (decimal.Parse(productprice)-(decimal.Parse(productprice) * decimal.Parse(discountValue) * 0.1m)).ToString();
                          zhekou = dt.Rows[0]["discountValue"].ToString();
                      }
                      catch {
@@ -95,7 +95,7 @@ public partial class testflash_data : System.Web.UI.Page
                      try
                      { 
                          newprice = (decimal.Parse(productprice) - decimal.Parse(discountValue)).ToString();
-                         zhekou = (decimal.Parse(newprice) * 0.1m).ToString();
+                         zhekou = (decimal.Parse(newprice) / decimal.Parse(productprice)).ToString();
                      }
                      catch
                      {
@@ -108,6 +108,10 @@ public partial class testflash_data : System.Web.UI.Page
                  goodsimageurl = DownPic(goodsimageurl);
                  TimeSpan tdays = endDate - startDate;  //得到时间差
                  string h = Math.Floor(tdays.TotalHours).ToString();
+                 //price.text = param[3];//团购价
+                 //price0.text = param[1];//原价
+                 //zhekou.text = param[2];//折扣
+                 //js.text = param[6];//节省
                  str = goodsimageurl;
                  str += "|" + productprice;
                  str += "|" + Math.Round((decimal.Parse(productprice) - decimal.Parse(newprice)) / decimal.Parse(productprice) * 10, 1).ToString();
