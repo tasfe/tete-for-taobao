@@ -66,7 +66,67 @@ public partial class testflash_data : System.Web.UI.Page
         }
         else
         {
-            str = "0";
+            sql = "select id,name ,startDate,enddate,productname,productprice,productimg,producturl,productid,nick,rcount as maxcount,rcount as buycount,discountType,discountValue ,tagid,promotionid,rcount as groupbyPcount from tete_activitylist WHERE nick = '" + nick + "' AND status=1 AND enddate>getdate() ORDER BY ID  DESC";
+             dt = utils.ExecuteDataTable(sql);
+             if (dt.Rows.Count != 0)
+             {
+                 string groupbuyname = dt.Rows[0]["name"].ToString();
+                 string productprice = dt.Rows[0]["productprice"].ToString();
+                 string goodsimageurl = dt.Rows[0]["productimg"].ToString();
+                 string maxcount = dt.Rows[0]["maxcount"].ToString();
+                 string discountType = dt.Rows[0]["discountType"].ToString();
+                 string discountValue = dt.Rows[0]["discountValue"].ToString();
+                 string newprice = "";
+                 string zhekou = "";
+                 if (discountType.Trim() == "DISCOUNT")
+                 {
+                     try
+                     {
+                         newprice = (decimal.Parse(productprice) * decimal.Parse(discountValue) * 0.1m).ToString();
+                         zhekou = dt.Rows[0]["discountValue"].ToString();
+                     }
+                     catch {
+                         newprice = "0";
+                         zhekou = "0";
+                     }
+                 }
+                 else
+                 {
+                     try
+                     { 
+                         newprice = (decimal.Parse(productprice) - decimal.Parse(discountValue)).ToString();
+                         zhekou = (decimal.Parse(newprice) * 0.1m).ToString();
+                     }
+                     catch
+                     {
+                         newprice = "0";
+                         zhekou = "0";
+                     }
+                 }
+                 DateTime startDate = DateTime.Now;
+                 DateTime endDate = DateTime.Parse(dt.Rows[0]["endtime"].ToString());
+                 goodsimageurl = DownPic(goodsimageurl);
+                 TimeSpan tdays = endDate - startDate;  //得到时间差
+                 string h = Math.Floor(tdays.TotalHours).ToString();
+                 str = goodsimageurl;
+                 str += "|" + productprice;
+                 str += "|" + Math.Round((decimal.Parse(productprice) - decimal.Parse(newprice)) / decimal.Parse(productprice) * 10, 1).ToString();
+                 str += "|" + zhekou;
+                 str += "|" + groupbuyname;
+                 str += "|" + dt.Rows[0]["producturl"].ToString();
+                 str += "|" + newprice;
+                 str += "|" + dt.Rows[0]["id"].ToString();
+                 str += "|" + dt.Rows[0]["groupbyPcount"].ToString();
+                 str += "|" + h;
+                 str += "|" + tdays.Minutes.ToString();
+                 str += "|" + tdays.Seconds.ToString();
+                 str += "|" + shopName;
+                 str += "|" + HttpUtility.UrlEncode(nick);
+             }
+             else
+             {
+                 str = "0";
+             }
         }
 
         WriteDeleteLog("flashStr:" + str, "");
