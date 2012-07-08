@@ -82,8 +82,8 @@ public partial class testflash_data : System.Web.UI.Page
                  {
                      try
                      {
-                         newprice = (decimal.Parse(productprice)-(decimal.Parse(productprice) * decimal.Parse(discountValue) * 0.1m)).ToString();
-                         zhekou = dt.Rows[0]["discountValue"].ToString();
+                         newprice = (decimal.Parse(productprice) -(decimal.Parse(productprice) * decimal.Parse(discountValue) * 0.1m)).ToString();//节省的钱
+                         zhekou = (decimal.Parse(productprice) - decimal.Parse(newprice)).ToString();//团购价
                      }
                      catch {
                          newprice = "0";
@@ -93,9 +93,10 @@ public partial class testflash_data : System.Web.UI.Page
                  else
                  {
                      try
-                     { 
-                         newprice = (decimal.Parse(productprice) - decimal.Parse(discountValue)).ToString();
-                         zhekou = (decimal.Parse(newprice) / decimal.Parse(productprice)).ToString();
+                     {
+                         
+                         zhekou = (decimal.Parse(productprice) - decimal.Parse(discountValue)).ToString();//团购价
+                         newprice = (decimal.Parse(productprice) - decimal.Parse(zhekou)).ToString();//节省的钱
                      }
                      catch
                      {
