@@ -40,7 +40,7 @@ public partial class top_review_testapi : System.Web.UI.Page
         //Response.Write("<textarea>" + result + "</textarea>");
 
         param = new Dictionary<string, string>();
-        param.Add("num_iid", "3808721752");
+        param.Add("num_iid", "16791228388");
         param.Add("food_security.prd_license_no", "130917020079");
         //param.Add("food_security.design_code", "130917020079");
         param.Add("food_security.factory", "黄骅市绿之源食品有限公司");
