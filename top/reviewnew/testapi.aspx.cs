@@ -22,7 +22,7 @@ public partial class top_review_testapi : System.Web.UI.Page
         string appkey = "12159997";
         string secret = "614e40bfdb96e9063031d1a9e56fbed5";
 
-        string session = "610152474902a86e80452ecc64336ed91b0b6ddf6efb5aa289751303";
+        string session = "6101e148fa4d6d086e2c241bac20205759fa35daa275ee8183843990";
 
 
         //91599347271901
@@ -40,11 +40,22 @@ public partial class top_review_testapi : System.Web.UI.Page
         //Response.Write("<textarea>" + result + "</textarea>");
 
         param = new Dictionary<string, string>();
-        param.Add("coupon_id", "5607877");
-        param.Add("buyer_nick", "馨蕾aa");
-        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupondetail.get", session, param);
+        param.Add("num_iid", "3808721752");
+        param.Add("food_security.prd_license_no", "130917020079");
+        //param.Add("food_security.design_code", "130917020079");
+        param.Add("food_security.factory", "黄骅市绿之源食品有限公司");
+        param.Add("food_security.factory_site", "河北省沧州市黄骅市孔店冬枣市场");
+        param.Add("food_security.contact", "5469827");
+        param.Add("food_security.mix", "鲜冬枣 棕榈油");
+        param.Add("food_security.plan_storage", "低于24度阴凉干燥处存放");
+        param.Add("food_security.contact", "300天");
+        param.Add("food_security.mix", "无");
+        param.Add("food_security.product_date_start", "2012-06-01");
+        param.Add("food_security.product_date_end", "2012-07-06");
+        param.Add("food_security.stock_date_start", "2012-07-06");
+        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update", session, param);
         Response.Write("<textarea>" + result + "</textarea>");
-
+        return;
         //param = new Dictionary<string, string>();
         //param.Add("promotion_id", "97049550");
         //result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotions.delete", session, param);
