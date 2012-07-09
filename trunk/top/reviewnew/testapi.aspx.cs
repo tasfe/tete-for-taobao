@@ -48,8 +48,8 @@ public partial class top_review_testapi : System.Web.UI.Page
         param.Add("food_security.contact", "5469827");
         param.Add("food_security.mix", "鲜冬枣 棕榈油");
         param.Add("food_security.plan_storage", "低于24度阴凉干燥处存放");
-        param.Add("food_security.contact", "300天");
-        param.Add("food_security.mix", "无");
+        param.Add("food_security.period", "300天");
+        param.Add("food_security.food_additive", "无");
         param.Add("food_security.product_date_start", "2012-06-01");
         param.Add("food_security.product_date_end", "2012-07-06");
         param.Add("food_security.stock_date_start", "2012-07-06");
