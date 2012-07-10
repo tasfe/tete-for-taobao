@@ -161,7 +161,7 @@ public partial class top_container : System.Web.UI.Page
                     utils.ExecuteNonQuery(sql);
 
                     //update xufei
-                    sql = "SELECT COUNT(*) FROM BangT_Buys WHERE nick = '" + u + "' AND feeid <> '28F46E17-3117-44E7-847F-79D0BB0BEF69' AND isexpied = 1";
+                    sql = "SELECT COUNT(*) FROM BangT_Buys WHERE nick = '" + u + "' AND isexpied = 1";
                     string count1 = utils.ExecuteString(sql);
                     if (count1 != "0")
                     {
