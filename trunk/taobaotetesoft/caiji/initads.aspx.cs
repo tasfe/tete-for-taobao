@@ -16,28 +16,31 @@ public partial class taobaotetesoft_caiji_initads : System.Web.UI.Page
         str += "else if(alimama_pid == 'mm_21154906_2327568_9027087' || alimama_pid == 'mm_21154906_2327568_9010193'){alimama_pid='mm_11227037_3127410_10392713'; document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
         str += "else if(alimama_pid == 'mm_21154906_2327568_9027111' || alimama_pid == 'mm_21154906_2327568_9027109'){}";
 
+
+
         //niubibang 
         str += "else if(alimama_pid == 'mm_21154906_2367810_9141396'){alimama_width=250; alimama_height=250; alimama_pid='mm_11227037_3161832_10459034';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
-
+        //gg1
         str += "else if(alimama_pid == 'mm_21154906_2367810_9141398'){alimama_pid='mm_11227037_3161832_10459035'; alimama_width=950; alimama_height=170; document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
         str += "else if(alimama_pid == 'mm_21154906_2367810_9245956'){alimama_pid='mm_11227037_3161832_10459035';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
-
+        //gg2
         str += "else if(alimama_pid == 'mm_21154906_2367810_9141401' || alimama_pid == 'mm_21154906_2367810_9245933'){alimama_pid='mm_11227037_3161832_10459037';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
-
         //left xiao
         str += "else if(alimama_pid == 'mm_21154906_2367810_9141404' || alimama_pid == 'mm_21154906_2367810_9245941'){alimama_pid='mm_11227037_3161832_10459038';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
         //right xiao
         str += "else if(alimama_pid == 'mm_21154906_2367810_9141414' || alimama_pid == 'mm_21154906_2367810_9245943'){alimama_pid='mm_11227037_3161832_10459039';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
-
+        //bottom
         str += "else if(alimama_pid == 'mm_21154906_2367810_9141419' || alimama_pid == 'mm_21154906_2367810_9245962' || alimama_pid == 'mm_21154906_2367810_9245979'){alimama_pid='mm_11227037_3161832_10466739';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
+
+
 
         //woaizhuangxiu
         str += "else if(alimama_pid == 'mm_21154906_2327674_9010467'){alimama_pid='mm_11227037_3162427_10460018'; alimama_width=250; alimama_height=250; document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
-        str += "else if(alimama_pid == 'mm_11523861_2344778_9064059'){alimama_pid='mm_11227037_3162476_10466866'; alimama_width=950; alimama_height=170; document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
-        str += "else if(alimama_pid == 'mm_21154906_2367810_9141401' || alimama_pid == 'mm_21154906_2367810_9245933'){alimama_pid='mm_11227037_3161832_10459037';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
-        //str += "else if(alimama_pid == 'mm_21154906_2367810_9141404' || alimama_pid == 'mm_21154906_2367810_9245941'){alimama_pid='mm_11227037_3161832_10459038';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
-        //str += "else if(alimama_pid == 'mm_21154906_2367810_9141414' || alimama_pid == 'mm_21154906_2367810_9245943'){alimama_pid='mm_11227037_3161832_10459039';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
-        //str += "else if(alimama_pid == 'mm_21154906_2367810_9141419' || alimama_pid == 'mm_21154906_2367810_9245962' || alimama_pid == 'mm_21154906_2367810_9245979'){alimama_pid='mm_11227037_3161832_10466739';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
+        str += "else if(alimama_pid == 'mm_11523861_2344778_9064059' ||  alimama_pid == 'mm_11523861_2344778_9254320'){alimama_pid='mm_11227037_3162476_10466866'; alimama_width=950; alimama_height=170; document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
+        str += "else if(alimama_pid == 'mm_11523861_2344778_9064116' || alimama_pid == 'mm_11523861_2344778_9254316'){alimama_pid='mm_11227037_3162476_10466867';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
+        str += "else if(alimama_pid == 'mm_11523861_2344778_9064118' || alimama_pid == 'mm_11523861_2344778_9254323'){alimama_pid='mm_11227037_3162476_10466870';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
+        str += "else if(alimama_pid == 'mm_11523861_2344778_9064121' || alimama_pid == 'mm_11523861_2344778_9254326'){alimama_pid='mm_11227037_3162476_10466873';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
+        str += "else if(alimama_pid == 'mm_11523861_2344778_9064123' || alimama_pid == 'mm_11523861_2344778_9254329'){alimama_pid='mm_11227037_3162476_10466878';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
 
         //tianshibaobei
         str += "else if(alimama_pid == 'mm_11523861_2344778_9064110'){alimama_pid='mm_11227037_3162476_10460090'; alimama_width=250; alimama_height=250; document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
