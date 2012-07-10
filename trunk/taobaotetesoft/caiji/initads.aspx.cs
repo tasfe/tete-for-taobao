@@ -23,7 +23,7 @@ public partial class taobaotetesoft_caiji_initads : System.Web.UI.Page
         str += "else if(alimama_pid == 'mm_21154906_2367810_9141404' || alimama_pid == 'mm_21154906_2367810_9245941'){alimama_pid='mm_11227037_3161832_10459038';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
         str += "else if(alimama_pid == 'mm_21154906_2367810_9141414' || alimama_pid == 'mm_21154906_2367810_9245943'){alimama_pid='mm_11227037_3161832_10459039';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
 
-        str += "else if(alimama_pid == 'mm_21154906_2367810_9141419'){alimama_pid='mm_11227037_3161832_10466739';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
+        str += "else if(alimama_pid == 'mm_21154906_2367810_9141419' || alimama_pid == 'mm_21154906_2367810_9245962' || alimama_pid == 'mm_21154906_2367810_9245979'){alimama_pid='mm_11227037_3161832_10466739';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
 
         //woaizhuangxiu
         str += "else if(alimama_pid == 'mm_21154906_2327674_9010467'){alimama_pid='mm_11227037_3162427_10460018'; alimama_width=250; alimama_height=250; document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
