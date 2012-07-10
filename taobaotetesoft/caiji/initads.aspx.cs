@@ -18,7 +18,7 @@ public partial class taobaotetesoft_caiji_initads : System.Web.UI.Page
 
         //niubibang 
         str += "else if(alimama_pid == 'mm_21154906_2367810_9141396'){alimama_pid='mm_11227037_3161832_10459034'; alimama_width=250; alimama_height=250; document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
-        str += "else if(alimama_pid == 'mm_21154906_2367810_9141398'){alimama_pid='mm_11227037_3161832_10459035'; alimama_width=950; alimama_height=150; document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
+        str += "else if(alimama_pid == 'mm_21154906_2367810_9141398'){alimama_pid='mm_11227037_3161832_10459035'; alimama_width=950; alimama_height=170; document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
 
         //woaizhuangxiu
         str += "else if(alimama_pid == 'mm_21154906_2327674_9010467'){alimama_pid='mm_11227037_3162427_10460018'; alimama_width=250; alimama_height=250; document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
