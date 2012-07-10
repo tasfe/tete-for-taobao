@@ -51,6 +51,14 @@ public partial class taobaotetesoft_caiji_initads : System.Web.UI.Page
         str += "else if(alimama_pid == 'mm_21154906_2327674_9010587' || alimama_pid == 'mm_21154906_2327674_9059234'){alimama_pid='mm_11227037_3162427_10467129';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
         str += "else if(alimama_pid == 'mm_21154906_2327674_9010581' || alimama_pid == 'mm_21154906_2327674_9059237'){alimama_pid='mm_11227037_3162427_10467130';  document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
 
+        //go12go
+        str += "else if(alimama_pid == 'mm_10128191_208985_2478481'){alimama_pid='mm_11227037_3167205_10468715'; document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
+        str += "else if(alimama_pid == 'mm_10128191_208985_7882501'){alimama_pid='mm_11227037_3167205_10468717'; alimama_width=250; alimama_height=250; document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
+        str += "else if(alimama_pid == 'mm_10128191_208985_6823512'){alimama_pid='mm_11227037_3167205_10468719'; document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
+        str += "else if(alimama_pid == 'mm_10128191_208985_1622657'){alimama_pid='mm_11227037_3167205_10468720'; document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
+        str += "else if(alimama_pid == 'mm_10128191_208985_1622774'){alimama_pid='mm_11227037_3167205_10468723'; document.write('<script src=\"http://a.alimama.cn/inf.js\" type=\"text/javascript\"></script> ')}";
+
+
         str += "else{ document.write('<a href=http://gg.7fshop.com/redirect.aspx?id='+alimama_pid+'><img src=http://gg.7fshop.com/show.aspx?id='+alimama_pid+' border=0 height='+alimama_height+' width='+alimama_width+'></a>');}";
 
         Response.Write(str);
