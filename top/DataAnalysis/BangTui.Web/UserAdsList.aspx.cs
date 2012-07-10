@@ -318,7 +318,7 @@ public partial class UserAdsList : System.Web.UI.Page
         if (list.Count == 1)
             return list[0].AdsId;
         Random rand = new Random();
-        return list[rand.Next(list.Count - 1)].AdsId;
+        return list[rand.Next(list.Count)].AdsId;
     }
 
     private string GetTaoBaoCId(string taoId, ref string cids)
