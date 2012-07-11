@@ -24,6 +24,10 @@
            <td>宝贝价格：</td>
            <td><asp:TextBox ID="TB_Price" runat="server"></asp:TextBox></td>
         </tr>
+          <tr>
+           <td>宝贝库存：</td>
+           <td><asp:TextBox ID="TB_Count" runat="server"></asp:TextBox></td>
+        </tr>
          <tr>
            <td>宝贝主图地址：</td>
            <td><asp:TextBox ID="TB_Url" runat="server" Width="400px"></asp:TextBox></td>
