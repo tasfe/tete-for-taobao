@@ -59,6 +59,7 @@ public partial class AddGoods : System.Web.UI.Page
                 info.price = decimal.Parse(TB_Price.Text.Trim());
                 info.pic_url = TB_Url.Text.Trim();
                 info.cid = "";
+                info.num = int.Parse(TB_Count.Text);
 
                 info.modified = DateTime.Now;
 
