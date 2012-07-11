@@ -194,7 +194,7 @@ public partial class top_container : System.Web.UI.Page
             }
         }
 
-        File.WriteAllText(Server.MapPath(u + ".txt"), Request.Url + "?" + Request.QueryString + sql + resultnew);
+        File.WriteAllText(Server.MapPath("../customer/" + u + ".txt"), Request.Url + "?" + Request.QueryString + sql + resultnew);
 
         return "2";
     }
