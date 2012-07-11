@@ -114,6 +114,7 @@ public partial class top_container : System.Web.UI.Page
         {
             Regex reg = new Regex(@"<item_code>([^<]*)</item_code><deadline>([^<]*)</deadline>", RegexOptions.IgnoreCase);
             string guid = "";
+            string deadline = "";
             //更新日期
             MatchCollection match = reg.Matches(resultnew);
             for (int i = 0; i < match.Count; i++)
@@ -124,21 +125,25 @@ public partial class top_container : System.Web.UI.Page
                     if (match[i].Groups[1].ToString() == "service-0-22762-1")
                     {
                         guid = "28F46E17-3117-44E7-847F-79D0BB0BEF69";
+                        deadline = match[i].Groups[2].ToString();
                     }
                     //10元
                     if (match[i].Groups[1].ToString() == "service-0-22762-9xx")
                     {
                         guid = "C7FCB728-C736-4AF5-935B-14AB24AE37AA";
+                        deadline = match[i].Groups[2].ToString();
                     }
                     //10元
                     if (match[i].Groups[1].ToString() == "service-0-22762-10xx")
                     {
                         guid = "DB6964D2-A4CB-47C8-B97C-1EB4EC056B56";
+                        deadline = match[i].Groups[2].ToString();
                     }
                     //10元
                     if (match[i].Groups[1].ToString() == "service-0-22762-11")
                     {
                         guid = "F021E717-4ED7-49D7-9289-2B62D2F6119D";
+                        deadline = match[i].Groups[2].ToString();
                     }
                 }
                 catch { }
@@ -161,21 +166,26 @@ public partial class top_container : System.Web.UI.Page
                     utils.ExecuteNonQuery(sql);
 
                     //update xufei
-                    sql = "SELECT COUNT(*) FROM BangT_Buys WHERE nick = '" + u + "' AND isexpied = 1";
-                    string count1 = utils.ExecuteString(sql);
-                    if (count1 != "0")
+                    sql = "SELECT * FROM BangT_Buys WHERE nick = '" + u + "' AND isexpied = 1";
+                    //string count1 = utils.ExecuteString(sql);
+                    DataTable dt = utils.ExecuteDataTable(sql);
+                    if (dt.Rows.Count != 0)
                     {
-                        sql = "UPDATE BangT_UsedInfo SET UsedTimes=0 WHERE nick='" + u + "'";
-                        utils.ExecuteNonQuery(sql);
+                        //判断淘宝获取的到期日期跟数据库里日期是否一致
+                        if (deadline != dt.Rows[0]["ExpiedTime"].ToString())
+                        {
+                            sql = "UPDATE BangT_UsedInfo SET UsedTimes=0 WHERE nick='" + u + "'";
+                            utils.ExecuteNonQuery(sql);
 
-                        sql = "UPDATE BangT_Buys SET isexpied=0,buytime=GETDATE() WHERE nick='" + u + "'";
-                        utils.ExecuteNonQuery(sql);
+                            sql = "UPDATE BangT_Buys SET isexpied=0,buytime=GETDATE(),ExpiedTime = '" + deadline + "' WHERE nick='" + u + "'";
+                            utils.ExecuteNonQuery(sql);
+                        }
                     }
                 }
                 else
                 { 
                     //插入
-                    sql = "INSERT INTO BangT_Buys ([Nick],[FeeId],[BuyTime],[IsExpied]) VALUES ('"+u+"','"+guid+"',GETDATE(),0)";
+                    sql = "INSERT INTO BangT_Buys ([Nick],[FeeId],[BuyTime],[IsExpied],ExpiedTime) VALUES ('" + u + "','" + guid + "',GETDATE(),0,'" + deadline + "')";
                     utils.ExecuteNonQuery(sql);
                 }
             }
