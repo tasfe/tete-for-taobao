@@ -172,13 +172,16 @@ public partial class top_container : System.Web.UI.Page
                     if (dt.Rows.Count != 0)
                     {
                         //判断淘宝获取的到期日期跟数据库里日期是否一致
-                        if (deadline != dt.Rows[0]["ExpiedTime"].ToString())
+                        if (dt.Rows[0]["ExpiedTime"] != DBNull.Value)
                         {
-                            sql = "UPDATE BangT_UsedInfo SET UsedTimes=0 WHERE nick='" + u + "'";
-                            utils.ExecuteNonQuery(sql);
+                            if (deadline != DateTime.Parse(dt.Rows[0]["ExpiedTime"].ToString()).ToString("yyyy-MM-dd HH:mm:ss"))
+                            {
+                                sql = "UPDATE BangT_UsedInfo SET UsedTimes=0 WHERE nick='" + u + "'";
+                                utils.ExecuteNonQuery(sql);
 
-                            sql = "UPDATE BangT_Buys SET isexpied=0,buytime=GETDATE(),ExpiedTime = '" + deadline + "' WHERE nick='" + u + "'";
-                            utils.ExecuteNonQuery(sql);
+                                sql = "UPDATE BangT_Buys SET isexpied=0,buytime=GETDATE(),ExpiedTime = '" + deadline + "' WHERE nick='" + u + "'";
+                                utils.ExecuteNonQuery(sql);
+                            }
                         }
                     }
                 }
