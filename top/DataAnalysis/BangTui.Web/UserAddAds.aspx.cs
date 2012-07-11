@@ -319,20 +319,19 @@ public partial class UserAddAds : System.Web.UI.Page
         IList<GoodsInfo> list = new List<GoodsInfo>();
         if (string.IsNullOrEmpty(TB_StartTime.Text) || string.IsNullOrEmpty(TB_EndTime.Text))
         {
-            //list = goodsDal.SearchGoods(nick, TB_GoodsName.Text.Trim(), DDL_GoodsClass.SelectedValue == "0" ? "" : DDL_GoodsClass.SelectedValue);
-
             ViewState["page"] = 1;
             Bind(TB_GoodsName.Text.Trim(), DDL_GoodsClass.SelectedValue == "0" ? "" : DDL_GoodsClass.SelectedValue, DateTime.MinValue, DateTime.MinValue);
         }
 
         if (!string.IsNullOrEmpty(TB_StartTime.Text) && !string.IsNullOrEmpty(TB_EndTime.Text))
         {
-            //list = goodsDal.SearchGoods(nick, TB_GoodsName.Text.Trim(), DDL_GoodsClass.SelectedValue == "0" ? "" : DDL_GoodsClass.SelectedValue, new DateTime[] { DateTime.Parse(TB_StartTime.Text), DateTime.Parse(TB_EndTime.Text) });
-
             ViewState["page"] = 1;
             Bind(TB_GoodsName.Text.Trim(), DDL_GoodsClass.SelectedValue == "0" ? "" : DDL_GoodsClass.SelectedValue, DateTime.Parse(TB_StartTime.Text), DateTime.Parse(TB_EndTime.Text));
         }
-        //Rpt_GoodsList.DataSource = list;
-        //Rpt_GoodsList.DataBind();
+    }
+
+    protected void Btn_ShowAddGoods_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("AddGoods.aspx");
     }
 }
