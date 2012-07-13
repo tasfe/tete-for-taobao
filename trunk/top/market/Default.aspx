@@ -50,10 +50,10 @@
   <tr>
     <td height="24"><div align="right">费用</div></td>
     <td><div align="center">
-3元/7天<br />
-9元/3周<br />
-18元/6周<br />
-36元/12周
+1元/7天<br />
+3元/3周<br />
+6元/6周<br />
+12元/12周
 </div></td>
      <td><div align="center">
 28元/月<br />
