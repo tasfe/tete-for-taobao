@@ -25,7 +25,7 @@ public partial class ipclick : System.Web.UI.Page
             IList<AdsInfo> adsList = CacheCollection.GetAllAdsInfo();
 
             Random rand = new Random();
-            AdsInfo info = adsList[rand.Next(adsList.Count - 1)];
+            AdsInfo info = adsList[rand.Next(adsList.Count)];
 
             IList<UserAdsInfo> list = uasDal.SelectAllUserAdsByAdsId(info.AdsId, 1);
 
@@ -54,7 +54,7 @@ public partial class ipclick : System.Web.UI.Page
             foreach (ClickInfo cinfo in clickList)
             {
 
-                if (cinfo.ClickCount >= rand.Next(6,14))//10)
+                if (cinfo.ClickCount >= rand.Next(6,15))//10)
                 {
                     IList<UserAdsInfo> hadlist = list.Where(o => o.Id == cinfo.UserAdsId).ToList();
 
@@ -67,13 +67,13 @@ public partial class ipclick : System.Web.UI.Page
                                 list.Remove(hadlist[0]);
                             else
                             {
-                                if (cinfo.ClickCount >= rand.Next(14, 22))//18)
+                                if (cinfo.ClickCount >= rand.Next(14, 23))//18)
                                     list.Remove(hadlist[0]);
                             }
                         }
                         if (finfo.AdsType == 5)
                         {
-                            if (cinfo.ClickCount >= rand.Next(22, 32)) //27)
+                            if (cinfo.ClickCount >= rand.Next(22, 33)) //27)
                                 list.Remove(hadlist[0]);
                         }
                     }
@@ -85,7 +85,7 @@ public partial class ipclick : System.Web.UI.Page
 
             UserAdsInfo uinfo = list[0];
             if (list.Count > 1)
-                uinfo = list[rand.Next(list.Count - 1)];
+                uinfo = list[rand.Next(list.Count)];
 
             ClickIPInfo iinfo = new ClickIPInfo();
             iinfo.VisitIP = ip;
