@@ -450,7 +450,7 @@ public partial class top_containerblog : System.Web.UI.Page
                             "nick, " +
                             "count " +
                         " ) VALUES ( " +
-                            " '推荐好友赠送80条短信', " +
+                            " '推荐好友【" + shop.Nick + "】赠送80条短信', " +
                             " GETDATE(), " +
                             " '" + nickFrom + "', " +
                             " '" + giftMsg + "' " +
