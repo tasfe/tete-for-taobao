@@ -46,7 +46,7 @@
            <td colspan="5" align="left"><asp:Button Text="开始推广选中的宝贝" ID="Button1" 
                    runat="server" onclick="BTN_ShowGoods_Click" />&nbsp;
                    <asp:Button ID="Btn_ShowAddGoods" runat="server" Text="添加商品" 
-                   onclick="Btn_ShowAddGoods_Click" /></td>
+                   onclick="Btn_ShowAddGoods_Click" Visible="false" /></td>
          </tr>
          <tr>
            <td height="35"><b style=font-size:14px>选择</b></td>
