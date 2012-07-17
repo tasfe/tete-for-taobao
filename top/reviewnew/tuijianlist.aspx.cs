@@ -24,7 +24,6 @@ public partial class top_market_tuijianlist : System.Web.UI.Page
         taobaoNick = encode.Decrypt(taobaoNick);
 
         string sql = "SELECT * FROM TCS_Tuijian WHERE nickfrom = '" + taobaoNick + "' ORDER BY adddate DESC";
-        Response.Write(sql);
         DataTable dt = utils.ExecuteDataTable(sql);
 
         rptIdeaList.DataSource = dt;
