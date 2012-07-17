@@ -94,8 +94,8 @@ h4 a {
     </ul>
   </div>
     <div id="main-content" style="padding:0px; margin:0px;">
-
-    <a href='http://fuwu.taobao.com/service/service.htm?service_code=ts-30642&from=haoping' target="_blank"><img src='http://haoping.7fshop.com/top/reviewnew/images/xiuxiu1.jpg' border=0 /></a>
+    免费使用：
+    <a href='http://fuwu.taobao.com/service/service.htm?service_code=ts-30642&from=haoping' target="_blank"><img src='http://haoping.7fshop.com/top/reviewnew/images/xiuxiu2.jpg' border=0 /></a>
     <br />
             <div class="user_box2"
 			style="padding-top: 0px; padding-left: 0px; width: 778px">
