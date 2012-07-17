@@ -17,6 +17,10 @@
     <div>
       <table>
         <tr>
+           <td>宝贝ID：</td>
+           <td><asp:TextBox ID="TB_ID" runat="server" Width="400px"></asp:TextBox></td>
+        </tr>
+        <tr>
            <td>宝贝名：</td>
            <td><asp:TextBox ID="TB_GoodsName" runat="server" Width="400px"></asp:TextBox></td>
         </tr>
