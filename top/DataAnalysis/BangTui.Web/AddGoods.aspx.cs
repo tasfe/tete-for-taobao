@@ -54,7 +54,7 @@ public partial class AddGoods : System.Web.UI.Page
             try
             {
                 info.seller_cids = DDL_Cate.SelectedValue;
-                info.num_iid = Guid.NewGuid().ToString();
+                info.num_iid = TB_ID.Text;
                 info.title = TB_GoodsName.Text.Trim();
                 info.price = decimal.Parse(TB_Price.Text.Trim());
                 info.pic_url = TB_Url.Text.Trim();
@@ -80,7 +80,7 @@ public partial class AddGoods : System.Web.UI.Page
 
     private bool CheckVali()
     {
-        if (string.IsNullOrEmpty(TB_GoodsName.Text.Trim()) || string.IsNullOrEmpty(TB_Price.Text.Trim()) || string.IsNullOrEmpty(TB_Url.Text.Trim()))
+        if (string.IsNullOrEmpty(TB_ID.Text.Trim()) || string.IsNullOrEmpty(TB_GoodsName.Text.Trim()) || string.IsNullOrEmpty(TB_Price.Text.Trim()) || string.IsNullOrEmpty(TB_Url.Text.Trim()))
         {
             return false;
         }
