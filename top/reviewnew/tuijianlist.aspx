@@ -24,8 +24,9 @@
   <div id="main-content">
 
 <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px; color:Red; font-weight:bold;  font-size:16px;">
-    您需要把下面的网址发给您的好友，让您的好友购买好评有礼服务！他购买成功进入该应用便会成为您的推荐用户，您已经成功推荐了<%=tuijian%>个好友使用好评有礼。<br><br> 
+    您需要把下面的网址发给您的好友，让您的好友购买好评有礼服务！他购买成功进入该应用便会成为您的推荐用户，您已经成功推荐了<%=tuijian%>个好友使用好评有礼。<br> 
     http://haoping.7fshop.com/top/reviewnew/tuijianredirect.aspx?id=<%=nickcode %>
+    <input type="button" value="复制地址" onclick="copyToClipBoard('http://haoping.7fshop.com/top/reviewnew/tuijianredirect.aspx?id=<%=nickcode %>')" />
 </div>
 
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -48,6 +49,18 @@
 
   </div>
 </div>
+
+<script>
+    function copyToClipBoard(str) {
+        var clipBoardContent = str;
+        if (window.clipboardData) {
+            window.clipboardData.setData("Text", clipBoardContent);
+            alert("复制成功");
+        } else {
+            alert("FireFox浏览器不支持此功能,请手动复制");
+        }
+    }
+</script>
 
 </body>
 </html>
