@@ -12,7 +12,7 @@
 </head>
 <body style="padding:0px; margin:0px;">
 <div class="navigation" style="height:500px;">
-  <div class="crumbs"><a href="default.aspx">好评有礼</a> 推荐好友使用送大奖 </div>
+  <div class="crumbs"><a href="default.aspx">好评有礼</a> 推荐好友使用送短信 </div>
   <div class="absright">
     <ul>
       <li>
