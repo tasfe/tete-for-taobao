@@ -441,6 +441,24 @@ public partial class top_containerblog : System.Web.UI.Page
                      ") ";
 
             utils.ExecuteNonQuery(sql);
+
+            string giftMsg = "80";
+            //插入充值记录并更新短信条数
+            sql = "INSERT INTO TCS_PayLog (" +
+                            "typ, " +
+                            "enddate, " +
+                            "nick, " +
+                            "count " +
+                        " ) VALUES ( " +
+                            " '推荐好友赠送80条短信', " +
+                            " GETDATE(), " +
+                            " '" + nickFrom + "', " +
+                            " '" + giftMsg + "' " +
+                      ") ";
+            utils.ExecuteNonQuery(sql);
+
+            sql = "UPDATE TCS_ShopConfig SET total = total + " + giftMsg + " WHERE nick = '" + nickFrom + "'";
+            utils.ExecuteNonQuery(sql);
         }
     }
 
