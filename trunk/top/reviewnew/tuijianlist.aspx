@@ -23,7 +23,7 @@
   </div>
   <div id="main-content">
 
-<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px; color:Red; font-weight:bold;  font-size:16px;">
+<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px; color:Red; font-weight:bold;  font-size:12px;">
     您需要把下面的网址发给您的好友，让您的好友购买好评有礼服务！他购买成功进入该应用便会成为您的推荐用户，您已经成功推荐了<%=tuijian%>个好友使用好评有礼。<br> 
     http://haoping.7fshop.com/top/reviewnew/tuijianredirect.aspx?id=<%=nickcode %>
     <input type="button" value="复制地址" onclick="copyToClipBoard('http://haoping.7fshop.com/top/reviewnew/tuijianredirect.aspx?id=<%=nickcode %>')" />
