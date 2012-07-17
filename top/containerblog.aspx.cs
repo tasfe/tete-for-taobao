@@ -416,6 +416,25 @@ public partial class top_containerblog : System.Web.UI.Page
                  ") ";
 
         utils.ExecuteNonQuery(sql);
+
+        //如果是好友推荐来的，记录到推荐数据库
+        Common.Cookie cookie = new Common.Cookie();
+        string tuijianid = cookie.getCookie("tuijianid");
+        if (tuijianid.Length != 0)
+        {
+            Rijndael_ encode = new Rijndael_("tetesoft");
+            string nickFrom = encode.Decrypt(tuijianid);
+
+            sql = "INSERT INTO TCS_Tuijian (" +
+                           "nickfrom, " +
+                           "nickto " +
+                       " ) VALUES ( " +
+                           " '" + nickFrom + "', " +
+                           " '" + shop.Nick + "' " +
+                     ") ";
+
+            utils.ExecuteNonQuery(sql);
+        }
     }
 
     /// <summary>
