@@ -543,6 +543,10 @@ public partial class top_review_msg : System.Web.UI.Page
         //Response.Write(sql);
         utils.ExecuteNonQuery(sql);
 
+
+        sql = "INSERT INTO TCS_ShopActLog (nick, typ, message) VALUES ('" + nick + "', 'msg', '" + sql.Replace("'", "''") + "')";
+        utils.ExecuteNonQuery(sql);
+
         Response.Write("<script>alert('保存成功！');window.location.href='msg.aspx';</script>");
         Response.End();
         return;
