@@ -347,7 +347,7 @@ name="mainframe5" src="http://haoping.7fshop.com/top/crm/customlist.aspx" frameb
         </div>
         
         <div style="width:780px; margin-left:10px; float:left; height:1220px;">
-                <iframe style="overflow:scroll; width: 100%; height:1220px; padding:0px;" id="mainframe6id" name="mainframe6" src="http://ding.7fshop.com/tijian/index.html" frameborder="0" scrolling="no"></iframe>
+                <iframe style="overflow:scroll; width: 100%; height:1220px; padding:0px;" id="mainframe6id" name="mainframe6" src="/UserAddAds.aspx" frameborder="0" scrolling="no"></iframe>
         </div>
     </div>
 </div>
@@ -387,38 +387,7 @@ name="mainframe5" src="http://haoping.7fshop.com/top/crm/customlist.aspx" frameb
 
 
 <script>
-    function showArea() {
-        document.getElementById("divBackground").style.display = "block";
-        document.getElementById("divBackground").style.filter = "alpha(opacity=50)";
-        document.getElementById("ggArea").style.display = "block";
-
-        setTimeout('closeArea()', 20000);
-    }
-
-    function showArea1() {
-        document.getElementById("divBackground").style.display = "block";
-        document.getElementById("divBackground").style.filter = "alpha(opacity=50)";
-        document.getElementById("ggArea1").style.display = "block";
-
-        setTimeout('closeArea1()', 20000);
-    }
-
-    function closeArea() {
-        document.getElementById("divBackground").style.display = "none";
-        document.getElementById("ggArea").style.display = "none";
-    }
-
-    function closeArea1() {
-        document.getElementById("divBackground").style.display = "none";
-        document.getElementById("ggArea1").style.display = "none";
-    }
-
-    if (parseInt(10 * Math.random()) % 2 == 0) {
-        //setTimeout('showArea()', 3000);
-    } else {
-        //setTimeout('showArea1()', 3000);
-    }
-    setTimeout('showArea1()', 3000);
+    
     
     selectTab();
 
