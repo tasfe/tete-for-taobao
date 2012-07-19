@@ -288,6 +288,7 @@ public partial class container : System.Web.UI.Page
         //这里做获取用户商品的操作
         AddCookie(top_session);
 
+        CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLBUYNINFO);
         Response.Redirect("index.html");
         //Response.Redirect("http://bang.7fshop.com/default.aspx?istongji=1&session=" + top_session + "&nick=" + HttpUtility.UrlEncode(oldNick));
     }
