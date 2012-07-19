@@ -142,7 +142,7 @@ public partial class container : System.Web.UI.Page
 
                     if (match[i].Groups[1].ToString() == "ts-22655-6")
                     {
-                        guid = "F021E717-4ED7-49D7-9289-2B62D2F6119D";
+                        guid = "8A76231A-3874-4CE0-912F-936BCBC1907A";
                         deadline = match[i].Groups[2].ToString();
                     }
                 }
@@ -194,7 +194,7 @@ public partial class container : System.Web.UI.Page
             }
         }
 
-        File.WriteAllText(Server.MapPath("../customer/" + u + ".txt"), Request.Url + "?" + Request.QueryString + sql + resultnew);
+        File.WriteAllText(Server.MapPath("customer/" + u + ".txt"), Request.Url + "?" + Request.QueryString + sql + resultnew);
 
         return "2";
     }
