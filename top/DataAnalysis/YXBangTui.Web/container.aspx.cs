@@ -111,10 +111,14 @@ public partial class container : System.Web.UI.Page
             string deadline = "";
             //更新日期
             MatchCollection match = reg.Matches(resultnew);
+
+            string tuiversion =""; //记录订购的版本
             for (int i = 0; i < match.Count; i++)
             {
+
                 try
                 {
+                    tuiversion = match[i].Groups[1].ToString();
                     //10元
                     if (match[i].Groups[1].ToString() == "ts-22655-1")
                     {
@@ -171,6 +175,15 @@ public partial class container : System.Web.UI.Page
                     DataTable dt = utils.ExecuteDataTable(sql);
                     if (dt.Rows.Count != 0)
                     {
+                        if (new Guid(dt.Rows[0]["FeeId"].ToString()) == new Guid("28F46E17-3117-44E7-847F-79D0BB0BEF69"))
+                        {
+                            if (tuiversion != "ts-22655-1")
+                            {
+                                sql = "UPDATE BangT_UsedInfo SET UsedTimes=0 WHERE nick='" + u + "'";
+                                utils.ExecuteNonQuery(sql);
+                            }
+                        }
+
                         //判断淘宝获取的到期日期跟数据库里日期是否一致
                         if (dt.Rows[0]["ExpiedTime"] != DBNull.Value)
                         {
