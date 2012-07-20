@@ -18,3 +18,22 @@
     
     background-position: -210px -222px;
 }
+
+.ui-button-ok{
+    margin-right: 20px;    
+    background-position: -210px -153px;
+    border: 1px solid #D74C00;
+    font-size: 14px;
+    padding: 1px;
+    
+    background-image: url("https://apimg.alipay.com/sys/authcenter/style/renew_20110718/common.png");
+    background-repeat: repeat-x;
+    cursor: pointer;
+    outline: 0 none;
+    
+    display: inline-block;
+    line-height: 100%;
+    text-align: left;
+    text-decoration: none;
+    vertical-align: middle;
+    }
