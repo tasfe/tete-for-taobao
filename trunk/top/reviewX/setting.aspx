@@ -51,10 +51,14 @@
                     </table>
                 </td>
             </tr>
+       </table>
             
-            <tr>
-                <td align="left" height="30" style="font-size:14px; font-weight:bold" colspan="2">2、请设置好评有礼赠送的条件：</td>
-            </tr>
+      <div class="haopingtitle">
+        <span style="font-size:14px; font-weight:bold; margin:7px;">2、请设置好评有礼赠送的条件：</span>
+        </div>
+
+        
+        <table width="700">
             <tr>
                 <td align="left" height="30">淘宝提供物流跟踪订单最短评价时间：</td>
                 <td>
@@ -97,12 +101,13 @@
                     <a href="kefulist.aspx">查看待审核列表</a>
                 </td>
             </tr>
+            </table>
 
-            
-            <tr>
-                <td align="left" height="30" style="font-size:14px; font-weight:bold" colspan="2">3、请设置参加好评有礼的宝贝：</td>
-            </tr>
-            
+      <div class="haopingtitle">
+        <span style="font-size:14px; font-weight:bold; margin:7px;">3、请设置参加好评有礼的宝贝：</span>
+        </div>
+
+        <table width="700">
             <tr>
                 <td align="left" height="30">请选择限制类型：</td>
                 <td>
