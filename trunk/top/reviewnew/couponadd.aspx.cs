@@ -163,8 +163,12 @@ public partial class top_review_couponadd : System.Web.UI.Page
         }
         else
         {
-            sql = "UPDATE TCS_ShopConfig SET couponid = '" + guid + "' WHERE nick = '" + nick + "'";
-            utils.ExecuteNonQuery(sql);
+            string isDefault = utils.NewRequest("isdefault", utils.RequestType.Form);
+            if (isDefault == "1")
+            {
+                sql = "UPDATE TCS_ShopConfig SET couponid = '" + guid + "' WHERE nick = '" + nick + "'";
+                utils.ExecuteNonQuery(sql);
+            }
         }
 
         //Response.Write("<br><br>" + sql);
