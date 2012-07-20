@@ -4,6 +4,7 @@
 <head id="Head1" runat="server">
     <title>好评有礼</title>
 <link href="../css/common.css" rel="stylesheet" />
+<link href="../css/haopingx.css" rel="stylesheet" />
 <style>
     td{font-size:12px;}
     a{color:Blue; text-decoration:none;}
@@ -118,8 +119,8 @@
 
             <tr>
                 <td align="left" colspan="2">
-                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" OnClientClick="return check()" />
-                    <input type="button" value="将活动展示在店铺里" onclick="window.location.href='html.aspx'" />
+                    <asp:Button ID="Button1" CssClass="ui-button-text" runat="server" onclick="Button1_Click" Text="保存设置" OnClientClick="return check()" />
+                    <input type="button" class="ui-button-text" value="将活动展示在店铺里" onclick="window.location.href='html.aspx'" />
                 </td>
             </tr>
         </table>
