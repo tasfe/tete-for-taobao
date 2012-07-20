@@ -27,6 +27,9 @@
     </ul>
   </div>
     <div id="main-content">
+<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
+    您只需要点击下面的分享按钮并成功分享，每天便可获得好评有礼送出的10条免费短信，非常感谢您的支持！
+</div>
         <iframe src='fen.html' width="600" height="400" id="test" frameborder="0" scrolling="no"></iframe>
     </div>
     </form>
