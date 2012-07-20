@@ -29,10 +29,10 @@
   </div>
     <div id="main-content">
 
+    <div class="haopingtitle">
+        <span style="font-size:14px; font-weight:bold; margin:7px;">1、请选择好评有礼赠送的奖品：</span>
+    </div>
         <table width="700">
-            <tr>
-                <td align="left" height="30" style="font-size:14px; font-weight:bold" colspan="2">1、请选择好评有礼赠送的奖品：</td>
-            </tr>
             <tr id="couponArea">
                 <td align="left" height="30" colspan="2">
                     <table width=600>

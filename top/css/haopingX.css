@@ -37,3 +37,11 @@
     text-decoration: none;
     vertical-align: middle;
     }
+    
+    
+    .haopingtitle {
+    background-image: url("http://img03.taobaocdn.com/imgextra/i3/26914588/T2HiKDXa8XXXXXXXXX_!!26914588.png");
+    background-position: right top;
+    background-repeat: repeat-y;
+    width: 100%;
+}
