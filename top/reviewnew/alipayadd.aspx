@@ -73,7 +73,7 @@
             <tr>
                 <td align="left" height="30">是否将该红包设置为好评赠送的红包：</td>
                 <td>
-                    <input type="checkbox" value="1" name="isdefault" />
+                    <input type="checkbox" value="1" name="isdefault" /> 设为默认赠送红包
                 </td>
             </tr>
             <tr>
