@@ -31,7 +31,7 @@ public partial class TestUserSeePage : System.Web.UI.Page
 
             Response.Cookies.Add(cookie);
 
-            Response.Redirect("http://www.7fshop.com/top/index.html");
+            Response.Redirect("http://ding.7fshop.com/index.html");
         }
     }
 }
