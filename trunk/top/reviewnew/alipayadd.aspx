@@ -37,13 +37,13 @@
             <tr>
                 <td align="left" height="30">红包名称：</td>
                 <td>
-                    <input name="name" type="text" value="支付宝红包" />
+                    <input id="alipayname" name="name" type="text" value="" />
                 </td>
             </tr>
             <tr>
                 <td align="left" height="30">红包金额：</td>
                 <td>
-                    <input name="num" type="text" value="1" size="2" />
+                    <input id="alipaynum" name="num" type="text" value="" size="2" />
                 </td>
             </tr>
             <tr>
@@ -71,13 +71,39 @@
                 </td>
             </tr>
             <tr>
+                <td align="left" height="30">是否将该红包设置为好评赠送的红包：</td>
+                <td>
+                    <input type="checkbox" value="1" name="isdefault" />
+                </td>
+            </tr>
+            <tr>
                 <td align="left" height="30" colspan="2">
-                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="创建支付宝红包" />
+                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="创建支付宝红包" OnClientClick="return check()" />
                 </td>
             </tr>
         </table>
     </div>
+    <script>
+        function check() {
+            name = document.getElementById("alipayname");
+            num = document.getElementById("alipaynum");
 
+            if (name.value == "") {
+                alert("请输入支付宝红包的名称");
+                name.focus();
+                return false;
+            }
+
+            if (num.value == "") {
+                alert("请输入支付宝红包的金额");
+                num.focus();
+                return false;
+            }
+
+            return true;
+        }
+    
+    </script>
 </div>
     </form>
 </body>
