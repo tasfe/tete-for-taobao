@@ -124,7 +124,7 @@
                 </span>
                 
                 <span class="ui-button ui-button-ok" tabindex="4">
-                    <input type="button" class="ui-button-text" value="将活动展示在店铺里" onclick="window.location.href='html.aspx'" />
+                    <input type="button" class="ui-button-text" value="将活动展示在店铺里" style="width:180px;" onclick="window.location.href='html.aspx'" />
                </span>
                
                 </td>
