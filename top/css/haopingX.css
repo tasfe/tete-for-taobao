@@ -5,11 +5,14 @@
     font-family: Tahoma;
     outline: 0 none;
     
-     color: #FFFFFF;
+    color: #FFFFFF;
     font-weight: bold;
     height: 28px;
     line-height: 28px;
     padding: 0 16px;
+    
+    border: 0 none;    
+    margin: 0;
     
     background-position: -210px -222px;
 }
