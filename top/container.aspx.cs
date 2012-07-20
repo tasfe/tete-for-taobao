@@ -178,7 +178,7 @@ public partial class top_container : System.Web.UI.Page
                         {
                             if (tuiversion != "service-0-22762-1")
                             {
-                                sql = "UPDATE BangT_UsedInfo SET UsedTimes=0 WHERE nick='" + u + "'";
+                                sql = "UPDATE BangT_Buys SET isexpied=0,buytime=GETDATE(),ExpiedTime = '" + deadline + "' WHERE nick='" + u + "'";
                                 utils.ExecuteNonQuery(sql);
                             }
                         }
