@@ -40,8 +40,12 @@
     
     
     .haopingtitle {
-    background-image: url("http://img03.taobaocdn.com/imgextra/i3/26914588/T2HiKDXa8XXXXXXXXX_!!26914588.png");
-    background-position: right top;
-    background-repeat: repeat-y;
-    width: 100%;
+    background-image: url("http://img01.taobaocdn.com/imgextra/i1/26914588/T2hq9IXeBaXXXXXXXX_!!26914588.png");
+    background-repeat: repeat-x;
+    
+    background-position: 0 -374px;
+    height: 41px;
+    line-height: 41px;
+    overflow: hidden;
+    width: 756px;
 }
