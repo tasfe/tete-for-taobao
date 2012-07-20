@@ -85,12 +85,12 @@
     </div>
     <script>
         function check() {
-            name = document.getElementById("alipayname");
+            alipayname = document.getElementById("alipayname");
             num = document.getElementById("alipaynum");
 
-            if (name.value == "") {
+            if (alipayname.value == "") {
                 alert("请输入支付宝红包的名称");
-                name.focus();
+                alipayname.focus();
                 return false;
             }
 
