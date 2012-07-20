@@ -111,8 +111,8 @@
             <tr>
                 <td align="left" height="30">请选择限制类型：</td>
                 <td>
-                    以下商品才赠送<input name="iskefu" id="Radio1" type="radio" value="1" <%=check(iskefu, "1") %> />
-                    以下商品不赠送<input name="iskefu" id="Radio2" type="radio" value="0" <%=check(iskefu, "0") %> />
+                    以下商品才赠送<input name="ispro" id="Radio1" type="radio" value="1" <%=check(iskefu, "1") %> />
+                    以下商品不赠送<input name="ispro" id="Radio2" type="radio" value="0" <%=check(iskefu, "0") %> />
                 </td>
             </tr>
             <tr>
