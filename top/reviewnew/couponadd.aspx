@@ -94,6 +94,12 @@
                 </td>
             </tr>
             <tr>
+                <td align="left" height="30">是否将该优惠券设置为好评赠送的优惠券：</td>
+                <td>
+                    <input type="checkbox" value="1" name="isdefault" checked /> 设为默认赠送优惠券
+                </td>
+            </tr>
+            <tr>
                 <td align="left" height="30" colspan="2">
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存优惠券" />
                 </td>
