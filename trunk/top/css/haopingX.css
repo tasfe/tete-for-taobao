@@ -13,6 +13,8 @@
     
     border: 0 none;    
     margin: 0;
+     vertical-align: baseline;
+         font-size: 100%;
     
     background-position: -210px -222px;
 }
