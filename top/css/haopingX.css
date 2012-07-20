@@ -4,4 +4,10 @@
     cursor: pointer;
     font-family: Tahoma;
     outline: 0 none;
+    
+     color: #FFFFFF;
+    font-weight: bold;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 16px;
 }
