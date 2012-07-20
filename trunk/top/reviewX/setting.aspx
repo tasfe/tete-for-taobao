@@ -119,7 +119,10 @@
 
             <tr>
                 <td align="left" colspan="2">
+                <span id="btn-submit" class="ui-button ui-button-ok" tabindex="4">
                     <asp:Button ID="Button1" CssClass="ui-button-text" runat="server" onclick="Button1_Click" Text="保存设置" OnClientClick="return check()" />
+                </span>
+                
                     <input type="button" class="ui-button-text" value="将活动展示在店铺里" onclick="window.location.href='html.aspx'" />
                 </td>
             </tr>
