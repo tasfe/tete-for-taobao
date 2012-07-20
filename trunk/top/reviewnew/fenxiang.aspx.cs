@@ -56,7 +56,7 @@ public partial class top_reviewnew_fenxiang : System.Web.UI.Page
             }
             else
             {
-                Response.Write("<script>alert('免费短信每天最多领取一次哦，您可以明天再来领取！：）');</script>");
+                Response.Write("<script>alert('免费短信每天最多领取一次哦，您可以明天再来领取！：）'); history.go(-1);</script>");
                 Response.End();
             }
         }
