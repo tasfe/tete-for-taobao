@@ -44,7 +44,7 @@
 <br />
 第二步 您的广告目前投放的位置在“<asp:Label runat="server" ID="LB_AdsTitleSize1" />”，见下图所示：
 <br />
-<img src='<%=ImgUrl %>'>
+<img src='<%=ImgUrl %>' height="280px" width="410px">
 <br />
 如果您看不到广告牌，很可能是您的浏览器或安全软件(如360安全卫士)设置了广告过滤规则，点击查看如何解决 
 <br />
