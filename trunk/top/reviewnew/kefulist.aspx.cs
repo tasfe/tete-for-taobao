@@ -1049,7 +1049,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
 //WHERE b.nick = '魔女茶花' AND b.ischeck = 0 ) AS a 
 //WHERE a.rownumber > 0 ORDER BY reviewdate DESC
 
-        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT b.*,c.giftcount,c.couponcount,t.totalprice,ROW_NUMBER() OVER (ORDER BY b.reviewdate DESC) AS rownumber FROM TCS_TradeRateCheck b INNER JOIN TCS_Customer c ON c.buynick = b.buynick LEFT JOIN TCS_Trade t ON t.orderid = b.orderid WHERE b.nick = '" + nick + "' AND b.ischeck = 0 ) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY reviewdate DESC";
+        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT b.*,c.giftcount,c.couponcount,t.totalprice,ROW_NUMBER() OVER (ORDER BY b.reviewdate DESC) AS rownumber FROM TCS_TradeRateCheck b LEFT JOIN TCS_Customer c ON c.buynick = b.buynick LEFT JOIN TCS_Trade t ON t.orderid = b.orderid WHERE b.nick = '" + nick + "' AND b.ischeck = 0 ) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY reviewdate DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
