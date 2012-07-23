@@ -3,7 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>帮推广</title>
+    <title>特推广</title>
     <link href="css/common.css" rel="stylesheet" />
       <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
     <style>
@@ -17,7 +17,7 @@
 
 <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="#" class="nolink">帮推广</a> 推广中的宝贝 </div>
+  <div class="crumbs"><a href="#" class="nolink">特推广</a> 推广中的宝贝 </div>
   <div class="absright">
     <ul>
       <li>
