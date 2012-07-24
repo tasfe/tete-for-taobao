@@ -242,7 +242,10 @@ h4 a {
   <div style="margin:10px;">
     <b style="font-size:14px; font-weight:bold">热门软件：</b><br />
 
-    <a href= 'http://fuwu.taobao.com/ser/detail.htm?service_id=16226&from=haoping'><img border=0 src='http://img01.taobaocdn.com/top/i1/T162DjXf4aXXaCwpjX.png' /></a>
+    <a href= 'http://fuwu.taobao.com/ser/detail.htm?service_id=16226&from=haoping'><img alt='数据罗盘' border=0 src='http://img01.taobaocdn.com/top/i1/T162DjXf4aXXaCwpjX.png' /></a>
+
+<a href= 'http://fuwu.taobao.com/ser/detail.htm?service_id=19444&from=haoping'><img alt='凹凸曼网盾卫士' border=0 src='http://img01.taobaocdn.com/top/i1/T162DjXf4aXXaCwpjX.png' /></a>
+
   </div>
 </div>
 
