@@ -252,7 +252,7 @@ h4 a {
 
 <a href= 'http://fuwu.taobao.com/serv/detail.htm?service_id=12745&from=haoping'><img alt='魔法营销' border=0 src='http://img02.taobaocdn.com/imgextra/i2/62192401/T2L7pgXXBOXXXXXXXX_!!62192401.png' /></a>
 
-<a href= 'http://fuwu.taobao.com/serv/detail.htm?service_id=7223&from=haoping'><img alt='批量打印' border=0 src='http://img03.taobaocdn.com/imgextra/i3/62192401/T25Q8xXlNMXXXXXXXX_!!62192401.jpg' /></a>
+<a href= 'http://fuwu.taobao.com/serv/detail.htm?service_id=7223&from=haoping'><img alt='批量打印' border=0 src='http://img01.taobaocdn.com/top/i1/T1o7l9XcFBXXaCwpjX.png' /></a>
 
 <a href= 'http://fuwu.taobao.com/ser/detail.htm?service_code=ts-28184&from=haoping'><img alt='掌柜帮' border=0 src='http://img04.taobaocdn.com/imgextra/i4/62192401/T29NXwXXBNXXXXXXXX_!!62192401.png' /></a>
 
