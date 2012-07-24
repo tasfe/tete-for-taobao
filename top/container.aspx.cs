@@ -157,7 +157,7 @@ public partial class top_container : System.Web.UI.Page
 
                 //UPDATE BangT_UsedInfo SET UsedTimes=0 WHERE nick=@nick
 
-                if (dingdt.Rows > 0)
+                if (dingdt.Rows.Count > 0)
                 {
                     if (new Guid(dt.Rows[0]["FeeId"].ToString()) != new Guid(guid))
                     {
