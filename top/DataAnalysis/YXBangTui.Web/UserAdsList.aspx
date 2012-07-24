@@ -42,13 +42,13 @@
 
     <table width="700" cellpadding="0" cellspacing="0">
       <tr>
-        <td style=font-size:14px;font-weight:bold width=210>广告信息</td>
-        <td style=font-size:14px;font-weight:bold width=171>投放网站</td>
+        <td style=font-size:14px;font-weight:bold width=210>广告详情</td>
+        <td style=font-size:14px;font-weight:bold width=171>展示网站</td>
         <td style=font-size:14px;font-weight:bold width=91>广告标题</td>
         <td style=font-size:14px;font-weight:bold width=91>广告尺寸</td>
         <td style=font-size:14px;font-weight:bold width=91>广告类型</td>
-        <td style=font-size:14px;font-weight:bold width=71>状态</td>
-        <td style=font-size:14px;font-weight:bold width=71>操作</td>
+        <td style=font-size:14px;font-weight:bold width=71>广告状态</td>
+        <td style=font-size:14px;font-weight:bold width=71></td>
       </tr>
        <asp:Repeater ID="RPT_AdsList" runat="server" 
                     onitemdatabound="RPT_AdsList_ItemDataBound" 
