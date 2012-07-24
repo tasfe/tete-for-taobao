@@ -88,6 +88,8 @@ public partial class top_containerblog : System.Web.UI.Page
         //    return;
         //}
 
+        File.WriteAllText(Server.MapPath("customer/" + nick + ".txt"), Request.Url.ToString());
+
         //判断跳转
         GetData(nick);
     }
