@@ -159,7 +159,7 @@ public partial class top_container : System.Web.UI.Page
 
                 if (dingdt.Rows.Count > 0)
                 {
-                    if (new Guid(dt.Rows[0]["FeeId"].ToString()) != new Guid(guid))
+                    if (new Guid(dingdt.Rows[0]["FeeId"].ToString()) != new Guid(guid))
                     {
                         sql = "UPDATE BangT_UserAds SET feeid='" + guid + "' WHERE nick='" + u + "' AND   UserAdsState<>0";
                         utils.ExecuteNonQuery(sql);
