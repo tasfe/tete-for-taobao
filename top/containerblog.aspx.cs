@@ -427,7 +427,7 @@ public partial class top_containerblog : System.Web.UI.Page
             Rijndael_ encode = new Rijndael_("tetesoft");
             string nickFrom = encode.Decrypt(tuijianid);
 
-            sql = "SELECT COUNT(*) FROM TCS_Tuijian WHERE nickfrom = '" + nickFrom + "'";
+            sql = "SELECT COUNT(*) FROM TCS_Tuijian WHERE nickfrom = '" + nickFrom + "' AND nickto = '" + shop.Nick + "'";
             string count = utils.ExecuteString(sql);
             if (count != "0")
             {
