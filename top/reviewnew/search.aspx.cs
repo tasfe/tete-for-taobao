@@ -50,7 +50,7 @@ public partial class top_reviewnew_search : System.Web.UI.Page
             return;
         }
 
-        string sql = "INSERT INTO [TeteCrmSaas].[dbo].[TCS_PayLog]([typ],[adddate],[nextdate],[enddate],[nick],[mouth],[count])VALUES('" + TextBox5.Text + "',GETDATE(),GETDATE(),GETDATE(),'" + TextBox3.Text + "',12," + TextBox4.Text + ")";
+        string sql = "INSERT INTO [TCS_PayLog]([typ],[adddate],[nextdate],[enddate],[nick],[mouth],[count])VALUES('" + TextBox5.Text + "',GETDATE(),GETDATE(),GETDATE(),'" + TextBox3.Text + "',12," + TextBox4.Text + ")";
         utils.ExecuteNonQuery(sql);
 
         sql = "UPDATE TCS_ShopConfig SET total = total + " + TextBox4.Text + " WHERE nick = '" + TextBox3.Text + "'";
