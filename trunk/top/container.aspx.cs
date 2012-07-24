@@ -153,7 +153,7 @@ public partial class top_container : System.Web.UI.Page
             if (guid.Length != 0)
             {
                 sql = "SELECT * FROM [BangT_Buys] WHERE nick = '" + u + "'";
-                DataTable dingdt = utils.ExecuteString(sql);
+                DataTable dingdt = utils.ExecuteDataTable(sql);
 
                 //UPDATE BangT_UsedInfo SET UsedTimes=0 WHERE nick=@nick
 
