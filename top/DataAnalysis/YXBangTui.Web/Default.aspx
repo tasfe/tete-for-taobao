@@ -34,7 +34,6 @@
 <td width="100%"  align="left" style=font-size:16px;>
 
 <p><img src="http://a.tbcdn.cn/sys/wangwang/smiley/48x48/68.gif" /> 您好,欢迎您使用特推广_店铺推广专家!&nbsp;</p>
-<p>特推广平台是一个全智能的自动化推广平台,您可以将网店的推广工作全权委托给我们,您要做的仅需要提交宝贝/店铺给我们,我们的推广团队即可帮您推广到数十个优质合作网站中去!</p>
 <p>立即 <a href="/UserAddAds.aspx">推广宝贝</a>&nbsp;立即&nbsp;<a href="/AddShopAds.aspx">推广店铺</a></p>
 <p><a href="/AddShopAds.aspx">立即推广外部网站</a>
 
