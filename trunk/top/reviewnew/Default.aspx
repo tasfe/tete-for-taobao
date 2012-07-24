@@ -248,6 +248,8 @@ h4 a {
 
 <a href= 'http://fuwu.taobao.com/ser/detail.htm?service_code=ts-12067&from=haoping'><img alt='宝贝团' border=0 src='http://img01.taobaocdn.com/top/i1/T1htKnXaRNXXaCwpjX.png' /></a>
 
+<a href= 'http://fuwu.taobao.com/serv/detail.htm?service_id=14849&from=haoping'><img alt='包邮卡' border=0 src='http://img03.taobaocdn.com/imgextra/i3/62192401/T25Q8xXlNMXXXXXXXX_!!62192401.jpg' /></a>
+
   </div>
 </div>
 
