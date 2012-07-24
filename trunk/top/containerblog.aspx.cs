@@ -422,7 +422,7 @@ public partial class top_containerblog : System.Web.UI.Page
         //如果是好友推荐来的，记录到推荐数据库
         Common.Cookie cookie = new Common.Cookie();
         string tuijianid = cookie.getCookie("tuijianid");
-        if (tuijianid.Length != 0)
+        if (tuijianid != null && tuijianid != "")
         {
             Rijndael_ encode = new Rijndael_("tetesoft");
             string nickFrom = encode.Decrypt(tuijianid);
