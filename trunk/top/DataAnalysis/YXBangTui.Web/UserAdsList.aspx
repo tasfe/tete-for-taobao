@@ -47,7 +47,7 @@
         <td style=font-size:14px;font-weight:bold width=91>广告标题</td>
         <td style=font-size:14px;font-weight:bold width=91>广告尺寸</td>
         <td style=font-size:14px;font-weight:bold width=91>广告类型</td>
-        <td style=font-size:14px;font-weight:bold width=71>广告状态</td>
+        <td style=font-size:14px;font-weight:bold width=71>状态</td>
         <td style=font-size:14px;font-weight:bold width=71></td>
       </tr>
        <asp:Repeater ID="RPT_AdsList" runat="server" 
