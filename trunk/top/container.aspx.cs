@@ -152,13 +152,21 @@ public partial class top_container : System.Web.UI.Page
 
             if (guid.Length != 0)
             {
-                sql = "SELECT COUNT(*) FROM [BangT_Buys] WHERE nick = '" + u + "'";
-                string count = utils.ExecuteString(sql);
+                sql = "SELECT * FROM [BangT_Buys] WHERE nick = '" + u + "'";
+                DataTable dingdt = utils.ExecuteString(sql);
 
                 //UPDATE BangT_UsedInfo SET UsedTimes=0 WHERE nick=@nick
 
-                if (count != "0")
+                if (dingdt.Rows > 0)
                 {
+                    if (new Guid(dt.Rows[0]["FeeId"].ToString()) != new Guid(guid))
+                    {
+                        sql = "UPDATE BangT_UserAds SET feeid='" + guid + "' WHERE nick='" + u + "' AND   UserAdsState<>0";
+                        utils.ExecuteNonQuery(sql);
+                        sql = "UPDATE BangT_Buys SET isexpied=0,buytime=GETDATE(),ExpiedTime = '" + deadline + "',FeeId='" + guid + "' WHERE nick='" + u + "'";
+                        utils.ExecuteNonQuery(sql);
+                    }
+
                     //update xufei
                     sql = "SELECT * FROM BangT_Buys WHERE nick = '" + u + "' AND isexpied = 1";
                     //string count1 = utils.ExecuteString(sql);
