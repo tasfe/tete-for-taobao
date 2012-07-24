@@ -246,6 +246,8 @@ h4 a {
 
 <a href= 'http://fuwu.taobao.com/ser/detail.htm?service_id=19444&from=haoping'><img alt='凹凸曼网盾卫士' border=0 src='http://img01.taobaocdn.com/top/i1/T1BM9SXhhhXXb1upjX.jpg' /></a>
 
+<a href= 'http://fuwu.taobao.com/ser/detail.htm?service_code=ts-12067&from=haoping'><img alt='宝贝团' border=0 src='http://img01.taobaocdn.com/top/i1/T1htKnXaRNXXaCwpjX.png' /></a>
+
   </div>
 </div>
 
