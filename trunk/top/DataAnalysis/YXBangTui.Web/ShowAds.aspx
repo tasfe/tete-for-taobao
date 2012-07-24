@@ -50,8 +50,7 @@
             <br />
             2、点击上图圈到的图片
             <br />
-           
-           即可<a href="UserAdsList.aspx?istou=1">查看您的广告投放</a>
+           就能<a href="UserAdsList.aspx?istou=1">查看您的广告投放</a>
             <br />
             （亲情提醒：如果您想点击广告牌立即跳转到您的店铺或宝贝页面，请订购:<a href="/vip2.html">VIP广告</a>）
             </div>
