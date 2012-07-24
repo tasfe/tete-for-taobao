@@ -241,7 +241,7 @@ h4 a {
   <br />
   友情连接：<br />
 
-  <a href= 'http://fuwu.taobao.com/ser/detail.htm?service_id=16226&from=haoping'><img src='http://img01.taobaocdn.com/top/i1/T162DjXf4aXXaCwpjX.png' /></a>
+  <a href= 'http://fuwu.taobao.com/ser/detail.htm?service_id=16226&from=haoping'><img border=0 src='http://img01.taobaocdn.com/top/i1/T162DjXf4aXXaCwpjX.png' /></a>
 
 </div>
 
