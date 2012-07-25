@@ -14,7 +14,8 @@
                     头部图片：
                 </td>
                 <td>
-                    <asp:FileUpload ID="Fud_logo" runat="server" /> jpg图片
+                    <asp:FileUpload ID="Fud_logo" runat="server" /> jpg图片(320*180)
+
                 </td>
             </tr>
             <tr>
@@ -22,7 +23,7 @@
                     加载图片：
                 </td>
                 <td>
-                    <asp:FileUpload ID="Fud_load" runat="server" /> png图片
+                    <asp:FileUpload ID="Fud_load" runat="server" /> png图片(320*480)
                 </td>
             </tr>
             <tr>
@@ -30,7 +31,7 @@
                     Logo：
                 </td>
                 <td>
-                    <asp:FileUpload ID="Fud_head" runat="server" /> png图片
+                    <asp:FileUpload ID="Fud_head" runat="server" /> png图片(80*80)
                 </td>
             </tr>
             <tr>
