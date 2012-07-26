@@ -71,14 +71,15 @@
         <script>document.write(new Date().toLocaleDateString()+' 星期'+'日一二三四五六'.charAt (new Date().getDay()))</script>
         <span id="time"></span>&nbsp;&nbsp;</div>
             <div class="indjrywbody">
-      {dede:arclist typeid='25' titlelen=30 flag='c' row=1}
-        <h3><a href="[field:arcurl/]" target="_blank"><font color="#f2650d">[field:title/]</font></a></h3>
-      {/dede:arclist}
-        <ul>
-                    <li>[<a href="newShow_9196.htm">复古潮包 打造迷人</a>]</li>
-                    <li>[<a href="newShow_8963.htm">出色婚鞋 让你做完</a>]</li>
-                    <li>[<a href="newShow_8713.htm">欧美潮人必备美鞋 </a>]</li>
-                  </ul>
+              {dede:arclist typeid='25' titlelen=30 flag='c' row=1}
+                <h3><a href="[field:arcurl/]" target="_blank"><font color="#f2650d">[field:title/]</font></a></h3>
+              {/dede:arclist}
+       
+        		<ul>
+                  {dede:arclist typeid='25' titlelen=30 noflag='c' row=3}
+                    <li>[<a href="[field:arcurl/]" target="_blank">[field:title/]</a>]</li>
+                  {/dede:arclist}
+                </ul>
       </div>
             <div class="indjrywbody">
         <h3><a href="newShow_9621.htm"><font color="#f2650d">毛呢外套流行搭配保暖不撞衫</font></a></h3>
