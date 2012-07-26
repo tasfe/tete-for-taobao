@@ -81,12 +81,8 @@
 </div>
 
 <script language="javascript">
-alert(11);
 objList = document.getElementById("topclass").childNodes;
-alert(1);
-alert(objList.length);
-for(i=1;i<=objList.length;i++){
-	alert(objList[i].innerHTML);
-	objList[i].id = "topclass" + i;
+for(i=0;i<objList.length;i++){
+	objList[i].id = "topclass" + (i+1);
 }
 </script>
