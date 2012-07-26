@@ -169,7 +169,7 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
             param.Add("tag_id", tagid);
             string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.add", session, param);
 
-            WriteLog(result, "1", "", iid);
+            WriteLog(result, "1", taobaoNick, iid);
             if (result.IndexOf("error_response") != -1)
             {
                // sql = "delete from    [tete_activitylist]    WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
@@ -213,12 +213,19 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
     /// </summary>
     public void delactivity()
     {
+        
+      
+
         //删除活动
         string appkey = "12287381";
         string secret = "d3486dac8198ef01000e7bd4504601a4";
         IDictionary<string, string> param = new Dictionary<string, string>();
         Common.Cookie cookie = new Common.Cookie();
         string session = cookie.getCookie("top_sessiongroupbuy");
+
+        string taobaoNick = cookie.getCookie("nick"); 
+        Rijndael_ encode = new Rijndael_("tetesoft");
+        taobaoNick = encode.Decrypt(taobaoNick);
 
         //通过数据库查询获取活动ID actionId iid
         string sql = "SELECT promotionID FROM tete_activitylist WHERE Status<>4 and ActivityID = " + actionId + " and  ProductID='" + iid + "'";
@@ -228,7 +235,7 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
         param = new Dictionary<string, string>();
         param.Add("promotion_id", promotion_id);
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.delete", session, param);
-        WriteLog(result, "0", "", iid);
+        WriteLog(result, "0", taobaoNick, iid);
         if (result.IndexOf("error_response") != -1)
         {
 
