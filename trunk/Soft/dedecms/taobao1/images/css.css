@@ -159,7 +159,7 @@ a:active
 	border-bottom: #cccccc 1px solid;
 	margin-top: 10px;
 }
-#topclass div ul li.color
+#topclass div ul li a.color
 {
 	color: #f2650d;
 }
