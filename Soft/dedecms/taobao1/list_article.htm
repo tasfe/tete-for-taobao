@@ -66,17 +66,14 @@ alimama_height=190;
 </div>
 </div>
 <div class="classzright">
-<div class="classzlj"><b>您当前的位置：</b>{dede:field name='position'/}</div>
+<div class="classzlj"><b>您当前的位置：</b> {dede:field name='position'/} </div>
 <div class="classzbody">
 <ul>
-
-{dede:pagelist listitem="info,index,end,pre,next,pageno,option" listsize="5"/}
-
-
+{dede:list pagesize='10'}
+<li><span>● [<b>[field:typelink/]</b>] <a href="[field:arcurl/]" class="title">[field:title/]</a></span><font>[field:pubdate function="GetDateTimeMK(@me)"/] </font></li>
+{/dede:list}
 </ul>
-
-
-
+<div class="gotoPage">{dede:pagelist listitem="info,index,end,pre,next,pageno,option" listsize="5"/}</div>
 </div>
 </div>
 <div class="indadc"><script type="text/javascript">
