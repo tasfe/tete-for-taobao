@@ -414,10 +414,10 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
     public void WriteLog(string message, string type, string taobaoNick,string id)
     {
         string tempStr = logUrl + "/activity" + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
-        string tempFile = tempStr + "/activitydelpromotion" + id + "" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+        string tempFile = tempStr + "/activitydel" + taobaoNick + "" + id + "" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
         if (type == "1")
         {
-            tempFile = tempStr + "/activityaddpromotion" + id +"" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+            tempFile = tempStr + "/activityadd" + taobaoNick + "" + id + "" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
         }
         if (!Directory.Exists(tempStr))
         {
