@@ -30,19 +30,18 @@
 </div>
 
 <div id="topclass">
+
 {dede:channelartlist type='top' row='4'}
-<div>
-{dede:type}
-<h4><a href='[field:typeurl/]'><span>[field:typename/]</span></a></h4>
-{/dede:type}
-<ul>
-
-{dede:channel type='son'}
-<li ><a href='[field:typeurl/]'><span>[field:typename/]</span></a></li>
-{/dede:channel}
-
-</ul>
-</div>
+    <div>
+        {dede:type}
+            <h4><a href='[field:typeurl/]'><span>[field:typename/]</span></a></h4>
+        {/dede:type}
+        <ul>
+            {dede:channel type='son'}
+            <li><span><a href='[field:typeurl/]'>[field:typename/]</a></span></li>
+            {/dede:channel}
+        </ul>
+    </div>
 {/dede:channelartlist}
 
 
