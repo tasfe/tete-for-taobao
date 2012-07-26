@@ -35,7 +35,7 @@
 
 <p><img src="http://a.tbcdn.cn/sys/wangwang/smiley/48x48/68.gif" /> 您好,欢迎您使用特推广_店铺推广专家!&nbsp;</p>
 <p>立即 <a href="/UserAddAds.aspx">推广宝贝</a>&nbsp;立即&nbsp;<a href="/AddShopAds.aspx">推广店铺</a></p>
-<p><a href="/AddShopAds.aspx">立即推广外部网站</a>
+<p>您还可以<a href="/AddShopAds.aspx">推广淘宝以外网站</a>
 
 <br>
 <table width="90%" style="border:solid 1px; margin-left:10px;" cellspacing="1" cellpadding="1"　align="center">
