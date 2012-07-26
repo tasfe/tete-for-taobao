@@ -100,14 +100,14 @@ alimama_height=250;
 	{/dede:arclist}
           </ul>
   </div>
-  <div class="indadc"><script type="text/javascript">
-alimama_pid="mm_21154906_2327568_9010189";
-alimama_width=950;
-alimama_height=90;
-</script>
-<script src="http://a.alimama.cn/inf.js" type="text/javascript"></script></div>
+  <div class="indadc"></div>
   <div class="main2">
-    <div class="main2top"> <span class="mainlinkmore"><a href="newsClass_1.htm"><font color="#f2650d">更多></font></a></span>
+    <div class="main2top"> 
+    
+   {dede:channel typeid='21'}
+    <span class="mainlinkmore"><a href="[field:typeurl/]"><font color="#f2650d">更多></font></a></span>
+   {/dede:channel}
+     
       <ul class="mainlink">
       
    {dede:channel type='son' typeid='21'}   
@@ -133,14 +133,19 @@ alimama_height=90;
               </ul>
       </div>
     
-            <div class="mainpicnews1"><a href="newShow_9619.htm"><img src="UpFile/20111125102416.jpg" height="180px"/></a><br />
-      <a href="newShow_9619.htm">20款日系甜美搭 初冬时...</a></div>
+    
+    {dede:arclist row='1' typeid='21' titlelen='20'}   
+            <div class="mainpicnews1"><a href='[field:arcurl/]' target='_blank'>[field:image/]</a><br />
+      <a href="[field:arcurl/]">[field:title/]</a></div>
+     {/dede:arclist}   
+      
+      
+      
+      
     <ul class="mainpicnewslist1">
-    
-    <li><b>1</b><a href="newShow_9557.htm">气质美妞呛辣搭 打造欧...</a></li>
-    
-    <li><b>2</b><a href="newShow_9556.htm">冬季连衣裙搭件大衣完美...</a></li>
-    
+    {dede:arclist limit='1,2' typeid='21' titlelen='20'}   
+    <li><b>1</b><a href="[field:arcurl/]">[field:title/]</a></li>
+     {/dede:arclist}     
     </ul>
                                             
     <ul class="mainpiclist">
@@ -150,7 +155,7 @@ alimama_height=90;
 		{/dede:arclist}     
     </ul>
   </div>
-  <div class="indadc"><a href='http://www.bkqq.com.cn/ad.html' target='_blank'><img src='adUpFile/ad/0-10.jpg' border=0 alt='爱家派 集成吊顶铝扣板 纳米板'/></a></div>
+  <div class="indadc"></div>
   <div class="main3">
     <div class="main3top"> <span class="mainlinkmore"><a href="newsClass_2.htm"><font color="#f2650d">更多></font></a></span>
       <ul class="mainlink">
@@ -221,12 +226,7 @@ alimama_height=90;
         <a href="newShow_8823.htm">肌肤代谢修复 夜间护肤黄金期</a></li>
                 </ul>
   </div>
-  <div class="indadc"><script type="text/javascript">
-alimama_pid="mm_21154906_2327568_9010193";
-alimama_width=950;
-alimama_height=90;
-</script>
-<script src="http://a.alimama.cn/inf.js" type="text/javascript"></script></div>
+  <div class="indadc"></div>
   <div class="main4">
     <div class="main4top"> <span class="mainlinkmore"><a href="newsClass_3.htm"><font color="#f2650d">更多></font></a></span>
       <ul class="mainlink">
@@ -295,12 +295,7 @@ alimama_height=90;
         <a href="newShow_8386.htm">揭秘蔡依林绝密瘦身法则</a></li>
                 </ul>
   </div>
-  <div class="indadc"><script type="text/javascript">
-alimama_pid="mm_21154906_2327568_9010535";
-alimama_width=950;
-alimama_height=90;
-</script>
-<script src="http://a.alimama.cn/inf.js" type="text/javascript"></script></div>
+  <div class="indadc"></div>
   <div class="main5">
     <div class="main5top"> <span class="mainlinkmore"><a href="newsClass_4.htm"><font color="#f2650d">更多></font></a></span>
       <ul class="mainlink">
@@ -369,25 +364,7 @@ alimama_height=90;
         <a href="newShow_2796.htm">海清曝《男人装》喷血写真 ...</a></li>
                 </ul>
   </div>
-  <div class="indadc"><table width="950" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:5px;">
-  <tr>
-    <td align="left">
-		<script type="text/javascript">
-alimama_pid="mm_21154906_2327568_9010558";
-alimama_width=468;
-alimama_height=60;
-</script>
-<script src="http://a.alimama.cn/inf.js" type="text/javascript"></script>
-	</td>
-    <td align="right">
-		<script type="text/javascript">
-alimama_pid="mm_21154906_2327568_9010560";
-alimama_width=468;
-alimama_height=60;
-</script>
-<script src="http://a.alimama.cn/inf.js" type="text/javascript"></script>	</td>
-  </tr>
-</table></div>
+  <div class="indadc"></div>
 </div>
 
 {dede:include filename="foot.htm"/}
