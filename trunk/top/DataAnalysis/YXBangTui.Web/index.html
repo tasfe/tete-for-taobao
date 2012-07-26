@@ -7,20 +7,7 @@
     <link href="css/css1.css" rel="stylesheet" />
     <link href="css/member.css" rel="stylesheet" />
     <link href="css/tab.css" rel="stylesheet" />
-    <script type="text/javascript">
-        function getCookie(c_name) {
-            if (document.cookie.length > 0) {
-                c_start = document.cookie.indexOf(c_name + "=")
-                if (c_start != -1) {
-                    c_start = c_start + c_name.length + 1
-                    c_end = document.cookie.indexOf(";", c_start)
-                    if (c_end == -1) c_end = document.cookie.length
-                    return unescape(document.cookie.substring(c_start, c_end))
-                }
-            }
-            location.href = "http://fuwu.taobao.com/ser/my_service.htm";
-        }
-    </script>
+  
 </head>
 <body>
     <div id="page">
@@ -31,7 +18,21 @@
 
                     在线客服： <a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid=特推广&site=cntaobao&s=1&charset=utf-8">
                         <img border="0" align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=特推广&site=cntaobao&s=1&charset=utf-8"
-                            alt="有问题请点这里" /></a> 您好，<input type="text" value="javascript:getCookie('nick')" />  欢迎来到特推广 <a href='http://www.taobao.com/' target="_blank">退出</a>
+                            alt="有问题请点这里" /></a> 您好，  <script type="text/javascript">
+                                                          function getCookie(c_name) {
+                                                              if (document.cookie.length > 0) {
+                                                                  c_start = document.cookie.indexOf(c_name + "=")
+                                                                  if (c_start != -1) {
+                                                                      c_start = c_start + c_name.length + 1
+                                                                      c_end = document.cookie.indexOf(";", c_start)
+                                                                      if (c_end == -1) c_end = document.cookie.length
+                                                                      document.write(unescape(document.cookie.substring(c_start, c_end)));
+                                                                  }
+                                                              } else {
+                                                                  location.href = "http://fuwu.taobao.com/ser/my_service.htm";
+                                                              }
+                                                          }
+    </script>  欢迎来到特推广 <a href='http://www.taobao.com/' target="_blank">退出</a>
                 </p>
             </div>
             <div id="content1">
