@@ -44,9 +44,15 @@ public partial class UserAdsList : System.Web.UI.Page
             }
 
             if (Request.QueryString["istou"] == "1")
+            {
                 list = list.Where(o => o.UserAdsState == 1).ToList();
+                Lbl_ShowAdsDec.Text = "投放中的广告";
+            }
             else
+            {
                 list = list.Where(o => o.UserAdsState != 1).ToList();
+                Lbl_ShowAdsDec.Text = "未投放的广告";
+            }
 
             int TotalCount = list.Count;
             int TotalPage = 1; //总页数
