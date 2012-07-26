@@ -15,12 +15,11 @@
   <div id="main1">
     <div id="indad1">
       <div id="imgADPlayer"></div>
-      <script>
-	  
-      PImgPlayer.addItem( "换季香水 巧妙叠加使用", "http://www.bkqq.com.cn/newShow_9109.htm", "adUpFile/lh/20111018105648.jpg"); 
- PImgPlayer.addItem( "香奈儿风格外套 OL专属优雅", "http://www.bkqq.com.cn/newShow_4542_1.htm", "adUpFile/lh/20110104082715.jpg"); 
- PImgPlayer.addItem( "秋冬给力潮包 小女人也有大气场", "http://www.bkqq.com.cn/newShow_9277.htm", "adUpFile/lh/20111031103329.jpg"); 
- PImgPlayer.init( "imgADPlayer",298,392);   
+<script>	  
+PImgPlayer.addItem( "换季香水 巧妙叠加使用", "http://www.bkqq.com.cn/newShow_9109.htm", "adUpFile/lh/20111018105648.jpg"); 
+PImgPlayer.addItem( "香奈儿风格外套 OL专属优雅", "http://www.bkqq.com.cn/newShow_4542_1.htm", "adUpFile/lh/20110104082715.jpg"); 
+PImgPlayer.addItem( "秋冬给力潮包 小女人也有大气场", "http://www.bkqq.com.cn/newShow_9277.htm", "adUpFile/lh/20111031103329.jpg"); 
+PImgPlayer.init( "imgADPlayer",298,392);   
 </script>
     </div>
     <div id="indjryw">
@@ -123,10 +122,12 @@ alimama_height=90;
     
     </div>
     <div class="mainnews"> 
-                  <h3><a href="newShow_10823.htm"><font color="#f2650d">夏季男士保养ON THE ROAD</font></a></h3>
-      <span>　 　　不论是商务出差,还是休闲旅行,作为忙碌的现代人免不了经常出行。干燥的飞机舱,不同地域的气候变化,都会导致皮肤问题。所...<a href="newShow_10823.htm"><font color="#f2650d">[详细]</font></a></span>
+               {dede:arclist row=1 typeid='21'}   
+                  <h3><a href="[field:arcurl/]"><font color="#f2650d">[field:title/]</font></a></h3>
+      <span>　 　　[field:info/]<a href="[field:arcurl/]"><font color="#f2650d">[详细]</font></a></span>
+                {/dede:arclist}    
       <ul>
-               {dede:arclist row=16 typeid='21'}   
+               {dede:arclist limit='1,16' typeid='21'}   
                     <li>·<a href='[field:arcurl/]' target='_blank'>[field:title/]</a></li>
                 {/dede:arclist}     
               </ul>
@@ -138,18 +139,13 @@ alimama_height=90;
                                               <li><b>1</b><a href="newShow_9557.htm">气质美妞呛辣搭 打造欧...</a></li>
                                         <li><b>2</b><a href="newShow_9556.htm">冬季连衣裙搭件大衣完美...</a></li>
                                             </ul>
+                                            
     <ul class="mainpiclist">
-                  <li><a href="newShow_9555.htm"><img src="UpFile/20111125103329.jpg" width="160px"/></a><br />
-        <a href="newShow_9555.htm">初冬性感混搭 尽显淑女气质</a></li>
-                                        <li><a href="newShow_9554.htm"><img src="UpFile/20111125103601.jpg" width="160px"/></a><br />
-        <a href="newShow_9554.htm">时尚呢子冬装外套 好搭又...</a></li>
-                                        <li><a href="newShow_9274.htm"><img src="UpFile/20111031105459.jpg" width="160px"/></a><br />
-        <a href="newShow_9274.htm">换季不慌 最in韩系混搭高招</a></li>
-                                        <li><a href="newShow_9272.htm"><img src="UpFile/20111031105833.jpg" width="160px"/></a><br />
-        <a href="newShow_9272.htm">松垮毛衣显瘦遮肉 穿出慵...</a></li>
-                                        <li><a href="newShow_9271.htm"><img src="UpFile/20111031110037.jpg" width="160px"/></a><br />
-        <a href="newShow_9271.htm">欧美风显瘦搭 秋季时尚百变</a></li>
-                </ul>
+    	{dede:arclist row='5' typeid='21'}   
+            <li><a href='[field:arcurl/]' target='_blank'>[field:image/]</a><br />
+            <a href='[field:arcurl/]' target='_blank'>[field:title/]</a></li>
+		{/dede:arclist}     
+    </ul>
   </div>
   <div class="indadc"><a href='http://www.bkqq.com.cn/ad.html' target='_blank'><img src='adUpFile/ad/0-10.jpg' border=0 alt='爱家派 集成吊顶铝扣板 纳米板'/></a></div>
   <div class="main3">
