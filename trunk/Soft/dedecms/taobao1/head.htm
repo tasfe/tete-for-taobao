@@ -83,11 +83,10 @@
 objList = document.getElementById("topclass").childNodes;
 for(i=0;i<objList.length;i++){
 	objList[i].id = "topclass" + (i+1);
-	objListChild = objList[i].childNodes[1].childNodes[0].childNodes;
-	alert(objListChild.length);
+	objListChild = objList[i].childNodes[1].childNodes;
 	for(j=0;j<objListChild.length;j++){
 		if(j % 2 == 0){
-			objListChild[j].className = 'color';	
+			objListChild[j].childNodes[0].className = 'color';	
 		}
 	}
 }
