@@ -169,7 +169,7 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
             param.Add("tag_id", tagid);
             string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.add", session, param);
 
-            WriteLog(result, "1");
+            WriteLog(result, "1", "", iid);
             if (result.IndexOf("error_response") != -1)
             {
                // sql = "delete from    [tete_activitylist]    WHERE ActivityID = " + actionId + " and  ProductID=" + iid;
@@ -228,7 +228,7 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
         param = new Dictionary<string, string>();
         param.Add("promotion_id", promotion_id);
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotion.delete", session, param);
-        WriteLog(result,"0");
+        WriteLog(result, "0", "", iid);
         if (result.IndexOf("error_response") != -1)
         {
 
@@ -411,13 +411,13 @@ public partial class top_groupbuy_LoadAjax : System.Web.UI.Page
     /// <param name="value">日志内容</param>
     /// <param name="type">类型 0(成功日志),1(错误日志) 可传空文本默认为0</param>
     /// <returns></returns>
-    public void WriteLog(string message, string type)
+    public void WriteLog(string message, string type, string taobaoNick,string id)
     {
         string tempStr = logUrl + "/activity" + DateTime.Now.ToString("yyyyMMdd");//文件夹路径
-        string tempFile = tempStr + "/activitydelpromotion" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+        string tempFile = tempStr + "/activitydelpromotion" + id + "" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
         if (type == "1")
         {
-            tempFile = tempStr + "/activityaddpromotion" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+            tempFile = tempStr + "/activityaddpromotion" + id +"" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
         }
         if (!Directory.Exists(tempStr))
         {
