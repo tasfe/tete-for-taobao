@@ -17,7 +17,7 @@
 
 <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="#" class="nolink">特推广</a> 推广中的宝贝 </div>
+  <div class="crumbs"><a href="#" class="nolink">特推广</a> <asp:Label ID="Lbl_ShowAdsDec" runat="server" /> </div>
   <div class="absright">
     <ul>
       <li>
