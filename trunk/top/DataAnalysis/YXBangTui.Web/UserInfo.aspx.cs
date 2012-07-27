@@ -31,7 +31,7 @@ public partial class UserInfo : System.Web.UI.Page
                     nick = Session["snick"].ToString();
                 }
             }
-            Response.Write(nick);
+            Response.Write("document.write('" + nick + "')");
             Response.End();
         }
     }
