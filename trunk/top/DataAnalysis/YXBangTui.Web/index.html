@@ -7,7 +7,51 @@
     <link href="css/css1.css" rel="stylesheet" />
     <link href="css/member.css" rel="stylesheet" />
     <link href="css/tab.css" rel="stylesheet" />
-  
+    <script type="text/javascript">
+        var XMLHttpReq;
+        function createXMLHttpRequest() {
+            if (window.XMLHttpRequest) { //Mozilla 浏览器
+                XMLHttpReq = new XMLHttpRequest();
+            }
+            else if (window.ActiveXObject) { // IE浏览器
+                try {
+                    XMLHttpReq = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    try {
+                        XMLHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e) { }
+                }
+            }
+        }
+
+        //发送匹配请求函数
+        function DoFetch() {
+            createXMLHttpRequest();
+            var url = "UserInfo.aspx";
+            XMLHttpReq.open("GET", url, true);
+            XMLHttpReq.onreadystatechange = processFetchResponse; //指定响应函数
+            XMLHttpReq.send(null); // 发送请求
+        }
+
+        // 处理返回匹配信息函数
+        function processFetchResponse() {
+            if (XMLHttpReq.readyState == 4) { // 判断对象状态
+                if (XMLHttpReq.status == 200) { // 信息已经成功返回，开始处理信息
+                    if (XMLHttpReq.responseText != "0") {
+                        document.getElementById("ft_userinfo").innerHTML = XMLHttpReq.responseText;
+                    } else {
+                        location.href = "http://fuwu.taobao.com/ser/my_service.htm";
+                    }
+                } else { //页面不正常
+                    window.alert("您所请求的页面有异常。");
+                }
+            }
+        }
+
+        window.onload = function() {
+            DoFetch();
+        }
+    </script>
 </head>
 <body>
     <div id="page">
@@ -18,7 +62,7 @@
 
                     在线客服： <a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid=特推广&site=cntaobao&s=1&charset=utf-8">
                         <img border="0" align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=特推广&site=cntaobao&s=1&charset=utf-8"
-                            alt="有问题请点这里" /></a> 您好<font color="#E8F2FF"><script type="text/javascript" src="/UserInfo.aspx"></script></font>
+                            alt="有问题请点这里" /></a> 您好<font color="blue" id="ft_userinfo"></font>
                             ，欢迎来到特推广 <a href='http://www.taobao.com/' target="_blank">退出</a>
                 </p>
             </div>
