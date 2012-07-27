@@ -71,8 +71,6 @@ public partial class AddShopAds : System.Web.UI.Page
 
         bool notou = true;
 
-        int i = 0;
-
         foreach (BuyInfo binfo in buyList)
         {
             //未过期的
@@ -90,7 +88,7 @@ public partial class AddShopAds : System.Web.UI.Page
                     //真正可以添加的广告数量
                     int realcount = feeInfo.AdsCount - myUseradsList.Count;
                     UserAdsInfo info = new UserAdsInfo();
-                    info.AdsTitle = TB_ShppName.Text.Trim(); ;
+                    info.AdsTitle = TB_ShppName.Text.Trim();
                     info.Id = Guid.NewGuid();
                     info.UserAdsState = 0;
                     info.AdsUrl = TB_ShowUrl.Text.Trim();
