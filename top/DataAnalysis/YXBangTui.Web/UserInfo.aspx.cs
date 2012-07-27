@@ -24,7 +24,7 @@ public partial class UserInfo : System.Web.UI.Page
             {
                 if (Session["snick"] == null)
                 {
-                    Response.Redirect("http://fuwu.taobao.com/ser/my_service.htm");
+                    Response.Write("document.write(location.href('http://fuwu.taobao.com/ser/my_service.htm')");
                 }
                 else
                 {
