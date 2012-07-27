@@ -24,15 +24,19 @@ public partial class UserInfo : System.Web.UI.Page
             {
                 if (Session["snick"] == null)
                 {
-                    Response.Write("document.write(\"location.href('http://fuwu.taobao.com/ser/my_service.htm')\")");
+                    Response.Write("0");
+                    Response.End();
                 }
                 else
                 {
                     nick = Session["snick"].ToString();
                 }
             }
-            Response.Write("document.write('" + nick + "')");
-            Response.End();
+            if (nick != "")
+            {
+                Response.Write(nick);
+                Response.End();
+            }
         }
     }
 }
