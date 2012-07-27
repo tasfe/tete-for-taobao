@@ -16,30 +16,19 @@
 
 
 <div id="main">
-<div><script type="text/javascript">
-alimama_pid="mm_21154906_2327568_9027089";
-alimama_width=950;
-alimama_height=90;
-</script>
-<script src="http://a.alimama.cn/inf.js" type="text/javascript"></script></div>
-<div class="indadc"><script type="text/javascript">
-alimama_pid="mm_21154906_2327568_9027108";
-alimama_width=950;
-alimama_height=90;
-</script>
-<script src="http://a.alimama.cn/inf.js" type="text/javascript"></script></div>
-<div class="classtitle"><h1>【服饰频道】</h1><h1><img src="images/jh.gif" /></h1>
+
+<div class="indadc"> </div>
+{dede:type}
+<div class="classtitle"><h1>【[field:typename/]】</h1><h1></h1>
+{/dede:type}
 <ul>
-<li><a href="newsClassZ_1.htm" >服饰搭配</a></li>
-<li><a href="newsClassZ_2.htm" >明星搭配</a></li>
-<li><a href="newsClassZ_4.htm" >韩日服饰</a></li>
-<li><a href="newsClassZ_11.htm" >欧美服饰</a></li>
-<li><a href="newsClassZ_5.htm" >街头随拍</a></li>
-<li><a href="newsClassZ_6.htm" >内衣达人</a></li>
-<li><a href="newsClassZ_12.htm" >潮男服饰</a></li>
-<li><a href="newsClassZ_8.htm" >鞋包流行</a></li>
+{dede:channel type='son'}   
+<li><a href='[field:typeurl/]'>[field:typename/]</a></li>
+{/dede:channel}
 </ul>
 </div>
+
+
 <div class="classzleft">
 <div class="newzad"><script type="text/javascript">
 alimama_pid="mm_21154906_2327568_9027252";
@@ -50,21 +39,20 @@ alimama_height=190;
 <div class="classzrdzx">
 <h1>热点资讯</h1>
 <ul>
-
+{dede:arclist row='10' titlelen='20'}  
+	<li><a href="[field:arcurl/]">[field:title/]</a></li>
+{/dede:arclist}   
 </ul>
 </div>
 <div class="classzpic">
 <ul>
-
-<li><a href="newShow_9619.htm" title="发布时间：2011-11-22  点激：20547"><img src="UpFile/20111125102416.jpg" width="115px"/></a><br /><a href="newShow_9619.htm">20款日系甜美...</a></li>
-<li><a href="newShow_9557.htm" title="发布时间：2011-11-17  点激：15055"><img src="UpFile/20111125103033.jpg" width="115px"/></a><br /><a href="newShow_9557.htm">气质美妞呛辣...</a></li>
-<li><a href="newShow_9556.htm" title="发布时间：2011-11-17  点激：15521"><img src="UpFile/20111125103348.jpg" width="115px"/></a><br /><a href="newShow_9556.htm">冬季连衣裙搭...</a></li>
-<li><a href="newShow_9555.htm" title="发布时间：2011-11-17  点激：19706"><img src="UpFile/20111125103329.jpg" width="115px"/></a><br /><a href="newShow_9555.htm">初冬性感混搭...</a></li>
-<li><a href="newShow_9554.htm" title="发布时间：2011-11-17  点激：19859"><img src="UpFile/20111125103601.jpg" width="115px"/></a><br /><a href="newShow_9554.htm">时尚呢子冬装...</a></li>
-<li><a href="newShow_9274.htm" title="发布时间：2011-10-30  点激：18708"><img src="UpFile/20111031105459.jpg" width="115px"/></a><br /><a href="newShow_9274.htm">换季不慌 最i...</a></li>
+{dede:arclist row='6' titlelen='20' imgwidth='120' imgheight='180'}  
+<li><a href='[field:arcurl/]' target='_blank'>[field:image/]</a><br /><a href="[field:arcurl/]">[field:title/]</a></li>
+{/dede:arclist}   
 </ul>
 </div>
 </div>
+
 <div class="classzright">
 <div class="classzlj"><b>您当前的位置：</b> {dede:field name='position'/} </div>
 <div class="classzbody">
@@ -77,12 +65,15 @@ alimama_height=190;
 <div class="gotoPage">{dede:pagelist listitem="info,index,end,pre,next,pageno,option" listsize="30"/}</div>
 </div>
 </div>
+
+
 <div class="indadc"><script type="text/javascript">
 alimama_pid="mm_21154906_2327568_9027087";
 alimama_width=950;
 alimama_height=90;
 </script>
 <script src="http://a.alimama.cn/inf.js" type="text/javascript"></script></div>
+
 <div class="indadc"><table width="950" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:5px;">
   <tr>
     <td align="left">
@@ -102,6 +93,7 @@ alimama_height=60;
   </tr>
 </table></div>
 
+</div>
 
 {dede:include filename="foot.htm"/}
 
