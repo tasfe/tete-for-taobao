@@ -32,7 +32,7 @@
                   <td><%# Eval("Nick") %></td>
                   <td><%# Eval("PingTimes")%></td>
                   <td><%# Eval("PingDate")%></td>
-                  <td><%# Eval("AddIP")%>IP</td>
+                  <td><%# Eval("AddIP")%></td>
                </tr>
             </ItemTemplate>
             <SeparatorTemplate>
