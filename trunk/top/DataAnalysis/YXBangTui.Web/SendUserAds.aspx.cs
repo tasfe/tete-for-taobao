@@ -52,6 +52,7 @@ public partial class SendUserAds : System.Web.UI.Page
                     info.AliWang = TB_Nick.Text.Trim();
                     info.Nick = TB_Nick.Text.Trim();
                     info.AdsPic = ginfo.GoodsPic;
+                    info.Price = ginfo.GoodsPrice;
 
                     info.AddTime = DateTime.Now;
                     info.AdsId = GetRand(CacheCollection.GetAllAdsInfo().Where(o => o.AdsType == 1).ToList());
