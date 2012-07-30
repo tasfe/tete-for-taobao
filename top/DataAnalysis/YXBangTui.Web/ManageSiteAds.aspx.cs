@@ -80,6 +80,17 @@ public partial class ManageSiteAds : System.Web.UI.Page
             siteAdsDal.DeleteAds(e.CommandArgument.ToString());
             Response.Redirect("ManageSiteAds.aspx?url=" + DDL_SiteList.SelectedValue);
         }
+        if (e.CommandName == "Up")
+        {
+            SiteAdsInfo info = siteAdsDal.SelectSiteAdsById(e.CommandArgument.ToString());
+
+            TB_AdsCode.Value = info.AdsCode;
+            TB_AdsPosition.Text = info.AdsPosition;
+            DDL_AdsType.SelectedValue = info.AdsType.ToString();
+            ViewState["id"] = info.Id.ToString();
+            BTN_Up.Visible = true;
+            BTN_Add.Visible = false;
+        }
     }
 
     protected void DDL_SiteList_TextChanged(object sender, EventArgs e)
@@ -90,6 +101,15 @@ public partial class ManageSiteAds : System.Web.UI.Page
     }
     protected void BTN_Up_Click(object sender, EventArgs e)
     {
+        SiteAdsInfo info = new SiteAdsInfo();
 
+        info.Id = new Guid(ViewState["id"].ToString());
+        info.SiteUrl = DDL_SiteList.SelectedValue;
+        info.AdsCode = TB_AdsCode.Value;
+        info.AdsPosition = TB_AdsPosition.Text;
+        info.AdsType = (SiteAdsType)int.Parse(DDL_AdsType.SelectedValue);
+
+        siteAdsDal.UpdateAds(info);
+        Response.Redirect("ManageSiteAds.aspx?url=" + DDL_SiteList.SelectedValue);
     }
 }
