@@ -5,6 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Untitled Page</title>
+    <style type="text/css">
+        #TB_AdsCode
+        {
+            height: 114px;
+            width: 367px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -15,7 +22,7 @@
        </div>
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
-      
+         <td>ID</td>
          <td><b>网站地址</b></td>
          <td><b>广告位置</b></td>
          <td><b>广告代码</b></td>
@@ -25,6 +32,7 @@
       <asp:Repeater ID="RPT_AdsList" runat="server" onitemcommand="RPT_AdsList_ItemCommand">
         <ItemTemplate>
            <tr>
+              <td><%# Eval("Id") %></td>
               <td>
                 <%# Eval("SiteUrl")%>
               </td>
@@ -52,7 +60,7 @@
            </tr>
            <tr>
              <td>广告代码：</td> 
-             <td><asp:TextBox ID="TB_AdsCode" runat="server" Width="469px" Height="128px" /></td>
+             <td><textarea ID="TB_AdsCode" runat="server"></textarea></td>
            </tr>
            <tr>
               <td>广告类型：</td>

@@ -64,7 +64,7 @@ public partial class ManageSiteAds : System.Web.UI.Page
             SiteAdsInfo info = new SiteAdsInfo();
             info.Id = Guid.NewGuid();
             info.SiteUrl = DDL_SiteList.SelectedValue;
-            info.AdsCode = TB_AdsCode.Text;
+            info.AdsCode = TB_AdsCode.Value;
             info.AdsPosition = TB_AdsPosition.Text;
             info.AdsType = (SiteAdsType)int.Parse(DDL_AdsType.SelectedValue);
 
