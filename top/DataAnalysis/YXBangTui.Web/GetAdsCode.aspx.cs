@@ -17,7 +17,7 @@ public partial class GetAdsCode : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            if (string.IsNullOrEmpty(Request.QueryString["id"]))
+            if (!string.IsNullOrEmpty(Request.QueryString["id"]))
             {
                 try
                 {
