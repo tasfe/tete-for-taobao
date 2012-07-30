@@ -26,6 +26,10 @@ public class SiteAdsService
 
     const string SQL_DELETE = "DELETE FROM BangT_SiteAds WHERE Id=@Id";
 
+    const string SQL_SELECT_BY_ID = "SELECT Id,SiteUrl,AdsPosition,AdsCode,AdsType FROM BangT_SiteAds WHERE Id=@Id";
+
+    const string SQL_UPDATE = "UPDATE SiteUrl=@SiteUrl,AdsPosition=@AdsPosition,AdsCode=@AdsCode,AdsType=@AdsType WHERE Id=@Id";
+
     public int InsertSiteAds(SiteAdsInfo info)
     {
         return DBHelper.ExecuteNonQuery(SQL_INSERT, CreateParameter(info));
@@ -51,6 +55,24 @@ public class SiteAdsService
         return list;
     }
 
+    public SiteAdsInfo SelectSiteAdsById(string id)
+    {
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT, new SqlParameter("@Id", id));
+        SiteAdsInfo info = null;
+
+        foreach (DataRow dr in dt.Rows)
+        {
+            info = new SiteAdsInfo();
+            info.Id = new Guid(dr["Id"].ToString());
+            info.SiteUrl = dr["SiteUrl"].ToString();
+            info.AdsPosition = dr["AdsPosition"].ToString();
+            info.AdsCode = dr["AdsCode"].ToString();
+            info.AdsType = (SiteAdsType)dr["AdsType"];
+        }
+
+        return info;
+    }
+
     public string GetAdsCode(string id)
     {
         DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_ADSCODE, new SqlParameter("@Id", id));
@@ -66,6 +88,11 @@ public class SiteAdsService
     public int DeleteAds(string id)
     {
         return DBHelper.ExecuteNonQuery(SQL_DELETE, new SqlParameter("@Id", id));
+    }
+
+    public int UpdateAds(SiteAdsInfo info)
+    {
+        return DBHelper.ExecuteNonQuery(SQL_UPDATE, CreateParameter(info));
     }
 
     public SqlParameter[] CreateParameter(SiteAdsInfo info)
