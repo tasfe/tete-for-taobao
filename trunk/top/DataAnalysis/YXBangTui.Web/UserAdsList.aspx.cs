@@ -295,7 +295,7 @@ public partial class UserAdsList : System.Web.UI.Page
 
             if (noads)
             {
-                Response.Redirect("http://www.7fshop.com/top/market/qubie.html");
+                Response.Redirect("/qubie.html");
             }
             else
             {
