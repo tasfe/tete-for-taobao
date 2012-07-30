@@ -91,6 +91,18 @@ public partial class api_Default : System.Web.UI.Page
             case "couponlist":
                 ShowCouponListInfo();
                 break;
+            case "getcount":
+                GetCountInfo();
+                break;
+            case "sendmsg":
+                SendMsgInfo();
+                break;
+            case "cancel":
+                CancelInfo();
+                break;
+            case "buy":
+                BuyInfo();
+                break;
             //case "bindtoken":
             //    BindToken();
             //    break;
@@ -101,6 +113,80 @@ public partial class api_Default : System.Web.UI.Page
         //    string str = "{\"error_response\":\"service_error\"}";
         //    Response.Write(str);
         //}
+    }
+
+    /// <summary>
+    /// 购买接口
+    /// </summary>
+    private void BuyInfo()
+    {
+        string data = utils.NewRequest("data", utils.RequestType.Form);
+
+        data = @"{""receipt-data"":""ewoJInNpZ25hdHVyZSIgPSAiQXNQOVNQRThhdUFTV2lwMkhvL1lYaHZua1VTMmRXMUxmdHlTcmdyTzh6TmZ6a3QyNFZTNHVqQ2VvOHpsS2s0MCtUOTR6TXpBaE4xTVNOUnA4ZlFzYloxSDhzSG0yaXNsMXZlNkZIVUhVL3RCdGNNbE8zbHBOVzlGYjNZT3oyRXFESnVLYkhlZzI5cEM1c3VId053Mi9ObDc4dVp3K21HNkNKWUF2dmVSdjY0K0FBQURWekNDQTFNd2dnSTdvQU1DQVFJQ0NHVVVrVTNaV0FTMU1BMEdDU3FHU0liM0RRRUJCUVVBTUg4eEN6QUpCZ05WQkFZVEFsVlRNUk13RVFZRFZRUUtEQXBCY0hCc1pTQkpibU11TVNZd0pBWURWUVFMREIxQmNIQnNaU0JEWlhKMGFXWnBZMkYwYVc5dUlFRjFkR2h2Y21sMGVURXpNREVHQTFVRUF3d3FRWEJ3YkdVZ2FWUjFibVZ6SUZOMGIzSmxJRU5sY25ScFptbGpZWFJwYjI0Z1FYVjBhRzl5YVhSNU1CNFhEVEE1TURZeE5USXlNRFUxTmxvWERURTBNRFl4TkRJeU1EVTFObG93WkRFak1DRUdBMVVFQXd3YVVIVnlZMmhoYzJWU1pXTmxhWEIwUTJWeWRHbG1hV05oZEdVeEd6QVpCZ05WQkFzTUVrRndjR3hsSUdsVWRXNWxjeUJUZEc5eVpURVRNQkVHQTFVRUNnd0tRWEJ3YkdVZ1NXNWpMakVMTUFrR0ExVUVCaE1DVlZNd2daOHdEUVlKS29aSWh2Y05BUUVCQlFBRGdZMEFNSUdKQW9HQkFNclJqRjJjdDRJclNkaVRDaGFJMGc4cHd2L2NtSHM4cC9Sd1YvcnQvOTFYS1ZoTmw0WElCaW1LalFRTmZnSHNEczZ5anUrK0RyS0pFN3VLc3BoTWRkS1lmRkU1ckdYc0FkQkVqQndSSXhleFRldngzSExFRkdBdDFtb0t4NTA5ZGh4dGlJZERnSnYyWWFWczQ5QjB1SnZOZHk2U01xTk5MSHNETHpEUzlvWkhBZ01CQUFHamNqQndNQXdHQTFVZEV3RUIvd1FDTUFBd0h3WURWUjBqQkJnd0ZvQVVOaDNvNHAyQzBnRVl0VEpyRHRkREM1RllRem93RGdZRFZSMFBBUUgvQkFRREFnZUFNQjBHQTFVZERnUVdCQlNwZzRQeUdVakZQaEpYQ0JUTXphTittVjhrOVRBUUJnb3Foa2lHOTJOa0JnVUJCQUlGQURBTkJna3Foa2lHOXcwQkFRVUZBQU9DQVFFQUVhU2JQanRtTjRDL0lCM1FFcEszMlJ4YWNDRFhkVlhBZVZSZVM1RmFaeGMrdDg4cFFQOTNCaUF4dmRXLzNlVFNNR1k1RmJlQVlMM2V0cVA1Z204d3JGb2pYMGlreVZSU3RRKy9BUTBLRWp0cUIwN2tMczlRVWU4Y3pSOFVHZmRNMUV1bVYvVWd2RGQ0TndOWXhMUU1nNFdUUWZna1FRVnk4R1had1ZIZ2JFL1VDNlk3MDUzcEdYQms1MU5QTTN3b3hoZDNnU1JMdlhqK2xvSHNTdGNURXFlOXBCRHBtRzUrc2s0dHcrR0szR01lRU41LytlMVFUOW5wL0tsMW5qK2FCdzdDMHhzeTBiRm5hQWQxY1NTNnhkb3J5L0NVdk02Z3RLc21uT09kcVRlc2JwMGJzOHNuNldxczBDOWRnY3hSSHVPTVoydG04bnBMVW03YXJnT1N6UT09IjsKCSJwdXJjaGFzZS1pbmZvIiA9ICJld29KSW05eWFXZHBibUZzTFhCMWNtTm9ZWE5sTFdSaGRHVXRjSE4wSWlBOUlDSXlNREV5TFRBM0xUSTJJREExT2pVd09qQTRJRUZ0WlhKcFkyRXZURzl6WDBGdVoyVnNaWE1pT3dvSkluVnVhWEYxWlMxcFpHVnVkR2xtYVdWeUlpQTlJQ0kxTURjM09URTFPVFJrWVRrME5qWTBaREUzTmpreE5HUmlNVEU0TVdZMFlUUm1OV0k1TTJVeklqc0tDU0p2Y21sbmFXNWhiQzEwY21GdWMyRmpkR2x2YmkxcFpDSWdQU0FpTVRBd01EQXdNREExTXpRNE56UXhPQ0k3Q2draVluWnljeUlnUFNBaU1TNHdJanNLQ1NKMGNtRnVjMkZqZEdsdmJpMXBaQ0lnUFNBaU1UQXdNREF3TURBMU16UTROelF4T0NJN0Nna2ljWFZoYm5ScGRIa2lJRDBnSWpFaU93b0pJbTl5YVdkcGJtRnNMWEIxY21Ob1lYTmxMV1JoZEdVdGJYTWlJRDBnSWpFek5ETXpNRGN3TURnek5ERWlPd29KSW5CeWIyUjFZM1F0YVdRaUlEMGdJbU52YlM1amIyTnZMbk50YzE4eE1DSTdDZ2tpYVhSbGJTMXBaQ0lnUFNBaU5UUTJOVGN6TXpBeElqc0tDU0ppYVdRaUlEMGdJbU52YlM1amIyTnZMblJwYldsdVoxTk5VeUk3Q2draWNIVnlZMmhoYzJVdFpHRjBaUzF0Y3lJZ1BTQWlNVE0wTXpNd056QXdPRE0wTVNJN0Nna2ljSFZ5WTJoaGMyVXRaR0YwWlNJZ1BTQWlNakF4TWkwd055MHlOaUF4TWpvMU1Eb3dPQ0JGZEdNdlIwMVVJanNLQ1NKd2RYSmphR0Z6WlMxa1lYUmxMWEJ6ZENJZ1BTQWlNakF4TWkwd055MHlOaUF3TlRvMU1Eb3dPQ0JCYldWeWFXTmhMMHh2YzE5QmJtZGxiR1Z6SWpzS0NTSnZjbWxuYVc1aGJDMXdkWEpqYUdGelpTMWtZWFJsSWlBOUlDSXlNREV5TFRBM0xUSTJJREV5T2pVd09qQTRJRVYwWXk5SFRWUWlPd3A5IjsKCSJlbnZpcm9ubWVudCIgPSAiU2FuZGJveCI7CgkicG9kIiA9ICIxMDAiOwoJInNpZ25pbmctc3RhdHVzIiA9ICIwIjsKfQ==""}";
+
+        string url = "https://sandbox.itunes.apple.com/verifyReceipt";
+        string result = SendPostData(url, data);
+
+        Response.Write(result);
+    }
+
+    private void CancelInfo()
+    {
+        string sql = string.Empty;
+        string str = string.Empty;
+        string guid = utils.NewRequest("guid", utils.RequestType.QueryString);
+
+
+        sql = "UPDATE HuliUserMsg SET iscancel = 1 WHERE guid = '" + guid + "'";
+        utils.ExecuteNonQuery(sql);
+        //Response.Write(sql);
+
+        str = "{\"guid\":\"" + guid + "\"}";
+        Response.Write(str);
+    }
+
+
+
+
+
+
+
+    private void SendMsgInfo()
+    {
+        string sql = string.Empty;
+        string str = string.Empty;
+        string guid = string.Empty;
+        string mobile = utils.NewRequest("mobile", utils.RequestType.QueryString);
+        string content = utils.NewRequest("content", utils.RequestType.QueryString);
+        string delay = utils.NewRequest("delay", utils.RequestType.QueryString);
+
+        guid = Guid.NewGuid().ToString();
+
+        sql = "INSERT INTO HuliUserMsg (guid, nick, token, mobile, content, delay) VALUES ('" + guid + "','" + uid + "','" + token + "','" + mobile.Replace("'", "''") + "','" + content + "','" + delay + "')";
+        utils.ExecuteNonQuery(sql);
+        //Response.Write(sql);
+
+        str = "{\"guid\":\"" + guid + "\"}";
+        Response.Write(str);
+    }
+
+    private void GetCountInfo()
+    {
+        string sql = string.Empty;
+        string str = string.Empty;
+
+        sql = "SELECT * FROM TeteUserToken WHERE token = '" + token + "' AND nick = '" + uid + "'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        if (dt.Rows.Count != 0)
+        {
+            str = "{\"count\":" + dt.Rows[0]["total"].ToString() + "}";
+        }
+        else
+        {
+            str = "{\"count\":0}";
+        }
+
+        Response.Write(str);
     }
 
     /// <summary>
@@ -180,28 +266,51 @@ public partial class api_Default : System.Web.UI.Page
         }
 
         couponid = qrcode.Replace("{\"coupon\":\"", "").Replace("\"}", "");
+        /*
+                //给客户赠送优惠券并给出提示
+                string number = "110";
+                sql = "SELECT taobaocouponid FROM TeteCoupon WHERE guid = '" + couponid + "'";
+        
+                string taobaocouponid = utils.ExecuteString(sql);
+                //执行优惠券赠送行为
+                string appkey = "12159997";
+                string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+                string session = "610261249120700fcda21f569d424328537a3d82a101d7c204200856";
+                //buynick = "叶儿随清风";
 
-        //给客户赠送优惠券并给出提示
-        string number = "110";
-        sql = "SELECT taobaocouponid FROM TeteCoupon WHERE guid = '" + couponid + "'";
+                IDictionary<string, string> param = new Dictionary<string, string>();
+                param.Add("coupon_id", taobaocouponid);
+                param.Add("buyer_nick", buynick);
 
-        string taobaocouponid = utils.ExecuteString(sql);
-        //执行优惠券赠送行为
-        string appkey = "12159997";
-        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
-        string session = "610261249120700fcda21f569d424328537a3d82a101d7c204200856";
-        //buynick = "叶儿随清风";
+                string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.send", session, param);
+                number = new Regex(@"<coupon_number>([^<]*)</coupon_number>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+                //Response.Write(result);
+                //Response.Write("<br>");
+                //Response.Write(number);
+        */
 
-        IDictionary<string, string> param = new Dictionary<string, string>();
-        param.Add("coupon_id", taobaocouponid);
-        param.Add("buyer_nick", buynick);
+        if (couponid == "tetesoft-getcoupon")
+        {
+            Response.Write("{\"url\":\"http://tacera.m.tmall.com/\",\"message\":\"恭喜您获得本店送出的满100减20优惠券!\"}");
+        }
+        else if (couponid == "tetesoft-promotion")
+        {
+            Response.Write("{\"url\":\"http://tacera.m.tmall.com/shop/a-5-5-40-487083979-42-698457170.htm?sid=b6daf44b5655714a\",\"message\":\"店铺特价风暴正在进行中,赶快去抢!\"}");
+        }
+        else if (couponid == "tetesoft-choujiang")
+        {
+            Response.Write("{\"url\":\"http://tr.isv8.com/?15001\",\"message\":\"请问是否马上要去抽奖?\"}");
+        }
+        else if (couponid == "tetesoft-detail")
+        {
+            Response.Write("{\"url\":\"http://a.m.tmall.com/i10169621941.htm?sid=b6daf44b5655714a\",\"message\":\"秒杀商品进行中,赶快去抢!\"}");
+        }
+        else
+        {
+            Response.Write("{\"url\":\"http://tacera.m.tmall.com/\",\"message\":\"恭喜您获得本店送出的满100减50优惠券!\"}");
+        }
 
-        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.send", session, param);
-        number = new Regex(@"<coupon_number>([^<]*)</coupon_number>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-        //Response.Write(result);
-        //Response.Write("<br>");
-        //Response.Write(number);
-        Response.Write("{\"url\":\"http://shop57734865.taobao.com/\"}");
+
     }
 
     private void ShowMsgDetailInfo()
@@ -677,5 +786,32 @@ public partial class api_Default : System.Web.UI.Page
         if (rsp != null) rsp.Close();
         #endregion
         return Regex.Replace(result, @"[\x00-\x08\x0b-\x0c\x0e-\x1f]", "");
+    }
+
+    public static string SendPostData(string url, string data)
+    {
+        string result = string.Empty;
+        #region ---- 完成 HTTP POST 请求----
+        HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+        req.Method = "POST";
+        req.KeepAlive = true;
+        req.Timeout = 300000;
+        req.ContentType = "application/x-www-form-urlencoded;charset=utf-8";
+        byte[] postData = Encoding.UTF8.GetBytes(data);
+        Stream reqStream = req.GetRequestStream();
+        reqStream.Write(postData, 0, postData.Length);
+        reqStream.Close();
+        HttpWebResponse rsp = (HttpWebResponse)req.GetResponse();
+        Encoding encoding = Encoding.GetEncoding(rsp.CharacterSet);
+        Stream stream = null;
+        StreamReader reader = null;
+        stream = rsp.GetResponseStream();
+        reader = new StreamReader(stream, encoding);
+        result = reader.ReadToEnd();
+        if (reader != null) reader.Close();
+        if (stream != null) stream.Close();
+        if (rsp != null) rsp.Close();
+        #endregion
+        return result;
     }
 }
