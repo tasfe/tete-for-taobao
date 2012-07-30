@@ -42,7 +42,7 @@
                         <p>
                             您还可以<a href="/AddShopAds.aspx">推广淘宝以外网站</a></p>
                         <p>
-                            好评赠送广告位了，立即<a href="good.html">查看详情</a></p>
+                            好评赠送广告位了，立即<a href="good.html" style="color:Red">查看详情</a></p>
                         <table width="100%" style="border: solid 1px; margin-left: 0px;" cellspacing="1"
                             cellpadding="1" align="center">
                             <tr>
