@@ -6,7 +6,7 @@
 <head runat="server">
     <title>Untitled Page</title>
      <style type="text/css">
-        td{height:40px; width:150px}
+        td{height:20px}
      </style>   
 </head>
 <body>
@@ -19,7 +19,7 @@
       
       <asp:Button ID="Btn_AddAds" runat="server" Text="确定添加" onclick="Btn_AddAds_Click" />
       
-      <table>
+      <table cellpadding="0" cellspacing="0" width="100%">
        <tr>
           <td>获赠者ID</td>
           <td>赠送次数</td>
