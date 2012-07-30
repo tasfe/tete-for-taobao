@@ -20,7 +20,7 @@
          网站： <asp:DropDownList ID="DDL_SiteList" runat="server" AutoPostBack="True" 
                ontextchanged="DDL_SiteList_TextChanged"></asp:DropDownList>
        </div>
-    <table width="700" cellpadding="0" cellspacing="0">
+    <table width="100%" cellpadding="0" cellspacing="0">
         <tr>
          <td>ID</td>
          <td><b>网站地址</b></td>
