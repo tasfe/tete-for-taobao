@@ -38,7 +38,7 @@ public partial class ManageSiteAds : System.Web.UI.Page
                     RPT_AdsList.DataSource = list;
                     RPT_AdsList.DataBind();
 
-                    DDL_SiteList.SelectedValue = Request.QueryString["siteid"];
+                    DDL_SiteList.SelectedValue = Request.QueryString["url"];
                 }
                 catch (Exception ex) { }
             }
