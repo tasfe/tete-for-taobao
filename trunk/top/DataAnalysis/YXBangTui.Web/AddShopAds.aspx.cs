@@ -160,6 +160,7 @@ public partial class AddShopAds : System.Web.UI.Page
 
                         notou = false;
                     }
+
                     userAdsDal.InsertUserAds(info);
                     break;
                 }
