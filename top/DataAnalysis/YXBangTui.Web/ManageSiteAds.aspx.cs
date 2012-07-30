@@ -83,13 +83,15 @@ public partial class ManageSiteAds : System.Web.UI.Page
         if (e.CommandName == "Up")
         {
             SiteAdsInfo info = siteAdsDal.SelectSiteAdsById(e.CommandArgument.ToString());
-
-            TB_AdsCode.Value = info.AdsCode;
-            TB_AdsPosition.Text = info.AdsPosition;
-            DDL_AdsType.SelectedValue = info.AdsType.ToString();
-            ViewState["id"] = info.Id.ToString();
-            BTN_Up.Visible = true;
-            BTN_Add.Visible = false;
+            if (info != null)
+            {
+                TB_AdsCode.Value = info.AdsCode;
+                TB_AdsPosition.Text = info.AdsPosition;
+                DDL_AdsType.SelectedValue = info.AdsType.ToString();
+                ViewState["id"] = info.Id.ToString();
+                BTN_Up.Visible = true;
+                BTN_Add.Visible = false;
+            }
         }
     }
 
