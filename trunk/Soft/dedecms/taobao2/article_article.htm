@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{dede:global.cfg_webname/}</title>
+<meta name="description" content="{dede:global.cfg_description/}" />
+<meta name="keywords" content="{dede:global.cfg_keywords/}" />
+<link href="/templets/taobao2/images/css.css" rel="stylesheet" type="text/css" />
+<link href="/templets/taobao2/images/newsClass.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+{dede:include filename="head.htm"/}
+
+<div id="main">
+<div><script language="javascript" type="text/javascript" src="http://www.tetuiguang.com/showads/?typ=alimama6"></script></div>
+<div class="indadc"><script language="javascript" type="text/javascript" src="http://www.tetuiguang.com/showads/?typ=alimama7"></script></div>
+<div class="newshow">
+<div class="newshowlj"><b>您当前的位置：</b> {dede:field name='position'/} </div>
+<div class="newshowbody">
+<h2>{dede:field.title/}</h2>
+<span>日期：{dede:field.pubdate function="MyDate('Y-m-d H:i',@me)"/} &nbsp; 作者：{dede:field.source/} &nbsp; 来源：{dede:field.writer/} &nbsp; 人气：<script src="{dede:field name='phpurl'/}/count.php?view=yes&aid={dede:field name='id'/}&mid={dede:field name='mid'/}" type='text/javascript' language="javascript"></script></span>
+<div class="showbody">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+    <div>
+    {dede:field.body/}
+      {dede:field.vote/}
+      (责任编辑：{dede:adminname/})
+     </div>
+    <br />
+    <div>
+    	 {dede:pagebreak/}
+    </div>
+    </td>
+  </tr>
+</table>
+
+{dede:prenext get='pre'/}{dede:prenext get='next'/}
+<br />
+</div>
+</div>
+<div class="newshowfoot">
+<h3>相关文章</h3><h3>热点新闻</h3>
+<ul>
+
+{dede:likearticle row='8' }  
+<li><span>●</span> <a href='[field:arcurl/]' target='_blank'>[field:title/]</a></li>
+{/dede:likearticle}  
+
+</ul>
+<ul>
+
+{dede:arclist row='8'  orderby='hot' }  
+<li><span>●</span> <a href='[field:arcurl/]' target='_blank'>[field:title/]</a></li>
+{/dede:arclist} 
+</ul>
+</div> 
+</div>
+
+<div class="newshowleft">
+<div class="newshowad"><script language="javascript" type="text/javascript" src="http://www.tetuiguang.com/showads/?typ=alimama8"></script></div>
+<div class="newshowzxzx">
+<h1>热点资讯</h1>
+<ul>
+
+</ul>
+</div>
+<div class="newshowad"></div>
+<div class="newshowpic">
+<ul>
+
+
+{dede:arclist row='10' titlelen='20' imgwidth='116' imgheight='174'}  
+<li><a href='[field:arcurl/]' target='_blank'>[field:image/]</a><br /><a href="[field:arcurl/]">[field:title/]</a></li>
+{/dede:arclist}  
+
+</ul>
+</div>
+</div>
+
+<div class="indadc"><script language="javascript" type="text/javascript" src="http://www.tetuiguang.com/showads/?typ=alimama9"></script></div>
+<div class="indadc"><table width="950" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:5px;">
+  <tr>
+    <td align="left">
+		<script language="javascript" type="text/javascript" src="http://www.tetuiguang.com/showads/?typ=alimama10"></script></td>
+    <td align="right">
+		<script language="javascript" type="text/javascript" src="http://www.tetuiguang.com/showads/?typ=alimama11"></script>	</td>
+  </tr>
+</table></div>
+
+{dede:include filename="foot.htm"/}
+
+</body>
+</html>

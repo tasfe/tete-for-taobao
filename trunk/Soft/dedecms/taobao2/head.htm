@@ -1,0 +1,94 @@
+﻿<div id="top">
+  <div id="logo"><img src="/templets/taobao2/images/logo.jpg" /></div>
+  <div id="toplink">
+<a href="http://www.chihuotianxia.com" target="_blank">吃货天下</a>|
+<a href="http://www.mengmeng8.com" target="_blank">萌萌吧</a></div>
+ <ul class="topmenu">
+  <li class="topmenu1"><a href="/index.html">首页</a></li>
+  <li class="topmenu2"><a href="http://www.go12go.com" target="_blank">导购网</a></li>
+  <li class="topmenu2"><a href="http://www.niubibang.com" target="_blank">男人邦</a></li>
+  <li class="topmenu2"><a href="http://www.hi859.com" target="_blank">房产</a></li>
+  <li class="topmenu2"><a href="http://www.5izhuangxiu.com" target="_blank">家居</a></li>
+  <li class="topmenu2"><a href="http://www.ianglebaby.com" target="_blank">亲子</a></li>
+  </ul>
+  <div id="topnotice"><marquee direction="left" scrollamount="2"></marquee></div>
+</div>
+
+<div id="topsearch">
+<div id="topsearch1">新闻搜索：</div>
+<form action="/plus/search.php" method="get">
+<input type="hidden" id="searchtype" value="titlekeyword" />
+<div class="topsearch2"><input name="keyword" type="text" style="width:300px; border:0px; height:22px" /></div>
+<div class="topsearch2"><input type="submit" id="btnsearch" value="搜索" /></div>
+</form>
+<div id="topsearch3">热搜：<a href="/plus/search.php?keyword=春季搭配" target="_blank">春季搭配</a> 
+<a href="/plus/search.php?keyword=牛仔裤" target="_blank">牛仔裤</a> 
+<a href="/plus/search.php?keyword=画眼妆" target="_blank">画眼妆</a> 
+<a href="/plus/search.php?keyword=明星搭配" target="_blank">明星搭配</a>
+<a href="/plus/search.php?keyword=凉鞋" target="_blank">凉鞋</a>
+<a href="plus/search.php?keyword=泳装" target="_blank">泳装</a></div>
+</div>
+
+<div id="topclass">
+
+    <div>
+        {dede:type typeid='21'}
+            <h4><a href='[field:typeurl/]'><span>[field:typename/]</span></a></h4>
+        {/dede:type}
+        <ul>
+            {dede:channel typeid='21' type='son'}
+            <li><a href='[field:typeurl/]'>[field:typename/]</a></li>
+            {/dede:channel}
+        </ul>
+    </div>
+    
+    
+    <div>
+        {dede:type typeid='22'}
+            <h4><a href='[field:typeurl/]'><span>[field:typename/]</span></a></h4>
+        {/dede:type}
+        <ul>
+            {dede:channel typeid='22' type='son'}
+            <li><a href='[field:typeurl/]'>[field:typename/]</a></li>
+            {/dede:channel}
+        </ul>
+    </div>
+    
+    
+    <div>
+        {dede:type typeid='23'}
+            <h4><a href='[field:typeurl/]'><span>[field:typename/]</span></a></h4>
+        {/dede:type}
+        <ul>
+            {dede:channel typeid='23' type='son'}
+            <li><a href='[field:typeurl/]'>[field:typename/]</a></li>
+            {/dede:channel}
+        </ul>
+    </div>
+    
+    
+    <div>
+        {dede:type typeid='24'}
+            <h4><a href='[field:typeurl/]'><span>[field:typename/]</span></a></h4>
+        {/dede:type}
+        <ul>
+            {dede:channel typeid='24' type='son'}
+            <li><a href='[field:typeurl/]'>[field:typename/]</a></li>
+            {/dede:channel}
+        </ul>
+    </div>
+
+</div>
+
+<script language="javascript">
+objList = document.getElementById("topclass").childNodes;
+for(i=0;i<objList.length;i++){
+	objList[i].id = "topclass" + (i+1);
+	objListChild = objList[i].childNodes[1].childNodes;
+	for(j=0;j<objListChild.length;j++){
+		if(j % 2 == 0){
+			objListChild[j].childNodes[0].className = 'color';	
+		}
+	}
+}
+</script>
