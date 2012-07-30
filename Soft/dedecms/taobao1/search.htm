@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{dede:global.cfg_webname/}</title>
+<meta name="description" content="{dede:global.cfg_description/}" />
+<meta name="keywords" content="{dede:global.cfg_keywords/}" />
+<link href="/templets/taobao1/images/css.css" rel="stylesheet" type="text/css" />
+<link href="/templets/taobao1/images/newsClass.css" rel="stylesheet" type="text/css" />
+<link href="/templets/taobao1/images/dedecms.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+{dede:include filename="head.htm"/}
+
+
+
+<div id="main">
+
+<div class="indadc"> </div>
+{dede:type}
+<div class="classtitle"><h1>【[field:typename/]】</h1><h1></h1>
+{/dede:type}
+<ul>
+{dede:channel type='son'}   
+<li><a href='[field:typeurl/]'>[field:typename/]</a></li>
+{/dede:channel}
+</ul>
+</div>
+
+
+<div class="classzleft">
+<div class="newzad"><script language="javascript" type="text/javascript" src="http://tetuiguang.com/GetAdsCode.aspx?id=abfc090a-d054-423f-9f99-d9d44f488794"></script></div>
+<div class="classzrdzx">
+<h1>热点资讯</h1>
+</div>
+<div class="classzpic">
+<ul>
+{dede:arclist row='6' titlelen='14' imgwidth='116' imgheight='174'}  
+<li><a href='[field:arcurl/]' target='_blank'>[field:image/]</a><br /><a href="[field:arcurl/]">[field:title/]</a></li>
+{/dede:arclist}   
+</ul>
+</div>
+</div>
+
+<div class="classzright">
+<div class="classzlj"><b>您当前的位置：</b> {dede:field name='position'/} </div>
+<div class="classzbody">
+<ul>
+{dede:list pagesize='28'}
+<li><span>● <a href="[field:arcurl/]" class="title">[field:title/]</a><font></font> </span></li>
+{/dede:list}
+</ul>
+<br clear="all" />
+<div class="gotoPage">
+
+<div class="dede_pages">
+   <ul class="pagelist">{dede:pagelist listitem="info,index,end,pre,next,pageno,option" listsize="28"/}
+</ul></div>  
+  
+   
+   </div>
+</div>
+</div>
+
+
+<div class="indadc"><script language="javascript" type="text/javascript" src="http://tetuiguang.com/GetAdsCode.aspx?id=aa84c9b9-6783-491a-ba5e-ed7d1fc68af9"></script></div>
+
+</div>
+
+{dede:include filename="foot.htm"/}
+
+
+</body>
+</html>
