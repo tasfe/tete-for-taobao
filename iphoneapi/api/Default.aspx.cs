@@ -127,7 +127,8 @@ public partial class api_Default : System.Web.UI.Page
         string url = "https://sandbox.itunes.apple.com/verifyReceipt";
         string result = SendPostData(url, data);
 
-        Response.Write(result);
+        string orderid = Regex.Match(result, @"""original_transaction_id"":""([^""]*)""").Groups[1].ToString();
+        Response.Write(orderid);
     }
 
     private void CancelInfo()
