@@ -176,10 +176,7 @@ public partial class UserAdsList : System.Web.UI.Page
         if (lbl != null && lbl.Text == "1")
         {
             e.Item.FindControl("Btn_Stop").Visible = false;
-            e.Item.FindControl("Btn_Result").Visible = false;
-            e.Item.FindControl("Btn_See").Visible = false;
-            e.Item.FindControl("Btn_Add").Visible = false;
-            e.Item.FindControl("Btn_Insert").Visible = false;
+            e.Item.FindControl("Btn_De").Visible = false;
         }
         else
         {
