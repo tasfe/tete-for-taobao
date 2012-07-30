@@ -176,7 +176,7 @@ public partial class api_Default : System.Web.UI.Page
         }
         else
         {
-            str = "{\"result\":\"0\"}";
+            str = "{\"result\":\"-1\"}";
             Response.Write(str);
         }
     }
