@@ -31,7 +31,7 @@ public partial class UserAdsList : System.Web.UI.Page
                 Response.Write("请重新登录");
                 return;
             }
-            IList<UserAdsInfo> list = uasDal.SelectAllUserAds(nick);
+            IList<UserAdsInfo> list = uasDal.SelectAllUserAdsList(nick);
 
             //IList<UserAdsInfo> useradsList = uasDal.SelectAllUserAds(nick);
             IList<BuyInfo> buyList = CacheCollection.GetAllBuyInfo().Where(o => o.Nick == nick).ToList();
