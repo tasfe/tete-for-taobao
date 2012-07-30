@@ -1,0 +1,329 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{dede:global.cfg_webname/}</title>
+<meta name="description" content="{dede:global.cfg_description/}" />
+<meta name="keywords" content="{dede:global.cfg_keywords/}" />
+<link href="/templets/taobao2/images/css.css" rel="stylesheet" type="text/css" />
+<link href="/templets/taobao2/images/dedecms.css" rel="stylesheet" type="text/css" />
+<SCRIPT language=javascript src="/templets/taobao2/js/changimages.js"></SCRIPT>
+</head>
+<body>
+{dede:include filename="head.htm"/}
+
+<div id="main">
+  <div id="main1">
+    <div id="indad1">
+      <div id="imgADPlayer"></div>
+<script language="javascript" type="text/javascript" src="http://www.tetuiguang.com/showads/?typ=1"></script>
+    </div>
+    <div id="indjryw">
+      <div id="indjrywtop">
+        <script>document.write(new Date().toLocaleDateString()+' 星期'+'日一二三四五六'.charAt (new Date().getDay()))</script>
+        <span id="time"></span>&nbsp;&nbsp;</div>
+            <div class="indjrywbody">
+              {dede:arclist typeid='25' titlelen=40 flag='c' row=1}
+                <h3><a href="[field:arcurl/]" target="_blank"><font color="#f2650d">[field:title/]</font></a></h3>
+              {/dede:arclist}
+       
+        		<ul>
+                  {dede:arclist typeid='25' titlelen=18 noflag='c' row=3}
+                    <li>[<a href="[field:arcurl/]" target="_blank">[field:title/]</a>]</li>
+                  {/dede:arclist}
+                </ul>
+      </div>
+            <div class="indjrywbody">
+           {dede:arclist typeid='26' titlelen=40 flag='c' row=1}
+                <h3><a href="[field:arcurl/]" target="_blank"><font color="#f2650d">[field:title/]</font></a></h3>
+              {/dede:arclist}
+       
+        		<ul>
+                  {dede:arclist typeid='26' titlelen=18 noflag='c' row=3}
+                    <li>[<a href="[field:arcurl/]" target="_blank">[field:title/]</a>]</li>
+                  {/dede:arclist}
+                </ul>
+      </div>
+            <div class="indjrywbody">
+    {dede:arclist typeid='22' titlelen=40 flag='c' row=1}
+                <h3><a href="[field:arcurl/]" target="_blank"><font color="#f2650d">[field:title/]</font></a></h3>
+              {/dede:arclist}
+       
+        		<ul>
+                  {dede:arclist typeid='22' titlelen=18 noflag='c' row=3}
+                    <li>[<a href="[field:arcurl/]" target="_blank">[field:title/]</a>]</li>
+                  {/dede:arclist}
+                </ul>
+      </div>
+            <div class="indjrywbody">
+    {dede:arclist typeid='23' titlelen=40 flag='c' row=1}
+                <h3><a href="[field:arcurl/]" target="_blank"><font color="#f2650d">[field:title/]</font></a></h3>
+              {/dede:arclist}
+       
+        		<ul>
+                  {dede:arclist typeid='23' titlelen=18 noflag='c' row=3}
+                    <li>[<a href="[field:arcurl/]" target="_blank">[field:title/]</a>]</li>
+                  {/dede:arclist}
+                </ul>
+      </div>
+            <div class="indjrywbody">
+        {dede:arclist typeid='24' titlelen=40 flag='c' row=1}
+                <h3><a href="[field:arcurl/]" target="_blank"><font color="#f2650d">[field:title/]</font></a></h3>
+              {/dede:arclist}
+       
+        		<ul>
+                  {dede:arclist typeid='24' titlelen=18 noflag='c' row=3}
+                    <li>[<a href="[field:arcurl/]" target="_blank">[field:title/]</a>]</li>
+                  {/dede:arclist}
+                </ul>
+      </div>
+       </div>
+    <div class="indad3">
+<script language="javascript" type="text/javascript" src="http://www.tetuiguang.com/showads/?typ=gg1"></script></div>
+    <div class="indad3">
+<script language="javascript" type="text/javascript" src="http://www.tetuiguang.com/showads/?typ=gg2"></script></div>
+    <!--div class="indad3">4</div-->
+  </div>
+  <div id="indad2">
+  
+  <script language="javascript" type="text/javascript" src="http://www.tetuiguang.com/showads/?typ=alimama1"></script>
+  
+  </div>
+  <div id="indbzrd">
+    <div id="indbzrdtop">热点资讯</div>
+    <ul>
+  	{dede:arclist titlelen=24 row=10 orderby='hot'}    
+            <li><span><a href="[field:typeurl/]">[[field:typename/]]</a></span> <a href="[field:arcurl/]" target="_blank">[field:title/]</a></li>
+	{/dede:arclist}
+          </ul>
+  </div>
+  <div class="indadc"></div>
+  <div class="main2">
+    <div class="main2top"> 
+    
+   {dede:type typeid='21'}
+    <span class="mainlinkmore"><a href="[field:typeurl/]"><font color="#f2650d">更多></font></a></span>
+   {/dede:type}
+     
+      <ul class="mainlink">
+      
+   {dede:channel type='son' typeid='21'}   
+   <li><span><a href='[field:typeurl/]'>[field:typename/]</a></span>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+     {/dede:channel}                                                                                                                                                                                                                          </ul>
+    </div>
+    <div class="mainad">
+<script language="javascript" type="text/javascript" src="http://www.tetuiguang.com/showads/?typ=cate1"></script>
+    </div>
+    <div class="mainnews"> 
+               {dede:arclist row=1 typeid='21'}   
+                  <h3><a href="[field:arcurl/]"><font color="#f2650d">[field:title/]</font></a></h3>
+      <span>　 　　[field:info/]<a href="[field:arcurl/]"><font color="#f2650d">[详细]</font></a></span>
+                {/dede:arclist}    
+      <ul>
+               {dede:arclist limit='1,16' typeid='21'}   
+                    <li>·<a href='[field:arcurl/]' target='_blank'>[field:title/]</a></li>
+                {/dede:arclist}     
+              </ul>
+      </div>
+    
+    
+    {dede:arclist row='1' typeid='21' titlelen='20' imgwidth='120' imgheight='180'}   
+            <div class="mainpicnews1"><a href='[field:arcurl/]' target='_blank'>[field:image/]</a><br />
+      <a href="[field:arcurl/]">[field:title/]</a></div>
+     {/dede:arclist}   
+      
+      
+      
+      
+    <ul class="mainpicnewslist1">
+    {dede:arclist limit='1,2' typeid='21' titlelen='20'}   
+    <li><b>1</b><a href="[field:arcurl/]">[field:title/]</a></li>
+     {/dede:arclist}     
+    </ul>
+                                            
+    <ul class="mainpiclist">
+    	{dede:arclist row='5' typeid='21' flag='c' imgheight='246' imgwidth='164'}   
+            <li><a href='[field:arcurl/]' target='_blank'>[field:image/]</a><br />
+            <a href='[field:arcurl/]' target='_blank'>[field:title/]</a></li>
+		{/dede:arclist}     
+    </ul>
+  </div>
+  <div class="indadc">
+  
+    <script language="javascript" type="text/javascript" src="http://www.tetuiguang.com/showads/?typ=alimama2"></script>
+  
+  </div>
+  <div class="main3">
+    <div class="main3top"> 
+    
+   {dede:type typeid='22'}
+    <span class="mainlinkmore"><a href="[field:typeurl/]"><font color="#f2650d">更多></font></a></span>
+   {/dede:type}
+   
+      <ul class="mainlink">
+                                                                                                                      {dede:channel type='son' typeid='22'}   
+   <li><span><a href='[field:typeurl/]'>[field:typename/]</a></span>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+     {/dede:channel}                                                                                                        </ul>
+    </div>
+    <div class="mainad">
+<script language="javascript" type="text/javascript" src="http://www.tetuiguang.com/showads/?typ=cate2"></script></div>
+    <div class="mainnews"> 
+                  
+                  
+                                 {dede:arclist row=1 typeid='22'}   
+                  <h3><a href="[field:arcurl/]"><font color="#f2650d">[field:title/]</font></a></h3>
+      <span>　 　　[field:info/]<a href="[field:arcurl/]"><font color="#f2650d">[详细]</font></a></span>
+                {/dede:arclist}    
+      <ul>
+               {dede:arclist limit='1,16' typeid='22'}   
+                    <li>·<a href='[field:arcurl/]' target='_blank'>[field:title/]</a></li>
+                {/dede:arclist}     
+              </ul>
+              
+       </div>
+    
+         {dede:arclist row='1' typeid='22' titlelen='20' imgwidth='120' imgheight='180'}  
+            <div class="mainpicnews2"><a href='[field:arcurl/]' target='_blank'>[field:image/]</a><br />
+      <a href="[field:arcurl/]">[field:title/]</a></div>
+     {/dede:arclist}   
+      
+    <ul class="mainpicnewslist2">
+             {dede:arclist limit='1,2' typeid='22' titlelen='20'}   
+    <li><b>1</b><a href="[field:arcurl/]">[field:title/]</a></li>
+     {/dede:arclist}    
+                                            </ul>
+    <ul class="mainpiclist">
+    	{dede:arclist row='5' typeid='22' flag='c' imgheight='246' imgwidth='164'}   
+            <li><a href='[field:arcurl/]' target='_blank'>[field:image/]</a><br />
+            <a href='[field:arcurl/]' target='_blank'>[field:title/]</a></li>
+		{/dede:arclist}     
+    </ul>
+    
+  </div>
+  <div class="indadc">
+  
+    <script language="javascript" type="text/javascript" src="http://www.tetuiguang.com/showads/?typ=alimama3"></script>
+  
+  </div>
+  <div class="main4">
+    <div class="main4top">
+    
+     {dede:type typeid='23'}
+    <span class="mainlinkmore"><a href="[field:typeurl/]"><font color="#f2650d">更多></font></a></span>
+   {/dede:type}
+   
+      <ul class="mainlink">
+                                                                                                                                                                                                                                   {dede:channel type='son' typeid='23'}   
+   <li><span><a href='[field:typeurl/]'>[field:typename/]</a></span>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+     {/dede:channel}
+                                
+                                                                                      </ul>
+    </div>
+    <div class="mainad">
+<script language="javascript" type="text/javascript" src="http://www.tetuiguang.com/showads/?typ=cate3"></script>
+    </div>
+    <div class="mainnews"> 
+                 {dede:arclist row=1 typeid='23'}   
+                  <h3><a href="[field:arcurl/]"><font color="#f2650d">[field:title/]</font></a></h3>
+      <span>　 　　[field:info/]<a href="[field:arcurl/]"><font color="#f2650d">[详细]</font></a></span>
+                {/dede:arclist}    
+      <ul>
+               {dede:arclist limit='1,16' typeid='23'}   
+                    <li>·<a href='[field:arcurl/]' target='_blank'>[field:title/]</a></li>
+                {/dede:arclist}     
+              </ul>
+       </div>
+    
+        {dede:arclist row='1' typeid='23' titlelen='20' imgwidth='120' imgheight='180'}   
+            <div class="mainpicnews1"><a href='[field:arcurl/]' target='_blank'>[field:image/]</a><br />
+      <a href="[field:arcurl/]">[field:title/]</a></div>
+     {/dede:arclist}   
+    
+    
+    <ul class="mainpicnewslist1">
+          {dede:arclist limit='1,2' typeid='23' titlelen='20'}   
+    <li><b>1</b><a href="[field:arcurl/]">[field:title/]</a></li>
+     {/dede:arclist}     
+                                            </ul>
+    <ul class="mainpiclist">
+                 {dede:arclist row='5' typeid='23' flag='c' imgheight='246' imgwidth='164'}   
+            <li><a href='[field:arcurl/]' target='_blank'>[field:image/]</a><br />
+            <a href='[field:arcurl/]' target='_blank'>[field:title/]</a></li>
+		{/dede:arclist}   
+                </ul>
+  </div>
+  <div class="indadc">
+  
+    <script language="javascript" type="text/javascript" src="http://www.tetuiguang.com/showads/?typ=alimama4"></script>
+  
+  </div>
+  <div class="main5">
+    <div class="main5top">
+    
+      {dede:type typeid='24'}
+    <span class="mainlinkmore"><a href="[field:typeurl/]"><font color="#f2650d">更多></font></a></span>
+   {/dede:type}
+   
+      <ul class="mainlink">
+                      {dede:channel type='son' typeid='24'}   
+   <li><span><a href='[field:typeurl/]'>[field:typename/]</a></span>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+     {/dede:channel}
+                      </ul>
+    </div>
+    <div class="mainad">
+<script language="javascript" type="text/javascript" src="http://www.tetuiguang.com/showads/?typ=cate4"></script>
+    </div>
+    <div class="mainnews"> 
+               {dede:arclist row=1 typeid='24'}   
+                  <h3><a href="[field:arcurl/]"><font color="#f2650d">[field:title/]</font></a></h3>
+      <span>　 　　[field:info/]<a href="[field:arcurl/]"><font color="#f2650d">[详细]</font></a></span>
+                {/dede:arclist}    
+      <ul>
+               {dede:arclist limit='1,16' typeid='24'}   
+                    <li>·<a href='[field:arcurl/]' target='_blank'>[field:title/]</a></li>
+                {/dede:arclist}     
+              </ul>
+       </div>
+    
+             {dede:arclist row='1' typeid='24' titlelen='20' imgwidth='120' imgheight='180'}  
+            <div class="mainpicnews2"><a href='[field:arcurl/]' target='_blank'>[field:image/]</a><br />
+      <a href="[field:arcurl/]">[field:title/]</a></div>
+     {/dede:arclist}   
+     
+    <ul class="mainpicnewslist2">
+                                              {dede:arclist limit='1,2' typeid='24' titlelen='20'}   
+    <li><b>1</b><a href="[field:arcurl/]">[field:title/]</a></li>
+     {/dede:arclist}    
+                      
+                                            </ul>
+    <ul class="mainpiclist">
+               {dede:arclist row='5' typeid='24' flag='c' imgheight='246' imgwidth='164'}   
+            <li><a href='[field:arcurl/]' target='_blank'>[field:image/]</a><br />
+            <a href='[field:arcurl/]' target='_blank'>[field:title/]</a></li>
+		{/dede:arclist}    
+                </ul>
+  </div>
+  <div class="indadc">
+  
+    <script language="javascript" type="text/javascript" src="http://www.tetuiguang.com/showads/?typ=alimama5"></script>
+  
+  </div>
+</div>
+
+{dede:include filename="foot.htm"/}
+
+</body>
+</html>
+<script type="text/javascript"> 
+function showtime() 
+{var time=new Date(); 
+var hour=time.getHours(); 
+var minute=time.getMinutes(); 
+if(minute<10)minute="0"+minute; 
+var second=time.getSeconds(); 
+if(second<10)second="0"+second; 
+document.getElementById("time").innerHTML = hour+":"+minute+":"+second;
+setTimeout("showtime()","1000"); 
+} 
+showtime(); 
+</script>

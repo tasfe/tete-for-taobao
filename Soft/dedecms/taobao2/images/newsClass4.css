@@ -1,0 +1,464 @@
+a:link 
+{
+	color: #333333;
+	text-decoration: none;
+}
+a:visited 
+{
+	color: #333333;
+	text-decoration: none;
+}
+a:hover 
+{
+	color: #F38208;
+	text-decoration: underline;
+}
+a:active 
+{
+	color: #F38208;
+	text-decoration: none;
+}
+/* #################### newsClass部分 ##################### */
+.classtitle
+{
+	margin-top: 10px;
+	height:45px;
+	border-right: #F38208 2px solid;
+	border-top: #F38208 2px solid;
+	border-left: #F38208 2px solid;
+	border-bottom: #F38208 2px solid;
+	overflow: visible;
+}
+.classtitle h1
+{
+	height:45px;
+	font-weight: bold;
+	color: #ffffff;
+	font-family: 黑体;
+	display: block;
+	vertical-align: middle;
+	background-color: #F38208;
+	text-align: center;
+	line-height: 45px;
+	float: left;
+	overflow: hidden;
+}
+.classtitle ul
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 15px;
+	overflow: visible;
+	width: 650px;
+	height: 15px;
+	float: left;
+}
+.classtitle li
+{
+	display: inline;
+	font-size: 14px;
+	padding-right: 5px;
+	line-height: 25px;
+}
+/* #################### classmain部分 ##################### */
+.classmain
+{
+	margin: 0px auto;
+	overflow: hidden;
+}
+.classmainad
+{
+	float: left;
+}
+.classmainbody
+{
+	float: left;
+	width: 445px;
+	height: 333px;
+	text-align: center;
+}
+.classmain ul
+{width: 235px;
+	float: left;
+	}
+.classmain li
+{
+	padding-top: 7px;
+	padding-bottom: 6px;
+	padding-left: 10px;
+	border-right: gainsboro 1px dotted;
+	border-left: gainsboro 1px dotted;
+	border-bottom: gainsboro 1px dotted;
+}
+.classmain h3
+{
+	color: #F38208;
+	line-height: 22px;
+}
+.classmain li span
+{
+	color: #F38208;
+	display: block;
+	width: 20px;
+	font-weight: bold;
+	font-family: 黑体;
+	float: left;
+	text-align: right;
+}
+.classmain a:hover 
+{color: #F38208;}
+
+.classmainbody h3
+{
+	text-align: center;
+	margin-top: 5px;
+	padding-top: 10px;
+}	
+.classmainbody h3 a:link
+{
+	color: #F38208;
+}
+.classmainbody h3 a:visited
+{
+	color: #F38208;
+}
+.classmainbody ul
+{
+	width: 420px;
+	border-bottom: #cccccc 1px dashed;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.classmainbody ul li
+{
+	display: inline;
+	border-top-style: none;
+	border-right-style: none;
+	border-left-style: none;
+	border-bottom-style: none;
+	line-height: 20px;
+}
+.classmainbody .classmainbodylist
+{
+	padding-bottom: 10px;
+}
+.classmainbody .classmainbodylist li
+{
+	line-height: 9px;
+	width: 200px;
+	float: left;
+	text-align: left;
+	padding-left: 10px;
+}
+.classmainbody .classmainbodylist li span
+{
+	color: #F38208;
+	font-size: 8px;
+}
+/* #################### classmain部分 ##################### */
+.classmainpic
+{
+	border-right: #F38208 1px solid;
+	border-top: #F38208 1px solid;
+	border-left: #F38208 1px solid;
+	border-bottom: #F38208 1px solid;
+	margin-top: 10px;
+	overflow: hidden;
+}
+.classmainpictop
+{
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	border-bottom: #F38208 1px solid;
+}
+.classmainpictop h2
+{
+	font-weight: bold;
+	color: #F38208;
+	font-family: 黑体;
+	 width:150px;
+}
+.classmainpictop ul
+{
+	margin-left: 15px;
+	width: 650px;
+	height: 15px;
+	float: right;
+}
+.classmainpictop li
+{
+	display: inline;
+	font-size: 14px;
+	padding-right: 5px;
+	line-height: 25px;
+}
+.classmainpicbody
+{
+	overflow: hidden;
+}
+.classmainpicbody ul
+{
+	width:925px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.classmainpicbody ul li
+{
+	float: left;
+	margin-left: 6px;
+	margin-right: 7px;
+	text-align: center;
+	line-height: 20px;
+}
+
+/************ newsz *********************/
+.classzleft
+{float: left;
+	width: 360px;
+	margin-right: 10px;
+}
+.newzad
+{margin-top: 10px;
+}
+.classzrdzx
+{
+	border: #cccccc 1px solid;
+	margin-top: 10px;
+	}
+.classzrdzx h1
+{
+	width: 348px;
+	border-bottom: #cccccc 1px solid;
+	height: 28px;
+	background-image: url(ns.jpg);
+	line-height: 28px;
+	font-size: 14px;
+	padding-left: 10px;
+}
+.classzrdzx ul
+{
+	margin: 10px;
+}
+.classzrdzx ul li
+{
+	line-height: 20px;
+}
+.classzrdzx ul li span
+{
+	width: 10px;
+	float: left;
+	height: 20px;
+	vertical-align: middle;
+}
+.classzrdzx ul li a 
+{
+	float: left;
+}
+.classzrdzx ul li font
+{
+	float: right;
+	font-size: 12px;
+	color: silver;
+}
+.classzpic
+{
+	margin-top: 10px;
+}
+.classzpic ul li
+{
+	float: left;
+	margin-left: 1px;
+	margin-right: 2px;
+	text-align: center;
+	line-height: 25px;
+}
+.classzright
+{float: left;
+	width: 580px;overflow: hidden;
+}
+.classzlj
+{padding: 10px;
+	}
+.classzbody
+{
+height:700px;
+	border-right: #cccccc 1px solid;
+	border-top: #cccccc 1px solid;
+	border-left: #cccccc 1px solid;
+	border-bottom: #cccccc 1px solid;
+	overflow: hidden;
+}
+.classzbody ul
+{
+	padding: 10px;
+}
+.classzbody ul li
+{
+	line-height: 22px;
+	display: block;
+}
+.classzbody ul li span
+{
+	font-size: 14px;
+	width: 480px;
+float: left;
+}
+.classzbody ul li a
+{
+
+}
+.classzbody ul li font
+{
+	float: right;
+	font-size: 12px;
+}
+/************gotoPage*********************/
+
+.gotoPage
+{
+	height: 20px;
+	padding: 5px;
+	overflow: visible;
+}
+.gotoPage ul{float: right;}
+.gotoPage ul li{margin:0 1px;border:1px solid #B9B9B9;font-family:"arial";float: left;}
+.gotoPage ul li.current{color:#FF0000;border:none;}
+.gotoPage ul li.current a{color:#FF0000;border:none;}
+.gotoPage ul li.dot{border:none;}
+.gotoPage ul li.prvPage,
+.gotoPage ul li.nextPage{font-family:"宋体";width:60px;}
+.gotoPage ul li.prvPage a{padding:0 0 0 18px;background:url(pagePrv.gif) no-repeat;background-position:0 -16px;}
+.gotoPage ul li.prvPage a:hover{background:url(pagePrv.gif) no-repeat;}
+.gotoPage ul li.nextPage a{padding:0 15px 0 5px;background:url(pageNext.gif) no-repeat;background-position:-10px 0;}
+.gotoPage ul li.nextPage a:hover{background:url(pageNext.gif) no-repeat;background-position:-10px -16px;}
+.gotoPage ul li a{padding:0 6px;line-height:16px;display:block;}
+.gotoPage ul li a:hover{background:#E7E7E7;text-decoration:none;}
+.gotoPage ul .select
+{border-top-style: none;
+	border-right-style: none;
+	border-left-style: none;
+	border-bottom-style: none;
+}
+.gotoPage ul li select
+{
+	clear: both;
+	
+}
+/************ newshow *********************/
+.newshow
+{float: left;
+	}
+.newshowlj
+{
+	margin-right: 10px;
+	padding: 10px;
+	width: 670px;
+}
+.newshowad
+{margin-top: 10px;
+}
+.newshowbody
+{
+	width: 630px;
+	border-right: #cccccc 1px solid;
+	border-top: #F38208 4px solid;
+	border-left: #cccccc 1px solid;
+	border-bottom: #cccccc 1px solid;
+	padding-right: 30px;
+	padding-left: 30px;
+	line-height: 25px;
+}
+.newshowbody h2
+{margin-top: 10px;
+	line-height: 30px;
+	text-align: center;
+}
+.newshowbody span
+{
+	border-bottom: #cccccc 1px dotted;
+	display: block;
+	overflow: hidden;
+	text-align: center;
+	line-height: 20px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.newshowleft
+{width: 244px;
+	float: left;
+	}
+.newshowzxzx
+{width: 248px;
+	border: #cccccc 1px solid;
+	margin-top: 10px;
+}
+.newshowzxzx h1
+{
+	width: 238px;
+	border-bottom: #cccccc 1px solid;
+	height: 28px;
+	background-image: url(ns.jpg);
+	padding-left: 10px;
+	line-height: 28px;
+	font-size: 14px;
+}
+.newshowzxzx ul
+{
+	margin: 10px;
+}
+.newshowzxzx ul li
+{
+	line-height: 20px;
+}
+.newshowpic
+{
+	margin-top: 10px;
+}
+.newshowpic ul
+{
+	width: 248px;
+}
+.newshowpic ul li
+{
+	float: left;
+	margin-left: 3px;
+	margin-right: 3px;
+	text-align: center;
+}
+.newshowfoot
+{
+	width: 670px;
+	margin-top: 10px;
+
+	padding-right: 10px;
+	padding-bottom: 15px;
+	padding-left: 10px;
+	border: #cccccc 1px solid;
+	display: block;
+	overflow: hidden;
+}
+.newshowfoot h3
+{margin-top: 10px;
+
+	padding-left: 15px;
+	width: 320px;
+	float: left;
+	color:#F38208;
+}
+.newshowfoot ul
+{
+	width: 320px;
+	padding-left: 15px;
+	float: left;
+}
+.newshowfoot ul li
+{
+	line-height: 20px;
+}
