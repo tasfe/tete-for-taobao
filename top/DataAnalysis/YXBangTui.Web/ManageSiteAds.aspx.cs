@@ -112,6 +112,6 @@ public partial class ManageSiteAds : System.Web.UI.Page
         info.AdsType = (SiteAdsType)int.Parse(DDL_AdsType.SelectedValue);
 
         siteAdsDal.UpdateAds(info);
-        Response.Redirect("ManageSiteAds.aspx?url=" + DDL_SiteList.SelectedValue);
+        Response.Redirect("ManageSiteAds.aspx?url=" + Request.QueryString["url"]);
     }
 }
