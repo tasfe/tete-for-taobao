@@ -21,7 +21,7 @@ public partial class container : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        string tetuiurl = Request.Url.AbsoluteUri.ToString().Replace("ding.7fshop", "tetuiguang.com");
+        string tetuiurl = Request.Url.AbsoluteUri.ToString().Replace("ding.7fshop", "tetuiguang");
 
         Response.Redirect(tetuiurl);
 
