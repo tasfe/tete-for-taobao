@@ -67,6 +67,11 @@ public class UserAdsInfo
     /// </summary>
     public decimal Price { set; get; }
 
+    /// <summary>
+    /// 是否是赠送的(0:非赠送，1:赠送的
+    /// </summary>
+    public int IsSend { set; get; }
+
     public override bool Equals(object obj)
     {
         UserAdsInfo info = obj as UserAdsInfo;

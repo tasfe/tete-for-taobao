@@ -18,9 +18,11 @@ using System.Data.SqlClient;
 public class UserAdsService
 {
 
-    const string SQL_SELECT_ALL_USERADS = "SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic FROM BangT_UserAds WHERE Nick=@Nick";
+    const string SQL_SELECT_ALL_USERADS = "SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic FROM BangT_UserAds WHERE Nick=@Nick AND IsSend=0";
 
-    const string SQL_INSERT = "INSERT BangT_UserAds([Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,Nick,CateIds,AdsPic,Price) VALUES(@Id,@AdsTitle,@AdsUrl,@AdsId,@UserAdsState,@AdsShowStartTime,@AdsShowFinishTime,@AliWang,@SellCateName,@AddTime,@FeeId,@Nick,@CateIds,@AdsPic,@Price)";
+    const string SQL_SELECT_ALL_USERADSLIST = "SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick";
+
+    const string SQL_INSERT = "INSERT BangT_UserAds([Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,Nick,CateIds,AdsPic,Price,IsSend) VALUES(@Id,@AdsTitle,@AdsUrl,@AdsId,@UserAdsState,@AdsShowStartTime,@AdsShowFinishTime,@AliWang,@SellCateName,@AddTime,@FeeId,@Nick,@CateIds,@AdsPic,@Price,@IsSend)";
 
     const string SQL_SELECT_USEDADS = "SELECT FeeId,Nick FROM BangT_UserAds WHERE UserAdsState=1 AND FeeId IN (SELECT FeeId FROM BangT_Fee WHERE AdsType=5)";
 
@@ -56,6 +58,34 @@ public class UserAdsService
             info.AddTime = DateTime.Parse(dr["AddTime"].ToString());
             info.FeeId = new Guid(dr["FeeId"].ToString());
             info.AdsPic = dr["AdsPic"].ToString();
+
+            list.Add(info);
+        }
+
+        return list;
+    }
+
+    public IList<UserAdsInfo> SelectAllUserAdsList(string nick)
+    {
+        IList<UserAdsInfo> list = new List<UserAdsInfo>();
+
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_ALL_USERADSLIST, new SqlParameter("@Nick", nick));
+        foreach (DataRow dr in dt.Rows)
+        {
+            UserAdsInfo info = new UserAdsInfo();
+            info.Id = new Guid(dr["Id"].ToString());
+            info.AdsTitle = dr["AdsTitle"].ToString();
+            info.AdsUrl = dr["AdsUrl"].ToString();
+            info.AdsId = new Guid(dr["AdsId"].ToString());
+            info.UserAdsState = int.Parse(dr["UserAdsState"].ToString());
+            info.AdsShowStartTime = DateTime.Parse(dr["AdsShowStartTime"].ToString());
+            info.AdsShowFinishTime = DateTime.Parse(dr["AdsShowFinishTime"].ToString());
+            info.AliWang = dr["AliWang"].ToString();
+            info.SellCateName = dr["SellCateName"].ToString();
+            info.AddTime = DateTime.Parse(dr["AddTime"].ToString());
+            info.FeeId = new Guid(dr["FeeId"].ToString());
+            info.AdsPic = dr["AdsPic"].ToString();
+            info.IsSend = dr["IsSend"] == DBNull.Value ? 0 : int.Parse(dr["IsSend"].ToString());
 
             list.Add(info);
         }
@@ -220,7 +250,8 @@ public class UserAdsService
             new SqlParameter("@Nick",info.Nick),
             new SqlParameter("@CateIds",info.CateIds),
             new SqlParameter("@AdsPic",info.AdsPic),
-            new SqlParameter("@Price",info.Price)
+            new SqlParameter("@Price",info.Price),
+            new SqlParameter("@IsSend",info.IsSend)
         };
 
         return param;
