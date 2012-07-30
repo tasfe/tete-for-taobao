@@ -802,7 +802,7 @@ public partial class api_Default : System.Web.UI.Page
         reqStream.Write(postData, 0, postData.Length);
         reqStream.Close();
         HttpWebResponse rsp = (HttpWebResponse)req.GetResponse();
-        Encoding encoding = Encoding.GetEncoding(rsp.CharacterSet);
+        Encoding encoding = Encoding.UTF8;
         Stream stream = null;
         StreamReader reader = null;
         stream = rsp.GetResponseStream();
