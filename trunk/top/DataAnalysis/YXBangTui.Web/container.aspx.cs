@@ -21,65 +21,69 @@ public partial class container : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        Response.AddHeader("P3P", "CP=CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR");
-        //File.WriteAllText(Server.MapPath("aaaaa.txt"), Request.Url.ToString());
-        /*
-         * http://www.7fshop.com/top/container.aspx
-         * ?top_appkey=12132145
-         * &top_parameters=aWZyYW1lPTEmdHM9MTI4NTg3MTY5Nzg0OSZ2aWV3X21vZGU9ZnVsbCZ2aWV3X3dpZHRoPTAmdmlzaXRvcl9pZD0xNzMyMzIwMCZ2aXNpdG9yX25pY2s90ra2+cvmx+W35w==
-         * &top_session=23200857b2aa0ca62d3d0d9c78a750df07300
-         * &top_sign=52sdJ6lvJPeaBef7rwcoSw==
-         * &agreement=true
-         * &agreementsign=12132145-21431194-D1A5A27626CB119D69F0D5438423A99A
-         * &y=13
-         * &x=36*/
-        //签名验证
-        string top_appkey = "12133190";
-        string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString).Replace(" ", "+");
-        top_session = utils.NewRequest("top_session", utils.RequestType.QueryString).Replace(" ", "+");
-        string app_secret = "3442d45c5dcc79decbe8ff4db855a800";
-        string top_sign = utils.NewRequest("top_sign", utils.RequestType.QueryString).Replace(" ", "+");
-        string sign = utils.NewRequest("sign", utils.RequestType.QueryString).Replace(" ", "+");
+        string tetuiurl = Request.UrlReferrer.ToString().Replace("http://ding.7fshop.com/", "http://www.tetuiguang.com/");
 
-        versionNo = utils.NewRequest("versionNo", utils.RequestType.QueryString);
-        string leaseId = utils.NewRequest("leaseId", utils.RequestType.QueryString).Replace(" ", "+"); ;//可以从 QueryString 来获取,也可以固定 
-        string timestamp = utils.NewRequest("timestamp", utils.RequestType.QueryString).Replace(" ", "+"); ;//可以从 QueryString 来获取 
+        Response.Redirect(tetuiurl);
+
+        //Response.AddHeader("P3P", "CP=CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR");
+        ////File.WriteAllText(Server.MapPath("aaaaa.txt"), Request.Url.ToString());
+        ///*
+        // * http://www.7fshop.com/top/container.aspx
+        // * ?top_appkey=12132145
+        // * &top_parameters=aWZyYW1lPTEmdHM9MTI4NTg3MTY5Nzg0OSZ2aWV3X21vZGU9ZnVsbCZ2aWV3X3dpZHRoPTAmdmlzaXRvcl9pZD0xNzMyMzIwMCZ2aXNpdG9yX25pY2s90ra2+cvmx+W35w==
+        // * &top_session=23200857b2aa0ca62d3d0d9c78a750df07300
+        // * &top_sign=52sdJ6lvJPeaBef7rwcoSw==
+        // * &agreement=true
+        // * &agreementsign=12132145-21431194-D1A5A27626CB119D69F0D5438423A99A
+        // * &y=13
+        // * &x=36*/
+        ////签名验证
+        //string top_appkey = "12133190";
+        //string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString).Replace(" ", "+");
+        //top_session = utils.NewRequest("top_session", utils.RequestType.QueryString).Replace(" ", "+");
+        //string app_secret = "3442d45c5dcc79decbe8ff4db855a800";
+        //string top_sign = utils.NewRequest("top_sign", utils.RequestType.QueryString).Replace(" ", "+");
+        //string sign = utils.NewRequest("sign", utils.RequestType.QueryString).Replace(" ", "+");
+
+        //versionNo = utils.NewRequest("versionNo", utils.RequestType.QueryString);
+        //string leaseId = utils.NewRequest("leaseId", utils.RequestType.QueryString).Replace(" ", "+"); ;//可以从 QueryString 来获取,也可以固定 
+        //string timestamp = utils.NewRequest("timestamp", utils.RequestType.QueryString).Replace(" ", "+"); ;//可以从 QueryString 来获取 
 
 
 
-        if (!Taobao.Top.Api.Util.TopUtils.VerifyTopResponse(top_parameters, top_session, top_sign, top_appkey, app_secret))
-        {
-            Response.Write("top签名验证不通过，请不要非法注入");
-            Response.End();
-            return;
-        }
+        //if (!Taobao.Top.Api.Util.TopUtils.VerifyTopResponse(top_parameters, top_session, top_sign, top_appkey, app_secret))
+        //{
+        //    Response.Write("top签名验证不通过，请不要非法注入");
+        //    Response.End();
+        //    return;
+        //}
 
-        //验证客户版本参数是否正确
-        if (versionNo != "")
-        {
-            if (!VersionVerify(app_secret, sign, top_appkey, leaseId, timestamp, versionNo))
-            {
-                //Response.Write("客户版本验证不通过，请不要自行修改参数");
-                //Response.End();
-                //return;
-            }
-        }
-        else
-        {
-            versionNo = "1";
-        }
+        ////验证客户版本参数是否正确
+        //if (versionNo != "")
+        //{
+        //    if (!VersionVerify(app_secret, sign, top_appkey, leaseId, timestamp, versionNo))
+        //    {
+        //        //Response.Write("客户版本验证不通过，请不要自行修改参数");
+        //        //Response.End();
+        //        //return;
+        //    }
+        //}
+        //else
+        //{
+        //    versionNo = "1";
+        //}
 
-        nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["visitor_nick"];
-        if (nick == null || nick == "")
-        {
-            Response.Write("top签名验证不通过，请不要非法注入");
-            Response.End();
-            return;
-        }
+        //nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["visitor_nick"];
+        //if (nick == null || nick == "")
+        //{
+        //    Response.Write("top签名验证不通过，请不要非法注入");
+        //    Response.End();
+        //    return;
+        //}
 
-        //判断跳转
-        GetVersion(nick);
-        GetData(nick);
+        ////判断跳转
+        //GetVersion(nick);
+        //GetData(nick);    
     }
 
 
