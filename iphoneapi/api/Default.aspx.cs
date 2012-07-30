@@ -132,34 +132,47 @@ public partial class api_Default : System.Web.UI.Page
         string result = SendPostData(url, data);
         string orderid = Regex.Match(result, @"""original_transaction_id"":""([^""]*)""").Groups[1].ToString();
         string typ = Regex.Match(result, @"""product_id"":""([^""]*)""").Groups[1].ToString();
+        string status = Regex.Match(result, @"""status"":([0-9]*)").Groups[1].ToString();
 
-        if(typ == "com.coco.sms_10")
+        if (status == "0")
         {
-            msgCount = "10";
-        }
-        if(typ == "com.coco.sms_25")
-        {
-            msgCount = "25";
-        }
-        if(typ == "com.coco.sms_80")
-        {
-            msgCount = "80";
-        }
-        if(typ == "com.coco.sms_200")
-        {
-            msgCount = "200";
-        }
+            if (typ == "com.coco.sms_10")
+            {
+                msgCount = "10";
+            }
+            if (typ == "com.coco.sms_25")
+            {
+                msgCount = "25";
+            }
+            if (typ == "com.coco.sms_80")
+            {
+                msgCount = "80";
+            }
+            if (typ == "com.coco.sms_200")
+            {
+                msgCount = "200";
+            }
 
 
-        sql = "SELECT COUNT(*) FROM HuliBuyLog WHERE orderid = '" + orderid + "'";
-        string count = utils.ExecuteString(sql);
-        if (count == "0")
-        {
-            sql = "INSERT INTO HuliBuyLog (token, adddate, typ, orderid, count) VALUES ('" + token + "',GETDATE(),'" + typ + "','" + orderid + "','" + msgCount + "')";
-            utils.ExecuteNonQuery(sql);
+            sql = "SELECT COUNT(*) FROM HuliBuyLog WHERE orderid = '" + orderid + "'";
+            string count = utils.ExecuteString(sql);
+            if (count == "0")
+            {
+                sql = "INSERT INTO HuliBuyLog (token, adddate, typ, orderid, count) VALUES ('" + token + "',GETDATE(),'" + typ + "','" + orderid + "','" + msgCount + "')";
+                utils.ExecuteNonQuery(sql);
 
-            str = "{\"result\":\"" + msgCount + "\"}";
-            Response.Write(str);
+                //加短信
+                sql = "UPDATE [TeteUserToken] SET total = total + " + msgCount + " WHERE token = '" + token + "' AND nick = 'huli'";
+                utils.ExecuteNonQuery(sql);
+
+                str = "{\"result\":\"" + msgCount + "\"}";
+                Response.Write(str);
+            }
+            else
+            {
+                str = "{\"result\":\"0\"}";
+                Response.Write(str);
+            }
         }
         else
         {
