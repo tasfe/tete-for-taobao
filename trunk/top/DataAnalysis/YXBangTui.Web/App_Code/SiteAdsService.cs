@@ -57,7 +57,7 @@ public class SiteAdsService
 
     public SiteAdsInfo SelectSiteAdsById(string id)
     {
-        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT, new SqlParameter("@Id", id));
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_BY_ID, new SqlParameter("@Id", id));
         SiteAdsInfo info = null;
 
         foreach (DataRow dr in dt.Rows)
