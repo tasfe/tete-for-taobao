@@ -16,7 +16,11 @@ public partial class SendUserAds : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!IsPostBack)
+        {
+            Rpt_SendList.DataSource = new GoodPingService().GetGoodPing();
+            Rpt_SendList.DataBind();
+        }
     }
 
     protected void Btn_AddAds_Click(object sender, EventArgs e)
@@ -57,10 +61,31 @@ public partial class SendUserAds : System.Web.UI.Page
                     info.UserAdsState = 1;
                     string taoId = info.CateIds;
                     info.CateIds = GetTaoBaoCId(taoId, taoId);
+                    info.IsSend = 1; //表示是赠送的
 
                     new UserAdsService().InsertUserAds(info);
-                    Page.RegisterStartupScript("恭喜", "<script>alert('赠送广告成功');</script>");
 
+                    GoodPingService pingDal = new GoodPingService();
+
+                    IList<GoodPingInfo> pinginfoList = pingDal.GetGoodPingByNick(TB_Nick.Text.Trim());
+                    if (pinginfoList.Count == 0)
+                    {
+                        GoodPingInfo pingInfo = new GoodPingInfo();
+                        pingInfo.AddIP = Request.ServerVariables["REMOTE_ADDR"];
+                        pingInfo.Nick = TB_Nick.Text.Trim();
+                        pingInfo.PingDate = DateTime.Now;
+                        pingInfo.PingTimes = 1;
+                        pingDal.InsertGoodPing(pingInfo);
+                    }
+                    else
+                    {
+                        pinginfoList[0].AddIP = Request.ServerVariables["REMOTE_ADDR"];
+                        pinginfoList[0].PingDate = DateTime.Now;
+                        pinginfoList[0].PingTimes = pinginfoList[0].PingTimes + 1;
+                        pingDal.UpdatePingInfo(pinginfoList[0]);
+                    }
+                    Page.RegisterStartupScript("恭喜", "<script>alert('赠送广告成功');</script>");
+                    Response.Redirect("/SendUserAds.aspx");
                 }
             }
             else

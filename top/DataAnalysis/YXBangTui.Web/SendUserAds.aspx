@@ -5,6 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Untitled Page</title>
+     <style type="text/css">
+        td{height:40px; width:150px}
+     </style>   
 </head>
 <body>
     <form id="form1" runat="server">
@@ -16,6 +19,29 @@
       
       <asp:Button ID="Btn_AddAds" runat="server" Text="确定添加" onclick="Btn_AddAds_Click" />
       
+      <table>
+       <tr>
+          <td>获赠者ID</td>
+          <td>赠送次数</td>
+          <td>赠送时间</td>
+          <td>赠送IP</td>
+       </tr>
+          <asp:Repeater ID="Rpt_SendList" runat="server">
+            <ItemTemplate>
+               <tr>
+                  <td><%# Eval("Nick") %></td>
+                  <td><%# Eval("PingTimes")%></td>
+                  <td><%# Eval("PingDate")%></td>
+                  <td><%# Eval("AddIP")%>IP</td>
+               </tr>
+            </ItemTemplate>
+            <SeparatorTemplate>
+              <tr>
+                <td colspan="4"><hr /></td>
+              </tr>
+            </SeparatorTemplate>
+          </asp:Repeater>
+      </table>
     </div>
     </form>
 </body>

@@ -33,11 +33,11 @@ public partial class UserAdsList : System.Web.UI.Page
             }
             IList<UserAdsInfo> list = uasDal.SelectAllUserAds(nick);
 
-            IList<UserAdsInfo> useradsList = uasDal.SelectAllUserAds(nick);
+            //IList<UserAdsInfo> useradsList = uasDal.SelectAllUserAds(nick);
             IList<BuyInfo> buyList = CacheCollection.GetAllBuyInfo().Where(o => o.Nick == nick).ToList();
 
-            ViewState["toucount"] = useradsList.Where(o=>o.UserAdsState==1).ToList().Count;
-            ViewState["notoucount"] =useradsList.Where(o=>o.UserAdsState!=1).ToList().Count;
+            ViewState["toucount"] = list.Where(o => o.UserAdsState == 1).ToList().Count;
+            ViewState["notoucount"] = list.Where(o => o.UserAdsState != 1).ToList().Count;
             if (buyList.Count > 0)
             {
                 ViewState["adscount"] = CacheCollection.GetAllFeeInfo().Where(o => o.FeeId == buyList[0].FeeId).ToList()[0].AdsCount;
@@ -171,16 +171,29 @@ public partial class UserAdsList : System.Web.UI.Page
 
     protected void RPT_AdsList_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
-        if (Request.QueryString["istou"] != "1")
+        Label lbl = e.Item.FindControl("Lbl_IsSend") as Label;
+
+        if (lbl != null && lbl.Text == "1")
         {
             e.Item.FindControl("Btn_Stop").Visible = false;
             e.Item.FindControl("Btn_Result").Visible = false;
             e.Item.FindControl("Btn_See").Visible = false;
             e.Item.FindControl("Btn_Add").Visible = false;
+            e.Item.FindControl("Btn_Insert").Visible = false;
         }
         else
         {
-            e.Item.FindControl("Btn_Insert").Visible = false;
+            if (Request.QueryString["istou"] != "1")
+            {
+                e.Item.FindControl("Btn_Stop").Visible = false;
+                e.Item.FindControl("Btn_Result").Visible = false;
+                e.Item.FindControl("Btn_See").Visible = false;
+                e.Item.FindControl("Btn_Add").Visible = false;
+            }
+            else
+            {
+                e.Item.FindControl("Btn_Insert").Visible = false;
+            }
         }
     }
 

@@ -6,7 +6,7 @@
     <title>特推广</title>
     <link href="css/common.css" rel="stylesheet" />
       <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
-    <style>
+    <style type="text/css">
         td{font-size:12px;}
         a{color:Blue; text-decoration:none;}
         dd,dl,dt{margin:0px;padding:0px;}
@@ -65,7 +65,7 @@
                         <%# Eval("AliWang")%>
                      <br>
                         <%# Eval("AdsShowStartTime")%> 至 <br> <%# Eval("AdsShowFinishTime")%>
-                  
+                  <asp:Label ID="Lbl_IsSend" runat="server" Visible="false" Text='<%# Eval("IsSend") %>'></asp:Label>
                 </td>
                 <td><%# GetSite(Eval("AdsId").ToString()) %></td>
                 <td><a href='ShowAds.aspx?adsid=<%# Eval("AdsId") %>'><%# GetTitle(Eval("AdsId").ToString()) %></a></td>
