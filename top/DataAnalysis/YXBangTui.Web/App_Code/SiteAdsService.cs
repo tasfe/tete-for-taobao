@@ -28,7 +28,7 @@ public class SiteAdsService
 
     const string SQL_SELECT_BY_ID = "SELECT Id,SiteUrl,AdsPosition,AdsCode,AdsType FROM BangT_SiteAds WHERE Id=@Id";
 
-    const string SQL_UPDATE = "UPDATE SiteUrl=@SiteUrl,AdsPosition=@AdsPosition,AdsCode=@AdsCode,AdsType=@AdsType WHERE Id=@Id";
+    const string SQL_UPDATE = "UPDATE BangT_SiteAds SET SiteUrl=@SiteUrl,AdsPosition=@AdsPosition,AdsCode=@AdsCode,AdsType=@AdsType WHERE Id=@Id";
 
     public int InsertSiteAds(SiteAdsInfo info)
     {
