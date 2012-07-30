@@ -18,17 +18,6 @@
 
 <div id="main">
 
-<div class="indadc"> </div>
-{dede:type}
-<div class="classtitle"><h1>【[field:typename/]】</h1><h1></h1>
-{/dede:type}
-<ul>
-{dede:channel type='son'}   
-<li><a href='[field:typeurl/]'>[field:typename/]</a></li>
-{/dede:channel}
-</ul>
-</div>
-
 
 <div class="classzleft">
 <div class="newzad"><script language="javascript" type="text/javascript" src="http://tetuiguang.com/GetAdsCode.aspx?id=abfc090a-d054-423f-9f99-d9d44f488794"></script></div>
@@ -45,10 +34,10 @@
 </div>
 
 <div class="classzright">
-<div class="classzlj"><b>您当前的位置：</b> {dede:field name='position'/} </div>
+<div class="classzlj"> 搜索 <strong class="fc_03c">{dede:global name='keyword' function='RemoveXSS(@me)'/}</strong> 的结果 </div>
 <div class="classzbody">
 <ul>
-{dede:list pagesize='28'}
+{dede:list perpage='28'}
 <li><span>● <a href="[field:arcurl/]" class="title">[field:title/]</a><font></font> </span></li>
 {/dede:list}
 </ul>
@@ -56,7 +45,7 @@
 <div class="gotoPage">
 
 <div class="dede_pages">
-   <ul class="pagelist">{dede:pagelist listitem="info,index,end,pre,next,pageno,option" listsize="28"/}
+   <ul class="pagelist">{dede:pagelist listsize='28'/}  
 </ul></div>  
   
    
