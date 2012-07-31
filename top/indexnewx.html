@@ -65,113 +65,71 @@ align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=美杜莎之
     function focusObj(obj) {
         /*for (var i = 1; i < 7; i++) {
             document.getElementById("area" + i).style.display = "none";
-        }
+        }*/
 
-        document.getElementById("area" + obj).style.display = "";*/
+        document.getElementById("area" + obj).style.display = document.getElementById("area" + i).style.display == "none" ? "" : "none";
     }
 </script>
 
 <div class="menu-box">
-<h3 class="mytaobao-bar" onclick="focusObj(1)"><span> 好评有礼 </span>
-<button class="menu-close">-</button>
-</h3>
-<ul class="group" id="area1">
-		<li><span> <a
-		href="http://haoping.7fshop.com/top/reviewx/setting.aspx" target="mainframe2">基本设置</a></span></li>
-		<li><span> <a
-		href="http://haoping.7fshop.com/top/reviewnew/html.aspx" target="mainframe2">活动展示</a></span></li>	
-		<li><span> <a
-		href="http://haoping.7fshop.com/top/reviewnew/tuijianlist.aspx" target="mainframe2" style="color:Red; font-weight:bold;">推荐好友送短信</a></span></li>	
-		<li><span> <a
-		href="http://haoping.7fshop.com/top/reviewnew/fenxiang.aspx" target="mainframe2" style="color:Red; font-weight:bold;">分享服务送短信</a></span></li>	
-    </ul>
-</div>
-
-<div class="menu-box">
-<h3 class="mytaobao-bar" onclick="focusObj(2)"><span> 商品评价 </span>
-<button class="menu-close">-</button>
-</h3>
-<ul class="group" id="area2" style="">
-		<li ><span> <a
-		href="http://haoping.7fshop.com/top/reviewnew/reviewlist.aspx" target="mainframe2">好评列表</a></span></li>	
-		<li ><span> <a
-		href="http://haoping.7fshop.com/top/reviewnew/reviewindex.aspx" target="mainframe2">展示中好评</a></span></li>	
-		<li ><span> <a
-		href="http://haoping.7fshop.com/top/reviewnew/jiaocheng1.html" target="mainframe2">店铺展示教程</a></span></li>	
-		<li ><span> <a
-		href="http://haoping.7fshop.com/top/reviewnew/kefulist.aspx" target="mainframe2">待审核评价</a></span></li>		
-    </ul>
-</div>
-
-<div class="menu-box">
-<h3 class="mytaobao-bar" onclick="focusObj(3)"><span> 短信提醒 </span>
-<button class="menu-close">-</button>
-</h3>
-<ul class="group" id="area3" style="">
-		<li ><span> <a
-		href="http://haoping.7fshop.com/top/reviewnew/msg.aspx" target="mainframe2">短信提醒设置</a></span></li>	
-		<li ><span> <a
-		href="http://haoping.7fshop.com/top/reviewnew/msglist.aspx" target="mainframe2">短信发送记录</a></span></li>		
-		<li ><span> <a
-		href="http://haoping.7fshop.com/top/reviewnew/msgbuy.aspx" target="mainframe2">购买短信</a></span></li>	
-	</ul>
-</div>
-
-
-<div class="menu-box">
-<h3 class="mytaobao-bar" onclick="focusObj(4)"><span> 优惠券赠送 </span>
-<button class="menu-close">-</button>
-</h3>
-<ul class="group" id="area4" style="">
-		<li ><span> <a
-		href="http://haoping.7fshop.com/top/reviewnew/couponlist.aspx" target="mainframe2">优惠券管理</a></span></li>		
-		<li ><span> <a
-		href="http://haoping.7fshop.com/top/reviewnew/couponsend.aspx" target="mainframe2">赠送记录</a></span></li>	
-        <li ><span> <a
-		href="http://haoping.7fshop.com/top/reviewnew/msgsend.aspx" target="mainframe2">手动赠送</a></span></li>	
-    </ul>
-</div>
-
-
-
-<div class="menu-box">
-<h3 class="mytaobao-bar" onclick="focusObj(5)"><span> 支付宝红包 </span>
-<button class="menu-close">-</button>
-</h3>
-<ul class="group" id="area5" style="">
-		<li><span> <a href="http://haoping.7fshop.com/top/reviewnew/alipayadd.aspx" target="mainframe2">导入支付宝红包</a></span></li>		
-		<li><span> <a href="http://haoping.7fshop.com/top/reviewnew/alipay.aspx" target="mainframe2">支付宝红包赠送记录</a></span></li>		
-		<li><span> <a href="http://haoping.7fshop.com/top/reviewnew/alipaymsgsend.aspx" target="mainframe2">手动赠送</a></span></li>		
-    </ul>
-</div>
-
-
-<div class="menu-box">
-<h3 class="mytaobao-bar"><span> 包邮卡 </span>
+<h3 class="mytaobao-bar" onclick="focusObj(1)"><span> 4步设置好评有礼 </span>
 <button class="menu-close">-</button>
 </h3>
 <ul class="group">
 		<li><span> <a
-		href="http://haoping.7fshop.com/top/freecard/freecardadd.aspx" target="mainframe2">创建包邮卡</a></span></li>
+		href="http://haoping.7fshop.com/top/reviewx/setting.aspx" target="mainframe2"><b>1、创建好评活动</b></a></span></li>
 		<li><span> <a
-		href="http://haoping.7fshop.com/top/freecard/freecardlist.aspx" target="mainframe2">包邮卡清单</a></span></li>
-	<li><span> <a
-		href="http://haoping.7fshop.com/top/freecard/freecardcustomer.aspx" target="mainframe2">赠送记录</a></span></li>
-	<li><span> <a
-		href="http://haoping.7fshop.com/top/freecard/freecardsend.aspx" target="mainframe2">手动赠送</a></span></li>
-	</ul>
+		href="http://haoping.7fshop.com/top/reviewnew/html.aspx" target="mainframe2"><b>2、展示在店铺里</b></a></span></li>	
+        <li><span> <a
+		href="http://haoping.7fshop.com/top/reviewnew/html.aspx" target="mainframe2"><b>3、设置短信提醒</b></a></span></li>	
+        <li><span> <a
+		href="http://haoping.7fshop.com/top/reviewnew/html.aspx" target="mainframe2"><b>4、提升二次销售</b></a></span></li>	
+    </ul>
 </div>
+
 
 
 <div class="menu-box">
-<h3 class="mytaobao-bar" onclick="focusObj(6)"><span> 二次销售统计 </span>
+<h3 class="mytaobao-bar" onclick="focusObj(1)"><span> 奖品模块设置 </span>
 <button class="menu-close">-</button>
 </h3>
-<ul class="group" id="area6" style="">
-		<li><span> <a href="http://haoping.7fshop.com/top/reviewnew/saletotal.aspx" target="mainframe2">二次销售总览</a></span></li>		
-		<li><span> <a href="http://haoping.7fshop.com/top/reviewnew/salelist.aspx" target="mainframe2">二次销售详情</a></span></li>		
-	</ul>
+<ul class="group" id="area1">
+		<li><span> <a
+		href="http://haoping.7fshop.com/top/reviewx/setting.aspx" target="mainframe2">【优惠券】</a></span></li>
+		<li><span> <a
+		href="http://haoping.7fshop.com/top/reviewnew/html.aspx" target="mainframe2">【包邮卡】</a></span></li>	
+        <li><span> <a
+		href="http://haoping.7fshop.com/top/reviewnew/html.aspx" target="mainframe2">【支付宝红包】</a></span></li>	
+        <li><span> <a
+		href="http://haoping.7fshop.com/top/reviewnew/html.aspx" target="mainframe2">【抽奖】</a></span></li>	
+    </ul>
 </div>
+
+
+
+<div class="menu-box">
+<h3 class="mytaobao-bar" onclick="focusObj(2)"><span> 二次销售分析 </span>
+<button class="menu-close">-</button>
+</h3>
+    <ul class="group" id="area2">
+		<li><span> <a
+		href="http://haoping.7fshop.com/top/reviewx/setting.aspx" target="mainframe2">优惠券效果分析</a></span></li>
+		<li><span> <a
+		href="http://haoping.7fshop.com/top/reviewx/setting.aspx" target="mainframe2">包邮卡效果分析</a></span></li>
+		<li><span> <a
+		href="http://haoping.7fshop.com/top/reviewx/setting.aspx" target="mainframe2">支付宝红包效果分析</a></span></li>
+		<li><span> <a
+		href="http://haoping.7fshop.com/top/reviewx/setting.aspx" target="mainframe2">抽奖效果分析</a></span></li>
+		<li><span> <a
+		href="http://haoping.7fshop.com/top/reviewx/setting.aspx" target="mainframe2">未付款催单效果分析</a></span></li>
+		<li><span> <a
+		href="http://haoping.7fshop.com/top/reviewx/setting.aspx" target="mainframe2">生日关怀效果分析</a></span></li>
+		<li><span> <a
+		href="http://haoping.7fshop.com/top/reviewx/setting.aspx" target="mainframe2">老客户关怀效果分析</a></span></li>
+    </ul>
+</div>
+
+
 
 </div>
 <!--content-->
