@@ -43,7 +43,8 @@
                 <td width="120"><b>评价人</b></td>
                 <td width="180"><b>内容 </b></td>
                 <td width="100"><b>礼品赠送内容</b></td>
-                <td width="100"><b>排序号</b></td>
+                <td width="50"><b>售出件数</b></td>
+                <td width="50"><b>排序号</b></td>
                 <td width="70"><b>操作</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
@@ -52,7 +53,8 @@
                 <td height="30"><%#Eval("buynick") %></td>
                 <td><%#left(Eval("content").ToString())%></td>
                 <td><textarea name="content_<%#Eval("orderid")%>"><%#Eval("showcontent")%></textarea></td>
-                <td><input name="index_<%#Eval("orderid")%>" size=4 value="<%#Eval("showindex") %>" /></td>
+                <td><input name="sale_<%#Eval("orderid")%>" size=3 value="<%#Eval("sale") %>" /></td>
+                <td><input name="index_<%#Eval("orderid")%>" size=3 value="<%#Eval("showindex") %>" /></td>
                 <td><a href="reviewindex.aspx?act=del&id=<%#Eval("orderid")%>">删除</a></td>
             </tr>
             </ItemTemplate>
