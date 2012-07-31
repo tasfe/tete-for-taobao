@@ -167,7 +167,7 @@ h4 a {
                   <h4 style="padding-left: 0px"><img src="images/icon_2.gif" width="32" height="32"
 													style="vertical-align: middle; margin-right: 0px" /><a href="alipay.aspx">支付宝红包</a></h4> 
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
-                  <p> 好评就送支付宝红包，真金白银的优惠，直达客户手机，到达率100%。 <br /> <span style="color:Red; font-weight:bold">（短信需单独收费，1毛1条）</span></p>
+                  <p> 好评就送支付宝红包，真金白银的优惠，直达客户手机，到达率100%。 <br /> <span style="color:Red; font-weight:bold">（短信需单独收费，最低8分1条）</span></p>
                 </div>
                 <div class="item_list_btn"><a href="alipay.aspx" class="btn-middle middle-blue">立即使用</a></div>
                 <p style="clear: both; height: 1px;"></p>
@@ -178,7 +178,7 @@ h4 a {
                   <h4 style="padding-left: 0px"><img src="images/icon_4.gif" width="32" height="32"
 													style="vertical-align: middle; margin-right: 0px" /><a href="msg.aspx">短信提醒</a></h4>
                   <span class="category-pop"><s class="pop-l"></s><s class="pop-r"></s></span>
-                  <p> 发货、物流到货、订单催评、礼品赠送4个时点短信提醒，让您的优惠信息直达客户手机。 <br /> <span style="color:Red; font-weight:bold">（短信需单独收费，1毛1条）</span></p>
+                  <p> 发货、物流到货、订单催评、礼品赠送4个时点短信提醒，让您的优惠信息直达客户手机。 <br /> <span style="color:Red; font-weight:bold">（短信需单独收费，最低8分1条）</span></p>
                 </div>
                 <div class="item_list_btn"><a href="msg.aspx" class="btn-middle middle-blue">立即使用</a></div>
                 <p style="clear: both; height: 1px;"></p>
