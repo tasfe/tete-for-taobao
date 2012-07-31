@@ -123,7 +123,7 @@
                 <tr>
                     <td align="left" height="30" width="120">会员组</td>
                     <td>
-                        <select name="typ" onchange="InitUserCount(this)">
+                        <select name="groupguid" onchange="InitUserCount(this)">
                             <option value="0" title="<%=totalcustomer %>">所有会员</option>
                             <asp:Repeater ID="rptGroup" runat="server">
                                 <ItemTemplate>
