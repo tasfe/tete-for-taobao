@@ -81,12 +81,14 @@ public partial class top_reviewnew_reviewindex : System.Web.UI.Page
         string sql = "SELECT TOP 20 * FROM TCS_TradeRate WHERE nick = '" + nick + "' AND isshow = 1 ORDER BY showindex,reviewdate DESC";
         DataTable dt = utils.ExecuteDataTable(sql);
         string index = string.Empty;
+        string content = string.Empty;
         for (int i = 0; i < dt.Rows.Count; i++)
         {
             index = utils.NewRequest("index_" + dt.Rows[i]["orderid"].ToString(), utils.RequestType.Form);
+            content = utils.NewRequest("content_" + dt.Rows[i]["orderid"].ToString(), utils.RequestType.Form);
             if (index.Length != 0)
             {
-                sql = "UPDATE TCS_TradeRate SET showindex = '" + index + "' WHERE orderid = '" + dt.Rows[i]["orderid"].ToString() + "'";
+                sql = "UPDATE TCS_TradeRate SET showindex = '" + index + "',showcontent = '" + content + "' WHERE orderid = '" + dt.Rows[i]["orderid"].ToString() + "'";
                 Response.Write(sql + "<br>");
                 utils.ExecuteNonQuery(sql);
             }
