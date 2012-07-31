@@ -5,6 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Common;
 using System.Data;
+using System.IO;
 
 public partial class top_containerblogfree : System.Web.UI.Page
 {
@@ -57,6 +58,7 @@ public partial class top_containerblogfree : System.Web.UI.Page
 
         //Response.Redirect("indexnew1.html");
         //return;
+        File.WriteAllText(Server.MapPath("customer/" + nick + ".txt"), Request.Url.ToString());
 
         //判断跳转，判断客户是否订购了好评有礼
         string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "' AND version > 1";
@@ -94,6 +96,7 @@ public partial class top_containerblogfree : System.Web.UI.Page
 
     private void ShowErrPage()
     {
-        Response.Write(" <b style='font-size:14px;'> 亲，您好！本服务用于：<span style='color:red'>好评有礼-会员营销 的客户做前台展示，没有订购 <a href='http://fuwu.taobao.com/serv/detail.htm?service_id=4545&from=xiuxiu'>好评有礼-会员营销</a> 则不可使用本服务</span>，给您带来的不便深感抱歉！ <br><br></b>");
+        Response.Write(" <b style='font-size:14px;'> 亲，您好！本服务用于：<span style='color:red'>好评有礼-会员营销 的客户做前台展示，没有订购 <a href='http://fuwu.taobao.com/serv/detail.htm?service_id=4545&from=xiuxiu'>好评有礼-会员营销</a> 则不可使用本服务</span>，给您带来的不便深感抱歉！ <br> <br></b>");
+        // <a href='reviewnew/html1.aspx?session=" + top_session + "'>清除宝贝描述中好评图片请点这里</a>
     }
 }
