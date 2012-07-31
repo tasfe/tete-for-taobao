@@ -61,6 +61,12 @@ public partial class top_crm_missionadd : System.Web.UI.Page
 
             string sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND mobile <> ''";
             totalcustomer = utils.ExecuteString(sql);
+
+            sql = "SELECT * FROM TCS_Group WHERE nick = '" + nick + "' AND isdel = 0";
+            DataTable dt = utils.ExecuteDataTable(sql);
+
+            rptGroup.DataSource = dt;
+            rptGroup.DataBind();
         }
     }
 
