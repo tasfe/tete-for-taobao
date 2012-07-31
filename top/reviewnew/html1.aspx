@@ -18,7 +18,7 @@
     <input type="hidden" name="t" id="t" value="" />
 <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="default.aspx" class="nolink">好评有礼</a> 活动展示 </div>
+  <div class="crumbs">过期用户清除宝贝描述中好评图片 </div>
   <div class="absright">
     <ul>
       <li>
@@ -30,24 +30,9 @@
   </div>
     <div id="main-content">
                  <asp:Button ID="Button4" runat="server" onclick="Button4_Click" Text="一键清除" /><br />
-                    <b>亲，如果您的店铺宝贝很多，请您耐心等待一会~</b>
     </div>
 </div>
 </form>
-
-<script>
-    function check(obj) {
-        obj.value = "同步中，请您耐心等待..";
-        //obj.disabled = true;
-    }
-
-    document.getElementById("<%=leftimgname %>").checked = true;
-    document.getElementById("<%=detailimgname %>").checked = true;
-
-    if ('0' == '<%=detailimgistop %>') {
-        document.getElementById("detailimgistop").selectedIndex = 1;
-    }
-</script>
 
 </body>
 </html>
