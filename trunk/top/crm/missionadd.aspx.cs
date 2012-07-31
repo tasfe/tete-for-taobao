@@ -76,6 +76,7 @@ public partial class top_crm_missionadd : System.Web.UI.Page
         string sql = string.Empty;
         string typ = utils.NewRequest("typ", utils.RequestType.Form);
         string group = utils.NewRequest("group", utils.RequestType.Form);
+        string groupguid = utils.NewRequest("groupguid", utils.RequestType.Form);
         string cuicontent = utils.NewRequest("cuicontent", utils.RequestType.Form);
         string cuidate = utils.NewRequest("cuidate", utils.RequestType.Form);
         string birthdaycontent = utils.NewRequest("birthdaycontent", utils.RequestType.Form);
@@ -108,7 +109,7 @@ public partial class top_crm_missionadd : System.Web.UI.Page
                 break;
             case "act":
                 sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade, senddate,isstop) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + actcontent + "','" + group + "','" + actdate + "','" + isstop + "')";
-                SendMutiMsg(actcontent);
+                SendMutiMsg(actcontent, groupguid);
                 break;
         }
 
@@ -122,9 +123,17 @@ public partial class top_crm_missionadd : System.Web.UI.Page
     /// 短信群发
     /// </summary>
     /// <param name="actcontent"></param>
-    private void SendMutiMsg(string actcontent)
+    private void SendMutiMsg(string actcontent, string groupguid)
     {
-        string sql = "SELECT * FROM TCS_Customer WHERE nick = '" + nick + "' AND LEN(mobile) > 0";
+        string sql = string.Empty;
+        if (groupguid == "0")
+        {
+            sql = "SELECT * FROM TCS_Customer WHERE nick = '" + nick + "' AND LEN(mobile) > 0";
+        }
+        else
+        {
+            sql = "SELECT * FROM TCS_Customer WHERE nick = '" + nick + "' AND LEN(mobile) > 0 AND groupguid = '" + groupguid + "'";
+        }
         DataTable dt = utils.ExecuteDataTable(sql);
         for (int i = 0; i < dt.Rows.Count; i++)
         {
