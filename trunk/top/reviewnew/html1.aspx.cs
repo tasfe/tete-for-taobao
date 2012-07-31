@@ -504,7 +504,7 @@ public partial class top_review_html : System.Web.UI.Page
         }
 
 
-        Response.Write("<script>alert('清除成功！');window.location.href='html.aspx';</script>");
+        Response.Write("<script>alert('清除成功！');</script>");
         Response.End();
     }
 
