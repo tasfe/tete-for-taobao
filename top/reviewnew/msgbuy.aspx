@@ -28,21 +28,24 @@
     </ul>
   </div>
     <div id="main-content">
-    
+
+<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
+    因为找到了新的短信供应商，现在短信价格全面下调，短信最低8折，祝大家生意兴隆！
+</div>
+
     <input type="button" value="返回短信设置页面" onclick="window.location.href='msg.aspx'" />
     
     <hr />
                 <div style="width:700px; font-size:14px;">
             购买短信服务：<br />
             每月100条短信可累积  10元/月  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-4:1;' target="_blank">点击购买</a><br />
-            每月500条短信可累积  50元/月  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-5:1;' target="_blank">点击购买</a> (现在购买立即赠送10条短信) <br />
-            每月1000条短信可累积  100元/月  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-6:1;' target="_blank">点击购买</a> (现在购买立即赠送30条短信) <br />
-            每月5000条短信可累积  500元/月  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-7:1;' target="_blank">点击购买</a>  (现在购买立即赠送200条短信) <br />
-            每月10000条短信可累积  1000元/月  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-8:1;' target="_blank">点击购买</a>  (现在购买立即赠送500条短信) <br /><br />
-            <b>购买完毕后请重新从 seller.taobao.com 右上 “我的服务”进入...</b>
+            每月500条短信可累积(95折)  47.5元/月  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-5:1;' target="_blank">点击购买</a> (现在购买立即赠送10条短信) <br />
+            每月1000条短信可累积(9折)  90元/月  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-6:1;' target="_blank">点击购买</a> (现在购买立即赠送30条短信) <br />
+            每月5000条短信可累积(85折)  425元/月  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-7:1;' target="_blank">点击购买</a>  (现在购买立即赠送200条短信) <br />
+            每月10000条短信可累积(8折)  800元/月  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-8:1;' target="_blank">点击购买</a>  (现在购买立即赠送500条短信) <br /><br />
+            <b style="color:Red; font-size:28px">购买完毕后请重新进入好评有礼服务，否则短信充值不上去，非常感谢！</b>
 
              <br> 
-        <br>        <span style="font-size:20px; font-weight:bold; display:none; color:red">3月特惠充值短信8折，现在升级版本更赠送短信，具体情况请联系客服人员... </span>
         <br> 
         <br> 
             </div>
