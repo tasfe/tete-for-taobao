@@ -121,9 +121,22 @@
                     </td>
                 </tr>
                 <tr>
+                    <td align="left" height="30" width="120">会员组</td>
+                    <td>
+                        <select name="typ" onchange="InitUserCount(this)">
+                            <option value="0" title="<%=totalcustomer %>">所有会员</option>
+                            <asp:Repeater ID="rptGroup" runat="server">
+                                <ItemTemplate>
+                                    <option value="<%#Eval("guid") %>" title="<%#Eval("count") %>"><%#Eval("name") %></option>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
                     <td align="left" height="30" width="120">会员总数：</td>
                     <td>
-                        您目前共有<%=totalcustomer%>名有手机号码的会员，请确保账户内有足够的短信，否则无法正常发送。
+                        该组内共有<span id="total"><%=totalcustomer%></span>名有手机号码的会员，请确保账户内有足够的短信，否则无法正常发送。
                     </td>
                 </tr>
                 <tr>
@@ -167,6 +180,12 @@
                     findObj(show).innerHTML = t_i;
                 }
             </script>
+
+            <script>
+                function InitUserCount(obj) {
+                    document.getElementById("total").innerHTML = obj.options[obj.options.selectedIndex].title;
+                }
+</script>
             
             <table width="100%">
                 <tr>
