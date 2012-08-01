@@ -95,7 +95,8 @@ public partial class top_reviewnew_reviewindex : System.Web.UI.Page
                 utils.ExecuteNonQuery(sql);
             }
         }
-        Response.Redirect("reviewindex.aspx");
+        Response.Write("<script>alert('保存成功');window.location.href='reviewindex.aspx';</script>");
+        Response.End();
     }
 
     /// <summary>
@@ -162,8 +163,7 @@ public partial class top_reviewnew_reviewindex : System.Web.UI.Page
         
         utils.ExecuteNonQuery(sql);
 
-        Response.Write("<script>alert('保存成功');window.location.href='reviewindex.aspx';</script>");
-        Response.End();
+        Response.Redirect("reviewindex.aspx"):
     }
 
     public static string left(string str)
