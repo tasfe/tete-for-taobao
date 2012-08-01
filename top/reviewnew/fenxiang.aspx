@@ -30,6 +30,8 @@
 <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
     您只需要点击下面的分享按钮并成功分享，每天便可获得好评有礼送出的10条免费短信，非常感谢您的支持！
 </div>
+<br />
+<br />
         <iframe src='fen.html' width="600" height="400" id="test" frameborder="0" scrolling="no"></iframe>
     </div>
     </form>
@@ -37,7 +39,7 @@
 <script language="javascript">
     function show() {
         str = document.getElementById("test").contentWindow.document.body.innerHTML;
-        if (str.indexOf("分享成功！购物齐分享，生活好滋味") != -1) {
+        if (str.indexOf("温馨提示") != -1) {
             SetOk();
             return;
         }
