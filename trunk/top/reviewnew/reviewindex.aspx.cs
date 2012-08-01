@@ -163,7 +163,7 @@ public partial class top_reviewnew_reviewindex : System.Web.UI.Page
         
         utils.ExecuteNonQuery(sql);
 
-        Response.Redirect("reviewindex.aspx"):
+        Response.Redirect("reviewindex.aspx");
     }
 
     public static string left(string str)
