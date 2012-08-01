@@ -79,7 +79,7 @@ public partial class top_containerblogfree : System.Web.UI.Page
                 cookie.setCookie("top_sessionblog", session, 999999);
                 cookie.setCookie("nick", nick, 999999);
 
-                Response.Redirect("indexnew1.html");
+                Response.Redirect("indexnew.html");
             }
             else
             {
