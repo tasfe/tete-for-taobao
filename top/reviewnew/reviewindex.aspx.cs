@@ -136,10 +136,18 @@ public partial class top_reviewnew_reviewindex : System.Web.UI.Page
         //获取优惠券赠送信息
         sql = "SELECT * FROM TCS_Coupon WHERE guid = (SELECT couponid FROM TCS_ShopConfig WHERE nick = '" + nick + "')";
         string showcontent = string.Empty;
-        DataTable dt = utils.ExecuteDataTable(sql);
-        if (dt.Rows.Count != 0)
+
+        try
         {
-            showcontent = "恭喜该用户获得本店送出的满" + dt.Rows[0]["condition"].ToString() + "减" + dt.Rows[0]["num"].ToString() + "元的优惠券！";
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                showcontent = "恭喜该用户获得本店送出的满" + dt.Rows[0]["condition"].ToString() + "减" + dt.Rows[0]["num"].ToString() + "元的优惠券！";
+            }
+        }
+        catch 
+        {
+            
         }
 
         //获取用户等级
