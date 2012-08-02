@@ -26,6 +26,7 @@ public partial class top_containerblog : System.Web.UI.Page
     public string versionNo = string.Empty;
     public string isFirst = string.Empty;
     public string sendMsg = string.Empty;
+    public string refreshToken = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -51,6 +52,8 @@ public partial class top_containerblog : System.Web.UI.Page
         }
 
         nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["visitor_nick"];
+        refreshToken = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["refresh_token"];
+
         //验证客户版本参数是否正确
         if (versionNo != "")
         {
@@ -209,7 +212,7 @@ public partial class top_containerblog : System.Web.UI.Page
             }
 
             //更新登录次数和最近登陆时间
-            string sql = "UPDATE TCS_ShopSession SET session='" + top_session + "',version='" + versionNo + "',plus='" + plus + "' WHERE nick = '" + nick + "'";
+            string sql = "UPDATE TCS_ShopSession SET session='" + top_session + "',version='" + versionNo + "',plus='" + plus + "',token='" + refreshToken + "' WHERE nick = '" + nick + "'";
             utils.ExecuteNonQuery(sql);
 
             //更新特殊用户
@@ -407,6 +410,7 @@ public partial class top_containerblog : System.Web.UI.Page
                        "typ, " +
                        "version, " +
                        "plus, " +
+                       "token, " +
                        "session" +
                    " ) VALUES ( " +
                        " '" + shop.Sid + "', " +
@@ -414,6 +418,7 @@ public partial class top_containerblog : System.Web.UI.Page
                        " 'taobao', " +
                        " '" + version + "', " +
                        " '" + plus + "', " +
+                       " '" + refreshToken + "', " +
                        " '" + top_session + "' " +
                  ") ";
 
