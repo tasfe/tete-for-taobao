@@ -1,0 +1,1048 @@
+
+Log Entry : 2012/3/3 23:53:37 订购时获取订单错误 参数错误
+-------------------------------
+
+Log Entry : 2012/3/6 11:32:20 订购时获取订单错误 参数错误
+-------------------------------
+
+Log Entry : 2012/3/6 11:32:21 订购时获取订单错误 参数错误
+-------------------------------
+
+Log Entry : 2012/3/6 11:32:21 订购时获取订单错误 参数错误
+-------------------------------
+
+Log Entry : 2012/3/6 11:32:22 订购时获取订单错误 参数错误
+-------------------------------
+
+Log Entry : 2012/3/6 11:36:03 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:36:03 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:36:08 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:36:08 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:37:59 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:37:59 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:39:04 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:39:04 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:44:38 SELECT * FROM(SELECT  VisitUrl,VisitIP, COUNT(*) AS VCount,ROW_NUMBER() OVER(ORDER BY VisitUrl ASC, VisitIP ASC) as RowNum FROM (SELECT *  FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba WHERE  VisitTime BETWEEN @sdate AND @edate AND VisitUrl<>'') a GROUP BY VisitUrl,visitIP )  b  WHERE RowNum BETWEEN @srecode AND @erecode 对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:48:12 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:48:12 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:51:32 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:51:32 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:51:34 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:51:34 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:51:39 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:51:39 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:51:42 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:51:42 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:56:56 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 11:56:56 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 12:30:37 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 12:30:38 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 12:31:26 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 12:31:26 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 12:32:11 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 12:32:11 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 12:32:44 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 12:32:44 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 12:35:59 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 12:35:59 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 13:41:53 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 13:41:53 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 15:47:36 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 15:47:38 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 15:51:46 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 15:51:46 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 15:54:55 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 15:54:55 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 15:57:16 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 15:57:16 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 17:50:01 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/6 17:50:01 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_34817155ec72cee4b2f829de0cfcf9ba' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 11:47:15 添加分类出错：session:6100801261d2744fbe2f3ccaf98ee2cdd8909f9a6539d90441663056nick：麦凌客数码专营店 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 11:47:16 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 11:47:16 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 11:51:45 添加分类出错：session:6100801261d2744fbe2f3ccaf98ee2cdd8909f9a6539d90441663056nick：麦凌客数码专营店 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 11:51:45 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 11:51:45 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 11:54:43 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 11:54:43 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 11:56:56 添加分类出错：session:6100801261d2744fbe2f3ccaf98ee2cdd8909f9a6539d90441663056nick：麦凌客数码专营店 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 11:56:56 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 11:56:56 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 11:58:02 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 11:58:02 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 13:17:54 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 13:17:55 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 13:38:33 添加分类出错：session:610122326606f756df26f975552a5ab1519e4b22e4bd93226907498nick：luckyfish8800 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 13:38:33 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 13:38:33 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 13:39:24 添加分类出错：session:610122326606f756df26f975552a5ab1519e4b22e4bd93226907498nick：luckyfish8800 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 13:39:24 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 13:39:24 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 13:42:34 添加分类出错：session:610122326606f756df26f975552a5ab1519e4b22e4bd93226907498nick：luckyfish8800 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 13:42:34 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 13:42:34 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 13:46:48 添加分类出错：session:610122326606f756df26f975552a5ab1519e4b22e4bd93226907498nick：luckyfish8800 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 13:46:48 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 13:46:48 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 13:47:19 添加分类出错：session:610122326606f756df26f975552a5ab1519e4b22e4bd93226907498nick：luckyfish8800 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 13:47:19 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 13:47:19 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 13:49:03 添加分类出错：session:610122326606f756df26f975552a5ab1519e4b22e4bd93226907498nick：luckyfish8800 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 13:49:03 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 13:49:03 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 13:51:28 添加分类出错：session:610122326606f756df26f975552a5ab1519e4b22e4bd93226907498nick：luckyfish8800 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 13:51:28 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 13:51:28 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 14:13:08 添加分类出错：session:610122326606f756df26f975552a5ab1519e4b22e4bd93226907498nick：luckyfish8800 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 14:13:08 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 14:13:08 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 14:14:09 添加分类出错：session:610122326606f756df26f975552a5ab1519e4b22e4bd93226907498nick：luckyfish8800 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 14:14:09 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 14:14:09 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 14:14:43 添加分类出错：session:6101312587cbdace711a1e26d5877064329a4dd05d9c96326907498nick：luckyfish8800 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 14:16:18 添加分类出错：session:6101312587cbdace711a1e26d5877064329a4dd05d9c96326907498nick：luckyfish8800 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 14:16:18 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 14:16:18 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 14:17:05 添加分类出错：session:6101312587cbdace711a1e26d5877064329a4dd05d9c96326907498nick：luckyfish8800 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 14:17:05 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 14:17:05 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 14:24:44 添加分类出错：session:6101312587cbdace711a1e26d5877064329a4dd05d9c96326907498nick：luckyfish8800 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 14:24:44 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 14:24:44 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 15:35:07 添加分类出错：session:6101312587cbdace711a1e26d5877064329a4dd05d9c96326907498nick：luckyfish8800 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 15:35:07 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 15:35:07 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 20:09:09 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 20:09:10 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 20:10:02 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 20:10:02 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 20:45:57 查找商品销售分类出错 {"error_response":{"code":510,"msg":"Remote service error","sub_code":"isv.missing-parameter:parent_cid-or-cids-or-datetime","sub_msg":"Need: parent_cid or cids or datetime!"}}
+-------------------------------
+
+Log Entry : 2012/3/7 20:45:57 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 20:45:57 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 20:46:10 查找商品销售分类出错 {"error_response":{"code":510,"msg":"Remote service error","sub_code":"isv.missing-parameter:parent_cid-or-cids-or-datetime","sub_msg":"Need: parent_cid or cids or datetime!"}}
+-------------------------------
+
+Log Entry : 2012/3/7 20:46:16 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 20:46:16 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 20:47:58 查找商品销售分类出错 {"error_response":{"code":510,"msg":"Remote service error","sub_code":"isv.missing-parameter:parent_cid-or-cids-or-datetime","sub_msg":"Need: parent_cid or cids or datetime!"}}
+-------------------------------
+
+Log Entry : 2012/3/7 20:47:58 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 20:47:58 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 20:49:23 查找商品销售分类出错 {"error_response":{"code":510,"msg":"Remote service error","sub_code":"isv.missing-parameter:parent_cid-or-cids-or-datetime","sub_msg":"Need: parent_cid or cids or datetime!"}}
+-------------------------------
+
+Log Entry : 2012/3/7 20:49:23 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 20:49:23 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 20:52:10 返回json转化为一个商品销售分类出错 {"itemcats_get_response":{"item_cats":{"item_cat":[{"cid":50025707,"name":"景点门票\/度假线路\/旅游服务","parent_cid":0,"sort_order":8},{"cid":30,"name":"男装","parent_cid":0,"sort_order":9},{"cid":50008164,"name":"住宅家具","parent_cid":0,"sort_order":10},{"cid":50020611,"name":"商业\/办公家具","parent_cid":0,"sort_order":11},{"cid":50023804,"name":"家居服务","parent_cid":0,"sort_order":12},{"cid":50023904,"name":"国货精品数码","parent_cid":0,"sort_order":13},{"cid":50010788,"name":"彩妆\/香水\/美妆工具","parent_cid":0,"sort_order":14},{"cid":1801,"name":"美容护肤\/美体\/精油","parent_cid":0,"sort_order":15},{"cid":50023282,"name":"美发护发\/假发","parent_cid":0,"sort_order":16},{"cid":1512,"name":"手机","parent_cid":0,"sort_order":17},{"cid":14,"name":"数码相机\/单反相机\/摄像机","parent_cid":0,"sort_order":19},{"cid":1201,"name":"MP3\/MP4\/iPod\/录音笔","parent_cid":0,"sort_order":20},{"cid":1101,"name":"笔记本电脑","parent_cid":0,"sort_order":21},{"cid":50019780,"name":"平板电脑\/MID","parent_cid":0,"sort_order":22},{"cid":50018222,"name":"台式机\/一体机\/服务器","parent_cid":0,"sort_order":23},{"cid":11,"name":"电脑硬件\/显示器\/电脑周边","parent_cid":0,"sort_order":23},{"cid":50018264,"name":"网络设备\/网络相关","parent_cid":0,"sort_order":25},{"cid":50008090,"name":"3C数码配件市场","parent_cid":0,"sort_order":26},{"cid":50012164,"name":"闪存卡\/U盘\/存储\/移动硬盘","parent_cid":0,"sort_order":27},{"cid":50007218,"name":"办公设备\/耗材\/相关服务","parent_cid":0,"sort_order":28},{"cid":50018004,"name":"电子词典\/电纸书\/文化用品","parent_cid":0,"sort_order":29},{"cid":20,"name":"电玩\/配件\/游戏\/攻略","parent_cid":0,"sort_order":29},{"cid":50022703,"name":"大家电","parent_cid":0,"sort_order":31},{"cid":50011972,"name":"影音电器","parent_cid":0,"sort_order":31},{"cid":50012100,"name":"生活电器","parent_cid":0,"sort_order":32},{"cid":50012082,"name":"厨房电器","parent_cid":0,"sort_order":34},{"cid":50002768,"name":"个人护理\/保健\/按摩器材","parent_cid":0,"sort_order":35},{"cid":27,"name":"家装主材","parent_cid":0,"sort_order":39},{"cid":50020332,"name":"基础建材","parent_cid":0,"sort_order":40},{"cid":50020485,"name":"五金\/工具","parent_cid":0,"sort_order":41},{"cid":50020579,"name":"电子\/电工","parent_cid":0,"sort_order":42},{"cid":50020808,"name":"家居饰品","parent_cid":0,"sort_order":46},{"cid":50020857,"name":"特色手工艺","parent_cid":0,"sort_order":48},{"cid":50011949,"name":"特价酒店\/特色客栈\/公寓旅馆","parent_cid":0,"sort_order":50},{"cid":21,"name":"居家日用\/婚庆\/创意礼品","parent_cid":0,"sort_order":60},{"cid":50016349,"name":"厨房\/餐饮用具","parent_cid":0,"sort_order":62},{"cid":50016348,"name":"清洁\/卫浴\/收纳\/整理用具","parent_cid":0,"sort_order":64},{"cid":50008163,"name":"床上用品\/布艺软饰","parent_cid":0,"sort_order":65},{"cid":35,"name":"奶粉\/辅食\/营养品","parent_cid":0,"sort_order":72},{"cid":50014812,"name":"尿片\/洗护\/喂哺\/推车床","parent_cid":0,"sort_order":74},{"cid":50022517,"name":"孕妇装\/孕产妇用品\/营养","parent_cid":0,"sort_order":75},{"cid":50008165,"name":"童装\/童鞋\/亲子装","parent_cid":0,"sort_order":77},{"cid":50020276,"name":"品牌保健品","parent_cid":0,"sort_order":78},{"cid":50020275,"name":"传统滋补品\/其他保健营养品","parent_cid":0,"sort_order":79},{"cid":50002766,"name":"零食\/坚果\/茶叶\/特产","parent_cid":0,"sort_order":80},{"cid":50016422,"name":"粮油\/蔬果\/水产\/速食","parent_cid":0,"sort_order":81},{"cid":50008075,"name":"吃喝玩乐折扣券","parent_cid":0,"sort_order":83},{"cid":40,"name":"腾讯QQ专区","parent_cid":0,"sort_order":99},{"cid":50010728,"name":"运动\/瑜伽\/健身\/球迷用品","parent_cid":0,"sort_order":130},{"cid":50013886,"name":"户外\/登山\/野营\/旅行用品","parent_cid":0,"sort_order":131},{"cid":50011699,"name":"运动服\/运动包\/颈环配件","parent_cid":0,"sort_order":132},{"cid":25,"name":"玩具\/模型\/动漫\/早教\/益智","parent_cid":0,"sort_order":135},{"cid":50011665,"name":"网游装备\/游戏币\/帐号\/代练","parent_cid":0,"sort_order":136},{"cid":50008907,"name":"手机号码\/套餐\/增值业务","parent_cid":0,"sort_order":138},{"cid":99,"name":"网络游戏点卡","parent_cid":0,"sort_order":138},{"cid":23,"name":"古董\/邮币\/字画\/收藏","parent_cid":0,"sort_order":145},{"cid":50007216,"name":"鲜花速递\/花卉仿真\/绿植园艺","parent_cid":0,"sort_order":145},{"cid":26,"name":"汽车\/用品\/配件\/改装\/摩托","parent_cid":0,"sort_order":147},{"cid":50004958,"name":"移动\/联通\/电信充值中心","parent_cid":0,"sort_order":149},{"cid":50005700,"name":"品牌手表\/流行手表","parent_cid":0,"sort_order":152},{"cid":50011740,"name":"流行男鞋","parent_cid":0,"sort_order":160},{"cid":16,"name":"女装\/女士精品","parent_cid":0,"sort_order":161},{"cid":50006843,"name":"女鞋","parent_cid":0,"sort_order":166},{"cid":50006842,"name":"箱包皮具\/热销女包\/男包","parent_cid":0,"sort_order":170},{"cid":1625,"name":"女士内衣\/男士内衣\/家居服","parent_cid":0,"sort_order":176},{"cid":50010404,"name":"服饰配件\/皮带\/帽子\/围巾","parent_cid":0,"sort_order":177},{"cid":50011397,"name":"珠宝\/钻石\/翡翠\/黄金","parent_cid":0,"sort_order":177},{"cid":28,"name":"ZIPPO\/瑞士军刀\/眼镜","parent_cid":0,"sort_order":181},{"cid":33,"name":"书籍\/杂志\/报纸","parent_cid":0,"sort_order":182},{"cid":34,"name":"音乐\/影视\/明星\/音像","parent_cid":0,"sort_order":182},{"cid":50017300,"name":"乐器\/吉他\/钢琴\/配件","parent_cid":0,"sort_order":184},{"cid":29,"name":"宠物\/宠物食品及用品","parent_cid":0,"sort_order":186},{"cid":2813,"name":"成人用品\/避孕\/计生用品","parent_cid":0,"sort_order":191},{"cid":50012029,"name":"运动鞋new","parent_cid":0,"sort_order":234},{"cid":50013864,"name":"饰品\/流行首饰\/时尚饰品新","parent_cid":0,"sort_order":244},{"cid":50018252,"name":"电子凭证","parent_cid":0,"sort_order":246},{"cid":50014442,"name":"交通票","parent_cid":0,"sort_order":248},{"cid":50014811,"name":"网店\/网络服务\/软件","parent_cid":0,"sort_order":250},{"cid":50016891,"name":"网游垂直市场根类目","parent_cid":0,"sort_order":254},{"cid":50023724,"name":"其他","parent_cid":0,"sort_order":260},{"cid":50017908,"name":"彩票","parent_cid":0,"sort_order":270},{"cid":50017652,"name":"TP服务商大类","parent_cid":0,"sort_order":271},{"cid":50019379,"name":"合作商家","parent_cid":0,"sort_order":277},{"cid":50023575,"name":"房产\/租房\/新房\/二手房\/委托服务","parent_cid":0,"sort_order":302},{"cid":50023717,"name":"OTC药品\/医疗器械\/隐形眼镜\/计生用品","parent_cid":0,"sort_order":304},{"cid":50023878,"name":"自用闲置转让","parent_cid":0,"sort_order":305},{"cid":50024186,"name":"保险","parent_cid":0,"sort_order":307},{"cid":50024449,"name":"淘花娱乐","parent_cid":0,"sort_order":312},{"cid":50024451,"name":"外卖\/外送\/订餐服务","parent_cid":0,"sort_order":313},{"cid":50024612,"name":"外卖\/外送\/订餐服务（垂直市场）","parent_cid":0,"sort_order":314},{"cid":50024971,"name":"新车\/二手车","parent_cid":0,"sort_order":315},{"cid":50025004,"name":"个性定制\/设计服务\/DIY","parent_cid":0,"sort_order":316},{"cid":50025110,"name":"电影\/演出\/体育赛事","parent_cid":0,"sort_order":317},{"cid":50025111,"name":"本地化生活服务","parent_cid":0,"sort_order":318},{"cid":50025490,"name":"本地生活团购","parent_cid":0,"sort_order":319},{"cid":50025616,"name":"家具（已删除）","parent_cid":0,"sort_order":320},{"cid":50025618,"name":"基金","parent_cid":0,"sort_order":321},{"cid":50025705,"name":"洗护清洁剂\/卫生巾\/纸\/香薰","parent_cid":0,"sort_order":322},{"cid":50025706,"name":"贵金属","parent_cid":0,"sort_order":323}]传入的对象无效，应为“:”或“}”。 (6727): {"itemcats_get_response":{"item_cats":{"item_cat":[{"cid":50025707,"name":"景点门票\/度假线路\/旅游服务","parent_cid":0,"sort_order":8},{"cid":30,"name":"男装","parent_cid":0,"sort_order":9},{"cid":50008164,"name":"住宅家具","parent_cid":0,"sort_order":10},{"cid":50020611,"name":"商业\/办公家具","parent_cid":0,"sort_order":11},{"cid":50023804,"name":"家居服务","parent_cid":0,"sort_order":12},{"cid":50023904,"name":"国货精品数码","parent_cid":0,"sort_order":13},{"cid":50010788,"name":"彩妆\/香水\/美妆工具","parent_cid":0,"sort_order":14},{"cid":1801,"name":"美容护肤\/美体\/精油","parent_cid":0,"sort_order":15},{"cid":50023282,"name":"美发护发\/假发","parent_cid":0,"sort_order":16},{"cid":1512,"name":"手机","parent_cid":0,"sort_order":17},{"cid":14,"name":"数码相机\/单反相机\/摄像机","parent_cid":0,"sort_order":19},{"cid":1201,"name":"MP3\/MP4\/iPod\/录音笔","parent_cid":0,"sort_order":20},{"cid":1101,"name":"笔记本电脑","parent_cid":0,"sort_order":21},{"cid":50019780,"name":"平板电脑\/MID","parent_cid":0,"sort_order":22},{"cid":50018222,"name":"台式机\/一体机\/服务器","parent_cid":0,"sort_order":23},{"cid":11,"name":"电脑硬件\/显示器\/电脑周边","parent_cid":0,"sort_order":23},{"cid":50018264,"name":"网络设备\/网络相关","parent_cid":0,"sort_order":25},{"cid":50008090,"name":"3C数码配件市场","parent_cid":0,"sort_order":26},{"cid":50012164,"name":"闪存卡\/U盘\/存储\/移动硬盘","parent_cid":0,"sort_order":27},{"cid":50007218,"name":"办公设备\/耗材\/相关服务","parent_cid":0,"sort_order":28},{"cid":50018004,"name":"电子词典\/电纸书\/文化用品","parent_cid":0,"sort_order":29},{"cid":20,"name":"电玩\/配件\/游戏\/攻略","parent_cid":0,"sort_order":29},{"cid":50022703,"name":"大家电","parent_cid":0,"sort_order":31},{"cid":50011972,"name":"影音电器","parent_cid":0,"sort_order":31},{"cid":50012100,"name":"生活电器","parent_cid":0,"sort_order":32},{"cid":50012082,"name":"厨房电器","parent_cid":0,"sort_order":34},{"cid":50002768,"name":"个人护理\/保健\/按摩器材","parent_cid":0,"sort_order":35},{"cid":27,"name":"家装主材","parent_cid":0,"sort_order":39},{"cid":50020332,"name":"基础建材","parent_cid":0,"sort_order":40},{"cid":50020485,"name":"五金\/工具","parent_cid":0,"sort_order":41},{"cid":50020579,"name":"电子\/电工","parent_cid":0,"sort_order":42},{"cid":50020808,"name":"家居饰品","parent_cid":0,"sort_order":46},{"cid":50020857,"name":"特色手工艺","parent_cid":0,"sort_order":48},{"cid":50011949,"name":"特价酒店\/特色客栈\/公寓旅馆","parent_cid":0,"sort_order":50},{"cid":21,"name":"居家日用\/婚庆\/创意礼品","parent_cid":0,"sort_order":60},{"cid":50016349,"name":"厨房\/餐饮用具","parent_cid":0,"sort_order":62},{"cid":50016348,"name":"清洁\/卫浴\/收纳\/整理用具","parent_cid":0,"sort_order":64},{"cid":50008163,"name":"床上用品\/布艺软饰","parent_cid":0,"sort_order":65},{"cid":35,"name":"奶粉\/辅食\/营养品","parent_cid":0,"sort_order":72},{"cid":50014812,"name":"尿片\/洗护\/喂哺\/推车床","parent_cid":0,"sort_order":74},{"cid":50022517,"name":"孕妇装\/孕产妇用品\/营养","parent_cid":0,"sort_order":75},{"cid":50008165,"name":"童装\/童鞋\/亲子装","parent_cid":0,"sort_order":77},{"cid":50020276,"name":"品牌保健品","parent_cid":0,"sort_order":78},{"cid":50020275,"name":"传统滋补品\/其他保健营养品","parent_cid":0,"sort_order":79},{"cid":50002766,"name":"零食\/坚果\/茶叶\/特产","parent_cid":0,"sort_order":80},{"cid":50016422,"name":"粮油\/蔬果\/水产\/速食","parent_cid":0,"sort_order":81},{"cid":50008075,"name":"吃喝玩乐折扣券","parent_cid":0,"sort_order":83},{"cid":40,"name":"腾讯QQ专区","parent_cid":0,"sort_order":99},{"cid":50010728,"name":"运动\/瑜伽\/健身\/球迷用品","parent_cid":0,"sort_order":130},{"cid":50013886,"name":"户外\/登山\/野营\/旅行用品","parent_cid":0,"sort_order":131},{"cid":50011699,"name":"运动服\/运动包\/颈环配件","parent_cid":0,"sort_order":132},{"cid":25,"name":"玩具\/模型\/动漫\/早教\/益智","parent_cid":0,"sort_order":135},{"cid":50011665,"name":"网游装备\/游戏币\/帐号\/代练","parent_cid":0,"sort_order":136},{"cid":50008907,"name":"手机号码\/套餐\/增值业务","parent_cid":0,"sort_order":138},{"cid":99,"name":"网络游戏点卡","parent_cid":0,"sort_order":138},{"cid":23,"name":"古董\/邮币\/字画\/收藏","parent_cid":0,"sort_order":145},{"cid":50007216,"name":"鲜花速递\/花卉仿真\/绿植园艺","parent_cid":0,"sort_order":145},{"cid":26,"name":"汽车\/用品\/配件\/改装\/摩托","parent_cid":0,"sort_order":147},{"cid":50004958,"name":"移动\/联通\/电信充值中心","parent_cid":0,"sort_order":149},{"cid":50005700,"name":"品牌手表\/流行手表","parent_cid":0,"sort_order":152},{"cid":50011740,"name":"流行男鞋","parent_cid":0,"sort_order":160},{"cid":16,"name":"女装\/女士精品","parent_cid":0,"sort_order":161},{"cid":50006843,"name":"女鞋","parent_cid":0,"sort_order":166},{"cid":50006842,"name":"箱包皮具\/热销女包\/男包","parent_cid":0,"sort_order":170},{"cid":1625,"name":"女士内衣\/男士内衣\/家居服","parent_cid":0,"sort_order":176},{"cid":50010404,"name":"服饰配件\/皮带\/帽子\/围巾","parent_cid":0,"sort_order":177},{"cid":50011397,"name":"珠宝\/钻石\/翡翠\/黄金","parent_cid":0,"sort_order":177},{"cid":28,"name":"ZIPPO\/瑞士军刀\/眼镜","parent_cid":0,"sort_order":181},{"cid":33,"name":"书籍\/杂志\/报纸","parent_cid":0,"sort_order":182},{"cid":34,"name":"音乐\/影视\/明星\/音像","parent_cid":0,"sort_order":182},{"cid":50017300,"name":"乐器\/吉他\/钢琴\/配件","parent_cid":0,"sort_order":184},{"cid":29,"name":"宠物\/宠物食品及用品","parent_cid":0,"sort_order":186},{"cid":2813,"name":"成人用品\/避孕\/计生用品","parent_cid":0,"sort_order":191},{"cid":50012029,"name":"运动鞋new","parent_cid":0,"sort_order":234},{"cid":50013864,"name":"饰品\/流行首饰\/时尚饰品新","parent_cid":0,"sort_order":244},{"cid":50018252,"name":"电子凭证","parent_cid":0,"sort_order":246},{"cid":50014442,"name":"交通票","parent_cid":0,"sort_order":248},{"cid":50014811,"name":"网店\/网络服务\/软件","parent_cid":0,"sort_order":250},{"cid":50016891,"name":"网游垂直市场根类目","parent_cid":0,"sort_order":254},{"cid":50023724,"name":"其他","parent_cid":0,"sort_order":260},{"cid":50017908,"name":"彩票","parent_cid":0,"sort_order":270},{"cid":50017652,"name":"TP服务商大类","parent_cid":0,"sort_order":271},{"cid":50019379,"name":"合作商家","parent_cid":0,"sort_order":277},{"cid":50023575,"name":"房产\/租房\/新房\/二手房\/委托服务","parent_cid":0,"sort_order":302},{"cid":50023717,"name":"OTC药品\/医疗器械\/隐形眼镜\/计生用品","parent_cid":0,"sort_order":304},{"cid":50023878,"name":"自用闲置转让","parent_cid":0,"sort_order":305},{"cid":50024186,"name":"保险","parent_cid":0,"sort_order":307},{"cid":50024449,"name":"淘花娱乐","parent_cid":0,"sort_order":312},{"cid":50024451,"name":"外卖\/外送\/订餐服务","parent_cid":0,"sort_order":313},{"cid":50024612,"name":"外卖\/外送\/订餐服务（垂直市场）","parent_cid":0,"sort_order":314},{"cid":50024971,"name":"新车\/二手车","parent_cid":0,"sort_order":315},{"cid":50025004,"name":"个性定制\/设计服务\/DIY","parent_cid":0,"sort_order":316},{"cid":50025110,"name":"电影\/演出\/体育赛事","parent_cid":0,"sort_order":317},{"cid":50025111,"name":"本地化生活服务","parent_cid":0,"sort_order":318},{"cid":50025490,"name":"本地生活团购","parent_cid":0,"sort_order":319},{"cid":50025616,"name":"家具（已删除）","parent_cid":0,"sort_order":320},{"cid":50025618,"name":"基金","parent_cid":0,"sort_order":321},{"cid":50025705,"name":"洗护清洁剂\/卫生巾\/纸\/香薰","parent_cid":0,"sort_order":322},{"cid":50025706,"name":"贵金属","parent_cid":0,"sort_order":323}]
+-------------------------------
+
+Log Entry : 2012/3/7 20:52:10 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 20:52:10 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 20:54:23 返回json转化为一个商品销售分类出错 {"itemcats_get_response":{"item_cats":{"item_cat":[{"cid":50025707,"name":"景点门票\/度假线路\/旅游服务","parent_cid":0,"sort_order":8},{"cid":30,"name":"男装","parent_cid":0,"sort_order":9},{"cid":50008164,"name":"住宅家具","parent_cid":0,"sort_order":10},{"cid":50020611,"name":"商业\/办公家具","parent_cid":0,"sort_order":11},{"cid":50023804,"name":"家居服务","parent_cid":0,"sort_order":12},{"cid":50023904,"name":"国货精品数码","parent_cid":0,"sort_order":13},{"cid":50010788,"name":"彩妆\/香水\/美妆工具","parent_cid":0,"sort_order":14},{"cid":1801,"name":"美容护肤\/美体\/精油","parent_cid":0,"sort_order":15},{"cid":50023282,"name":"美发护发\/假发","parent_cid":0,"sort_order":16},{"cid":1512,"name":"手机","parent_cid":0,"sort_order":17},{"cid":14,"name":"数码相机\/单反相机\/摄像机","parent_cid":0,"sort_order":19},{"cid":1201,"name":"MP3\/MP4\/iPod\/录音笔","parent_cid":0,"sort_order":20},{"cid":1101,"name":"笔记本电脑","parent_cid":0,"sort_order":21},{"cid":50019780,"name":"平板电脑\/MID","parent_cid":0,"sort_order":22},{"cid":50018222,"name":"台式机\/一体机\/服务器","parent_cid":0,"sort_order":23},{"cid":11,"name":"电脑硬件\/显示器\/电脑周边","parent_cid":0,"sort_order":23},{"cid":50018264,"name":"网络设备\/网络相关","parent_cid":0,"sort_order":25},{"cid":50008090,"name":"3C数码配件市场","parent_cid":0,"sort_order":26},{"cid":50012164,"name":"闪存卡\/U盘\/存储\/移动硬盘","parent_cid":0,"sort_order":27},{"cid":50007218,"name":"办公设备\/耗材\/相关服务","parent_cid":0,"sort_order":28},{"cid":50018004,"name":"电子词典\/电纸书\/文化用品","parent_cid":0,"sort_order":29},{"cid":20,"name":"电玩\/配件\/游戏\/攻略","parent_cid":0,"sort_order":29},{"cid":50022703,"name":"大家电","parent_cid":0,"sort_order":31},{"cid":50011972,"name":"影音电器","parent_cid":0,"sort_order":31},{"cid":50012100,"name":"生活电器","parent_cid":0,"sort_order":32},{"cid":50012082,"name":"厨房电器","parent_cid":0,"sort_order":34},{"cid":50002768,"name":"个人护理\/保健\/按摩器材","parent_cid":0,"sort_order":35},{"cid":27,"name":"家装主材","parent_cid":0,"sort_order":39},{"cid":50020332,"name":"基础建材","parent_cid":0,"sort_order":40},{"cid":50020485,"name":"五金\/工具","parent_cid":0,"sort_order":41},{"cid":50020579,"name":"电子\/电工","parent_cid":0,"sort_order":42},{"cid":50020808,"name":"家居饰品","parent_cid":0,"sort_order":46},{"cid":50020857,"name":"特色手工艺","parent_cid":0,"sort_order":48},{"cid":50011949,"name":"特价酒店\/特色客栈\/公寓旅馆","parent_cid":0,"sort_order":50},{"cid":21,"name":"居家日用\/婚庆\/创意礼品","parent_cid":0,"sort_order":60},{"cid":50016349,"name":"厨房\/餐饮用具","parent_cid":0,"sort_order":62},{"cid":50016348,"name":"清洁\/卫浴\/收纳\/整理用具","parent_cid":0,"sort_order":64},{"cid":50008163,"name":"床上用品\/布艺软饰","parent_cid":0,"sort_order":65},{"cid":35,"name":"奶粉\/辅食\/营养品","parent_cid":0,"sort_order":72},{"cid":50014812,"name":"尿片\/洗护\/喂哺\/推车床","parent_cid":0,"sort_order":74},{"cid":50022517,"name":"孕妇装\/孕产妇用品\/营养","parent_cid":0,"sort_order":75},{"cid":50008165,"name":"童装\/童鞋\/亲子装","parent_cid":0,"sort_order":77},{"cid":50020276,"name":"品牌保健品","parent_cid":0,"sort_order":78},{"cid":50020275,"name":"传统滋补品\/其他保健营养品","parent_cid":0,"sort_order":79},{"cid":50002766,"name":"零食\/坚果\/茶叶\/特产","parent_cid":0,"sort_order":80},{"cid":50016422,"name":"粮油\/蔬果\/水产\/速食","parent_cid":0,"sort_order":81},{"cid":50008075,"name":"吃喝玩乐折扣券","parent_cid":0,"sort_order":83},{"cid":40,"name":"腾讯QQ专区","parent_cid":0,"sort_order":99},{"cid":50010728,"name":"运动\/瑜伽\/健身\/球迷用品","parent_cid":0,"sort_order":130},{"cid":50013886,"name":"户外\/登山\/野营\/旅行用品","parent_cid":0,"sort_order":131},{"cid":50011699,"name":"运动服\/运动包\/颈环配件","parent_cid":0,"sort_order":132},{"cid":25,"name":"玩具\/模型\/动漫\/早教\/益智","parent_cid":0,"sort_order":135},{"cid":50011665,"name":"网游装备\/游戏币\/帐号\/代练","parent_cid":0,"sort_order":136},{"cid":50008907,"name":"手机号码\/套餐\/增值业务","parent_cid":0,"sort_order":138},{"cid":99,"name":"网络游戏点卡","parent_cid":0,"sort_order":138},{"cid":23,"name":"古董\/邮币\/字画\/收藏","parent_cid":0,"sort_order":145},{"cid":50007216,"name":"鲜花速递\/花卉仿真\/绿植园艺","parent_cid":0,"sort_order":145},{"cid":26,"name":"汽车\/用品\/配件\/改装\/摩托","parent_cid":0,"sort_order":147},{"cid":50004958,"name":"移动\/联通\/电信充值中心","parent_cid":0,"sort_order":149},{"cid":50005700,"name":"品牌手表\/流行手表","parent_cid":0,"sort_order":152},{"cid":50011740,"name":"流行男鞋","parent_cid":0,"sort_order":160},{"cid":16,"name":"女装\/女士精品","parent_cid":0,"sort_order":161},{"cid":50006843,"name":"女鞋","parent_cid":0,"sort_order":166},{"cid":50006842,"name":"箱包皮具\/热销女包\/男包","parent_cid":0,"sort_order":170},{"cid":1625,"name":"女士内衣\/男士内衣\/家居服","parent_cid":0,"sort_order":176},{"cid":50010404,"name":"服饰配件\/皮带\/帽子\/围巾","parent_cid":0,"sort_order":177},{"cid":50011397,"name":"珠宝\/钻石\/翡翠\/黄金","parent_cid":0,"sort_order":177},{"cid":28,"name":"ZIPPO\/瑞士军刀\/眼镜","parent_cid":0,"sort_order":181},{"cid":33,"name":"书籍\/杂志\/报纸","parent_cid":0,"sort_order":182},{"cid":34,"name":"音乐\/影视\/明星\/音像","parent_cid":0,"sort_order":182},{"cid":50017300,"name":"乐器\/吉他\/钢琴\/配件","parent_cid":0,"sort_order":184},{"cid":29,"name":"宠物\/宠物食品及用品","parent_cid":0,"sort_order":186},{"cid":2813,"name":"成人用品\/避孕\/计生用品","parent_cid":0,"sort_order":191},{"cid":50012029,"name":"运动鞋new","parent_cid":0,"sort_order":234},{"cid":50013864,"name":"饰品\/流行首饰\/时尚饰品新","parent_cid":0,"sort_order":244},{"cid":50018252,"name":"电子凭证","parent_cid":0,"sort_order":246},{"cid":50014442,"name":"交通票","parent_cid":0,"sort_order":248},{"cid":50014811,"name":"网店\/网络服务\/软件","parent_cid":0,"sort_order":250},{"cid":50016891,"name":"网游垂直市场根类目","parent_cid":0,"sort_order":254},{"cid":50023724,"name":"其他","parent_cid":0,"sort_order":260},{"cid":50017908,"name":"彩票","parent_cid":0,"sort_order":270},{"cid":50017652,"name":"TP服务商大类","parent_cid":0,"sort_order":271},{"cid":50019379,"name":"合作商家","parent_cid":0,"sort_order":277},{"cid":50023575,"name":"房产\/租房\/新房\/二手房\/委托服务","parent_cid":0,"sort_order":302},{"cid":50023717,"name":"OTC药品\/医疗器械\/隐形眼镜\/计生用品","parent_cid":0,"sort_order":304},{"cid":50023878,"name":"自用闲置转让","parent_cid":0,"sort_order":305},{"cid":50024186,"name":"保险","parent_cid":0,"sort_order":307},{"cid":50024449,"name":"淘花娱乐","parent_cid":0,"sort_order":312},{"cid":50024451,"name":"外卖\/外送\/订餐服务","parent_cid":0,"sort_order":313},{"cid":50024612,"name":"外卖\/外送\/订餐服务（垂直市场）","parent_cid":0,"sort_order":314},{"cid":50024971,"name":"新车\/二手车","parent_cid":0,"sort_order":315},{"cid":50025004,"name":"个性定制\/设计服务\/DIY","parent_cid":0,"sort_order":316},{"cid":50025110,"name":"电影\/演出\/体育赛事","parent_cid":0,"sort_order":317},{"cid":50025111,"name":"本地化生活服务","parent_cid":0,"sort_order":318},{"cid":50025490,"name":"本地生活团购","parent_cid":0,"sort_order":319},{"cid":50025616,"name":"家具（已删除）","parent_cid":0,"sort_order":320},{"cid":50025618,"name":"基金","parent_cid":0,"sort_order":321},{"cid":50025705,"name":"洗护清洁剂\/卫生巾\/纸\/香薰","parent_cid":0,"sort_order":322},{"cid":50025706,"name":"贵金属","parent_cid":0,"sort_order":323}]传入的对象无效，应为“:”或“}”。 (6727): {"itemcats_get_response":{"item_cats":{"item_cat":[{"cid":50025707,"name":"景点门票\/度假线路\/旅游服务","parent_cid":0,"sort_order":8},{"cid":30,"name":"男装","parent_cid":0,"sort_order":9},{"cid":50008164,"name":"住宅家具","parent_cid":0,"sort_order":10},{"cid":50020611,"name":"商业\/办公家具","parent_cid":0,"sort_order":11},{"cid":50023804,"name":"家居服务","parent_cid":0,"sort_order":12},{"cid":50023904,"name":"国货精品数码","parent_cid":0,"sort_order":13},{"cid":50010788,"name":"彩妆\/香水\/美妆工具","parent_cid":0,"sort_order":14},{"cid":1801,"name":"美容护肤\/美体\/精油","parent_cid":0,"sort_order":15},{"cid":50023282,"name":"美发护发\/假发","parent_cid":0,"sort_order":16},{"cid":1512,"name":"手机","parent_cid":0,"sort_order":17},{"cid":14,"name":"数码相机\/单反相机\/摄像机","parent_cid":0,"sort_order":19},{"cid":1201,"name":"MP3\/MP4\/iPod\/录音笔","parent_cid":0,"sort_order":20},{"cid":1101,"name":"笔记本电脑","parent_cid":0,"sort_order":21},{"cid":50019780,"name":"平板电脑\/MID","parent_cid":0,"sort_order":22},{"cid":50018222,"name":"台式机\/一体机\/服务器","parent_cid":0,"sort_order":23},{"cid":11,"name":"电脑硬件\/显示器\/电脑周边","parent_cid":0,"sort_order":23},{"cid":50018264,"name":"网络设备\/网络相关","parent_cid":0,"sort_order":25},{"cid":50008090,"name":"3C数码配件市场","parent_cid":0,"sort_order":26},{"cid":50012164,"name":"闪存卡\/U盘\/存储\/移动硬盘","parent_cid":0,"sort_order":27},{"cid":50007218,"name":"办公设备\/耗材\/相关服务","parent_cid":0,"sort_order":28},{"cid":50018004,"name":"电子词典\/电纸书\/文化用品","parent_cid":0,"sort_order":29},{"cid":20,"name":"电玩\/配件\/游戏\/攻略","parent_cid":0,"sort_order":29},{"cid":50022703,"name":"大家电","parent_cid":0,"sort_order":31},{"cid":50011972,"name":"影音电器","parent_cid":0,"sort_order":31},{"cid":50012100,"name":"生活电器","parent_cid":0,"sort_order":32},{"cid":50012082,"name":"厨房电器","parent_cid":0,"sort_order":34},{"cid":50002768,"name":"个人护理\/保健\/按摩器材","parent_cid":0,"sort_order":35},{"cid":27,"name":"家装主材","parent_cid":0,"sort_order":39},{"cid":50020332,"name":"基础建材","parent_cid":0,"sort_order":40},{"cid":50020485,"name":"五金\/工具","parent_cid":0,"sort_order":41},{"cid":50020579,"name":"电子\/电工","parent_cid":0,"sort_order":42},{"cid":50020808,"name":"家居饰品","parent_cid":0,"sort_order":46},{"cid":50020857,"name":"特色手工艺","parent_cid":0,"sort_order":48},{"cid":50011949,"name":"特价酒店\/特色客栈\/公寓旅馆","parent_cid":0,"sort_order":50},{"cid":21,"name":"居家日用\/婚庆\/创意礼品","parent_cid":0,"sort_order":60},{"cid":50016349,"name":"厨房\/餐饮用具","parent_cid":0,"sort_order":62},{"cid":50016348,"name":"清洁\/卫浴\/收纳\/整理用具","parent_cid":0,"sort_order":64},{"cid":50008163,"name":"床上用品\/布艺软饰","parent_cid":0,"sort_order":65},{"cid":35,"name":"奶粉\/辅食\/营养品","parent_cid":0,"sort_order":72},{"cid":50014812,"name":"尿片\/洗护\/喂哺\/推车床","parent_cid":0,"sort_order":74},{"cid":50022517,"name":"孕妇装\/孕产妇用品\/营养","parent_cid":0,"sort_order":75},{"cid":50008165,"name":"童装\/童鞋\/亲子装","parent_cid":0,"sort_order":77},{"cid":50020276,"name":"品牌保健品","parent_cid":0,"sort_order":78},{"cid":50020275,"name":"传统滋补品\/其他保健营养品","parent_cid":0,"sort_order":79},{"cid":50002766,"name":"零食\/坚果\/茶叶\/特产","parent_cid":0,"sort_order":80},{"cid":50016422,"name":"粮油\/蔬果\/水产\/速食","parent_cid":0,"sort_order":81},{"cid":50008075,"name":"吃喝玩乐折扣券","parent_cid":0,"sort_order":83},{"cid":40,"name":"腾讯QQ专区","parent_cid":0,"sort_order":99},{"cid":50010728,"name":"运动\/瑜伽\/健身\/球迷用品","parent_cid":0,"sort_order":130},{"cid":50013886,"name":"户外\/登山\/野营\/旅行用品","parent_cid":0,"sort_order":131},{"cid":50011699,"name":"运动服\/运动包\/颈环配件","parent_cid":0,"sort_order":132},{"cid":25,"name":"玩具\/模型\/动漫\/早教\/益智","parent_cid":0,"sort_order":135},{"cid":50011665,"name":"网游装备\/游戏币\/帐号\/代练","parent_cid":0,"sort_order":136},{"cid":50008907,"name":"手机号码\/套餐\/增值业务","parent_cid":0,"sort_order":138},{"cid":99,"name":"网络游戏点卡","parent_cid":0,"sort_order":138},{"cid":23,"name":"古董\/邮币\/字画\/收藏","parent_cid":0,"sort_order":145},{"cid":50007216,"name":"鲜花速递\/花卉仿真\/绿植园艺","parent_cid":0,"sort_order":145},{"cid":26,"name":"汽车\/用品\/配件\/改装\/摩托","parent_cid":0,"sort_order":147},{"cid":50004958,"name":"移动\/联通\/电信充值中心","parent_cid":0,"sort_order":149},{"cid":50005700,"name":"品牌手表\/流行手表","parent_cid":0,"sort_order":152},{"cid":50011740,"name":"流行男鞋","parent_cid":0,"sort_order":160},{"cid":16,"name":"女装\/女士精品","parent_cid":0,"sort_order":161},{"cid":50006843,"name":"女鞋","parent_cid":0,"sort_order":166},{"cid":50006842,"name":"箱包皮具\/热销女包\/男包","parent_cid":0,"sort_order":170},{"cid":1625,"name":"女士内衣\/男士内衣\/家居服","parent_cid":0,"sort_order":176},{"cid":50010404,"name":"服饰配件\/皮带\/帽子\/围巾","parent_cid":0,"sort_order":177},{"cid":50011397,"name":"珠宝\/钻石\/翡翠\/黄金","parent_cid":0,"sort_order":177},{"cid":28,"name":"ZIPPO\/瑞士军刀\/眼镜","parent_cid":0,"sort_order":181},{"cid":33,"name":"书籍\/杂志\/报纸","parent_cid":0,"sort_order":182},{"cid":34,"name":"音乐\/影视\/明星\/音像","parent_cid":0,"sort_order":182},{"cid":50017300,"name":"乐器\/吉他\/钢琴\/配件","parent_cid":0,"sort_order":184},{"cid":29,"name":"宠物\/宠物食品及用品","parent_cid":0,"sort_order":186},{"cid":2813,"name":"成人用品\/避孕\/计生用品","parent_cid":0,"sort_order":191},{"cid":50012029,"name":"运动鞋new","parent_cid":0,"sort_order":234},{"cid":50013864,"name":"饰品\/流行首饰\/时尚饰品新","parent_cid":0,"sort_order":244},{"cid":50018252,"name":"电子凭证","parent_cid":0,"sort_order":246},{"cid":50014442,"name":"交通票","parent_cid":0,"sort_order":248},{"cid":50014811,"name":"网店\/网络服务\/软件","parent_cid":0,"sort_order":250},{"cid":50016891,"name":"网游垂直市场根类目","parent_cid":0,"sort_order":254},{"cid":50023724,"name":"其他","parent_cid":0,"sort_order":260},{"cid":50017908,"name":"彩票","parent_cid":0,"sort_order":270},{"cid":50017652,"name":"TP服务商大类","parent_cid":0,"sort_order":271},{"cid":50019379,"name":"合作商家","parent_cid":0,"sort_order":277},{"cid":50023575,"name":"房产\/租房\/新房\/二手房\/委托服务","parent_cid":0,"sort_order":302},{"cid":50023717,"name":"OTC药品\/医疗器械\/隐形眼镜\/计生用品","parent_cid":0,"sort_order":304},{"cid":50023878,"name":"自用闲置转让","parent_cid":0,"sort_order":305},{"cid":50024186,"name":"保险","parent_cid":0,"sort_order":307},{"cid":50024449,"name":"淘花娱乐","parent_cid":0,"sort_order":312},{"cid":50024451,"name":"外卖\/外送\/订餐服务","parent_cid":0,"sort_order":313},{"cid":50024612,"name":"外卖\/外送\/订餐服务（垂直市场）","parent_cid":0,"sort_order":314},{"cid":50024971,"name":"新车\/二手车","parent_cid":0,"sort_order":315},{"cid":50025004,"name":"个性定制\/设计服务\/DIY","parent_cid":0,"sort_order":316},{"cid":50025110,"name":"电影\/演出\/体育赛事","parent_cid":0,"sort_order":317},{"cid":50025111,"name":"本地化生活服务","parent_cid":0,"sort_order":318},{"cid":50025490,"name":"本地生活团购","parent_cid":0,"sort_order":319},{"cid":50025616,"name":"家具（已删除）","parent_cid":0,"sort_order":320},{"cid":50025618,"name":"基金","parent_cid":0,"sort_order":321},{"cid":50025705,"name":"洗护清洁剂\/卫生巾\/纸\/香薰","parent_cid":0,"sort_order":322},{"cid":50025706,"name":"贵金属","parent_cid":0,"sort_order":323}]
+-------------------------------
+
+Log Entry : 2012/3/7 20:54:23 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 20:54:23 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 20:56:50 添加分类出错：session:6101312587cbdace711a1e26d5877064329a4dd05d9c96326907498nick：luckyfish8800 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 20:56:50 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 20:56:50 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 21:00:26 添加分类出错：session:6101312587cbdace711a1e26d5877064329a4dd05d9c96326907498nick：luckyfish8800 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 21:00:26 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 21:00:26 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 21:07:23 返回json转化为一个商品销售分类出错 {"shopcats_list_get_response":{"shop_cats":{"shop_cat":[{"cid":27,"is_parent":false,"name":"成人用品\/避孕用品\/情趣内衣","parent_cid":0},{"cid":1150,"is_parent":false,"name":"删除类目","parent_cid":0},{"cid":1049,"is_parent":false,"name":"床上用品\/靠垫\/窗帘\/布艺","parent_cid":0},{"cid":1048,"is_parent":false,"name":"3C数码配件市场","parent_cid":0},{"cid":1143,"is_parent":false,"name":"特殊类目1","parent_cid":0},{"cid":36,"is_parent":false,"name":"网络游戏装备\/游戏币\/帐号\/代练","parent_cid":0},{"cid":1149,"is_parent":false,"name":"测试删除一级类目1","parent_cid":0},{"cid":26,"is_parent":false,"name":"装潢\/灯具\/五金\/安防\/卫浴","parent_cid":0},{"cid":1103,"is_parent":false,"name":"IP卡\/网络电话\/在线影音充值","parent_cid":0},{"cid":14,"is_parent":false,"name":"女装\/流行女装","parent_cid":0},{"cid":1050,"is_parent":false,"name":"家具\/家具定制\/宜家代购","parent_cid":0},{"cid":1056,"is_parent":false,"name":"女鞋","parent_cid":0},{"cid":19,"is_parent":false,"name":"礼品\/鲜花","parent_cid":0},{"cid":1041,"is_parent":false,"name":"移动联通充值中心\/IP长途","parent_cid":0},{"cid":21,"is_parent":false,"name":"办公设备\/文具\/耗材","parent_cid":0},{"cid":1047,"is_parent":false,"name":"鲜花速递\/蛋糕配送\/园艺花艺","parent_cid":0},{"cid":1148,"is_parent":false,"name":"测试删除一级类目","parent_cid":0},{"cid":29,"is_parent":false,"name":"食品\/茶叶\/零食\/特产","parent_cid":0},{"cid":1042,"is_parent":false,"name":"网店装修\/物流快递\/图片存储","parent_cid":0},{"cid":1152,"is_parent":false,"name":"111","parent_cid":0},{"cid":1062,"is_parent":false,"name":"童装\/婴儿服\/鞋帽","parent_cid":0},{"cid":11,"is_parent":false,"name":"电脑硬件\/台式机\/网络设备","parent_cid":0},{"cid":1104,"is_parent":false,"name":"个人护理\/保健\/按摩器材","parent_cid":0},{"cid":1051,"is_parent":false,"name":"保健品\/滋补品","parent_cid":0},{"cid":1046,"is_parent":false,"name":"家用电器\/hifi音响\/耳机","parent_cid":0},{"cid":1000,"is_parent":false,"name":"婴幼\/孕妇用品","parent_cid":0},{"cid":1055,"is_parent":false,"name":"女士内衣\/男士内衣\/家居服","parent_cid":0},{"cid":1151,"is_parent":false,"name":"测试","parent_cid":0},{"cid":1105,"is_parent":false,"name":"闪存卡\/U盘\/移动存储","parent_cid":0},{"cid":1122,"is_parent":false,"name":"时尚家饰\/工艺品\/十字绣","parent_cid":0},{"cid":30,"is_parent":false,"name":"玩具\/动漫\/模型\/卡通","parent_cid":0},{"cid":1043,"is_parent":false,"name":"笔记本电脑","parent_cid":0},{"cid":1045,"is_parent":false,"name":"户外\/军品\/旅游\/机票","parent_cid":0},{"cid":1147,"is_parent":false,"name":"测试删除一级类目","parent_cid":0},{"cid":13,"is_parent":false,"name":"手机","parent_cid":0},{"cid":1106,"is_parent":false,"name":"运动鞋","parent_cid":0},{"cid":1044,"is_parent":false,"name":"品牌手表\/流行手表","parent_cid":0},{"cid":1154,"is_parent":false,"name":"服饰配件\/皮带\/帽子\/围巾","parent_cid":0},{"cid":37,"is_parent":false,"name":"男装","parent_cid":0},{"cid":1146,"is_parent":false,"name":"新建店铺一级","parent_cid":0},{"cid":1020,"is_parent":false,"name":"母婴用品\/奶粉\/孕妇装","parent_cid":0},{"cid":16,"is_parent":false,"name":"电玩\/配件\/游戏\/攻略","parent_cid":0},{"cid":20,"is_parent":false,"name":"古董\/邮币\/字画\/收藏","parent_cid":0},{"cid":23,"is_parent":false,"name":"珠宝\/钻石\/翡翠\/黄金","parent_cid":0},{"cid":1053,"is_parent":false,"name":"演出\/旅游\/吃喝玩乐折扣券","parent_cid":0},{"cid":1153,"is_parent":false,"name":"运动服","parent_cid":0},{"cid":32,"is_parent":false,"name":"宠物\/宠物食品及用品","parent_cid":0},{"cid":22,"is_parent":false,"name":"汽车\/配件\/改装\/摩托\/自行车","parent_cid":0},{"cid":1145,"is_parent":false,"name":"新建店铺一级","parent_cid":0},{"cid":15,"is_parent":false,"name":"彩妆\/香水\/护肤\/美体","parent_cid":0},{"cid":34,"is_parent":false,"name":"书籍\/杂志\/报纸","parent_cid":0},{"cid":35,"is_parent":false,"name":"网络游戏点卡","parent_cid":0},{"cid":1052,"is_parent":false,"name":"网络服务\/电脑软件","parent_cid":0},{"cid":1144,"is_parent":false,"name":"测试一级类目","parent_cid":0},{"cid":18,"is_parent":false,"name":"运动\/瑜伽\/健身\/球迷用品","parent_cid":0},{"cid":31,"is_parent":false,"name":"箱包皮具\/热销女包\/男包","parent_cid":0},{"cid":25,"is_parent":false,"name":"宠物及用品","parent_cid":0},{"cid":12,"is_parent":false,"name":"MP3\/MP4\/iPod\/录音笔","parent_cid":0},{"cid":24,"is_parent":false,"name":"居家日用\/厨房餐饮\/卫浴洗浴","parent_cid":0},{"cid":1082,"is_parent":false,"name":"流行男鞋\/皮鞋","parent_cid":0},{"cid":17,"is_parent":false,"name":"数码相机\/摄像机\/图形冲印","parent_cid":0},{"cid":33,"is_parent":false,"name":"音乐\/影视\/明星\/乐器","parent_cid":0},{"cid":1142,"is_parent":false,"name":"测试一级类目2","parent_cid":0},{"cid":1102,"is_parent":false,"name":"腾讯QQ专区","parent_cid":0},{"cid":1040,"is_parent":false,"name":"ZIPPO\/瑞士军刀\/饰品\/眼镜","parent_cid":0},{"cid":1054,"is_parent":false,"name":"饰品\/流行首饰\/时尚饰品","parent_cid":0}]传入的对象无效，应为“:”或“}”。 (4429): {"shopcats_list_get_response":{"shop_cats":{"shop_cat":[{"cid":27,"is_parent":false,"name":"成人用品\/避孕用品\/情趣内衣","parent_cid":0},{"cid":1150,"is_parent":false,"name":"删除类目","parent_cid":0},{"cid":1049,"is_parent":false,"name":"床上用品\/靠垫\/窗帘\/布艺","parent_cid":0},{"cid":1048,"is_parent":false,"name":"3C数码配件市场","parent_cid":0},{"cid":1143,"is_parent":false,"name":"特殊类目1","parent_cid":0},{"cid":36,"is_parent":false,"name":"网络游戏装备\/游戏币\/帐号\/代练","parent_cid":0},{"cid":1149,"is_parent":false,"name":"测试删除一级类目1","parent_cid":0},{"cid":26,"is_parent":false,"name":"装潢\/灯具\/五金\/安防\/卫浴","parent_cid":0},{"cid":1103,"is_parent":false,"name":"IP卡\/网络电话\/在线影音充值","parent_cid":0},{"cid":14,"is_parent":false,"name":"女装\/流行女装","parent_cid":0},{"cid":1050,"is_parent":false,"name":"家具\/家具定制\/宜家代购","parent_cid":0},{"cid":1056,"is_parent":false,"name":"女鞋","parent_cid":0},{"cid":19,"is_parent":false,"name":"礼品\/鲜花","parent_cid":0},{"cid":1041,"is_parent":false,"name":"移动联通充值中心\/IP长途","parent_cid":0},{"cid":21,"is_parent":false,"name":"办公设备\/文具\/耗材","parent_cid":0},{"cid":1047,"is_parent":false,"name":"鲜花速递\/蛋糕配送\/园艺花艺","parent_cid":0},{"cid":1148,"is_parent":false,"name":"测试删除一级类目","parent_cid":0},{"cid":29,"is_parent":false,"name":"食品\/茶叶\/零食\/特产","parent_cid":0},{"cid":1042,"is_parent":false,"name":"网店装修\/物流快递\/图片存储","parent_cid":0},{"cid":1152,"is_parent":false,"name":"111","parent_cid":0},{"cid":1062,"is_parent":false,"name":"童装\/婴儿服\/鞋帽","parent_cid":0},{"cid":11,"is_parent":false,"name":"电脑硬件\/台式机\/网络设备","parent_cid":0},{"cid":1104,"is_parent":false,"name":"个人护理\/保健\/按摩器材","parent_cid":0},{"cid":1051,"is_parent":false,"name":"保健品\/滋补品","parent_cid":0},{"cid":1046,"is_parent":false,"name":"家用电器\/hifi音响\/耳机","parent_cid":0},{"cid":1000,"is_parent":false,"name":"婴幼\/孕妇用品","parent_cid":0},{"cid":1055,"is_parent":false,"name":"女士内衣\/男士内衣\/家居服","parent_cid":0},{"cid":1151,"is_parent":false,"name":"测试","parent_cid":0},{"cid":1105,"is_parent":false,"name":"闪存卡\/U盘\/移动存储","parent_cid":0},{"cid":1122,"is_parent":false,"name":"时尚家饰\/工艺品\/十字绣","parent_cid":0},{"cid":30,"is_parent":false,"name":"玩具\/动漫\/模型\/卡通","parent_cid":0},{"cid":1043,"is_parent":false,"name":"笔记本电脑","parent_cid":0},{"cid":1045,"is_parent":false,"name":"户外\/军品\/旅游\/机票","parent_cid":0},{"cid":1147,"is_parent":false,"name":"测试删除一级类目","parent_cid":0},{"cid":13,"is_parent":false,"name":"手机","parent_cid":0},{"cid":1106,"is_parent":false,"name":"运动鞋","parent_cid":0},{"cid":1044,"is_parent":false,"name":"品牌手表\/流行手表","parent_cid":0},{"cid":1154,"is_parent":false,"name":"服饰配件\/皮带\/帽子\/围巾","parent_cid":0},{"cid":37,"is_parent":false,"name":"男装","parent_cid":0},{"cid":1146,"is_parent":false,"name":"新建店铺一级","parent_cid":0},{"cid":1020,"is_parent":false,"name":"母婴用品\/奶粉\/孕妇装","parent_cid":0},{"cid":16,"is_parent":false,"name":"电玩\/配件\/游戏\/攻略","parent_cid":0},{"cid":20,"is_parent":false,"name":"古董\/邮币\/字画\/收藏","parent_cid":0},{"cid":23,"is_parent":false,"name":"珠宝\/钻石\/翡翠\/黄金","parent_cid":0},{"cid":1053,"is_parent":false,"name":"演出\/旅游\/吃喝玩乐折扣券","parent_cid":0},{"cid":1153,"is_parent":false,"name":"运动服","parent_cid":0},{"cid":32,"is_parent":false,"name":"宠物\/宠物食品及用品","parent_cid":0},{"cid":22,"is_parent":false,"name":"汽车\/配件\/改装\/摩托\/自行车","parent_cid":0},{"cid":1145,"is_parent":false,"name":"新建店铺一级","parent_cid":0},{"cid":15,"is_parent":false,"name":"彩妆\/香水\/护肤\/美体","parent_cid":0},{"cid":34,"is_parent":false,"name":"书籍\/杂志\/报纸","parent_cid":0},{"cid":35,"is_parent":false,"name":"网络游戏点卡","parent_cid":0},{"cid":1052,"is_parent":false,"name":"网络服务\/电脑软件","parent_cid":0},{"cid":1144,"is_parent":false,"name":"测试一级类目","parent_cid":0},{"cid":18,"is_parent":false,"name":"运动\/瑜伽\/健身\/球迷用品","parent_cid":0},{"cid":31,"is_parent":false,"name":"箱包皮具\/热销女包\/男包","parent_cid":0},{"cid":25,"is_parent":false,"name":"宠物及用品","parent_cid":0},{"cid":12,"is_parent":false,"name":"MP3\/MP4\/iPod\/录音笔","parent_cid":0},{"cid":24,"is_parent":false,"name":"居家日用\/厨房餐饮\/卫浴洗浴","parent_cid":0},{"cid":1082,"is_parent":false,"name":"流行男鞋\/皮鞋","parent_cid":0},{"cid":17,"is_parent":false,"name":"数码相机\/摄像机\/图形冲印","parent_cid":0},{"cid":33,"is_parent":false,"name":"音乐\/影视\/明星\/乐器","parent_cid":0},{"cid":1142,"is_parent":false,"name":"测试一级类目2","parent_cid":0},{"cid":1102,"is_parent":false,"name":"腾讯QQ专区","parent_cid":0},{"cid":1040,"is_parent":false,"name":"ZIPPO\/瑞士军刀\/饰品\/眼镜","parent_cid":0},{"cid":1054,"is_parent":false,"name":"饰品\/流行首饰\/时尚饰品","parent_cid":0}]
+-------------------------------
+
+Log Entry : 2012/3/7 21:07:23 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 21:07:23 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 21:11:42 添加分类出错：session:6101312587cbdace711a1e26d5877064329a4dd05d9c96326907498nick：luckyfish8800 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 21:11:42 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 21:11:42 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 21:12:55 添加分类出错：session:6101312587cbdace711a1e26d5877064329a4dd05d9c96326907498nick：luckyfish8800 {"error_response":{"code":560,"msg":"Remote service error","sub_code":"isv.shop-service-error:SHOP_CATEGORY_ORDER_ERROR","sub_msg":"SHOP_CATEGORY_ORDER_ERROR"}}
+-------------------------------
+
+Log Entry : 2012/3/7 21:12:55 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 21:12:55 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 21:13:27 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/7 21:13:27 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/8 10:42:33 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/8 10:42:33 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/8 20:16:47 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/8 20:16:47 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/8 20:23:47 INSERT TopNickSession(nick,session,JoinDate,NickState,LastGetOrderTime) VALUES(@nick,@session,@JoinDate,@NickState,@LastGetOrderTime) 违反了 PRIMARY KEY 约束 'PK_TopNickSessionTableName'。不能在对象 'dbo.TopNickSession' 中插入重复键。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/3/8 20:37:53 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/8 20:37:53 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/8 20:38:19 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/8 20:38:19 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/8 20:38:25 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/8 20:38:25 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 9:53:38 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 9:53:38 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 10:14:14 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 10:14:15 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 10:14:28 SELECT Count(*) AS PVCount,DatePart(hh,VisitTime) AS PVHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY CONVERT(VARCHAR(30),VisitTime,5),DatePart(hh,VisitTime)  HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)   对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 10:14:28 SELECT COUNT(distinct VisitIp) AS IPCount,DatePart(hh,VisitTime) AS IPHour FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 GROUP BY DatePart(hh,VisitTime),CONVERT(VARCHAR(30),VisitTime,5) HAVING CONVERT(VARCHAR(30),VisitTime,5)=CONVERT(VARCHAR(30),@date,5)  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 10:15:01 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 10:15:01 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 10:23:21 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 10:23:21 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 11:48:25 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 11:48:26 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 11:49:06 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 11:49:06 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 11:52:25 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 11:52:25 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 11:52:46 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 11:52:46 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 11:53:45 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 11:53:45 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 11:56:17 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 11:56:17 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 11:57:12 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 11:57:12 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 11:58:14 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 11:58:14 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 12:04:04 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 12:04:04 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 12:04:35 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/9 12:04:35 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/10 9:10:23 返回json转化为商品信息集合出错,商品id:12246611718,9995385977,14350219446 {"items_list_get_response":{"items":{"item":[{"nick":"川东娇梅","num_iid":12246611718,"price":"49.90","title":"NH325蓝黑百搭透气男鞋 舒适软底运动鞋 记得休闲帅气男士运动鞋"},{"nick":"川东娇梅","num_iid":9995385977,"price":"39.90","title":"特价2109黑色女鞋厚防水台单鞋时尚2012工作鞋一字式扣带高跟鞋"},{"nick":"川东娇梅","num_iid":14350219446,"price":"169.00","title":"C3156震地王2012粗跟鞋超高跟凉鞋系带厚防水台鱼嘴鞋14cm高帮鞋"}]}传入的对象无效，应为“:”或“}”。 (343): {"items_list_get_response":{"items":{"item":[{"nick":"川东娇梅","num_iid":12246611718,"price":"49.90","title":"NH325蓝黑百搭透气男鞋 舒适软底运动鞋 记得休闲帅气男士运动鞋"},{"nick":"川东娇梅","num_iid":9995385977,"price":"39.90","title":"特价2109黑色女鞋厚防水台单鞋时尚2012工作鞋一字式扣带高跟鞋"},{"nick":"川东娇梅","num_iid":14350219446,"price":"169.00","title":"C3156震地王2012粗跟鞋超高跟凉鞋系带厚防水台鱼嘴鞋14cm高帮鞋"}]}
+-------------------------------
+
+Log Entry : 2012/3/11 15:34:00 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/11 15:34:01 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/11 15:56:52 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/11 15:56:52 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/11 15:57:51 SELECT  'pv' as pv,COUNT(*) pvcount FROM  TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE VisitTime BETWEEN @start AND @end
+UNION 
+SELECT 'ip' as ip,sum(ipcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS ipcount,VisitIP FROM (select * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) a
+group by VisitIP 
+) b
+UNION 
+SELECT 'uv' as uv,sum(uvcount) FROM
+(
+SELECT COUNT(distinct VisitIP) AS uvcount,VisitIP,VisitBrower,VisitUserAgent FROM (select  * from TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 where  VisitTime BETWEEN @start AND @end) c
+group by VisitIP,VisitBrower,VisitUserAgent
+) d 对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/11 15:57:51 SELECT DISTINCT TOP 3 VisitIP,VisitTime FROM TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  对象名 'TopVisitInfo_0fff1c4f85db459da8b5da7b3d9bcc16' 无效。
+-------------------------------
+
+Log Entry : 2012/3/12 18:04:26 UPDATE TopNickSession SET NickState=@NickState,session=@session,JoinDate=@JoinDate,LastGetOrderTime='2012/3/12 18:04:17' WEHRE nick=@nick 'WEHRE' 附近有语法错误。
+-------------------------------
+
+Log Entry : 2012/4/6 15:43:09 获取订单参数错误sdfsdfs {"error_response":{"code":28,"msg":"Missing app key"}}
+-------------------------------
+
+Log Entry : 2012/4/6 15:43:10 订购时获取订单错误 参数错误
+-------------------------------
+
+Log Entry : 2012/4/6 15:43:10 获取订单参数错误sdfsdfs {"error_response":{"code":28,"msg":"Missing app key"}}
+-------------------------------
+
+Log Entry : 2012/4/6 15:43:10 订购时获取订单错误 参数错误
+-------------------------------
+
+Log Entry : 2012/4/6 15:43:10 获取订单参数错误sdfsdfs {"error_response":{"code":28,"msg":"Missing app key"}}
+-------------------------------
+
+Log Entry : 2012/4/6 15:43:10 订购时获取订单错误 参数错误
+-------------------------------
+
+Log Entry : 2012/4/6 15:43:10 获取订单参数错误sdfsdfs {"error_response":{"code":28,"msg":"Missing app key"}}
+-------------------------------
+
+Log Entry : 2012/4/6 15:43:10 订购时获取订单错误 参数错误
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:36 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:39:37 INSERT TopExpress(ID,ExpressName,GroupId) VALUES(@ID,@ExpressName,@GroupId) 不能在具有唯一索引 'IX_TopExpress' 的对象 'dbo.TopExpress' 中插入重复键的行。
+语句已终止。
+-------------------------------
+
+Log Entry : 2012/5/4 11:58:48 获取订单使用物流信息转换出错 [{"company_name":"申通E物流","tid":138277553481128},{"company_name":"申通E物流","tid":127149384331128},{"company_name":"申通E物流","tid":129240820471485},{"company_name":"申通E物流","tid":154645360062310},{"company_name":"申通E物流","tid":128540634798974},{"company_name":"申通E物流","tid":135145551650516},{"company_name":"申通E物流","tid":148581285908192},{"company_name":"申通E物流","tid":135743154502773},{"company_name":"申通E物流","tid":124687251306567},{"company_name":"申通E物流","tid":144260073184229},{"company_name":"申通E物流","tid":142110912892355},{"company_name":"申通E物流","tid":127214700711306},{"company_name":"申通E物流","tid":158546200810666},{"company_name":"申通E物流","tid":143997391928513},{"company_name":"申通E物流","tid":136126275068856},{"company_name":"申通E物流","tid":165234327420240},{"company_name":"申通E物流","tid":128229252404203},{"company_name":"申通E物流","tid":130962995083703},{"company_name":"申通E物流","tid":128811439723703},{"company_name":"申通E物流","tid":141324125223703},{"company_name":"申通E物流","tid":122951189486277},{"company_name":"申通E物流","tid":133526424115406},{"company_name":"申通E物流","tid":123434493683616},{"company_name":"申通E物流","tid":143959244678173},{"company_name":"申通E物流","tid":132290378638642},{"company_name":"申通E物流","tid":136463718330122},{"company_name":"申通E物流","tid":125468071221240},{"company_name":"申通E物流","tid":153035887898320},{"company_name":"申通E物流","tid":138185352000015},{"company_name":"申通E物流","tid":158509446814971},{"company_name":"申通E物流","tid":168537525541829},{"company_name":"申通E物流","tid":122684577484709},{"company_name":"申通E物流","tid":129167111091115},{"company_name":"申通E物流","tid":126056277088987},{"company_name":"申通E物流","tid":162365688598148},{"company_name":"申通E物流","tid":129087093830672},{"company_name":"申通E物流","tid":144414088416682},{"company_name":"申通E物流","tid":144939435602943},{"company_name":"申通E物流","tid":127729660313456},{"company_name":"申通E物流","tid":121915939650591}]},"total_results":8560}}无效的 JSON 基元: ,"total_results":8560}}。
+-------------------------------
+
+Log Entry : 2012/5/4 11:59:40 获取订单使用物流信息转换出错 [{"company_name":"申通E物流","tid":138277553481128},{"company_name":"申通E物流","tid":127149384331128},{"company_name":"申通E物流","tid":129240820471485},{"company_name":"申通E物流","tid":154645360062310},{"company_name":"申通E物流","tid":128540634798974},{"company_name":"申通E物流","tid":135145551650516},{"company_name":"申通E物流","tid":148581285908192},{"company_name":"申通E物流","tid":135743154502773},{"company_name":"申通E物流","tid":124687251306567},{"company_name":"申通E物流","tid":144260073184229},{"company_name":"申通E物流","tid":142110912892355},{"company_name":"申通E物流","tid":127214700711306},{"company_name":"申通E物流","tid":158546200810666},{"company_name":"申通E物流","tid":143997391928513},{"company_name":"申通E物流","tid":136126275068856},{"company_name":"申通E物流","tid":165234327420240},{"company_name":"申通E物流","tid":128229252404203},{"company_name":"申通E物流","tid":130962995083703},{"company_name":"申通E物流","tid":128811439723703},{"company_name":"申通E物流","tid":141324125223703},{"company_name":"申通E物流","tid":122951189486277},{"company_name":"申通E物流","tid":133526424115406},{"company_name":"申通E物流","tid":123434493683616},{"company_name":"申通E物流","tid":143959244678173},{"company_name":"申通E物流","tid":132290378638642},{"company_name":"申通E物流","tid":136463718330122},{"company_name":"申通E物流","tid":125468071221240},{"company_name":"申通E物流","tid":153035887898320},{"company_name":"申通E物流","tid":138185352000015},{"company_name":"申通E物流","tid":158509446814971},{"company_name":"申通E物流","tid":168537525541829},{"company_name":"申通E物流","tid":122684577484709},{"company_name":"申通E物流","tid":129167111091115},{"company_name":"申通E物流","tid":126056277088987},{"company_name":"申通E物流","tid":162365688598148},{"company_name":"申通E物流","tid":129087093830672},{"company_name":"申通E物流","tid":144414088416682},{"company_name":"申通E物流","tid":144939435602943},{"company_name":"申通E物流","tid":127729660313456},{"company_name":"申通E物流","tid":121915939650591}]}无效的 JSON 基元: 。
+-------------------------------
+
+Log Entry : 2012/5/5 10:42:17 SELECT ID,CityName FROM TopCitys WHERE ProvinceId=@ProvinceId 必须声明标量变量 "@ProvinceId"。
+-------------------------------
+
+Log Entry : 2012/5/5 10:42:20 SELECT ID,CityName FROM TopCitys WHERE ProvinceId=@ProvinceId 必须声明标量变量 "@ProvinceId"。
+-------------------------------
+
+Log Entry : 2012/5/5 10:50:37 SELECT ID,CityName FROM TopCitys WHERE ProvinceId=@ProvinceId 必须声明标量变量 "@ProvinceId"。
+-------------------------------
+
+Log Entry : 2012/5/5 10:50:45 SELECT ID,CityName FROM TopCitys WHERE ProvinceId=@ProvinceId 必须声明标量变量 "@ProvinceId"。
+-------------------------------
+
+Log Entry : 2012/5/5 10:50:57 SELECT ID,CityName FROM TopCitys WHERE ProvinceId=@ProvinceId 必须声明标量变量 "@ProvinceId"。
+-------------------------------
+
+Log Entry : 2012/5/5 10:51:14 SELECT ID,CityName FROM TopCitys WHERE ProvinceId=@ProvinceId 必须声明标量变量 "@ProvinceId"。
+-------------------------------
+
+Log Entry : 2012/5/5 10:52:04 SELECT ID,CityName FROM TopCitys WHERE ProvinceId=@ProvinceId 必须声明标量变量 "@ProvinceId"。
+-------------------------------
+
+Log Entry : 2012/5/5 10:53:47 SELECT ID,CityName FROM TopCitys WHERE ProvinceId=@ProvinceId 必须声明标量变量 "@ProvinceId"。
+-------------------------------

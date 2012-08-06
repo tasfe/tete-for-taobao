@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>店铺分析</title>
+<style>
+	.fl{float:left;}
+	.jindu{padding:8px 0 0 16px; height:20px;}
+	.title{padding:4px 0 0 46px; font-size:16px; font-weight:bold}
+	.title span{font-size:32px; color:#219608; font-style: italic }
+	.detail{font-size:12px; color:#4A6D8C; padding:2px 0 0 46px;}
+	.detail a{font-size:12px; color:#007DCE; text-decoration:none }
+	ul{list-style:none; margin:0px; padding:0 0 0 10px;}
+	li{ margin:0px; padding:0px;}
+	.no div{color:#0079C6; font-weight:bold; margin:18px 0 0 10px; height:26px;}
+	.no li{ background:url(images/no.jpg) no-repeat 2px; padding-left:20px; margin:0 0 0 10px; font-size:13px; height:26px; line-height:32px;}
+	.yes div{color:#008200; font-weight:bold; margin:18px 0 0 10px; height:26px;}
+	.yes li{ background:url(images/ok.jpg) no-repeat 2px; padding-left:20px; margin:0 0 0 10px; font-size:13px; height:26px; line-height:32px;}
+</style>
+</head>
+
+<body>
+	<div style="height:110px;">
+        <div class="fl"><img src="images/left.jpg" /></div>
+        <div class="fl" style="background:url(images/middle.jpg); width:450px; height:102px;">
+            <div class="title">
+            	网站销售情况体检分数：<span id="score">100</span>
+            </div>
+        	<div class="jindu">
+            	<div class="fl"><img src="images/jindul.jpg" /></div>
+            	<div class="fl" style="background:url(images/jindum.jpg); width:380px; height:10px;">
+                	<img id="jinduimg" src="images/initm.jpg" width="0" height="8" style="margin-top:-11px;" /><img id="jindutou" src="images/init.jpg" style="margin-top:-11px;" />
+                </div>
+            	<div class="fl"><img id="jinduwei" src="images/jindur.jpg" /></div>
+            </div>
+            <div class="detail">
+            	正在检测第 <span id="nowcount">11</span>项：<a href="#" id="nowdetail">检测店铺的客单价和销售单价是否健康</a>
+            </div>
+        </div>
+        <div class="fl"><img src="images/right.jpg" /></div>
+    </div>
+    
+    <div style="width:650px; height:260px;">
+        <div class="no fl" style="width:300px">
+            <div>可优化项目（<span id="nocount">0</span>）</div>
+            <ul id="noarea">
+            </ul>
+        </div>
+        <div class="yes fl" style="width:300px">
+            <div>安全项目（<span id="yescount">0</span>）</div>
+            <ul id="yesarea">
+            </ul>
+        </div>
+        <br clear="all" />
+    </div>
+    
+    <div id="buttonstart">
+    	<a href='javascript:startall();'><img class="button" src="images/buttonstart.jpg" border="0" /></a>
+    </div>
+    <div id="buttonmodify" style="display:none;">
+    	<img class="button" src="images/buttonmodify.jpg" border="0" onclick="localAction()" />
+    </div>
+</body>
+
+<script language="javascript">
+    var xmlHttp;
+    var itemsStr;
+    var itemsStrTxt;
+    var ary;
+    var result;
+
+    function createxmlHttpRequest() {
+        if (window.ActiveXObject)
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+        else if (window.XMLHttpRequest)
+            xmlHttp = new XMLHttpRequest();
+    }
+
+    function updateCat() {
+        createxmlHttpRequest();
+        var queryString = "http://ding.7fshop.com/CheckShopBody.ashx?t=" + new Date().getTime();
+        xmlHttp.open("GET", queryString);
+        xmlHttp.onreadystatechange = handleStateChangeCat;
+        xmlHttp.send(null);
+    }
+
+    function handleStateChangeCat() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            result = decodeURI(xmlHttp.responseText);
+            ary = result.replace("{", "").replace("}", "").split(",");
+
+            start();
+        }
+    }
+
+    function localAction() {
+        location.href = "TijianAction.aspx?paramvalue=" + result;
+    }
+
+    function showjindu() {
+        document.getElementById("jinduimg").width = document.getElementById("jinduimg").width + 1;
+
+        if (document.getElementById("jinduimg").width < 380) {
+            setTimeout('showjindu()', 25);
+        } else {
+            document.getElementById("jindutou").style.display = "none";
+            document.getElementById("jinduwei").src = "images/jinduro.jpg";
+        }
+    }
+
+    function startall() {
+        showjindu();
+        updateCat();
+    }
+
+    i = 0;
+    yes = 0;
+    no = 0;
+
+    function start() {
+        var str = "检查店铺客户浏览比率是否健康,检查最近7天销售客单价是否健康,检查店铺浏览转换率是否健康,检查店铺浏览回头率是否健康,检查店铺二次购买率是否健康,检查店铺页面访问深度是否健康,检查爆款商品购买率是否健康";
+        strArr = str.split(",");
+        document.getElementById("nowcount").innerHTML = i + 1;
+        document.getElementById("nowdetail").innerHTML = strArr[i];
+        
+        if (ary[i].substring(0,1) == 0) {
+            document.getElementById("noarea").innerHTML += "<li>" + strArr[i] + "</li>";
+            document.getElementById("score").innerHTML = document.getElementById("score").innerHTML - 10;
+            no++;
+            document.getElementById("nocount").innerHTML = no;
+        } else {
+            document.getElementById("yesarea").innerHTML += "<li>" + strArr[i] + "</li>";
+            yes++;
+            document.getElementById("yescount").innerHTML = yes;
+        }
+        i++;
+        if (i < 7) {
+            setTimeout('start()', 1900);
+        } else {
+            document.getElementById("buttonstart").style.display = "none";
+            document.getElementById("buttonmodify").style.display = "";
+        }
+    }
+</script>
+
+</html>
