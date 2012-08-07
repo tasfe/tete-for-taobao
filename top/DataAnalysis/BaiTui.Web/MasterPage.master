@@ -1,0 +1,35 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Untitled Page</title>
+    <meta content="IE=7.0000" http-equiv="X-UA-Compatible">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="keywords" content="搜索引擎营销推广">
+    <meta name="description" content="搜索引擎营销推广">
+    <meta name="GENERATOR" content="MSHTML 8.00.7600.16722">
+    <link rel="stylesheet" type="text/css" href="css/css.css">
+    <link rel="stylesheet" type="text/css" href="css/examples.css">
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <div class="top">
+            <div class="top1">
+                <div class="top11">
+                    <span id="userinfo">
+                        <asp:Label Text="正在查询用户信息。。。" runat="server" ID="Lbl_UserInfo" /></span></div>
+                <img alt="" src="css/baidulogo.png"></div>
+        </div>
+        <div class="tmain">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="foot">
+            Copyright© 2010-2011 <span>搜索引擎推广工具---特特软件旗下产品</span>ALL Rights Reserved.
+        </div>
+    </div>
+    </form>
+</body>
+</html>

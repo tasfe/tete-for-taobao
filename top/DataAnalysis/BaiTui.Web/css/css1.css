@@ -1,0 +1,185 @@
+
+DIV.colsJqi .colsJqicontainer {
+	PADDING-BOTTOM: 5px; BACKGROUND-COLOR: #e0eec6; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; HEIGHT: 160px; COLOR: #ffffff; FONT-WEIGHT: bold; PADDING-TOP: 5px
+}
+DIV.colsJqi .colsJqimessage {
+	PADDING-BOTTOM: 10px; BACKGROUND-COLOR: #c0cea6; PADDING-LEFT: 10px; WIDTH: 280px; PADDING-RIGHT: 10px; FLOAT: left; HEIGHT: 140px; PADDING-TOP: 10px
+}
+DIV.colsJqi .jqibuttons {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 5px
+}
+DIV.colsJqi BUTTON {
+	BORDER-BOTTOM: #777777 1px solid; BORDER-LEFT: #777777 1px solid; PADDING-BOTTOM: 3px; MARGIN: 5px 5px 5px 10px; PADDING-LEFT: 10px; WIDTH: 75px; PADDING-RIGHT: 10px; BACKGROUND: url(../images/button_bg.jpg) #ffffff repeat-x left top; FONT-SIZE: 12px; BORDER-TOP: #777777 1px solid; BORDER-RIGHT: #777777 1px solid; PADDING-TOP: 3px
+}
+
+.jqifade {
+	POSITION: absolute; BACKGROUND-COLOR: #aaaaaa
+}
+DIV.jqi {
+	BORDER-BOTTOM: #eeeeee 1px solid; POSITION: absolute; TEXT-ALIGN: left; BORDER-LEFT: #eeeeee 1px solid; PADDING-BOTTOM: 7px; BACKGROUND-COLOR: #ffffff; PADDING-LEFT: 7px; WIDTH: 400px; PADDING-RIGHT: 7px; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 11px; BORDER-TOP: #eeeeee 1px solid; BORDER-RIGHT: #eeeeee 1px solid; PADDING-TOP: 7px; border-radius: 10px; -moz-border-radius: 10px; -webkit-border-radius: 10px
+}
+DIV.jqi .jqicontainer {
+	FONT-WEIGHT: bold
+}
+DIV.jqi .jqiclose {
+	POSITION: absolute; WIDTH: 18px; COLOR: #bbbbbb; TOP: 4px; CURSOR: default; RIGHT: -2px; FONT-WEIGHT: bold
+}
+DIV.jqi .jqimessage {
+	PADDING-BOTTOM: 10px; LINE-HEIGHT: 20px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; COLOR: #444444; PADDING-TOP: 10px
+}
+DIV.jqi .jqibuttons {
+	BORDER-BOTTOM: #eeeeee 1px solid; TEXT-ALIGN: right; BORDER-LEFT: #eeeeee 1px solid; PADDING-BOTTOM: 5px; BACKGROUND-COLOR: #f4f4f4; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: #eeeeee 1px solid; BORDER-RIGHT: #eeeeee 1px solid; PADDING-TOP: 5px
+}
+DIV.jqi BUTTON {
+	BORDER-BOTTOM: #f4f4f4 1px solid; BORDER-LEFT: #f4f4f4 1px solid; PADDING-BOTTOM: 3px; BACKGROUND-COLOR: #2f6073; MARGIN: 0px 10px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; COLOR: #ffffff; FONT-SIZE: 12px; BORDER-TOP: #f4f4f4 1px solid; FONT-WEIGHT: bold; BORDER-RIGHT: #f4f4f4 1px solid; PADDING-TOP: 3px
+}
+DIV.jqi BUTTON:hover {
+	BACKGROUND-COLOR: #728a8c
+}
+DIV.jqi BUTTON.jqidefaultbutton {
+	BACKGROUND-COLOR: #bf5e26
+}
+.jqiwarning .jqi .jqibuttons {
+	BACKGROUND-COLOR: #bf5e26
+}
+.impromptuwarning .impromptu {
+	BACKGROUND-COLOR: #aaaaaa
+}
+.impromptufade {
+	POSITION: absolute; BACKGROUND-COLOR: #ffffff
+}
+DIV.impromptu {
+	POSITION: absolute; TEXT-ALIGN: left; PADDING-BOTTOM: 10px; BACKGROUND-COLOR: #cccccc; PADDING-LEFT: 10px; WIDTH: 300px; PADDING-RIGHT: 10px; PADDING-TOP: 10px
+}
+DIV.impromptu .impromptuclose {
+	MARGIN: -35px -10px 0px 0px; FLOAT: right; COLOR: #213e80; CURSOR: pointer
+}
+DIV.impromptu .impromptucontainer {
+	PADDING-BOTTOM: 5px; BACKGROUND-COLOR: #213e80; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; COLOR: #ffffff; FONT-WEIGHT: bold; PADDING-TOP: 5px
+}
+DIV.impromptu .impromptumessage {
+	PADDING-BOTTOM: 10px; BACKGROUND-COLOR: #415ea0; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 10px
+}
+DIV.impromptu .impromptubuttons {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 5px
+}
+DIV.impromptu BUTTON {
+	PADDING-BOTTOM: 3px; MARGIN: 0px 10px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; PADDING-TOP: 3px
+}
+.colsJqifadewarning .colsJqi {
+	BACKGROUND-COLOR: #b0be96
+}
+.colsJqifade {
+	POSITION: absolute; BACKGROUND-COLOR: #ffffff
+}
+DIV.colsJqi {
+	POSITION: absolute; TEXT-ALIGN: left; PADDING-BOTTOM: 10px; BACKGROUND-COLOR: #d0deb6; PADDING-LEFT: 10px; WIDTH: 400px; PADDING-RIGHT: 10px; PADDING-TOP: 10px
+}
+DIV.colsJqi .colsJqiclose {
+	MARGIN: -35px -10px 0px 0px; FLOAT: right; COLOR: #bbbbbb; CURSOR: pointer
+}
+DIV.colsJqi BUTTON:hover {
+	BORDER-BOTTOM: #aaaaaa 1px solid; BORDER-LEFT: #aaaaaa 1px solid; BORDER-TOP: #aaaaaa 1px solid; BORDER-RIGHT: #aaaaaa 1px solid
+}
+.brownJqiwarning .brownJqi {
+	BACKGROUND-COLOR: #cccccc
+}
+.brownJqifade {
+	POSITION: absolute; BACKGROUND-COLOR: #ffffff
+}
+DIV.brownJqi {
+	POSITION: absolute; TEXT-ALIGN: left; PADDING-BOTTOM: 10px; BACKGROUND-COLOR: transparent; PADDING-LEFT: 10px; WIDTH: 300px; PADDING-RIGHT: 10px; PADDING-TOP: 10px
+}
+DIV.brownJqi .brownJqiclose {
+	MARGIN: -20px 0px 0px; FLOAT: right; COLOR: #777777; FONT-SIZE: 11px; CURSOR: pointer
+}
+DIV.brownJqi .brownJqicontainer {
+	BORDER-BOTTOM: #5f5d5a 1px solid; POSITION: relative; BORDER-LEFT: #5f5d5a 1px solid; BACKGROUND-COLOR: transparent; COLOR: #ffffff; BORDER-TOP: #5f5d5a 1px solid; FONT-WEIGHT: bold; BORDER-RIGHT: #5f5d5a 1px solid
+}
+DIV.brownJqi .brownJqimessage {
+	BORDER-BOTTOM: #c6b8ae 1px solid; POSITION: relative; BACKGROUND-COLOR: #f7f6f2; BORDER-TOP: #c6b8ae 1px solid
+}
+DIV.brownJqi .brownJqimessage H3 {
+	PADDING-BOTTOM: 7px; MARGIN: 0px; PADDING-LEFT: 15px; PADDING-RIGHT: 0px; BACKGROUND: url(../images/brown_theme_gradient.jpg) #ffffff repeat-x left top; COLOR: #4d4a47; PADDING-TOP: 7px
+}
+DIV.brownJqi .brownJqimessage P {
+	PADDING-BOTTOM: 10px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; COLOR: #777777; PADDING-TOP: 10px
+}
+DIV.brownJqi .brownJqimessage IMG.helpImg {
+	POSITION: absolute; BOTTOM: -25px; LEFT: 10px
+}
+DIV.brownJqi .brownJqibuttons {
+	TEXT-ALIGN: right
+}
+DIV.brownJqi BUTTON {
+	BORDER-BOTTOM: #777777 1px solid; BORDER-LEFT: #777777 1px solid; PADDING-BOTTOM: 3px; MARGIN: 5px 5px 5px 10px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; BACKGROUND: url(../images/brown_theme_gradient.jpg) #ffffff repeat-x left top; FONT-SIZE: 12px; BORDER-TOP: #777777 1px solid; BORDER-RIGHT: #777777 1px solid; PADDING-TOP: 3px
+}
+DIV.brownJqi BUTTON:hover {
+	BORDER-BOTTOM: #aaaaaa 1px solid; BORDER-LEFT: #aaaaaa 1px solid; BORDER-TOP: #aaaaaa 1px solid; BORDER-RIGHT: #aaaaaa 1px solid
+}
+.cleanbluewarning .cleanblue {
+	BACKGROUND-COLOR: #acb4c4
+}
+.cleanbluefade {
+	POSITION: absolute; BACKGROUND-COLOR: #aaaaaa
+}
+DIV.cleanblue {
+	BORDER-BOTTOM: #213e80 1px solid; POSITION: absolute; TEXT-ALIGN: left; BORDER-LEFT: #213e80 1px solid; BACKGROUND-COLOR: #ffffff; WIDTH: 300px; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 11px; BORDER-TOP: #213e80 1px solid; BORDER-RIGHT: #213e80 1px solid
+}
+DIV.cleanblue .cleanbluecontainer {
+	PADDING-BOTTOM: 5px; BACKGROUND-COLOR: #ffffff; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; BORDER-TOP: #213e80 14px solid; FONT-WEIGHT: bold; PADDING-TOP: 5px
+}
+DIV.cleanblue .cleanblueclose {
+	MARGIN: -19px -12px 0px 0px; WIDTH: 18px; FLOAT: right; COLOR: #ffffff; CURSOR: default; FONT-WEIGHT: bold
+}
+DIV.cleanblue .cleanbluemessage {
+	PADDING-BOTTOM: 10px; LINE-HEIGHT: 20px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; COLOR: #333333; FONT-SIZE: 11px; PADDING-TOP: 10px
+}
+DIV.cleanblue .cleanbluebuttons {
+	BORDER-BOTTOM: #eeeeee 1px solid; TEXT-ALIGN: right; BORDER-LEFT: #eeeeee 1px solid; PADDING-BOTTOM: 5px; BACKGROUND-COLOR: #f4f4f4; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; BORDER-TOP: #eeeeee 1px solid; BORDER-RIGHT: #eeeeee 1px solid; PADDING-TOP: 5px
+}
+DIV.cleanblue BUTTON {
+	BORDER-BOTTOM: #f4f4f4 1px solid; BORDER-LEFT: #f4f4f4 1px solid; PADDING-BOTTOM: 3px; BACKGROUND-COLOR: #314e90; MARGIN: 0px 10px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; COLOR: #ffffff; FONT-SIZE: 12px; BORDER-TOP: #f4f4f4 1px solid; FONT-WEIGHT: bold; BORDER-RIGHT: #f4f4f4 1px solid; PADDING-TOP: 3px
+}
+DIV.cleanblue BUTTON:hover {
+	BORDER-BOTTOM: #d4d4d4 1px solid; BORDER-LEFT: #d4d4d4 1px solid; BORDER-TOP: #d4d4d4 1px solid; BORDER-RIGHT: #d4d4d4 1px solid
+}
+.extbluewarning .extblue {
+	BORDER-BOTTOM: red 1px solid; BORDER-LEFT: red 1px solid; BORDER-TOP: red 1px solid; BORDER-RIGHT: red 1px solid
+}
+.extbluefade {
+	POSITION: absolute; BACKGROUND-COLOR: #ffffff
+}
+DIV.extblue {
+	BORDER-BOTTOM: #6289b6 1px solid; POSITION: absolute; TEXT-ALIGN: left; BORDER-LEFT: #6289b6 1px solid; PADDING-BOTTOM: 0px; BACKGROUND-COLOR: #cad8ea; PADDING-LEFT: 0px; WIDTH: 300px; PADDING-RIGHT: 0px; BORDER-TOP: #6289b6 1px solid; BORDER-RIGHT: #6289b6 1px solid; PADDING-TOP: 0px
+}
+DIV.extblue .extblueclose {
+	TEXT-ALIGN: right; BACKGROUND-COLOR: #cad8ea; MARGIN: 2px -2px 0px 0px; COLOR: red; CURSOR: pointer
+}
+DIV.extblue .extbluecontainer {
+	PADDING-BOTTOM: 5px; BACKGROUND-COLOR: #cad8ea; PADDING-LEFT: 5px; PADDING-RIGHT: 5px; FONT: 11px Verdana; COLOR: #000000; PADDING-TOP: 0px
+}
+DIV.extblue .extbluemessage {
+	PADDING-BOTTOM: 0px; BACKGROUND-COLOR: #cad8ea; MARGIN: 0px 15px 15px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+DIV.extblue .extbluebuttons {
+	TEXT-ALIGN: center; PADDING-BOTTOM: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+DIV.extblue BUTTON {
+	PADDING-BOTTOM: 1px; BACKGROUND-COLOR: #cccccc; MARGIN: 0px 10px; PADDING-LEFT: 4px; PADDING-RIGHT: 4px; FONT-FAMILY: Verdana; FONT-SIZE: 10px; FONT-WEIGHT: normal; PADDING-TOP: 1px
+}
+.jqismoothfade {
+	POSITION: absolute; BACKGROUND-COLOR: #333333
+}
+DIV.jqismooth {
+	BORDER-BOTTOM: #e2e8e6 3px solid; POSITION: absolute; TEXT-ALIGN: left; BORDER-LEFT: #e2e8e6 3px solid; PADDING-BOTTOM: 7px; BACKGROUND-COLOR: #ffffff; PADDING-LEFT: 7px; WIDTH: 350px; PADDING-RIGHT: 7px; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; FONT-SIZE: 11px; BORDER-TOP: #e2e8e6 3px solid; BORDER-RIGHT: #e2e8e6 3px solid; PADDING-TOP: 7px; -moz-border-radius: 10px; -webkit-border-radius: 10px
+}
+DIV.jqismooth .jqismoothcontainer {
+	FONT-WEIGHT: bold
+}
+DIV.jqismooth .jqismoothclose {
+	BORDER-BOTTOM: #e2e8e6 1px solid; POSITION: absolute; TEXT-ALIGN: center; BORDER-LEFT: #e2e8e6 1px solid; PADDING-BOTTOM: 4px; BACKGROUND-COLOR: #e2e8e6; PADDING-LEFT: 0px; WIDTH: 18px; PADDING-RIGHT: 0px; COLOR: #727876; TOP: 0px; CURSOR: default; RIGHT: 0px; FONT-WEIGHT: bold; PADDING-TOP: 2px; -moz-border-radius-bottomLeft: 5px; -webkit-border-bottom-left-radius: 5px
+}
+DIV.jqismooth .jqismoothmessage {
+	PADDING-BOTTOM: 10px; LINE-HEIGHT: 20px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; COLOR: #444444; PADDING-TOP: 10px
+}

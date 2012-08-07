@@ -1,0 +1,97 @@
+<%@ Page Language="C#" MasterPageFile="~/MasterPage2.master" AutoEventWireup="true"
+    CodeFile="AddBaiDu.aspx.cs" Inherits="AddBaiDu" Title="百度推广" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+      <div id="ContentLeft">
+    <div id="ContentLeftTop">
+      <div class="BarLeft"></div>
+      <div id="ContentLeftTopText">百度推广</div>
+      <div class="BarRight"></div>
+      <div class="Cal"> </div>
+    </div>
+    <div id="ContentLeftBox">
+      <ul>
+        <li><a href="#"> &gt; 一键推广</a></li>
+         <li><a href="TuiList.aspx?type=1"> &gt; 推广列表</a></li>
+      </ul>
+    </div>
+  </div>
+<div id="ContentRight">
+    <div id="ContentRightTop">
+      <div class="BarLeft"></div>
+      <div id="ContentRightTopText">一键推广</div>
+      <div class="BarRight"></div>
+      <div class="Cal"></div>
+    </div>
+    <div id="ContentRightBox">
+            <h2>
+                百度推广&nbsp;&gt;&gt;&nbsp; 一键推广：</h2>
+                
+            <br />
+            <table width="100%" border="1" class="t1" id="mytab">
+   
+                    <tr class="a1">
+                        <td style="background-color: #E8F2FF;font-weight:bold;">
+                            第一步：选择宝贝
+                        </td>
+                    </tr>
+                
+            </table>
+            <br />
+            <div>
+                    <span>宝贝分类：</span><span id="Category">
+                        <asp:DropDownList ID="DDL_SellCate" runat="server">
+                        </asp:DropDownList>
+                    </span>&nbsp;&nbsp;&nbsp; <span>宝贝名: </span><span>
+                        <asp:TextBox ID="TB_GoodsName" Width="200px" runat="server" />
+                    </span>&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="Btn_Search" runat="server" Text="查 找" OnClick="Btn_Search_Click" />
+                
+            </div>
+            <br>
+            <span class="red">关键字(此关键字用于百度搜索引擎优化 关键字组合后将成为新的宝贝标题组合)：</span>
+            <div>
+                <span>
+                    <asp:TextBox ID="TB_Key1" Width="110px" runat="server" MaxLength="15" /></span>&nbsp;
+                <span>
+                    <asp:TextBox ID="TB_Key2" Width="110px" runat="server" MaxLength="15" /></span>&nbsp;
+                <span>
+                    <asp:TextBox ID="TB_Key3" Width="110px" runat="server" MaxLength="15" /></span>&nbsp;
+                <span>
+                    <asp:TextBox ID="TB_Key4" Width="110px" runat="server" MaxLength="15" /></span>&nbsp;
+                <span>
+                    <asp:TextBox ID="TB_Key5" Width="110px" runat="server" MaxLength="15" /></span>&nbsp;
+            </div>
+            <div style="margin-top:5px">
+                    <table>
+                        <asp:Repeater ID="Rpt_GoodsList" runat="server">
+                            <ItemTemplate>
+                                <tr>
+                                    <td>
+                                      <asp:RadioButton ID="RBtn_Goods" runat="server" />
+                                      <asp:Label Text='<%# Eval("GoodsId") %>' runat="server" Visible="false" ID="Lbl_GoodsId"></asp:Label>
+                                      <asp:Label Text='<%# Eval("GoodsPic") %>' runat="server" Visible="false" ID="Lbl_GoodsPic"></asp:Label>
+                                    </td>
+                                    <td>
+                                        <a target="_blank" href='http://item.taobao.com/item.htm?id=<%# Eval("GoodsId") %>'>
+                                            <img src='<%# Eval("GoodsPic") %>' class="taobaoimg"></a>
+                                    </td>
+                                    <td style="width: 540px;" class="taobaotitle">
+                                        <span id="title_7591614139">
+                                         <asp:Label ID="Lbl_GoodsName" Text='<%# Eval("GoodsName") %>' runat="server"></asp:Label></span><br>
+                                        <br>
+                                        <span id="result_7591614139"></span>
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </table>
+                <div class="meneame" id="CommonPager">
+                    <span style="font-size: 14px;">共1页</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                        class="current">1</span></div>
+            </div>
+            <div style="text-align: center;">
+                <asp:Button ID="Btn_Next" Text="立即推广" runat="server" OnClick="Btn_Next_Click" />
+            </div>
+    </div>
+</asp:Content>

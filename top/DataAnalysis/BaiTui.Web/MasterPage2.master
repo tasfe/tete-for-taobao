@@ -1,0 +1,43 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage2.master.cs"
+    Inherits="MasterPage2" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>搜索引擎收录</title>
+    <link href="Css/Style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="css/css.css" />
+    <link rel="stylesheet" type="text/css" href="css/css1.css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <div id="Logo">
+        </div>
+        <div id="Nav">
+            <div class="BarLeft">
+            </div>
+            <div id="NavContent">
+                <ul>
+                    <li><a href="Index.aspx">首页</a></li>
+                    <li><a href="AddBaiDu.aspx">百度推广</a></li>
+                    <li><a href="AddQQ.aspx">QQ推广</a></li>
+                    <li><a href="FindKefu.aspx">联系客服</a></li>
+                    <li><a href="Fuwu.aspx">服务推荐</a></li>
+                </ul>
+            </div>
+            <div class="BarRight">
+            </div>
+            <div class="Cal">
+            </div>
+        </div>
+        <div id="Content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div id="Bottom">
+            版权所有 <a href="#" title="斯派特软件">斯派特软件</a></div>
+    </div>
+    </form>
+</body>
+</html>
