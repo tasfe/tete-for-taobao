@@ -72,7 +72,7 @@
                 <td align="left" height="30">选择赠送的包邮卡：</td>
                 <td>
                     <%=freestr%>
-                    <a href="../freecard/freecardlist.aspx">导入支付宝红包</a>
+                    <a href="../freecard/freecardlist.aspx">创建包邮卡</a>
                     <a href="../freecard/freecardcustomer.aspx">查看赠送记录</a>
                 </td>
             </tr>
