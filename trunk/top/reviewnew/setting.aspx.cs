@@ -25,6 +25,8 @@ public partial class top_review_setting : System.Web.UI.Page
     public string maxdate = string.Empty;
     public string itemstr = string.Empty;
     public string isfree = string.Empty;
+    public string freeid = string.Empty;
+    public string freestr = string.Empty;
     public string iscoupon = string.Empty;
     public string issendmsg = string.Empty;
     public string iskefu = string.Empty;
@@ -129,6 +131,7 @@ public partial class top_review_setting : System.Web.UI.Page
             mindate = dt.Rows[0]["mindate"].ToString();
             maxdate = dt.Rows[0]["maxdate"].ToString();
             iscoupon = dt.Rows[0]["iscoupon"].ToString();
+            isfree = dt.Rows[0]["isfree"].ToString();
             issendmsg = dt.Rows[0]["issendmsg"].ToString();
             iskefu = dt.Rows[0]["iskefu"].ToString();
             iscancelauto = dt.Rows[0]["iscancelauto"].ToString();
@@ -147,6 +150,7 @@ public partial class top_review_setting : System.Web.UI.Page
             iscancelauto = "1";
             iskeyword = "0";
             isalipay = "0";
+            isfree = "0";
             
             ////默认B店开启审核
             //string typ = utils.ExecuteString("SELECT typ FROM TCS_ShopConfig WHERE nick = '" + nick + "'");
@@ -205,6 +209,21 @@ public partial class top_review_setting : System.Web.UI.Page
             else
             {
                 alipaystr += "<option value='" + dtCoupon.Rows[i]["guid"].ToString() + "'>" + dtCoupon.Rows[i]["name"].ToString() + " " + dtCoupon.Rows[i]["adddate"].ToString() + " - " + dtCoupon.Rows[i]["num"].ToString() + "元</option>";
+            }
+        }
+        alipaystr += "</select>";
+
+        dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_FreeCardAction WHERE nick = '" + nick + "' AND isdel = 0");
+        alipaystr = "<select name='freeid'>";
+        for (int i = 0; i < dtCoupon.Rows.Count; i++)
+        {
+            if (dtCoupon.Rows[i]["guid"].ToString().Trim() == freeid.Trim())
+            {
+                alipaystr += "<option value='" + dtCoupon.Rows[i]["guid"].ToString() + "' selected>" + dtCoupon.Rows[i]["name"].ToString() + " " + dtCoupon.Rows[i]["adddate"].ToString() + " - " + dtCoupon.Rows[i]["price"].ToString() + "元</option>";
+            }
+            else
+            {
+                alipaystr += "<option value='" + dtCoupon.Rows[i]["guid"].ToString() + "'>" + dtCoupon.Rows[i]["name"].ToString() + " " + dtCoupon.Rows[i]["adddate"].ToString() + " - " + dtCoupon.Rows[i]["price"].ToString() + "元</option>";
             }
         }
         alipaystr += "</select>";
@@ -268,6 +287,8 @@ public partial class top_review_setting : System.Web.UI.Page
                         "nick, " +
                         "iscoupon, " +
                         "couponid, " +
+                        "isfree, " +
+                        "freeid, " +
                         "iskefu, " +
                         "mindate, " +
                         "maxdate, " +
@@ -281,6 +302,8 @@ public partial class top_review_setting : System.Web.UI.Page
                         " '" + nick + "', " +
                         " '" + utils.NewRequest("iscoupon", utils.RequestType.Form) + "', " +
                         " '" + utils.NewRequest("couponid", utils.RequestType.Form) + "', " +
+                        " '" + utils.NewRequest("isfree", utils.RequestType.Form) + "', " +
+                        " '" + utils.NewRequest("freeid", utils.RequestType.Form) + "', " +
                         " '" + utils.NewRequest("iskefu", utils.RequestType.Form) + "', " +
                         " '" + utils.NewRequest("mindate", utils.RequestType.Form) + "', " +
                         " '" + utils.NewRequest("maxdate", utils.RequestType.Form) + "', " +
@@ -298,6 +321,8 @@ public partial class top_review_setting : System.Web.UI.Page
             sql = "UPDATE TCS_ShopConfig SET " +
                         "iscoupon = '" + utils.NewRequest("iscoupon", utils.RequestType.Form) + "', " +
                         "couponid = '" + utils.NewRequest("couponid", utils.RequestType.Form) + "', " +
+                        "isfree = '" + utils.NewRequest("isfree", utils.RequestType.Form) + "', " +
+                        "freeid = '" + utils.NewRequest("freeid", utils.RequestType.Form) + "', " +
                         "iskefu = '" + utils.NewRequest("iskefu", utils.RequestType.Form) + "', " +
                         "mindate = '" + utils.NewRequest("mindate", utils.RequestType.Form) + "', " +
                         "maxdate = '" + utils.NewRequest("maxdate", utils.RequestType.Form) + "', " +

@@ -47,8 +47,8 @@
             <tr>
                 <td align="left" width="180" height="30">是否开启按时好评送支付宝红包：</td>
                 <td>
-                    开启<input name="isalipay" id="Radio1" type="radio" value="1" <%=check(isalipay, "1") %> onclick="showAreaAli(1)" />
-                    不开启<input name="isalipay" id="Radio2" type="radio" value="0" <%=check(isalipay, "0") %> onclick="showAreaAli(0)" />
+                    开启<input name="isalipay" id="alipay1" type="radio" value="1" <%=check(isalipay, "1") %> onclick="showAreaAli(1)" />
+                    不开启<input name="isalipay" id="alipay2" type="radio" value="0" <%=check(isalipay, "0") %> onclick="showAreaAli(0)" />
                 </td>
             </tr>
             <tr id="aliArea">
@@ -59,6 +59,24 @@
                     <a href="alipay.aspx">查看赠送记录</a>
                 </td>
             </tr>
+
+            
+            <tr>
+                <td align="left" width="180" height="30">是否开启按时好评送包邮卡：</td>
+                <td>
+                    开启<input name="isfree" id="free1" type="radio" value="1" <%=check(isfree, "1") %> onclick="showAreaFree(1)" />
+                    不开启<input name="isfree" id="free2" type="radio" value="0" <%=check(isfree, "0") %> onclick="showAreaFree(0)" />
+                </td>
+            </tr>
+            <tr id="freeArea">
+                <td align="left" height="30">选择赠送的包邮卡：</td>
+                <td>
+                    <%=freestr%>
+                    <a href="../freecard/freecardlist.aspx">导入支付宝红包</a>
+                    <a href="../freecard/freecardcustomer.aspx">查看赠送记录</a>
+                </td>
+            </tr>
+
             <tr>
                 <td align="left" height="30">淘宝提供物流跟踪订单最短评价时间：</td>
                 <td>
@@ -122,6 +140,14 @@
             document.getElementById("aliArea").style.display = "none";
         }else if(str == 1){
             document.getElementById("aliArea").style.display = "block";
+        }
+    }
+
+    function showAreaFree(str) {
+        if (str == 0) { 
+            document.getElementById("freeArea").style.display = "none";
+        }else if(str == 1){
+            document.getElementById("freeArea").style.display = "block";
         }
     }
 
