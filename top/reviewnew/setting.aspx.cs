@@ -292,7 +292,7 @@ public partial class top_review_setting : System.Web.UI.Page
             return;
         }
 
-        if (utils.NewRequest("isalipay", utils.RequestType.Form) == "1" && utils.NewRequest("alipayd", utils.RequestType.Form) == "")
+        if (utils.NewRequest("isalipay", utils.RequestType.Form) == "1" && utils.NewRequest("alipayid", utils.RequestType.Form) == "")
         {
             Response.Write("<script>alert('尊敬的" + nick + "，请您先创建支付宝红包才能开启支付宝红包赠送功能！');window.location.href='setting.aspx';</script>");
             Response.End();
