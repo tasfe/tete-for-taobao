@@ -278,6 +278,13 @@ public partial class top_review_setting : System.Web.UI.Page
             }
         }
 
+        if (utils.NewRequest("isfree", utils.RequestType.Form) == "1" && utils.NewRequest("freeid", utils.RequestType.Form) == "")
+        {
+            Response.Write("<script>alert('尊敬的" + nick + "，请您先创建包邮卡才能开启包邮卡赠送功能！');window.location.href='setting.aspx';</script>");
+            Response.End();
+            return;
+        }
+
         //先判断是否有记录
         string sql = "SELECT COUNT(*) FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
         string count = utils.ExecuteString(sql);
