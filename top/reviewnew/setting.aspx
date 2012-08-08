@@ -28,6 +28,11 @@
   </div>
     <div id="main-content">
 
+<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
+    优惠券、支付宝红包、包邮卡可以只选一种赠送，没有购买淘宝优惠券的卖家可以使用支付宝红包和包邮卡赠送给客户。
+</div>
+
+
         <table width="700">
             <tr>
                 <td align="left" width="180" height="30">是否开启按时好评送优惠券：</td>
