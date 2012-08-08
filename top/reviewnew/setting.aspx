@@ -245,6 +245,7 @@
     
     showArea(<%=iscoupon %>);
     showAreaAli(<%=isalipay %>);
+    showAreaFree(<%=isfree %>);
 
     function showAreaPhone() {
         document.getElementById("div1").style.display = "block";
