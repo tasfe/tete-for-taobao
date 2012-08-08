@@ -513,6 +513,13 @@ public partial class top_review_msg : System.Web.UI.Page
         Response.Redirect("msg.aspx");
     }
 
+
+    private string ReplaceStr(string str)
+    {
+        str = str.Replace("劵", "券");
+
+        return str;
+    }
     
     /// <summary>
     /// 保存设置
@@ -529,15 +536,15 @@ public partial class top_review_msg : System.Web.UI.Page
 
         string sql = "UPDATE TCS_ShopConfig SET " +
             "giftflag = '" + giftflag + "', " +
-            "giftcontent = '" + utils.NewRequest("giftcontent", utils.RequestType.Form) + "', " +
+            "giftcontent = '" + ReplaceStr(utils.NewRequest("giftcontent", utils.RequestType.Form)) + "', " +
             "shippingflag = '" + shippingflag + "', " +
-            "shippingcontent = '" + utils.NewRequest("shippingcontent", utils.RequestType.Form) + "', " +
+            "shippingcontent = '" + ReplaceStr(utils.NewRequest("shippingcontent", utils.RequestType.Form)) + "', " +
             "reviewflag = '" + reviewflag + "', " +
             "shopname = '" + utils.NewRequest("shopname", utils.RequestType.Form) + "', " +
             "fahuoflag = '" + fahuoflag + "', " +
-            "fahuocontent = '" + utils.NewRequest("fahuocontent", utils.RequestType.Form) + "', " +
+            "fahuocontent = '" + ReplaceStr(utils.NewRequest("fahuocontent", utils.RequestType.Form)) + "', " +
             "reviewtime = '" + utils.NewRequest("reviewtime", utils.RequestType.Form) + "', " +
-            "reviewcontent = '" + utils.NewRequest("reviewcontent", utils.RequestType.Form) + "' " +
+            "reviewcontent = '" + ReplaceStr(utils.NewRequest("reviewcontent", utils.RequestType.Form)) + "' " +
         "WHERE nick = '" + nick + "'";
 
         //Response.Write(sql);
