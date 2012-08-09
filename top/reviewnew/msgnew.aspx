@@ -329,6 +329,7 @@
         if (document.selection) {
             var sel = document.selection.createRange();
             sel.text = str;
+            alert(str);
         } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
         alert(obj.selectionStart);
         alert(obj.selectionEnd);
@@ -342,6 +343,7 @@
             obj.selectionStart = obj.selectionEnd = cursorPos;
         } else {
             obj.value += str;
+        alert(111);
         }
     }
 
