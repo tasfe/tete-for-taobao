@@ -358,11 +358,6 @@
         obj = document.getElementById(objid);
         obj.focus();
 
-        if(obj.value.length>findObj('max_m').value)
-            obj.value=obj.value.substring(0, findObj('max_m').value);
-        document.getElementById(msgid).innerHTML = document.getElementById("max_m").value - obj.value.length - str.length;
-
-
         if (document.selection) {
             var sel = document.selection.createRange();
             sel.text = str;
@@ -377,6 +372,11 @@
         } else {
             obj.value += str;
         }
+
+        
+        if(obj.value.length>findObj('max_m').value)
+            obj.value=obj.value.substring(0, findObj('max_m').value);
+        document.getElementById(msgid).innerHTML = document.getElementById("max_m").value - obj.value.length;
     }
 
 </script>
