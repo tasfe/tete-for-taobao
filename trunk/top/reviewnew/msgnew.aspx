@@ -157,7 +157,7 @@
         <table width="700">
             <tr id="Area5">
                 <td align="left" width="250">
-                    <textarea name="delaycontent" cols="40" rows="3"><%=shippingcontent%></textarea>
+                    <textarea name="delaycontent" cols="40" rows="3"><%=delaycontent%></textarea>
                 </td>
             </tr>
 </table>
@@ -172,7 +172,7 @@
         <table width="700">
             <tr id="Area6">
                 <td align="left" width="250">
-                    <textarea name="unpaycontent" cols="40" rows="3"><%=shippingcontent%></textarea>
+                    <textarea name="unpaycontent" cols="40" rows="3"><%=unpaycontent%></textarea>
                 </td>
             </tr>
 </table>
@@ -187,7 +187,7 @@
         <table width="700">
             <tr id="Area7">
                 <td align="left" width="250">
-                    <textarea name="citycontent" cols="40" rows="3"><%=shippingcontent%></textarea>
+                    <textarea name="citycontent" cols="40" rows="3"><%=citycontent%></textarea>
                 </td>
             </tr>
 </table>
