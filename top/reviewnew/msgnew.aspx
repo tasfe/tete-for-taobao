@@ -56,8 +56,9 @@
         </table>
 
         <div class="haopingtitle">
-            <input id="giftflag" name="giftflag" type="checkbox" value="1" onclick="showArea(this)" />
             <span style="font-size:14px; font-weight:bold; margin:7px;">1、开启优惠券赠送短信提示： </span>
+            <div>
+                <input id="giftflag" name="giftflag" type="checkbox" value="1" onclick="showArea(this)" /></div>
         </div>
 
         <table width="700">
