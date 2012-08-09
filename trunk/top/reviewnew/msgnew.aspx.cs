@@ -34,6 +34,13 @@ public partial class top_review_msg : System.Web.UI.Page
     public string oldshopname = string.Empty;
     public string shopname = string.Empty;
 
+    public string delayflag = string.Empty;
+    public string delaycontent = string.Empty;
+    public string unpayflag = string.Empty;
+    public string unpaycontent = string.Empty;
+    public string cityflag = string.Empty;
+    public string citycontent = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
@@ -294,6 +301,13 @@ public partial class top_review_msg : System.Web.UI.Page
             fahuocontent = dt.Rows[0]["fahuocontent"].ToString();
             shopname = dt.Rows[0]["shopname"].ToString();
             reviewtime = dt.Rows[0]["reviewtime"].ToString();
+
+            delayflag = dt.Rows[0]["delayflag"].ToString();
+            delaycontent = dt.Rows[0]["delaycontent"].ToString();
+            unpayflag = dt.Rows[0]["unpayflag"].ToString();
+            unpaycontent = dt.Rows[0]["unpaycontent"].ToString();
+            cityflag = dt.Rows[0]["cityflag"].ToString();
+            citycontent = dt.Rows[0]["citycontent"].ToString();
 
             //增加默认值
             if (giftcontent.Length == 0)
