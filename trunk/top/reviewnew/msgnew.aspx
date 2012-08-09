@@ -70,7 +70,10 @@
                     插入动态标签：<br />
                     <input type="button" value="店名" onclick="insertText('giftcontent', '[shopname]', 'msg_c1')" />
                     <input type="button" value="优惠券" onclick="insertText('giftcontent', '[gift]', 'msg_c1')" />
-                    <input type="button" value="买家帐号" onclick="insertText('giftcontent', '[buynick]', 'msg_c1')" />
+                    <input type="button" value="买家帐号" onclick="insertText('giftcontent', '[buynick]', 'msg_c1')" /> <br />
+                    
+                    短信测试：<br />
+                    手机号码 <input name="testphone1" type="text" /> <input type="button" value="测试短信" />
                 </td>
             </tr>
         </table>
