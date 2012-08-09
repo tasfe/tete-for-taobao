@@ -56,13 +56,13 @@
         </table>
 
         <div class="haopingtitle">
-            <span style="font-size:14px; font-weight:bold; margin:7px;">1、开启优惠券赠送短信提示：  <input id="giftflag" name="giftflag" type="checkbox" value="1" onclick="showArea(this)" /></span>
-           
+            <span style="font-size:14px; font-weight:bold; margin:7px;">1、开启优惠券赠送短信提示： </span>
         </div>
 
         <table width="700">
             <tr id="Area1">
                 <td align="left" width="250">
+                <input id="giftflag" name="giftflag" type="checkbox" value="1" onclick="showArea(this)" />
                     <textarea name="giftcontent" cols="40" rows="3"><%=giftcontent %></textarea>
                 </td>
             </tr>
