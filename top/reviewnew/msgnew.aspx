@@ -85,26 +85,24 @@
         </table>
 
 
-            <div class="haopingtitle">
+        <div class="haopingtitle">
             <span style="font-size:14px; font-weight:bold; margin:7px;">3、开启物流签收后短信提示：</span>
+            <input id="shippingflag" name="shippingflag" type="checkbox" value="1" onclick="showArea2(this)" style="margin:10px 0 0 0" />
         </div>
 
         <table width="700">
-            <tr>
-                <td align="left">
-        开启物流签收后短信提示 <input id="shippingflag" name="shippingflag" type="checkbox" value="1" onclick="showArea2(this)" />
-                </td>
-            </tr>
             <tr id="Area2">
                 <td align="left" width="250">
                     <textarea name="shippingcontent" cols="40" rows="3"><%=shippingcontent%></textarea>
                 </td>
             </tr>
-            <tr>
-                <td align="left">
-        开启过期未评价短信提示 <input id="reviewflag" name="reviewflag" type="checkbox" value="1" onclick="showArea3(this)" />
-                </td>
-            </tr>
+        </table>
+
+        <div class="haopingtitle">
+            <span style="font-size:14px; font-weight:bold; margin:7px;">4、开启过期未评价短信提示：</span>
+            <input id="reviewflag" name="reviewflag" type="checkbox" value="1" onclick="showArea3(this)" style="margin:10px 0 0 0" />
+        </div>
+
             <tr id="Area3">
                 <td align="left" width="250">
                     <textarea name="reviewcontent" cols="40" rows="3"><%=reviewcontent%></textarea><br />
