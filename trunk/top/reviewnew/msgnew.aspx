@@ -326,14 +326,11 @@
 
     function insertText(objid,str) {
         obj = document.getElementById(objid);
+        obj.focus();
         if (document.selection) {
             var sel = document.selection.createRange();
             sel.text = str;
-            alert(str);
         } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
-        alert(obj.selectionStart);
-        alert(obj.selectionEnd);
-        alert(obj.value);
             var startPos = obj.selectionStart,
                 endPos = obj.selectionEnd,
                 cursorPos = startPos,
@@ -343,7 +340,6 @@
             obj.selectionStart = obj.selectionEnd = cursorPos;
         } else {
             obj.value += str;
-        alert(111);
         }
     }
 
