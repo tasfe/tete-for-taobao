@@ -546,6 +546,9 @@ public partial class top_review_msg : System.Web.UI.Page
         string shippingflag = utils.NewRequest("shippingflag", utils.RequestType.Form) == "1" ? "1" : "0";
         string reviewflag = utils.NewRequest("reviewflag", utils.RequestType.Form) == "1" ? "1" : "0";
         string fahuoflag = utils.NewRequest("fahuoflag", utils.RequestType.Form) == "1" ? "1" : "0";
+        string delayflag = utils.NewRequest("delayflag", utils.RequestType.Form) == "1" ? "1" : "0";
+        string unpayflag = utils.NewRequest("unpayflag", utils.RequestType.Form) == "1" ? "1" : "0";
+        string cityflag = utils.NewRequest("cityflag", utils.RequestType.Form) == "1" ? "1" : "0";
         string reviewtime = utils.NewRequest("reviewtime", utils.RequestType.Form);
 
         string sql = "UPDATE TCS_ShopConfig SET " +
@@ -557,6 +560,12 @@ public partial class top_review_msg : System.Web.UI.Page
             "shopname = '" + utils.NewRequest("shopname", utils.RequestType.Form) + "', " +
             "fahuoflag = '" + fahuoflag + "', " +
             "fahuocontent = '" + ReplaceStr(utils.NewRequest("fahuocontent", utils.RequestType.Form)) + "', " +
+            "delayflag = '" + delayflag + "', " +
+            "delaycontent = '" + ReplaceStr(utils.NewRequest("delaycontent", utils.RequestType.Form)) + "', " +
+            "unpayflag = '" + unpayflag + "', " +
+            "unpaycontent = '" + ReplaceStr(utils.NewRequest("unpaycontent", utils.RequestType.Form)) + "', " +
+            "cityflag = '" + cityflag + "', " +
+            "citycontent = '" + ReplaceStr(utils.NewRequest("citycontent", utils.RequestType.Form)) + "', " +
             "reviewtime = '" + utils.NewRequest("reviewtime", utils.RequestType.Form) + "', " +
             "reviewcontent = '" + ReplaceStr(utils.NewRequest("reviewcontent", utils.RequestType.Form)) + "' " +
         "WHERE nick = '" + nick + "'";
