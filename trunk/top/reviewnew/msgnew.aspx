@@ -63,7 +63,8 @@
         <table width="700">
             <tr id="Area1">
                 <td align="left" width="250">
-                    <textarea id="giftcontent" name="giftcontent" cols="40" rows="3"><%=giftcontent %></textarea>
+                    <textarea id="giftcontent" name="giftcontent" cols="40" rows="3" onkeyup="gettextc(this, findObj('max_m').value, 'msg_c2');if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);"><%=giftcontent %></textarea>
+                    <br />每条短信最多<span id="Span2" style="color:Red">66</span>个字，超出部分不发送，剩余：<b id="msg_c2" style="color:Red">66</b>
                 </td>
                 <td valign="top">
                     插入动态标签：<br />
@@ -199,6 +200,29 @@
     </div>
 </div>
 </form>
+
+<input id="max_m" value="66" type="hidden"/>
+            <script>
+                function findObj(n, d) {
+                    var p, i, x;
+                    if (!d) d = document;
+                    if ((p = n.indexOf("?")) > 0 && parent.frames.length) {
+                        d = parent.frames[n.substring(p + 1)].document;
+                        n = n.substring(0, p);
+                    }
+                    if (!(x = d[n]) && d.all) x = d.all[n];
+                    for (i = 0; !x && i < d.forms.length; i++) x = d.forms[i][n];
+                    for (i = 0; !x && d.layers && i < d.layers.length; i++) x = MM_findObj(n, d.layers[i].document);
+                    if (!x && d.getElementById) x = d.getElementById(n);
+                    return x;
+                }
+
+                function gettextc(o, mc, show) {
+                    var c_i = o.value.length;
+                    var t_i = c_i <= mc ? (mc - c_i) : '0';
+                    findObj(show).innerHTML = t_i;
+                }
+            </script>
 
 
 <script language="javascript" type="text/javascript">
