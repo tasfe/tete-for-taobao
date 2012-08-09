@@ -63,14 +63,14 @@
         <table width="700">
             <tr id="Area1">
                 <td align="left" width="350">
-                    <textarea id="giftcontent" name="giftcontent" cols="40" rows="3" onkeyup="gettextc(this, findObj('max_m').value, 'msg_c2');if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);"><%=giftcontent %></textarea>
-                    <br />每条短信最多<span id="Span2" style="color:Red">66</span>个字，超出部分不发送，剩余：<b id="msg_c2" style="color:Red">66</b>
+                    <textarea id="giftcontent" name="giftcontent" cols="40" rows="3" onkeyup="gettextc(this, findObj('max_m').value, 'msg_c1');if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);"><%=giftcontent %></textarea>
+                    <br />每条短信最多<span id="Span2" style="color:Red">66</span>个字，超出部分不发送，剩余：<b id="msg_c1" style="color:Red">66</b>
                 </td>
                 <td valign="top">
                     插入动态标签：<br />
-                    <input type="button" value="店名" onclick="insertText('giftcontent', '[shopname]')" />
-                    <input type="button" value="优惠券" onclick="insertText('giftcontent', '[gift]')" />
-                    <input type="button" value="买家帐号" onclick="insertText('giftcontent', '[buynick]')" />
+                    <input type="button" value="店名" onclick="insertText('giftcontent', '[shopname]', 'msg_c1')" />
+                    <input type="button" value="优惠券" onclick="insertText('giftcontent', '[gift]', 'msg_c1')" />
+                    <input type="button" value="买家帐号" onclick="insertText('giftcontent', '[buynick]', 'msg_c1')" />
                 </td>
             </tr>
         </table>
@@ -296,6 +296,9 @@
         document.getElementById("giftflag").checked = false;
         document.getElementById("Area1").style.display = "none";
     }
+    document.getElementById("msg_c1").innerHTML = document.getElementById("Area1").value.length;
+
+
 
     if(<%=shippingflag %> == 1){
         document.getElementById("shippingflag").checked = true;
@@ -351,12 +354,12 @@
 
 
 
-    function insertText(objid,str) {
+    function insertText(objid, str, msgid) {
         obj = document.getElementById(objid);
         obj.focus();
 
-        gettextc(obj, findObj('max_m').value, 'msg_c2');
-        if(obj.value.length>findObj('max_m').value)
+        gettextc(obj, findObj('max_m').value, msgid);
+        if(obj.value.length>findObj(msgid).value)
             obj.value=obj.value.substring(0, findObj('max_m').value);
 
         if (document.selection) {
