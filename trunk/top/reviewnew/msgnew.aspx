@@ -57,7 +57,7 @@
 
         <div class="haopingtitle">
             <span style="font-size:14px; font-weight:bold; margin:7px;">1、开启优惠券赠送短信提示： </span>
-                <input id="giftflag" name="giftflag" type="checkbox" value="1" onclick="showArea(this)" style="margin:2px 0 0 0" />
+                <input id="giftflag" name="giftflag" type="checkbox" value="1" onclick="showArea(this)" style="margin:10px 0 0 0" />
         </div>
 
         <table width="700">
@@ -73,14 +73,10 @@
 
         <div class="haopingtitle">
             <span style="font-size:14px; font-weight:bold; margin:7px;">2、开启订单发货后短信提示：</span>
+            <input id="fahuoflag" name="fahuoflag" type="checkbox" value="1" onclick="showArea4(this)" style="margin:10px 0 0 0" />
         </div>
 
         <table width="700">
-            <tr>
-                <td align="left">
-        开启订单发货后短信提示 <input id="fahuoflag" name="fahuoflag" type="checkbox" value="1" onclick="showArea4(this)" />
-                </td>
-            </tr>
             <tr id="Area4">
                 <td align="left" width="250">
                     <textarea name="fahuocontent" cols="40" rows="3"><%=fahuocontent%></textarea>
