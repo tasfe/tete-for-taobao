@@ -324,7 +324,8 @@
 
 
 
-    function insertText(obj,str) {
+    function insertText(objid,str) {
+        obj = document.getElementById(objid);
         if (document.selection) {
             var sel = document.selection.createRange();
             sel.text = str;
