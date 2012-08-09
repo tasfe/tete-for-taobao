@@ -4,6 +4,7 @@
 <head id="Head1" runat="server">
     <title>好评有礼</title>
 <link href="../css/common.css" rel="stylesheet" />
+<link href="../css/haopingx.css" rel="stylesheet" />
 <style>
     td{font-size:12px;}
     a{color:Blue; text-decoration:none;}
@@ -54,6 +55,13 @@
                     <input id="shopname" name="shopname" value="<%=shopname %>" /> (尽量让您的店铺名精简，否则会使短信变的很长)
                 </td>
             </tr>
+        </table>
+
+        <div class="haopingtitle">
+            <span style="font-size:14px; font-weight:bold; margin:7px;">1、开启优惠券赠送短信提示：</span>
+        </div>
+
+        <table width="700">
             <tr>
                 <td align="left" width="250">
                     开启优惠券赠送短信提示 <input id="giftflag" name="giftflag" type="checkbox" value="1" onclick="showArea(this)" />
@@ -64,6 +72,16 @@
                     <textarea name="giftcontent" cols="40" rows="3"><%=giftcontent %></textarea>
                 </td>
             </tr>
+        </table>
+
+
+
+
+        <div class="haopingtitle">
+            <span style="font-size:14px; font-weight:bold; margin:7px;">2、开启订单发货后短信提示：</span>
+        </div>
+
+        <table width="700">
             <tr>
                 <td align="left">
         开启订单发货后短信提示 <input id="fahuoflag" name="fahuoflag" type="checkbox" value="1" onclick="showArea4(this)" />
@@ -74,6 +92,14 @@
                     <textarea name="fahuocontent" cols="40" rows="3"><%=fahuocontent%></textarea>
                 </td>
             </tr>
+        </table>
+
+
+            <div class="haopingtitle">
+            <span style="font-size:14px; font-weight:bold; margin:7px;">3、开启物流签收后短信提示：</span>
+        </div>
+
+        <table width="700">
             <tr>
                 <td align="left">
         开启物流签收后短信提示 <input id="shippingflag" name="shippingflag" type="checkbox" value="1" onclick="showArea2(this)" />
