@@ -63,7 +63,10 @@
         <table width="700">
             <tr id="Area1">
                 <td align="left" width="250">
-                    <textarea name="giftcontent" cols="40" rows="3"><%=giftcontent %></textarea>
+                    <textarea id="giftcontent" name="giftcontent" cols="40" rows="3"><%=giftcontent %></textarea>
+                </td>
+                <td>
+                    <input type="button" value="店名" onclick="insertText('giftcontent', '[shopname]')" />
                 </td>
             </tr>
         </table>
@@ -290,8 +293,54 @@
         document.getElementById("fahuoflag").checked = false;
         document.getElementById("Area4").style.display = "none";
     }
+
+
+     if(<%=delayflag %> == 1){
+        document.getElementById("delayflag").checked = true;
+        document.getElementById("Area5").style.display = "block";
+    }else{
+        document.getElementById("delayflag").checked = false;
+        document.getElementById("Area5").style.display = "none";
+    }
+
+     if(<%=unpayflag %> == 1){
+        document.getElementById("unpayflag").checked = true;
+        document.getElementById("Area6").style.display = "block";
+    }else{
+        document.getElementById("unpayflag").checked = false;
+        document.getElementById("Area6").style.display = "none";
+    }
+
+     if(<%=cityflag %> == 1){
+        document.getElementById("cityflag").checked = true;
+        document.getElementById("Area7").style.display = "block";
+    }else{
+        document.getElementById("cityflag").checked = false;
+        document.getElementById("Area7").style.display = "none";
+    }
     
     document.getElementById("reviewtime").value = "<%=reviewtime %>";
+
+
+
+
+    function insertText(obj,str) {
+        if (document.selection) {
+            var sel = document.selection.createRange();
+            sel.text = str;
+        } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
+            var startPos = obj.selectionStart,
+                endPos = obj.selectionEnd,
+                cursorPos = startPos,
+                tmpStr = obj.value;
+            obj.value = tmpStr.substring(0, startPos) + str + tmpStr.substring(endPos, tmpStr.length);
+            cursorPos += str.length;
+            obj.selectionStart = obj.selectionEnd = cursorPos;
+        } else {
+            obj.value += str;
+        }
+    }
+
 </script>
 
 </body>
