@@ -65,8 +65,10 @@
                 <td align="left" width="250">
                     <textarea id="giftcontent" name="giftcontent" cols="40" rows="3"><%=giftcontent %></textarea>
                 </td>
-                <td>
+                <td valign="top">
                     <input type="button" value="店名" onclick="insertText('giftcontent', '[shopname]')" />
+                    <input type="button" value="优惠券" onclick="insertText('giftcontent', '[gift]')" />
+                    <input type="button" value="买家帐号" onclick="insertText('giftcontent', '[buynick]')" />
                 </td>
             </tr>
         </table>
