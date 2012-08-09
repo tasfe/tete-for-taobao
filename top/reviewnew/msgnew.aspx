@@ -66,6 +66,7 @@
                     <textarea id="giftcontent" name="giftcontent" cols="40" rows="3"><%=giftcontent %></textarea>
                 </td>
                 <td valign="top">
+                    插入动态标签：<br />
                     <input type="button" value="店名" onclick="insertText('giftcontent', '[shopname]')" />
                     <input type="button" value="优惠券" onclick="insertText('giftcontent', '[gift]')" />
                     <input type="button" value="买家帐号" onclick="insertText('giftcontent', '[buynick]')" />
