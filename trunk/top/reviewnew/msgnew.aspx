@@ -358,8 +358,7 @@
         obj = document.getElementById(objid);
         obj.focus();
 
-        gettextc(obj, findObj('max_m').value, msgid);
-        if(obj.value.length>findObj(msgid).value)
+        if(obj.value.length>findObj('max_m').value)
             obj.value=obj.value.substring(0, findObj('max_m').value);
 
         if (document.selection) {
