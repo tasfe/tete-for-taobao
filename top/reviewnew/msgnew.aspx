@@ -68,9 +68,9 @@
                 </td>
                 <td valign="top">
                     插入动态标签：<br />
-                    <input type="button" value="店名" onclick="insertText('giftcontent', '[shopname]', 'msg_c1')" />
-                    <input type="button" value="优惠券" onclick="insertText('giftcontent', '[gift]', 'msg_c1')" />
-                    <input type="button" value="买家帐号" onclick="insertText('giftcontent', '[buynick]', 'msg_c1')" /> <br />
+                    <input type="button" value="优惠券" onclick="insertText('giftcontent', '[coupon]', 'msg_c1')" />
+                    <input type="button" value="支付宝红包" onclick="insertText('giftcontent', '[alipay]', 'msg_c1')" />
+                    <input type="button" value="包邮卡" onclick="insertText('giftcontent', '[free]', 'msg_c1')" /> <br />
                     
                     <br />
                     短信测试： <input name="testphone1" type="text" style="width:90px;" /> <input type="button" value="发送" />
