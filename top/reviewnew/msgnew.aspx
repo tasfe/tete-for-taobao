@@ -102,7 +102,8 @@
             <span style="font-size:14px; font-weight:bold; margin:7px;">4、开启过期未评价短信提示：</span>
             <input id="reviewflag" name="reviewflag" type="checkbox" value="1" onclick="showArea3(this)" style="margin:10px 0 0 0" />
         </div>
-
+        
+        <table width="700">
             <tr id="Area3">
                 <td align="left" width="250">
                     <textarea name="reviewcontent" cols="40" rows="3"><%=reviewcontent%></textarea><br />
@@ -135,45 +136,54 @@
                     </select>点
                 </td>
             </tr>
-
-
+</table>
+                    
+                    <div class="haopingtitle">
+            <span style="font-size:14px; font-weight:bold; margin:7px;">5、开启延迟发货短信提醒：</span>
+            <input id="delayflag" name="delayflag" type="checkbox" value="1" onclick="showArea5(this)" style="margin:10px 0 0 0" />
+        </div>
             
-            <tr>
-                <td align="left">
-        开启延迟发货短信提醒 <input id="delayflag" name="delayflag" type="checkbox" value="1" onclick="showArea5(this)" />
-                </td>
-            </tr>
+
+        <table width="700">
             <tr id="Area5">
                 <td align="left" width="250">
                     <textarea name="delaycontent" cols="40" rows="3"><%=shippingcontent%></textarea>
                 </td>
             </tr>
+</table>
 
 
-            <tr>
-                <td align="left">
-        开启未付款订单催单 <input id="unpayflag" name="unpayflag" type="checkbox" value="1" onclick="showArea6(this)" />
-                </td>
-            </tr>
+<div class="haopingtitle">
+            <span style="font-size:14px; font-weight:bold; margin:7px;">6、开启未付款订单催单：</span>
+            <input id="unpayflag" name="unpayflag" type="checkbox" value="1" onclick="showArea6(this)" style="margin:10px 0 0 0" />
+        </div>
+
+        
+        <table width="700">
             <tr id="Area6">
                 <td align="left" width="250">
                     <textarea name="unpaycontent" cols="40" rows="3"><%=shippingcontent%></textarea>
                 </td>
             </tr>
+</table>
 
 
-            <tr>
-                <td align="left">
-        开启物流到达城市短信提醒 <input id="cityflag" name="cityflag" type="checkbox" value="1" onclick="showArea7(this)" />
-                </td>
-            </tr>
+<div class="haopingtitle">
+            <span style="font-size:14px; font-weight:bold; margin:7px;">7、开启物流到达城市短信提醒：</span>
+            <input id="cityflag" name="cityflag" type="checkbox" value="1" onclick="showArea7(this)" style="margin:10px 0 0 0" />
+        </div>
+
+        
+        <table width="700">
             <tr id="Area7">
                 <td align="left" width="250">
                     <textarea name="citycontent" cols="40" rows="3"><%=shippingcontent%></textarea>
                 </td>
             </tr>
+</table>
 
 
+        <table width="700">
             <tr>
                 <td align="left">
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" />
