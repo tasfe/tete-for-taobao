@@ -73,7 +73,7 @@
                     <input type="button" value="买家帐号" onclick="insertText('giftcontent', '[buynick]', 'msg_c1')" /> <br />
                     
                     <br />
-                    短信测试： <input name="testphone1" type="text" /> <input type="button" value="发送" />
+                    短信测试： <input name="testphone1" type="text" style="width:90px;" /> <input type="button" value="发送" />
                 </td>
             </tr>
         </table>
