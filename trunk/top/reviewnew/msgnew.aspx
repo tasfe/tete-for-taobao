@@ -296,7 +296,7 @@
         document.getElementById("giftflag").checked = false;
         document.getElementById("Area1").style.display = "none";
     }
-    document.getElementById("msg_c1").innerHTML = document.getElementById("giftcontent").value.length;
+    document.getElementById("msg_c1").innerHTML = document.getElementById("max_m").value - document.getElementById("giftcontent").value.length;
 
 
 
