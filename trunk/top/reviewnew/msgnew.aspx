@@ -325,15 +325,14 @@
 
 
     function insertText(objid,str) {
-            alert(0);
         obj = document.getElementById(objid);
-            alert(99);
         if (document.selection) {
-            alert(1);
             var sel = document.selection.createRange();
             sel.text = str;
         } else if (typeof obj.selectionStart === 'number' && typeof obj.selectionEnd === 'number') {
-            alert(2);
+        alert(obj.selectionStart);
+        alert(obj.selectionEnd);
+        alert(obj.value);
             var startPos = obj.selectionStart,
                 endPos = obj.selectionEnd,
                 cursorPos = startPos,
@@ -342,7 +341,6 @@
             cursorPos += str.length;
             obj.selectionStart = obj.selectionEnd = cursorPos;
         } else {
-            alert(3);
             obj.value += str;
         }
     }
