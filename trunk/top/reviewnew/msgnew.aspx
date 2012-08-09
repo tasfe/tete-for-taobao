@@ -354,6 +354,11 @@
     function insertText(objid,str) {
         obj = document.getElementById(objid);
         obj.focus();
+
+        gettextc(obj, findObj('max_m').value, 'msg_c2');
+        if(obj.value.length>findObj('max_m').value)
+            obj.value=obj.value.substring(0, findObj('max_m').value);
+
         if (document.selection) {
             var sel = document.selection.createRange();
             sel.text = str;
