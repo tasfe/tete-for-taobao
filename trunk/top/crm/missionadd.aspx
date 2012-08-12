@@ -210,7 +210,7 @@
     </form>
 
     <script language="javascript" type="text/javascript">
-        function StartSend() {
+        function StartSend() { 
             if (document.getElementById("typ").options.selectedIndex == 3) { 
                 //if(confirm("您确定要立即发送吗"))
             }
