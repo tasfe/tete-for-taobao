@@ -32,7 +32,7 @@
         <hr />
   <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
       您可以创建多个客户营销计划，短信内容最多66个字，超过的话短信将分成多条发送。<br />
-      创建新品活动营销的时候请您耐心等待，不要一直点击导致短信多次发送。
+      <!--创建新品活动营销的时候请您耐心等待，不要一直点击导致短信多次发送。-->
   </div>
 
         <table width="100%">
@@ -43,7 +43,7 @@
                         <option value="unpay">未付款订单催单</option>
                         <option value="birthday">客户生日关怀</option>
                         <option value="back">买家定期回访</option>
-                        <option value="act">新品活动营销</option>
+                        <!--<option value="act">新品活动营销</option>-->
                     </select>
                 </td>
             </tr>
