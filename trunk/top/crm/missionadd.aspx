@@ -31,7 +31,8 @@
 
         <hr />
   <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
-      您可以创建多个客户营销计划，短信内容最多66个字，超过的话短信将分成多条发送。
+      您可以创建多个客户营销计划，短信内容最多66个字，超过的话短信将分成多条发送。<br />
+      创建新品活动营销的时候请您耐心等待，不要一直点击导致短信多次发送。
   </div>
 
         <table width="100%">
@@ -144,8 +145,8 @@
                     <td>
                         <select name="sendnow" onchange="ShowDate(this)">
                             <option value="1">马上发送</option>
-                            <option value="0">在指定时间发送</option>
-                        </select> 
+                            <!--<option value="0">在指定时间发送</option>-->
+                        </select>
                         会员多的情况下发送时间会比较长，请您耐心等待~
                     </td>
                 </tr>
@@ -153,7 +154,6 @@
                     <td align="left" height="30">计划发送时间：</td>
                     <td>
                         <input name="actdate" type="text" value="<%=now %>" size="20"  />
-                        
                     </td>
                 </tr>
             </table>
