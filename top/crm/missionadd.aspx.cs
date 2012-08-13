@@ -88,7 +88,7 @@ public partial class top_crm_missionadd : System.Web.UI.Page
         string sendnow = utils.NewRequest("sendnow", utils.RequestType.Form);
 
         //判断是否有同类型活动
-        sql = "SELECT COUNT(*) FROM TCS_Mission WHERE nick = '" + nick + "' AND typ = '" + typ + "' AND isdel = 0";
+        sql = "SELECT COUNT(*) FROM TCS_Mission WHERE nick = '" + nick + "' AND typ = '" + typ + "' AND grade = '" + groupguid + "' AND isdel = 0";
         string count = utils.ExecuteString(sql);
         if (count != "0")
         {
