@@ -77,7 +77,17 @@ public partial class top_crm_missionlist : System.Web.UI.Page
     public static string checkGrade(string grade)
     {
         string str = string.Empty;
+        string sql = string.Empty;
 
+        if (grade.Length > 5)
+        {
+            sql = "SELECT name,count FROM TCS_Group WHERE guid = '" + grade + "' AND isdel = 0";
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                str = dt.Rows[0][0].ToString() + "(" + dt.Rows[0][1].ToString() + ")";
+            }
+        }
 
         return str;
     }
