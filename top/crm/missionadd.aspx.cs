@@ -99,15 +99,40 @@ public partial class top_crm_missionadd : System.Web.UI.Page
         switch (typ)
         {
             case "unpay":
+                if (cuicontent.Length == 0)
+                {
+                    Response.Write("<script>alert('请填写内容！');history.go(-1);</script>");
+                    Response.End();
+                    return;
+                }
+
                 sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade, timecount,isstop) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + cuicontent + "','" + group + "','" + cuidate + "','" + isstop + "')";
                 break;
             case "birthday":
+                if (birthdaycontent.Length == 0)
+                {
+                    Response.Write("<script>alert('请填写内容！');history.go(-1);</script>");
+                    Response.End();
+                    return;
+                }
                 sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade,isstop) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + birthdaycontent + "','" + group + "','" + isstop + "')";
                 break;
             case "back":
+                if (backcontent.Length == 0)
+                {
+                    Response.Write("<script>alert('请填写内容！');history.go(-1);</script>");
+                    Response.End();
+                    return;
+                }
                 sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade, timecount,isstop) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + backcontent + "','" + group + "','" + backdate + "','" + isstop + "')";
                 break;
             case "act":
+                if (actcontent.Length == 0)
+                {
+                    Response.Write("<script>alert('请填写内容！');history.go(-1);</script>");
+                    Response.End();
+                    return;
+                }
                 sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade, senddate,isstop) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + actcontent + "','" + group + "','" + actdate + "','" + isstop + "')";
                 SendMutiMsg(actcontent, groupguid);
                 break;
