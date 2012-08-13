@@ -91,6 +91,7 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
         {
             string[] arrDetail = arr[i].Split(',');
             string buynick = arrDetail[1].Replace("\"", "");
+            string mobile = arrDetail[16].Replace("\"", "");
             //判断该顾客信息是否录入过
             sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '"+nick+"' AND buynick = '"+buynick+"'";
             //Response.Write(sql + "<br>");
@@ -98,7 +99,7 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
             if (count == "0")
             { 
                 //执行插入操作
-                InsertUserData(buynick);
+                InsertUserData(buynick, mobile);
                 index++;
             }
         }
@@ -111,7 +112,7 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
     /// 插入会员数据
     /// </summary>
     /// <param name="buynick"></param>
-    private void InsertUserData(string buynick)
+    private void InsertUserData(string buynick, string mobile)
     {
         string appkey = "12159997";
         string secret = "614e40bfdb96e9063031d1a9e56fbed5";
@@ -176,6 +177,9 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
             string receiver_district = GetValueByProperty(nickresult, "receiver_district");
             string receiver_address = GetValueByProperty(nickresult, "receiver_address");
             string receiver_mobile = GetValueByProperty(nickresult, "receiver_mobile");
+
+            if (receiver_mobile.Length == 0)
+                receiver_mobile = mobile;
 
             //Response.Write(nickresult + "<br><br>");
 
