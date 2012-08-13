@@ -40,7 +40,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
-                Response.Write("这个活动已经创建了这套模板.请从新选择模板！  <a href=\"activitysettemp1.aspx\">返回</a>");
+                Response.Write("这个活动已经创建了这套模板.请从新选择模板！  <a href=\"javascript:history.go(-1);\">返回</a>");
                 Response.End();
             }
             sql = "select * from tete_activitylist where status<>4 and ActivityID=" + Request.Form["selstr"].ToString();
@@ -66,7 +66,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
                     catch { }
                     html += "<td   width=\"100px\">  <input type=\"text\" id=\"zhekou" + dt.Rows[i]["ProductID"].ToString() + "\" size=\"10\" name=\"zhekou\" value=" + newprice + " /> 元 </td>";
                     html += "<td   width=\"80px\">  <input type=\"text\" id=\"sort" + dt.Rows[i]["ProductID"].ToString() + "\" size=\"10\" name=\"sort\" value=" + i.ToString() + " />  </td>";
-                    html += " <td   width=\"80px\">  <input type=\"text\"  size=\"8\"  name=\"rcount\" value=\"300\" /> </td><td><a onclick=\"deleteDIV('del1" + dt.Rows[i]["ProductID"].ToString() + "')\"  style=\"cursor:hand;\">删除</a></td></tr></table><input id=\"del1" + dt.Rows[i]["ProductID"].ToString() + "\" name=\"del\" value='' type=\"hidden\" ></div>";
+                    html += " <td   width=\"80px\">  <input type=\"text\"  size=\"8\"  name=\"rcount\" value=\"" + dt.Rows[i]["Rcount"].ToString() + "\" /> </td><td><a onclick=\"deleteDIV('del1" + dt.Rows[i]["ProductID"].ToString() + "')\"  style=\"cursor:hand;\">删除</a></td></tr></table><input id=\"del1" + dt.Rows[i]["ProductID"].ToString() + "\" name=\"del\" value='' type=\"hidden\" ></div>";
                     idstr = "," + i.ToString();
                 }
                 html += "<input type=\"hidden\" id=\"idss\" name=\"idss\" value=\"" + idstr + "\">";
