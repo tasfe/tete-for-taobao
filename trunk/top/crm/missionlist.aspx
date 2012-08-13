@@ -44,7 +44,7 @@
                 <ItemTemplate>
                 <tr>
                     <td height="35"><%#gettyp(Eval("typ").ToString())%></td>
-                    <td>全部会员</td>
+                    <td><%#checkGrade(Eval("grade").ToString())%></td>
                     <td><%#Eval("adddate")%></td>
                     <td><%#getsend(Eval("senddate").ToString())%></td>
                     <td><%#getstop(Eval("isstop").ToString())%></td>

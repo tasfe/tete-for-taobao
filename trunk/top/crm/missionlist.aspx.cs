@@ -74,6 +74,14 @@ public partial class top_crm_missionlist : System.Web.UI.Page
         rptArticle.DataBind();
     }
 
+    public static string checkGrade(string grade)
+    {
+        string str = string.Empty;
+
+
+        return str;
+    }
+
     public static string gettyp(string grade)
     {
         string str = string.Empty;
