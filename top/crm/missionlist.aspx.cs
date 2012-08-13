@@ -88,6 +88,10 @@ public partial class top_crm_missionlist : System.Web.UI.Page
                 str = dt.Rows[0][0].ToString() + "(" + dt.Rows[0][1].ToString() + ")";
             }
         }
+        else
+        {
+            str = "全部会员";
+        }
 
         return str;
     }
