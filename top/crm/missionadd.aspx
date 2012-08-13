@@ -145,7 +145,7 @@
                     <td>
                         <select name="sendnow" onchange="ShowDate(this)">
                             <option value="1">马上发送</option>
-                            <!--<option value="0">在指定时间发送</option>-->
+                            <option value="0">在指定时间发送</option>
                         </select>
                         会员多的情况下发送时间会比较长，请您耐心等待~
                     </td>
