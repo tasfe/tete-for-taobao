@@ -78,17 +78,19 @@ public partial class top_crm_missionlist : System.Web.UI.Page
     {
         string str = string.Empty;
         string sql = string.Empty;
-      
-        sql = "SELECT name,count FROM TCS_Group WHERE guid = '" + grade + "' AND isdel = 0";
-        DataTable dt = utils.ExecuteDataTable(sql);
-        if (dt.Rows.Count != 0)
-        {
-            str = dt.Rows[0][0].ToString() + "(" + dt.Rows[0][1].ToString() + ")";
-        }
-        
+
         if (grade.Length > 5)
         {
-            str = "全部会员" + "(" + dt.Rows[0][1].ToString() + ")";
+            sql = "SELECT name,count FROM TCS_Group WHERE guid = '" + grade + "' AND isdel = 0";
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                str = dt.Rows[0][0].ToString() + "(" + dt.Rows[0][1].ToString() + ")";
+            }
+        }
+        else
+        {
+            str = "全部会员";
         }
 
         return str;
