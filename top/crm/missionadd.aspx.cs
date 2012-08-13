@@ -134,6 +134,13 @@ public partial class top_crm_missionadd : System.Web.UI.Page
                     Response.End();
                     return;
                 }
+
+                //如果是立即发送
+                if (sendnow == "1")
+                {
+                    actdate = DateTime.Now.ToString();
+                }
+
                 sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade, senddate,isstop) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + actcontent + "','" + groupguid + "','" + actdate + "','" + isstop + "')";
                 //SendMutiMsg(actcontent, groupguid);
                 break;
