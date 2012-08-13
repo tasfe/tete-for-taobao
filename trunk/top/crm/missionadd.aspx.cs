@@ -86,7 +86,6 @@ public partial class top_crm_missionadd : System.Web.UI.Page
         string actcontent = utils.NewRequest("actcontent", utils.RequestType.Form);
         string isstop = utils.NewRequest("isstop", utils.RequestType.Form);
         string sendnow = utils.NewRequest("sendnow", utils.RequestType.Form);
-        string grade = utils.NewRequest("groupguid", utils.RequestType.Form);
 
         //判断是否有同类型活动
         sql = "SELECT COUNT(*) FROM TCS_Mission WHERE nick = '" + nick + "' AND typ = '" + typ + "' AND isdel = 0";
@@ -135,7 +134,7 @@ public partial class top_crm_missionadd : System.Web.UI.Page
                     Response.End();
                     return;
                 }
-                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade, senddate,isstop) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + actcontent + "','" + group + "','" + actdate + "','" + isstop + "')";
+                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade, senddate,isstop) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + actcontent + "','" + groupguid + "','" + actdate + "','" + isstop + "')";
                 //SendMutiMsg(actcontent, groupguid);
                 break;
         }
