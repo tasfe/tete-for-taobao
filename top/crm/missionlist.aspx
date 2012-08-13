@@ -38,6 +38,7 @@
                     <td width="120"><b>创建时间</b></td>
                     <td width="120"><b>执行时间</b></td>
                     <td width="70"><b>状态</b></td>
+                    <td width="70"><b>发送</b></td>
                     <td width="70"><b>操作</b></td>
                 </tr>
             <asp:Repeater ID="rptArticle" runat="server">
@@ -48,6 +49,7 @@
                     <td><%#Eval("adddate")%></td>
                     <td><%#getsend(Eval("senddate").ToString())%></td>
                     <td><%#getstop(Eval("isstop").ToString())%></td>
+                    <td><%#getsends(Eval("issend").ToString())%></td>
                     <td><a href='missionmodify.aspx?id=<%#Eval("guid") %>'>编辑</a> | <a href="missionlist.aspx?act=del&id=<%#Eval("guid") %>" onclick="return confirm('您确定要删除吗，该操作不可回复')">删除</a> </td>
                 </tr>
                 </ItemTemplate>

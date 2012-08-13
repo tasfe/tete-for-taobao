@@ -155,6 +155,23 @@ public partial class top_crm_missionlist : System.Web.UI.Page
         return str;
     }
 
+    public static string getsends(string grade)
+    {
+        string str = string.Empty;
+
+        if (grade == "0")
+        {
+            str = "<span style='#000'>未发送</span>";
+        }
+        else
+        {
+            str = "<span style='color:red'>发送成功</span>";
+
+        }
+
+        return str;
+    }
+
 
     /// <summary>
     /// 判断该用户是否订购了该服务
