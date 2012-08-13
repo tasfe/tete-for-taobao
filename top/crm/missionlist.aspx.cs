@@ -163,6 +163,11 @@ public partial class top_crm_missionlist : System.Web.UI.Page
         {
             str = "<span style='#000'>未发送</span>";
         }
+        else if (grade == "2")
+        {
+            str = "<span style='color:green'>发送中</span>";
+
+        }
         else
         {
             str = "<span style='color:red'>发送成功</span>";
