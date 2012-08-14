@@ -126,7 +126,7 @@
                 </td>
             </tr>
             
-            <tr>
+            <tr style="display:none">
                 <td align="left" height="30">店铺销售产品是否为虚拟商品：</td>
                 <td>
                     <input id="isxuni" name="isxuni" type="checkbox" value="1" <%=check(isxuni, "1") %> onclick="showXuniObj(this)" />
