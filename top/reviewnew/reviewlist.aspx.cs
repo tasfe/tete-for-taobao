@@ -5,6 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Common;
 using System.Data;
+using System.Text;
 
 public partial class top_review_reviewlist : System.Web.UI.Page
 {
@@ -45,6 +46,124 @@ public partial class top_review_reviewlist : System.Web.UI.Page
 
         BindData();
     }
+
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        StringBuilder builder = new StringBuilder();
+        //导出符合条件的评价列表
+        string sql = "SELECT * FROM TCS_TradeRate WHERE nick = '" + nick + "'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+
+        //获取卖家基本设置
+        sql = "SELECT * FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
+        DataTable dtShop = utils.ExecuteDataTable(sql);
+        if (dtShop.Rows.Count != 0)
+        {
+            builder.Append("买家昵称,评价内容,评价时间,订单号");
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (CheckContent(dt.Rows[i], dtShop))
+                {
+                    builder.Append("\r\n");
+                    builder.Append(dt.Rows[0]["buynick"].ToString() + ",");
+                    builder.Append(dt.Rows[0]["content"].ToString() + ",");
+                    builder.Append(dt.Rows[0]["reviewdate"].ToString() + ",");
+                    builder.Append(dt.Rows[0]["orderid"].ToString() + "");
+                }
+            }
+        }
+    }
+
+    private bool CheckContent(DataRow dataRow, DataTable dtShop)
+    {
+        //是否好评
+        if (dataRow["result"].ToString() != "good")
+        {
+            return false;
+        }
+
+        //自动内容审核
+        if (dtShop.Rows[0]["iskeyword"].ToString() == "1")
+        {
+            if (CheckContent(dtShop.Rows[0]["keywordisbad"].ToString(), dtShop.Rows[0]["keyword"].ToString(), dtShop.Rows[0]["badkeyword"].ToString(), dtShop.Rows[0]["wordcount"].ToString(), dataRow["content"].ToString()))
+            {
+                return false;
+            }
+        }
+
+        //默认好评判定
+        if (dtShop.Rows[0]["iscancelauto"].ToString() == "1"
+        && ((dataRow["content"].ToString() == "好评！" && dtShop.Rows[0]["cancel1"].ToString() == "1")
+            || ((dataRow["content"].ToString() == "评价方未及时做出评价,系统默认好评!" || dataRow["content"].ToString() == "评价方未及时做出评价,系统默认好评！") && dtShop.Rows[0]["cancel2"].ToString() == "1")
+        ))
+        {
+            return false;
+        }
+
+        string sql = "SELECT * FROM TCS_Trade WHERE orderid = '" + dataRow["orderid"].ToString() + "'";
+        DataTable dtTrade = utils.ExecuteDataTable(sql);
+        if (dtTrade.Rows.Count != 0)
+        {
+            //物流周期判定SELF
+            if (dtTrade.Rows[0]["typ"].ToString() == "self" && (DateTime.Parse(dtTrade.Rows[0]["reviewdate"].ToString()) - DateTime.Parse(dtTrade.Rows[0]["senddate"].ToString())).TotalSeconds > int.Parse(dtShop.Rows[0]["maxdate"].ToString()) * 86400)
+            {
+                return false;
+            }
+
+            //物流周期判定SYSTEM
+            if (dtTrade.Rows[0]["typ"].ToString() == "system" && (DateTime.Parse(dtTrade.Rows[0]["reviewdate"].ToString()) - DateTime.Parse(dtTrade.Rows[0]["shippingdate"].ToString())).TotalSeconds > int.Parse(dtShop.Rows[0]["mindate"].ToString()) * 86400)
+            {
+                return false;
+            }
+        }
+
+
+        return true;
+    }
+
+
+    private bool CheckContent(string isbad, string goodkey, string badkey, string len, string content)
+    {
+        //长度判断
+        if (content.Length < int.Parse(len))
+        {
+            return true;
+        }
+
+        //内容判断
+        if (isbad == "1")
+        {
+            string[] keyArray = badkey.Split('|');
+            for (int i = 0; i < keyArray.Length; i++)
+            {
+                if (keyArray[i] != "")
+                {
+                    if (content.IndexOf(keyArray[i].Trim()) != -1)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        else
+        {
+            string[] keyArray = goodkey.Split('|');
+            for (int i = 0; i < keyArray.Length; i++)
+            {
+                if (keyArray[i] != "")
+                {
+                    if (content.IndexOf(keyArray[i].Trim()) != -1)
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
 
     protected void Button1_Click(object sender, EventArgs e)
     {
