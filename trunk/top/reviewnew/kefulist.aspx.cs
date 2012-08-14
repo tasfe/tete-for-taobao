@@ -120,6 +120,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                 if (dt.Rows[0]["iskeyword"].ToString() == "1")
                 {
                     StartPassCheck(dt.Rows[0]["keywordisbad"].ToString(), dt.Rows[0]["keyword"].ToString(), dt.Rows[0]["badkeyword"].ToString(), dt.Rows[0]["wordcount"].ToString());
+                    Response.Write("<script>alert('过滤成功，不符合判定条件的评价已经被设置为不赠送！');window.location.href='kefulist.aspx';</script>");
                 }
                 else
                 {
