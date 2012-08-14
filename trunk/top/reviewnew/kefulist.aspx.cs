@@ -448,7 +448,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                     if (int.Parse(total) > 0)
                     {
                         //每张物流订单最多提示一次
-                        sql = "SELECT COUNT(*) FROM TCS_MsgSend WITH (NOLOCK) WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND  buynick = '" + buynick + "' AND typ = 'gift'";
+                        sql = "SELECT COUNT(*) FROM TCS_MsgSend WITH (NOLOCK) WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND  buynick = '" + buynick + "' AND nick = '" + nick + "' AND typ = 'gift'";
                         string giftCount = utils.ExecuteString(sql);
 
                         if (giftCount == "0")
