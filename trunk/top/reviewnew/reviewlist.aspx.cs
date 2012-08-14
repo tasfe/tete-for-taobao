@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using Common;
 using System.Data;
 using System.Text;
+using System.IO;
 
 public partial class top_review_reviewlist : System.Web.UI.Page
 {
@@ -72,6 +73,12 @@ public partial class top_review_reviewlist : System.Web.UI.Page
                     builder.Append(dt.Rows[0]["orderid"].ToString() + "");
                 }
             }
+
+            //生成excel文件
+            string fileName = "tmp/" + nick + DateTime.Now.Ticks.ToString() + ".csv";
+            File.WriteAllText(Server.MapPath(fileName), builder.ToString(), Encoding.Default);
+
+            Response.Redirect(fileName);
         }
     }
 
