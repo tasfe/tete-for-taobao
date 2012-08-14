@@ -331,6 +331,7 @@ public partial class top_groupbuy_activitysettemp1 : System.Web.UI.Page
             return str;
         }
         sqlstr = "select * from  tete_shoptempletimg where  nick='" + taobaoNick + "'  and templetID=" + tid + " and url='" + btvalue + ".png'";
+        Response.Write(sqlstr);
         DataTable dtr2 = utils.ExecuteDataTable(sqlstr);
         if (dtr2 != null && dtr2.Rows.Count > 0)
         {
