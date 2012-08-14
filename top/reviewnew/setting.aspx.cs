@@ -341,8 +341,8 @@ public partial class top_review_setting : System.Web.UI.Page
                         " '" + session + "', " +
                         " '" + utils.NewRequest("isalipay", utils.RequestType.Form) + "', " +
                         " '" + utils.NewRequest("alipayid", utils.RequestType.Form) + "', " +
-                        " '" + utils.NewRequest("cancel1", utils.RequestType.Form) == "1" ? "1" : "0" + "', " +
-                        " '" + utils.NewRequest("cancel2", utils.RequestType.Form) == "1" ? "1" : "0" + "', " +
+                        " '" + (utils.NewRequest("cancel1", utils.RequestType.Form) == "1" ? "1" : "0") + "', " +
+                        " '" + (utils.NewRequest("cancel2", utils.RequestType.Form) == "1" ? "1" : "0") + "', " +
                         " '" + utils.NewRequest("issendmsg", utils.RequestType.Form) + "' " +
                     ") ";
             utils.ExecuteNonQuery(sql);
@@ -362,8 +362,8 @@ public partial class top_review_setting : System.Web.UI.Page
                         "iskeyword = '" + utils.NewRequest("iskeyword", utils.RequestType.Form) + "', " +
                         "isalipay = '" + utils.NewRequest("isalipay", utils.RequestType.Form) + "', " +
                         "alipayid = '" + utils.NewRequest("alipayid", utils.RequestType.Form) + "', " +
-                        "cancel1 = '" + utils.NewRequest("cancel1", utils.RequestType.Form) == "1" ? "1" : "0" + "', " +
-                        "cancel2 = '" + utils.NewRequest("cancel2", utils.RequestType.Form) == "1" ? "1" : "0" + "', " +
+                        "cancel1 = '" + (utils.NewRequest("cancel1", utils.RequestType.Form) == "1" ? "1" : "0") + "', " +
+                        "cancel2 = '" + (utils.NewRequest("cancel2", utils.RequestType.Form) == "1" ? "1" : "0") + "', " +
                         "sessionold = '" + session + "', " +
                         "issendmsg = '" + utils.NewRequest("issendmsg", utils.RequestType.Form) + "' " +
                     "WHERE nick = '" + nick + "'";
