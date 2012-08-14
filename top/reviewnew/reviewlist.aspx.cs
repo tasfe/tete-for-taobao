@@ -67,10 +67,10 @@ public partial class top_review_reviewlist : System.Web.UI.Page
                 if (CheckContent(dt.Rows[i], dtShop))
                 {
                     builder.Append("\r\n");
-                    builder.Append(dt.Rows[0]["buynick"].ToString() + ",");
-                    builder.Append(dt.Rows[0]["content"].ToString() + ",");
-                    builder.Append(dt.Rows[0]["reviewdate"].ToString() + ",");
-                    builder.Append(dt.Rows[0]["orderid"].ToString() + "");
+                    builder.Append("\"" + dt.Rows[0]["buynick"].ToString() + "\",");
+                    builder.Append("\"" + dt.Rows[0]["content"].ToString() + "\",");
+                    builder.Append("\"" + dt.Rows[0]["reviewdate"].ToString() + "\",");
+                    builder.Append("\"" + dt.Rows[0]["orderid"].ToString() + "\"");
                 }
             }
 
