@@ -36,6 +36,8 @@ public partial class top_review_setting : System.Web.UI.Page
     public string isalipay = string.Empty;
     public string alipaystr = string.Empty;
     public string alipayid = string.Empty;
+    public string cancel1 = string.Empty;
+    public string cancel2 = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -139,6 +141,8 @@ public partial class top_review_setting : System.Web.UI.Page
             couponid = dt.Rows[0]["couponid"].ToString();
             isalipay = dt.Rows[0]["isalipay"].ToString();
             alipayid = dt.Rows[0]["alipayid"].ToString();
+            cancel1 = dt.Rows[0]["cancel1"].ToString();
+            cancel2 = dt.Rows[0]["cancel2"].ToString();
         }
         else
         { 
@@ -151,6 +155,8 @@ public partial class top_review_setting : System.Web.UI.Page
             iskeyword = "0";
             isalipay = "0";
             isfree = "0";
+            cancel1 = "1";
+            cancel2 = "1";
             
             ////默认B店开启审核
             //string typ = utils.ExecuteString("SELECT typ FROM TCS_ShopConfig WHERE nick = '" + nick + "'");
@@ -318,6 +324,8 @@ public partial class top_review_setting : System.Web.UI.Page
                         "sessionold, " +
                         "isalipay, " +
                         "alipayid, " +
+                        "cancel1, " +
+                        "cancel2, " +
                         "issendmsg " +
                     " ) VALUES ( " +
                         " '" + nick + "', " +
@@ -333,6 +341,8 @@ public partial class top_review_setting : System.Web.UI.Page
                         " '" + session + "', " +
                         " '" + utils.NewRequest("isalipay", utils.RequestType.Form) + "', " +
                         " '" + utils.NewRequest("alipayid", utils.RequestType.Form) + "', " +
+                        " '" + utils.NewRequest("cancel1", utils.RequestType.Form) == "1" ? "1" : "0" + "', " +
+                        " '" + utils.NewRequest("cancel2", utils.RequestType.Form) == "1" ? "1" : "0" + "', " +
                         " '" + utils.NewRequest("issendmsg", utils.RequestType.Form) + "' " +
                     ") ";
             utils.ExecuteNonQuery(sql);
@@ -352,6 +362,8 @@ public partial class top_review_setting : System.Web.UI.Page
                         "iskeyword = '" + utils.NewRequest("iskeyword", utils.RequestType.Form) + "', " +
                         "isalipay = '" + utils.NewRequest("isalipay", utils.RequestType.Form) + "', " +
                         "alipayid = '" + utils.NewRequest("alipayid", utils.RequestType.Form) + "', " +
+                        "cancel1 = '" + utils.NewRequest("cancel1", utils.RequestType.Form) == "1" ? "1" : "0" + "', " +
+                        "cancel2 = '" + utils.NewRequest("cancel2", utils.RequestType.Form) == "1" ? "1" : "0" + "', " +
                         "sessionold = '" + session + "', " +
                         "issendmsg = '" + utils.NewRequest("issendmsg", utils.RequestType.Form) + "' " +
                     "WHERE nick = '" + nick + "'";
