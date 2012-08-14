@@ -103,8 +103,8 @@
                     赠送<input name="iscancelauto" type="radio" value="0" <%=check(iscancelauto, "0") %> />
                     不赠送<input name="iscancelauto" type="radio" value="1" <%=check(iscancelauto, "1") %> />
                     |
-                    <input name="cancel1" type="checkbox" value="1" />好评！
-                    <input name="cancel2" type="checkbox" value="1" />评价方未及时做出评价,系统默认好评！
+                    <input name="cancel1" id="cancel1" type="checkbox" value="1" /><label for="cancel1">好评！</label>
+                    <input name="cancel2" id="cancel2" type="checkbox" value="1" /><label for="cancel2">评价方未及时做出评价,系统默认好评！</label>
                 </td>
             </tr>
             <tr>
