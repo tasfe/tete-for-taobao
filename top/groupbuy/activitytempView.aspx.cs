@@ -133,7 +133,7 @@ public partial class top_groupbuy_activitytempView : System.Web.UI.Page
             //如果为空返回HTML
             return str;
         }
-        sqlstr = "select * from  tete_shoptempletimg where nick='" + taobaoNick + "' and url='" + btvalue + ".png'";
+        sqlstr = "select * from  tete_shoptempletimg where nick='" + taobaoNick + "'  and templetID=" + tid+ " and url='" + btvalue + ".png'";
         DataTable dtr2 = utils.ExecuteDataTable(sqlstr);
         if (dtr2 != null && dtr2.Rows.Count > 0)
         {
