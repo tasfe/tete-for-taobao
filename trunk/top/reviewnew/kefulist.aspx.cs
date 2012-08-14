@@ -110,6 +110,92 @@ public partial class top_review_kefulist : System.Web.UI.Page
             }
             Response.Write("<script>alert('选中的订单【" + ids + "】已经设置为不赠送！');window.location.href='kefulist.aspx';</script>");
         }
+        else if (t == "pass")
+        {
+            string sql = "SELECT * FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                //判断客户是否开启了内容自动判定
+                if (dt.Rows[0]["iskeyword"].ToString() == "1")
+                {
+                    StartPassCheck(dt.Rows[0]["keywordisbad"].ToString(), dt.Rows[0]["keyword"].ToString(), dt.Rows[0]["badkeyword"].ToString(), dt.Rows[0]["wordcount"].ToString());
+                }
+                else
+                {
+                    Response.Write("<script>alert('请先在基本设置里面开启并设置“好评自动判定”！');window.location.href='kefulist.aspx';</script>");
+                }
+            }
+        }
+    }
+
+    private void StartPassCheck(string isbad, string goodkey, string badkey, string len)
+    {
+        string sql = string.Empty;
+        string content = string.Empty;
+
+        sql = "SELECT * FROM TCS_TradeRateCheck WHERE nick = '" + nick + "' AND ischeck = 0";
+
+        DataTable dt = utils.ExecuteDataTable(sql);
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            content = dt.Rows[i]["content"].ToString();
+
+            if (CheckContent(isbad, goodkey, badkey, len, content))
+            {
+                sql = "UPDATE TCS_TradeRateCheck SET issend = 2,ischeck = 1,checkdate = GETDATE() WHERE orderid = '" + dt.Rows[i]["orderid"].ToString() + "'";
+                utils.ExecuteNonQuery(sql);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 是否不满足条件
+    /// </summary>
+    /// <param name="isbad"></param>
+    /// <param name="keyword"></param>
+    /// <param name="len"></param>
+    /// <param name="content"></param>
+    /// <returns></returns>
+    private bool CheckContent(string isbad, string goodkey, string badkey, string len, string content)
+    {
+        //长度判断
+        if (content.Length < int.Parse(len))
+        {
+            return true;
+        }
+
+        //内容判断
+        if (isbad == "1")
+        {
+            string[] keyArray = badkey.Split('|');
+            for (int i = 0; i < keyArray.Length; i++)
+            {
+                if (keyArray[i] != "")
+                {
+                    if (content.IndexOf(keyArray[i].Trim()) != -1)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        else
+        {
+            string[] keyArray = goodkey.Split('|');
+            for (int i = 0; i < keyArray.Length; i++)
+            {
+                if (keyArray[i] != "")
+                {
+                    if (content.IndexOf(keyArray[i].Trim()) != -1)
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
 
