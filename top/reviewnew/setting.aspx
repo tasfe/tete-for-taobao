@@ -100,11 +100,13 @@
             <tr>
                 <td align="left" height="30">默认好评是否赠送：</td>
                 <td>
-                    赠送<input name="iscancelauto" type="radio" value="0" <%=check(iscancelauto, "0") %> />
-                    不赠送<input name="iscancelauto" type="radio" value="1" <%=check(iscancelauto, "1") %> />
+                    赠送<input name="iscancelauto" type="radio" value="0" <%=check(iscancelauto, "0") %> onclick="showCancel(0)" />
+                    不赠送<input name="iscancelauto" type="radio" value="1" <%=check(iscancelauto, "1") %> onclick="showCancel(1)" />
                     |
+                    <span id="cancelArea">
                     <input name="cancel1" id="cancel1" type="checkbox" value="1" <%=check(cancel1, "1") %> /><label for="cancel1">好评！</label>
                     <input name="cancel2" id="cancel2" type="checkbox" value="1" <%=check(cancel2, "1") %> /><label for="cancel2">评价方未及时做出评价,系统默认好评！</label>
+                    </span>
                 </td>
             </tr>
             <tr>
@@ -254,6 +256,20 @@
     showArea(<%=iscoupon %>);
     showAreaAli(<%=isalipay %>);
     showAreaFree(<%=isfree %>);
+
+    showCancel(<%=iscancelauto %>)
+
+    
+    function showCancel(flag) {
+        if(flag == "1")
+        {
+            document.getElementById("cancelArea").style.display = "none";
+        }
+        else
+        {
+            document.getElementById("cancelArea").style.display = "";
+        }
+    }
 
     function showAreaPhone() {
         document.getElementById("div1").style.display = "block";
