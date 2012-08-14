@@ -53,7 +53,7 @@ public partial class top_review_reviewlist : System.Web.UI.Page
     {
         StringBuilder builder = new StringBuilder();
         //导出符合条件的评价列表
-        string sql = "SELECT * FROM TCS_TradeRate WHERE nick = '" + nick + "'";
+        string sql = "SELECT * FROM TCS_TradeRate WHERE nick = '" + nick + "' ORDER BY reviewdate DESC";
         DataTable dt = utils.ExecuteDataTable(sql);
 
         //获取卖家基本设置
