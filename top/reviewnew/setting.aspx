@@ -261,7 +261,7 @@
 
     
     function showCancel(flag) {
-        if(flag == "1")
+        if(flag == "0")
         {
             document.getElementById("cancelArea").style.display = "none";
         }
