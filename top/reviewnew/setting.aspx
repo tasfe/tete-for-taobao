@@ -81,21 +81,6 @@
                     <a href="../freecard/freecardcustomer.aspx">查看赠送记录</a>
                 </td>
             </tr>
-            
-            <tr>
-                <td align="left" height="30">店铺销售产品是否为虚拟商品：</td>
-                <td>
-                    <input id="isxuni" name="isxuni" type="checkbox" value="1" <%=check(isxuni, "1") %> onclick="showXuniObj(this)" />
-                    （销售虚拟商品的店铺请勾选此项）
-                </td>
-            </tr>
-            <tr id="xuniArea">
-                <td align="left" height="30">虚拟商品最短评价时间：</td>
-                <td>
-                    <input id="xunidate" name="xunidate" type="text" value="<%=xunidate %>" size="2" /> 天 
-                    （虚拟商品按照买家拍下商品算起，几天内好评赠送，过期不送）
-                </td>
-            </tr>
 
             <tr>
                 <td align="left" height="30">淘宝提供物流跟踪订单最短评价时间：</td>
@@ -140,6 +125,22 @@
                     <a href="kefulist.aspx">查看待审核列表</a>
                 </td>
             </tr>
+            
+            <tr>
+                <td align="left" height="30">店铺销售产品是否为虚拟商品：</td>
+                <td>
+                    <input id="isxuni" name="isxuni" type="checkbox" value="1" <%=check(isxuni, "1") %> onclick="showXuniObj(this)" />
+                    （销售虚拟商品的店铺请勾选此项）
+                </td>
+            </tr>
+            <tr id="xuniArea">
+                <td align="left" height="30">虚拟商品最短评价时间：</td>
+                <td>
+                    <input id="xunidate" name="xunidate" type="text" value="<%=xunidate %>" size="2" /> 天 
+                    （虚拟商品按照买家拍下商品算起，几天内好评赠送，过期不送）
+                </td>
+            </tr>
+
             <tr>
                 <td align="left" colspan="2">
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" OnClientClick="return check()" />
