@@ -136,8 +136,8 @@
             <tr id="xuniArea">
                 <td align="left" height="30">虚拟商品最短评价时间：</td>
                 <td>
-                    <input id="xunidate" name="xunidate" type="text" value="<%=xunidate %>" size="2" /> 天 
-                    （虚拟商品按照买家拍下商品算起，几天内好评赠送，过期不送）
+                    <input id="xunidate" name="xunidate" type="text" value="<%=xunidate %>" size="2" /> 分钟
+                    （虚拟商品按照买家付款成功算起，多少分钟内不确认就发送催评短信）
                 </td>
             </tr>
 
