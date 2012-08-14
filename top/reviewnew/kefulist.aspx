@@ -43,6 +43,7 @@
         <input type="checkbox" onclick="selectAll()" />
         <input type="button" value="审核通过并赠送礼品" onclick="setOK()" />
         <input type="button" value="审核不通过" onclick="setNotOK()" />
+        <input type="button" value="一键过滤不满足内容判断的评价" onclick="passContent()" />
     </div>
         <table width="780" cellpadding="0" cellspacing="0">
         <tr>
@@ -98,6 +99,11 @@
 
     function setNotOK() {
         document.getElementById("t").value = "no";
+        document.getElementById("form1").submit();
+    }
+
+    function passContent() {
+        document.getElementById("t").value = "pass";
         document.getElementById("form1").submit();
     }
 
