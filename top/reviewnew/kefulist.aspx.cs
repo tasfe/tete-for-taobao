@@ -448,7 +448,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                     if (int.Parse(total) > 0)
                     {
                         //每张物流订单最多提示一次
-                        sql = "SELECT COUNT(*) FROM TCS_MsgSend WITH (NOLOCK) WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND  buynick = '" + buynick + "' AND nick = '" + nick + "' AND typ = 'gift'";
+                        sql = "SELECT COUNT(*) FROM TCS_MsgSend WITH (NOLOCK) WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND  buynick = '" + buynick + "' AND typ = 'gift'";
                         string giftCount = utils.ExecuteString(sql);
 
                         if (giftCount == "0")
@@ -1108,7 +1108,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
             return;
         }
 
-        string sqlNew = "SELECT b.*,c.giftcount,c.couponcount,t.totalprice FROM TCS_TradeRateCheck b INNER JOIN TCS_Customer c ON c.buynick = b.buynick LEFT JOIN TCS_Trade t ON t.orderid = b.orderid WHERE b.buynick = '" + search.Text.Trim().Replace("'", "''") + "' AND b.ischeck = 0 ORDER BY reviewdate DESC";
+        string sqlNew = "SELECT b.*,c.giftcount,c.couponcount,t.totalprice FROM TCS_TradeRateCheck b INNER JOIN TCS_Customer c ON c.buynick = b.buynick AND c.nick = '" + nick + "' LEFT JOIN TCS_Trade t ON t.orderid = b.orderid WHERE b.buynick = '" + search.Text.Trim().Replace("'", "''") + "' AND b.ischeck = 0 ORDER BY reviewdate DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
