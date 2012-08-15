@@ -12,8 +12,10 @@ public partial class top_reviewnew_api : System.Web.UI.Page
     {
         string result = string.Empty;
         string nick = utils.NewRequest("nick", utils.RequestType.QueryString);
+        nick = "迅泽点卡专营店";
         string orderid = utils.NewRequest("orderid", utils.RequestType.QueryString);
         string sql = "SELECT orderarea FROM TCS_Trade WHERE orderid = '" + orderid + "' AND nick = '" + nick + "'";
+        Response.Write(sql);
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
