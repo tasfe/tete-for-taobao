@@ -43,8 +43,8 @@
         </div>
 
         <table width="750">
-        <tr><td width="450" valign="top">
-        <table width="450">
+        <tr><td width="350" valign="top">
+        <table width="350">
             <tr>
                 <td align="left" width="250">
                     短信发送显示店铺名称 
@@ -52,7 +52,7 @@
             </tr>
             <tr>
                 <td align="left" width="500">
-                    <input id="shopname" name="shopname" value="<%=shopname %>" /> (尽量让您的店铺名精简，否则会使短信变的很长)
+                    <input id="shopname" name="shopname" value="<%=shopname %>" /> <br />(尽量让您的店铺名精简，否则会使短信变的很长)
                 </td>
             </tr>
             <tr>
@@ -129,9 +129,9 @@
             </tr>
         </table>
         </td>
-        <td width="300" valign="top">
+        <td width="350" valign="top">
             手机黑名单：<br />(在黑名单里面手机号码将不会发送短信，一行一个号码) <br />
-            <b>例如：13812345678<br />18600001111</b>
+            <b>例如：13812345678<br />18600001111</b><br />
             <textarea rows="16" cols="20" name="blacklist"><%=blacklist %></textarea>
         </td>
         </tr>
