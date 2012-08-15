@@ -132,7 +132,7 @@
             <td width="380" style="background:url('images/msgbg.jpg') 0 0 no-repeat;" valign="top">
                 <input type="hidden" name="yulanContent" id="yulanContent" />
                 <div id="yulan" style="margin:86px 0 0 52px; color:white; width:140px;"></div>
-                <div id="countArea" style="margin:86px 0 0 452px; color:white; width:140px;"></div>
+                <div id="countArea" style="margin:66px 0 0 52px; color:white; width:140px;">321321321321</div>
             </td>
         </tr>
             <tr>
