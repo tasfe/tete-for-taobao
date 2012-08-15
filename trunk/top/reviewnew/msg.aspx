@@ -44,7 +44,7 @@
 
         <table width="750">
         <tr>
-            <td width="370" valign="top">
+            <td width="370" valign="top" height="650">
         <table width="370">
             <tr>
                 <td align="left" width="250">
