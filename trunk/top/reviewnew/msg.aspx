@@ -43,7 +43,8 @@
         </div>
 
         <table width="750">
-        <tr><td width="370" valign="top">
+        <tr>
+            <td width="370" valign="top">
         <table width="370">
             <tr>
                 <td align="left" width="250">
@@ -62,7 +63,8 @@
             </tr>
             <tr id="Area1">
                 <td align="left" width="250">
-                    <textarea name="giftcontent" cols="40" rows="3"><%=giftcontent %></textarea>
+                    <textarea id="giftcontent" name="giftcontent" cols="40" rows="3"><%=giftcontent %></textarea>
+                    <input type="button" value="短信预览" onclick="yulanMsg('giftcontent')" />
                 </td>
             </tr>
             <tr>
@@ -72,7 +74,8 @@
             </tr>
             <tr id="Area4">
                 <td align="left" width="250">
-                    <textarea name="fahuocontent" cols="40" rows="3"><%=fahuocontent%></textarea>
+                    <textarea id="fahuocontent" name="fahuocontent" cols="40" rows="3"><%=fahuocontent%></textarea>
+                    <input type="button" value="短信预览" onclick="yulanMsg('fahuocontent')" />
                 </td>
             </tr>
             <tr>
@@ -82,7 +85,8 @@
             </tr>
             <tr id="Area2">
                 <td align="left" width="250">
-                    <textarea name="shippingcontent" cols="40" rows="3"><%=shippingcontent%></textarea>
+                    <textarea id="shippingcontent" name="shippingcontent" cols="40" rows="3"><%=shippingcontent%></textarea>
+                    <input type="button" value="短信预览" onclick="yulanMsg('shippingcontent')" />
                 </td>
             </tr>
             <tr>
@@ -92,7 +96,8 @@
             </tr>
             <tr id="Area3">
                 <td align="left" width="250">
-                    <textarea name="reviewcontent" cols="40" rows="3"><%=reviewcontent%></textarea><br />
+                    <textarea name="reviewcontent" cols="40" rows="3"><%=reviewcontent%></textarea>  
+                    <input type="button" value="短信预览" onclick="yulanMsg('reviewcontent')" /><br />
                     短信自动发送时间
                     <select name="reviewtime" id="reviewtime">
                         <option value="0">0</option>
@@ -124,8 +129,19 @@
             </tr>
         </table>
         </td>
-        
+            <td width="380" style="background:url('images/msgbg.jpg') 0 0 no-repeat;" valign="top">
+                <input type="hidden" name="yulanContent" id="yulanContent" />
+                <div id="yulan" style="margin:86px 0 0 52px; color:white; width:140px;"></div>
+            </td>
         </tr>
+            <tr>
+                <td align="left">
+                </td>
+                <td align="left">
+                    测试手机号码：<input name="testmobile" />
+                    <asp:Button ID="Button3" runat="server" onclick="Button3_Click" Text="测试发送" />
+                </td>
+            </tr>
             <tr>
                 <td align="left">
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" />
@@ -170,6 +186,12 @@
         } else {
             document.getElementById("Area4").style.display = "block";
         }
+    }
+
+    function yulanMsg(id){
+        var msg = document.getElementById(id).value
+        document.getElementById("yulanContent").value = msg;
+        document.getElementById("yulan").innerHTML = msg;
     }
 
     if(<%=giftflag %> == 1){

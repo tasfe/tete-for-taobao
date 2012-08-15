@@ -537,6 +537,10 @@ public partial class top_review_msg : System.Web.UI.Page
 
         return str;
     }
+
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+    }
     
     /// <summary>
     /// 保存设置
