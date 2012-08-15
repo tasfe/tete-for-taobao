@@ -189,7 +189,11 @@
     }
 
     function yulanMsg(id){
-        var msg = document.getElementById(id).value
+        var msg = document.getElementById(id).value;
+        shopname = document.getElementById("shopname").value;
+        msg = msg.replace("[shopname]", shopname);
+        msg = msg.replace("[gift]", "优惠券");
+
         document.getElementById("yulanContent").value = msg;
         document.getElementById("yulan").innerHTML = msg;
     }
