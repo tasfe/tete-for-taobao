@@ -43,8 +43,8 @@
         </div>
 
         <table width="750">
-        <tr><td width="500" valign="top">
-        <table width="500">
+        <tr><td width="450" valign="top">
+        <table width="450">
             <tr>
                 <td align="left" width="250">
                     短信发送显示店铺名称 
@@ -129,8 +129,9 @@
             </tr>
         </table>
         </td>
-        <td width="250" valign="top">
+        <td width="300" valign="top">
             手机黑名单：<br />(在黑名单里面手机号码将不会发送短信，一行一个号码) <br />
+            <b>例如：13812345678<br />18600001111</b>
             <textarea rows="16" cols="20" name="blacklist"><%=blacklist %></textarea>
         </td>
         </tr>
