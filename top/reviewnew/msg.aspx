@@ -129,6 +129,7 @@
             <tr>
                 <td align="left">
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" />
+                    <input type="button" value="短信黑名单" onclick="window.location.href='blacklist.aspx'" />
                 </td>
             </tr>
         </table>
