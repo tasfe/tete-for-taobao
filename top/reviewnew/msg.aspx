@@ -199,10 +199,10 @@
         msg = msg.replace("[shiptyp]", "圆通快递");
         msg = msg.replace("[shipnumber]", "1900209081740");
 
-        showMsg = "【本条短信共计个"+msg.length+"字符】";
+        showMsg = "本条短信共计个"+msg.length+"字符";
 
         if(msg.length > 66){
-            showMsg = "【本条短信共计个"+msg.length+"字符，被截取成66个字符】";
+            showMsg = "本条短信共计个"+msg.length+"字符，被截取成66个字符";
             msg = msg.substring(0,66);
         }
 
