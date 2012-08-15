@@ -42,8 +42,9 @@
             请大家尽量精简自己的短信内容，一条短信的内容不要超过66个字，否则您的短信内容将会被截取成66个字~ ：）
         </div>
 
-
-        <table width="700">
+        <table width="750">
+        <tr><td width="500">
+        <table width="500">
             <tr>
                 <td align="left" width="250">
                     短信发送显示店铺名称 
@@ -126,6 +127,13 @@
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" />
                 </td>
             </tr>
+        </table>
+        </td>
+        <td width="250">
+            手机黑名单：(在黑名单里面手机号码将不会发送短信，一行一个号码) <br />
+            <textarea rows="20" cols="20" name="blacklist"><%=blacklist %></textarea>
+        </td>
+        </tr>
         </table>
     </div>
 </div>
