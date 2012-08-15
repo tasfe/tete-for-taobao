@@ -193,6 +193,9 @@
         shopname = document.getElementById("shopname").value;
         msg = msg.replace("[shopname]", shopname);
         msg = msg.replace("[gift]", "优惠券");
+        msg = msg.replace("[buynick]", "买家0001");
+        msg = msg.replace("[shiptyp]", "圆通快递");
+        msg = msg.replace("[shipnumber]", "1900209081740");
 
         document.getElementById("yulanContent").value = msg;
         document.getElementById("yulan").innerHTML = msg;
