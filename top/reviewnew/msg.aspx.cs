@@ -320,20 +320,20 @@ public partial class top_review_msg : System.Web.UI.Page
             }
         }
 
-        //blacklist
-        sql = "SELECT * FROM TCS_BlackList WHERE nick = '" + nick + "'";
-        DataTable dtBlack = utils.ExecuteDataTable(sql);
-        for (int i = 0; i < dtBlack.Rows.Count; i++)
-        {
-            if (i == 0)
-            {
-                blacklist += dtBlack.Rows[i]["mobile"].ToString();
-            }
-            else
-            {
-                blacklist += "\r\n" + dtBlack.Rows[i]["mobile"].ToString();
-            }
-        }
+        ////blacklist
+        //sql = "SELECT * FROM TCS_BlackList WHERE nick = '" + nick + "'";
+        //DataTable dtBlack = utils.ExecuteDataTable(sql);
+        //for (int i = 0; i < dtBlack.Rows.Count; i++)
+        //{
+        //    if (i == 0)
+        //    {
+        //        blacklist += dtBlack.Rows[i]["mobile"].ToString();
+        //    }
+        //    else
+        //    {
+        //        blacklist += "\r\n" + dtBlack.Rows[i]["mobile"].ToString();
+        //    }
+        //}
     }
 
 
@@ -571,17 +571,17 @@ public partial class top_review_msg : System.Web.UI.Page
         sql = "INSERT INTO TCS_ShopActLog (nick, typ, message) VALUES ('" + nick + "', 'msg', '" + sql.Replace("'", "''") + "')";
         utils.ExecuteNonQuery(sql);
 
-        //delete
-        sql = "DELETE FROM TCS_BlackList WHERE nick = '" + nick + "'";
-        utils.ExecuteNonQuery(sql);
-        //insert
-        string black = utils.NewRequest("blacklist", utils.RequestType.Form);
-        string[] blackAry = Regex.Split(black, "\r\n");
-        for (int i = 0; i < blackAry.Length; i++)
-        {
-            sql = "INSERT INTO TCS_BlackList (nick, mobile) VALUES ('" + nick + "','" + blackAry[i] + "')";
-            utils.ExecuteNonQuery(sql);
-        }
+        ////delete
+        //sql = "DELETE FROM TCS_BlackList WHERE nick = '" + nick + "'";
+        //utils.ExecuteNonQuery(sql);
+        ////insert
+        //string black = utils.NewRequest("blacklist", utils.RequestType.Form);
+        //string[] blackAry = Regex.Split(black, "\r\n");
+        //for (int i = 0; i < blackAry.Length; i++)
+        //{
+        //    sql = "INSERT INTO TCS_BlackList (nick, mobile) VALUES ('" + nick + "','" + blackAry[i] + "')";
+        //    utils.ExecuteNonQuery(sql);
+        //}
 
         Response.Write("<script>alert('保存成功！');window.location.href='msg.aspx';</script>");
         Response.End();
