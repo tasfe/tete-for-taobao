@@ -43,7 +43,7 @@
         </div>
 
         <table width="750">
-        <tr><td width="500">
+        <tr><td width="500" valign="top">
         <table width="500">
             <tr>
                 <td align="left" width="250">
@@ -129,9 +129,9 @@
             </tr>
         </table>
         </td>
-        <td width="250">
+        <td width="250" valign="top">
             手机黑名单：(在黑名单里面手机号码将不会发送短信，一行一个号码) <br />
-            <textarea rows="20" cols="20" name="blacklist"><%=blacklist %></textarea>
+            <textarea rows="16" cols="20" name="blacklist"><%=blacklist %></textarea>
         </td>
         </tr>
         </table>
