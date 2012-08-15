@@ -540,6 +540,23 @@ public partial class top_review_msg : System.Web.UI.Page
 
     protected void Button3_Click(object sender, EventArgs e)
     {
+        string mobile = utils.NewRequest("testmobile", utils.RequestType.Form);
+        string content = utils.NewRequest("yulanContent", utils.RequestType.Form);
+
+        if (mobile.Length == 0)
+        {
+            Response.Write("<script>alert('请输入您要发送的手机号码！');history.go(-1);</script>");
+            Response.End();
+        }
+
+        if (content.Length == 0)
+        {
+            Response.Write("<script>alert('请先预览您要测试发送的短信内容！');history.go(-1);</script>");
+            Response.End();
+        }
+
+
+
         Response.Redirect("msg.aspx");
     }
     
