@@ -132,7 +132,7 @@
             <td width="380" style="background:url('images/msgbg.jpg') 0 0 no-repeat;" valign="top">
                 <input type="hidden" name="yulanContent" id="yulanContent" />
                 <div id="yulan" style="margin:86px 0 0 52px; color:white; width:140px;"></div>
-                <div id="count" style="margin:86px 0 0 452px; color:white; width:140px;"></div>
+                <div id="countArea" style="margin:86px 0 0 452px; color:white; width:140px;"></div>
             </td>
         </tr>
             <tr>
@@ -201,7 +201,7 @@
 
         document.getElementById("yulanContent").value = msg;
         document.getElementById("yulan").innerHTML = msg;
-        document.getElementById("count").innerHTML = "本条短信共计个"+msg.length+"字符";
+        document.getElementById("countArea").innerHTML = "本条短信共计个"+msg.length+"字符";
     }
 
     if(<%=giftflag %> == 1){
