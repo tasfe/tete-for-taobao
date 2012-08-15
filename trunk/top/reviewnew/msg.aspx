@@ -208,7 +208,7 @@
 
         document.getElementById("yulanContent").value = msg;
         document.getElementById("yulan").innerHTML = msg;
-        document.getElementById("countArea").innerHTML = 
+        document.getElementById("countArea").innerHTML = showMsg;
     }
 
     if(<%=giftflag %> == 1){
