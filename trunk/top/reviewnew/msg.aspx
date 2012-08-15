@@ -132,13 +132,15 @@
             <td width="380" style="background:url('images/msgbg.jpg') 0 0 no-repeat;" valign="top">
                 <input type="hidden" name="yulanContent" id="yulanContent" />
                 <div id="yulan" style="margin:86px 0 0 52px; color:white; width:140px;"></div>
+                <div id="count" style="margin:86px 0 0 452px; color:white; width:140px;"></div>
             </td>
         </tr>
             <tr>
                 <td align="left">
                 </td>
                 <td align="left">
-                    测试手机号码：<input name="testmobile" />
+                    您可以在这里填写您自己的手机号码测试短信的实际收到效果！<br />
+                    手机号码：<input name="testmobile" />
                     <asp:Button ID="Button3" runat="server" onclick="Button3_Click" Text="测试发送" />
                 </td>
             </tr>
@@ -199,6 +201,7 @@
 
         document.getElementById("yulanContent").value = msg;
         document.getElementById("yulan").innerHTML = msg;
+        document.getElementById("count").innerHTML = "本条短信共计个"+msg.length+"字符";
     }
 
     if(<%=giftflag %> == 1){
