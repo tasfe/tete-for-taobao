@@ -124,11 +124,7 @@
             </tr>
         </table>
         </td>
-        <td width="380" valign="top">
-            手机黑名单：<br />(在黑名单里面手机号码将不会发送短信，一行一个号码) <br />
-            <b>例如：<br />13812345678<br />18600001111</b><br />
-            <textarea rows="16" cols="20" name="blacklist"><%=blacklist %></textarea>
-        </td>
+        
         </tr>
             <tr>
                 <td align="left">
