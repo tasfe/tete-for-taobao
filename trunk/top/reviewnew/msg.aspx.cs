@@ -14,6 +14,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Xml;
+using System.Web.Security;
 
 public partial class top_review_msg : System.Web.UI.Page
 {
@@ -540,26 +541,149 @@ public partial class top_review_msg : System.Web.UI.Page
 
     protected void Button3_Click(object sender, EventArgs e)
     {
-        string mobile = utils.NewRequest("testmobile", utils.RequestType.Form);
-        string content = utils.NewRequest("yulanContent", utils.RequestType.Form);
+        string phone = utils.NewRequest("testmobile", utils.RequestType.Form);
+        string msg = utils.NewRequest("yulanContent", utils.RequestType.Form);
 
-        if (mobile.Length == 0)
+        if (phone.Length == 0)
         {
             Response.Write("<script>alert('请输入您要发送的手机号码！');history.go(-1);</script>");
             Response.End();
         }
 
-        if (content.Length == 0)
+        if (msg.Length == 0)
         {
             Response.Write("<script>alert('请先预览您要测试发送的短信内容！');history.go(-1);</script>");
             Response.End();
         }
 
+        string sql = "SELECT total FROM TCS_ShopConfig WITH (NOLOCK) WHERE nick = '" + nick + "'";
+        string total = utils.ExecuteString(sql);
+        if (int.Parse(total) > 0)
+        {
+            //强行截取
+            if (msg.Length > 66)
+            {
+                msg = msg.Substring(0, 66);
+            }
 
+            string result = SendMessage(phone, msg);
 
-        Response.Redirect("msg.aspx");
+            if (result != "0")
+            {
+                string number = "1";
+
+                //如果内容超过70个字则算2条
+                if (msg.Length > 70)
+                {
+                    number = "2";
+                }
+
+                //记录短信发送记录
+                sql = "INSERT INTO TCS_MsgSend (" +
+                                    "nick, " +
+                                    "buynick, " +
+                                    "mobile, " +
+                                    "[content], " +
+                                    "yiweiid, " +
+                                    "num, " +
+                                    "typ " +
+                                " ) VALUES ( " +
+                                    " '" + nick + "', " +
+                                    " '" + nick + "', " +
+                                    " '" + phone + "', " +
+                                    " '" + msg.Replace("'", "''") + "', " +
+                                    " '" + result + "', " +
+                                    " '" + number + "', " +
+                                    " 'test' " +
+                                ") ";
+                if (phone.Length != 0)
+                {
+                    utils.ExecuteNonQuery(sql);
+                }
+
+                //更新短信数量
+                sql = "UPDATE TCS_ShopConfig SET used = used + " + number + ",total = total-" + number + " WHERE nick = '" + nick + "'";
+                utils.ExecuteNonQuery(sql);
+            }
+        }
+        else
+        {
+            Response.Write("<script>alert('您的短信账户余额不足！');window.location.href='msg.aspx';</script>");
+            Response.End();
+        }
+
+        Response.Write("<script>alert('测试短信发送成功！');window.location.href='msg.aspx';</script>");
+        Response.End();
     }
-    
+
+
+    public static string UrlEncode(string str)
+    {
+        StringBuilder sb = new StringBuilder();
+        byte[] byStr = System.Text.Encoding.Default.GetBytes(str);
+        for (int i = 0; i < byStr.Length; i++)
+        {
+            sb.Append(@"%" + Convert.ToString(byStr[i], 16));
+        }
+
+        return (sb.ToString());
+    }
+
+    public static string MD5AAA(string str)
+    {
+        return FormsAuthentication.HashPasswordForStoringInConfigFile(str, "MD5");
+    }
+
+    public string SendMessage(string phone, string msg)
+    {
+        //有客户没有手机号也发送短信
+        if (phone.Length == 0)
+        {
+            return "0";
+        }
+
+        string uid = "ZXHD-SDK-0107-XNYFLX";
+        string pass = MD5AAA("WEGXBEPY").ToLower();
+
+        msg = UrlEncode(msg);
+
+        string param = "regcode=" + uid + "&pwd=" + pass + "&phone=" + phone + "&CONTENT=" + msg + "&extnum=11&level=1&schtime=null&reportflag=1&url=&smstype=0&key=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+        byte[] bs = Encoding.ASCII.GetBytes(param);
+
+        HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://sms.pica.com:8082/zqhdServer/sendSMS.jsp" + "?" + param);
+
+        req.Method = "GET";
+        //req.ContentType = "application/x-www-form-urlencoded";
+        //req.ContentLength = bs.Length;
+
+        //using (Stream reqStream = req.GetRequestStream())
+        //{
+        //    reqStream.Write(bs, 0, bs.Length);
+        //}
+
+        using (HttpWebResponse myResponse = (HttpWebResponse)req.GetResponse())
+        {
+            using (StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.GetEncoding("GB2312")))
+            {
+                string content = reader.ReadToEnd();
+
+                if (content.IndexOf("<result>0</result>") == -1)
+                {
+                    //发送失败
+                    return content;
+                }
+                else
+                {
+                    //发送成功
+                    Regex reg = new Regex(@"<sid>([^<]*)</sid>", RegexOptions.IgnoreCase);
+                    MatchCollection match = reg.Matches(content);
+                    string number = "888888";// match[0].Groups[1].ToString();
+                    return number;
+                }
+            }
+        }
+    }
+
     /// <summary>
     /// 保存设置
     /// </summary>
