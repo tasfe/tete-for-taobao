@@ -43,8 +43,8 @@
         </div>
 
         <table width="750">
-        <tr><td width="350" valign="top">
-        <table width="350">
+        <tr><td width="300" valign="top">
+        <table width="300">
             <tr>
                 <td align="left" width="250">
                     短信发送显示店铺名称 
@@ -122,19 +122,19 @@
                     </select>点
                 </td>
             </tr>
+        </table>
+        </td>
+        <td width="400" valign="top">
+            手机黑名单：<br />(在黑名单里面手机号码将不会发送短信，一行一个号码) <br />
+            <b>例如：<br />13812345678<br />18600001111</b><br />
+            <textarea rows="16" cols="20" name="blacklist"><%=blacklist %></textarea>
+        </td>
+        </tr>
             <tr>
                 <td align="left">
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" />
                 </td>
             </tr>
-        </table>
-        </td>
-        <td width="350" valign="top">
-            手机黑名单：<br />(在黑名单里面手机号码将不会发送短信，一行一个号码) <br />
-            <b>例如：13812345678<br />18600001111</b><br />
-            <textarea rows="16" cols="20" name="blacklist"><%=blacklist %></textarea>
-        </td>
-        </tr>
         </table>
     </div>
 </div>
