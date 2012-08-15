@@ -130,7 +130,7 @@
         </table>
         </td>
         <td width="250" valign="top">
-            手机黑名单：(在黑名单里面手机号码将不会发送短信，一行一个号码) <br />
+            手机黑名单：<br />(在黑名单里面手机号码将不会发送短信，一行一个号码) <br />
             <textarea rows="16" cols="20" name="blacklist"><%=blacklist %></textarea>
         </td>
         </tr>

@@ -85,6 +85,25 @@ public partial class top_review_kefulist : System.Web.UI.Page
     }
 
     /// <summary>
+    /// 是否为黑名单
+    /// </summary>
+    /// <param name="trade"></param>
+    /// <returns></returns>
+    private bool IsBlack(string nick, string mobile)
+    {
+        string sql = "SELECT COUNT(*) FROM TCS_BlackList WHERE nick = '" + nick + "' AND mobile = '" + mobile + "'";
+        string count = utils.ExecuteString(sql);
+        if (count == "0")
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    /// <summary>
     /// 批量操作
     /// </summary>
     private void MultiConfirm(string t, string ids)
@@ -314,42 +333,48 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                         msgAlipay = msgAlipay.Substring(0, 66);
                                     }
 
-                                    string result = SendMessage(phone, msgAlipay);
-                                    //记录短信发送记录
-                                    sql = "INSERT INTO TCS_MsgSend (" +
-                                                        "nick, " +
-                                                        "buynick, " +
-                                                        "mobile, " +
-                                                        "[content], " +
-                                                        "yiweiid, " +
-                                                        "num, " +
-                                                        "typ " +
-                                                    " ) VALUES ( " +
-                                                        " '" + nick + "', " +
-                                                        " '" + buynick + "', " +
-                                                        " '" + phone + "', " +
-                                                        " '" + msgAlipay + "', " +
-                                                        " '" + result + "', " +
-                                                        " '1', " +
-                                                        " 'alipay' " +
-                                                    ") ";
 
-                                    if (phone.Length != 0)
+
+                                    //黑名单判断
+                                    if (!IsBlack(nick, phone))
                                     {
-                                        //记录支付宝红包发送成功
-                                        utils.ExecuteNonQuery(sql);
+                                        string result = SendMessage(phone, msgAlipay);
+                                        //记录短信发送记录
+                                        sql = "INSERT INTO TCS_MsgSend (" +
+                                                            "nick, " +
+                                                            "buynick, " +
+                                                            "mobile, " +
+                                                            "[content], " +
+                                                            "yiweiid, " +
+                                                            "num, " +
+                                                            "typ " +
+                                                        " ) VALUES ( " +
+                                                            " '" + nick + "', " +
+                                                            " '" + buynick + "', " +
+                                                            " '" + phone + "', " +
+                                                            " '" + msgAlipay + "', " +
+                                                            " '" + result + "', " +
+                                                            " '1', " +
+                                                            " 'alipay' " +
+                                                        ") ";
 
-                                        sql = "UPDATE TCS_Alipay SET used = used + 1 WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "'";
-                                        utils.ExecuteNonQuery(sql);
+                                        if (phone.Length != 0)
+                                        {
+                                            //记录支付宝红包发送成功
+                                            utils.ExecuteNonQuery(sql);
 
-                                        //更新优惠券已经赠送数量
-                                        sql = "UPDATE TCS_AlipayDetail SET issend = 1,buynick = '" + buynick + "',senddate = GETDATE(), orderid = '" + id + "' WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND card = '" + dtAlipayDetailList.Rows[0]["card"].ToString() + "'";
-                                        utils.ExecuteNonQuery(sql);
+                                            sql = "UPDATE TCS_Alipay SET used = used + 1 WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "'";
+                                            utils.ExecuteNonQuery(sql);
 
-                                        
-                                        //更新短信数量
-                                        sql = "UPDATE TCS_ShopConfig SET used = used + 1,total = total-1 WHERE nick = '" + nick + "'";
-                                        utils.ExecuteNonQuery(sql);
+                                            //更新优惠券已经赠送数量
+                                            sql = "UPDATE TCS_AlipayDetail SET issend = 1,buynick = '" + buynick + "',senddate = GETDATE(), orderid = '" + id + "' WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND card = '" + dtAlipayDetailList.Rows[0]["card"].ToString() + "'";
+                                            utils.ExecuteNonQuery(sql);
+
+
+                                            //更新短信数量
+                                            sql = "UPDATE TCS_ShopConfig SET used = used + 1,total = total-1 WHERE nick = '" + nick + "'";
+                                            utils.ExecuteNonQuery(sql);
+                                        }
                                     }
                                 }
                             }
@@ -462,69 +487,73 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                 msg = msg.Substring(0, 66);
                             }
 
-                            string result = SendMessage(phone, msg);
-
-                            if (result != "0")
+                            //黑名单判断
+                            if (!IsBlack(nick, phone))
                             {
-                                string number = "1";
+                                string result = SendMessage(phone, msg);
 
-                                //如果内容超过70个字则算2条
-                                if (msg.Length > 66)
+                                if (result != "0")
                                 {
-                                    number = "2";
-                                }
+                                    string number = "1";
 
-                                //记录短信发送记录
-                                sql = "INSERT INTO TCS_MsgSend (" +
-                                                    "nick, " +
-                                                    "buynick, " +
-                                                    "mobile, " +
-                                                    "[content], " +
-                                                    "yiweiid, " +
-                                                    "num, " +
-                                                    "typ " +
-                                                " ) VALUES ( " +
-                                                    " '" + nick + "', " +
-                                                    " '" + buynick + "', " +
-                                                    " '" + phone + "', " +
-                                                    " '" + msg.Replace("'", "''") + "', " +
-                                                    " '" + result + "', " +
-                                                    " '" + number + "', " +
-                                                    " 'gift' " +
-                                                ") ";
+                                    //如果内容超过70个字则算2条
+                                    if (msg.Length > 66)
+                                    {
+                                        number = "2";
+                                    }
 
-                                if (phone.Length != 0)
-                                {
+                                    //记录短信发送记录
+                                    sql = "INSERT INTO TCS_MsgSend (" +
+                                                        "nick, " +
+                                                        "buynick, " +
+                                                        "mobile, " +
+                                                        "[content], " +
+                                                        "yiweiid, " +
+                                                        "num, " +
+                                                        "typ " +
+                                                    " ) VALUES ( " +
+                                                        " '" + nick + "', " +
+                                                        " '" + buynick + "', " +
+                                                        " '" + phone + "', " +
+                                                        " '" + msg.Replace("'", "''") + "', " +
+                                                        " '" + result + "', " +
+                                                        " '" + number + "', " +
+                                                        " 'gift' " +
+                                                    ") ";
+
+                                    if (phone.Length != 0)
+                                    {
+                                        utils.ExecuteNonQuery(sql);
+                                    }
+
+                                    ////更新状态
+                                    //sql = "UPDATE TopOrder SET isgiftmsg = 1 WHERE orderid = '" + id + "'";
+                                    //utils.ExecuteNonQuery(sql);
+
+                                    //更新短信数量
+                                    sql = "UPDATE TCS_ShopConfig SET used = used + " + number + ",total = total-" + number + " WHERE nick = '" + nick + "'";
                                     utils.ExecuteNonQuery(sql);
                                 }
-
-                                ////更新状态
-                                //sql = "UPDATE TopOrder SET isgiftmsg = 1 WHERE orderid = '" + id + "'";
-                                //utils.ExecuteNonQuery(sql);
-
-                                //更新短信数量
-                                sql = "UPDATE TCS_ShopConfig SET used = used + " + number + ",total = total-" + number + " WHERE nick = '" + nick + "'";
-                                utils.ExecuteNonQuery(sql);
-                            }
-                            else
-                            {
-                                ////记录短信发送记录
-                                //sql = "INSERT INTO TopMsgBak (" +
-                                //                    "nick, " +
-                                //                    "sendto, " +
-                                //                    "phone, " +
-                                //                    "[content], " +
-                                //                    "yiweiid, " +
-                                //                    "typ " +
-                                //                " ) VALUES ( " +
-                                //                    " '" + nick + "', " +
-                                //                    " '" + buynick + "', " +
-                                //                    " '" + phone + "', " +
-                                //                    " '" + msg + "', " +
-                                //                    " '" + result + "', " +
-                                //                    " 'gift' " +
-                                //                ") ";
-                                //utils.ExecuteNonQuery(sql);
+                                else
+                                {
+                                    ////记录短信发送记录
+                                    //sql = "INSERT INTO TopMsgBak (" +
+                                    //                    "nick, " +
+                                    //                    "sendto, " +
+                                    //                    "phone, " +
+                                    //                    "[content], " +
+                                    //                    "yiweiid, " +
+                                    //                    "typ " +
+                                    //                " ) VALUES ( " +
+                                    //                    " '" + nick + "', " +
+                                    //                    " '" + buynick + "', " +
+                                    //                    " '" + phone + "', " +
+                                    //                    " '" + msg + "', " +
+                                    //                    " '" + result + "', " +
+                                    //                    " 'gift' " +
+                                    //                ") ";
+                                    //utils.ExecuteNonQuery(sql);
+                                }
                             }
                         }
                     }
