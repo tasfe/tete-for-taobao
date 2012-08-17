@@ -155,23 +155,30 @@ public partial class top_crm_missionlist : System.Web.UI.Page
         return str;
     }
 
-    public static string getsends(string grade)
+    public static string getsends(string grade, string typ)
     {
         string str = string.Empty;
 
-        if (grade == "0")
+        if (typ == "act")
         {
-            str = "<span style='#000'>未发送</span>";
-        }
-        else if (grade == "2")
-        {
-            str = "<span style='color:green'>发送中</span>";
+            if (grade == "0")
+            {
+                str = "<span style='#000'>等待发送</span>";
+            }
+            else if (grade == "2")
+            {
+                str = "<span style='color:green'>发送中</span>";
 
+            }
+            else
+            {
+                str = "<span style='color:red'>发送成功</span>";
+
+            }
         }
         else
         {
-            str = "<span style='color:red'>发送成功</span>";
-
+            str = "<span style='color:green'>发送中</span>";
         }
 
         return str;
