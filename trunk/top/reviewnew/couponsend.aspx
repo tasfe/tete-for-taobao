@@ -34,6 +34,7 @@
 
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
+                <td width="100"><b>名称</b></td>
                 <td width="100"><b>优惠券编号</b></td>
                 <td width="120"><b>买家</b></td>
                 <td width="70"><b>优惠金额</b></td>
@@ -44,6 +45,7 @@
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
+                <td height="30"><%#Eval("name") %></td>
                 <td height="30"><%#Eval("taobaonumber") %></td>
                 <td><%#Eval("buynick") %></td>
                 <td>满<%#Eval("condition") %>元减<%#Eval("num") %>元</td>
