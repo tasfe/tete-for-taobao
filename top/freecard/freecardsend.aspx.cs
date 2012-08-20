@@ -102,14 +102,14 @@ public partial class top_freecard_freecardsend : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            sql = "SELECT COUNT(*) FROM TCS_FreeCard WHERE nick = '" + nick + "' AND buynick = '" + txtBuyerNick.Text + "'";
-            string count = utils.ExecuteString(sql);
-            if (count != "0")
-            {
-                Response.Write("<script>alert('不可对买家重复赠送包邮卡，如果需要修改买家包邮卡使用日期和限制请在赠送记录里面直接编辑买家的包邮卡');history.go(-1);</script>");
-                Response.End();
-                return;
-            }
+            //sql = "SELECT COUNT(*) FROM TCS_FreeCard WHERE nick = '" + nick + "' AND buynick = '" + txtBuyerNick.Text + "'";
+            //string count = utils.ExecuteString(sql);
+            //if (count != "0")
+            //{
+            //    Response.Write("<script>alert('不可对买家重复赠送包邮卡，如果需要修改买家包邮卡使用日期和限制请在赠送记录里面直接编辑买家的包邮卡');history.go(-1);</script>");
+            //    Response.End();
+            //    return;
+            //}
 
             string startdate = DateTime.Now.ToString();
             string enddate = DateTime.Now.ToString();
