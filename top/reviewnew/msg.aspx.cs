@@ -556,6 +556,15 @@ public partial class top_review_msg : System.Web.UI.Page
             Response.End();
         }
 
+        string black = string.Empty;
+        //判断是否为黑词
+        if (CheckIsBlack(msg, ref black))
+        {
+            Response.Write("<script>alert('测试短信内容包含黑词“" + black + "”！');history.go(-1);</script>");
+            Response.End();
+            return;
+        }
+
         string sql = "SELECT total FROM TCS_ShopConfig WITH (NOLOCK) WHERE nick = '" + nick + "'";
         string total = utils.ExecuteString(sql);
         if (int.Parse(total) > 0)
@@ -697,6 +706,43 @@ public partial class top_review_msg : System.Web.UI.Page
         string fahuoflag = utils.NewRequest("fahuoflag", utils.RequestType.Form) == "1" ? "1" : "0";
         string reviewtime = utils.NewRequest("reviewtime", utils.RequestType.Form);
 
+        string black = string.Empty;
+        //判断是否为黑词
+        if (CheckIsBlack(ReplaceStr(utils.NewRequest("giftcontent", utils.RequestType.Form)), ref black))
+        {
+            Response.Write("<script>alert('赠送礼品短信内容包含黑词“" + black + "”！');history.go(-1);</script>");
+            Response.End();
+            return;
+        }
+
+        if (CheckIsBlack(ReplaceStr(utils.NewRequest("fahuocontent", utils.RequestType.Form)), ref black))
+        {
+            Response.Write("<script>alert('订单发货后短信内容包含黑词“" + black + "”！');history.go(-1);</script>");
+            Response.End();
+            return;
+        }
+
+        if (CheckIsBlack(ReplaceStr(utils.NewRequest("shippingcontent", utils.RequestType.Form)), ref black))
+        {
+            Response.Write("<script>alert('物流签收短信内容包含黑词“" + black + "”！');history.go(-1);</script>");
+            Response.End();
+            return;
+        }
+
+        if (CheckIsBlack(ReplaceStr(utils.NewRequest("reviewcontent", utils.RequestType.Form)), ref black))
+        {
+            Response.Write("<script>alert('催评短信内容包含黑词“" + black + "”！');history.go(-1);</script>");
+            Response.End();
+            return;
+        }
+
+        if (CheckIsBlack(ReplaceStr(utils.NewRequest("shopname", utils.RequestType.Form)), ref black))
+        {
+            Response.Write("<script>alert('店铺名称内容包含黑词“" + black + "”！');history.go(-1);</script>");
+            Response.End();
+            return;
+        }
+
         string sql = "UPDATE TCS_ShopConfig SET " +
             "giftflag = '" + giftflag + "', " +
             "giftcontent = '" + ReplaceStr(utils.NewRequest("giftcontent", utils.RequestType.Form)) + "', " +
@@ -732,5 +778,21 @@ public partial class top_review_msg : System.Web.UI.Page
         Response.Write("<script>alert('保存成功！');window.location.href='msg.aspx';</script>");
         Response.End();
         return;
+    }
+
+    private bool CheckIsBlack(string p, ref string black)
+    {
+        string sql = "SELECT * FROM TCS_BlackWord";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            if (p.IndexOf(dt.Rows[i]["word"].ToString()) != -1)
+            {
+                black = dt.Rows[i]["word"].ToString();
+                return true;
+            }
+        }
+
+        return false;
     }
 }
