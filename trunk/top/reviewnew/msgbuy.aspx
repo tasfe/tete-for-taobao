@@ -30,7 +30,7 @@
     <div id="main-content">
 
 <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
-    因为找到了新的短信供应商，现在短信价格全面下调，短信最低7折，祝大家生意兴隆！
+    因为找到了新的短信供应商，现在短信价格全面下调，短信最低75折，祝大家生意兴隆！
 </div>
 
     <input type="button" value="返回短信设置页面" onclick="window.location.href='msg.aspx'" />
@@ -42,7 +42,7 @@
             每月500条短信可累积(9折)  45元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-5:1;' target="_blank">点击购买</a> (现在购买立即赠送10条短信) <br />
             每月1000条短信可累积(85折)  85元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-6:1;' target="_blank">点击购买</a> (现在购买立即赠送30条短信) <br />
             每月5000条短信可累积(8折)  400元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-7:1;' target="_blank">点击购买</a>  (现在购买立即赠送200条短信) <br />
-            每月10000条短信可累积(7折)  700元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-8:1;' target="_blank">点击购买</a>  (现在购买立即赠送500条短信) <br /><br />
+            每月10000条短信可累积(75折)  750元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-8:1;' target="_blank">点击购买</a>  (现在购买立即赠送500条短信) <br /><br />
             <b style="color:Red; font-size:28px">购买完毕后请重新进入好评有礼服务，否则短信充值不上去，非常感谢！</b>
 
              <br> 
