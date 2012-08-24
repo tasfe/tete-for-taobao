@@ -21,10 +21,6 @@ public partial class top_groupbuy_deletetaobaoitemsTs : System.Web.UI.Page
     public string aid = string.Empty;
     public string tSaid = string.Empty;
     public string logUrl = "D:/groupbuy.7fshop.com/wwwroot/top/groupbuy/ErrLog";
-    public string styleUrl = "D:/groupbuy.7fshop.com/wwwroot/top/groupbuy/tpl/stylenew1.html";//默认模板
-    public string styleUrl2 = "D:/groupbuy.7fshop.com/wwwroot/top/groupbuy/tpl/stylenew2.html";//第二套模板（一大三小）
-    public string styleUrl2smail = "D:/groupbuy.7fshop.com/wwwroot/top/groupbuy/tpl/stylenew2-1.html";//第二套模板（一大三小） 小模板 (团购模板第三套和第二套)
-    public string styleUrl3 = "D:/groupbuy.7fshop.com/wwwroot/top/groupbuy/tpl/stylenew3.html";//第三套模板（一排三列）
 
     protected void Page_Load(object sender, EventArgs e)
     {
