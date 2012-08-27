@@ -30,16 +30,16 @@ public partial class top_callback : System.Web.UI.Page
         {
             //记录
             string sql = string.Empty;
-            sql = "SELECT COUNT(*) FROM TCS_Tui WHERE nick = '" + nick + "' AND DATEDIFF(D,adddate, GETDATE()) = 0";
+            sql = "SELECT COUNT(*) FROM TCS_Tui WHERE nick = '" + buynick + "' AND DATEDIFF(D,adddate, GETDATE()) = 0";
             string count = utils.ExecuteString(sql);
             if (count == "0")
             {
-                sql = "INSERT INTO TCS_Tui (nick, ip, laiyuan) VALUES ('" + nick + "', '" + ip + "','" + laiyuan + "')";
+                sql = "INSERT INTO TCS_Tui (nick, ip, laiyuan) VALUES ('" + buynick + "', '" + ip + "','" + laiyuan + "')";
                 utils.ExecuteNonQuery(sql);
             }
             else
             {
-                sql = "UPDATE TCS_Tui SET count = count + 1 WHERE nick = '" + nick + "' AND DATEDIFF(D,adddate, GETDATE()) = 0";
+                sql = "UPDATE TCS_Tui SET count = count + 1 WHERE nick = '" + buynick + "' AND DATEDIFF(D,adddate, GETDATE()) = 0";
                 utils.ExecuteNonQuery(sql);
             }
 
