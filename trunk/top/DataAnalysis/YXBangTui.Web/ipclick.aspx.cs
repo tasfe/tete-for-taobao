@@ -34,7 +34,7 @@ public partial class ipclick : System.Web.UI.Page
             //获取访问IP
             string ip = Request.ServerVariables["REMOTE_ADDR"];
 
-            if (DateTime.Now.Hour > 0 && DateTime.Now.Hour < 17)
+            if (DateTime.Now.Hour >= 0 && DateTime.Now.Hour < 17)
             {
                 //获取当天已经访问来了的IP
                 IList<ClickIPInfo> ipList = clickDal.SelectAllClickIPByDate(DateTime.Now.ToString("yyyyMMdd"));
