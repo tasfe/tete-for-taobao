@@ -1,55 +1,59 @@
-<%@ Page Language="C#" MasterPageFile="~/MasterPage2.master" AutoEventWireup="true"
-    CodeFile="AddBaiDu.aspx.cs" Inherits="AddBaiDu" Title="∞Ÿ∂»Õ∆π„" %>
+Ôªø<%@ Page Language="C#" MasterPageFile="~/MasterPage2.master" AutoEventWireup="true"
+    CodeFile="AddBaiDu.aspx.cs" Inherits="AddBaiDu" Title="ÁôæÂ∫¶Êé®Âπø" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-      <div id="ContentLeft">
-    <div id="ContentLeftTop">
-      <div class="BarLeft"></div>
-      <div id="ContentLeftTopText">∞Ÿ∂»Õ∆π„</div>
-      <div class="BarRight"></div>
-      <div class="Cal"> </div>
+    <div id="ContentLeft">
+        <div id="ContentLeftTop">
+            <div class="BarLeft">
+            </div>
+            <div id="ContentLeftTopText">
+                ÁôæÂ∫¶Êé®Âπø</div>
+            <div class="BarRight">
+            </div>
+            <div class="Cal">
+            </div>
+        </div>
+        <div id="ContentLeftBox">
+            <ul>
+                <li><a href="#">&gt; ‰∏ÄÈîÆÊé®Âπø</a></li>
+                <li><a href="TuiList.aspx?type=1">&gt; Êé®ÂπøÂàóË°®</a></li>
+            </ul>
+        </div>
     </div>
-    <div id="ContentLeftBox">
-      <ul>
-        <li><a href="#"> &gt; “ªº¸Õ∆π„</a></li>
-         <li><a href="TuiList.aspx?type=1"> &gt; Õ∆π„¡–±Ì</a></li>
-      </ul>
-    </div>
-  </div>
-<div id="ContentRight">
-    <div id="ContentRightTop">
-      <div class="BarLeft"></div>
-      <div id="ContentRightTopText">“ªº¸Õ∆π„</div>
-      <div class="BarRight"></div>
-      <div class="Cal"></div>
-    </div>
-    <div id="ContentRightBox">
+    <div id="ContentRight">
+        <div id="ContentRightTop">
+            <div class="BarLeft">
+            </div>
+            <div id="ContentRightTopText">
+                ‰∏ÄÈîÆÊé®Âπø</div>
+            <div class="BarRight">
+            </div>
+            <div class="Cal">
+            </div>
+        </div>
+        <div id="ContentRightBox">
             <h2>
-                ∞Ÿ∂»Õ∆π„&nbsp;&gt;&gt;&nbsp; “ªº¸Õ∆π„£∫</h2>
-                
+                ÁôæÂ∫¶Êé®Âπø&nbsp;&gt;&gt;&nbsp; ‰∏ÄÈîÆÊé®ÂπøÔºö</h2>
             <br />
             <table width="100%" border="1" class="t1" id="mytab">
-   
-                    <tr class="a1">
-                        <td style="background-color: #E8F2FF;font-weight:bold;">
-                            µ⁄“ª≤Ω£∫—°‘Ò±¶±¥
-                        </td>
-                    </tr>
-                
+                <tr class="a1">
+                    <td style="background-color: #E8F2FF; font-weight: bold;">
+                        Á¨¨‰∏ÄÊ≠•ÔºöÈÄâÊã©ÂÆùË¥ù
+                    </td>
+                </tr>
             </table>
             <br />
             <div>
-                    <span>±¶±¥∑÷¿‡£∫</span><span id="Category">
-                        <asp:DropDownList ID="DDL_SellCate" runat="server">
-                        </asp:DropDownList>
-                    </span>&nbsp;&nbsp;&nbsp; <span>±¶±¥√˚: </span><span>
-                        <asp:TextBox ID="TB_GoodsName" Width="200px" runat="server" />
-                    </span>&nbsp;&nbsp;&nbsp;
-                    <asp:Button ID="Btn_Search" runat="server" Text="≤È ’“" OnClick="Btn_Search_Click" />
-                
+                <span>ÂÆùË¥ùÂàÜÁ±ªÔºö</span><span id="Category">
+                    <asp:DropDownList ID="DDL_SellCate" runat="server">
+                    </asp:DropDownList>
+                </span>&nbsp;&nbsp;&nbsp; <span>ÂÆùË¥ùÂêç: </span><span>
+                    <asp:TextBox ID="TB_GoodsName" Width="200px" runat="server" />
+                </span>&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="Btn_Search" runat="server" Text="Êü• Êâæ" OnClick="Btn_Search_Click" />
             </div>
-            <br>
-            <span class="red">πÿº¸◊÷(¥Àπÿº¸◊÷”√”⁄∞Ÿ∂»À—À˜“˝«Ê”≈ªØ πÿº¸◊÷◊È∫œ∫ÛΩ´≥…Œ™–¬µƒ±¶±¥±ÍÃ‚◊È∫œ)£∫</span>
+            <br />
+            <span class="red">ÂÖ≥ÈîÆÂ≠ó(Ê≠§ÂÖ≥ÈîÆÂ≠óÁî®‰∫éÁôæÂ∫¶ÊêúÁ¥¢ÂºïÊìé‰ºòÂåñ ÂÖ≥ÈîÆÂ≠óÁªÑÂêàÂêéÂ∞ÜÊàê‰∏∫Êñ∞ÁöÑÂÆùË¥ùÊ†áÈ¢òÁªÑÂêà)Ôºö</span>
             <div>
                 <span>
                     <asp:TextBox ID="TB_Key1" Width="110px" runat="server" MaxLength="15" /></span>&nbsp;
@@ -62,37 +66,37 @@
                 <span>
                     <asp:TextBox ID="TB_Key5" Width="110px" runat="server" MaxLength="15" /></span>&nbsp;
             </div>
-            <div style="margin-top:5px">
-                    <table>
-                        <asp:Repeater ID="Rpt_GoodsList" runat="server">
-                            <ItemTemplate>
-                                <tr>
-                                    <td>
-                                      <asp:RadioButton ID="RBtn_Goods" runat="server" />
-                                      <asp:Label Text='<%# Eval("GoodsId") %>' runat="server" Visible="false" ID="Lbl_GoodsId"></asp:Label>
-                                      <asp:Label Text='<%# Eval("GoodsPic") %>' runat="server" Visible="false" ID="Lbl_GoodsPic"></asp:Label>
-                                    </td>
-                                    <td>
-                                        <a target="_blank" href='http://item.taobao.com/item.htm?id=<%# Eval("GoodsId") %>'>
-                                            <img src='<%# Eval("GoodsPic") %>' class="taobaoimg"></a>
-                                    </td>
-                                    <td style="width: 540px;" class="taobaotitle">
-                                        <span id="title_7591614139">
-                                         <asp:Label ID="Lbl_GoodsName" Text='<%# Eval("GoodsName") %>' runat="server"></asp:Label></span><br>
-                                        <br>
-                                        <span id="result_7591614139"></span>
-                                    </td>
-                                </tr>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </table>
+            <div style="margin-top: 5px">
+                <table>
+                    <asp:Repeater ID="Rpt_GoodsList" runat="server">
+                        <ItemTemplate>
+                            <tr>
+                                <td>
+                                    <asp:RadioButton ID="RBtn_Goods" runat="server" />
+                                    <asp:Label Text='<%# Eval("GoodsId") %>' runat="server" Visible="false" ID="Lbl_GoodsId"></asp:Label>
+                                    <asp:Label Text='<%# Eval("GoodsPic") %>' runat="server" Visible="false" ID="Lbl_GoodsPic"></asp:Label>
+                                </td>
+                                <td>
+                                    <a target="_blank" href='http://item.taobao.com/item.htm?id=<%# Eval("GoodsId") %>'>
+                                        <img src='<%# Eval("GoodsPic") %>' class="taobaoimg" /></a>
+                                </td>
+                                <td style="width: 540px;" class="taobaotitle">
+                                    <span id="title_7591614139">
+                                        <asp:Label ID="Lbl_GoodsName" Text='<%# Eval("GoodsName") %>' runat="server"></asp:Label></span><br>
+                                    <br>
+                                    <span id="result_7591614139"></span>
+                                </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </table>
                 <div class="meneame" id="CommonPager">
-                    <span style="font-size: 14px;">π≤1“≥</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                    <span style="font-size: 14px;">ÂÖ±1È°µ</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
                         class="current">1</span></div>
             </div>
             <div style="text-align: center;">
-                <asp:Button ID="Btn_Next" Text="¡¢º¥Õ∆π„" runat="server" OnClick="Btn_Next_Click" />
+                <asp:Button ID="Btn_Next" Text="Á´ãÂç≥Êé®Âπø" runat="server" OnClick="Btn_Next_Click" />
             </div>
+        </div>
     </div>
-</div>    
 </asp:Content>
