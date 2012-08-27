@@ -94,4 +94,5 @@
                 <asp:Button ID="Btn_Next" Text="Á¢¼´ÍÆ¹ã" runat="server" OnClick="Btn_Next_Click" />
             </div>
     </div>
+</div>    
 </asp:Content>
