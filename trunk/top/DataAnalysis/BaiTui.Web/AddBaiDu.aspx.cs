@@ -13,7 +13,6 @@ using System.Xml.Linq;
 
 public partial class AddBaiDu : System.Web.UI.Page
 {
-
     GoodsService goodsDal = new GoodsService();
 
     protected void Page_Load(object sender, EventArgs e)
@@ -43,7 +42,7 @@ public partial class AddBaiDu : System.Web.UI.Page
     {
         string keys = CheckVali();
         string goodsId = "";
-        string goodsname="";
+        string goodsname = "";
         string goodspic = "";
         if (keys != "")
         {
