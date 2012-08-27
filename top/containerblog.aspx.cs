@@ -27,6 +27,7 @@ public partial class top_containerblog : System.Web.UI.Page
     public string isFirst = string.Empty;
     public string sendMsg = string.Empty;
     public string refreshToken = string.Empty;
+    public string ip = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -37,6 +38,7 @@ public partial class top_containerblog : System.Web.UI.Page
         string app_secret = "614e40bfdb96e9063031d1a9e56fbed5";
         string top_sign = utils.NewRequest("top_sign", utils.RequestType.QueryString).Replace(" ", "+"); //字符串中的+在获取后会被替换成空格，要再替换回来
         string sign = utils.NewRequest("sign", utils.RequestType.QueryString).Replace(" ", "+");
+        string laiyuan = utils.NewRequest("laiyuan", utils.RequestType.QueryString).Replace(" ", "+");
 
         versionNo = utils.NewRequest("versionNo", utils.RequestType.QueryString);
         string leaseId = utils.NewRequest("leaseId", utils.RequestType.QueryString).Replace(" ", "+"); //可以从 QueryString 来获取,也可以固定 
@@ -53,6 +55,7 @@ public partial class top_containerblog : System.Web.UI.Page
 
         nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["visitor_nick"];
         refreshToken = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["refresh_token"];
+        ip = Request.UserHostAddress;
 
         //验证客户版本参数是否正确
         if (versionNo != "")
@@ -90,6 +93,27 @@ public partial class top_containerblog : System.Web.UI.Page
         //    Response.Redirect("indexnew.html");
         //    return;
         //}
+
+        if (laiyuan != "")
+        {
+            //记录
+            string sql = string.Empty;
+            sql = "SELECT COUNT(*) FROM TCS_Tui WHERE nick = '" + nick + "' AND DATEDIFF(D,adddate, GETDATE()) = 0";
+            string count = utils.ExecuteString(sql);
+            if (count == "0")
+            {
+                sql = "INSERT INTO TCS_Tui (nick, ip, laiyuan) VALUES ('" + nick + "', '" + ip + "','" + laiyuan + "')";
+                utils.ExecuteNonQuery(sql);
+            }
+            else
+            {
+                sql = "UPDATE TCS_Tui SET count = count + 1 WHERE nick = '" + nick + "' AND DATEDIFF(D,adddate, GETDATE()) = 0";
+                utils.ExecuteNonQuery(sql);
+            }
+
+            Response.Redirect("http://fuwu.taobao.com/service/service.htm?service_code=service-0-22904&laiyuan=" + laiyuan);
+            return;
+        }
 
         File.WriteAllText(Server.MapPath("customer/" + nick + ".txt"), Request.Url.ToString());
 
@@ -212,7 +236,7 @@ public partial class top_containerblog : System.Web.UI.Page
             }
 
             //更新登录次数和最近登陆时间
-            string sql = "UPDATE TCS_ShopSession SET session='" + top_session + "',version='" + versionNo + "',plus='" + plus + "',token='" + refreshToken + "' WHERE nick = '" + nick + "'";
+            string sql = "UPDATE TCS_ShopSession SET session='" + top_session + "',version='" + versionNo + "',plus='" + plus + "',token='" + refreshToken + "',ip='" + ip + "' WHERE nick = '" + nick + "'";
             utils.ExecuteNonQuery(sql);
 
             //更新特殊用户
@@ -411,6 +435,7 @@ public partial class top_containerblog : System.Web.UI.Page
                        "version, " +
                        "plus, " +
                        "token, " +
+                       "ip, " +
                        "session" +
                    " ) VALUES ( " +
                        " '" + shop.Sid + "', " +
@@ -419,6 +444,7 @@ public partial class top_containerblog : System.Web.UI.Page
                        " '" + version + "', " +
                        " '" + plus + "', " +
                        " '" + refreshToken + "', " +
+                       " '" + ip + "', " +
                        " '" + top_session + "' " +
                  ") ";
 
