@@ -23,8 +23,29 @@ public partial class top_callback : System.Web.UI.Page
         string result = Base64Decode(top_parameters);
         buynick = Regex.Match(result, "visitor_nick=([^&]*)").Groups[1].ToString();
 
-        nick = "派邦奴旗舰店";
-        buynick = "妮妮开心每一天";
+        string laiyuan = utils.NewRequest("laiyuan", utils.RequestType.QueryString);
+        string ip = Request.UserHostAddress;
+
+        if (laiyuan != "")
+        {
+            //记录
+            string sql = string.Empty;
+            sql = "SELECT COUNT(*) FROM TCS_Tui WHERE nick = '" + nick + "' AND DATEDIFF(D,adddate, GETDATE()) = 0";
+            string count = utils.ExecuteString(sql);
+            if (count == "0")
+            {
+                sql = "INSERT INTO TCS_Tui (nick, ip, laiyuan) VALUES ('" + nick + "', '" + ip + "','" + laiyuan + "')";
+                utils.ExecuteNonQuery(sql);
+            }
+            else
+            {
+                sql = "UPDATE TCS_Tui SET count = count + 1 WHERE nick = '" + nick + "' AND DATEDIFF(D,adddate, GETDATE()) = 0";
+                utils.ExecuteNonQuery(sql);
+            }
+
+            Response.Redirect("http://fuwu.taobao.com/service/service.htm?service_code=service-0-22904&laiyuan=" + laiyuan);
+            return;
+        }
 
         Response.Redirect("reviewnew/haopingshow_190_1.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&buynick=" + HttpUtility.UrlEncode(buynick) + "");
         return;
