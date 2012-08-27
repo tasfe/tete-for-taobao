@@ -33,18 +33,22 @@ public partial class ipclick : System.Web.UI.Page
 
             //获取访问IP
             string ip = Request.ServerVariables["REMOTE_ADDR"];
-            //获取当天已经访问来了的IP
-            IList<ClickIPInfo> ipList = clickDal.SelectAllClickIPByDate(DateTime.Now.ToString("yyyyMMdd"));
-            //和当前IP相同的
-            ipList = ipList.Where(o => o.VisitIP == ip).ToList();
 
-            foreach (ClickIPInfo ipinfo in ipList)
+            if (DateTime.Now.Hour > 0 && DateTime.Now.Hour < 17)
             {
-                //已经访问了该广告
-                IList<UserAdsInfo> hadlist = list.Where(o => o.Id == ipinfo.UserAdsId).ToList();
-                if (hadlist.Count > 0)
+                //获取当天已经访问来了的IP
+                IList<ClickIPInfo> ipList = clickDal.SelectAllClickIPByDate(DateTime.Now.ToString("yyyyMMdd"));
+                //和当前IP相同的
+                ipList = ipList.Where(o => o.VisitIP == ip).ToList();
+
+                foreach (ClickIPInfo ipinfo in ipList)
                 {
-                    list.Remove(hadlist[0]);
+                    //已经访问了该广告
+                    IList<UserAdsInfo> hadlist = list.Where(o => o.Id == ipinfo.UserAdsId).ToList();
+                    if (hadlist.Count > 0)
+                    {
+                        list.Remove(hadlist[0]);
+                    }
                 }
             }
 
