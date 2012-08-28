@@ -61,6 +61,9 @@
                  <%# GetAdsType(Eval("AdsType").ToString()) %>
               </td>
               <td>
+                <img src='<%# Eval("AdsPic") %>' width="200px" height="100px" />
+              </td>
+              <td>
                 <asp:Button ID="BTN_Update" runat="server" Text="修改" CommandArgument='<%# Eval("AdsId") %>' CommandName="Up" />
                 <asp:Button ID="BTN_Delete" runat="server" Text="删除" CommandArgument='<%# Eval("AdsId") %>' CommandName="De"  /> 
               </td>
