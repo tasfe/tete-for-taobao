@@ -100,7 +100,7 @@ public partial class top_freecard_freecardadd : System.Web.UI.Page
         string areaisfree = utils.NewRequest("areaisfree", utils.RequestType.Form);
         string area = utils.NewRequest("area", utils.RequestType.Form);
 
-        string sql = "INSERT INTO TCS_FreeCardAction (name, carddate, usecount, nick, price, areaisfree, area) VALUES ('" + name + "','" + carddate + "','" + usecount + "', '" + nick + "', '" + price + "', '" + areaisfree + "', '" + area + "')";
+        string sql = "INSERT INTO TCS_FreeCardAction (name, carddate, usecount, nick, price, areaisfree, arealist) VALUES ('" + name + "','" + carddate + "','" + usecount + "', '" + nick + "', '" + price + "', '" + areaisfree + "', '" + area + "')";
         utils.ExecuteNonQuery(sql);
 
         Response.Redirect("freecardlist.aspx");
