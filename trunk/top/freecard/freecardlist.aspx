@@ -49,7 +49,7 @@
                 <td><%#Eval("carddate")%>个月</td>
                 <td><%#Eval("usecount")%></td>
                 <td><%#Eval("price")%>元</td>
-                <td><a title='<%=checkArea(Eval("areaisfree").ToString())%>\r\n<%#Eval("arealist")%>'>查看限制地区</a></td>
+                <td><a title='<%#checkArea(Eval("areaisfree").ToString())%>\r\n<%#Eval("arealist")%>'>查看限制地区</a></td>
                 <td><%#Eval("sendcount")%></td>
                 <td><a href='freecardlist.aspx?act=del&id=<%#Eval("guid")%>' onclick="return confirm('您确定要删除吗，该操作不可恢复？')">删除</a>
                 | <a href='freecardcustomer.aspx?id=<%#Eval("guid")%>'>查看赠送记录</a></td>
