@@ -56,6 +56,18 @@ public partial class top_freecard_freecardlist : System.Web.UI.Page
         BindData();
     }
 
+    public static string chechArea(string str)
+    {
+        if (str == "1")
+        {
+            return "【只有以下地区包邮】";
+        }
+        else
+        {
+            return "【以下地区不包邮】";
+        }
+    }
+
     /// <summary>
     /// 判断该用户是否订购了该服务
     /// </summary>

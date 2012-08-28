@@ -58,6 +58,49 @@
                     <input name="usecount" type="text" value="0" size="2" /> （此处指您创建的包邮卡可以免邮费的次数）
                 </td>
             </tr>
+            <tr>
+                <td align="left" height="30">地区限制：</td>
+                <td width="500">
+                    <input name="areaisfree" type="radio" value="0" checked />选中地区不包邮
+                    <input name="areaisfree" type="radio" value="1" />只有选中地区包邮 <br />
+
+                    <option type=checkbox name=area value="安徽">安徽
+          	        <option type=checkbox name=area value="北京">北京
+                    <option type=checkbox name=area value="重庆">重庆
+                    <option type=checkbox name=area value="福建">福建
+                    <option type=checkbox name=area value="甘肃">甘肃
+                    <option type=checkbox name=area value="广东">广东
+                    <option type=checkbox name=area value="广西">广西
+                    <option type=checkbox name=area value="贵州">贵州
+                    <option type=checkbox name=area value="海南">海南
+                    <option type=checkbox name=area value="河北">河北
+                    <option type=checkbox name=area value="黑龙江">黑龙江
+                    <option type=checkbox name=area value="河南">河南
+                    <option type=checkbox name=area value="湖北">湖北
+                    <option type=checkbox name=area value="湖南">湖南
+                    <option type=checkbox name=area value="江苏">江苏
+                    <option type=checkbox name=area value="江西">江西
+                    <option type=checkbox name=area value="吉林">吉林
+                    <option type=checkbox name=area value="辽宁">辽宁
+                    <option type=checkbox name=area value="内蒙古">内蒙古
+                    <option type=checkbox name=area value="宁夏">宁夏
+                    <option type=checkbox name=area value="青海">青海
+                    <option type=checkbox name=area value="山东">山东
+                    <option type=checkbox name=area value="上海">上海
+                    <option type=checkbox name=area value="山西">山西
+                    <option type=checkbox name=area value="陕西">陕西
+                    <option type=checkbox name=area value="四川">四川
+                    <option type=checkbox name=area value="天津">天津
+                    <option type=checkbox name=area value="新疆">新疆
+                    <option type=checkbox name=area value="西藏">西藏
+                    <option type=checkbox name=area value="云南">云南
+                    <option type=checkbox name=area value="浙江">浙江
+                    <option type=checkbox name=area value="香港">香港
+                    <option type=checkbox name=area value="澳门">澳门
+                    <option type=checkbox name=area value="台湾">台湾
+                    <option type=checkbox name=area value="海外">海外
+                </td>
+            </tr>
            
             <tr>
                 <td align="left" height="30" colspan="2">
