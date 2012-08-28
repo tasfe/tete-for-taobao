@@ -41,10 +41,10 @@ public partial class ipclick : System.Web.UI.Page
                 //和当前IP相同的
                 ipList = ipList.Where(o => o.VisitIP == ip).ToList();
 
-                foreach (ClickIPInfo ipinfo in ipList)
+                for (int i = 0; i < ipList.Count; i++)
                 {
                     //已经访问了该广告
-                    IList<UserAdsInfo> hadlist = list.Where(o => o.Id == ipinfo.UserAdsId).ToList();
+                    IList<UserAdsInfo> hadlist = list.Where(o => o.Id == ipList[i].UserAdsId).ToList();
                     if (hadlist.Count > 0)
                     {
                         list.Remove(hadlist[0]);
@@ -55,12 +55,12 @@ public partial class ipclick : System.Web.UI.Page
             if (list.Count == 0)
                 return;
 
-            foreach (ClickInfo cinfo in clickList)
+            for (int i = 0; i < clickList.Count; i++)
             {
 
-                if (cinfo.ClickCount >= rand.Next(6,15))//10)
+                if (clickList[i].ClickCount >= rand.Next(6, 15))//10)
                 {
-                    IList<UserAdsInfo> hadlist = list.Where(o => o.Id == cinfo.UserAdsId).ToList();
+                    IList<UserAdsInfo> hadlist = list.Where(o => o.Id == clickList[i].UserAdsId).ToList();
 
                     if (hadlist.Count > 0)
                     {
@@ -71,13 +71,13 @@ public partial class ipclick : System.Web.UI.Page
                                 list.Remove(hadlist[0]);
                             else
                             {
-                                if (cinfo.ClickCount >= rand.Next(14, 23))//18)
+                                if (clickList[i].ClickCount >= rand.Next(14, 23))//18)
                                     list.Remove(hadlist[0]);
                             }
                         }
                         if (finfo.AdsType == 5)
                         {
-                            if (cinfo.ClickCount >= rand.Next(22, 33)) //27)
+                            if (clickList[i].ClickCount >= rand.Next(22, 33)) //27)
                                 list.Remove(hadlist[0]);
                         }
                     }
