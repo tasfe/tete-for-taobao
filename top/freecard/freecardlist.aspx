@@ -33,13 +33,13 @@
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
                 <td width="100"><b>名称</b></td>
-                <td width="80"><b>创建时间</b></td>
-                <td width="80"><b>免邮时间</b></td>
-                <td width="80"><b>使用次数</b></td>
-                <td width="80"><b>满金额</b></td>
+                <td width="140"><b>创建时间</b></td>
+                <td width="60"><b>免邮时间</b></td>
+                <td width="60"><b>使用次数</b></td>
+                <td width="60"><b>满金额</b></td>
                 <td width="80"><b>地区</b></td>
                 <td width="80"><b>已领用</b> </td>
-                <td width="60"><b>操作</b></td>
+                <td width="100"><b>操作</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
