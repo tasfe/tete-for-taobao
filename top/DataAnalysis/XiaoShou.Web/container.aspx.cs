@@ -38,14 +38,14 @@ public partial class container : System.Web.UI.Page
 
         string agreementsign = utils.NewRequest("agreementsign", utils.RequestType.QueryString).Replace(" ", "+");
 
-        
+        Response.Write(Request.QueryString);
         if (!Top.Api.Util.TopUtils.VerifyTopResponse(top_parameters, top_session, top_sign, top_appkey, app_secret))
         {
             Response.Write("top签名验证不通过，请不要非法注入");
             Response.End();
             return;
         }
-
+        Response.Write(123);
         nick = Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["visitor_nick"];
         if (nick == null || nick == "")
         {
