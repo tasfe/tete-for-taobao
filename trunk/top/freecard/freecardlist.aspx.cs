@@ -56,7 +56,7 @@ public partial class top_freecard_freecardlist : System.Web.UI.Page
         BindData();
     }
 
-    public static string chechArea(string str)
+    public static string checkArea(string str)
     {
         if (str == "1")
         {
