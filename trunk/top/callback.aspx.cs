@@ -24,6 +24,7 @@ public partial class top_callback : System.Web.UI.Page
         buynick = Regex.Match(result, "visitor_nick=([^&]*)").Groups[1].ToString();
 
         string laiyuan = utils.NewRequest("laiyuan", utils.RequestType.QueryString);
+        string act = utils.NewRequest("action", utils.RequestType.QueryString);
         string ip = Request.UserHostAddress;
 
         if (laiyuan != "")
@@ -47,7 +48,17 @@ public partial class top_callback : System.Web.UI.Page
             return;
         }
 
-        Response.Redirect("reviewnew/haopingshow_190_1.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&buynick=" + HttpUtility.UrlEncode(buynick) + "");
+
+        if (act == "freecard")
+        {
+            //包邮卡查询
+            Response.Redirect("reviewnew/freesearch.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&buynick=" + HttpUtility.UrlEncode(buynick) + "");
+        }
+        else
+        {
+            Response.Redirect("reviewnew/haopingshow_190_1.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&buynick=" + HttpUtility.UrlEncode(buynick) + "");
+        }
+            
         return;
 
         //test
