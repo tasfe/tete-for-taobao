@@ -31,6 +31,14 @@ public partial class AddQQ : System.Web.UI.Page
                     nick = Session["snick"].ToString();
             }
 
+            IList<CateInfo> cateList = new CateService().SelectAllCateByNick(nick);
+            DDL_SellCate.DataSource = cateList;
+            DDL_SellCate.DataTextField = "CateName";
+            DDL_SellCate.DataValueField = "CateId";
+            DDL_SellCate.DataBind();
+
+            DDL_SellCate.Items.Insert(0, new ListItem("全部", "0"));
+
             //Rpt_GoodsList.DataSource = goodsDal.SelectAllGoodsByNick(nick);
             //Rpt_GoodsList.DataBind();
             Bind("", "");

@@ -53,7 +53,7 @@
                 </table>
             </div>
             <div id="CommonPager" class="meneame">
-               <asp:label ID="lblCurrentPage" runat="server"></asp:label>
+               <asp:label ID="lblCurrentPage" runat="server" Font-Size="Large"></asp:label>
             <asp:HyperLink id="lnkFrist" runat="server">首页</asp:HyperLink>
             <asp:HyperLink id="lnkPrev" runat="server">上一页</asp:HyperLink>
             <asp:HyperLink id="lnkNext" runat="server">下一页</asp:HyperLink> 
