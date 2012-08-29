@@ -452,6 +452,7 @@ public partial class top_review_html : System.Web.UI.Page
     {
         string appkey = "12159997";
         string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+        StringBuilder builder = new StringBuilder();
         //上传到宝贝描述
         TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
         for (int j = 1; j <= 500; j++)
@@ -493,6 +494,7 @@ public partial class top_review_html : System.Web.UI.Page
                     param.Add("num_iid", product.Content[i].NumIid.ToString());
                     param.Add("desc", newcontent);
                     string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update", session, param);
+                    builder.Append(resultpro + "\r\n");
                 }
                 catch
                 { }
@@ -504,6 +506,7 @@ public partial class top_review_html : System.Web.UI.Page
             }
         }
 
+        File.WriteAllText(Server.MapPath("htmlLog/" + DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + nick + ".txt"), builder.ToString());
 
         Response.Write("<script>alert('清除成功！');window.location.href='html.aspx';</script>");
         Response.End();
