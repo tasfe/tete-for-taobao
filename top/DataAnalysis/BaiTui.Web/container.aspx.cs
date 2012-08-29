@@ -42,10 +42,10 @@ public partial class container : System.Web.UI.Page
              * &y=13
              * &x=36*/
             //签名验证
-            string top_appkey = "12133190";
+            string top_appkey = "12579340";
             string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString).Replace(" ", "+");
             top_session = utils.NewRequest("top_session", utils.RequestType.QueryString).Replace(" ", "+");
-            string app_secret = "3442d45c5dcc79decbe8ff4db855a800";
+            string app_secret = "5b384ce1102e72ee0643c5b303e2a96a";
             string top_sign = utils.NewRequest("top_sign", utils.RequestType.QueryString).Replace(" ", "+");
             string sign = utils.NewRequest("sign", utils.RequestType.QueryString).Replace(" ", "+");
 
