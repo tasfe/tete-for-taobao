@@ -216,24 +216,27 @@ public partial class container : System.Web.UI.Page
     {
         if (Request.Cookies["nick"] == null)
         {
-            IList<TaoBaoGoodsClassInfo> classList = TopAPI.GetGoodsClassInfoList(nick, session);
-
-            if (classList != null)
+            if (new GoodsService().SelectGoodsCountByNick(nick) == 0)
             {
-                TaoBaoGoodsClassService tbgcDal = new TaoBaoGoodsClassService();
+                IList<TaoBaoGoodsClassInfo> classList = TopAPI.GetGoodsClassInfoList(nick, session);
 
-                foreach (TaoBaoGoodsClassInfo cinfo in classList)
+                if (classList != null)
                 {
-                    tbgcDal.InsertGoodsClass(cinfo, nick);
+                    TaoBaoGoodsClassService tbgcDal = new TaoBaoGoodsClassService();
+
+                    foreach (TaoBaoGoodsClassInfo cinfo in classList)
+                    {
+                        tbgcDal.InsertGoodsClass(cinfo, nick);
+                    }
                 }
-            }
 
-            GoodsService goodsDal = new GoodsService();
-            IList<TaoBaoGoodsInfo> list = TopAPI.GetGoodsInfoListByNick(nick, session);
+                GoodsService goodsDal = new GoodsService();
+                IList<TaoBaoGoodsInfo> list = TopAPI.GetGoodsInfoListByNick(nick, session);
 
-            foreach (TaoBaoGoodsInfo info in list)
-            {
-                goodsDal.InsertGoodsInfo(info, nick);
+                foreach (TaoBaoGoodsInfo info in list)
+                {
+                    goodsDal.InsertGoodsInfo(info, nick);
+                }
             }
         }
 

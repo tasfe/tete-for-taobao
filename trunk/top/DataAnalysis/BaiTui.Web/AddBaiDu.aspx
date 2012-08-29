@@ -94,7 +94,7 @@
                    <%-- <span style="font-size: 14px;">共1页</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
                         class="current">1</span>--%>
                       
-            <asp:label ID="lblCurrentPage" runat="server"></asp:label>
+            <asp:label ID="lblCurrentPage" runat="server" Font-Size="Large"></asp:label>
             <asp:HyperLink id="lnkFrist" runat="server">首页</asp:HyperLink>
             <asp:HyperLink id="lnkPrev" runat="server">上一页</asp:HyperLink>
             <asp:HyperLink id="lnkNext" runat="server">下一页</asp:HyperLink> 
