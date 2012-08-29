@@ -501,7 +501,6 @@ public partial class top_review_html : System.Web.UI.Page
                 { }
             }
 
-            File.WriteAllText(Server.MapPath("htmlLog/" + DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + nick + ".txt"), builder.ToString());
 
             if (product.Content.Count < 200)
             {
@@ -509,6 +508,7 @@ public partial class top_review_html : System.Web.UI.Page
             }
         }
 
+        File.WriteAllText(Server.MapPath("htmlLog/" + DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + nick + ".txt"), builder.ToString());
 
         Response.Write("<script>alert('清除成功！');</script>");
         Response.End();
