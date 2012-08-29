@@ -37,8 +37,19 @@
                     <br>
                     使用步骤：<br>
                     <span class="red" style="font-weight: bold;">
-                    1、勾选宝贝，根据宝贝分类选择需要QQ推广或是百度推广的宝贝。<br>
-                    2、一键QQ或百度推广，可以一键推广到指定的网站中去。腾讯微博、QQ空间等网站支持分享图片。
+                    <p />
+                    1、点击打<a href="AddBaiDu.aspx">百度推广</a>或<a href="AddQQ.aspx">QQ推广</a>页面，按下图所示操作
+                    <div style="height:10px"></div>
+                    <img src="Images/bai1.jpg" width="670px" />
+                    
+                    
+                    2、点击推广后，在打开的页面中按下图操作
+                     <div style="height:10px"></div>
+                     <img src="Images/bai2.jpg" width="670px" />
+                     
+                       3、操作成功后，以后每次只需要点击<a href="TuiList.aspx">推广列表</a>,按下图操作
+                     <div style="height:10px"></div>
+                     <img src="Images/bai3.jpg" width="670px" />
                     </span>
                 </p>		
                 <br />
