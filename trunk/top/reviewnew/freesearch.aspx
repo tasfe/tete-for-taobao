@@ -28,7 +28,7 @@
                 <td><%#Eval("carddate")%>个月</td>
                 <td><%#Eval("usecount")%></td>
                 <td><%#Eval("price")%>元</td>
-                <td><a title='<%#checkArea(Eval("areaisfree").ToString())%>\r\n<%#Eval("arealist")%>'>查看限制地区</a></td>
+                <td><%#Eval("arealist")%></td>
                 <td><%#Eval("sendcount")%></td>
             </tr>
             </ItemTemplate>
