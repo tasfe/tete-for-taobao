@@ -91,8 +91,16 @@
                     </asp:Repeater>
                 </table>
                 <div class="meneame" id="CommonPager">
-                    <span style="font-size: 14px;">共1页</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-                        class="current">1</span></div>
+                   <%-- <span style="font-size: 14px;">共1页</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                        class="current">1</span>--%>
+                      
+            <asp:label ID="lblCurrentPage" runat="server"></asp:label>
+            <asp:HyperLink id="lnkFrist" runat="server">首页</asp:HyperLink>
+            <asp:HyperLink id="lnkPrev" runat="server">上一页</asp:HyperLink>
+            <asp:HyperLink id="lnkNext" runat="server">下一页</asp:HyperLink> 
+            <asp:HyperLink id="lnkEnd" runat="server">尾页</asp:HyperLink>
+     
+               </div>
             </div>
             <div style="text-align: center;">
                 <asp:Button ID="Btn_Next" Text="立即推广" runat="server" OnClick="Btn_Next_Click" />
