@@ -338,6 +338,7 @@ public partial class top_review_html : System.Web.UI.Page
         string name = utils.NewRequest("detail", utils.RequestType.Form);
         string istop = utils.NewRequest("detailimgistop", utils.RequestType.Form);
         string sql = "UPDATE TCS_ShopConfig SET detailimgname = '" + name + "', detailimgistop = '" + istop + "' WHERE nick = '" + nick + "'";
+        StringBuilder builder = new StringBuilder();
 
         utils.ExecuteNonQuery(sql);
 
@@ -369,6 +370,7 @@ public partial class top_review_html : System.Web.UI.Page
                     param.Add("num_iid", product.Content[i].NumIid.ToString());
                     param.Add("desc", newcontent);
                     string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update", session, param);
+                    builder.Append(resultpro + "\r\n");
                 }
                 catch
                 { }
@@ -379,6 +381,8 @@ public partial class top_review_html : System.Web.UI.Page
                 break;
             }
         }
+
+        File.WriteAllText("htmlLog/"+Server.MapPath(DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + nick + ".txt"), builder.ToString());
 
         Response.Write("<script>alert('同步成功！');window.location.href='html.aspx';</script>");
         Response.End();
