@@ -34,10 +34,20 @@
             <table cellspacing="0" cellpadding="0" border="0">
                 <tr>
                     <td width="100%" align="left" style="font-size: 16px;">
+                    
+                     
+                    
                         <p>
                             <img src="http://a.tbcdn.cn/sys/wangwang/smiley/48x48/68.gif" />
                             您好,欢迎您使用特推广_店铺推广专家!&nbsp;</p>
+                            
+                              <p>
+                       为了更精准的找到目标客户，我公司特推出特搜索搜索引擎推广，详情请查看
+                       <a href="http://fuwu.taobao.com/serv/detail.htm?service_id=24224"
+                                target="_blank" title="推广">特搜索推广</a></p>
                         <p>
+                        
+                        
                             立即 <a href="/UserAddAds.aspx">推广宝贝</a>&nbsp;立即&nbsp;<a href="/AddShopAds.aspx">推广店铺</a></p>
                         <p>
                             您还可以<a href="/AddShopAds.aspx">推广淘宝以外网站</a></p>
