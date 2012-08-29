@@ -14,9 +14,25 @@ public class GoodsService
 
     const string SQL_DELETE = "DELETE FROM BangT_Goods WHERE Nick=@Nick";
 
+    const string SQL_SELECT_NICK = "select COUNT(*) from dbo.BangT_Goods where nick=@nick";
+
     public int DeleteGoodsByNick(string nick)
     {
         return DBHelper.ExecuteNonQuery(SQL_DELETE, new SqlParameter("@Nick", nick));
+    }
+
+    public int SelectGoodsCountByNick(string nick)
+    {
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_NICK, new SqlParameter("@nick", nick));
+
+        foreach (DataRow dr in dt.Rows)
+        {
+            if (dr[0] == DBNull.Value)
+                return 0;
+            return int.Parse(dr[0].ToString());
+        }
+
+        return 0;
     }
 
     public IList<GoodsInfo> SelectAllGoodsByNick(string nick)
