@@ -382,7 +382,7 @@ public partial class top_review_html : System.Web.UI.Page
             }
         }
 
-        File.WriteAllText("htmlLog/"+Server.MapPath(DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + nick + ".txt"), builder.ToString());
+        File.WriteAllText(Server.MapPath("htmlLog/" + DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + nick + ".txt"), builder.ToString());
 
         Response.Write("<script>alert('同步成功！');window.location.href='html.aspx';</script>");
         Response.End();
