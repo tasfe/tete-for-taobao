@@ -16,7 +16,6 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
         //StringBuilder builder = new StringBuilder();
 
         string sql = "SELECT * FROM TCS_FreeCard WHERE nick = '" + nick + "' AND buynick = '" + buynick + "'";
-        Response.Write(sql);
 
         DataTable dt = utils.ExecuteDataTable(sql);
 
