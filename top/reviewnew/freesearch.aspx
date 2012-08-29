@@ -12,22 +12,20 @@
         
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
-                <td width="140"><b>创建时间</b></td>
+                <td width="140"><b>领取时间</b></td>
                 <td width="60"><b>免邮时间</b></td>
                 <td width="60"><b>使用次数</b></td>
                 <td width="60"><b>满金额</b></td>
                 <td width="80"><b>地区</b></td>
-                <td width="80"><b>已领用</b> </td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
-                <td height="35"><%#Eval("adddate")%></td>
+                <td height="35"><%#Eval("startdate")%></td>
                 <td height="35"><%#Eval("carddate")%>个月</td>
-                <td><%#Eval("usecount")%></td>
+                <td><%#Eval("usecount")%>/<%#Eval("usecountlimit")%></td>
                 <td><%#Eval("price")%>元</td>
                 <td><%#Eval("arealist")%></td>
-                <td><%#Eval("sendcount")%></td>
             </tr>
             </ItemTemplate>
         </asp:Repeater>
