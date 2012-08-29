@@ -493,7 +493,7 @@ public partial class top_review_html : System.Web.UI.Page
                     param.Add("desc", newcontent);
                     string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update", session, param);
 
-                    Response.Write(resultpro + "<br>\r\n");
+                    //Response.Write(resultpro + "<br>\r\n");
                 }
                 catch
                 { }
