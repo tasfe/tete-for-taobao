@@ -21,6 +21,12 @@ public partial class container : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        if (!string.IsNullOrEmpty(Request.QueryString["code"]) && !string.IsNullOrEmpty(Request.QueryString["state"]))
+        {
+            Response.Redirect("https://oauth.taobao.com/token?client_id=21093339&client_secret=c1c22ba85fb91bd20279213ef7b9ee80&grant_type=authorization_code&code=" + Request.QueryString["code"] + "&redirect_uri=http://www.fensehenghuo.com/container.aspx");
+        }
+
         //签名验证
         top_appkey = "21093339";
         app_secret = "c1c22ba85fb91bd20279213ef7b9ee80";
