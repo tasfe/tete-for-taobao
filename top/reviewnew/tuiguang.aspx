@@ -32,6 +32,27 @@
 
         <hr />
 
+
+        <table>
+    <tr>
+        <td>IP</td>
+        <td>PV</td>
+        <td>日期</td>
+    </tr>
+        <asp:Repeater ID="Repeater3" runat="server">
+            <ItemTemplate>
+            <tr>
+              <td> <%#Eval("count1") %> </td>
+              <td> <%#Eval("count2")%> </td>
+              <td> <%#Eval("count3")%> </td>
+              </tr>
+            </ItemTemplate>
+        </asp:Repeater>
+        </table>
+
+        
+        <hr />
+
         <table>
         <tr>
             <td valign="top">

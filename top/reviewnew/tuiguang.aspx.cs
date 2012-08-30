@@ -54,5 +54,15 @@ AND (laiyuan = 'bangpaiht' OR laiyuan = 'bangpaift')
 
         Repeater2.DataSource = dt2;
         Repeater2.DataBind();
+
+
+
+        sql = @"SELECT COUNT(*) AS count1,SUM(count) AS count2,DATEDIFF(D,adddate, GETDATE()) AS count3 FROM [TCS_Tui]
+  GROUP BY DATEDIFF(D,adddate, GETDATE())";
+
+        DataTable dt3 = utils.ExecuteDataTable(sql);
+
+        Repeater3.DataSource = dt3;
+        Repeater3.DataBind();
     }
 }
