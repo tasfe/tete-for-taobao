@@ -16,10 +16,10 @@ public partial class top_reviewnew_tuiguang : System.Web.UI.Page
                       ,[ip]
                       ,[laiyuan]
                   FROM [TeteCrmSaasNew].[dbo].[TCS_Tui]
-                  WHERE nick in
+                  WHERE (nick in
                   (select nick from TCS_ShopSession WHERE version > 1)
                   OR ip in
-                   (select ip from TCS_ShopSession where ip is not null AND version > 1)
+                   (select ip from TCS_ShopSession where ip is not null AND version > 1))
 AND (laiyuan = 'bangpaiht' OR laiyuan = 'bangpaift')
                   order by adddate desc";
 
