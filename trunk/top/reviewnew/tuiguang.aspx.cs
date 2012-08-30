@@ -33,12 +33,25 @@ public partial class top_reviewnew_tuiguang : System.Web.UI.Page
                       ,[count]
                       ,[ip]
                       ,[laiyuan]
-                  FROM [TeteCrmSaasNew].[dbo].[TCS_Tui]
+                  FROM [TeteCrmSaasNew].[dbo].[TCS_Tui] WHERE laiyuan = 'bangpaiht'
                   order by adddate desc";
 
         DataTable dt1 = utils.ExecuteDataTable(sql);
 
         Repeater1.DataSource = dt1;
         Repeater1.DataBind();
+
+        sql = @"SELECT TOP 1000 [nick]
+                      ,[adddate]
+                      ,[count]
+                      ,[ip]
+                      ,[laiyuan]
+                  FROM [TeteCrmSaasNew].[dbo].[TCS_Tui] WHERE laiyuan = 'bangpaift'
+                  order by adddate desc";
+
+        DataTable dt2 = utils.ExecuteDataTable(sql);
+
+        Repeater2.DataSource = dt2;
+        Repeater2.DataBind();
     }
 }
