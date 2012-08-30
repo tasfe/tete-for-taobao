@@ -32,7 +32,7 @@ public partial class top_callback : System.Web.UI.Page
         {
             //记录
             string sql = string.Empty;
-            sql = "SELECT COUNT(*) FROM TCS_Tui WHERE nick = '" + buynick + "' AND DATEDIFF(D,adddate, GETDATE()) = 0";
+            sql = "SELECT COUNT(*) FROM TCS_Tui WHERE nick = '" + buynick + "' AND ip = '" + ip + "' AND DATEDIFF(D,adddate, GETDATE()) = 0";
             string count = utils.ExecuteString(sql);
             if (count == "0")
             {
@@ -41,7 +41,7 @@ public partial class top_callback : System.Web.UI.Page
             }
             else
             {
-                sql = "UPDATE TCS_Tui SET count = count + 1 WHERE nick = '" + buynick + "' AND DATEDIFF(D,adddate, GETDATE()) = 0";
+                sql = "UPDATE TCS_Tui SET count = count + 1 WHERE nick = '" + buynick + "' AND ip = '" + ip + "' AND DATEDIFF(D,adddate, GETDATE()) = 0";
                 utils.ExecuteNonQuery(sql);
             }
 
