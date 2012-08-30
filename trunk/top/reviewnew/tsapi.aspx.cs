@@ -38,7 +38,31 @@ public partial class top_reviewnew_tsapi : System.Web.UI.Page
             case "testmsg":
                 OutGiftMsg("test");
                 break;
+            case "taobaomsg":
+                OutTaobaoMsg();
+                break;
         }
+    }
+
+    private void OutTaobaoMsg()
+    {
+        string sql = string.Empty;
+        string str = string.Empty;
+        
+        sql = "SELECT COUNT(*) FROM TCS_TaobaoMsgLog WHERE typ = 'TradeSellerShip' AND isok = 0";
+        str = utils.ExecuteString(sql);
+
+        sql = "SELECT COUNT(*) FROM TCS_TaobaoMsgLog WHERE typ = 'TradeCreate' AND isok = 0";
+        str += ","+utils.ExecuteString(sql);
+
+        sql = "SELECT COUNT(*) FROM TCS_TaobaoMsgLog WHERE typ = 'TradeRated' AND isok = 0";
+        str += "," + utils.ExecuteString(sql);
+
+        sql = "SELECT COUNT(*) FROM TCS_TaobaoMsgLog WHERE typ = 'TradeBuyerPay' AND isok = 0";
+        str += "," + utils.ExecuteString(sql);
+
+        Response.Write(str);
+        Response.End();
     }
 
     private void OutGiftMsg(string typ)
