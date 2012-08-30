@@ -42,9 +42,9 @@
                             您好,欢迎您使用特推广_店铺推广专家!&nbsp;</p>
                             
                               <p>
-                       为了更精准的找到目标客户，我公司特推出特搜索搜索引擎推广，详情请查看
+                       为了更精准的找到目标客户，我公司特推出特搜索搜索引擎推广，<br />详情请查看
                        <a href="http://fuwu.taobao.com/serv/detail.htm?service_id=24224"
-                                target="_blank" title="推广">特搜索推广</a></p>
+                                target="_blank" title="推广" style="color:Red">特搜索推广</a></p>
                         <p>
                         
                         
