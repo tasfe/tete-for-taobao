@@ -13,20 +13,41 @@ public partial class top_reviewnew_tsapi : System.Web.UI.Page
         string act = utils.NewRequest("act", utils.RequestType.QueryString);
 
         switch (act)
-        { 
+        {
             case "giftmsg":
-                OutGiftMsg();
+                OutGiftMsg("gift");
+                break;
+            case "actmsg":
+                OutGiftMsg("act");
+                break;
+            case "alipaymsg":
+                OutGiftMsg("alipay");
+                break;
+            case "cuimsg":
+                OutGiftMsg("cui");
+                break;
+            case "fahuomsg":
+                OutGiftMsg("fahuo");
+                break;
+            case "reviewmsg":
+                OutGiftMsg("review");
+                break;
+            case "shippingmsg":
+                OutGiftMsg("shipping");
+                break;
+            case "testmsg":
+                OutGiftMsg("test");
                 break;
         }
     }
 
-    private void OutGiftMsg()
+    private void OutGiftMsg(string typ)
     {
         string str = string.Empty;
-        string sql = "SELECT COUNT(*) FROM TCS_MsgSend WHERE typ='gift' AND DATEDIFF(D,adddate,GETDATE()) = 0";
+        string sql = "SELECT COUNT(*) FROM TCS_MsgSend WHERE typ='" + typ + "' AND DATEDIFF(D,adddate,GETDATE()) = 0";
         str = utils.ExecuteString(sql);
 
-        sql = "SELECT TOP 1 * FROM TCS_MsgSend WHERE typ='gift' AND DATEDIFF(D,adddate,GETDATE()) = 0 ORDER BY adddate DESC";
+        sql = "SELECT TOP 1 * FROM TCS_MsgSend WHERE typ='" + typ + "' AND DATEDIFF(D,adddate,GETDATE()) = 0 ORDER BY adddate DESC";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
