@@ -34,7 +34,7 @@
 
         <table>
         <tr>
-            <td>
+            <td valign="top">
             
         <table>
     <tr>
@@ -57,7 +57,7 @@
         </asp:Repeater>
         </table>
             </td>
-            <td>
+            <td valign="top">
             
         <table>
     <tr>
