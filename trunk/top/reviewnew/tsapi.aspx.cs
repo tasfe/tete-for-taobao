@@ -30,11 +30,11 @@ public partial class top_reviewnew_tsapi : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            str += "," + dt.Rows[0]["adddate"].ToString() + "," + dt.Rows[0]["content"].ToString();
+            str += "|" + dt.Rows[0]["adddate"].ToString() + "|" + dt.Rows[0]["content"].ToString();
         }
         else
         {
-            str += ",,";
+            str += "||";
         }
 
         Response.Write(str);
