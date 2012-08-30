@@ -26,5 +26,19 @@ public partial class top_reviewnew_tuiguang : System.Web.UI.Page
 
         rpt.DataSource = dt;
         rpt.DataBind();
+
+
+        sql = @"SELECT TOP 1000 [nick]
+                      ,[adddate]
+                      ,[count]
+                      ,[ip]
+                      ,[laiyuan]
+                  FROM [TeteCrmSaasNew].[dbo].[TCS_Tui]
+                  order by adddate desc";
+
+        DataTable dt1 = utils.ExecuteDataTable(sql);
+
+        Repeater1.DataSource = dt1;
+        Repeater1.DataBind();
     }
 }
