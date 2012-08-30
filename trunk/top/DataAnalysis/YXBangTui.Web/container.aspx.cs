@@ -170,6 +170,8 @@ public partial class container : System.Web.UI.Page
                         utils.ExecuteNonQuery(sql);
                         sql = "UPDATE BangT_Buys SET isexpied=0,buytime=GETDATE(),ExpiedTime = '" + deadline + "',FeeId='" + guid + "' WHERE nick='" + u + "'";
                         utils.ExecuteNonQuery(sql);
+
+                        CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLBUYNINFO);
                     }
 
                     //update xufei
@@ -184,6 +186,8 @@ public partial class container : System.Web.UI.Page
                             utils.ExecuteNonQuery(sql);
                             sql = "UPDATE BangT_Buys SET isexpied=0,buytime=GETDATE(),ExpiedTime = '" + deadline + "',FeeId='" + guid + "' WHERE nick='" + u + "'";
                             utils.ExecuteNonQuery(sql);
+
+                            CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLBUYNINFO);
                         }
 
                         //判断淘宝获取的到期日期跟数据库里日期是否一致
@@ -196,6 +200,8 @@ public partial class container : System.Web.UI.Page
 
                                 sql = "UPDATE BangT_Buys SET isexpied=0,buytime=GETDATE(),ExpiedTime = '" + deadline + "' WHERE nick='" + u + "'";
                                 utils.ExecuteNonQuery(sql);
+
+                                CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLBUYNINFO);
                             }
                         }
                     }
@@ -205,6 +211,8 @@ public partial class container : System.Web.UI.Page
                     //插入
                     sql = "INSERT INTO BangT_Buys ([Nick],[FeeId],[BuyTime],[IsExpied],ExpiedTime) VALUES ('" + u + "','" + guid + "',GETDATE(),0,'" + deadline + "')";
                     utils.ExecuteNonQuery(sql);
+
+                    CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLBUYNINFO);
                 }
             }
         }
@@ -263,10 +271,10 @@ public partial class container : System.Web.UI.Page
         UserGetRequest request = new UserGetRequest();
         request.Fields = "user_id,nick,seller_credit";
         request.Nick = nick;
-        User user = client.UserGet(request, session);
+        //User user = client.UserGet(request, session);
 
         //加入推荐好友判断
-        Tuijian(nick);
+        //Tuijian(nick);
 
         if (CheckUserExits(nick))
         {
@@ -303,7 +311,7 @@ public partial class container : System.Web.UI.Page
         //这里做获取用户商品的操作
         AddCookie(top_session);
 
-        CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLBUYNINFO);
+        //CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLBUYNINFO);
         Response.Redirect("index.html");
         //Response.Redirect("http://bang.7fshop.com/default.aspx?istongji=1&session=" + top_session + "&nick=" + HttpUtility.UrlEncode(oldNick));
     }
@@ -312,24 +320,27 @@ public partial class container : System.Web.UI.Page
     {
         if (Request.Cookies["nick"] == null)
         {
-            IList<TaoBaoGoodsClassInfo> classList = TopAPI.GetGoodsClassInfoList(nick, session);
-
-            if (classList != null)
+            if (new GoodsService().SelectGoodsCountByNick(nick) == 0)
             {
-                TaoBaoGoodsClassService tbgcDal = new TaoBaoGoodsClassService();
+                IList<TaoBaoGoodsClassInfo> classList = TopAPI.GetGoodsClassInfoList(nick, session);
 
-                foreach (TaoBaoGoodsClassInfo cinfo in classList)
+                if (classList != null)
                 {
-                    tbgcDal.InsertGoodsClass(cinfo, nick);
+                    TaoBaoGoodsClassService tbgcDal = new TaoBaoGoodsClassService();
+
+                    foreach (TaoBaoGoodsClassInfo cinfo in classList)
+                    {
+                        tbgcDal.InsertGoodsClass(cinfo, nick);
+                    }
                 }
-            }
 
-            GoodsService goodsDal = new GoodsService();
-            IList<TaoBaoGoodsInfo> list = TopAPI.GetGoodsInfoListByNick(nick, session);
+                GoodsService goodsDal = new GoodsService();
+                IList<TaoBaoGoodsInfo> list = TopAPI.GetGoodsInfoListByNick(nick, session);
 
-            foreach (TaoBaoGoodsInfo info in list)
-            {
-                goodsDal.InsertGoodsInfo(info, nick);
+                foreach (TaoBaoGoodsInfo info in list)
+                {
+                    goodsDal.InsertGoodsInfo(info, nick);
+                }
             }
         }
 
@@ -339,7 +350,7 @@ public partial class container : System.Web.UI.Page
         cooksession.Expires = DateTime.Now.AddDays(1);
 
         Response.Cookies.Add(cookie);
-        LogInfo.Add("添加了cookie", nick);
+        //LogInfo.Add("添加了cookie", nick);
 
         Session["snick"] = nick;
         Session["ssession"] = session;
