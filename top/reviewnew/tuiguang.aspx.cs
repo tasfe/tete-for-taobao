@@ -14,7 +14,7 @@ public partial class top_reviewnew_tuiguang : System.Web.UI.Page
                       ,[adddate]
                       ,[count]
                       ,[ip]
-                      ,[laiyuan],TCS_ShopSession.nick AS nickding
+                      ,[laiyuan]
                   FROM [TeteCrmSaasNew].[dbo].[TCS_Tui]
                   WHERE nick in
                   (select nick from TCS_ShopSession WHERE version > 1)
