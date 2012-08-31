@@ -44,7 +44,7 @@
                                     <%# Eval("GoodsName")%></a>
                             </td>
                             <td class="taobaodate" style="width: 120px; text-align: center;">
-                                <a class="red" target="_blank" href='BaiShare.aspx?id=<%# Eval("TuiId") %>'>去快速推广</a>
+                                <a class="red" href='BaiShare.aspx?id=<%# Eval("TuiId") %>'>去快速推广</a>
                             </td>
                         </tr>
                       </ItemTemplate>
