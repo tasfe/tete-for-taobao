@@ -16,7 +16,7 @@
 	font-family:"微软雅黑";
 	color:#fff;
 	font-weight:bold;">
-  <div style="background:#f2f2f2;margin:10px 0px;height:120px;background:url(images/shopbanner1.jpg) 0px 20px  no-repeat #ff6600">
+  <div style="background:#f2f2f2;margin:10px 0px;height:228px;background:url(images/shopbanner2.gif) 0px 20px  no-repeat #ff6600">
   
     <div style="float:left;width:400px;display:block;">
       <div style="color:#fff;padding:10px;">&nbsp;</div>
