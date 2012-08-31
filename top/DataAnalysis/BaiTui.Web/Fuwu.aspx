@@ -24,7 +24,14 @@
       <div class="Cal"></div>
     </div>
     <div id="ContentRightBox">
-
+     <div style="height:10px"></div>
+     <div style="font-size:20px;">
+只要您点几下鼠标，就能将您的店铺、宝贝展示到各个知名网站
+<br />详情请点击
+<a href="http://fuwu.taobao.com/ser/detail.htm?service_code=ts-22655&tracelog=sousuo" target="_blank" style="color:Blue; font-size:20px">
+  特推广
+</a></div>
+ <div style="height:10px"></div>
 <table width="680" border="0" cellspacing="0" cellpadding="0" style="margin: 0 10px;">
                 <tr>
                     <td width="108" align="center" height="90">

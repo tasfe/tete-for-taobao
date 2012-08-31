@@ -54,6 +54,14 @@
                      <div style="height:10px"></div>
                      <img src="Images/bai3.jpg" width="670px" />
                     </span>
+                    
+                    
+                     <div style="font-size:20px;">
+想要将您的店铺、宝贝展示到各个知名网站吗？
+<br />详情请点击
+<a href="http://fuwu.taobao.com/ser/detail.htm?service_code=ts-22655&tracelog=sousuo" target="_blank" style="color:Blue; font-size:20px">
+  特推广
+</a></div>
                 </p>		
                 <br />
             
