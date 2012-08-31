@@ -268,14 +268,13 @@ public partial class top_review_kefulist : System.Web.UI.Page
         }
 
         //如果没有赠送优惠券或者优惠券为空则放弃
-        if ((iscoupon == "0" || iscoupon.Trim() == "") && (isalipay == "0" || alipayid.Trim() == ""))
+        if ((iscoupon == "0" || iscoupon.Trim() == "") && (isalipay == "0" || alipayid.Trim() == "") && (isfreecard == "0" || freecardid.Trim() == ""))
         {
-            Response.Write("<script>alert('您没有设置赠送优惠券或者支付宝红包！');window.location.href='kefulist.aspx';</script>");
+            Response.Write("<script>alert('您没有设置赠送优惠券或者支付宝红包、包邮卡！');window.location.href='kefulist.aspx';</script>");
             return;
         }
         else
         {
-
             //获取该订单关联会员
             sql = "SELECT * FROM TCS_Trade WITH (NOLOCK) WHERE nick = '" + nick + "' AND orderid = '" + id + "'";
             dt = utils.ExecuteDataTable(sql);
@@ -659,9 +658,9 @@ public partial class top_review_kefulist : System.Web.UI.Page
             }
 
             //如果没有赠送优惠券或者优惠券为空则放弃
-            if ((iscoupon == "0" || iscoupon.Trim() == "") && (isalipay == "0" || alipayid.Trim() == ""))
+            if ((iscoupon == "0" || iscoupon.Trim() == "") && (isalipay == "0" || alipayid.Trim() == "") && (isfreecard  == "0" || freecardid.Trim() == ""))
             {
-                Response.Write("<script>alert('您没有设置赠送优惠券或者礼品！');window.location.href='kefulist.aspx';</script>");
+                Response.Write("<script>alert('您没有设置赠送优惠券或者支付宝红包、包邮卡！');window.location.href='kefulist.aspx';</script>");
                 return;
             }
             else
