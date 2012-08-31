@@ -30,8 +30,11 @@
                     
                 <p>
                     <span class="red" style="font-weight: bold;">软件说明：将宝贝一键推广到QQ、百度等旗下各大网站。</span>
-                    <br>
-                    <br>
+                     <div style="height:10px"></div>
+                  <a href="http://www.163disk.com/filekey/tb42f86c08" target="_blank" style="font-size:20px">
+                    点击下载视频教程
+                  </a>
+                    <div style="height:10px"></div>
                     目前可以推广的网站有：<span style="color: Blue;">QQ空间、QQ收藏、腾讯微博、朋友网、百度搜藏、百度空间、百度贴吧。</span>。
                     <br>
                     <br>
