@@ -241,6 +241,9 @@ public partial class top_review_kefulist : System.Web.UI.Page
         string isalipay = string.Empty;
         string alipayid = string.Empty;
 
+        string isfreecard = string.Empty;
+        string freecardid = string.Empty;
+
         //获取优惠券信息
         sql = "SELECT * FROM TCS_ShopConfig WITH (NOLOCK) WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
@@ -254,6 +257,9 @@ public partial class top_review_kefulist : System.Web.UI.Page
 
             isalipay = dt.Rows[0]["isalipay"].ToString();
             alipayid = dt.Rows[0]["alipayid"].ToString();
+
+            isfreecard = dt.Rows[0]["isfree"].ToString();
+            freecardid = dt.Rows[0]["freeid"].ToString();
         }
         else
         {
@@ -293,6 +299,36 @@ public partial class top_review_kefulist : System.Web.UI.Page
                     return;
                 }
             }
+
+
+            #region 赠送包邮卡
+            if (isfreecard == "0" || freecardid.Trim() == "")
+            {
+            }
+            else
+            {
+                //赠送包邮卡
+                sql = "SELECT * FROM TCS_FreeCardAction WHERE guid = '" + freecardid + "'";
+                dt = utils.ExecuteDataTable(sql);
+
+                if (dt.Rows.Count != 0)
+                {
+                    string startdate = DateTime.Now.ToString();
+                    string enddate = DateTime.Now.ToString();
+                    string usecountlimit = dt.Rows[0]["usecount"].ToString();
+                    string carddate = dt.Rows[0]["carddate"].ToString();
+
+                    //赠送包邮卡
+                    sql = "INSERT INTO TCS_FreeCard (nick,buynick,cardid,startdate,enddate,carddate,usecountlimit) VALUES ('" + nick + "', '" + buynick + "','" + freecardid + "','" + startdate + "','" + enddate + "','" + carddate + "','" + usecountlimit + "')";
+                    utils.ExecuteNonQuery(sql);
+
+                    //更新包邮卡赠送数量
+                    sql = "UPDATE TCS_FreeCardAction SET sendcount = sendcount + 1 WHERE guid = '" + freecardid + "'";
+                    utils.ExecuteNonQuery(sql);
+                }
+            }
+            #endregion
+
 
 
 
@@ -458,6 +494,8 @@ public partial class top_review_kefulist : System.Web.UI.Page
             }
         }
 
+
+
         //发送短信
         if (1 == 1) //短信测试中
         {
@@ -591,6 +629,9 @@ public partial class top_review_kefulist : System.Web.UI.Page
 
         string isalipay = string.Empty;
         string alipayid = string.Empty;
+        
+        string isfreecard = string.Empty;
+        string freecardid = string.Empty;
 
         if (send == "1")
         {
@@ -607,6 +648,9 @@ public partial class top_review_kefulist : System.Web.UI.Page
 
                 isalipay = dt.Rows[0]["isalipay"].ToString();
                 alipayid = dt.Rows[0]["alipayid"].ToString();
+
+                isfreecard = dt.Rows[0]["isfree"].ToString();
+                freecardid = dt.Rows[0]["freeid"].ToString();
             }
             else
             {
@@ -649,6 +693,35 @@ public partial class top_review_kefulist : System.Web.UI.Page
                     }
                 }
 
+
+
+                #region 赠送包邮卡
+                if (isfreecard == "0" || freecardid.Trim() == "")
+                {
+                }
+                else
+                {
+                    //赠送包邮卡
+                    sql = "SELECT * FROM TCS_FreeCardAction WHERE guid = '" + freecardid + "'";
+                    dt = utils.ExecuteDataTable(sql);
+
+                    if (dt.Rows.Count != 0)
+                    {
+                        string startdate = DateTime.Now.ToString();
+                        string enddate = DateTime.Now.ToString();
+                        string usecountlimit = dt.Rows[0]["usecount"].ToString();
+                        string carddate = dt.Rows[0]["carddate"].ToString();
+
+                        //赠送包邮卡
+                        sql = "INSERT INTO TCS_FreeCard (nick,buynick,cardid,startdate,enddate,carddate,usecountlimit) VALUES ('" + nick + "', '" + buynick + "','" + freecardid + "','" + startdate + "','" + enddate + "','" + carddate + "','" + usecountlimit + "')";
+                        utils.ExecuteNonQuery(sql);
+
+                        //更新包邮卡赠送数量
+                        sql = "UPDATE TCS_FreeCardAction SET sendcount = sendcount + 1 WHERE guid = '" + freecardid + "'";
+                        utils.ExecuteNonQuery(sql);
+                    }
+                }
+                #endregion
 
                 #region 赠送支付宝红包
                 //先看还有没有短信了
