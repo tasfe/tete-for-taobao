@@ -22,6 +22,7 @@
                     <li><a href="Index.aspx">首页</a></li>
                     <li><a href="AddBaiDu.aspx">百度推广</a></li>
                     <li><a href="AddQQ.aspx">QQ推广</a></li>
+                    <li><a href="UpdateGoods.aspx">更新宝贝信息</a></li>
                     <li><a href="FindKefu.aspx">联系客服</a></li>
                     <li><a href="Fuwu.aspx">服务推荐</a></li>
                 </ul>

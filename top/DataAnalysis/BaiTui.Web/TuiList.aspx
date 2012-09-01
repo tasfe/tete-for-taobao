@@ -39,12 +39,12 @@
                    <asp:Repeater runat="server" ID="Rpt_TuiList">
                      <ItemTemplate>
                         <tr>
-                            <td class="taobaotitle" style="width: 500px;">
+                            <td class="taobaotitle" style="width: 500px; height:30px">
                                 <a target="_blank" href='http://item.taobao.com/item.htm?id=<%# Eval("GoodsId") %>'>
                                     <%# Eval("GoodsName")%></a>
                             </td>
                             <td class="taobaodate" style="width: 120px; text-align: center;">
-                                <a class="red" href='BaiShare.aspx?id=<%# Eval("TuiId") %>'>去快速推广</a>
+                                <a class="red" href='BaiShare.aspx?id=<%# Eval("TuiId") %>'>立即去推广</a>
                             </td>
                         </tr>
                       </ItemTemplate>

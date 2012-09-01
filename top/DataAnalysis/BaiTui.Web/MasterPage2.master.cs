@@ -17,18 +17,18 @@ public partial class MasterPage2 : System.Web.UI.MasterPage
     {
         if (!IsPostBack)
         {
-            //string nick = "";
-            //if (Request.Cookies["nick"] != null)
-            //    nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value); //"nick"; 
-            //else
-            //{
-            //    if (Session["snick"] != null)
-            //        nick = Session["snick"].ToString();
-            //}
-            //if (nick == "")
-            //{
-            //    Response.Redirect("http://fuwu.taobao.com/ser/my_service.htm");
-            //}
+            string nick = "";
+            if (Request.Cookies["nick"] != null)
+                nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value); //"nick"; 
+            else
+            {
+                if (Session["snick"] != null)
+                    nick = Session["snick"].ToString();
+            }
+            if (nick == "")
+            {
+                Response.Redirect("http://fuwu.taobao.com/ser/my_service.htm");
+            }
         }
     }
 }
