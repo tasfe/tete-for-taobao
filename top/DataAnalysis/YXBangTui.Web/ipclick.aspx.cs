@@ -34,7 +34,7 @@ public partial class ipclick : System.Web.UI.Page
             //获取访问IP
             string ip = Request.ServerVariables["REMOTE_ADDR"];
 
-            if (DateTime.Now.Hour >= 0 && DateTime.Now.Hour < 17)
+            if (DateTime.Now.Hour >= 0 && DateTime.Now.Hour < 10)
             {
                 //获取当天已经访问来了的IP
                 IList<ClickIPInfo> ipList = clickDal.SelectAllClickIPByDate(DateTime.Now.ToString("yyyyMMdd"));
@@ -55,10 +55,14 @@ public partial class ipclick : System.Web.UI.Page
             if (list.Count == 0)
                 return;
 
+            int num1 = rand.Next(6, 15);
+            int num2 = rand.Next(14, 23);
+            int num3 = rand.Next(22, 33);
+
             for (int i = 0; i < clickList.Count; i++)
             {
 
-                if (clickList[i].ClickCount >= rand.Next(6, 15))//10)
+                if (clickList[i].ClickCount >= num1)//10)
                 {
                     IList<UserAdsInfo> hadlist = list.Where(o => o.Id == clickList[i].UserAdsId).ToList();
 
@@ -71,13 +75,13 @@ public partial class ipclick : System.Web.UI.Page
                                 list.Remove(hadlist[0]);
                             else
                             {
-                                if (clickList[i].ClickCount >= rand.Next(14, 23))//18)
+                                if (clickList[i].ClickCount >= num2)//18)
                                     list.Remove(hadlist[0]);
                             }
                         }
                         if (finfo.AdsType == 5)
                         {
-                            if (clickList[i].ClickCount >= rand.Next(22, 33)) //27)
+                            if (clickList[i].ClickCount >= num3) //27)
                                 list.Remove(hadlist[0]);
                         }
                     }
