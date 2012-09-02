@@ -48,7 +48,7 @@
             <div style="font-size:20px">
             1、点击：<a href='<%=SiteUrl %>'target="_blank"><asp:Label runat="server" ID="LB_SiteUrl1" /></a>
             <br />
-            2、在打开的网页中找到上图圈到的图片，点击
+            2、在打开的网页中找到上图圈到的图片位置，点击
             <br />
            就能<a href="UserAdsList.aspx?istou=1">查看您的广告投放</a>
             <br />
