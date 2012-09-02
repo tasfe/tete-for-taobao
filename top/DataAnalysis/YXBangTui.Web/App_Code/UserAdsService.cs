@@ -38,6 +38,49 @@ public class UserAdsService
 
     const string SQL_SELECT_USERADS_BY_ADSID = "SELECT [Id],[AdsTitle],[AdsUrl],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,Price,Nick FROM BangT_UserAds WHERE AdsId=@AdsId AND UserAdsState=@UserAdsState";
 
+    const string SQL_SELECT_ADSCLICK = "select ua.*,c.ClickCount from (select Id,AdsUrl,FeeId from BangT_UserAds where UserAdsState=1) ua left join BangT_Click c on ua.Id=c.UserAdsId and ClickDate=@date order by c.ClickCount desc";
+
+    const string SQL_SELECT_CLICKIP_USERADSID = "select UserAdsId from BangT_UserAds ua inner join BangT_ClickIP c on ua.Id=c.UserAdsId and VisitDate=@date and VisitIP=@ip";
+
+    public IList<Guid> SelectAllClickIP(DateTime date,string ip)
+    {
+        SqlParameter[] param = new SqlParameter[]
+        {
+            new SqlParameter("@date", date.ToString("yyyyMMdd")),
+            new SqlParameter("@ip",ip)
+        };
+
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_CLICKIP_USERADSID, param);
+        IList<Guid> list = new List<Guid>();
+        foreach (DataRow dr in dt.Rows)
+        {
+            Guid g = new Guid(dr["UserAdsId"].ToString()); //这个id作为广告的id
+
+            list.Add(g);
+        }
+
+        return list;
+    }
+
+    public IList<UserAdsInfo> SelectAllUserAdsClick(DateTime date)
+    {
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_ADSCLICK, new SqlParameter("@date", date.ToString("yyyyMMdd")));
+        IList<UserAdsInfo> list = new List<UserAdsInfo>();
+
+        foreach (DataRow dr in dt.Rows)
+        {
+            UserAdsInfo info = new UserAdsInfo();
+            info.Id = new Guid(dr["Id"].ToString());
+            info.AdsUrl = dr["AdsUrl"].ToString();
+            info.IsSend = dr["ClickCount"] == DBNull.Value ? 0 : int.Parse(dr["ClickCount"].ToString()); //这个是否赠送作为点击次数
+            info.FeeId = new Guid(dr["FeeId"].ToString());
+
+            list.Add(info);
+        }
+
+        return list;
+    }
+
     public IList<UserAdsInfo> SelectAllUserAds(string nick)
     {
         IList<UserAdsInfo> list = new List<UserAdsInfo>();
