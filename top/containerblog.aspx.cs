@@ -94,26 +94,6 @@ public partial class top_containerblog : System.Web.UI.Page
         //    return;
         //}
 
-        if (laiyuan != "")
-        {
-            //记录
-            string sql = string.Empty;
-            sql = "SELECT COUNT(*) FROM TCS_Tui WHERE nick = '" + nick + "' AND DATEDIFF(D,adddate, GETDATE()) = 0";
-            string count = utils.ExecuteString(sql);
-            if (count == "0")
-            {
-                sql = "INSERT INTO TCS_Tui (nick, ip, laiyuan) VALUES ('" + nick + "', '" + ip + "','" + laiyuan + "')";
-                utils.ExecuteNonQuery(sql);
-            }
-            else
-            {
-                sql = "UPDATE TCS_Tui SET count = count + 1 WHERE nick = '" + nick + "' AND DATEDIFF(D,adddate, GETDATE()) = 0";
-                utils.ExecuteNonQuery(sql);
-            }
-
-            Response.Redirect("http://fuwu.taobao.com/service/service.htm?service_code=service-0-22904&laiyuan=" + laiyuan);
-            return;
-        }
 
         File.WriteAllText(Server.MapPath("customer/" + nick + ".txt"), Request.Url.ToString());
 
@@ -318,7 +298,7 @@ public partial class top_containerblog : System.Web.UI.Page
                         "issendmsg " +
                     " ) VALUES ( " +
                         " '" + nick + "', " +
-                        " '1', " +
+                        " '0', " +
                         " '', " +
                         " '0', " +
                         " '3', " +
