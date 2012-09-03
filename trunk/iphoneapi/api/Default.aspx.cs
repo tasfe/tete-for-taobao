@@ -130,7 +130,17 @@ public partial class api_Default : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            str = "{\"logo\":\"" + dt.Rows[0][0].ToString() + "\",\"url\":\"" + dt.Rows[0][1].ToString() + "\",\"cateid\":\"" + dt.Rows[0][2].ToString() + "\"}";
+            str = "{\"adslist\":[";
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (i != 0)
+                {
+                    str += ",";
+                }
+
+                str += "{\"logo\":\"" + dt.Rows[i][0].ToString() + "\",\"url\":\"" + dt.Rows[i][1].ToString() + "\",\"cateid\":\"" + dt.Rows[i][2].ToString() + "\"}";
+            }
+            str += "}";
         }
         else
         {
