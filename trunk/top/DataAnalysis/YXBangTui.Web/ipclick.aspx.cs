@@ -47,19 +47,23 @@ public partial class ipclick : System.Web.UI.Page
             //        //已经访问了该广告
             //        IList<UserAdsInfo> hadlist = list.Where(o => o.Id == ipList[i].UserAdsId).ToList();
             //        if (hadlist.Count > 0)
-            //        {
+            //        {qin
             //            list.Remove(hadlist[0]);
             //        }
             //    }
             //}
 
-            IList<Guid> clickIPlist = uasDal.SelectAllClickIP(DateTime.Now, ip);
-            foreach (Guid gid in clickIPlist)
+
+            if (DateTime.Now.Hour >= 0 && DateTime.Now.Hour < 12)
             {
-                IList<UserAdsInfo> hadlist = list.Where(o => o.Id == gid).ToList();
-                if (hadlist.Count > 0)
+                IList<Guid> clickIPlist = uasDal.SelectAllClickIP(DateTime.Now, ip);
+                foreach (Guid gid in clickIPlist)
                 {
-                    list.Remove(hadlist[0]);
+                    IList<UserAdsInfo> hadlist = list.Where(o => o.Id == gid).ToList();
+                    if (hadlist.Count > 0)
+                    {
+                        list.Remove(hadlist[0]);
+                    }
                 }
             }
 
