@@ -38,7 +38,7 @@ public class UserAdsService
 
     const string SQL_SELECT_USERADS_BY_ADSID = "SELECT [Id],[AdsTitle],[AdsUrl],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,Price,Nick FROM BangT_UserAds WHERE AdsId=@AdsId AND UserAdsState=@UserAdsState";
 
-    const string SQL_SELECT_ADSCLICK = "select ua.*,c.ClickCount from (select Id,AdsUrl,FeeId from BangT_UserAds where UserAdsState=1) ua left join BangT_Click c on ua.Id=c.UserAdsId and ClickDate=@date order by c.ClickCount desc";
+    const string SQL_SELECT_ADSCLICK = "select ua.*,c.ClickCount from (select Id,AdsUrl,FeeId from BangT_UserAds where UserAdsState=1 and AddTime<@time) ua left join BangT_Click c on ua.Id=c.UserAdsId and ClickDate=@date order by c.ClickCount desc";
 
     const string SQL_SELECT_CLICKIP_USERADSID = "select UserAdsId from BangT_UserAds ua inner join BangT_ClickIP c on ua.Id=c.UserAdsId and VisitDate=@date and VisitIP=@ip";
 
@@ -64,7 +64,14 @@ public class UserAdsService
 
     public IList<UserAdsInfo> SelectAllUserAdsClick(DateTime date)
     {
-        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_ADSCLICK, new SqlParameter("@date", date.ToString("yyyyMMdd")));
+
+        SqlParameter[] param = new[]
+        {
+            new SqlParameter("@time",date.AddMinutes(-30)),
+            new SqlParameter("@date", date.ToString("yyyyMMdd"))
+        };
+
+        DataTable dt = DBHelper.ExecuteDataTable(SQL_SELECT_ADSCLICK, param);
         IList<UserAdsInfo> list = new List<UserAdsInfo>();
 
         foreach (DataRow dr in dt.Rows)
