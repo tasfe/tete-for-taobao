@@ -57,6 +57,8 @@ public partial class top_containerblog : System.Web.UI.Page
         refreshToken = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["refresh_token"];
         ip = Request.UserHostAddress;
 
+        File.WriteAllText(Server.MapPath("customer/" + nick + ".txt"), Request.Url.ToString());
+
         //验证客户版本参数是否正确
         if (versionNo != "")
         {
@@ -94,8 +96,6 @@ public partial class top_containerblog : System.Web.UI.Page
         //    return;
         //}
 
-
-        File.WriteAllText(Server.MapPath("customer/" + nick + ".txt"), Request.Url.ToString());
 
         //判断跳转
         GetData(nick);
