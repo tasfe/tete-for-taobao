@@ -651,43 +651,7 @@ public partial class api_Default : System.Web.UI.Page
         string sql = string.Empty;
         string str = string.Empty;
 
-        int pageNow = 1;
-        if (page == "")
-        {
-            pageNow = 1;
-        }
-        else
-        {
-            pageNow = int.Parse(page);
-        }
-
-        int pageSizeNow = 20;
-        if (pagesize == "")
-        {
-            pageSizeNow = 20;
-        }
-        else
-        {
-            pageSizeNow = int.Parse(pagesize);
-        }
-        int pageCount = pageSizeNow;
-        int dataCount = (pageNow - 1) * pageCount;
-
-
-        sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
-        int totalCount = int.Parse(utils.ExecuteString(sql));
-        int totalPageCount = 1;
-
-        if (totalCount % pageCount == 0)
-        {
-            totalPageCount = totalCount / pageCount;
-        }
-        else
-        {
-            totalPageCount = totalCount / pageCount + 1;
-        }
-
-        sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY id DESC) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY id DESC";
+        sql = "SELECT TOP 5 * FROM TeteShopItem WHERE isshow = 1 AND nick = '" + uid + "' ORDER BY orderid";
         //Response.Write(sql);
         //sql = "SELECT * FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
         DataTable dt = utils.ExecuteDataTable(sql);
@@ -703,7 +667,7 @@ public partial class api_Default : System.Web.UI.Page
 
                 str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
             }
-            str += "],\"pagenow\":" + page + ",\"total\":" + totalPageCount + "}";
+            str += "]}";
         }
         else
         {
