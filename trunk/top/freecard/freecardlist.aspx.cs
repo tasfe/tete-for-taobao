@@ -97,8 +97,23 @@ public partial class top_freecard_freecardlist : System.Web.UI.Page
 
     private void DeleteGroup()
     {
+        string sql = "SELECT isfree FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
+        string isfree = utils.ExecuteString(sql);
+
+        if (isfree == "1")
+        {
+            sql = "SELECT freeid FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
+            string freeid = utils.ExecuteString(sql);
+
+            if (freeid == id)
+            {
+                Response.Write("<script>alert('默认赠送的包邮卡无法删除，请您到“基本设置”里面更改默认包邮卡或者关闭包邮卡赠送后再删除！');history.go(-1);</script>");
+                return;
+            }
+        }
+
         //通过数据库查询获取活动ID
-        string sql = "UPDATE TCS_FreeCardAction SET isdel = 1 WHERE guid = '" + id + "'";
+         sql = "UPDATE TCS_FreeCardAction SET isdel = 1 WHERE guid = '" + id + "'";
         utils.ExecuteNonQuery(sql);
 
         Response.Write("<script>alert('取消成功！');window.location.href='freecardlist.aspx';</script>");
