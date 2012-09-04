@@ -15,6 +15,7 @@ using Model;
 using Data.Cache;
 using CusServiceAchievements.DAL;
 using TaoBaoAPIHelper;
+using System.Collections.Generic;
 
 public partial class container : System.Web.UI.Page
 {
@@ -51,6 +52,21 @@ public partial class container : System.Web.UI.Page
         }
 
         nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["visitor_nick"];
+        IList<TopNickSessionInfo> nicks = CacheCollection.GetNickSessionList().Where(o => o.Nick == nick).ToList();
+        if (nicks.Count > 0)
+        {
+            if (nicks[0].JoinDate < new DateTime(2012, 8, 29))
+            {
+                string baisouurl = Request.Url.AbsoluteUri.ToString().Replace("kfjx.7fshop", "search.fensehenhuo.com");
+                Response.Redirect(baisouurl);
+            }
+        }
+        else
+        {
+            string baisouurl = Request.Url.AbsoluteUri.ToString().Replace("kfjx.7fshop", "search.fensehenhuo.com");
+            Response.Redirect(baisouurl);
+        }
+
         if (nick == null || nick == "")
         {
             Response.Write("top签名验证不通过，请不要非法注入");
@@ -58,9 +74,18 @@ public partial class container : System.Web.UI.Page
             return;
         }
 
-        //插入信息
-        InsertSession();
-        Response.Redirect("InitData.aspx");
+        if (CacheCollection.GetNickSessionList().Where(o => o.Nick == nick && o.ServiceId == Enum.TopTaoBaoService.KeFuJiXiao).ToList().Count != 0)
+        {
+            string tetuiurl = Request.Url.AbsoluteUri.ToString().Replace("kfjx.7fshop", "search.tetuiguang");
+            Response.Redirect(tetuiurl);
+        }
+
+        else
+        {
+            //插入信息
+            InsertSession();
+            Response.Redirect("InitData.aspx");
+        }
     }
 
     /// <summary>
