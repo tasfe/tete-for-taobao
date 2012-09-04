@@ -37,6 +37,9 @@ public partial class top_review_msg : System.Web.UI.Page
 
     public string blacklist = string.Empty;
 
+    public string freecardflag = string.Empty;
+    public string freecardcontent = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
@@ -298,6 +301,9 @@ public partial class top_review_msg : System.Web.UI.Page
             shopname = dt.Rows[0]["shopname"].ToString();
             reviewtime = dt.Rows[0]["reviewtime"].ToString();
 
+            freecardflag = dt.Rows[0]["freecardflag"].ToString();
+            freecardcontent = dt.Rows[0]["freecardcontent"].ToString();
+
             //增加默认值
             if (giftcontent.Length == 0)
             {
@@ -314,6 +320,10 @@ public partial class top_review_msg : System.Web.UI.Page
             if (fahuocontent.Length == 0)
             {
                 fahuocontent = "[shopname]:亲,您购买的宝贝已发出,[shiptyp]+[shipnumber],请您签收后满分好评即可获赠[gift]";
+            }
+            if (freecardcontent.Length == 0)
+            {
+                freecardcontent = "[shopname]:亲，感谢您的及时优质好评。现赠送您[freecard]一张，详情可联系卖家查看，期待您的再次光临。";
             }
             if (shopname.Length == 0)
             {
@@ -570,9 +580,9 @@ public partial class top_review_msg : System.Web.UI.Page
         if (int.Parse(total) > 0)
         {
             //强行截取
-            if (msg.Length > 66)
+            if (msg.Length > 64)
             {
-                msg = msg.Substring(0, 66);
+                msg = msg.Substring(0, 64);
             }
 
             string result = SendMessage(phone, msg);
@@ -704,6 +714,7 @@ public partial class top_review_msg : System.Web.UI.Page
         string shippingflag = utils.NewRequest("shippingflag", utils.RequestType.Form) == "1" ? "1" : "0";
         string reviewflag = utils.NewRequest("reviewflag", utils.RequestType.Form) == "1" ? "1" : "0";
         string fahuoflag = utils.NewRequest("fahuoflag", utils.RequestType.Form) == "1" ? "1" : "0";
+        string freecardflag = utils.NewRequest("freecardflag", utils.RequestType.Form) == "1" ? "1" : "0";
         string reviewtime = utils.NewRequest("reviewtime", utils.RequestType.Form);
 
         string black = string.Empty;
@@ -736,6 +747,13 @@ public partial class top_review_msg : System.Web.UI.Page
             return;
         }
 
+        if (CheckIsBlack(ReplaceStr(utils.NewRequest("freecardcontent", utils.RequestType.Form)), ref black))
+        {
+            Response.Write("<script>alert('包邮卡短信内容包含黑词“" + black + "”！');history.go(-1);</script>");
+            Response.End();
+            return;
+        }
+
         if (CheckIsBlack(ReplaceStr(utils.NewRequest("shopname", utils.RequestType.Form)), ref black))
         {
             Response.Write("<script>alert('店铺名称内容包含黑词“" + black + "”！');history.go(-1);</script>");
@@ -752,6 +770,8 @@ public partial class top_review_msg : System.Web.UI.Page
             "shopname = '" + utils.NewRequest("shopname", utils.RequestType.Form) + "', " +
             "fahuoflag = '" + fahuoflag + "', " +
             "fahuocontent = '" + ReplaceStr(utils.NewRequest("fahuocontent", utils.RequestType.Form)) + "', " +
+            "freecardflag = '" + freecardflag + "', " +
+            "freecardcontent = '" + ReplaceStr(utils.NewRequest("freecardcontent", utils.RequestType.Form)) + "', " +
             "reviewtime = '" + utils.NewRequest("reviewtime", utils.RequestType.Form) + "', " +
             "reviewcontent = '" + ReplaceStr(utils.NewRequest("reviewcontent", utils.RequestType.Form)) + "' " +
         "WHERE nick = '" + nick + "'";
