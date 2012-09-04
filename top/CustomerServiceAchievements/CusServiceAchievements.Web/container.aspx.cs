@@ -15,7 +15,6 @@ using Model;
 using Data.Cache;
 using CusServiceAchievements.DAL;
 using TaoBaoAPIHelper;
-using System.Collections.Generic;
 
 public partial class container : System.Web.UI.Page
 {
@@ -52,18 +51,10 @@ public partial class container : System.Web.UI.Page
         }
 
         nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["visitor_nick"];
-        IList<TopNickSessionInfo> nicks = CacheCollection.GetNickSessionList().Where(o => o.Nick == nick).ToList();
-        if (nicks.Count > 0)
+
+        if (CacheCollection.GetNickSessionList().Where(o => o.Nick == nick).ToList().Count == 0)
         {
-            if (nicks[0].JoinDate < new DateTime(2012, 8, 29))
-            {
-                string baisouurl = Request.Url.AbsoluteUri.ToString().Replace("kfjx.7fshop", "search.fensehenhuo.com");
-                Response.Redirect(baisouurl);
-            }
-        }
-        else
-        {
-            string baisouurl = Request.Url.AbsoluteUri.ToString().Replace("kfjx.7fshop", "search.fensehenhuo.com");
+            string baisouurl = Request.Url.AbsoluteUri.ToString().Replace("kfjx.7fshop", "search.fensehenhuo");
             Response.Redirect(baisouurl);
         }
 
