@@ -37,7 +37,7 @@
             <tr>
                 <td align="left" height="30" width=120>名称：</td>
                 <td>
-                    <input id="freecard" name="name" type="text" value="" size="15" maxlength="15" />
+                    <input id="freecard" name="name" type="text" value="" size="15" maxlength="15" /> 包邮卡（仅限圆通）或者包邮卡（仅限圆通、申通）
                 </td>
             </tr>
             <tr>
