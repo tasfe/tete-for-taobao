@@ -33,7 +33,15 @@
 <asp:FileUpload ID="fuAlipay" Width="200px" runat="server" />  当历史数据很大的时候导入时间会很长，请您耐心等待。。。
 
 <br />
-<asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="导入会员数据" />
+<asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="导入会员数据" OnClientClick="check(this)" />
+
+
+<script>
+    function check(obj) {
+        obj.value = "导入中，请您耐心等待..";
+        //obj.disabled = true;
+    }
+</script>
 
     </div>
 </div>
