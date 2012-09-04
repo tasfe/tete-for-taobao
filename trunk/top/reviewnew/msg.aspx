@@ -37,7 +37,7 @@
         <hr />
 
         <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
-            短信内容设置中的[shopname]、[buynick]、[gift]、[shiptyp]、[shipnumber]在短信发送时会被自动替换成您的 店铺名称、买家昵称、优惠券、快递方式和快递单号，请不要随意删除..<br />
+            短信内容设置中的[shopname]、[buynick]、[gift]、[shiptyp]、[shipnumber]、[freecard]在短信发送时会被自动替换成您的 店铺名称、买家昵称、优惠券、快递方式和快递单号、包邮卡名称，请不要随意删除..<br />
             快递方式和快递单号只能在发货短信中使用，放在其他短信中会无法正常解析<br />
             请大家尽量精简自己的短信内容，一条短信的内容不要超过64个字，否则您的短信内容将会被截取成64个字~ ：）
         </div>
@@ -127,6 +127,17 @@
                     </select>点
                 </td>
             </tr>
+            <tr>
+                <td align="left">
+        开启包邮卡赠送短信 <input id="freecardflag" name="freecardflag" type="checkbox" value="1" onclick="showArea5(this)" />
+                </td>
+            </tr>
+            <tr id="Area5">
+                <td align="left" width="250">
+                    <textarea id="freecardcontent" name="freecardcontent" cols="40" rows="3"><%=freecardcontent%></textarea>
+                    <input type="button" value="短信预览" onclick="yulanMsg('freecardcontent')" />
+                </td>
+            </tr>
         </table>
         </td>
             <td width="380" style="background:url('images/msgbg.jpg') 0 0 no-repeat;" valign="top">
@@ -189,6 +200,14 @@
             document.getElementById("Area4").style.display = "block";
         }
     }
+    function showArea5(obj) {
+        var str = obj.checked;
+        if (str == false) {
+            document.getElementById("Area5").style.display = "none";
+        } else {
+            document.getElementById("Area5").style.display = "block";
+        }
+    }
 
     function yulanMsg(id){
         var msg = document.getElementById(id).value;
@@ -241,6 +260,14 @@
     }else{
         document.getElementById("fahuoflag").checked = false;
         document.getElementById("Area4").style.display = "none";
+    }
+
+    if(<%=freecardflag %> == 1){
+        document.getElementById("freecardflag").checked = true;
+        document.getElementById("Area5").style.display = "block";
+    }else{
+        document.getElementById("freecardflag").checked = false;
+        document.getElementById("Area5").style.display = "none";
     }
     
     document.getElementById("reviewtime").value = "<%=reviewtime %>";
