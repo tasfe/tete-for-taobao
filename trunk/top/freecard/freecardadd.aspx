@@ -37,7 +37,7 @@
             <tr>
                 <td align="left" height="30" width=120>名称：</td>
                 <td>
-                    <input name="name" type="text" value="包邮卡" />
+                    <input id="freecard" name="name" type="text" value="" size="15" />
                 </td>
             </tr>
             <tr>
@@ -104,11 +104,25 @@
            
             <tr>
                 <td align="left" height="30" colspan="2">
-                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="创建包邮卡" />
+                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="创建包邮卡" OnClientClick="return check()" />
                 </td>
             </tr>
         </table>
     </div>
+    <script>
+        function check() {
+            freecard = document.getElementById("freecard");
+
+            if (freecard.value == "") {
+                alert("请输入包邮卡的名称");
+                freecard.focus();
+                return false;
+            }
+
+            return true;
+        }
+    
+    </script>
 
 </div>
     </form>
