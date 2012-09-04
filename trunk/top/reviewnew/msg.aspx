@@ -217,6 +217,7 @@
         msg = msg.replace("[buynick]", "买家0001");
         msg = msg.replace("[shiptyp]", "圆通快递");
         msg = msg.replace("[shipnumber]", "1900209081740");
+        msg = msg.replace("[freecard]", "包邮卡（仅限圆通）");
 
         showMsg = "本条短信共计个"+msg.length+"字符";
 
