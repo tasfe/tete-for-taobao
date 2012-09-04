@@ -10,6 +10,7 @@ using System.IO;
 using System.Text;
 using System.Net;
 using System.Security.Cryptography;
+using System.Web.Security;
 
 public partial class top_freecard_freecardsend : System.Web.UI.Page
 {
@@ -87,7 +88,7 @@ public partial class top_freecard_freecardsend : System.Web.UI.Page
             return false;
         }
     }
-    
+
     protected void Button1_Click(object sender, EventArgs e)
     {
         if (this.txtBuyerNick.Text.Length == 0)
@@ -115,6 +116,7 @@ public partial class top_freecard_freecardsend : System.Web.UI.Page
             string enddate = DateTime.Now.ToString();
             string usecountlimit = dt.Rows[0]["usecount"].ToString();
             string carddate = dt.Rows[0]["carddate"].ToString();
+            string cardname = dt.Rows[0]["name"].ToString();
             if (carddate == "0")
             {
                 enddate = DateTime.Now.AddMonths(999).ToString();
@@ -130,8 +132,179 @@ public partial class top_freecard_freecardsend : System.Web.UI.Page
             //增加免邮卡领取次数
             sql = "UPDATE TCS_FreeCardAction SET sendcount = sendcount + 1 WHERE guid = '" + cardid + "'";
             utils.ExecuteNonQuery(sql);
+
+
+            //发送短信
+            if (1 == 1) //短信测试中
+            {
+                string freecardflag = string.Empty;
+                string freecardcontent = string.Empty;
+                string shopname = string.Empty;
+                string phone = string.Empty;
+                string buynick = this.txtBuyerNick.Text;
+
+                sql = "SELECT * FROM TCS_ShopConfig WITH (NOLOCK) WHERE nick = '" + nick + "'";
+                DataTable dt1 = utils.ExecuteDataTable(sql);
+                if (dt1.Rows.Count != 0)
+                {
+                    freecardflag = dt1.Rows[0]["freecardflag"].ToString();
+                    freecardcontent = dt1.Rows[0]["freecardcontent"].ToString();
+                    shopname = dt1.Rows[0]["shopname"].ToString();
+                }
+                else
+                {
+                    return;
+                }
+                //判断是否开启该短信发送节点
+                if (freecardflag == "1")
+                {
+                    //判断是否还有短信可发
+                    sql = "SELECT total FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
+                    string total = utils.ExecuteString(sql);
+
+                    sql = "SELECT * FROM TCS_Trade WITH (NOLOCK) WHERE buynick = '" + buynick + "'";
+                    dt = utils.ExecuteDataTable(sql);
+                    if (dt.Rows.Count != 0)
+                    {
+                        phone = dt.Rows[0]["mobile"].ToString();
+                    }
+                    else
+                    {
+                        return;
+                    }
+
+                    if (int.Parse(total) > 0)
+                    {
+                        //每张物流订单最多提示一次
+                        sql = "SELECT COUNT(*) FROM TCS_MsgSend WITH (NOLOCK) WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND  buynick = '" + buynick + "' AND typ = 'freecard'";
+                        string giftCount = utils.ExecuteString(sql);
+
+                        if (giftCount == "0")
+                        {
+                            //开始发送
+                            string msg = GetMsg(freecardcontent, shopname, buynick, cardname);
+
+                            //强行截取
+                            if (msg.Length > 64)
+                            {
+                                msg = msg.Substring(0, 64);
+                            }
+
+                            string result = SendMessage(phone, msg);
+
+                            if (result != "0")
+                            {
+                                string number = "1";
+
+                                //如果内容超过70个字则算2条
+                                if (msg.Length > 64)
+                                {
+                                    number = "2";
+                                }
+
+                                //记录短信发送记录
+                                sql = "INSERT INTO TCS_MsgSend (" +
+                                                    "nick, " +
+                                                    "buynick, " +
+                                                    "mobile, " +
+                                                    "[content], " +
+                                                    "yiweiid, " +
+                                                    "num, " +
+                                                    "typ " +
+                                                " ) VALUES ( " +
+                                                    " '" + nick + "', " +
+                                                    " '" + buynick + "', " +
+                                                    " '" + phone + "', " +
+                                                    " '" + msg.Replace("'", "''") + "', " +
+                                                    " '" + result + "', " +
+                                                    " '" + number + "', " +
+                                                    " 'freecard' " +
+                                                ") ";
+                                utils.ExecuteNonQuery(sql);
+
+                                //更新短信数量
+                                sql = "UPDATE TCS_ShopConfig SET used = used + " + number + ",total = total-" + number + " WHERE nick = '" + nick + "'";
+                                utils.ExecuteNonQuery(sql);
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                    }
+                }
+            }
+
+            Response.Redirect("freecardcustomer.aspx");
+        }
+    }
+
+    private string GetMsg(string giftcontent, string shopname, string buynick, string freecard)
+    {
+        giftcontent = giftcontent.Replace("[shopname]", shopname);
+        giftcontent = giftcontent.Replace("[buynick]", buynick);
+        giftcontent = giftcontent.Replace("[freecard]", freecard);
+
+        return giftcontent;
+    }
+
+    public static string UrlEncode(string str)
+    {
+        StringBuilder sb = new StringBuilder();
+        byte[] byStr = System.Text.Encoding.Default.GetBytes(str);
+        for (int i = 0; i < byStr.Length; i++)
+        {
+            sb.Append(@"%" + Convert.ToString(byStr[i], 16));
         }
 
-        Response.Redirect("freecardcustomer.aspx");
+        return (sb.ToString());
+    }
+
+    public static string MD5AAA(string str)
+    {
+        return FormsAuthentication.HashPasswordForStoringInConfigFile(str, "MD5");
+    }
+
+    public static string SendMessage(string phone, string msg)
+    {
+        //有客户没有手机号也发送短信
+        if (phone.Length == 0)
+        {
+            return "0";
+        }
+
+        string uid = "ZXHD-SDK-0107-XNYFLX";
+        string pass = MD5AAA("WEGXBEPY").ToLower();
+
+        msg = UrlEncode(msg);
+
+        string param = "regcode=" + uid + "&pwd=" + pass + "&phone=" + phone + "&CONTENT=" + msg + "&extnum=11&level=1&schtime=null&reportflag=1&url=&smstype=0&key=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+        byte[] bs = Encoding.ASCII.GetBytes(param);
+
+        HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://sms.pica.com/zqhdServer/sendSMS.jsp" + "?" + param);
+
+        req.Method = "GET";
+
+        using (HttpWebResponse myResponse = (HttpWebResponse)req.GetResponse())
+        {
+            using (StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.GetEncoding("GB2312")))
+            {
+                string content = reader.ReadToEnd();
+
+                if (content.IndexOf("<result>0</result>") == -1)
+                {
+                    //发送失败
+                    return content;
+                }
+                else
+                {
+                    //发送成功
+                    Regex reg = new Regex(@"<sid>([^<]*)</sid>", RegexOptions.IgnoreCase);
+                    MatchCollection match = reg.Matches(content);
+                    string number = "888888";// match[0].Groups[1].ToString();
+                    return number;
+                }
+            }
+        }
     }
 }
