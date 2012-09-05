@@ -35,7 +35,7 @@
 
         <table width="700">
             <tr>
-                <td align="left" width="180" height="30">是否开启按时好评送优惠券：</td>
+                <td align="left" width="180" height="30">是否开启系统自动赠送优惠券：</td>
                 <td>
                     开启<input name="iscoupon" id="coupon1" type="radio" value="1" <%=check(iscoupon, "1") %> onclick="showArea(1)" />
                     不开启<input name="iscoupon" id="coupon2" type="radio" value="0" <%=check(iscoupon, "0") %> onclick="showArea(0)" />
