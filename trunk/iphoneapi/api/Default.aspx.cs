@@ -67,6 +67,9 @@ public partial class api_Default : System.Web.UI.Page
             case "listindex":
                 ShowListInfoIndex();
                 break;
+            case "listindexcate":
+                ShowListInfoIndexCate();
+                break;
             case "special":
                 ShowSpecialListInfo();
                 break;
@@ -676,6 +679,54 @@ public partial class api_Default : System.Web.UI.Page
 
         Response.Write(str);
     }
+
+
+
+
+
+    private void ShowListInfoIndexCate()
+    {
+        string sql = string.Empty;
+        string str = string.Empty;
+
+        sql = "SELECT TOP 5 * FROM TeteShopItem WHERE isshow = 1 AND nick = '" + uid + "' ORDER BY orderid";
+        //Response.Write(sql);
+        //sql = "SELECT * FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        if (dt.Rows.Count != 0)
+        {
+            str = "{\"new\":[";
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (i != 0)
+                {
+                    str += ",";
+                }
+
+                str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
+            }
+            str += "]";
+
+            str += ",\"hot\":[";
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (i != 0)
+                {
+                    str += ",";
+                }
+
+                str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
+            }
+            str += "]}";
+        }
+        else
+        {
+            str = "{\"count\":\"0\"}";
+        }
+
+        Response.Write(str);
+    }
+
 
     private void ShowListInfo()
     {
