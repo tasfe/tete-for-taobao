@@ -50,7 +50,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="left" width="180" height="30">是否开启按时好评送支付宝红包：</td>
+                <td align="left" width="180" height="30">是否开启系统自动送支付宝红包：</td>
                 <td>
                     开启<input name="isalipay" id="alipay1" type="radio" value="1" <%=check(isalipay, "1") %> onclick="showAreaAli(1)" />
                     不开启<input name="isalipay" id="alipay2" type="radio" value="0" <%=check(isalipay, "0") %> onclick="showAreaAli(0)" />
@@ -67,7 +67,7 @@
 
             
             <tr>
-                <td align="left" width="180" height="30">是否开启按时好评送包邮卡：</td>
+                <td align="left" width="180" height="30">是否开启系统自动送包邮卡：</td>
                 <td>
                     开启<input name="isfree" id="free1" type="radio" value="1" <%=check(isfree, "1") %> onclick="showAreaFree(1)" />
                     不开启<input name="isfree" id="free2" type="radio" value="0" <%=check(isfree, "0") %> onclick="showAreaFree(0)" />
