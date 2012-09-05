@@ -28,7 +28,10 @@
     </ul>
   </div>
     <div id="main-content">
-
+    
+<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
+    建议使用360或者IE浏览器浏览本页，其他浏览器可能无法正常保存。
+</div>
         <table width="700">
             <tr>
                 <td colspan="2"  height="30">
