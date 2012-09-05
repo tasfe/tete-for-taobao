@@ -99,7 +99,7 @@
                     </tr>
                     <tr class="a1">
                         <td style="height: 35px;" colspan="2">
-                            <span class="red">2、将推广宝贝后的链接地址提交到</span>&nbsp;<a target="_blank" href="http://www.baidu.com/search/url_submit.html">http://www.baidu.com/search/url_submit.html</a>
+                            <span class="red">2、将推广宝贝后的链接地址提交到</span>&nbsp;<a target="_blank" href="http://zhanzhang.baidu.com/sitesubmit">http://zhanzhang.baidu.com/sitesubmit</a>
                         </td>
                     </tr>
                 </table>
