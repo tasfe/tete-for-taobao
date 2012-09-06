@@ -72,7 +72,12 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
 
             if (dt.Rows[0]["isfree"].ToString() == "1")
             {
-                gift += "<div style='margin:0 0 0 16px; padding:3px;'>★ 赠送无限制包邮卡1张，可用3次</div>";
+                sql = "SELECT * FROM TCS_FreecardAction WHERE guid = '" + dt.Rows[0]["freeid"].ToString() + "'";
+                DataTable dt1 = utils.ExecuteDataTable(sql);
+                if (dt1.Rows.Count != 0)
+                {
+                    gift += "<div style='margin:0 0 0 16px; padding:3px;'>★ 赠送包邮卡1张" + show(dt1.Rows[0]["areaisfree"].ToString(), dt1.Rows[0]["arealist"].ToString()) + "，满" + dt1.Rows[0]["price"].ToString() + "元可用，可用次数" + dt1.Rows[0]["usecount"].ToString() + "次</div>";
+                }
             }
 
             if (dt.Rows[0]["isalipay"].ToString() == "1")
