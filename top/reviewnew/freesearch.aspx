@@ -23,6 +23,7 @@
   </div>
 </div>
 <div class="w950">
+        <div style="clear:both;margin:10px 0px;"></div>
       <div class="h40 f4f p5">
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
