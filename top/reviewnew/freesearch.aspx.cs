@@ -56,7 +56,7 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
                 con += "【" + dt.Rows[0]["keyword"].ToString() + "】</div>";
             }
 
-            con += "<div style='margin:0 0 0 16px; height:14px;'>物流签收后" + dt.Rows[0]["mindate"].ToString() + "天内评价确认则赠送</div>";
+            con += "<div style='margin:0 0 0 16px; padding:2px;'>物流签收后" + dt.Rows[0]["mindate"].ToString() + "天内评价确认则赠送</div>";
         }
     }
 
