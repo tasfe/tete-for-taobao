@@ -64,7 +64,7 @@
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
-                <td height="16"><%#Eval("name")%></td>
+                <td height="20"><%#Eval("name")%></td>
                 <td><%#Eval("startdate")%></td>
                 <td><%#Eval("carddate")%>个月</td>
                 <td><%#Eval("usecount")%>/<%#Eval("usecountlimit")%></td>
