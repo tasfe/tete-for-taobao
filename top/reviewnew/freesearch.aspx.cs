@@ -15,7 +15,7 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
         string buynick = utils.NewRequest("buynick", utils.RequestType.QueryString);
         //StringBuilder builder = new StringBuilder();
 
-        string sql = "SELECT * FROM TCS_FreeCard f INNER JOIN TCS_FreeCardAction a ON a.guid = f.cardid WHERE f.nick = '" + nick + "' AND f.buynick = '" + buynick + "'";
+        string sql = "SELECT a.name,a.areaisfree,a.arealist,f.startdate,f.carddate,f.usecount,f.usecountlimit,f.price FROM TCS_FreeCard f INNER JOIN TCS_FreeCardAction a ON a.guid = f.cardid WHERE f.nick = '" + nick + "' AND f.buynick = '" + buynick + "'";
 
         DataTable dt = utils.ExecuteDataTable(sql);
 
