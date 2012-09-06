@@ -29,7 +29,16 @@
 </div>
 <div class="w950">
         <div style="clear:both;margin:10px 0px;"></div>
+
+        <div class="h40 f4f p5">
+            <h1>本店好评有礼赠送条件：</h1><br />
+            默认好评不送<br />
+            好评内包含关键字：“范德萨范德萨”才赠送<br />
+            赠送礼品：满100减50优惠券（每人限制领取1张）
+        </div>
+
       <div class="h40 f4f p5">
+      <asp:Panel ID="Panel1" runat="server">
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
                 <td width="80"><b>名称</b></td>
@@ -52,6 +61,7 @@
             </ItemTemplate>
         </asp:Repeater>
     </table>
+    </asp:Panel>
        <br clear=all />
   </div>
 </div>

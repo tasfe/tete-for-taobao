@@ -23,6 +23,12 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
 
         rptArticle.DataSource = dt;
         rptArticle.DataBind();
+
+        if (dt.Rows.Count == 0)
+        {
+            Panel1.Visible = false;
+        }
+
         //builder.Append(buynick + "，您目前拥有店铺【" + nick + "】的包邮卡" + dt.Rows.Count + "张<br>");
         //for (int i = 0; i < dt.Rows.Count; i++)
         //{
