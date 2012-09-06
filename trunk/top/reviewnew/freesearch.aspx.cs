@@ -41,12 +41,13 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
             {
                 con += "<div style='margin:0 0 0 16px; padding:3px;'>★ 默认好评不赠送</div>";
             }
-            if (dt.Rows[0]["wordcount"].ToString() != "0")
-            {
-                con += "<div style='margin:0 0 0 16px; padding:3px;'>★ 评价字数必须大于" + dt.Rows[0]["wordcount"].ToString() + "个字</div>";
-            }
             if (dt.Rows[0]["iskeyword"].ToString() == "1")
             {
+                if (dt.Rows[0]["wordcount"].ToString() != "0")
+                {
+                    con += "<div style='margin:0 0 0 16px; padding:3px;'>★ 评价字数必须大于" + dt.Rows[0]["wordcount"].ToString() + "个字</div>";
+                }
+
                 if (dt.Rows[0]["keywordisbad"].ToString() == "0")
                 {
                     con += "<div style='margin:0 0 0 16px; padding:3px;'>★ 评价内包含以下关键字则赠送：";
