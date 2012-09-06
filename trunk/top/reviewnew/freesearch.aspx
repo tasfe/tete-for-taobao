@@ -43,7 +43,7 @@
                 <td><%#Eval("carddate")%>个月</td>
                 <td><%#Eval("usecount")%>/<%#Eval("usecountlimit")%></td>
                 <td><%#Eval("price")%>元</td>
-                <td><%#Eval("arealist")%></td>
+                <td><%#show(Eval("areaisfree").ToString(), Eval("arealist").ToString())%></td>
             </tr>
             </ItemTemplate>
         </asp:Repeater>
