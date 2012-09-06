@@ -32,11 +32,9 @@
 
         <div class="h40 f4f p5">
             <h1>本店好评有礼赠送条件：</h1>
-            默认好评不送<br />
-            好评内包含关键字：“范德萨范德萨”才赠送<br />
-            赠送礼品：满100减50优惠券（每人限制领取1张）
+            <%=con %>
         </div>
-        
+        <br />
       <asp:Panel ID="Panel1" runat="server">
       <div class="h40 f4f p5">
     <table width="700" cellpadding="0" cellspacing="0">
