@@ -10,6 +10,7 @@ using System.Text;
 public partial class top_reviewnew_freesearch : System.Web.UI.Page
 {
     public string buynick = string.Empty;
+    public string con = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -29,11 +30,33 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
             Panel1.Visible = false;
         }
 
-        //builder.Append(buynick + "，您目前拥有店铺【" + nick + "】的包邮卡" + dt.Rows.Count + "张<br>");
-        //for (int i = 0; i < dt.Rows.Count; i++)
-        //{
-        //    builder.Append("<br>");
-        //}
+        sql = "SELECT * FROM TCS_ShopConfig WHERE nick = '"+nick+"'";
+        dt = utils.ExecuteDataTable(sql);
+
+        if (dt.Rows.Count != 0)
+        {
+            if (dt.Rows[0]["iscancelauto"].ToString() == "1")
+            {
+                con += "默认好评不赠送<br />";
+            }
+            if (dt.Rows[0]["wordcount"].ToString() != "0")
+            {
+                con += "评价字数必须大于" + dt.Rows[0]["wordcount"].ToString() + "个字<br />";
+            }
+            if (dt.Rows[0]["iskeyword"].ToString() == "1")
+            {
+                if (dt.Rows[0]["keywordisbad"].ToString() == "0")
+                {
+                    con += "评价内包含以下关键字则赠送：";
+                }
+                else {
+                    con += "评价内包含以下关键字则不赠送：";
+                }
+                con += "【" + dt.Rows[0]["keyword"].ToString() + "】<br />";
+            }
+
+            con += "物流签收后" + dt.Rows[0]["mindate"].ToString() + "天内评价确认则赠送<br />";
+        }
     }
 
 
