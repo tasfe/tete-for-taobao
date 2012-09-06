@@ -19,7 +19,7 @@
 	font-family:微软雅黑;
     padding:6px;
 	color:#fff;
-	font-weight:bold;" align=center>
+	font-weight:bold;">
         <img src='images/clientbanner.jpg' height="80" />
   </div>
 </div>
@@ -28,11 +28,11 @@
       <div class="h40 f4f p5">
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
-                <td width="140"><b>名称</b></td>
+                <td width="80"><b>名称</b></td>
                 <td width="140"><b>领取时间</b></td>
                 <td width="60"><b>免邮时间</b></td>
                 <td width="60"><b>使用次数</b></td>
-                <td width="60"><b>满金额</b></td>
+                <td width="60"><b>满金额可用</b></td>
                 <td width="80"><b>地区</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
