@@ -19,7 +19,7 @@
 	font-family:微软雅黑;
     padding:6px;
 	color:#fff;
-	font-weight:bold;">
+	font-weight:bold;" align=center>
         <img src='images/clientbanner.jpg' height="80" />
   </div>
 </div>
