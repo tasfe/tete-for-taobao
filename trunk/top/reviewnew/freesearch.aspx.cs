@@ -38,11 +38,11 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
 
         if (isfree == "1")
         {
-            return "【只有以下地区包邮】（" + arealist + "）";
+            return "【只有以下地区包邮】<br>（" + arealist + "）";
         }
         else
         {
-            return "【以下地区不包邮】（" + arealist + "）";
+            return "【以下地区不包邮】<br>（" + arealist + "）";
         }
     }
 }
