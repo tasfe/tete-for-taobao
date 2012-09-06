@@ -20,9 +20,9 @@
     padding:6px;
 	color:#fff;
 	font-weight:bold;">
-        <div style="width:200; float:left;">
+        <div style="width:200; float:left; padding:10px;">
             <b style="color:white"><%=buynick %>，您好！</b>  <br /><br />
-            <a href='http://ecrm.taobao.com/mallcoupon/got_bonus.htm' target="_blank">查看我的优惠券</a>
+            <a href='http://ecrm.taobao.com/mallcoupon/got_bonus.htm' style="color:white" target="_blank">查看我的优惠券</a>
         </div>
         <div style="width:750; float:left;"><img src='images/clientbanner.jpg' height="80" /></div>
   </div>
