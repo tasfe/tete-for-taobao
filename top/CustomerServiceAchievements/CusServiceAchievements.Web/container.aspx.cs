@@ -67,7 +67,7 @@ public partial class container : System.Web.UI.Page
 
         if (CacheCollection.GetNickSessionList().Where(o => o.Nick == nick && o.ServiceId == Enum.TopTaoBaoService.KeFuJiXiao).ToList().Count != 0)
         {
-            string tetuiurl = Request.Url.AbsoluteUri.ToString().Replace("kfjx.7fshop", "search.tetuiguang");
+            string tetuiurl = Request.Url.AbsoluteUri.ToString().Replace("kfjx.7fshop", "search.fensehenhuo.com");
             Response.Redirect(tetuiurl);
         }
 
