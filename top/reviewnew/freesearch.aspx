@@ -54,7 +54,7 @@
 <!--
 -->
 <div class="content">
-  <div class="footer" id="foot"> </div>
+  <div class="footer" id="foot"> Copyright © 2010-2012 <a href='http://fuwu.taobao.com/ser/detail.htm?service_code=service-0-22904&from=client' target="_blank">好评有礼</a> 版权所有 </div>
 </div>  
     
 </body>
