@@ -19,15 +19,8 @@
 </div>
 <div class="w950">
 
-  <div style="clear:both;margin:10px 0px;">111</div>
+        <div style="clear:both;margin:10px 0px;">好评有礼</div>
       <div class="h40 f4f p5">
-      
-      
-    <form id="form1" runat="server">
-      
-      
-    <div>
-        
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
                 <td width="140"><b>名称</b></td>
@@ -50,11 +43,6 @@
             </ItemTemplate>
         </asp:Repeater>
     </table>
-
-    </div>
-      
-      
-    </form>
        <br clear=all />
   </div>
 <style>
