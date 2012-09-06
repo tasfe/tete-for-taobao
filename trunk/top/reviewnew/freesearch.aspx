@@ -19,7 +19,7 @@
 	font-family:"微软雅黑";
 	color:#fff;
 	font-weight:bold;">
-        <img src='http://haoping.7fshop.com/top/reviewnew/images/750a.jpg' />
+        <img src='http://haoping.7fshop.com/top/reviewnew/images/750a.jpg' height="80" />
   </div>
 </div>
 <div class="w950">
