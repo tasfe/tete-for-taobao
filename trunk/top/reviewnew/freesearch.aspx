@@ -27,7 +27,7 @@
         <div style="width:750; float:left;"><img src='images/clientbanner.jpg' height="80" /></div>
   </div>
 </div>
-<div class="w950">
+<div class="w950" style="height:500px;">
         <div style="clear:both;margin:10px 0px;"></div>
 
         <div class="h40 f4f p5">
