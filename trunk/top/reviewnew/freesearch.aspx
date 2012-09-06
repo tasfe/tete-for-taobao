@@ -25,28 +25,27 @@
             <a href='http://ecrm.taobao.com/mallcoupon/got_bonus.htm' style="color:white" target="_blank">查看我的优惠券</a>
         </div>
         <div style="width:750; float:left;"><img src='images/clientbanner.jpg' height="80" /></div>
+        <div style="clear:both"></div>
   </div>
 </div>
 <div class="w950" style="height:500px;">
-<div style="width:900px;">
-<div style="float:left; width:450px; height:200px">
+
         <div style="clear:both;margin:10px 0px;"></div>
 
         <div class="h40 f4f p5">
+
+<div style="width:900px;">
+<div style="float:left; width:450px; height:200px">
             <h1>本店好评有礼赠送条件：</h1>
             <%=con %><br /> 
-        </div>
 </div>
 <div style="float:left; width:450px; height:200px">
-     <div style="clear:both;margin:10px 0px;"></div>
-
-        <div class="h40 f4f p5">
             <h1>赠送礼品清单：</h1>
             <%=gift %><br /> 
-        </div>
 </div>
 </div>
 
+        </div>
 
         <br />
       <asp:Panel ID="Panel1" runat="server">
