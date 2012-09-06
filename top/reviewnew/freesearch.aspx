@@ -6,6 +6,10 @@
 <head runat="server">
     <title>好评有礼</title>
     <link rel="stylesheet" href="images/show.css" />
+    <style>
+    .other_coupon {padding-left:10px;}
+    .other_coupon img{border:0;}
+    </style>  
 </head>
 <body>
     
@@ -15,11 +19,10 @@
 	font-family:"微软雅黑";
 	color:#fff;
 	font-weight:bold;">
+        <img src='http://haoping.7fshop.com/top/reviewnew/images/750a.jpg' />
   </div>
 </div>
 <div class="w950">
-
-        <div style="clear:both;margin:10px 0px;">好评有礼</div>
       <div class="h40 f4f p5">
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
@@ -45,10 +48,6 @@
     </table>
        <br clear=all />
   </div>
-<style>
-.other_coupon {padding-left:10px;}
-.other_coupon img{border:0;}
-</style>  
 </div>
 <!--
 -->
