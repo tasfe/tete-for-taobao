@@ -9,10 +9,12 @@ using System.Text;
 
 public partial class top_reviewnew_freesearch : System.Web.UI.Page
 {
+    public string buynick = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string nick = utils.NewRequest("nick", utils.RequestType.QueryString);
-        string buynick = utils.NewRequest("buynick", utils.RequestType.QueryString);
+        buynick = utils.NewRequest("buynick", utils.RequestType.QueryString);
         //StringBuilder builder = new StringBuilder();
 
         string sql = "SELECT a.name,a.areaisfree,a.arealist,f.startdate,f.carddate,f.usecount,f.usecountlimit,f.price FROM TCS_FreeCard f INNER JOIN TCS_FreeCardAction a ON a.guid = f.cardid WHERE f.nick = '" + nick + "' AND f.buynick = '" + buynick + "'";
