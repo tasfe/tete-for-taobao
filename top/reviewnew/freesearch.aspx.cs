@@ -35,28 +35,28 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
 
         if (dt.Rows.Count != 0)
         {
-            con += "<div style='margin:0 0 0 16px; padding:3px;'>·动态评分全5分才送</div>";
+            con += "<div style='margin:0 0 0 16px; padding:3px;'>·★ 动态评分全5分才送</div>";
             if (dt.Rows[0]["iscancelauto"].ToString() == "1")
             {
-                con += "<div style='margin:0 0 0 16px; padding:3px;'>·默认好评不赠送</div>";
+                con += "<div style='margin:0 0 0 16px; padding:3px;'>★ 默认好评不赠送</div>";
             }
             if (dt.Rows[0]["wordcount"].ToString() != "0")
             {
-                con += "<div style='margin:0 0 0 16px; padding:3px;'>·评价字数必须大于" + dt.Rows[0]["wordcount"].ToString() + "个字</div>";
+                con += "<div style='margin:0 0 0 16px; padding:3px;'>★ 评价字数必须大于" + dt.Rows[0]["wordcount"].ToString() + "个字</div>";
             }
             if (dt.Rows[0]["iskeyword"].ToString() == "1")
             {
                 if (dt.Rows[0]["keywordisbad"].ToString() == "0")
                 {
-                    con += "<div style='margin:0 0 0 16px; padding:3px;'>·评价内包含以下关键字则赠送：";
+                    con += "<div style='margin:0 0 0 16px; padding:3px;'>★ 评价内包含以下关键字则赠送：";
                 }
                 else {
-                    con += "<div style='margin:0 0 0 16px; padding:3px;'>·评价内包含以下关键字则不赠送：";
+                    con += "<div style='margin:0 0 0 16px; padding:3px;'>★ 评价内包含以下关键字则不赠送：";
                 }
                 con += "【" + dt.Rows[0]["keyword"].ToString() + "】</div>";
             }
 
-            con += "<div style='margin:0 0 0 16px; padding:3px;'>·物流签收后" + dt.Rows[0]["mindate"].ToString() + "天内评价确认则赠送</div>";
+            con += "<div style='margin:0 0 0 16px; padding:3px;'>★ 物流签收后" + dt.Rows[0]["mindate"].ToString() + "天内评价确认则赠送</div>";
         }
     }
 
