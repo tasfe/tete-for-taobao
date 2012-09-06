@@ -32,7 +32,7 @@
 
         <div class="h40 f4f p5">
             <h1>本店好评有礼赠送条件：</h1>
-            <span style="margin:0 0 0 16px; line-height:14px;"><%=con %></span>
+            <%=con %>
         </div>
         <br />
       <asp:Panel ID="Panel1" runat="server">
