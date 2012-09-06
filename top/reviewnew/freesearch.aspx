@@ -20,7 +20,7 @@
     padding:6px;
 	color:#fff;
 	font-weight:bold;">
-        <img src='http://haoping.7fshop.com/top/reviewnew/images/750a.jpg' height="80" />
+        <img src='images/clientbanner.jpg' height="80" />
   </div>
 </div>
 <div class="w950">
