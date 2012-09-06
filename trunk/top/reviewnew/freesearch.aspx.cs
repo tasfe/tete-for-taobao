@@ -11,6 +11,7 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
 {
     public string buynick = string.Empty;
     public string con = string.Empty;
+    public string gift = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -57,6 +58,22 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
             }
 
             con += "<div style='margin:0 0 0 16px; padding:3px;'>★ 物流签收后" + dt.Rows[0]["mindate"].ToString() + "天内评价确认则赠送</div>";
+
+            //优惠券
+            if (dt.Rows[0]["iscoupon"].ToString() == "1")
+            {
+                gift += "<div style='margin:0 0 0 16px; padding:3px;'>★ 赠送满100减50优惠券（每人限领3张）</div>";
+            }
+
+            if (dt.Rows[0]["isfree"].ToString() == "1")
+            {
+                gift += "<div style='margin:0 0 0 16px; padding:3px;'>★ 赠送无限制包邮卡1张，可用3次</div>";
+            }
+
+            if (dt.Rows[0]["isalipay"].ToString() == "1")
+            {
+                gift += "<div style='margin:0 0 0 16px; padding:3px;'>★ 赠送价值10元支付宝红包1个</div>";
+            }
         }
     }
 

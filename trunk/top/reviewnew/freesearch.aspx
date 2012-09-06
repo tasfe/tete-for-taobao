@@ -42,7 +42,7 @@
 
         <div class="h40 f4f p5">
             <h1>赠送礼品清单：</h1>
-            ><br /> 
+            <%=gift %><br /> 
         </div>
 </div>
 </div>
