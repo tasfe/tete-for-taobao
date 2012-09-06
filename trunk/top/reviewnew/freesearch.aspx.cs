@@ -76,7 +76,7 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
                 DataTable dt1 = utils.ExecuteDataTable(sql);
                 if (dt1.Rows.Count != 0)
                 {
-                    gift += "<div style='margin:0 0 0 16px; padding:3px;'>★ 赠送包邮卡1张" + show(dt1.Rows[0]["areaisfree"].ToString(), dt1.Rows[0]["arealist"].ToString()) + "，满" + dt1.Rows[0]["price"].ToString() + "元可用，可用次数" + dt1.Rows[0]["usecount"].ToString() + "次</div>";
+                    gift += "<div style='margin:0 0 0 16px; padding:3px;'>★ 赠送包邮卡1张" + show(dt1.Rows[0]["areaisfree"].ToString(), dt1.Rows[0]["arealist"].ToString()) + "，满" + dt1.Rows[0]["price"].ToString() + "元可用，可用次数" + show1(dt1.Rows[0]["usecount"].ToString()) + "</div>";
                 }
             }
 
@@ -89,6 +89,18 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
                     gift += "<div style='margin:0 0 0 16px; padding:3px;'>★ 赠送价值" + dt1.Rows[0]["num"].ToString() + "元支付宝红包1张 （每人限领" + dt1.Rows[0]["per"].ToString() + "张）</div>";
                 }
             }
+        }
+    }
+
+    private string show1(string p)
+    {
+        if (p == "0")
+        {
+            return "【不限次数】";
+        }
+        else
+        {
+            return "【"+p+"次】";
         }
     }
 
