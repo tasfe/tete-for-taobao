@@ -77,7 +77,12 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
 
             if (dt.Rows[0]["isalipay"].ToString() == "1")
             {
-                gift += "<div style='margin:0 0 0 16px; padding:3px;'>★ 赠送价值10元支付宝红包1个</div>";
+                sql = "SELECT * FROM TCS_Alipay WHERE guid = '" + dt.Rows[0]["alipayid"].ToString() + "'";
+                DataTable dt1 = utils.ExecuteDataTable(sql);
+                if (dt1.Rows.Count != 0)
+                {
+                    gift += "<div style='margin:0 0 0 16px; padding:3px;'>★ 赠送价值" + dt1.Rows[0]["num"].ToString() + "元支付宝红包1张 （每人限领" + dt1.Rows[0]["per"].ToString() + "张）</div>";
+                }
             }
         }
     }
