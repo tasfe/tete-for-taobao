@@ -29,7 +29,7 @@
 </div>
 <div class="w950" style="height:500px;">
 <div style="width:900px;">
-<div style="float:left; width:450px;">
+<div style="float:left; width:450px; height:200px">
         <div style="clear:both;margin:10px 0px;"></div>
 
         <div class="h40 f4f p5">
@@ -37,7 +37,7 @@
             <%=con %><br /> 
         </div>
 </div>
-<div style="float:left; width:450px;">
+<div style="float:left; width:450px; height:200px">
      <div style="clear:both;margin:10px 0px;"></div>
 
         <div class="h40 f4f p5">
