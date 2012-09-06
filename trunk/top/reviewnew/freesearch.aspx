@@ -15,11 +15,6 @@
 	font-family:"微软雅黑";
 	color:#fff;
 	font-weight:bold;">
-  <div style="background:#f2f2f2;margin:10px 0px;height:228px;background:url(images/shopbanner2.gif) 0px 20px  no-repeat #ff6600">
-  
-    
-    
-  </div>  
   </div>
 </div>
 <div class="w950">
@@ -35,6 +30,7 @@
         
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
+                <td width="140"><b>名称</b></td>
                 <td width="140"><b>领取时间</b></td>
                 <td width="60"><b>免邮时间</b></td>
                 <td width="60"><b>使用次数</b></td>
@@ -44,6 +40,7 @@
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
+                <td height="35"><%#Eval("name")%></td>
                 <td height="35"><%#Eval("startdate")%></td>
                 <td height="35"><%#Eval("carddate")%>个月</td>
                 <td><%#Eval("usecount")%>/<%#Eval("usecountlimit")%></td>
@@ -58,7 +55,7 @@
       
       
     </form>
-       
+       <br clear=all />
   </div>
 <style>
 .other_coupon {padding-left:10px;}
