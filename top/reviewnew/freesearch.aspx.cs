@@ -35,7 +35,7 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
 
         if (dt.Rows.Count != 0)
         {
-            con += "<div style='margin:0 0 0 16px; padding:3px;'>·★ 动态评分全5分才送</div>";
+            con += "<div style='margin:0 0 0 16px; padding:3px;'>★ 动态评分全5分才送</div>";
             if (dt.Rows[0]["iscancelauto"].ToString() == "1")
             {
                 con += "<div style='margin:0 0 0 16px; padding:3px;'>★ 默认好评不赠送</div>";
