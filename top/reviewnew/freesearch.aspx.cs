@@ -27,4 +27,22 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
         //    builder.Append("<br>");
         //}
     }
+
+
+    public static string show(string isfree, string arealist)
+    {
+        if (arealist.Length == 0)
+        {
+            return "【国内全部包邮】";
+        }
+
+        if (isfree == "1")
+        {
+            return "【只有以下地区包邮】（" + arealist + "）";
+        }
+        else
+        {
+            return "【以下地区不包邮】（" + arealist + "）";
+        }
+    }
 }
