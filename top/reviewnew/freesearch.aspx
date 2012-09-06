@@ -15,8 +15,9 @@
     
   <div class="content">
   <div style="	width:950px;
-	margin:6px auto;
-	font-family:"微软雅黑";
+	margin:0 auto;
+	font-family:微软雅黑;
+    padding:6px;
 	color:#fff;
 	font-weight:bold;">
         <img src='http://haoping.7fshop.com/top/reviewnew/images/750a.jpg' height="80" />
