@@ -19,7 +19,7 @@
 </div>
 <div class="w950">
 
-  <div style="clear:both;margin:10px 0px;"></div>
+  <div style="clear:both;margin:10px 0px;">111</div>
       <div class="h40 f4f p5">
       
       
@@ -40,9 +40,9 @@
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
-                <td height="35"><%#Eval("name")%></td>
-                <td height="35"><%#Eval("startdate")%></td>
-                <td height="35"><%#Eval("carddate")%>个月</td>
+                <td height="20"><%#Eval("name")%></td>
+                <td><%#Eval("startdate")%></td>
+                <td><%#Eval("carddate")%>个月</td>
                 <td><%#Eval("usecount")%>/<%#Eval("usecountlimit")%></td>
                 <td><%#Eval("price")%>元</td>
                 <td><%#Eval("arealist")%></td>
