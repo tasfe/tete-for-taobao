@@ -21,6 +21,7 @@ public partial class top_reviewnew_tuiguang : System.Web.UI.Page
                   OR ip in
                    (select ip from TCS_ShopSession where ip is not null AND version > 1))
 AND (laiyuan = 'bangpaiht' OR laiyuan = 'bangpaift')
+AND ip NOT LIKE '117.80%'
                   order by adddate desc";
 
         DataTable dt = utils.ExecuteDataTable(sql);
