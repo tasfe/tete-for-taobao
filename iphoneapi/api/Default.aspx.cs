@@ -61,6 +61,9 @@ public partial class api_Default : System.Web.UI.Page
             case "cate":
                 ShowCateInfo();
                 break;
+            case "cateindex":
+                ShowCateInfoIndex();
+                break;
             case "list":
                 ShowListInfo();
                 break;
@@ -129,7 +132,7 @@ public partial class api_Default : System.Web.UI.Page
         string sql = string.Empty;
         string str = string.Empty;
 
-        sql = "SELECT logo,url,cateid FROM TeteShopAds WHERE nick = '" + uid + "'";
+        sql = "SELECT logo,url,cateid FROM TeteShopAds WHERE nick = '" + uid + "' AND typ = '" + typ + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
@@ -796,6 +799,34 @@ public partial class api_Default : System.Web.UI.Page
     }
 
 
+    private void ShowCateInfoIndex()
+    {
+        string sql = string.Empty;
+        string str = string.Empty;
+
+        sql = "SELECT TOP 5 * FROM TeteShopCategory WHERE nick = '" + uid + "'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        if (dt.Rows.Count != 0)
+        {
+            str = "{\"cate\":[";
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (i != 0)
+                {
+                    str += ",";
+                }
+
+                str += "{\"cid\":\"" + dt.Rows[i]["cateid"].ToString() + "\",\"parent_cid\":\"" + dt.Rows[i]["parentid"].ToString() + "\",\"name\":\"" + dt.Rows[i]["catename"].ToString().Substring(0, 2) + "\",\"count\":\"" + dt.Rows[i]["catecount"].ToString() + "\",\"catepicurl\":\"" + dt.Rows[i]["catepicurl"].ToString() + "\"}";
+            }
+            str += "]}";
+        }
+        else
+        {
+            str = "{\"count\":\"0\"}";
+        }
+
+        Response.Write(str);
+    }
 
     private void ShowCateInfo()
     {
