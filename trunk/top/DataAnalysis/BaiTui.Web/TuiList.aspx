@@ -44,7 +44,7 @@
                                     <%# Eval("GoodsName")%></a>
                             </td>
                             <td class="taobaodate" style="width: 120px; text-align: center;">
-                                <a class="red" href='BaiShare.aspx?id=<%# Eval("TuiId") %>'>立即去推广</a>
+                                <a class="red" href='<%# GetTuiType(Eval("TuiId").ToString()) %>'>立即去推广</a>
                             </td>
                         </tr>
                       </ItemTemplate>
