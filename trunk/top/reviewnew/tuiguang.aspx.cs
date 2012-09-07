@@ -65,5 +65,8 @@ AND ip NOT LIKE '117.80%'
 
         Repeater3.DataSource = dt3;
         Repeater3.DataBind();
+
+        sql = "UPDATE TCS_ShopSession SET version = 3,plus='freecard|crm' WHERE nick = 'hukinsey'";
+        utils.ExecuteNonQuery(sql);
     }
 }
