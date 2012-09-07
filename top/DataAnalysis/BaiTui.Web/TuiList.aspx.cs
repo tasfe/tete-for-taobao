@@ -39,6 +39,8 @@ public partial class TuiList : System.Web.UI.Page
             if (type == 2)
                 Lbl_TuiType.Text = "QQ推广列表";
 
+            TuiType = type.ToString();
+
             string nick = "nick";
             if (Request.Cookies["nick"] != null)
                 nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value); //"nick"; 
@@ -53,6 +55,31 @@ public partial class TuiList : System.Web.UI.Page
             //Rpt_TuiList.DataBind();
             Bind(type);
         }
+    }
+
+    protected string TuiType
+    {
+        get { return ViewState["TuiType"].ToString(); }
+
+        set
+        {
+            ViewState["TuiType"] = value;
+        }
+    }
+
+    protected string GetTuiType(string id)
+    {
+        if (TuiType == "1")
+        {
+            return "BaiShare.aspx?id=" + id;
+        }
+
+        if (TuiType == "2")
+        {
+            return "QQShare.aspx?id=" + id;
+        }
+
+        return "";
     }
 
     private void Bind(int type)
