@@ -38,10 +38,36 @@ public partial class top_reviewnew_tsapi : System.Web.UI.Page
             case "testmsg":
                 OutGiftMsg("test");
                 break;
+            case "freecardmsg":
+                OutGiftMsg("freecard");
+                break;
             case "taobaomsg":
                 OutTaobaoMsg();
                 break;
+            case "freecarduse":
+                OutFreeCardUseMsg();
+                break;
         }
+    }
+
+    private void OutFreeCardUseMsg()
+    {
+        string sql = string.Empty;
+        string str = string.Empty;
+
+        sql = "SELECT COUNT(*) FROM TCS_FreeCardLog";
+        str += utils.ExecuteString(sql);
+
+        sql = @"SELECT TOP 1 *
+                  FROM [TeteCrmSaasNew].[dbo].[TCS_FreeCardLog]
+                  ORDER BY adddate DESC";
+        DataTable dt = utils.ExecuteDataTable(sql);
+
+        str += "," + dt.Rows[0]["adddate"].ToString();
+        str += "," + dt.Rows[0]["nick"].ToString() + "-" + dt.Rows[0]["buynick"].ToString() + "-" + dt.Rows[0]["orderid"].ToString();
+
+        Response.Write(str);
+        Response.End();
     }
 
     private void OutTaobaoMsg()
@@ -85,4 +111,5 @@ public partial class top_reviewnew_tsapi : System.Web.UI.Page
         Response.Write(str);
         Response.End();
     }
+
 }
