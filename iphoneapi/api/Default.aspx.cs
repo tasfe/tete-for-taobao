@@ -821,7 +821,7 @@ public partial class api_Default : System.Web.UI.Page
 
     private void ShowListInfo()
     {
-        if (act == "hot")
+        if (typ == "hot")
         {
             ShowHotListInfo();
             return;
