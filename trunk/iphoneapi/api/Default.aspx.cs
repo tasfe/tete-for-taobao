@@ -128,7 +128,7 @@ public partial class api_Default : System.Web.UI.Page
         //    string str = "{\"error_response\":\"service_error\"}";
         //    Response.Write(str);
         //}
-       File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), Request.Url.ToString());
+       //File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), Request.Url.ToString());
     }
 
     private void ShowAdsListInfo()
