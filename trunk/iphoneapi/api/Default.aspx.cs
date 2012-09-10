@@ -132,7 +132,7 @@ public partial class api_Default : System.Web.UI.Page
         string sql = string.Empty;
         string str = string.Empty;
 
-        sql = "SELECT logo,url,cateid FROM TeteShopAds WHERE nick = '" + uid + "' AND typ = '" + typ + "'";
+        sql = "SELECT logo,url,cateid,title FROM TeteShopAds WHERE nick = '" + uid + "' AND typ = '" + typ + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
@@ -144,7 +144,7 @@ public partial class api_Default : System.Web.UI.Page
                     str += ",";
                 }
 
-                str += "{\"logo\":\"" + dt.Rows[i][0].ToString() + "\",\"url\":\"" + dt.Rows[i][1].ToString() + "\",\"cateid\":\"" + dt.Rows[i][2].ToString() + "\"}";
+                str += "{\"logo\":\"" + dt.Rows[i][0].ToString() + "\",\"url\":\"" + dt.Rows[i][1].ToString() + "\",\"cateid\":\"" + dt.Rows[i][2].ToString() + "\",\"title\":\"" + dt.Rows[i][3].ToString() + "\"}";
             }
             str += "]}";
         }
