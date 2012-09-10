@@ -76,6 +76,9 @@ public partial class api_Default : System.Web.UI.Page
             case "special":
                 ShowSpecialListInfo();
                 break;
+            case "hot":
+                ShowSpecialListInfo();
+                break;
             case "detail":
                 ShowDetailInfo();
                 break;
