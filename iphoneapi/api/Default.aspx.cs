@@ -807,7 +807,7 @@ public partial class api_Default : System.Web.UI.Page
         string sql = string.Empty;
         string str = string.Empty;
 
-        sql = "SELECT TOP 5 * FROM TeteShopCategory WHERE nick = '" + uid + "'";
+        sql = "SELECT TOP 5 * FROM TeteShopCategory WHERE nick = '" + uid + "' ORDER BY orderid";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
