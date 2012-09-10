@@ -695,7 +695,7 @@ public partial class api_Default : System.Web.UI.Page
         string sql = string.Empty;
         string str = string.Empty;
 
-        sql = "SELECT TOP 5 * FROM TeteShopItem WHERE isshow = 1 AND nick = '" + uid + "' ORDER BY orderid";
+        sql = "SELECT TOP 3 * FROM TeteShopItem WHERE isnew = 1 AND nick = '" + uid + "' ORDER BY orderid";
         //Response.Write(sql);
         //sql = "SELECT * FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
         DataTable dt = utils.ExecuteDataTable(sql);
@@ -714,6 +714,8 @@ public partial class api_Default : System.Web.UI.Page
             str += "]";
 
             str += ",\"hot\":[";
+            sql = "SELECT TOP 2 * FROM TeteShopItem WHERE nick = '" + uid + "' ORDER BY price DESC";
+            dt = utils.ExecuteDataTable(sql);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 if (i != 0)
