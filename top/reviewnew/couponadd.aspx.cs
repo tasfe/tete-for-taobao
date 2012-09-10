@@ -68,12 +68,12 @@ public partial class top_review_couponadd : System.Web.UI.Page
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.add", session, param);
 
         //Response.Write(result + "<br><br>" + price + "<br><br>" + condition + "<br><br>" + end_time + "<br><br>" + coupon_name);
-//Insufficient session permissions
+        //Insufficient session permissions
 
         if (result.IndexOf("Insufficient") != -1)
         {
             Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12159997&scope=promotion' target='_parent'>重新授权</a>");
-            	Response.End();
+            Response.End();
             return;
         }
 
@@ -102,6 +102,29 @@ public partial class top_review_couponadd : System.Web.UI.Page
         if (coupon_id == "")
         {
             Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + result + "</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
+            Response.End();
+            return;
+        }
+
+        try
+        {
+            DateTime d = DateTime.Parse(end_time);
+        }
+        catch
+        {
+            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>“" + end_time + "”该时间不存在或者格式错误</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
+            Response.End();
+            return;
+        }
+
+
+        try
+        {
+            DateTime d = DateTime.Parse(endsenddate);
+        }
+        catch
+        {
+            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>“" + endsenddate + "”该时间不存在或者格式错误</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
             Response.End();
             return;
         }
