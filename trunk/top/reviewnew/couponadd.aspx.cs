@@ -99,6 +99,13 @@ public partial class top_review_couponadd : System.Web.UI.Page
 
         string coupon_id = new Regex(@"<coupon_id>([^<]*)</coupon_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
 
+        if (coupon_id == "")
+        {
+            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + result + "</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
+            Response.End();
+            return;
+        }
+
         string sql = "INSERT INTO TCS_Coupon (" +
                         "nick, " +
                         "name, " +
