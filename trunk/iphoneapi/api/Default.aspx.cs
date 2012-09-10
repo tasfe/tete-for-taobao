@@ -741,7 +741,7 @@ public partial class api_Default : System.Web.UI.Page
         string sql = string.Empty;
         string str = string.Empty;
 
-        sql = "SELECT TOP 5 * FROM TeteShopItem WHERE isshow = 1 AND nick = '" + uid + "' ORDER BY orderid";
+        sql = "SELECT TOP 5 * FROM TeteShopItem WHERE isnew = 1 AND nick = '" + uid + "' ORDER BY orderid";
         //Response.Write(sql);
         //sql = "SELECT * FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
         DataTable dt = utils.ExecuteDataTable(sql);
