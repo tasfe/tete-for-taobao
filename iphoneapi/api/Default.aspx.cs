@@ -614,7 +614,7 @@ public partial class api_Default : System.Web.UI.Page
         int dataCount = (pageNow - 1) * pageCount;
 
 
-        sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' WHERE isnew = 1";
+        sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1";
         int totalCount = int.Parse(utils.ExecuteString(sql));
         int totalPageCount = 1;
 
