@@ -614,7 +614,14 @@ public partial class api_Default : System.Web.UI.Page
         int dataCount = (pageNow - 1) * pageCount;
 
 
-        sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1";
+        if (cid.Length == 0)
+        {
+            sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1";
+}
+        else
+        {
+            sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1 AND CHARINDEX('" + cid + "', cateid) > 0";
+        }
         int totalCount = int.Parse(utils.ExecuteString(sql));
         int totalPageCount = 1;
 
@@ -626,10 +633,16 @@ public partial class api_Default : System.Web.UI.Page
         {
             totalPageCount = totalCount / pageCount + 1;
         }
+        
+        if (cid.Length == 0)
+        {
+            sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY id DESC) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY id DESC";
+        }
+        else
+        {
+            sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY id DESC) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1 AND CHARINDEX('" + cid + "', cateid) > 0) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY id DESC";
+        }
 
-        sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY id DESC) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY id DESC";
-        //Response.Write(sql);
-        //sql = "SELECT * FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
@@ -799,7 +812,7 @@ public partial class api_Default : System.Web.UI.Page
             str = "{\"count\":\"0\"}";
         }
 
-        File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), Request.Url.ToString());
+        //File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), Request.Url.ToString());
 
         Response.Write(str);
     }
