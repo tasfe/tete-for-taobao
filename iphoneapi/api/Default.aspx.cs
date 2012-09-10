@@ -637,11 +637,11 @@ public partial class api_Default : System.Web.UI.Page
         
         if (cid.Length == 0)
         {
-            sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY orderid DESC) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY orderid DESC";
+            sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY orderid) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY orderid";
         }
         else
         {
-            sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY orderid DESC) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1 AND CHARINDEX('" + cid + "', cateid) > 0) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY orderid DESC";
+            sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY orderid) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1 AND CHARINDEX('" + cid + "', cateid) > 0) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY orderid";
         }
 
         DataTable dt = utils.ExecuteDataTable(sql);
