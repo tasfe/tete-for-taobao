@@ -732,6 +732,8 @@ public partial class api_Default : System.Web.UI.Page
             str = "{\"count\":\"0\"}";
         }
 
+        File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), Request.Url.ToString());
+
         Response.Write(str);
     }
 
