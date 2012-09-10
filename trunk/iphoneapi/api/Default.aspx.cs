@@ -821,6 +821,12 @@ public partial class api_Default : System.Web.UI.Page
 
     private void ShowListInfo()
     {
+        if (act == "hot")
+        {
+            ShowHotListInfo();
+            return;
+        }
+
         string sql = string.Empty;
         string str = string.Empty;
 
