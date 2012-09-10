@@ -178,7 +178,7 @@ public partial class top_review_couponadd : System.Web.UI.Page
             }
         }
 
-        //Response.Write("<br><br>" + sql);
+        //Response.Write("<br><br>" + result);
         Response.Redirect("couponlist.aspx");
     }
 
