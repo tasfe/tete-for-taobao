@@ -846,8 +846,17 @@ public partial class api_Default : System.Web.UI.Page
         int pageCount = pageSizeNow;
         int dataCount = (pageNow - 1) * pageCount;
 
+        
+        if (cid.Length == 0)
+        {
+            sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "'";
+        }
+        else
+        {
+            sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
+        }
 
-        sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
+
         int totalCount = int.Parse(utils.ExecuteString(sql));
         int totalPageCount = 1;
 
