@@ -37,7 +37,7 @@
                     <div style="height:10px"></div>
                     目前可以推广的网站有：<span style="color: Blue;">QQ空间、QQ收藏、腾讯微博、朋友网、百度搜藏、百度空间、百度贴吧。</span>。
                     <br>
-                    <span class="red" style="font-weight: bold;">建议每次分享到一个网站的数量不要超过5个</span>
+                    <span class="red" style="font-weight: bold;">建议每次分享到一个网站的数量不要超过5个,百度账户绑定邮箱和手机</span>
                     <div style="height:10px"></div>
                     使用步骤：<br>
                     <span class="red" style="font-weight: bold;">
