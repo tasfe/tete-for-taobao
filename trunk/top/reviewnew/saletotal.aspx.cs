@@ -60,24 +60,24 @@ public partial class top_reviewnew_saletotal : System.Web.UI.Page
     private void BindData()
     {
         //优惠券带来的
-        string sql = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND iscoupon = 1";
+        string sql = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND iscoupon = 1 AND mobile <> ''";
         totalcount = utils.ExecuteString(sql);
 
-        sql = "SELECT SUM(Convert(decimal,totalprice)) FROM TCS_Trade WHERE nick = '" + nick + "' AND iscoupon = 1";
+        sql = "SELECT SUM(Convert(decimal,totalprice)) FROM TCS_Trade WHERE nick = '" + nick + "' AND iscoupon = 1 AND mobile <> ''";
         totalprice = utils.ExecuteString(sql);
 
         //免邮卡带来的
-        sql = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND orderid IN (SELECT orderid FROM TCS_FreeCardLog WHERE nick = '" + nick + "')";
+        sql = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND orderid IN (SELECT orderid FROM TCS_FreeCardLog WHERE nick = '" + nick + "') AND mobile <> ''";
         totalcount1 = utils.ExecuteString(sql);
 
-        sql = "SELECT SUM(Convert(decimal,totalprice)) FROM TCS_Trade WHERE nick = '" + nick + "' AND orderid IN (SELECT orderid FROM TCS_FreeCardLog WHERE nick = '" + nick + "')";
+        sql = "SELECT SUM(Convert(decimal,totalprice)) FROM TCS_Trade WHERE nick = '" + nick + "' AND orderid IN (SELECT orderid FROM TCS_FreeCardLog WHERE nick = '" + nick + "') AND mobile <> ''";
         totalprice1 = utils.ExecuteString(sql);
 
         //催单有礼带来的
-        sql = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND orderid IN (SELECT orderid FROM TCS_MsgSend WHERE nick = '" + nick + "' AND typ = 'cui')";
+        sql = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND orderid IN (SELECT orderid FROM TCS_MsgSend WHERE nick = '" + nick + "' AND typ = 'cui') AND mobile <> ''";
         totalcount2 = utils.ExecuteString(sql);
 
-        sql = "SELECT SUM(Convert(decimal,totalprice)) FROM TCS_Trade WHERE nick = '" + nick + "' AND orderid IN (SELECT orderid FROM TCS_MsgSend WHERE nick = '" + nick + "' AND typ = 'cui')";
+        sql = "SELECT SUM(Convert(decimal,totalprice)) FROM TCS_Trade WHERE nick = '" + nick + "' AND orderid IN (SELECT orderid FROM TCS_MsgSend WHERE nick = '" + nick + "' AND typ = 'cui') AND mobile <> ''";
         totalprice2 = utils.ExecuteString(sql);
     }
 }
