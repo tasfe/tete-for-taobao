@@ -10,16 +10,18 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
 {
     public string nick = string.Empty;
     public string session = string.Empty;
+    public string st = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
         session = cookie.getCookie("top_session");
+        st = cookie.getCookie("short");
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
-        string sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + nick + "' AND parentid=0";
+        string sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + st + "' AND parentid=0";
 
         if (!IsPostBack)
         {
