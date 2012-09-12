@@ -27,8 +27,8 @@
                 <asp:Label ID="lb1" runat="server" Text='<%#Eval("cateid") %>' Visible="false"></asp:Label>
                 <asp:Repeater ID="rpt2" runat="server">
                     <ItemTemplate>
-                         广告图片：<input name="pic_<%#Eval("cateid") %>_<%#Eval("orderid") %>" value="<%#Eval("logo") %>" />
-                         链接地址：<input name="url_<%#Eval("cateid") %>_<%#Eval("orderid") %>" value="<%#Eval("url") %>" /><br />
+                         广告图片：<input name="pic_<%#Eval("typ") %>_<%#Eval("orderid") %>" value="<%#Eval("logo") %>" />
+                         链接地址：<input name="url_<%#Eval("typ") %>_<%#Eval("orderid") %>" value="<%#Eval("url") %>" /><br />
                     </ItemTemplate>
                 </asp:Repeater>
                 <br />
