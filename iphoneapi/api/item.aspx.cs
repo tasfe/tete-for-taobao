@@ -32,13 +32,29 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
             ddl1.DataBind();
 
 
-             sql = "SELECT * FROM TeteShopItem WHERE nick = '" + st + "' ORDER BY itemname DESC";
+            sql = "SELECT * FROM TeteShopItem WHERE nick = '" + st + "' ORDER BY itemname DESC";
 
-             dt = utils.ExecuteDataTable(sql);
+            dt = utils.ExecuteDataTable(sql);
             rpt1.DataSource = dt;
             rpt1.DataBind();
         }
     }
+
+
+
+    public static string check(string str)
+    {
+        if (str == "1")
+        {
+            return "checked";
+        }
+        else
+        {
+            return "";
+        }
+    }
+
+
 
     protected void Button1_Click(object sender, EventArgs e)
     {
