@@ -30,6 +30,13 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
             ddl1.DataTextField = "catename";
             ddl1.DataValueField = "cateid";
             ddl1.DataBind();
+
+
+             sql = "SELECT * FROM TeteShopItem WHERE nick = '" + st + "' ORDER BY itemname DESC";
+
+             dt = utils.ExecuteDataTable(sql);
+            rpt1.DataSource = dt;
+            rpt1.DataBind();
         }
     }
 
@@ -55,6 +62,10 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
 
     protected void ddl1_SelectedIndexChanged(object sender, EventArgs e)
     {
-
+        string sql = "SELECT * FROM TeteShopItem WHERE nick = '" + st + "' AND CHARINDEX('" + this.ddl1.SelectedValue + "', cateid) > 0 ORDER BY itemname DESC";
+       
+        DataTable dt = utils.ExecuteDataTable(sql);
+        rpt1.DataSource = dt;
+        rpt1.DataBind();
     }
 }
