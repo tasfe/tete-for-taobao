@@ -71,7 +71,7 @@
                                         <%#Eval("NetWork")%>
                                     </td>
                                     <td align="center">
-                                        <a href='UVisitPage.aspx?visitip=<%#Eval("VisitIP")%>' style="color: Black">查看 </a>
+                                        <a href='NorUVisitPage.aspx?visitip=<%#Eval("VisitIP")%>' style="color: Black">查看 </a>
                                     </td>
                                 </tr>
                             </ItemTemplate>
