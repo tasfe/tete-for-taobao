@@ -41,19 +41,19 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                if (i == 1)
+                if (i == 0)
                 {
                     logo1 = dt.Rows[i]["logo"].ToString();
                     url1 = dt.Rows[i]["url"].ToString();
                 }
 
-                if (i == 2)
+                if (i == 1)
                 {
                     logo2 = dt.Rows[i]["logo"].ToString();
                     url2 = dt.Rows[i]["url"].ToString();
                 }
 
-                if (i == 3)
+                if (i == 2)
                 {
                     logo3 = dt.Rows[i]["logo"].ToString();
                     url3 = dt.Rows[i]["url"].ToString();
