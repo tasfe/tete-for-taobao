@@ -89,7 +89,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
         str += ")";
 
         sql = "SELECT * FROM TeteShopItem WHERE nick = '" + st + "' AND " + str + " ORDER BY itemname DESC";
-        Response.Write(sql);
+        //Response.Write(sql);
         dt = utils.ExecuteDataTable(sql);
         rpt1.DataSource = dt;
         rpt1.DataBind();
