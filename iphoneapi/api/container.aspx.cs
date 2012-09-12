@@ -20,6 +20,6 @@ public partial class iphoneapi_api_container : System.Web.UI.Page
         cookie.setCookie("nick", nick, 999999);
         cookie.setCookie("short", s, 999999);
 
-        Response.Redirect("http://haoping.7fshop.com/top/indexios.html");
+        Response.Redirect("indexios.html");
     }
 }
