@@ -32,7 +32,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
             ddl1.DataBind();
 
 
-            sql = "SELECT * FROM TeteShopItem WHERE nick = '" + st + "' AND isnew = 1 ORDER BY itemname DESC";
+            sql = "SELECT * FROM TeteShopItem WHERE nick = '" + st + "' AND isnew = 1 ORDER BY orderid";
 
             dt = utils.ExecuteDataTable(sql);
             rpt1.DataSource = dt;
@@ -78,7 +78,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
     protected void ddl1_SelectedIndexChanged(object sender, EventArgs e)
     {
         string str = string.Empty;
-        string sql = "SELECT * FROM TeteShopCategory WHERE parentid = '" + this.ddl1.SelectedValue + "'";
+        string sql = "SELECT * FROM TeteShopCategory WHERE parentid = '" + this.ddl1.SelectedValue + "' ORDER BY orderid";
         DataTable dt = utils.ExecuteDataTable(sql);
         str = "(1 = 2";
         for (int i = 0; i < dt.Rows.Count; i++)
