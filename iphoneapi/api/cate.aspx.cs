@@ -21,7 +21,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
-        string sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + st + "' AND parentid=0";
+        string sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + st + "' AND parentid=0 ORDER BY orderid";
 
         if (!IsPostBack)
         {
