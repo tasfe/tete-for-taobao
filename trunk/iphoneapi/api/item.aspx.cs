@@ -62,14 +62,21 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
         string name = string.Empty;
         string orderid = string.Empty;
 
-        string ids = utils.NewRequest("id", utils.RequestType.Form);
+        sql = "UPDATE TeteShopItem SET isnew = 0 WHERE ";
+
+        string id = utils.NewRequest("id", utils.RequestType.Form);
+        string ids = utils.NewRequest("ids", utils.RequestType.Form);
         string[] ary = ids.Split(',');
         for (int i = 0; i < ary.Length; i++)
         {
-            name = utils.NewRequest("cate_" + ary[i], utils.RequestType.Form);
-            orderid = utils.NewRequest("orderid_" + ary[i], utils.RequestType.Form);
+            sql = "UPDATE TeteShopItem SET isnew = 0 WHERE nick = '" + st + "' AND itemid = '" + ary[i] + "'";
+            utils.ExecuteNonQuery(sql);
+        }
 
-            sql = "UPDATE TeteShopItem SET isnew =1 WHERE nick = '" + st + "' AND itemid = '" + ary[i] + "'";
+        ary = id.Split(',');
+        for (int i = 0; i < ary.Length; i++)
+        {
+            sql = "UPDATE TeteShopItem SET isnew = 1 WHERE nick = '" + st + "' AND itemid = '" + ary[i] + "'";
             utils.ExecuteNonQuery(sql);
         }
 
