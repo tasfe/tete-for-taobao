@@ -18,9 +18,9 @@
     <div style="height:300px; overflow:scroll;">
         <asp:Repeater ID="rpt1" runat="server">
             <ItemTemplate>
+                <input name="isnew" type="checkbox" value="<%#Eval("itemid") %>" <%#check(Eval("isnew").ToString()) %> />-新品
                 <input name="id" type="hidden" value="<%#Eval("itemid") %>" />
                 <%#Eval("itemname") %>---<%#Eval("price") %>---
-                <input name="isnew" type="checkbox" value="<%#Eval("itemid") %>" <%#check(Eval("isnew").ToString()) %> />-新品
                 <br />
             </ItemTemplate>
         </asp:Repeater>
