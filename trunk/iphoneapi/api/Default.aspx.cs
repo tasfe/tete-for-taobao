@@ -591,6 +591,7 @@ public partial class api_Default : System.Web.UI.Page
     {
         string sql = string.Empty;
         string str = string.Empty;
+        string con = string.Empty;
 
         int pageNow = 1;
         if (page == "")
@@ -621,7 +622,17 @@ public partial class api_Default : System.Web.UI.Page
 }
         else
         {
-            sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1 AND CHARINDEX('" + cid + "', cateid) > 0";
+
+            sql = "SELECT * FROM TeteShopCategory WHERE parentid = '" + cid + "'";
+            DataTable dt1 = utils.ExecuteDataTable(sql);
+            con = "(1 = 2";
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                con += " OR CHARINDEX('" + dt1.Rows[i]["cateid"].ToString() + "', cateid) > 0";
+            }
+            con += ")";
+
+            sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1 AND " + con + "";
         }
         int totalCount = int.Parse(utils.ExecuteString(sql));
         int totalPageCount = 1;
@@ -641,7 +652,7 @@ public partial class api_Default : System.Web.UI.Page
         }
         else
         {
-            sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY orderid) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1 AND CHARINDEX('" + cid + "', cateid) > 0) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY orderid";
+            sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY orderid) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1 AND " + con + ") AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY orderid";
         }
 
         DataTable dt = utils.ExecuteDataTable(sql);
@@ -672,6 +683,7 @@ public partial class api_Default : System.Web.UI.Page
     {
         string sql = string.Empty;
         string str = string.Empty;
+        string con = string.Empty;
 
         int pageNow = 1;
         if (page == "")
@@ -701,7 +713,16 @@ public partial class api_Default : System.Web.UI.Page
         }
         else
         {
-            sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
+            sql = "SELECT * FROM TeteShopCategory WHERE parentid = '" + cid + "'";
+            DataTable dt1 = utils.ExecuteDataTable(sql);
+            con = "(1 = 2";
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                con += " OR CHARINDEX('" + dt1.Rows[i]["cateid"].ToString() + "', cateid) > 0";
+            }
+            con += ")";
+
+            sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' AND " + con + "";
         }
 
 
@@ -723,7 +744,7 @@ public partial class api_Default : System.Web.UI.Page
         }
         else
         {
-            sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY price DESC) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY price DESC";
+            sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY price DESC) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "'  AND " + con + ") AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY price DESC";
         }
 
         DataTable dt = utils.ExecuteDataTable(sql);
