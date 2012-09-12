@@ -821,7 +821,7 @@ public partial class api_Default : System.Web.UI.Page
             str += "]";
 
             str += ",\"hot\":[";
-            sql = "SELECT TOP 2 * FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0 ORDER BY price DESC";
+            sql = "SELECT TOP 2 * FROM TeteShopItem WHERE nick = '" + uid + "' AND " + con + " ORDER BY price DESC";
             dt = utils.ExecuteDataTable(sql);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
