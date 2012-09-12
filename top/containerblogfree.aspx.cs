@@ -62,7 +62,7 @@ public partial class top_containerblogfree : System.Web.UI.Page
 
         if (nick == "langbow旗舰店")
         {
-            Response.Redirect("http://iphone.tetesoft.com/api/con.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&session=" + Session);
+            Response.Redirect("http://iphone.tetesoft.com/api/container.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&session=" + Session);
             return;
         }
 
