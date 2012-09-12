@@ -36,7 +36,7 @@
                 <td width="90"><b>优惠券名称</b></td>
                 <td width="40"><b>金额</b></td>
                 <td width="70"><b>领取数量</b></td>
-                <td width="100"><b>自动赠送截至日期</b></td>
+                <td width="140"><b>自动赠送截至日期</b></td>
                 <td width="100"><b>有效日期</b></td>
                 <td width="60"><b>使用条件</b> </td>
                 <td width="90"><b>总量/已领用</b> </td>
