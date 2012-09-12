@@ -31,7 +31,7 @@ public partial class top_reviewnew_alipayadd : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
-        endsenddate = DateTime.Now.AddMonths(2).ToString("yyyy-MM-dd");
+        endsenddate = DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd");
 
         //过期判断
         if (string.IsNullOrEmpty(taobaoNick))
