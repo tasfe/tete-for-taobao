@@ -80,7 +80,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
             utils.ExecuteNonQuery(sql);
         }
 
-        //Response.Redirect("item.aspx");
+        Response.Redirect("item.aspx");
     }
 
     protected void ddl1_SelectedIndexChanged(object sender, EventArgs e)
