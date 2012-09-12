@@ -11,8 +11,9 @@
     <div>
         <asp:Repeater ID="rpt1" runat="server">
             <ItemTemplate>
-                <input name="cate" value="<%#Eval("catename") %>" />
-                <input name="orderid" value="<%#Eval("orderid") %>" /> <br />
+                <input name="id" value="<%#Eval("cateid") %>" />
+                <input name="cate_<%#Eval("cateid") %>" value="<%#Eval("catename") %>" />
+                <input name="orderid_<%#Eval("cateid") %>" value="<%#Eval("orderid") %>" /> <br />
             </ItemTemplate>
         </asp:Repeater>
 
