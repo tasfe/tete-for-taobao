@@ -11,12 +11,20 @@ using Taobao.Top.Api;
 
 public partial class api_getnewdata : System.Web.UI.Page
 {
+    public string nick = string.Empty;
+    public string session = string.Empty;
+    public string st = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        string uid = utils.NewRequest("uid", utils.RequestType.QueryString);
-        string taobaonick = utils.NewRequest("taobaonick", utils.RequestType.QueryString);
+        Common.Cookie cookie = new Common.Cookie();
+        string taobaoNick = cookie.getCookie("nick");
+        session = cookie.getCookie("top_session");
+        st = cookie.getCookie("short");
+        Rijndael_ encode = new Rijndael_("tetesoft");
+        nick = encode.Decrypt(taobaoNick);
 
-        Act(uid, taobaonick);
+        Act(st, nick);
         Response.Write("数据更新完毕！");
     }
 
