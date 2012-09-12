@@ -77,6 +77,48 @@ public partial class api_getnewdata : System.Web.UI.Page
                           ") ";
                 Response.Write(sql + "<br>");
                 utils.ExecuteNonQuery(sql);
+
+                if (cat.Content[i].ParentCid == 0)
+                {
+                    sql = "INSERT INTO TeteShopAds (" +
+                                "typ, " +
+                                "url, " +
+                                "orderid, " +
+                                "nick " +
+                            " ) VALUES ( " +
+                                " '" + cat.Content[i].Cid + "', " +
+                                " 'http://langbow.tmall.com', " +
+                                " '1', " +
+                                " '" + uid + "' " +
+                          ") ";
+                    utils.ExecuteNonQuery(sql);
+
+                    sql = "INSERT INTO TeteShopAds (" +
+                                "typ, " +
+                                "url, " +
+                                "orderid, " +
+                                "nick " +
+                            " ) VALUES ( " +
+                                " '" + cat.Content[i].Cid + "', " +
+                                " 'http://langbow.tmall.com', " +
+                                " '2', " +
+                                " '" + uid + "' " +
+                          ") ";
+                    utils.ExecuteNonQuery(sql);
+
+                    sql = "INSERT INTO TeteShopAds (" +
+                                "typ, " +
+                                "url, " +
+                                "orderid, " +
+                                "nick " +
+                            " ) VALUES ( " +
+                                " '" + cat.Content[i].Cid + "', " +
+                                " 'http://langbow.tmall.com', " +
+                                " '3', " +
+                                " '" + uid + "' " +
+                          ") ";
+                    utils.ExecuteNonQuery(sql);
+                }
             }
 
 
