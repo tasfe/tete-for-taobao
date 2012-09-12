@@ -15,15 +15,17 @@
     </asp:DropDownList>
 
     <br />
+    <div style="height:300px; overflow:scroll;">
         <asp:Repeater ID="rpt1" runat="server">
             <ItemTemplate>
                 <input name="id" type="hidden" value="<%#Eval("itemid") %>" />
                 <%#Eval("itemname") %>
-                <input name="orderid_<%#Eval("itemid") %>" value="<%#Eval("orderid") %>" /> 
+                <input name="orderid_<%#Eval("itemid") %>" value="<%#Eval("orderid") %>" size=4 /> 
                 <input name="isnew" type="checkbox" value="<%#Eval("itemid") %>" /> 新品
                 <br />
             </ItemTemplate>
         </asp:Repeater>
+        </div>
 
         <br /><br />
         <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存" />
