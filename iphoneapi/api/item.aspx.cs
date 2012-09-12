@@ -84,7 +84,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
         str = "(1 = 2";
         for (int i = 0; i < dt.Rows.Count; i++)
         {
-            str += " OR CHARINDEX('" + str + "', cateid) > 0";
+            str += " OR CHARINDEX('" + dt.Rows[i]["cateid"].ToString() + "', cateid) > 0";
         }
         str += ")";
 
