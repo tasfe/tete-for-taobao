@@ -14,7 +14,7 @@
                 <input name="id" type="hidden" value="<%#Eval("cateid") %>" />
                 <input name="cate_<%#Eval("cateid") %>" value="<%#Eval("catename") %>" />
                 <input name="orderid_<%#Eval("cateid") %>" value="<%#Eval("orderid") %>" /> 
-                <%#Eval("name") %>
+                【<%#Eval("oldname") %>】
                 <br />
             </ItemTemplate>
         </asp:Repeater>
