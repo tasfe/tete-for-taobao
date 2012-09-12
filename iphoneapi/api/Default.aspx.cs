@@ -789,8 +789,20 @@ public partial class api_Default : System.Web.UI.Page
     {
         string sql = string.Empty;
         string str = string.Empty;
+        string con = string.Empty;
 
-        sql = "SELECT TOP 3 * FROM TeteShopItem WHERE isnew = 1 AND nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0 ORDER BY orderid";
+        sql = "SELECT * FROM TeteShopCategory WHERE parentid = '" + cid + "'";
+        DataTable dt1 = utils.ExecuteDataTable(sql);
+        con = "(1 = 2";
+        for (int i = 0; i < dt1.Rows.Count; i++)
+        {
+            con += " OR CHARINDEX('" + dt1.Rows[i]["cateid"].ToString() + "', cateid) > 0";
+        }
+        con += ")";
+
+
+
+        sql = "SELECT TOP 3 * FROM TeteShopItem WHERE isnew = 1 AND nick = '" + uid + "' AND " + con + " ORDER BY orderid";
         //Response.Write(sql);
         //sql = "SELECT * FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
         DataTable dt = utils.ExecuteDataTable(sql);
