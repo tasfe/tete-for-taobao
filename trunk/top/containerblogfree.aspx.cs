@@ -60,6 +60,12 @@ public partial class top_containerblogfree : System.Web.UI.Page
         //return;
         File.WriteAllText(Server.MapPath("customer/" + nick + ".txt"), Request.Url.ToString());
 
+        if (nick == "langbow旗舰店")
+        {
+            Response.Redirect("http://iphone.tetesoft.com/api/con.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&session=" + Session);
+            return;
+        }
+
         //判断跳转，判断客户是否订购了好评有礼
         string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "' AND version > 1";
         DataTable dt = utils.ExecuteDataTable(sql);
