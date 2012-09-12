@@ -19,9 +19,9 @@
         广告图片3：<input name="pic_index_3" value="<%=logo3 %>" />
         链接地址3：<input name="url_index_3" value="<%=url3 %>" /><br />
 
-        <asp:Repeater ID="rpt1" runat="server">
+        <asp:Repeater ID="rpt1" runat="server" onitemdatabound="rpt1_ItemDataBound">
             <ItemTemplate>
-                <b>【<%#Eval("cateid") %>】分类广告3张</b><br />
+                <b>【<%#Eval("oldname") %>】分类广告3张</b><br />
                 <input name="id" type="hidden" value="<%#Eval("cateid") %>" />
                 <asp:Label ID="lb1" runat="server" value='<%#Eval("cateid") %>'></asp:Label>
                 <asp:Repeater ID="rpt2" runat="server">
