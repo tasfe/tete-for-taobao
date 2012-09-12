@@ -19,8 +19,9 @@
         <asp:Repeater ID="rpt1" runat="server">
             <ItemTemplate>
                 <input name="ids" type="hidden" value="<%#Eval("itemid") %>" />
-                <input name="orderid_<%#Eval("cateid") %>" value="<%#Eval("orderid") %>" /> 
+                <input name="orderid_<%#Eval("itemid") %>" value="<%#Eval("orderid") %>" size=4 /> 
                 <%#Eval("itemname") %>---<%#Eval("price") %>---
+                <img src='<%#Eval("picurl") %>' width=20 height=20 />
                 <br />
             </ItemTemplate>
         </asp:Repeater>
