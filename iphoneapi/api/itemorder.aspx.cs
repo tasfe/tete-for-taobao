@@ -87,7 +87,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
         }
         str += ")";
 
-        sql = "SELECT * FROM TeteShopItem WHERE nick = '" + st + "' AND " + str + " AND isnew = 1 ORDER BY itemname DESC";
+        sql = "SELECT * FROM TeteShopItem WHERE nick = '" + st + "' AND " + str + " AND isnew = 1 ORDER BY orderid";
         //Response.Write(sql);
         dt = utils.ExecuteDataTable(sql);
         rpt1.DataSource = dt;
