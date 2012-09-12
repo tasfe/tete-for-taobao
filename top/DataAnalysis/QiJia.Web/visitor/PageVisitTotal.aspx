@@ -17,7 +17,7 @@
 
          <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="javascript:;" class="nolink">营销决策</a> 页面访问分析 </div>
+  <div class="crumbs"><a href="javascript:;" class="nolink">特特统计</a> 页面访问分析 </div>
   <div class="absright">
     <ul>
       <li>
