@@ -21,9 +21,12 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
 
         string sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + nick + "' AND parentid=0";
 
-        DataTable dt = utils.ExecuteDataTable(sql);
-        rpt1.DataSource = dt;
-        rpt1.DataBind();
+        if (!IsPostBack)
+        {
+            DataTable dt = utils.ExecuteDataTable(sql);
+            rpt1.DataSource = dt;
+            rpt1.DataBind();
+        }
     }
 
     protected void Button1_Click(object sender, EventArgs e)
