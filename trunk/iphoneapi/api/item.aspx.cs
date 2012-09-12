@@ -62,9 +62,18 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
 
     protected void ddl1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        string sql = "SELECT * FROM TeteShopItem WHERE nick = '" + st + "' AND CHARINDEX('" + this.ddl1.SelectedValue + "', cateid) > 0 ORDER BY itemname DESC";
-       
+        string str = string.Empty;
+        string sql = "SELECT * FROM TeteShopCategory WHERE parentid = '" + this.ddl1.SelectedValue + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
+        str = "(1 = 2";
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            str += " OR CHARINDEX('" + str + "', cateid) > 0";
+        }
+        str += ")";
+
+        sql = "SELECT * FROM TeteShopItem WHERE nick = '" + st + "' AND " + str + " ORDER BY itemname DESC";
+        dt = utils.ExecuteDataTable(sql);
         rpt1.DataSource = dt;
         rpt1.DataBind();
     }
