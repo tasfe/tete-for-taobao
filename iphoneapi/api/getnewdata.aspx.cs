@@ -51,8 +51,8 @@ public partial class api_getnewdata : System.Web.UI.Page
             PageList<SellerCat> cat = client.SellercatsListGet(request1);
 
             //清除之前的老分类
-            sql = "DELETE FROM TeteShopCategory WHERE nick = '" + uid + "'";
-            utils.ExecuteNonQuery(sql);
+            //sql = "DELETE FROM TeteShopCategory WHERE nick = '" + uid + "'";
+            //utils.ExecuteNonQuery(sql);
 
             for (int i = 0; i < cat.Content.Count; i++)
             {
@@ -62,21 +62,27 @@ public partial class api_getnewdata : System.Web.UI.Page
                     continue;
                 }
 
-                sql = "INSERT INTO TeteShopCategory (" +
-                                "cateid, " +
-                                "catename, " +
-                                "oldname, " +
-                                "parentid, " +
-                                "nick " +
-                            " ) VALUES ( " +
-                                " '" + cat.Content[i].Cid + "', " +
-                                " '" + cat.Content[i].Name + "', " +
-                                " '" + cat.Content[i].Name + "', " +
-                                " '" + cat.Content[i].ParentCid + "', " +
-                                " '" + uid + "' " +
-                          ") ";
-                Response.Write(sql + "<br>");
-                utils.ExecuteNonQuery(sql);
+                //如果已经存在则不处理
+                sql = "SELECT COUNT(*) FROM TeteShopCategory WHERE cateid='" + cat.Content[i].Cid + "'";
+                string count2 = utils.ExecuteString(sql);
+                if (count2 == "0")
+                {
+                    sql = "INSERT INTO TeteShopCategory (" +
+                                    "cateid, " +
+                                    "catename, " +
+                                    "oldname, " +
+                                    "parentid, " +
+                                    "nick " +
+                                " ) VALUES ( " +
+                                    " '" + cat.Content[i].Cid + "', " +
+                                    " '" + cat.Content[i].Name + "', " +
+                                    " '" + cat.Content[i].Name + "', " +
+                                    " '" + cat.Content[i].ParentCid + "', " +
+                                    " '" + uid + "' " +
+                              ") ";
+                    Response.Write(sql + "<br>");
+                    utils.ExecuteNonQuery(sql);
+                }
 
                 if (cat.Content[i].ParentCid == 0)
                 {
@@ -128,8 +134,8 @@ public partial class api_getnewdata : System.Web.UI.Page
 
 
             //清除之前的老商品数据
-            sql = "DELETE FROM TeteShopItem WHERE nick = '" + uid + "'";
-            utils.ExecuteNonQuery(sql);
+            //sql = "DELETE FROM TeteShopItem WHERE nick = '" + uid + "'";
+            //utils.ExecuteNonQuery(sql);
 
             //同步商品数据
             for (int j = 1; j <= 500; j++)
@@ -142,30 +148,36 @@ public partial class api_getnewdata : System.Web.UI.Page
                 PageList<Item> product = client.ItemsOnsaleGet(request, dt.Rows[0]["session"].ToString());
                 for (int i = 0; i < product.Content.Count; i++)
                 {
-                    sql = "INSERT INTO TeteShopItem (" +
-                                "cateid, " +
-                                "itemid, " +
-                                "itemname, " +
-                                "picurl, " +
-                                "linkurl, " +
-                                "price, " +
-                                "nick " +
-                            " ) VALUES ( " +
-                                " '" + product.Content[i].SellerCids + "', " +
-                                " '" + product.Content[i].NumIid + "', " +
-                                " '" + product.Content[i].Title + "', " +
-                                " '" + product.Content[i].PicUrl + "', " +
-                                " 'http://a.m.taobao.com/i" + product.Content[i].NumIid + ".htm', " +
-                                " '" + product.Content[i].Price + "', " +
-                                " '" + uid + "' " +
-                          ") ";
-                    Response.Write(sql + "<br>");
-                    utils.ExecuteNonQuery(sql);
 
-                    //更新分类数量
-                    sql = "UPDATE TeteShopCategory SET catecount = catecount + 1 WHERE nick = '" + uid + "' AND CHARINDEX(cateid, '" + product.Content[i].SellerCids + "') > 0";
-                    Response.Write(sql + "<br>");
-                    utils.ExecuteNonQuery(sql);
+                    sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' AND itemid = '" + product.Content[i].NumIid + "'";
+                    string count3 = utils.ExecuteString(sql);
+                    if (count3 == "0")
+                    {
+                        sql = "INSERT INTO TeteShopItem (" +
+                                    "cateid, " +
+                                    "itemid, " +
+                                    "itemname, " +
+                                    "picurl, " +
+                                    "linkurl, " +
+                                    "price, " +
+                                    "nick " +
+                                " ) VALUES ( " +
+                                    " '" + product.Content[i].SellerCids + "', " +
+                                    " '" + product.Content[i].NumIid + "', " +
+                                    " '" + product.Content[i].Title + "', " +
+                                    " '" + product.Content[i].PicUrl + "', " +
+                                    " 'http://a.m.taobao.com/i" + product.Content[i].NumIid + ".htm', " +
+                                    " '" + product.Content[i].Price + "', " +
+                                    " '" + uid + "' " +
+                              ") ";
+                        Response.Write(sql + "<br>");
+                        utils.ExecuteNonQuery(sql);
+
+                        //更新分类数量
+                        sql = "UPDATE TeteShopCategory SET catecount = catecount + 1 WHERE nick = '" + uid + "' AND CHARINDEX(cateid, '" + product.Content[i].SellerCids + "') > 0";
+                        Response.Write(sql + "<br>");
+                        utils.ExecuteNonQuery(sql);
+                    }
 
                 }
                 if (product.Content.Count < 200)
