@@ -95,7 +95,7 @@ public partial class top_review_couponmodify : System.Web.UI.Page
             param.Add("condition", condition);
             string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.add", session, param);
 
-            if (result.IndexOf("Insufficient session permissions") != -1)
+            if (result.IndexOf("Insufficient") != -1)
             {
                 Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>您的session已经失效，需要重新授权</font><br><a href='http://container.api.taobao.com/container?appkey=12159997&scope=promotion' target='_parent'>重新授权</a>");
                 Response.End();
