@@ -35,6 +35,30 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
             DataTable dt = utils.ExecuteDataTable(sql);
             rpt1.DataSource = dt;
             rpt1.DataBind();
+
+            sql = "SELECT * FROM TeteShopAds WHERE typ = 'index' AND nick = '" + st + "' ORDER BY orderid";
+            dt = utils.ExecuteDataTable(sql);
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (i == 1)
+                {
+                    logo1 = dt.Rows[i]["logo"].ToString();
+                    url1 = dt.Rows[i]["url"].ToString();
+                }
+
+                if (i == 2)
+                {
+                    logo2 = dt.Rows[i]["logo"].ToString();
+                    url2 = dt.Rows[i]["url"].ToString();
+                }
+
+                if (i == 3)
+                {
+                    logo3 = dt.Rows[i]["logo"].ToString();
+                    url3 = dt.Rows[i]["url"].ToString();
+                }
+            }
         }
     }
 
@@ -61,8 +85,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
     protected void rpt1_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         Label lb = (Label)e.Item.FindControl("lb1");
-        string sql = "SELECT * FROM TeteShopAds WHERE typ = '" + lb.Text + "' ORDER BY orderid";
-        Response.Write(sql);
+        string sql = "SELECT * FROM TeteShopAds WHERE typ = '" + lb.Text + "' AND nick = '"+st+"' ORDER BY orderid";
         DataTable dt = utils.ExecuteDataTable(sql);
 
         Repeater rpt2 = (Repeater)e.Item.FindControl("rpt2");
