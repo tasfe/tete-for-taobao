@@ -13,6 +13,8 @@ public partial class iphoneapi_api_container : System.Web.UI.Page
         string nick = utils.NewRequest("nick", utils.RequestType.QueryString);
 
         Cookie cookie = new Cookie();
+        Rijndael_ encode = new Rijndael_("tetesoft");
+        nick = encode.Encrypt(nick);
         cookie.setCookie("top_session", session, 999999);
         cookie.setCookie("nick", nick, 999999);
 
