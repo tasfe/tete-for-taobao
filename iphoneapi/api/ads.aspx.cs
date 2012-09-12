@@ -62,6 +62,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
     {
         Label lb = (Label)e.Item.FindControl("lb1");
         string sql = "SELECT * FROM TeteShopAds WHERE typ = '" + lb.Text + "' ORDER BY orderid";
+        Response.Write(sql);
         DataTable dt = utils.ExecuteDataTable(sql);
 
         Repeater rpt2 = (Repeater)e.Item.FindControl("rpt2");
