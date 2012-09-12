@@ -23,7 +23,7 @@
             <ItemTemplate>
                 <b>【<%#Eval("oldname") %>】分类广告3张</b><br />
                 <input name="id" type="hidden" value="<%#Eval("cateid") %>" />
-                <asp:Label ID="lb1" runat="server" value='<%#Eval("cateid") %>'></asp:Label>
+                <asp:Label ID="lb1" runat="server" Text='<%#Eval("cateid") %>'></asp:Label>
                 <asp:Repeater ID="rpt2" runat="server">
                     <ItemTemplate>
                          广告图片：<input name="pic_<%#Eval("cateid") %>_<%#Eval("orderid") %>" value="<%#Eval("logo") %>" />
