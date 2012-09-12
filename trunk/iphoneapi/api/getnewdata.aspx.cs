@@ -13,18 +13,28 @@ public partial class api_getnewdata : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        string uid = utils.NewRequest("uid", utils.RequestType.QueryString);
+        string taobaonick = utils.NewRequest("taobaonick", utils.RequestType.QueryString);
 
+        Act(uid, taobaonick);
+        Response.Write("数据更新完毕！");
     }
 
     protected void Button1_Click(object sender, EventArgs e)
     {
         string uid = this.TextBox1.Text;
         string taobaonick = this.TextBox2.Text;
+        Act(uid, taobaonick);
+        Response.Write("数据更新完毕！");
+    }
+
+    private void Act(string uid, string taobaonick)
+    {
         string sql = "SELECT * FROM TeteShop WHERE nick = '" + uid + "'";
 
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
-        { 
+        {
             //同步分类数据
             TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", dt.Rows[0]["appkey"].ToString(), dt.Rows[0]["appsecret"].ToString());
             SellercatsListGetRequest request1 = new SellercatsListGetRequest();
