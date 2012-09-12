@@ -19,6 +19,7 @@
         <asp:Repeater ID="rpt1" runat="server">
             <ItemTemplate>
                 <input name="id" type="checkbox" value="<%#Eval("itemid") %>" <%#check(Eval("isnew").ToString()) %> />-新品
+                <img src='<%#Eval("picurl") %>_40x40.jpg' width=40 height=40 />
                 <input name="ids" type="hidden" value="<%#Eval("itemid") %>" />
                 <%#Eval("itemname") %>---<%#Eval("price") %>---
                 <br />
