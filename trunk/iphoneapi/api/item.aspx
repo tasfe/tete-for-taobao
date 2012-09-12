@@ -17,10 +17,10 @@
     <br />
         <asp:Repeater ID="rpt1" runat="server">
             <ItemTemplate>
-                【<%#Eval("oldname") %>】
-                <input name="id" type="hidden" value="<%#Eval("cateid") %>" />
-                <input name="cate_<%#Eval("cateid") %>" value="<%#Eval("catename") %>" />
-                <input name="orderid_<%#Eval("cateid") %>" value="<%#Eval("orderid") %>" /> 
+                <input name="id" type="hidden" value="<%#Eval("itemid") %>" />
+                <%#Eval("itemname") %>
+                <input name="orderid_<%#Eval("itemid") %>" value="<%#Eval("orderid") %>" /> 
+                <input name="isnew" type="checkbox" value="<%#Eval("itemid") %>" /> 新品
                 <br />
             </ItemTemplate>
         </asp:Repeater>
