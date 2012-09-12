@@ -33,6 +33,21 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+        string sql = string.Empty;
+        string name = string.Empty;
+        string orderid = string.Empty;
 
+        string ids = utils.NewRequest("id", utils.RequestType.Form);
+        string[] ary = ids.Split(',');
+        for (int i = 0; i < ary.Length; i++)
+        {
+            name = utils.NewRequest("catename_" + ary[i], utils.RequestType.Form);
+            orderid = utils.NewRequest("orderid_" + ary[i], utils.RequestType.Form);
+
+            sql = "UPDATE TeteShopCategory SET catename = '" + name + "',orderid='" + orderid + "' WHERE nick = '" + st + "' AND cateid = '" + ary[i] + "'";
+            utils.ExecuteNonQuery(sql);
+        }
+
+        Response.Redirect("cate.aspx");
     }
 }
