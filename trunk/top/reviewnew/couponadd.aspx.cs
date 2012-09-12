@@ -129,7 +129,11 @@ public partial class top_review_couponadd : System.Web.UI.Page
             return;
         }
 
-        string sql = "INSERT INTO TCS_Coupon (" +
+        string sql = string.Empty;
+        sql = "SELECT COUNT(*) FROM TCS_Coupon WHERE nick = '" + nick + "'";
+        string count1 = utils.ExecuteString(sql);
+
+        sql = "INSERT INTO TCS_Coupon (" +
                         "nick, " +
                         "name, " +
                         "taobaocouponid, " +
@@ -199,6 +203,13 @@ public partial class top_review_couponadd : System.Web.UI.Page
                 sql = "UPDATE TCS_ShopConfig SET couponid = '" + guid + "' WHERE nick = '" + nick + "'";
                 utils.ExecuteNonQuery(sql);
             }
+        }
+
+        //如果是首次创建优惠券则自动开启优惠券赠送
+        if (count1 == "0")
+        {
+            sql = "UPDATE TCS_ShopConfig SET iscoupon = 1 WHERE nick = '" + nick + "'";
+            utils.ExecuteNonQuery(sql);
         }
 
         //Response.Write("<br><br>" + result);
