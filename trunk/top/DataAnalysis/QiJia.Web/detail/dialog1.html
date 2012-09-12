@@ -1,0 +1,165 @@
+﻿<div style="height:1000px;">
+<form action="create.aspx" method="post">
+
+<table width="100%">
+<tr>
+<td valign="top" width="370">
+请上传商品图片：<br />
+
+<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
+&nbsp;&nbsp;&nbsp;&nbsp;您可以在右侧的效果图上看到每个图片展示的位置，我们会根据您传的图片自动帮您生成合适尺寸的图片，不用您手动去调整图片大小。(注：每张图片大小不能超过1M)
+</div>
+<br />
+【商品图片1】：<input name="item1" type="file" /><br />
+&nbsp;第1张大图，图片尺寸720*583<br /><br />
+
+【商品图片2】：<input name="item2" type="file" /><br />
+&nbsp;商品详情图，图片尺寸324*316<br /><br />
+
+【商品图片3】：<input name="item3" type="file" /><br />
+&nbsp;第1张局部小图，图片尺寸190*130<br /><br />
+
+【商品图片4】：<input name="item4" type="file" /><br />
+&nbsp;第1张局部大图，图片尺寸480*310<br /><br />
+
+【商品图片5】：<input name="item5" type="file" /><br />
+&nbsp;第2张局部小图，图片尺寸190*130<br /><br />
+
+【商品图片6】：<input name="item6" type="file" /><br />
+&nbsp;第2张局部大图，图片尺寸480*310<br /><br />
+
+
+</td>
+<td align="left" valign="top">
+效果图：<br />
+<img src="tip.gif" />
+</td>
+</tr>
+</table>
+
+<br />
+
+<table width="100%">
+<tr>
+<td valign="top" width="370">
+请输入商品属性：<br />
+<input name="text" value="{no}" type="hidden" />
+【商品编号】：
+<input name="text" value="" /><br />
+
+<input name="property" value="【产品品牌】：" type="hidden" />
+【产品品牌】：
+<input name="property" value="" /><br />
+
+<input name="property" value="【产品名称】：" type="hidden" />
+【产品名称】：
+<input name="property" value="" /><br />
+
+<input name="property" value="【材质】：" type="hidden" />
+【材质】：
+<input name="property" value="" /><br />
+
+<input name="property" value="【规格】：" type="hidden" />
+【规格】：
+<input name="property" value="" /><br />
+
+<input name="property" value="【图层工艺】：" type="hidden" />
+【图层工艺】：
+<input name="property" value="" /><br />
+
+<input name="property" value="【适用范围】：" type="hidden" />
+【适用范围】：
+<input name="property" value="" /><br />
+
+<input name="property" value="【计价单位】：" type="hidden" />
+【计价单位】：
+<input name="property" value="" /><br />
+
+<input name="property" value="【产地】：" type="hidden" />
+【产地】：
+<input name="property" value="" /><br />
+
+<input name="property" value="【是否带不干胶】：" type="hidden" />
+【是否带不干胶】：
+<input name="property" value="" /><br />
+
+<input name="property" value="【产品介绍】：" type="hidden" />
+【产品介绍】：
+<input name="property" value="" /><br /><br /><br />
+</td>
+<td align="left" valign="top">
+效果图：<br />
+<img src="tip1.gif" />
+</td>
+</tr>
+</table>
+
+<table width="100%">
+<tr>
+<td valign="top" width="370">
+请输入长度属性：<br />
+<input name="text" value="{text1}" type="hidden" />
+【文字1】：
+<input name="text" value="" /><br />
+
+<input name="text" value="{text2}" type="hidden" />
+【文字2】：
+<input name="text" value="" /><br />
+
+<input name="text" value="{text3}" type="hidden" />
+【文字3】：
+<input name="text" value="" /><br />
+
+<input name="text" value="{text4}" type="hidden" />
+【文字4】：
+<input name="text" value="" /><br />
+
+<input name="text" value="{text5}" type="hidden" />
+【文字5】：
+<input name="text" value="" /><br />
+
+</td>
+<td align="left" valign="top">
+效果图：<br />
+<img src="tip2.gif" />
+</td>
+</tr>
+<tr>
+	<td colspan="2">
+    	<hr />
+    </td>
+</tr>
+<tr>
+<td valign="top" width="370">
+<input name="text" value="{text6}" type="hidden" />
+【文字6】：
+<textarea name="text" value="" rows="4" cols="26"></textarea><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(不超过50个字符)<br /><br />
+
+<input name="text" value="{text7}" type="hidden" />
+【文字7】：
+<textarea name="text" value="" rows="4" cols="26" ></textarea><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(不超过50个字符)
+</td>
+<td align="left" valign="top">
+<img src="tip6.gif" />
+</td>
+</tr>
+</table>
+<br />
+
+<table width="100%">
+<tr>
+<td valign="top" width="280">
+<img src="tip3.gif" /> <br />
+<img src="tip4.gif" /> 
+</td>
+<td valign="top">
+<img src="tip5.gif" /> 
+</td>
+</tr>
+</table>
+
+<input type="submit" value="生成商品描述" style="width:200px; height:40px;" />
+<input type="button" value="效果预览" style="width:100px; height:40px;" />
+
+</form>
+</div>

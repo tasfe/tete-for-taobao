@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>斯派特软件-淘宝卖家一站式服务软件解决方案</title>
+    <link href="../css/css1.css" rel="stylesheet" />
+    <link href="../css/member.css" rel="stylesheet" />
+    <link href="../css/tab.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        var XMLHttpReq;
+        function createXMLHttpRequest() {
+            if (window.XMLHttpRequest) { //Mozilla 浏览器
+                XMLHttpReq = new XMLHttpRequest();
+            }
+            else if (window.ActiveXObject) { // IE浏览器
+                try {
+                    XMLHttpReq = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    try {
+                        XMLHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e) { }
+                }
+            }
+        }
+        
+
+        //发送匹配请求函数
+        function DoFetch() {
+            createXMLHttpRequest();
+            var url = "UserInfo.aspx";
+            XMLHttpReq.open("GET", url, true);
+            XMLHttpReq.onreadystatechange = processFetchResponse; //指定响应函数
+            XMLHttpReq.send(null); // 发送请求
+        }
+
+        // 处理返回匹配信息函数
+        function processFetchResponse() {
+            if (XMLHttpReq.readyState == 4) { // 判断对象状态
+                if (XMLHttpReq.status == 200) { // 信息已经成功返回，开始处理信息
+                    if (XMLHttpReq.responseText != "0") {
+                        document.getElementById("ft_userinfo").innerHTML = XMLHttpReq.responseText;
+                    } else {
+                        //location.href = "http://fuwu.taobao.com/ser/my_service.htm"
+                    }
+                } else { //页面不正常
+                    window.alert("您所请求的页面有异常。");
+                }
+            }
+        }
+
+        window.onload = function() {
+           //DoFetch();
+        }
+    </script>
+</head>
+<body>
+    <div id="page">
+        <!--头部登录信息-->
+        <div id="header">
+            <div id="site-nav" style="margin-bottom: 5px;">
+                <p class="login-info">
+
+                    在线客服： <a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid=特推广&site=cntaobao&s=1&charset=utf-8">
+                        <img border="0" align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=特推广&site=cntaobao&s=1&charset=utf-8"
+                            alt="有问题请点这里" /></a> 您好<font color="blue" id="ft_userinfo"></font>
+                            ，欢迎来到特推广 <a href='http://www.taobao.com/' target="_blank">退出</a>
+                </p>
+            </div>
+            <div id="content1">
+                <div id="tabCot_product" class="tab">
+                    <div class="tabContainer">
+                        <div style="float: left; width: 161px;">
+                            <img alt="特特营销推广专家" src="../css/logo.jpg" width="150" height="40" />
+                        </div>
+                        <ul class="tabHead" id="tabCot_product-li-currentBtn-" style="float: left; width: 700px;
+                            margin-top: 10px;">
+                            <li id="tab4" style='height: 25px;'><a href="http://fuwu.taobao.com/serv/detail.htm?service_id=24224"
+                                target="_blank" title="数据分析">数据分析收费版</a>
+                                <img src='../css/new.gif' style="position: relative; left: 58px; top: -38px;" />
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="tabCot_product_1" class="tabCot" style="padding: 2px 0 0 0">
+                        <div id="mytaobao-panel" class="grid-c2">
+                            <div class="col-sub">
+                                <div id="mytaobao-menu" class="box-diamond">
+                                    <!--content-->
+                                    <div class="mytaobao-bd">
+                                        <div class="menu-box">
+                                            <h3 class="mytaobao-bar">
+                                                <span>数据分析 </span>
+                                                <button class="menu-close">
+                                                    -</button>
+                                            </h3>
+                                            <ul class="group">
+                                                <li><span><a href="NorDataTotal.aspx" target="mainframe">数据总览</a></span></li>
+                                            </ul>
+                                        </div>
+                                        <div class="menu-box">
+                                            <h3 class="mytaobao-bar">
+                                                <span>浏览统计 </span>
+                                                <button class="menu-close">
+                                                    -</button>
+                                            </h3>
+                                            <ul class="group">
+                                                <li><span><a href="HourTotal.aspx" target="mainframe">浏览统计(小时)</a></span></li>
+                                                <li><span><a href="VisitTotal.aspx" target="mainframe">浏览统计(天)</a></span></li>
+                                            
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!--content-->
+                                </div>
+                            </div>
+                            <div style="width: 780px; margin-left: 10px; float: left; height: 1220px;">
+                                <iframe style="overflow: scroll; width: 100%; height: 1220px; padding: 0px;" name="mainframe"
+                                    src="NorDataTotal.aspx" frameborder="0" scrolling="no"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <div id="footer">
+                <div id="copyright">
+                    Copyright &copy; 2010-2012 7fshop.com 版权所有
+                    <br />
+                    <a href='http://www.miibeian.gov.cn/' target="_blank">沪ICP备10023864号-1</a>
+                </div>
+            </div>
+        </div>
+        <div class="modBottom">
+            <span class="modABL"></span><span class="modABR"></span>
+        </div>
+    </div>
+    <div class="noprint">
+
+        <script type="text/javascript">
+
+
+            selectTab();
+
+            function selectTab() {
+                var url = document.URL;
+                if (url.indexOf("t=1") != -1) {
+                    document.getElementById("tabCot_product_1").style.display = "none";
+                } else if (url.indexOf("t=2") != -1) {
+
+                } else {
+
+                }
+            }
+
+            function initTongji() {
+                document.getElementById("tabCot_product_1").style.display = "none";
+
+                document.getElementById("mainframe6id").src = "/DataTotal.aspx";
+                closeArea();
+            }
+        </script>
+
+    </div>
+</body>
+</html>

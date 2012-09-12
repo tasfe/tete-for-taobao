@@ -1,0 +1,70 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "QiJia.Web", "F:\特特soft\tetesvn\top\DataAnalysis\QiJia.Web\", "{9F88DEE8-86BB-4E26-8FBB-B4149FD6F1C6}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFramework = "3.5"
+		ProjectReferences = "{7A97D569-8000-45B5-9D93-65D5AFF939C8}|DBHelp.dll;{DAE759AF-27F4-4945-AD05-80DC729F22B0}|LogHelper.dll;{03176837-64D0-42C4-AEA8-C4EB50BF7F4C}|Qijia.PCI.dll;{7676C138-FB8C-46B1-885E-161F361E721B}|Qijia.DAL.dll;{9EA2A17C-E0DC-4BFA-8F07-BE5A266C96A2}|Qijia.Model.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/QiJia.Web"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\tetesvn\top\DataAnalysis\QiJia.Web\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\QiJia.Web\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/QiJia.Web"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\tetesvn\top\DataAnalysis\QiJia.Web\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\QiJia.Web\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "49411"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBHelp", "F:\特特soft\SVNNew\top\CustomerServiceAchievements\DBHelp\DBHelp\DBHelp.csproj", "{7A97D569-8000-45B5-9D93-65D5AFF939C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogHelper", "F:\特特soft\SVNNew\top\DataAnalysis\LogHelper\LogHelper.csproj", "{DAE759AF-27F4-4945-AD05-80DC729F22B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Qijia.PCI", "F:\特特soft\SVNNew\top\Qijia\Qijia.PCI\Qijia.PCI.csproj", "{03176837-64D0-42C4-AEA8-C4EB50BF7F4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Qijia.Model", "F:\特特soft\SVNNew\top\Qijia\Qijia.Model\Qijia.Model.csproj", "{9EA2A17C-E0DC-4BFA-8F07-BE5A266C96A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Qijia.DAL", "F:\特特soft\SVNNew\top\Qijia\Qijia.DAL\Qijia.DAL.csproj", "{7676C138-FB8C-46B1-885E-161F361E721B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F88DEE8-86BB-4E26-8FBB-B4149FD6F1C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F88DEE8-86BB-4E26-8FBB-B4149FD6F1C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F88DEE8-86BB-4E26-8FBB-B4149FD6F1C6}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F88DEE8-86BB-4E26-8FBB-B4149FD6F1C6}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{7A97D569-8000-45B5-9D93-65D5AFF939C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A97D569-8000-45B5-9D93-65D5AFF939C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A97D569-8000-45B5-9D93-65D5AFF939C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A97D569-8000-45B5-9D93-65D5AFF939C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAE759AF-27F4-4945-AD05-80DC729F22B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAE759AF-27F4-4945-AD05-80DC729F22B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAE759AF-27F4-4945-AD05-80DC729F22B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAE759AF-27F4-4945-AD05-80DC729F22B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03176837-64D0-42C4-AEA8-C4EB50BF7F4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03176837-64D0-42C4-AEA8-C4EB50BF7F4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03176837-64D0-42C4-AEA8-C4EB50BF7F4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03176837-64D0-42C4-AEA8-C4EB50BF7F4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EA2A17C-E0DC-4BFA-8F07-BE5A266C96A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EA2A17C-E0DC-4BFA-8F07-BE5A266C96A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EA2A17C-E0DC-4BFA-8F07-BE5A266C96A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EA2A17C-E0DC-4BFA-8F07-BE5A266C96A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7676C138-FB8C-46B1-885E-161F361E721B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7676C138-FB8C-46B1-885E-161F361E721B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7676C138-FB8C-46B1-885E-161F361E721B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7676C138-FB8C-46B1-885E-161F361E721B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
