@@ -1,0 +1,8 @@
+@charset "utf-8";
+/*dialog*/
+
+.btn_1{ font-size:0px; line-height:normal; width:116px; height:29px; text-indent:-99999px; overflow:hidden; display:block; background:url(btn_01.jpg) no-repeat center; border:0;}
+
+strong{ font-size:16px; line-height:40px; color:#f48120;}
+span{ color:#999}
+b{font-weight:normal; color:#999;padding-left:80px;}

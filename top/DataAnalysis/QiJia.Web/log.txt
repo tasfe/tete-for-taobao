@@ -1,0 +1,31 @@
+Log created at: 2012/9/11 15:18:56
+
+Log Entry : 2012/9/11 15:18:56 SELECT DISTINCT TOP 10 VisitIP,VisitTime FROM TopVisitInfo_9e4276f1f322fa881aa3e09d1d20deb1 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/9/11 15:19:29 SELECT DISTINCT TOP 10 VisitIP,VisitTime FROM TopVisitInfo_9e4276f1f322fa881aa3e09d1d20deb1 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/9/11 15:19:33 SELECT DISTINCT TOP 10 VisitIP,VisitTime FROM TopVisitInfo_9e4276f1f322fa881aa3e09d1d20deb1 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/9/11 15:19:38 SELECT DISTINCT TOP 10 VisitIP,VisitTime FROM TopVisitInfo_9e4276f1f322fa881aa3e09d1d20deb1 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/9/11 15:19:40 SELECT DISTINCT TOP 10 VisitIP,VisitTime FROM TopVisitInfo_9e4276f1f322fa881aa3e09d1d20deb1 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/9/11 15:24:04 SELECT DISTINCT TOP 10 VisitIP,VisitTime FROM TopVisitInfo_9e4276f1f322fa881aa3e09d1d20deb1 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/9/11 15:24:07 SELECT COUNT(*) FROM sysobjects WHERE id=object_id('TopVisitInfo_9e4276f1f322fa881aa3e09d1d20deb1') AND OBJECTPROPERTY(id,'IsUserTable')=1 用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/9/11 15:24:08 SELECT SiteTotalDate,SitePVCount,SiteUVCount,SiteOrderCount,SiteOrderPay,SiteUVBack,SiteGoodsCount,SitePostFee,SiteSecondBuy,SiteBuyCustomTotal,SiteZhiTongTotal,SiteZuanZhan,RefundOrdercount,RefundMoney,AskOrder FROM TopSiteTotal WHERE SiteNick=@SiteNick AND SiteTotalDate BETWEEN @start AND @end 用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/9/11 15:24:19 SELECT COUNT(*) FROM sysobjects WHERE id=object_id('TopVisitInfo_9e4276f1f322fa881aa3e09d1d20deb1') AND OBJECTPROPERTY(id,'IsUserTable')=1 用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/9/11 15:24:21 SELECT DISTINCT TOP 10 VisitIP,VisitTime FROM TopVisitInfo_9e4276f1f322fa881aa3e09d1d20deb1 WHERE  VisitTime BETWEEN @start AND @end ORDER BY VisitTime DESC  用户 'sa' 登录失败。
+-------------------------------
