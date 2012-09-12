@@ -61,7 +61,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
     protected void rpt1_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         Label lb = (Label)e.Item.FindControl("lb1");
-        string sql = "SELECT * FROM TeteShopAds WHERE typ = '" + lb.Text + "'";
+        string sql = "SELECT * FROM TeteShopAds WHERE typ = '" + lb.Text + "' ORDER BY orderid";
         DataTable dt = utils.ExecuteDataTable(sql);
 
         Repeater rpt2 = (Repeater)e.Item.FindControl("rpt2");
