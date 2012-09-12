@@ -18,6 +18,7 @@
         
         广告图片3：<input name="pic_index_3" value="<%=logo3 %>" />
         链接地址3：<input name="url_index_3" value="<%=url3 %>" /><br />
+        <br />
 
         <asp:Repeater ID="rpt1" runat="server" OnItemDataBound="rpt1_ItemDataBound">
             <ItemTemplate>
