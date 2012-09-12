@@ -41,7 +41,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
         string[] ary = ids.Split(',');
         for (int i = 0; i < ary.Length; i++)
         {
-            name = utils.NewRequest("catename_" + ary[i], utils.RequestType.Form);
+            name = utils.NewRequest("cate_" + ary[i], utils.RequestType.Form);
             orderid = utils.NewRequest("orderid_" + ary[i], utils.RequestType.Form);
 
             sql = "UPDATE TeteShopCategory SET catename = '" + name + "',orderid='" + orderid + "' WHERE nick = '" + st + "' AND cateid = '" + ary[i] + "'";
