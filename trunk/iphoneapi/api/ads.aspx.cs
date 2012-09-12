@@ -72,14 +72,17 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
         string[] ary = ids.Split(',');
         for (int i = 0; i < ary.Length; i++)
         {
-            name = utils.NewRequest("cate_" + ary[i], utils.RequestType.Form);
-            orderid = utils.NewRequest("orderid_" + ary[i], utils.RequestType.Form);
+            for (int j = 1; j < 4; j++)
+            {
+                name = utils.NewRequest("pic_" + ary[i] + "_" + j, utils.RequestType.Form);
+                orderid = utils.NewRequest("url_" + ary[i] + "_" + j, utils.RequestType.Form);
 
-            sql = "UPDATE TeteShopCategory SET catename = '" + name + "',orderid='" + orderid + "' WHERE nick = '" + st + "' AND cateid = '" + ary[i] + "'";
-            utils.ExecuteNonQuery(sql);
+                sql = "UPDATE TeteShopAds SET logo = '" + name + "',url='" + orderid + "' WHERE nick = '" + st + "' AND typ = '" + ary[i] + "' AND orderid = '" + j + "'";
+                utils.ExecuteNonQuery(sql);
+            }
         }
 
-        Response.Redirect("cate.aspx");
+        Response.Redirect("ads.aspx");
     }
 
     protected void rpt1_ItemDataBound(object sender, RepeaterItemEventArgs e)
