@@ -117,12 +117,43 @@ public partial class top_review_couponmodify : System.Web.UI.Page
                     err = "淘宝系统错误，请稍后重试！";
                 }
 
-                Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + err + "</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
+                Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + result + "</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
                 Response.End();
                 return;
             }
 
             coupon_id = new Regex(@"<coupon_id>([^<]*)</coupon_id>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+
+
+            if (coupon_id == "")
+            {
+                Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + result + "</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
+                Response.End();
+                return;
+            }
+
+            try
+            {
+                DateTime d = DateTime.Parse(end_time);
+            }
+            catch
+            {
+                Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>“" + end_time + "”该时间不存在或者格式错误</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
+                Response.End();
+                return;
+            }
+
+
+            try
+            {
+                DateTime d = DateTime.Parse(endsenddate);
+            }
+            catch
+            {
+                Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>“" + endsenddate + "”该时间不存在或者格式错误</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
+                Response.End();
+                return;
+            }
         }
 
         string sql = "UPDATE TCS_Coupon SET " +
