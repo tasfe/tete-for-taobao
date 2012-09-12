@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>查看具体页面访问</title>
-     <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>    <link href="css/common.css" rel="stylesheet" />
+     <script src="../js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>    
+     <link href="../css/common.css" rel="stylesheet" />
 <style>
     td{font-size:12px;}
     a{color:Blue; text-decoration:none;}
