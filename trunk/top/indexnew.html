@@ -324,7 +324,7 @@ name="mainframe5" src="http://haoping.7fshop.com/top/crm/customlist.aspx" frameb
             var j = 1;
             for (var i = 0; i < item.length - 1; i++) {
                 if (item[i].className.indexOf(css[2]) >= 0 || item[i].className.indexOf(css[3]) >= 0) {
-                    if (i != 0 && i != 1) {
+                    //if (i != 0 && i != 1) {
                         if (item[i].className == css[2]) o['cur'] = item[i];
                         item[i].callBack = cb || function () { };
                         item[i]['css'] = css;
@@ -332,7 +332,7 @@ name="mainframe5" src="http://haoping.7fshop.com/top/crm/customlist.aspx" frameb
                         this.ITEM[j] = item[i];
                         item[i]['Index'] = j++;
                         item[i][this.event] = this.ACTIVE;
-                    }
+                   // }
                 }
             }
             return o;
