@@ -58,7 +58,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="left" height="30">发送截至日期：</td>
+                <td align="left" height="30">自动赠送截至日期：</td>
                 <td>
                     <input name="endsenddate" type="text" value="<%=endsenddate %>" style="width:90px" /> 日期格式：2012-01-01 (系统在这个时间以后就不赠送优惠券)
                 </td>
