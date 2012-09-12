@@ -28,7 +28,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
-        string sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + st + "' AND parentid=0 ORDER BY orderid";
+        string sql = "SELECT TOP 5 * FROM TeteShopCategory WHERE nick = '" + st + "' AND parentid=0 ORDER BY orderid";
 
         if (!IsPostBack)
         {
@@ -56,5 +56,16 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
         }
 
         Response.Redirect("cate.aspx");
+    }
+
+    protected void rpt1_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        Label lb = (Label)e.Item.FindControl("lb1");
+        string sql = "SELECT * FROM TeteShopAds WHERE typ = '" + lb.Text + "'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+
+        Repeater rpt2 = (Repeater)e.Item.FindControl("rpt2");
+        rpt2.DataSource = dt;
+        rpt2.DataBind();
     }
 }
