@@ -10,10 +10,10 @@
     <form id="form1" runat="server">
     <div>
         
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        <!--<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
         <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;
-        <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Button" />
+        <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Button" />-->
         
     </div>
     </form>
