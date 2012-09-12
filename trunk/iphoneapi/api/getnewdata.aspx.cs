@@ -65,10 +65,12 @@ public partial class api_getnewdata : System.Web.UI.Page
                 sql = "INSERT INTO TeteShopCategory (" +
                                 "cateid, " +
                                 "catename, " +
+                                "oldname, " +
                                 "parentid, " +
                                 "nick " +
                             " ) VALUES ( " +
                                 " '" + cat.Content[i].Cid + "', " +
+                                " '" + cat.Content[i].Name + "', " +
                                 " '" + cat.Content[i].Name + "', " +
                                 " '" + cat.Content[i].ParentCid + "', " +
                                 " '" + uid + "' " +
