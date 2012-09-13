@@ -17,23 +17,8 @@ public partial class top_blog_dialogProduct : System.Web.UI.Page
         string taobaoNick = cookie.getCookie("nick");
         string session = cookie.getCookie("top_sessiongroupbuy");
 
-        //COOKIE过期判断
-        if (taobaoNick == "")
-        {
-            //SESSION超期 跳转到登录页
-            Response.Write("<script>parent.location.href='http://container.open.taobao.com/container?appkey=12159997'</script>");
-            Response.End();
-        }
-
         Rijndael_ encode = new Rijndael_("tetesoft");
         taobaoNick = encode.Decrypt(taobaoNick);
-
-        string sql = "SELECT * FROM TopTaobaoShopCat WHERE nick = '" + taobaoNick + "'";
-        DataTable dt = utils.ExecuteDataTable(sql);
-
-        Repeater1.DataSource = dt;
-        Repeater1.DataBind();
-
         //获取用户店铺商品列表
         //TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", "12159997", "614e40bfdb96e9063031d1a9e56fbed5");
         //ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();

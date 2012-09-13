@@ -207,7 +207,7 @@
 
     function updateCat() {
         createxmlHttpRequest();
-        var queryString = "/top/review/taobaoitem.aspx?act=getCat&t=" + new Date().getTime();
+        var queryString = "/top/reviewnew/taobaoitem.aspx?act=getCat&t=" + new Date().getTime();
         xmlHttp.open("GET", queryString);
         xmlHttp.onreadystatechange = handleStateChangeCat;
         xmlHttp.send(null);
@@ -226,7 +226,7 @@
         //获取当前使用样式
         var style = "0";
 
-        var queryString = "/top/review/taobaoitem.aspx?act=getResultStr&isradio=1&style=" + style + "&ids=" + str + "&t=" + new Date().getTime();
+        var queryString = "/top/reviewnew/taobaoitem.aspx?act=getResultStr&isradio=1&style=" + style + "&ids=" + str + "&t=" + new Date().getTime();
         xmlHttp.open("GET", queryString);
         xmlHttp.onreadystatechange = handleStateChangeResultStr;
         xmlHttp.send(null);
@@ -246,7 +246,7 @@
         
         var pagenow = pageid;
         createxmlHttpRequest();
-        var queryString = "/top/review/taobaoitem.aspx?act=get&isradio=1&query=" + escape(q) + "&catid=" + catid + "&p=" + pagenow + "&t=" + new Date().getTime();
+        var queryString = "/top/reviewnew/taobaoitem.aspx?act=get&isradio=1&query=" + escape(q) + "&catid=" + catid + "&p=" + pagenow + "&t=" + new Date().getTime();
         xmlHttp.open("GET",queryString);
         xmlHttp.onreadystatechange = handleStateChange;
         xmlHttp.send(null);

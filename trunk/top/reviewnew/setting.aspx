@@ -140,6 +140,21 @@
                     （虚拟商品按照买家付款成功算起，多少分钟内不确认就发送催评短信）
                 </td>
             </tr>
+            
+            <tr>
+                <td align="left" height="30">是否开启指定商品赠送：</td>
+                <td>
+                    <input id="isitem" name="isitem" type="checkbox" value="1" <%=check(isitem, "1") %> onclick="showItemObj(this)" />
+                </td>
+            </tr>
+            <tr id="ItemArea">
+                <td align="left" height="30">订单包含指定商品才赠送：</td>
+                <td>
+                    <input id="itemlist" name="itemlist" type="hidden" value="<%=itemlist %>" />
+                    <input type="button" value="选择商品" onclick="OpenDialogLable('dialogProduct.aspx',650,560);"/>
+                    <div id="productArea"></div>
+                </td>
+            </tr>
 
             <tr>
                 <td align="left" colspan="2">
@@ -152,6 +167,32 @@
     </div>
 </div>
 </form>
+<script language="javascript" type="text/javascript">
+    function OpenDialogLable(url, w, h, editTxt) {
+        if (typeof (editTxt) == "undefined") {
+            editTxt = "";
+        }
+        if (navigator.appVersion.indexOf("MSIE") == -1) {
+            this.returnAction = function (strResult) {
+                if (strResult != null) {
+                    if (strResult != "") {
+                        document.getElementById("productArea").innerHTML = strResult;
+                    }
+                }
+            }
+            window.open(url + '?d=' + Date() + "&t=" + escape(editTxt), 'newWin', 'modal=yes,width=' + w + ',height=' + h + ',top=200,left=300,resizable=no,scrollbars=no');
+            return;
+        } else {
+            var GetValue = showModalDialog(url + '?d=' + Date() + "&t=" + escape(editTxt), null, 'dialogWidth:' + w + 'px; dialogHeight:' + h + 'px;')
+            if (GetValue != null) {
+                if (GetValue != "") {
+                    document.getElementById("productArea").innerHTML = GetValue;
+                    //alert(document.getElementById("html").value);
+                }
+            }
+        }
+    }
+</script>
 
 <script language="javascript" type="text/javascript">
     function showArea(str) {
@@ -285,6 +326,17 @@
         else
         {
             document.getElementById("xuniArea").style.display = "";
+        }
+    }
+    
+    function showItemObj(obj) {
+        if(obj.checked == false)
+        {
+            document.getElementById("itemArea").style.display = "none";
+        }
+        else
+        {
+            document.getElementById("itemArea").style.display = "";
         }
     }
     

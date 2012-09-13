@@ -41,6 +41,9 @@ public partial class top_review_setting : System.Web.UI.Page
     public string isxuni = string.Empty;
     public string xunidate = string.Empty;
 
+    public string isitem = string.Empty;
+    public string itemlist = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         Common.Cookie cookie = new Common.Cookie();
@@ -147,6 +150,9 @@ public partial class top_review_setting : System.Web.UI.Page
             cancel2 = dt.Rows[0]["cancel2"].ToString();
             isxuni = dt.Rows[0]["isxuni"].ToString();
             xunidate = dt.Rows[0]["xunidate"].ToString();
+
+            isitem = dt.Rows[0]["isitem"].ToString();
+            itemlist = dt.Rows[0]["itemlist"].ToString();
         }
         else
         { 
@@ -334,6 +340,8 @@ public partial class top_review_setting : System.Web.UI.Page
                         "cancel2, " +
                         "isxuni, " +
                         "xunidate, " +
+                        "isitem, " +
+                        "itemlist, " +
                         "issendmsg " +
                     " ) VALUES ( " +
                         " '" + nick + "', " +
@@ -353,6 +361,8 @@ public partial class top_review_setting : System.Web.UI.Page
                         " '" + (utils.NewRequest("cancel2", utils.RequestType.Form) == "1" ? "1" : "0") + "', " +
                         " '" + (utils.NewRequest("isxuni", utils.RequestType.Form) == "1" ? "1" : "0") + "', " +
                         " '" + utils.NewRequest("xunidate", utils.RequestType.Form) + "', " +
+                        " '" + (utils.NewRequest("isitem", utils.RequestType.Form) == "1" ? "1" : "0") + "', " +
+                        " '" + utils.NewRequest("itemlist", utils.RequestType.Form) + "', " +
                         " '" + utils.NewRequest("issendmsg", utils.RequestType.Form) + "' " +
                     ") ";
             utils.ExecuteNonQuery(sql);
@@ -376,6 +386,8 @@ public partial class top_review_setting : System.Web.UI.Page
                         "cancel2 = '" + (utils.NewRequest("cancel2", utils.RequestType.Form) == "1" ? "1" : "0") + "', " +
                         "isxuni = '" + (utils.NewRequest("isxuni", utils.RequestType.Form) == "1" ? "1" : "0") + "', " +
                         "xunidate = '" + utils.NewRequest("xunidate", utils.RequestType.Form) + "', " +
+                        "isitem = '" + (utils.NewRequest("isitem", utils.RequestType.Form) == "1" ? "1" : "0") + "', " +
+                        "itemlist = '" + utils.NewRequest("itemlist", utils.RequestType.Form) + "', " +
                         "sessionold = '" + session + "', " +
                         "issendmsg = '" + utils.NewRequest("issendmsg", utils.RequestType.Form) + "' " +
                     "WHERE nick = '" + nick + "'";
