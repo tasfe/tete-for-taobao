@@ -56,6 +56,9 @@ public class VisitService
                                            WHERE VisitTime BETWEEN @start AND @end AND VisitUrl<>'') a 
                                            GROUP BY VisitUrl,visitIP";
 
+    const string SQL_SELECT_VISITNOW = @"SELECT VisitUrl,VisitIP,LastURL,VisitTime 
+                                           FROM @tableName WHERE VisitTime BETWEEN @start AND @end AND VisitUrl<>''";
+
     const string SQL_SELECT_IPTOTAL_TABLE_BYDATE="";
 
     const string SQL_INDEX_TOTAL = @"SELECT  'pv' as pv,COUNT(*) pvcount FROM  @tableName WHERE VisitTime BETWEEN @start AND @end
@@ -193,6 +196,31 @@ group by VisitIP,VisitBrower,VisitUserAgent
          IList<PageVisitInfoTotal> rlist = list.OrderByDescending(o => o.VisitCount).ToList();
 
          return rlist;
+    }
+
+    public IList<TopVisitInfo> GetVisitNowInfoList(string nickNo, DateTime start, DateTime end)
+    {
+        string sql = SQL_SELECT_VISITNOW.Replace("@tableName", GetRealTable(nickNo));
+        SqlParameter[] param = new[]
+            {
+                new SqlParameter("@start",start),
+                new SqlParameter("@end",end)
+            };
+        DataTable dt = DBHelper.ExecuteDataTable(sql, param);
+        IList<TopVisitInfo> list = new List<TopVisitInfo>();
+        foreach (DataRow dr in dt.Rows)
+        {
+            //VisitUrl,VisitIP,LastURL,VisitTime
+            TopVisitInfo info = new TopVisitInfo();
+            info.VisitUrl = dr["VisitUrl"].ToString();
+            info.VisitIP = dr["VisitIP"].ToString();
+            info.LastURL = dr["LastURL"].ToString();
+            info.VisitTime = DateTime.Parse(dr["VisitTime"].ToString());
+
+            list.Add(info);
+        }
+
+        return list;
     }
 
     public IList<IndexTotalInfo> GetIndexTotalInfoList(string nickNo, DateTime start, DateTime end)
