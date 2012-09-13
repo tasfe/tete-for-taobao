@@ -144,13 +144,13 @@
             <tr>
                 <td align="left" height="30">是否开启指定商品赠送：</td>
                 <td>
-                    <input id="isitem" name="isitem" type="checkbox" value="1" <%=check(isitem, "1") %> onclick="showItemObj(this)" />
+                    开启 <input id="isitem" name="isitem" type="checkbox" value="1" <%=check(isitem, "1") %> onclick="showItemObj(this)" />
                 </td>
             </tr>
             <tr id="ItemArea">
                 <td align="left" height="30">订单包含指定商品才赠送：</td>
                 <td>
-                    开启 <input id="itemlist" name="itemlist" type="hidden" value="<%=itemlist %>" />
+                     <input id="itemlist" name="itemlist" type="hidden" value="<%=itemlist %>" />
                     <input type="button" value="选择商品" onclick="OpenDialogLable('dialogProduct.aspx',650,560);"/>
                     <div id="productArea"></div>
                 </td>
