@@ -139,7 +139,7 @@
     <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin:0px; padding:0px">
         	        <tr>
                         <td colspan=2>
-                            <select id="Select1">
+                            <!--<select id="Select1">
         	                    <option value="0"></option>
                     	        
         	                    <asp:Repeater ID="Repeater1" runat="server">
@@ -147,7 +147,7 @@
         	                            <option value='<%#Eval("cid") %>'><%#Eval("name") %></option>
         	                        </ItemTemplate>
         	                    </asp:Repeater>
-        	                </select>
+        	                </select>-->
         	                <input name="q" id="querySearch" /> 
         	                <input type="button" value="搜索" onclick="getTaobaoItem()" />
                         </td>
