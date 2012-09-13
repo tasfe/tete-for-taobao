@@ -179,6 +179,9 @@ public partial class api_getnewdata : System.Web.UI.Page
                     }
 
                 }
+                Response.Write(product.Content.Count + "<br>");
+
+
                 if (product.Content.Count == 0)
                 {
                     break;
