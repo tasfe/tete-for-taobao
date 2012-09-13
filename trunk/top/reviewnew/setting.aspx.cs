@@ -43,6 +43,7 @@ public partial class top_review_setting : System.Web.UI.Page
 
     public string isitem = string.Empty;
     public string itemlist = string.Empty;
+    public string itemliststr = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -130,7 +131,6 @@ public partial class top_review_setting : System.Web.UI.Page
     /// </summary>
     private void BindData()
     {
-
         string sql = "SELECT * FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
@@ -245,6 +245,39 @@ public partial class top_review_setting : System.Web.UI.Page
             }
         }
         freestr += "</select>";
+
+
+        //商品数据绑定
+        string[] ary = itemlist.Split(',');
+        for (int i = 0; i < ary.Length; i++) 
+        {
+            itemliststr += GetItemHtml(ary[i]);
+        }
+    }
+
+    private string GetItemHtml(string itemid)
+    {
+        string str = string.Empty;
+
+        string appkey = "12159997";
+        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+        List<Item> itemList = new List<Item>();
+        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
+
+        ItemGetRequest request = new ItemGetRequest();
+        request.Fields = "num_iid,title,price,pic_url";
+        request.NumIid = long.Parse(itemid);
+
+        Item product = client.ItemGet(request);
+        itemList.Add(product);
+        
+
+        //团购需要的商品数据
+        for (int i = 0; i < itemList.Count; i++)
+        {
+            str = "<div id='item_" + itemList[i].NumIid.ToString() + "' style=\"float:left;width:46px;border:solid 1px #ccc;padding:2px;margin:2px;\"><A href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><IMG src=\"" + itemList[i].PicUrl + "_40x40.jpg\" border=0 title=\"" + itemList[i].Title + "\" /></A><br>" + itemList[i].Price + "<input type=\"hidden\" id=\"productid\" name=\"productid\" value=\"" + itemList[i].NumIid.ToString() + "\"><input type=\"hidden\" id=\"price\" name=\"price\" value=\"" + itemList[i].Price.ToString() + "\"><br><a href=\"javascript:delitem('" + itemList[i].NumIid.ToString() + "')\">删除</a></div>";
+        }
+        return str;
     }
 
     public static string check(string str, string val)

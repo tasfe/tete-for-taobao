@@ -150,10 +150,8 @@
             <tr id="ItemArea">
                 <td align="left" height="30">订单包含指定商品才赠送：</td>
                 <td>
-                    <input id="itemlist" name="itemlist" type="hidden" value="<%=itemlist %>" /> 
-                    <input id="itemdata" name="itemdata" type="hidden" value="" /> 
                     <input type="button" value="选择商品" onclick="OpenDialogLable('dialogProduct.aspx',650,560);"/><br /><br />
-                    <div id="productArea"></div>
+                    <div id="productArea"><%=itemliststr%></div>
                 </td>
             </tr>
             <tr>
@@ -168,7 +166,7 @@
 </div>
 </form>
 <script language="javascript" type="text/javascript">
-    var itemdata = '';
+    var itemdata = '<%=itemliststr %>';
 
     function delitem(id) { 
         reg = new RegExp("<div id='item_" + id + "'(.*?)</div>","g");
