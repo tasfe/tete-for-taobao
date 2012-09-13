@@ -248,10 +248,13 @@ public partial class top_review_setting : System.Web.UI.Page
 
 
         //商品数据绑定
-        string[] ary = itemlist.Split(',');
-        for (int i = 0; i < ary.Length; i++) 
+        if (itemlist.Length != 0)
         {
-            itemliststr += GetItemHtml(ary[i]);
+            string[] ary = itemlist.Split(',');
+            for (int i = 0; i < ary.Length; i++)
+            {
+                itemliststr += GetItemHtml(ary[i]);
+            }
         }
     }
 
