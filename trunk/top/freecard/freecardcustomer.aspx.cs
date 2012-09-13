@@ -16,10 +16,12 @@ public partial class top_freecard_freecardcustomer : System.Web.UI.Page
     public string session = string.Empty;
     public string nick = string.Empty;
     public string id = string.Empty;
+    public string act = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
         id = utils.NewRequest("id", utils.RequestType.QueryString);
+        act = utils.NewRequest("act", utils.RequestType.QueryString);
         Common.Cookie cookie = new Common.Cookie();
         string taobaoNick = cookie.getCookie("nick");
         session = cookie.getCookie("top_sessiongroupbuy");
@@ -42,6 +44,14 @@ public partial class top_freecard_freecardcustomer : System.Web.UI.Page
             string msg = "尊敬的" + nick + "，非常抱歉的告诉您，您尚未订购该功能，如需继续使用请购买该服务:<br><br>29元/月 【赠送短信100条】 <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-11:1;' target='_blank'>立即购买</a><br><br>78元/季 【赠送短信300条】 <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-11:3;' target='_blank'>立即购买</a><br><br>148元/半年 【赠送短信600条】<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-11:6;' target='_blank'>立即购买</a><br><br>288元/年 【赠送短信1200条】<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-11:12;' target='_blank'>立即购买</a><br>";
             Response.Redirect("buy.aspx?msg=" + HttpUtility.UrlEncode(msg));
             Response.End();
+            return;
+        }
+
+        if (act == "del")
+        {
+            string sql = "UPDATE TCS_FreeCard SET isdel = 1 WHERE nick = '" + nick + "' AND guid = '" + id + "'";
+            utils.ExecuteNonQuery(sql);
+            Response.Redirect("freecardcustomer.aspx");
             return;
         }
 
