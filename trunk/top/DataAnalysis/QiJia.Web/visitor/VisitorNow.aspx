@@ -38,16 +38,19 @@
         </div>
         <table cellpadding="0" cellspacing="0" width="100%">
             <tr>
-                <td align="center" width="50%">
+                <td align="center" width="30%">
                     <b>受访页面</b>
                 </td>
-                <td align="center" width="25%">
+                <td align="center" width="15%">
                     <b>访问者IP</b>
                 </td>
-                <td align="center" width="25%">
+                <td align="center" width="10%">
                     <b>IP所在地区</b>
                 </td>
-                 <td align="center" width="25%">
+                 <td align="center" width="15%">
+                    <b>访问时间</b>
+                </td>
+                 <td align="center" width="30%">
                     <b>访问来路</b>
                 </td>
             </tr>
@@ -64,6 +67,9 @@
                         </td>
                         <td align="center" valign="top">
                             <%#Eval("IPLocation")%>
+                        </td>
+                         <td align="center" valign="top">
+                            <%#Eval("VisitTime")%>
                         </td>
                         <td align="center" valign="top">
                             <%# GetSubUrl(Eval("LastURL").ToString())%>
