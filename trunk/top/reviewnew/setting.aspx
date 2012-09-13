@@ -155,7 +155,6 @@
                     <div id="productArea"></div>
                 </td>
             </tr>
-
             <tr>
                 <td align="left" colspan="2">
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" OnClientClick="return check()" />
@@ -172,6 +171,7 @@
         if (typeof (editTxt) == "undefined") {
             editTxt = "";
         }
+        alert(strResult);
         if (navigator.appVersion.indexOf("MSIE") == -1) {
             this.returnAction = function (strResult) {
                 if (strResult != null) {
