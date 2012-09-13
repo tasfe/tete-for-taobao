@@ -184,6 +184,7 @@
 
 
         function CloseWindow(str) {
+            alert(str);
             if (navigator.appVersion.indexOf("MSIE") == -1) {
                 window.opener.returnAction(str);
                 window.close();
