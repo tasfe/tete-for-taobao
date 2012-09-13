@@ -172,7 +172,7 @@
             this.returnAction = function (strResult) {
                 if (strResult != null) {
                     if (strResult != "") {
-                        document.getElementById("productArea").innerHTML = strResult;
+                        document.getElementById("productArea").innerHTML += strResult;
                     }
                 }
             }
@@ -182,8 +182,8 @@
             var GetValue = showModalDialog(url + '?d=' + Date() + "&t=" + escape(editTxt), null, 'dialogWidth:' + w + 'px; dialogHeight:' + h + 'px;')
             if (GetValue != null) {
                 if (GetValue != "") {
-                    document.getElementById("productArea").innerHTML = GetValue;
-                    alert(document.getElementById("productArea").value);
+                    document.getElementById("productArea").innerHTML += GetValue;
+                    //alert(document.getElementById("productArea").value);
                 }
             }
         }

@@ -173,7 +173,7 @@ public partial class top_blog_taobaoitem : System.Web.UI.Page
                 //团购需要的商品数据
                 for (int i = 0; i < itemList.Count; i++)
                 {
-                    str = "<A href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><IMG src=\"" + itemList[i].PicUrl + "_160x160.jpg\" border=0 /></A><br>" + itemList[i].Title + "<br>" + itemList[i].Price + "<input type=\"hidden\" id=\"productid\" name=\"productid\" value=\"" + itemList[i].NumIid.ToString() + "\"><input type=\"hidden\" id=\"price\" name=\"price\" value=\"" + itemList[i].Price.ToString() + "\">";
+                    str = "<A href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><IMG src=\"" + itemList[i].PicUrl + "_40x40.jpg\" border=0 /></A><br>" + itemList[i].Title + "<br>" + itemList[i].Price + "<input type=\"hidden\" id=\"productid\" name=\"productid\" value=\"" + itemList[i].NumIid.ToString() + "\"><input type=\"hidden\" id=\"price\" name=\"price\" value=\"" + itemList[i].Price.ToString() + "\">";
                 }
             }
             
