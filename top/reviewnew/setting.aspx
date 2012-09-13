@@ -170,8 +170,10 @@
 <script language="javascript" type="text/javascript">
     var itemdata = '';
 
-    function delitem(id) {
-        document.getElementById("item_"+id).style.display = "none";
+    function delitem(id) { 
+        reg = new RegExp("<div id='item_" + id + "'(.*?)</div>","g");
+        itemdata = itemdata.replace(reg, '');
+        document.getElementById("productArea").innerHTML = itemdata;
     }
 
     function showArea(str) {
