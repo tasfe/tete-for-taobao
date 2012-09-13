@@ -155,17 +155,17 @@ public partial class top_blog_taobaoitem : System.Web.UI.Page
             //根据不同样式显示不同的字符串
             string style = utils.NewRequest("style", utils.RequestType.QueryString);
 
-            string sqlNew = "SELECT sid FROM TopTaobaoShop WHERE nick = '" + taobaoNick + "'";
-            DataTable dtNew = utils.ExecuteDataTable(sqlNew);
-            string nickid = string.Empty;
-            if (dtNew.Rows.Count != 0)
-            {
-                nickid = "http://shop" + dtNew.Rows[0]["sid"].ToString() + ".taobao.com/";
-            }
-            else
-            {
-                nickid = "http://www.taobao.com/";
-            }
+            //string sqlNew = "SELECT sid FROM TopTaobaoShop WHERE nick = '" + taobaoNick + "'";
+            //DataTable dtNew = utils.ExecuteDataTable(sqlNew);
+            //string nickid = string.Empty;
+            //if (dtNew.Rows.Count != 0)
+            //{
+            //    nickid = "http://shop" + dtNew.Rows[0]["sid"].ToString() + ".taobao.com/";
+            //}
+            //else
+            //{
+            //    nickid = "http://www.taobao.com/";
+            //}
 
 
             if (isradio == "1")
@@ -176,31 +176,7 @@ public partial class top_blog_taobaoitem : System.Web.UI.Page
                     str = "<A href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><IMG src=\"" + itemList[i].PicUrl + "_160x160.jpg\" border=0 /></A><br>" + itemList[i].Title + "<br>" + itemList[i].Price + "<input type=\"hidden\" id=\"productid\" name=\"productid\" value=\"" + itemList[i].NumIid.ToString() + "\"><input type=\"hidden\" id=\"price\" name=\"price\" value=\"" + itemList[i].Price.ToString() + "\">";
                 }
             }
-            else
-            {
-                if (style == "1")
-                {
-                    str += "<table background=\"http://www.7fshop.com/top/show1/4.gif\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" height=\"30\" style=\"border-right: #999999 1px solid; border-top: #999999 1px solid;border-left: #999999 1px solid; border-bottom: #999999 1px solid\" width=\"580\"><tr><td>    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td align=\"left\"><table align=\"left\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" height=\"30\"><tr><td width=\"10\"></td><td background=\"http://www.7fshop.com/top/show1/1.gif\" width=\"24\"></td><td background=\"http://www.7fshop.com/top/show1/2.gif\"><font color=\"white\" style=\"font-size: 13px\"><strong>掌柜推荐商品</strong></font></td><td><img src=\"http://www.7fshop.com/top/show1/3.gif\" /></td></tr></table></td><td align=\"right\"></td></tr></table></td></tr></table>  <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-right: #999999 1px solid;border-top: #999999 1px solid; overflow: hidden; border-left: #999999 1px solid;border-bottom: #999999 1px solid\" width=\"578\"><tr><td valign=\"top\"><TABLE cellSpacing=0 cellPadding=0 width=578 border=0><TBODY><TR><TD align=\"middle\"><TABLE cellSpacing=8 cellPadding=0 align=center border=0><TBODY><TR>";
-                    for (int i = 0; i < itemList.Count; i++)
-                    {
-                        str += "<TD vAlign=top align=\"middle\" width=175 bgColor=white><TABLE cellSpacing=0 cellPadding=0 align=center border=0><TBODY><TR><TD vAlign=top align=\"middle\" width=175 bgColor=white><TABLE cellSpacing=0 cellPadding=0 align=center border=0><TBODY><TR><TD align=\"middle\"><DIV style=\"BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; MARGIN-TOP: 4px; BORDER-LEFT: #cccccc 1px solid; WIDTH: 160px; BORDER-BOTTOM: #cccccc 1px solid; HEIGHT: 160px\"><DIV style=\"OVERFLOW: hidden; WIDTH: 160px; HEIGHT: 160px\"><A href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><IMG src=\"" + itemList[i].PicUrl + "_160x160.jpg\" border=0 /></A></DIV></DIV></TD></TR><TR><TD align=\"middle\"><DIV style=\"PADDING-RIGHT: 4px; PADDING-LEFT: 4px; FONT-SIZE: 12px; PADDING-BOTTOM: 4px; PADDING-TOP: 4px\"><A style=\"FONT-SIZE: 12px; COLOR: #3f3f3f; TEXT-DECORATION: none\" href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\">" + itemList[i].Title + "</A><BR /><FONT style=\"COLOR: #fe596a\"><B>￥&nbsp;" + itemList[i].Price + "元</B></FONT> </DIV><A href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><IMG src=\"http://www.7fshop.com/top/show1/buy1.gif\" border=0 /></A> <DIV></DIV></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD>";
-                        if ((i + 1) % 3 == 0)
-                        {
-                            str += "</tr><tr>";
-                        }
-                    }
-
-                    str += "</TR></TBODY></TABLE></td></tr><tr><td align=\"right\" height=\"24\" style=\"border-bottom: #999999 1px solid\" valign=\"center\"><a href=\"" + nickid + "\" style=\"text-decoration: none\" target=\"_blank\"><font style=\"font-size: 13px; color: #ff6600\"><strong>更多详情请见 " + nickid + "</strong>&nbsp;</font></a></td></tr></table></td></tr></table>";
-                }
-                else
-                {
-                    for (int i = 0; i < itemList.Count; i++)
-                    {
-                        str += "<a href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><img src=\"" + itemList[i].PicUrl + "\" border=\"0\" /></a><br />";
-                        str += "<a href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\">" + itemList[i].Title + "</a> 售价：" + itemList[i].Price + "元<br><br>";
-                    }
-                }
-            }
+            
             Response.Write(str);
         }
     }
