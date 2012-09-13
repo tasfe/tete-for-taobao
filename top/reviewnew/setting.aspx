@@ -167,6 +167,11 @@
 </div>
 </form>
 <script language="javascript" type="text/javascript">
+    function delitem(id) { 
+        
+    }
+
+
     function OpenDialogLable(url, w, h) {
         if (navigator.appVersion.indexOf("MSIE") == -1) {
             this.returnAction = function (strResult) {
