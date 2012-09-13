@@ -49,8 +49,8 @@
                 <td><%#Eval("carddate")%>个月</td>
                 <td><%#Eval("usecount")%></td>
                 <td><%#Eval("usecountlimit")%></td>
-                <td><a href='freecardlog.aspx?id=<%#Eval("guid")%>'>查看使用记录</a> <!--| <a href='freecardcustomermodify.aspx?id=<%#Eval("guid")%>'>编辑</a>
-                | <a href='freecardcustomer.aspx?id=<%#Eval("guid")%>&act=del' onclick="return confirm('您确定要删除吗，该操作不可恢复？')">删除</a>--> </td>
+                <td><a href='freecardlog.aspx?id=<%#Eval("guid")%>'>查看使用记录</a> <!--| <a href='freecardcustomermodify.aspx?id=<%#Eval("guid")%>'>编辑</a>-->
+                | <a href='freecardcustomer.aspx?id=<%#Eval("guid")%>&act=del' onclick="return confirm('您确定要删除吗，该操作不可恢复？')">删除</a> </td>
             </tr>
             </ItemTemplate>
         </asp:Repeater>
