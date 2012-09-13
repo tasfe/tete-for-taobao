@@ -144,7 +144,7 @@
             <tr>
                 <td align="left" height="30">是否开启指定商品赠送：</td>
                 <td>
-                    开启 <input id="isitem" name="isitem" type="checkbox" value="1" <%=check(isitem, "1") %> onclick="showItemObj(this)" />
+                    开启<input id="isitem" name="isitem" type="checkbox" value="1" <%=check(isitem, "1") %> onclick="showItemObj(this)" />
                 </td>
             </tr>
             <tr id="ItemArea">
