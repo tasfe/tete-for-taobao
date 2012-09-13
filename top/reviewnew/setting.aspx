@@ -169,7 +169,7 @@
     var itemdata = '<%=itemliststr %>';
 
     function delitem(id) { 
-        reg = new RegExp("<div id='item_" + id + "'(.*?)</div>","g");
+        reg = new RegExp("<div id=\"item_" + id + "'(.*?)</div>","g");
         itemdata = itemdata.replace(reg, '');
         document.getElementById("productArea").innerHTML = itemdata;
     }
