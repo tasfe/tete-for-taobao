@@ -362,7 +362,7 @@ public partial class top_review_setting : System.Web.UI.Page
                         " '" + (utils.NewRequest("isxuni", utils.RequestType.Form) == "1" ? "1" : "0") + "', " +
                         " '" + utils.NewRequest("xunidate", utils.RequestType.Form) + "', " +
                         " '" + (utils.NewRequest("isitem", utils.RequestType.Form) == "1" ? "1" : "0") + "', " +
-                        " '" + utils.NewRequest("itemlist", utils.RequestType.Form) + "', " +
+                        " '" + utils.NewRequest("productid", utils.RequestType.Form) + "', " +
                         " '" + utils.NewRequest("issendmsg", utils.RequestType.Form) + "' " +
                     ") ";
             utils.ExecuteNonQuery(sql);
@@ -387,7 +387,7 @@ public partial class top_review_setting : System.Web.UI.Page
                         "isxuni = '" + (utils.NewRequest("isxuni", utils.RequestType.Form) == "1" ? "1" : "0") + "', " +
                         "xunidate = '" + utils.NewRequest("xunidate", utils.RequestType.Form) + "', " +
                         "isitem = '" + (utils.NewRequest("isitem", utils.RequestType.Form) == "1" ? "1" : "0") + "', " +
-                        "itemlist = '" + utils.NewRequest("itemlist", utils.RequestType.Form) + "', " +
+                        "itemlist = '" + utils.NewRequest("productid", utils.RequestType.Form) + "', " +
                         "sessionold = '" + session + "', " +
                         "issendmsg = '" + utils.NewRequest("issendmsg", utils.RequestType.Form) + "' " +
                     "WHERE nick = '" + nick + "'";
