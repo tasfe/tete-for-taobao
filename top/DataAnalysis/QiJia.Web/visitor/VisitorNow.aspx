@@ -60,10 +60,13 @@
                            </a>
                         </td>
                         <td align="center" valign="top">
-                            <%#Eval("VisitCount")%>
+                            <%#Eval("VisitIP")%>
                         </td>
                         <td align="center" valign="top">
-                            <%#Eval("VisitAvg")%>
+                            <%#Eval("IPLocation")%>
+                        </td>
+                        <td align="center" valign="top">
+                            <%# GetSubUrl(Eval("LastURL").ToString())%>
                         </td>
                     </tr>
                 </ItemTemplate>
