@@ -241,7 +241,9 @@
             this.returnAction = function (strResult) {
                 if (strResult != null) {
                     if (strResult != "") {
-                        itemdata = itemdata + strResult;
+                        if(itemdata.indexOf(strResult) == -1){
+                            itemdata = itemdata + strResult;
+                        }
                         document.getElementById("productArea").innerHTML = itemdata;
                     }
                 }
@@ -252,7 +254,9 @@
             var GetValue = showModalDialog(url + '?d=' + Date() + "&t=" + escape(editTxt), null, 'dialogWidth:' + w + 'px; dialogHeight:' + h + 'px;')
             if (GetValue != null) {
                 if (GetValue != "") {
-                    itemdata = itemdata + GetValue;
+                    if(itemdata.indexOf(GetValue) == -1){
+                        itemdata = itemdata + GetValue;
+                    }
                     document.getElementById("productArea").innerHTML = itemdata;
                 }
             }
