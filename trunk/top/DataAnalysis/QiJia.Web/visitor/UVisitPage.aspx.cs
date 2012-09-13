@@ -30,12 +30,11 @@ public partial class UVisitPage : BasePage
                 }
 
                 string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
-                string session = Request.Cookies["nicksession"].Value;
-                Bind(nick, session, darray[0], darray[1]);
+                Bind(nick, darray[0], darray[1]);
             }
         }
     }
-    private void Bind(string nick, string session, DateTime start, DateTime end)
+    private void Bind(string nick, DateTime start, DateTime end)
     {
         int TotalCount = 0;//总记录数
         int TotalPage = 1; //总页数
@@ -108,8 +107,7 @@ public partial class UVisitPage : BasePage
         }
         ViewState["page"] = "1";
         string nick = HttpUtility.UrlDecode(Request.Cookies["nick"].Value);
-        string session = Request.Cookies["nicksession"].Value;
-        Bind(nick, session, start, endtime);
+        Bind(nick, start, endtime);
     }
 
     protected string GetSubUrl(string url)
