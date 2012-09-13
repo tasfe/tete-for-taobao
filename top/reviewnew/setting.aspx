@@ -151,6 +151,7 @@
                 <td align="left" height="30">订单包含指定商品才赠送：</td>
                 <td>
                     <input id="itemlist" name="itemlist" type="hidden" value="<%=itemlist %>" /> 
+                    <input id="itemdata" name="itemdata" type="hidden" value="" /> 
                     <input type="button" value="选择商品" onclick="OpenDialogLable('dialogProduct.aspx',650,560);"/><br /><br />
                     <div id="productArea"></div>
                 </td>
@@ -167,6 +168,8 @@
 </div>
 </form>
 <script language="javascript" type="text/javascript">
+    var itemdata = '';
+
     function delitem(id) { 
         
     }
@@ -177,7 +180,8 @@
             this.returnAction = function (strResult) {
                 if (strResult != null) {
                     if (strResult != "") {
-                        document.getElementById("productArea").innerHTML = document.getElementById("productArea").innerHTML + strResult;
+                        itemdata = itemdata + document.getElementById("productArea").innerHTML;
+                        document.getElementById("productArea").innerHTML = itemdata;
                     }
                 }
             }
@@ -187,8 +191,8 @@
             var GetValue = showModalDialog(url + '?d=' + Date() + "&t=" + escape(editTxt), null, 'dialogWidth:' + w + 'px; dialogHeight:' + h + 'px;')
             if (GetValue != null) {
                 if (GetValue != "") {
-                    document.getElementById("productArea").innerHTML = document.getElementById("productArea").innerHTML + GetValue;
-                    //alert(document.getElementById("productArea").value);
+                    itemdata = itemdata + document.getElementById("productArea").innerHTML;
+                    document.getElementById("productArea").innerHTML = itemdata;
                 }
             }
         }
