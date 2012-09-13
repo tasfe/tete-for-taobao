@@ -148,8 +148,11 @@ public partial class api_getnewdata : System.Web.UI.Page
                 PageList<Item> product = client.ItemsOnsaleGet(request, dt.Rows[0]["session"].ToString());
                 for (int i = 0; i < product.Content.Count; i++)
                 {
+
+                    Response.Write(i.ToString() + "--" + product.Content[i].Title + "<br>");
                     sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' AND itemid = '" + product.Content[i].NumIid + "'";
                     string count3 = utils.ExecuteString(sql);
+                    Response.Write(count3 + "<br>");
                     if (count3 == "0")
                     {
                         sql = "INSERT INTO TeteShopItem (" +
@@ -169,7 +172,6 @@ public partial class api_getnewdata : System.Web.UI.Page
                                     " '" + product.Content[i].Price + "', " +
                                     " '" + uid + "' " +
                               ") ";
-                        //Response.Write(sql + "<br>");
                         utils.ExecuteNonQuery(sql);
 
                         //更新分类数量
@@ -179,10 +181,10 @@ public partial class api_getnewdata : System.Web.UI.Page
                     }
 
                 }
-                Response.Write(product.Content.Count + "<br>");
+                //Response.Write(product.Content.Count + "<br>");
 
 
-                if (product.Content.Count == 0)
+                if (product.Content.Count < 200)
                 {
                     break;
                 }
