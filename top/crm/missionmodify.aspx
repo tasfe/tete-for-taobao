@@ -65,7 +65,7 @@
                 <tr>
                     <td align="left" height="30">延迟发送时间：</td>
                     <td>
-                        <input name="cuidate" type="text" value="<%=timecount %>" size="4" />小时
+                        <input name="cuidate" type="text" value="<%=timecount %>" size="4" />分钟
                     </td>
                 </tr>
             </table>
