@@ -181,6 +181,7 @@
                 if (strResult != null) {
                     if (strResult != "") {
                         itemdata = itemdata + document.getElementById("productArea").innerHTML;
+                        alert(itemdata);
                         document.getElementById("productArea").innerHTML = itemdata;
                     }
                 }
@@ -192,6 +193,7 @@
             if (GetValue != null) {
                 if (GetValue != "") {
                     itemdata = itemdata + document.getElementById("productArea").innerHTML;
+                    alert(itemdata);
                     document.getElementById("productArea").innerHTML = itemdata;
                 }
             }
