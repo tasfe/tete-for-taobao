@@ -148,7 +148,6 @@ public partial class api_getnewdata : System.Web.UI.Page
                 PageList<Item> product = client.ItemsOnsaleGet(request, dt.Rows[0]["session"].ToString());
                 for (int i = 0; i < product.Content.Count; i++)
                 {
-
                     sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' AND itemid = '" + product.Content[i].NumIid + "'";
                     string count3 = utils.ExecuteString(sql);
                     if (count3 == "0")
@@ -180,7 +179,7 @@ public partial class api_getnewdata : System.Web.UI.Page
                     }
 
                 }
-                if (product.Content.Count < 200)
+                if (product.Content.Count == 0)
                 {
                     break;
                 }
