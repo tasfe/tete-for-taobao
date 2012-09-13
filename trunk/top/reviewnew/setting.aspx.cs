@@ -277,7 +277,7 @@ public partial class top_review_setting : System.Web.UI.Page
         {
             str = "<div id='item_" + itemList[i].NumIid.ToString() + "' style=\"float:left;width:46px;border:solid 1px #ccc;padding:2px;margin:2px;\"><A href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><IMG src=\"" + itemList[i].PicUrl + "_40x40.jpg\" border=0 title=\"" + itemList[i].Title + "\" /></A><br>" + itemList[i].Price + "<input type=\"hidden\" id=\"productid\" name=\"productid\" value=\"" + itemList[i].NumIid.ToString() + "\"><input type=\"hidden\" id=\"price\" name=\"price\" value=\"" + itemList[i].Price.ToString() + "\"><br><a href=\"javascript:delitem('" + itemList[i].NumIid.ToString() + "')\">删除</a></div>";
         }
-        return str.Replace("\"", "\\\"");
+        return str.Replace("'", "\\'");
     }
 
     public static string check(string str, string val)
