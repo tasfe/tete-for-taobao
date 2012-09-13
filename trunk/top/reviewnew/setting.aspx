@@ -166,7 +166,7 @@
 </div>
 </form>
 <script language="javascript" type="text/javascript">
-    var itemdata = '<%=itemliststr %>';
+    var itemdata = document.getElementById("productArea").innerHTML;
 
     function delitem(id) { 
         reg = new RegExp("<div id='item_" + id + "'(.*?)</div>","g");
