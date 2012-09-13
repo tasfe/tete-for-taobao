@@ -317,6 +317,7 @@
 
     showCancel(<%=iscancelauto %>)
     showXuni(<%=isxuni %>)
+    showItem(<%=isitem %>)
 
     function showXuniObj(obj) {
         if(obj.checked == false)
@@ -348,6 +349,16 @@
         else
         {
             document.getElementById("xuniArea").style.display = "";
+        }
+    }
+    function showItem(flag) {
+        if(flag == "0")
+        {
+            document.getElementById("itemArea").style.display = "none";
+        }
+        else
+        {
+            document.getElementById("itemArea").style.display = "";
         }
     }
 
