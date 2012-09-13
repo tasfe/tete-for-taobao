@@ -181,7 +181,7 @@
                 if (strResult != null) {
                     if (strResult != "") {
                         itemdata = itemdata + document.getElementById("productArea").innerHTML;
-                        //alert(itemdata);
+                        alert(itemdata);
                         document.getElementById("productArea").innerHTML = itemdata;
                     }
                 }
@@ -193,7 +193,7 @@
             if (GetValue != null) {
                 if (GetValue != "") {
                     itemdata = itemdata + document.getElementById("productArea").innerHTML;
-                    //alert(itemdata);
+                    alert(itemdata);
                     document.getElementById("productArea").innerHTML = itemdata;
                 }
             }
@@ -259,6 +259,32 @@
         }
 
         return true;
+    }
+
+    function OpenDialogLable(url, w, h, editTxt) {
+        if (typeof (editTxt) == "undefined") {
+            editTxt = "";
+        }
+        if (navigator.appVersion.indexOf("MSIE") == -1) {
+            this.returnAction = function (strResult) {
+                if (strResult != null) {
+                    if (strResult != "") {
+                        itemdata = itemdata + strResult;
+                        document.getElementById("productArea").innerHTML = itemdata;
+                    }
+                }
+            }
+            window.open(url + '?d=' + Date() + "&t=" + escape(editTxt), 'newWin', 'modal=yes,width=' + w + ',height=' + h + ',top=200,left=300,resizable=no,scrollbars=no');
+            return;
+        } else {
+            var GetValue = showModalDialog(url + '?d=' + Date() + "&t=" + escape(editTxt), null, 'dialogWidth:' + w + 'px; dialogHeight:' + h + 'px;')
+            if (GetValue != null) {
+                if (GetValue != "") {
+                    itemdata = itemdata + GetValue;
+                    document.getElementById("productArea").innerHTML = itemdata;
+                }
+            }
+        }
     }
 
     var xmlHttp;
