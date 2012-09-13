@@ -151,7 +151,7 @@
                 <td align="left" height="30">订单包含指定商品才赠送：</td>
                 <td>
                     <input id="itemlist" name="itemlist" type="hidden" value="<%=itemlist %>" /> 
-                    <input type="button" value="选择商品" onclick="OpenDialogLable('dialogProduct.aspx',650,560);"/><br />
+                    <input type="button" value="选择商品" onclick="OpenDialogLable('dialogProduct.aspx',650,560);"/><br /><br />
                     <div id="productArea"></div>
                 </td>
             </tr>
