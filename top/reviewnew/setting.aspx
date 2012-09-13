@@ -167,11 +167,7 @@
 </div>
 </form>
 <script language="javascript" type="text/javascript">
-    function OpenDialogLable(url, w, h, editTxt) {
-        if (typeof (editTxt) == "undefined") {
-            editTxt = "";
-        }
-        alert(strResult);
+    function OpenDialogLable(url, w, h) {
         if (navigator.appVersion.indexOf("MSIE") == -1) {
             this.returnAction = function (strResult) {
                 if (strResult != null) {
@@ -187,7 +183,7 @@
             if (GetValue != null) {
                 if (GetValue != "") {
                     document.getElementById("productArea").innerHTML = GetValue;
-                    //alert(document.getElementById("html").value);
+                    alert(document.getElementById("productArea").value);
                 }
             }
         }
