@@ -72,7 +72,7 @@
                 </ItemTemplate>
                 <SeparatorTemplate> 
                       <tr> 
-                           <td colspan="5"><hr /></td> 
+                           <td colspan="4"><hr /></td> 
                       </tr> 
                  </SeparatorTemplate> 
 
