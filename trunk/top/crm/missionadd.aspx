@@ -57,6 +57,15 @@
                 </td>
             </tr>
         </table>
+
+        <table>
+            <tr>
+                <td width=440>
+                
+                <!--area start-->
+                
+
+
             <!--催单设置-->
             <div id="area1">
             <table width="100%">
@@ -172,6 +181,23 @@
                 </tr>
             </table>
             </div>
+
+
+
+
+
+                <!--area end-->
+                
+                </td>
+            <td width="320" style="background:url('../reviewnew/images/msgbg.jpg') 0 0 no-repeat;" valign="top">
+                <input type="hidden" name="yulanContent" id="yulanContent" />
+                <div id="yulan" style="margin:86px 0 0 52px; color:white; width:140px;"></div>
+                <div id="countArea" style="margin:66px 0 0 52px; color:white; width:140px;"></div>
+            </td>
+            </tr>
+        </table>
+
+
             <input id="max_m" value="66" type="hidden"/>
             <script>
                 function findObj(n, d) {
