@@ -93,7 +93,7 @@ public partial class top_review_couponadd : System.Web.UI.Page
                 err = "淘宝系统错误，请稍后重试！";
             }
 
-            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + msg + "</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
+            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + err + "</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
             Response.End();
             return;
         }
