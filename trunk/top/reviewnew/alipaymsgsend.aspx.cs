@@ -182,30 +182,30 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
         string totalAlipay = utils.ExecuteString(sql);
         if (int.Parse(totalAlipay) > 0)
         {
-            //如果有短信再开始判断
-            sql = "SELECT isalipay,alipayid FROM TCS_ShopConfig WITH (NOLOCK) WHERE nick = '" + nick + "'";
-            //Response.Write(sql + "<br>");
-            DataTable dtAlipay = utils.ExecuteDataTable(sql);
-            if (dtAlipay.Rows.Count != 0)
-            {
+            ////如果有短信再开始判断
+            //sql = "SELECT isalipay,alipayid FROM TCS_ShopConfig WITH (NOLOCK) WHERE nick = '" + nick + "'";
+            ////Response.Write(sql + "<br>");
+            //DataTable dtAlipay = utils.ExecuteDataTable(sql);
+            //if (dtAlipay.Rows.Count != 0)
+            //{
                 //看看卖家是否开启了支付宝红包赠送-不判断
                 //if (dtAlipay.Rows[0][0].ToString() == "1")
                 if(1 == 1)
                 {
                     //判断红包是否有效
-                    sql = "SELECT * FROM TCS_Alipay WITH (NOLOCK) WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND DATEDIFF(d, GETDATE(), enddate) > 0 AND used < count";
+                    sql = "SELECT * FROM TCS_Alipay WITH (NOLOCK) WHERE guid = '" + couponid + "' AND DATEDIFF(d, GETDATE(), enddate) > 0 AND used < count";
                     //Response.Write(sql + "<br>");
                     DataTable dtAlipayDetail = utils.ExecuteDataTable(sql);
                     if (dtAlipayDetail.Rows.Count != 0)
                     {
                         //判断用户获取的优惠券是否超过了每人的最大领取数量
-                        sql = "SELECT COUNT(*) FROM TCS_AlipayDetail WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND buynick = '" + buynick + "'";
+                        sql = "SELECT COUNT(*) FROM TCS_AlipayDetail WHERE guid = '" + couponid + "' AND buynick = '" + buynick + "'";
                         //Response.Write(sql + "<br>");
                         string alipayCount = utils.ExecuteString(sql);
                         if (int.Parse(alipayCount) < int.Parse(dtAlipayDetail.Rows[0]["per"].ToString()))
                         {
                             //赠送支付宝红包
-                            sql = "SELECT TOP 1 * FROM TCS_AlipayDetail WITH (NOLOCK) WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND issend = 0";
+                            sql = "SELECT TOP 1 * FROM TCS_AlipayDetail WITH (NOLOCK) WHERE guid = '" + couponid + "' AND issend = 0";
                             //Response.Write(sql + "<br>");
                             DataTable dtAlipayDetailList = utils.ExecuteDataTable(sql);
                             if (dtAlipayDetailList.Rows.Count != 0)
@@ -242,11 +242,11 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
                                     //记录支付宝红包发送成功
                                     utils.ExecuteNonQuery(sql);
 
-                                    sql = "UPDATE TCS_Alipay SET used = used + 1 WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "'";
+                                    sql = "UPDATE TCS_Alipay SET used = used + 1 WHERE guid = '" + couponid + "'";
                                     utils.ExecuteNonQuery(sql);
 
                                     //更新优惠券已经赠送数量
-                                    sql = "UPDATE TCS_AlipayDetail SET issend = 1,buynick = '" + buynick + "',senddate = GETDATE(), orderid = '0' WHERE guid = '" + dtAlipay.Rows[0][1].ToString() + "' AND card = '" + dtAlipayDetailList.Rows[0]["card"].ToString() + "'";
+                                    sql = "UPDATE TCS_AlipayDetail SET issend = 1,buynick = '" + buynick + "',senddate = GETDATE(), orderid = '0' WHERE guid = '" + couponid + "' AND card = '" + dtAlipayDetailList.Rows[0]["card"].ToString() + "'";
                                     utils.ExecuteNonQuery(sql);
 
 
@@ -262,7 +262,7 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
                         }
                     }
                 }
-            }
+            //}
         }
     }
 
