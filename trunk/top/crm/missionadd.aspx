@@ -72,8 +72,9 @@
                 <tr>
                     <td align="left" height="30" width="120">催单短信内容：</td>
                     <td>
-                        <textarea name="cuicontent" cols="40" rows="3" onkeyup="gettextc(this, findObj('max_m').value, 'msg_c3');if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);"></textarea>
-                        <br />每条短信最多<span id="Span3" style="color:Red">64</span>个字，超出部分不发送，剩余：<b id="msg_c3" style="color:Red">64</b>
+                        <textarea name="cuicontent" id="cuicontent" cols="40" rows="3" onkeyup="gettextc(this, findObj('max_m').value, 'msg_c3');if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);"></textarea>
+                        <br />每条短信最多<span id="Span3" style="color:Red">64</span>个字，超出部分不发送，剩余：<b id="msg_c3" style="color:Red">64</b><br />
+                        <input type="button" value="短信预览" onclick="yulanMsg('cuicontent')" />
                     </td>
                 </tr>
                 <tr>
@@ -91,8 +92,9 @@
                 <tr>
                     <td align="left" height="30" width="120">生日短信内容：</td>
                     <td>
-                        <textarea name="birthdaycontent" cols="40" rows="3" onkeyup="gettextc(this, findObj('max_m').value, 'msg_c2');if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);"></textarea>
+                        <textarea name="birthdaycontent" id="birthdaycontent" cols="40" rows="3" onkeyup="gettextc(this, findObj('max_m').value, 'msg_c2');if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);"></textarea>
                         <br />每条短信最多<span id="Span2" style="color:Red">64</span>个字，超出部分不发送，剩余：<b id="msg_c2" style="color:Red">64</b>
+                        <br /><input type="button" value="短信预览" onclick="yulanMsg('birthdaycontent')" />
                     </td>
                 </tr>
             </table>
@@ -105,8 +107,9 @@
                 <tr>
                     <td align="left" height="30" width="120">定期回访内容：</td>
                     <td>
-                        <textarea name="backcontent" cols="40" rows="3" onkeyup="gettextc(this, findObj('max_m').value, 'msg_c1');if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);"></textarea>
+                        <textarea name="backcontent" id="backcontent" cols="40" rows="3" onkeyup="gettextc(this, findObj('max_m').value, 'msg_c1');if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);"></textarea>
                         <br />每条短信最多<span id="Span1" style="color:Red">64</span>个字，超出部分不发送，剩余：<b id="msg_c1" style="color:Red">64</b>
+                        <br /><input type="button" value="短信预览" onclick="yulanMsg('backcontent')" />
                     </td>
                 </tr>
                 <tr>
@@ -128,6 +131,7 @@
                     <td>
                         <textarea name="actcontent" cols="40" rows="3" onkeyup="gettextc(this, findObj('max_m').value, 'msg_c');if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);"></textarea>
                         <br />每条短信最多<span id="msg_t" style="color:Red">64</span>个字，超出部分不发送，剩余：<b id="msg_c" style="color:Red">64</b>
+                        <br /><input type="button" value="短信预览" onclick="yulanMsg('actcontent')" />
                     </td>
                 </tr>
                 <tr>
@@ -219,6 +223,32 @@
                     var t_i = c_i <= mc ? (mc - c_i) : '0';
                     findObj(show).innerHTML = t_i;
                 }
+
+
+
+                function yulanMsg(id) {
+                    var msg = document.getElementById(id).value;
+                    //shopname = document.getElementById("shopname").value;
+                    //msg = msg.replace("[shopname]", shopname);
+                    //msg = msg.replace("[gift]", "优惠券");
+                    //msg = msg.replace("[buynick]", "买家0001");
+                    //msg = msg.replace("[shiptyp]", "圆通快递");
+                    //msg = msg.replace("[shipnumber]", "1900209081740");
+                    //msg = msg.replace("[freecard]", "包邮卡（仅限圆通）");
+
+                    showMsg = "本条短信共计个" + msg.length + "字符";
+
+                    if (msg.length > 64) {
+                        showMsg = "本条短信共计个" + msg.length + "字符，被截取成64个字符";
+                        msg = msg.substring(0, 64);
+                    }
+
+                    document.getElementById("yulanContent").value = msg;
+                    document.getElementById("yulan").innerHTML = msg;
+                    document.getElementById("countArea").innerHTML = showMsg;
+                }
+
+
             </script>
 
             <script>
