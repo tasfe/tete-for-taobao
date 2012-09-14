@@ -24,6 +24,15 @@ public partial class top_crm_missionadd : System.Web.UI.Page
     public string now = string.Empty;
     public string totalcustomer = string.Empty;
 
+    public string count2 = string.Empty;
+    public string count3 = string.Empty;
+    public string count4 = string.Empty;
+    public string count5 = string.Empty;
+    public string count6 = string.Empty;
+    public string count7 = string.Empty;
+    public string count8 = string.Empty;
+    public string count9 = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
@@ -61,6 +70,30 @@ public partial class top_crm_missionadd : System.Web.UI.Page
 
             string sql = "SELECT COUNT(DISTINCT buynick) FROM TCS_Customer WHERE nick = '" + nick + "' AND mobile <> ''";
             totalcustomer = utils.ExecuteString(sql);
+
+            sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND tradecount = 0";
+            count2 = utils.ExecuteString(sql);
+
+            sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND tradecount = 1";
+            count3 = utils.ExecuteString(sql);
+
+            sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND tradecount = 2";
+            count4 = utils.ExecuteString(sql);
+
+            sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 0";
+            count5 = utils.ExecuteString(sql);
+
+            sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 1";
+            count6 = utils.ExecuteString(sql);
+
+            sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 2";
+            count7 = utils.ExecuteString(sql);
+
+            sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 3";
+            count8 = utils.ExecuteString(sql);
+
+            sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 4";
+            count9 = utils.ExecuteString(sql);
 
             sql = "SELECT * FROM TCS_Group WHERE nick = '" + nick + "' AND isdel = 0";
             DataTable dt = utils.ExecuteDataTable(sql);
