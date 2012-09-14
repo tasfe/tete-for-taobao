@@ -77,7 +77,7 @@ public partial class top_crm_missionadd : System.Web.UI.Page
             sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND tradecount = 1";
             count3 = utils.ExecuteString(sql);
 
-            sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND tradecount = 2";
+            sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND tradecount > 2";
             count4 = utils.ExecuteString(sql);
 
             sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 0";
