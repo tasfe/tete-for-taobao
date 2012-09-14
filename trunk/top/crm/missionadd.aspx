@@ -202,7 +202,7 @@
         </table>
 
 
-            <input id="max_m" value="66" type="hidden"/>
+            <input id="max_m" value="64" type="hidden"/>
             <script>
                 function findObj(n, d) {
                     var p, i, x;
