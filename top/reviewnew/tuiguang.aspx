@@ -101,6 +101,29 @@
         </asp:Repeater>
         </table>
             </td>
+            <td valign="top">
+            
+        <table>
+    <tr>
+        <td>卖家</td>
+        <td>浏览时间</td>
+        <td>浏览次数</td>
+        <td>IP地址</td>
+        <td>来源</td>
+    </tr>
+        <asp:Repeater ID="Repeater4" runat="server">
+            <ItemTemplate>
+            <tr>
+              <td> <%#Eval("nick") %> </td>
+              <td> <%#Eval("adddate") %> </td>
+              <td> <%#Eval("count") %> </td>
+              <td> <%#Eval("ip") %> </td>
+              <td> <%#Eval("laiyuan") %> </td>
+              </tr>
+            </ItemTemplate>
+        </asp:Repeater>
+        </table>
+            </td>
         </tr>
         </table>
     </div>

@@ -20,7 +20,7 @@ public partial class top_reviewnew_tuiguang : System.Web.UI.Page
                   (select nick from TCS_ShopSession WHERE version > 1)
                   OR ip in
                    (select ip from TCS_ShopSession where ip is not null AND version > 1))
-AND (laiyuan = 'bangpaiht' OR laiyuan = 'bangpaift')
+AND (laiyuan = 'bangpaiht' OR laiyuan = 'bangpaift' OR laiyuan = 'bangpaift1')
 AND ip NOT LIKE '117.80%'
                   order by adddate desc";
 
@@ -30,7 +30,7 @@ AND ip NOT LIKE '117.80%'
         rpt.DataBind();
 
 
-        sql = @"SELECT TOP 1000 [nick]
+        sql = @"SELECT TOP 100 [nick]
                       ,[adddate]
                       ,[count]
                       ,[ip]
@@ -43,7 +43,7 @@ AND ip NOT LIKE '117.80%'
         Repeater1.DataSource = dt1;
         Repeater1.DataBind();
 
-        sql = @"SELECT TOP 1000 [nick]
+        sql = @"SELECT TOP 100 [nick]
                       ,[adddate]
                       ,[count]
                       ,[ip]
@@ -55,6 +55,19 @@ AND ip NOT LIKE '117.80%'
 
         Repeater2.DataSource = dt2;
         Repeater2.DataBind();
+
+        sql = @"SELECT TOP 100 [nick]
+                      ,[adddate]
+                      ,[count]
+                      ,[ip]
+                      ,[laiyuan]
+                  FROM [TeteCrmSaasNew].[dbo].[TCS_Tui] WHERE laiyuan = 'bangpaift1'
+                  order by adddate desc";
+
+        DataTable dt4 = utils.ExecuteDataTable(sql);
+
+        Repeater4.DataSource = dt4;
+        Repeater4.DataBind();
 
 
 
