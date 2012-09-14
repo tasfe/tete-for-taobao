@@ -31,7 +31,7 @@
 
         <hr />
   <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
-      您可以创建多个客户营销计划，短信内容最多66个字，超过的话短信将分成多条发送。<br />
+      您可以创建多个客户营销计划，短信内容最多64个字，超过的话短信将分成多条发送。<br />
       创建新品活动营销的时候请您耐心等待，不要一直点击导致短信多次发送。
   </div>
 
@@ -64,7 +64,7 @@
                     <td align="left" height="30" width="120">催单短信内容：</td>
                     <td>
                         <textarea name="cuicontent" cols="40" rows="3" onkeyup="gettextc(this, findObj('max_m').value, 'msg_c3');if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);"></textarea>
-                        <br />每条短信最多<span id="Span3" style="color:Red">66</span>个字，超出部分不发送，剩余：<b id="msg_c3" style="color:Red">66</b>
+                        <br />每条短信最多<span id="Span3" style="color:Red">64</span>个字，超出部分不发送，剩余：<b id="msg_c3" style="color:Red">64</b>
                     </td>
                 </tr>
                 <tr>
@@ -83,7 +83,7 @@
                     <td align="left" height="30" width="120">生日短信内容：</td>
                     <td>
                         <textarea name="birthdaycontent" cols="40" rows="3" onkeyup="gettextc(this, findObj('max_m').value, 'msg_c2');if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);"></textarea>
-                        <br />每条短信最多<span id="Span2" style="color:Red">66</span>个字，超出部分不发送，剩余：<b id="msg_c2" style="color:Red">66</b>
+                        <br />每条短信最多<span id="Span2" style="color:Red">64</span>个字，超出部分不发送，剩余：<b id="msg_c2" style="color:Red">64</b>
                     </td>
                 </tr>
             </table>
@@ -97,7 +97,7 @@
                     <td align="left" height="30" width="120">定期回访内容：</td>
                     <td>
                         <textarea name="backcontent" cols="40" rows="3" onkeyup="gettextc(this, findObj('max_m').value, 'msg_c1');if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);"></textarea>
-                        <br />每条短信最多<span id="Span1" style="color:Red">66</span>个字，超出部分不发送，剩余：<b id="msg_c1" style="color:Red">66</b>
+                        <br />每条短信最多<span id="Span1" style="color:Red">64</span>个字，超出部分不发送，剩余：<b id="msg_c1" style="color:Red">64</b>
                     </td>
                 </tr>
                 <tr>
@@ -118,7 +118,7 @@
                     <td align="left" height="30" width="120">活动营销内容：</td>
                     <td>
                         <textarea name="actcontent" cols="40" rows="3" onkeyup="gettextc(this, findObj('max_m').value, 'msg_c');if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);" onkeydown="if(this.value.length>findObj('max_m').value)this.value=this.value.substring(0, findObj('max_m').value);"></textarea>
-                        <br />每条短信最多<span id="msg_t" style="color:Red">66</span>个字，超出部分不发送，剩余：<b id="msg_c" style="color:Red">66</b>
+                        <br />每条短信最多<span id="msg_t" style="color:Red">64</span>个字，超出部分不发送，剩余：<b id="msg_c" style="color:Red">64</b>
                     </td>
                 </tr>
                 <tr>
