@@ -134,16 +134,16 @@
                                 </asp:Repeater>
                             </optgroup>
                             <optgroup label="按购买次数区别">
-                                <option value="0" title="--">未成功购买的会员</option>
-                                <option value="1" title="--">购买过一次的会员</option>
-                                <option value="2" title="--">购买过多次的会员</option>
+                                <option value="0" title="<%=count2 %>">未成功购买的会员</option>
+                                <option value="1" title="<%=count3 %>">购买过一次的会员</option>
+                                <option value="2" title="<%=count4 %>">购买过多次的会员</option>
                             </optgroup>
                             <optgroup label="按用户组区别">
-                                <option value="a" title="--">未购买</option>
-                                <option value="b" title="--">普通会员</option>
-                                <option value="c" title="--">高级会员</option>
-                                <option value="d" title="--">VIP会员</option>
-                                <option value="e" title="--">至尊VIP会员</option>
+                                <option value="a" title="<%=count5 %>">未购买</option>
+                                <option value="b" title="<%=count6 %>">普通会员</option>
+                                <option value="c" title="<%=count7 %>">高级会员</option>
+                                <option value="d" title="<%=count8 %>">VIP会员</option>
+                                <option value="e" title="<%=count9 %>">至尊VIP会员</option>
                             </optgroup>
                         </select>
                     </td>
