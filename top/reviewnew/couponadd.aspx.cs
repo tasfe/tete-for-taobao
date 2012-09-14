@@ -88,9 +88,17 @@ public partial class top_review_couponadd : System.Web.UI.Page
             }
 
             string err = new Regex(@"<msg>([^<]*)</msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-            if (err.Length == 0)
+            string err1 = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+            if (err1.Length == 0)
             {
-                err = "淘宝系统错误，请稍后重试！";
+                if (err.Length == 0)
+                {
+                    err = "淘宝系统错误，请稍后重试！";
+                }
+            }
+            else
+            {
+                err = err1;
             }
 
             Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + err + "</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
