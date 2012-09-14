@@ -37,7 +37,7 @@
 
         <table width="100%">
             <tr>
-                <td align="left" width="80">任务类型：</td>
+                <td align="left" width="85">任务类型：</td>
                 <td>
                     <select name="typ" id="typ" onchange="InitHiddenArea(this)">
                         <option value="unpay">未付款订单催单</option>
@@ -173,7 +173,7 @@
                         <select name="sendnow" onchange="ShowDate(this)">
                             <option value="1">马上发送</option>
                             <option value="0">在指定时间发送</option>
-                        </select>
+                        </select><br />
                         会员多的情况下发送时间会比较长，请您耐心等待~
                     </td>
                 </tr>
