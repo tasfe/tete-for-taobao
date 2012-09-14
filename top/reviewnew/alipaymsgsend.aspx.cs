@@ -154,6 +154,10 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
         if (dt.Rows.Count != 0)
         {
             shopname = dt.Rows[0]["shopname"].ToString();
+            if (shopname == "")
+            {
+                shopname = nick;
+            }
         }
         else
         {
