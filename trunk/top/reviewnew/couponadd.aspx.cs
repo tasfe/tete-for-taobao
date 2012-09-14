@@ -68,6 +68,7 @@ public partial class top_review_couponadd : System.Web.UI.Page
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupon.add", session, param);
 
         //Response.Write(result + "<br><br>" + price + "<br><br>" + condition + "<br><br>" + end_time + "<br><br>" + coupon_name);
+        File.WriteAllText(Server.MapPath("couponlog/" + DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + nick + ".txt"), result);
         //Insufficient session permissions
 
         if (result.IndexOf("Insufficient") != -1)
@@ -92,7 +93,7 @@ public partial class top_review_couponadd : System.Web.UI.Page
                 err = "淘宝系统错误，请稍后重试！";
             }
 
-            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + result + "</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
+            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + result.Replace("xml", "") + "</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
             Response.End();
             return;
         }
@@ -101,7 +102,7 @@ public partial class top_review_couponadd : System.Web.UI.Page
 
         if (coupon_id == "")
         {
-            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + result + "</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
+            Response.Write("<b>优惠券创建失败，错误原因：</b><br><font color='red'>" + result.Replace("xml", "") + "</font><br><a href='javascript:history.go(-1)'>重新添加</a>");
             Response.End();
             return;
         }
