@@ -37,7 +37,7 @@
 
         <table width="100%">
             <tr>
-                <td align="left" width="120">任务类型：</td>
+                <td align="left" width="80">任务类型：</td>
                 <td>
                     <select name="typ" id="typ" onchange="InitHiddenArea(this)">
                         <option value="unpay">未付款订单催单</option>
@@ -60,7 +60,7 @@
 
         <table>
             <tr>
-                <td width=440 height=400>
+                <td width=440 height=400 valign="top">
                 
                 <!--area start-->
                 
