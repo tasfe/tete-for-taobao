@@ -119,32 +119,32 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
         couponstr += "</select>";
 
         string sql = string.Empty;
-        //sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "'";
-        //count1 = utils.ExecuteString(sql);
+        sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "'";
+        count1 = utils.ExecuteString(sql);
 
-        //sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND tradecount = 0";
-        //count2 = utils.ExecuteString(sql);
+        sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND tradecount = 0";
+        count2 = utils.ExecuteString(sql);
 
-        //sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND tradecount = 1";
-        //count3 = utils.ExecuteString(sql);
+        sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND tradecount = 1";
+        count3 = utils.ExecuteString(sql);
 
-        //sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND tradecount = 2";
-        //count4 = utils.ExecuteString(sql);
+        sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND tradecount = 2";
+        count4 = utils.ExecuteString(sql);
 
-        //sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 0";
-        //count5 = utils.ExecuteString(sql);
+        sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 0";
+        count5 = utils.ExecuteString(sql);
 
-        //sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 1";
-        //count6 = utils.ExecuteString(sql);
+        sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 1";
+        count6 = utils.ExecuteString(sql);
 
-        //sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 2";
-        //count7 = utils.ExecuteString(sql);
+        sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 2";
+        count7 = utils.ExecuteString(sql);
 
-        //sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 3";
-        //count8 = utils.ExecuteString(sql);
+        sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 3";
+        count8 = utils.ExecuteString(sql);
 
-        //sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 4";
-        //count9 = utils.ExecuteString(sql);
+        sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 4";
+        count9 = utils.ExecuteString(sql);
 
         sql = "SELECT * FROM TCS_Group WHERE nick = '" + nick + "' AND isdel = 0";
         DataTable dt = utils.ExecuteDataTable(sql);
