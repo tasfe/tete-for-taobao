@@ -656,7 +656,7 @@ public partial class top_review_msg : System.Web.UI.Page
     public string SendMessage(string phone, string msg)
     {
         //有客户没有手机号也发送短信
-        if (phone.Length == 0)
+        if (phone.Length < 11)
         {
             return "0";
         }
