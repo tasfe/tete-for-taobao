@@ -695,9 +695,17 @@ public partial class top_review_msg : System.Web.UI.Page
                 else
                 {
                     //发送成功
-                    Regex reg = new Regex(@"<sid>([^<]*)</sid>", RegexOptions.IgnoreCase);
+                    Regex reg = new Regex(@"<result>([^<]*)</result>", RegexOptions.IgnoreCase);
                     MatchCollection match = reg.Matches(content);
-                    string number = "888888";// match[0].Groups[1].ToString();
+                    string number = string.Empty;
+                    if (reg.IsMatch(content))
+                    {
+                        number = match[0].Groups[1].ToString(); // match[0].Groups[1].ToString();
+                    }
+                    else
+                    {
+                        number = "888888";
+                    }
                     return number;
                 }
             }
