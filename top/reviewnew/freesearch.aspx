@@ -17,7 +17,6 @@
   <div style="	width:950px;
 	margin:0 auto;
 	font-family:微软雅黑;
-    padding:6px;
 	color:#fff;
 	font-weight:bold;">
         <!--<div style="width:200; float:left; padding:10px;">
