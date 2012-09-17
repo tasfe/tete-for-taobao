@@ -720,7 +720,7 @@ public partial class api_Default : System.Web.UI.Page
             {
                 con += " OR CHARINDEX('" + dt1.Rows[i]["cateid"].ToString() + "', cateid) > 0";
             }
-            con += ")";
+            con += " OR CHARINDEX('" + cid + "', cateid) > 0)";
 
             sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' AND " + con + "";
         }
@@ -819,7 +819,7 @@ public partial class api_Default : System.Web.UI.Page
         {
             con += " OR CHARINDEX('" + dt1.Rows[i]["cateid"].ToString() + "', cateid) > 0";
         }
-        con += ")";
+        con += " OR CHARINDEX('" + cid + "', cateid) > 0)";
 
 
 
