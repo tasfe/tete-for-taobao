@@ -24,7 +24,7 @@
             <b style="color:white"><%=buynick %>，您好！</b>  <br /><br />
             <a href='http://ecrm.taobao.com/mallcoupon/got_bonus.htm' style="color:white" target="_blank">查看我的优惠券</a>
         </div>
-        <div style="width:750; float:left;"><img src='images/clientbanner.jpg' height="80" /></div>
+        <div style="width:750; float:left;"><img src='images/clientbanner.jpg' width="750" /></div>
         <div style="clear:both"></div>
   </div>
 </div>
