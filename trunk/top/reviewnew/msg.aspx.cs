@@ -672,20 +672,13 @@ public partial class top_review_msg : System.Web.UI.Page
         HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://sms.pica.com/zqhdServer/sendSMS.jsp" + "?" + param);
 
         req.Method = "GET";
-        //req.ContentType = "application/x-www-form-urlencoded";
-        //req.ContentLength = bs.Length;
-
-        //using (Stream reqStream = req.GetRequestStream())
-        //{
-        //    reqStream.Write(bs, 0, bs.Length);
-        //}
 
         using (HttpWebResponse myResponse = (HttpWebResponse)req.GetResponse())
         {
             using (StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.GetEncoding("GB2312")))
             {
                 string content = reader.ReadToEnd();
-                File.WriteAllText(Server.MapPath("aaa.txt"), content);
+                //File.WriteAllText(Server.MapPath("aaa.txt"), content);
 
                 if (content.IndexOf("<result>0</result>") == -1)
                 {
@@ -704,6 +697,11 @@ public partial class top_review_msg : System.Web.UI.Page
                 }
                 else
                 {
+                    if (content.Length > 50)
+                    {
+                        content = content.Substring(0, 50);
+                    }
+
                     return content;
                 }
             }
