@@ -180,6 +180,11 @@ public partial class api_getnewdata : System.Web.UI.Page
                         //Response.Write(sql + "<br>");
                         utils.ExecuteNonQuery(sql);
                     }
+                    else
+                    {
+                        sql = "UPDATE TeteShopItem SET cateid = '" + product.Content[i].SellerCids + "' WHERE itemid = '" + product.Content[i].NumIid + "'";
+                        utils.ExecuteNonQuery(sql);
+                    }
 
                 }
                 //Response.Write(product.Content.Count + "<br>");
