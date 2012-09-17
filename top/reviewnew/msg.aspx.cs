@@ -696,7 +696,7 @@ public partial class top_review_msg : System.Web.UI.Page
                     //发送成功
                     Regex reg = new Regex(@"<sid>([^<]*)</sid>", RegexOptions.IgnoreCase);
                     MatchCollection match = reg.Matches(content);
-                    Response.Write(content);
+                    File.WriteAllText(Server.MapPath("aaa.txt"), content);
                     string number = "888888";// match[0].Groups[1].ToString();
                     return number;
                 }
