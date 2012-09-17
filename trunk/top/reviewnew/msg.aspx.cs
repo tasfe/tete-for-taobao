@@ -666,7 +666,7 @@ public partial class top_review_msg : System.Web.UI.Page
 
         msg = UrlEncode(msg);
 
-        string param = "regcode=" + uid + "&pwd=" + pass + "&phone=" + phone + "&CONTENT=" + msg + "&extnum=11&level=1&schtime=null&reportflag=1&url=&smstype=0&key=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+        string param = "regcode=" + uid + "&pwd=" + pass + "&phone=" + phone + "&CONTENT=" + msg + "&extnum=11&level=1&schtime=null&reportflag=0&url=&smstype=0&key=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
         byte[] bs = Encoding.ASCII.GetBytes(param);
 
         HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://sms.pica.com/zqhdServer/sendSMS.jsp" + "?" + param);
@@ -696,6 +696,7 @@ public partial class top_review_msg : System.Web.UI.Page
                     //发送成功
                     Regex reg = new Regex(@"<sid>([^<]*)</sid>", RegexOptions.IgnoreCase);
                     MatchCollection match = reg.Matches(content);
+                    Response.Write(content);
                     string number = "888888";// match[0].Groups[1].ToString();
                     return number;
                 }
