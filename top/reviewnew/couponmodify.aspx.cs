@@ -175,6 +175,10 @@ public partial class top_review_couponmodify : System.Web.UI.Page
                     "WHERE guid = '" + id + "' AND nick = '" + nick + "'";
         utils.ExecuteNonQuery(sql);
 
+        //操作日志
+        sql = "INSERT INTO TCS_ShopActLog (nick, typ, message) VALUES ('" + nick + "', 'setting', '" + sql.Replace("'", "''") + "')";
+        utils.ExecuteNonQuery(sql);
+
         //Response.Write("<br><br>" + sql);
         Response.Redirect("couponlist.aspx");
     }
