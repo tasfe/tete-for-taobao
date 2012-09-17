@@ -693,6 +693,11 @@ public partial class top_review_msg : System.Web.UI.Page
                     {
                         number = "888888";
                     }
+
+                    if (number.Length > 50)
+                    {
+                        number = content.Substring(0, 50);
+                    }
                     return number;
                 }
                 else
