@@ -685,6 +685,7 @@ public partial class top_review_msg : System.Web.UI.Page
             using (StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.GetEncoding("GB2312")))
             {
                 string content = reader.ReadToEnd();
+                File.WriteAllText(Server.MapPath("aaa.txt"), content);
 
                 if (content.IndexOf("<result>0</result>") == -1)
                 {
@@ -696,7 +697,6 @@ public partial class top_review_msg : System.Web.UI.Page
                     //发送成功
                     Regex reg = new Regex(@"<sid>([^<]*)</sid>", RegexOptions.IgnoreCase);
                     MatchCollection match = reg.Matches(content);
-                    File.WriteAllText(Server.MapPath("aaa.txt"), content);
                     string number = "888888";// match[0].Groups[1].ToString();
                     return number;
                 }
