@@ -20,11 +20,11 @@
     padding:6px;
 	color:#fff;
 	font-weight:bold;">
-        <div style="width:200; float:left; padding:10px;">
+        <!--<div style="width:200; float:left; padding:10px;">
             <b style="color:white"><%=buynick %>，您好！</b>  <br /><br />
             <a href='http://ecrm.taobao.com/mallcoupon/got_bonus.htm' style="color:white" target="_blank">查看我的优惠券</a>
-        </div>
-        <div style="width:750; float:left;"><img src='images/clientbanner.jpg' width="750" /></div>
+        </div>-->
+        <div style="width:950px; float:left;"><img src='images/clientbanner.jpg' width="950" /></div>
         <div style="clear:both"></div>
   </div>
 </div>
