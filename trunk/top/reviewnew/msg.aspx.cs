@@ -689,12 +689,6 @@ public partial class top_review_msg : System.Web.UI.Page
 
                 if (content.IndexOf("<result>0</result>") == -1)
                 {
-                    //发送失败
-                    return content;
-                }
-                else
-                {
-                    //发送成功
                     Regex reg = new Regex(@"<result>([^<]*)</result>", RegexOptions.IgnoreCase);
                     MatchCollection match = reg.Matches(content);
                     string number = string.Empty;
@@ -707,6 +701,10 @@ public partial class top_review_msg : System.Web.UI.Page
                         number = "888888";
                     }
                     return number;
+                }
+                else
+                {
+                    return content;
                 }
             }
         }
