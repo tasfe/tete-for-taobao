@@ -85,7 +85,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
         {
             str += " OR CHARINDEX('" + dt.Rows[i]["cateid"].ToString() + "', cateid) > 0";
         }
-        str += ")";
+        str += " OR CHARINDEX('" + this.ddl1.SelectedValue + "', cateid) > 0)";
 
         sql = "SELECT * FROM TeteShopItem WHERE nick = '" + st + "' AND " + str + " AND isnew = 1 ORDER BY orderid";
         //Response.Write(sql);
