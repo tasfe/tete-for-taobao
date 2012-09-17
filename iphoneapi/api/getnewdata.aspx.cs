@@ -177,12 +177,13 @@ public partial class api_getnewdata : System.Web.UI.Page
 
                         //更新分类数量
                         sql = "UPDATE TeteShopCategory SET catecount = catecount + 1 WHERE nick = '" + uid + "' AND CHARINDEX(cateid, '" + product.Content[i].SellerCids + "') > 0";
-                        //Response.Write(sql + "<br>");
+                        Response.Write(sql + "<br>");
                         utils.ExecuteNonQuery(sql);
                     }
                     else
                     {
                         sql = "UPDATE TeteShopItem SET cateid = '" + product.Content[i].SellerCids + "' WHERE itemid = '" + product.Content[i].NumIid + "'";
+                        Response.Write(sql + "<br>");
                         utils.ExecuteNonQuery(sql);
                     }
 
