@@ -211,7 +211,7 @@ a:active {
             var temp_row = $('.hp_list').first();
             $("#hp_box").animate(
             { "top": -temp_row.height() - 2 },
-            1000, 
+            5000, 
             function () {
                 $('#hp_box').append(temp_row.detach()).offset({ top: init_top })
             });
