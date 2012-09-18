@@ -58,8 +58,16 @@ public partial class top_callback : System.Web.UI.Page
         }
         else
         {
-            File.WriteAllText(Server.MapPath("aaaaa.txt"), Request.Url.ToString());
-            Response.Redirect("reviewnew/haopingshow_190_1.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&buynick=" + HttpUtility.UrlEncode(buynick) + "");
+            //File.WriteAllText(Server.MapPath("aaaaa.txt"), Request.Url.ToString());
+            string module_width = utils.NewRequest("module_width", utils.RequestType.QueryString);
+            if (module_width == "950")
+            {
+                Response.Redirect("reviewnew/haopingshow_950_1.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&buynick=" + HttpUtility.UrlEncode(buynick) + "");
+            }
+            else
+            {
+                Response.Redirect("reviewnew/haopingshow_190_1.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&buynick=" + HttpUtility.UrlEncode(buynick) + "");
+            }
         }
 
         return;
