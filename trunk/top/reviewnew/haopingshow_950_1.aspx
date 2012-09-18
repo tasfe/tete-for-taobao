@@ -135,7 +135,7 @@ a:active {
         <tr>
           <td width="90" valign="top"><a href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" target="_blank">
             <div style="margin:5px 2px 5px 0px;"><img src="<%#Eval("itemsrc") %>_80x80.jpg" border="0" /></div>
-            </a><br />
+            </a>
             <span style="font-size:12px; color:#666; margin:6px 0px 0px 0px; line-height:20px;">已售<span class="text2"><%#Eval("sale") %></span>件 <br />
             <span class="text3">￥<%#Eval("price") %></span></span> 
             </td>
