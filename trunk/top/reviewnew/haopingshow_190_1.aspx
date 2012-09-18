@@ -197,10 +197,9 @@ a:active {
             page_no += 1;
     }
     get_rates();
-    var i = 4;
+    //var i = 4;
     function go_up() {
-        i += 1;
-        if (i == 10) {
+        if (i == <%=time %>) {
             c_record += 1;
             if (c_record == 5) {
                 c_record = 0
@@ -218,6 +217,7 @@ a:active {
             });
             i = 0;
         }
+        i += 1;
     }
 
     function timer() {
