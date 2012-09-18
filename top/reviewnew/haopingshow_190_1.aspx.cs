@@ -30,7 +30,7 @@ public partial class top_reviewnew_haopingshow_190_1 : System.Web.UI.Page
         dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            title = dt.Rows[0]["xiuxiutitle"].ToString();
+            title = dt.Rows[0]["xiuxiuname"].ToString();
             time = dt.Rows[0]["xiuxiutime"].ToString();
         }
 
