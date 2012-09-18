@@ -14,6 +14,9 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Xml;
+using Taobao.Top.Api;
+using Taobao.Top.Api.Request;
+using Taobao.Top.Api.Domain;
 
 public partial class top_review_testapi : System.Web.UI.Page
 {
@@ -22,24 +25,37 @@ public partial class top_review_testapi : System.Web.UI.Page
         string appkey = "12159997";
         string secret = "614e40bfdb96e9063031d1a9e56fbed5";
 
-        string session = "61019293eacfe6059d0926c171e488898b3f919447d432535255465";
+        string session = "6101a28530ce2b42ef7b281d0379338df80b16652ef263d150153910";
+        string taobaonick = "红色时代灯饰";
 
 
         //91599347271901
 
+        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
 
+        ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
+        request.Fields = "num_iid,title,price,pic_url,seller_cids";
+        request.PageSize = 200;
+        request.PageNo = 1;
 
+        string str = "0";
 
-        IDictionary<string, string> param = new Dictionary<string, string>();
+        PageList<Item> product = client.ItemsOnsaleGet(request, session);
+        for (int i = 0; i < product.Content.Count; i++)
+        {
+            str += "," + product.Content[i].NumIid;
+        }
 
-        //param.Add("coupon_id", "11815000");
-        param.Add("fields", "receiver_mobile, orders.num_iid, created, consign_time, total_fee, promotion_details, type, receiver_name, receiver_state, receiver_city, receiver_district, receiver_address, status, buyer_area");
-        param.Add("tid", "");
+        //IDictionary<string, string> param = new Dictionary<string, string>();
 
-        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupondetail.get", session, param);
-        ////<coupon_number>1323930538</coupon_number>
+        ////param.Add("coupon_id", "11815000");
+        //param.Add("fields", "receiver_mobile, orders.num_iid, created, consign_time, total_fee, promotion_details, type, receiver_name, receiver_state, receiver_city, receiver_district, receiver_address, status, buyer_area");
+        //param.Add("tid", "");
 
-        Response.Write("<textarea>" + result + "</textarea>");
+        //string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupondetail.get", session, param);
+        //////<coupon_number>1323930538</coupon_number>
+
+        Response.Write(str);
 
         //param = new Dictionary<string, string>();
         //param.Add("num_iid", "16791228388");
