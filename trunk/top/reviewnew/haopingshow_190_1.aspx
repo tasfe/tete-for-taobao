@@ -182,7 +182,7 @@ a:active {
     var total_num = parseInt('26');
     var seller_name = encodeURI('etanliuyang');
     var page_no = Math.floor(Math.random() * pages) + 1;
-    var width = '950';
+    var width = '190';
     var c_record = 0;
     var loop_index = 0;
     var up_switch;
