@@ -107,7 +107,7 @@ public partial class top_crm_alipaysend : System.Web.UI.Page
 
         if (dtCoupon.Rows.Count <= 0)
         {
-            Response.Write("<script>alert('请先创建1张支付宝红包才能可以给买家赠送！');window.location.href='couponadd.aspx'</script>");
+            Response.Write("<script>alert('请先创建1张支付宝红包才能可以给买家赠送！');window.location.href='../reviewnew/alipayadd.aspx'</script>");
             Response.End();
         }
 
