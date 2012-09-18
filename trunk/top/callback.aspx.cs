@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using Common;
 using System.Text.RegularExpressions;
 using System.Data;
+using System.IO;
 
 public partial class top_callback : System.Web.UI.Page
 {
@@ -57,6 +58,7 @@ public partial class top_callback : System.Web.UI.Page
         }
         else
         {
+            File.WriteAllText(Server.MapPath("aaaaa.txt"), Request.Url.ToString());
             Response.Redirect("reviewnew/haopingshow_190_1.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&buynick=" + HttpUtility.UrlEncode(buynick) + "");
         }
 
