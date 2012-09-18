@@ -42,9 +42,7 @@
             
             <tr>
                 <td align="left" colspan="2">
-                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" OnClientClick="return check()" />
-                    <input type="button" value="将活动展示在店铺里" onclick="window.location.href='html.aspx'" />
-                    <input type="button" value="礼品黑名单" onclick="window.location.href='blacklistgift.aspx'" />
+                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" />
                 </td>
             </tr>
         </table>
