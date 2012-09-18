@@ -197,9 +197,10 @@ a:active {
             page_no += 1;
     }
     get_rates();
-    var i = 0;
+    var i = 4;
     function go_up() {
-        if (i == <%=time %>) {
+        i += 1;
+        if (i == 10) {
             c_record += 1;
             if (c_record == 5) {
                 c_record = 0
@@ -211,13 +212,12 @@ a:active {
             var temp_row = $('.hp_list').first();
             $("#hp_box").animate(
             { "top": -temp_row.height() - 2 },
-            (<%=time %> + 1) * 1000, 
+            5000, 
             function () {
                 $('#hp_box').append(temp_row.detach()).offset({ top: init_top })
             });
             i = 0;
         }
-        i += 1;
     }
 
     function timer() {
