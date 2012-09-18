@@ -266,20 +266,24 @@ public partial class top_review_setting : System.Web.UI.Page
         string secret = "614e40bfdb96e9063031d1a9e56fbed5";
         List<Item> itemList = new List<Item>();
         TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
-
-        ItemGetRequest request = new ItemGetRequest();
-        request.Fields = "num_iid,title,price,pic_url";
-        request.NumIid = long.Parse(itemid);
-
-        Item product = client.ItemGet(request);
-        itemList.Add(product);
-        
-
-        //团购需要的商品数据
-        for (int i = 0; i < itemList.Count; i++)
+        try
         {
-            str = "<div id=item_" + itemList[i].NumIid.ToString() + " style=\"float:left;width:46px;border:solid 1px #ccc;padding:2px;margin:2px;\"><A href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><IMG src=\"" + itemList[i].PicUrl + "_40x40.jpg\" border=0 title=\"" + itemList[i].Title + "\" /></A><br>" + itemList[i].Price + "<input type=\"hidden\" id=\"productid\" name=\"productid\" value=\"" + itemList[i].NumIid.ToString() + "\"><input type=\"hidden\" id=\"price\" name=\"price\" value=\"" + itemList[i].Price.ToString() + "\"><br><a href=\"javascript:delitem(" + itemList[i].NumIid.ToString() + ")\">删除</a></div>";
+            ItemGetRequest request = new ItemGetRequest();
+            request.Fields = "num_iid,title,price,pic_url";
+            request.NumIid = long.Parse(itemid);
+
+            Item product = client.ItemGet(request);
+            itemList.Add(product);
+
+
+            //团购需要的商品数据
+            for (int i = 0; i < itemList.Count; i++)
+            {
+                str = "<div id=item_" + itemList[i].NumIid.ToString() + " style=\"float:left;width:46px;border:solid 1px #ccc;padding:2px;margin:2px;\"><A href=\"http://item.taobao.com/item.htm?id=" + itemList[i].NumIid.ToString() + "\" target=\"_blank\"><IMG src=\"" + itemList[i].PicUrl + "_40x40.jpg\" border=0 title=\"" + itemList[i].Title + "\" /></A><br>" + itemList[i].Price + "<input type=\"hidden\" id=\"productid\" name=\"productid\" value=\"" + itemList[i].NumIid.ToString() + "\"><input type=\"hidden\" id=\"price\" name=\"price\" value=\"" + itemList[i].Price.ToString() + "\"><br><a href=\"javascript:delitem(" + itemList[i].NumIid.ToString() + ")\">删除</a></div>";
+            }
         }
+        catch { }
+
         return str;
     }
 
