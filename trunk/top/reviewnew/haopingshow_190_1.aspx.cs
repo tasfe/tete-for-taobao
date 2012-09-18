@@ -12,6 +12,8 @@ public partial class top_reviewnew_haopingshow_190_1 : System.Web.UI.Page
 {
     public string nick = string.Empty;
     public string buynick = string.Empty;
+    public string title = string.Empty;
+    public string time = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -23,6 +25,19 @@ public partial class top_reviewnew_haopingshow_190_1 : System.Web.UI.Page
 
         rptTradeRate.DataSource = dt;
         rptTradeRate.DataBind();
+
+        sql = "SELECT * FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
+        dt = utils.ExecuteDataTable(sql);
+        if (dt.Rows.Count != 0)
+        {
+            title = dt.Rows[0]["xiuxiutitle"].ToString();
+            time = dt.Rows[0]["xiuxiutime"].ToString();
+        }
+
+        if (title.Length == 0)
+        {
+            title = "好评有礼";
+        }
     }
 
     public static string hidden(string str)
