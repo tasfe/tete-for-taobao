@@ -82,6 +82,16 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
             }
         }
 
+        string typ = "index";
+        for (int j = 1; j < 4; j++)
+        {
+            name = utils.NewRequest("pic_" + typ + "_" + j, utils.RequestType.Form);
+            orderid = utils.NewRequest("url_" + typ + "_" + j, utils.RequestType.Form);
+
+            sql = "UPDATE TeteShopAds SET logo = '" + name + "',url='" + orderid + "' WHERE nick = '" + st + "' AND typ = '" + typ + "' AND orderid = '" + j + "'";
+            utils.ExecuteNonQuery(sql);
+        }
+
         Response.Redirect("ads.aspx");
     }
 
