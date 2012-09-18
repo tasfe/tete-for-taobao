@@ -148,15 +148,15 @@ a:active {
         <tr>
           <td align="left" valign="top" colspan="2">
             <span style="font-size:12px; color:#666; margin:6px 0px 0px 0px; line-height:20px;">已售<span class="text2"><%#Eval("sale") %></span>件
-            <span class="text3">￥<%#Eval("price") %></span></span>
-            <span class="share_btn_box" rid="<%#Eval("itemid") %>"></span></td>
+            <span class="text3">￥<%#Eval("price") %></span></span> <%# hidden(Eval("buynick").ToString()) %> <img src='http://haoping.7fshop.com/top/crm/level/<%#Eval("userlevel") %>.gif' />
+            </td>
         </tr>
       </table>
       
       </td>
   </tr>
   <tr>
-    <td valign="bottom"><div class="buyer_box"><%# hidden(Eval("buynick").ToString()) %> <img src='http://haoping.7fshop.com/top/crm/level/<%#Eval("userlevel") %>.gif' /><br />
+    <td valign="bottom"><div class="buyer_box"> <span class="share_btn_box" rid="<%#Eval("itemid") %>"></span>
       </div></td>
   </tr>
 </table>
