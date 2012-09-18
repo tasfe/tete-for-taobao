@@ -85,7 +85,7 @@ public partial class top_crm_freecardsend : System.Web.UI.Page
         if (dt.Rows.Count != 0)
         {
             string plus = dt.Rows[0][0].ToString();
-            if (plus.IndexOf("freecard") != -1)
+            if (plus.IndexOf("crm") != -1)
             {
                 return true;
             }
