@@ -136,8 +136,8 @@ a:active {
         </a></div>
       <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
-          <td width="110" valign="top"><a href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" target="_blank">
-            <div style="margin:5px 2px 5px 0px;"><img src="<%#Eval("itemsrc") %>_100x100.jpg" border="0" /></div>
+          <td width="90" valign="top"><a href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" target="_blank">
+            <div style="margin:5px 2px 5px 0px;"><img src="<%#Eval("itemsrc") %>_80x80.jpg" border="0" /></div>
             </a></td>
           <td align="left" valign="top" style="padding:5px;">
             <div class="rate_box"><span class="rate_ico"></span><span class="vip_text">[好评]</span><a href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" target="_blank"><span class="rate_content"><%#Eval("content") %></span><span class="params" num_iid="<%#Eval("itemid") %>" pic_url="<%#Eval("itemsrc") %>"></span></a></div>
@@ -146,11 +146,8 @@ a:active {
         </tr>
         <tr>
           <td align="left" valign="top" colspan="2">
-          
-          <a href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" target="_blank">
-            <span style="font-size:12px; color:#666; margin:6px 0px 0px 0px; line-height:20px;">已售<span class="text2"><%#Eval("sale") %></span>件<br />
-              <span class="text3">￥<%#Eval("price") %></span></span>
-            </a>
+            <span style="font-size:12px; color:#666; margin:6px 0px 0px 0px; line-height:20px;">已售<span class="text2"><%#Eval("sale") %></span>件
+            <span class="text3">￥<%#Eval("price") %></span></span>
             <span class="share_btn_box" rid="<%#Eval("itemid") %>"></span></td>
         </tr>
       </table>
