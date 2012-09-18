@@ -28,7 +28,7 @@
     <div id="main-content">
         <table width="700">
             <tr>
-                <td align="left" width="180" height="30">前台好评秀秀模块标题名称：</td>
+                <td align="left" width="180" height="30">好评秀秀模块标题名称：</td>
                 <td>
                     <asp:TextBox ID="tbTitle" runat="server"></asp:TextBox>
                 </td>
