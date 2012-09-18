@@ -144,10 +144,13 @@ a:active {
               <span class="text3">￥<%#Eval("price") %></span></div>
             </a>
             <div class="share_btn_box" rid="<%#Eval("itemid") %>"></div></td>
+          <td>
+            <div class="rate_box"><span class="rate_ico"></span><span class="vip_text">[好评]</span><a href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" target="_blank"><span class="rate_content"><%#Eval("content") %></span><span class="params" num_iid="<%#Eval("itemid") %>" pic_url="<%#Eval("itemsrc") %>"></span></a></div>
+            <div style="color:Red; font-weight:bold; font-size:12px;"><%#Eval("showcontent")%></div>
+          </td>
         </tr>
       </table>
-      <div class="rate_box"><span class="rate_ico"></span><span class="vip_text">[好评]</span><a href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" target="_blank"><span class="rate_content"><%#Eval("content") %></span><span class="params" num_iid="<%#Eval("itemid") %>" pic_url="<%#Eval("itemsrc") %>"></span></a></div>
-      <div style="color:Red; font-weight:bold; font-size:12px;"><%#Eval("showcontent")%></div>
+      
       </td>
   </tr>
   <tr>
