@@ -84,7 +84,7 @@ a:active {
 }
 .rate_box {
 	word-break:break-all;
-	width:500px;
+	width:700px;
 	overflow:hidden;
 }
 .share_btn_box {
