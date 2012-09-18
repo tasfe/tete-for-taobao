@@ -135,7 +135,10 @@ a:active {
         <tr>
           <td width="90" valign="top"><a href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" target="_blank">
             <div style="margin:5px 2px 5px 0px;"><img src="<%#Eval("itemsrc") %>_80x80.jpg" border="0" /></div>
-            </a></td>
+            </a><br />
+            <span style="font-size:12px; color:#666; margin:6px 0px 0px 0px; line-height:20px;">已售<span class="text2"><%#Eval("sale") %></span>件 <br />
+            <span class="text3">￥<%#Eval("price") %></span></span> 
+            </td>
           <td align="left" valign="top" style="padding:5px;">
             <div class="ptitle"><a class="rate_url" href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" target="_blank">
         <div class="rate_title" style="font-size:12px"><%#Eval("itemname") %></div>
@@ -145,12 +148,6 @@ a:active {
             <div style="color:Red; font-weight:bold; font-size:12px;"><%#Eval("showcontent")%></div> <br />
             <%# hidden(Eval("buynick").ToString()) %> <img src='http://haoping.7fshop.com/top/crm/level/<%#Eval("userlevel") %>.gif' />
           </td>
-        </tr>
-        <tr>
-          <td align="left" valign="top" colspan="2">
-            <span style="font-size:12px; color:#666; margin:6px 0px 0px 0px; line-height:20px;">已售<span class="text2"><%#Eval("sale") %></span>件 <br />
-            <span class="text3">￥<%#Eval("price") %></span></span> 
-            </td>
         </tr>
       </table>
       
