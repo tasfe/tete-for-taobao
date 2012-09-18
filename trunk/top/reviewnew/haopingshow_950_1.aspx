@@ -84,7 +84,7 @@ a:active {
 }
 .rate_box {
 	word-break:break-all;
-	width:900px;
+	width:500px;
 	overflow:hidden;
 }
 .share_btn_box {
@@ -139,15 +139,15 @@ a:active {
           <td width="1" valign="top"><a href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" target="_blank">
             <div style="margin:5px 2px 5px 0px;"><img src="<%#Eval("itemsrc") %>_60x60.jpg" border="0" /></div>
             </a></td>
+          <td>
+            <div class="rate_box"><span class="rate_ico"></span><span class="vip_text">[好评]</span><a href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" target="_blank"><span class="rate_content"><%#Eval("content") %></span><span class="params" num_iid="<%#Eval("itemid") %>" pic_url="<%#Eval("itemsrc") %>"></span></a></div>
+            <div style="color:Red; font-weight:bold; font-size:12px;"><%#Eval("showcontent")%></div>
+          </td>
           <td align="left" valign="top"><a href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" target="_blank">
             <div style="font-size:12px; color:#666; margin:6px 0px 0px 0px; line-height:20px;">已售<span class="text2"><%#Eval("sale") %></span>件<br />
               <span class="text3">￥<%#Eval("price") %></span></div>
             </a>
             <div class="share_btn_box" rid="<%#Eval("itemid") %>"></div></td>
-          <td>
-            <div class="rate_box"><span class="rate_ico"></span><span class="vip_text">[好评]</span><a href="http://item.taobao.com/item.htm?id=<%#Eval("itemid") %>" target="_blank"><span class="rate_content"><%#Eval("content") %></span><span class="params" num_iid="<%#Eval("itemid") %>" pic_url="<%#Eval("itemsrc") %>"></span></a></div>
-            <div style="color:Red; font-weight:bold; font-size:12px;"><%#Eval("showcontent")%></div>
-          </td>
         </tr>
       </table>
       
