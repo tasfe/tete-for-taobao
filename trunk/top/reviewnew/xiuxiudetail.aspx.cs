@@ -51,7 +51,22 @@ public partial class top_reviewnew_xiuxiudetail : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            tbTime.Text = "";
+            tbTime.Text = dt.Rows[0]["xiuxiutime"].ToString();
+            tbTitle.Text = dt.Rows[0]["xiuxiuname"].ToString();
         }
+
+        if (tbTitle.Text.Length == 0)
+        {
+            tbTitle.Text = "好评有礼";
+        }
+    }
+
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        string sql = "UPDATE TCS_ShopConfig SET xiuxiutime = '" + tbTime.Text + "',xiuxiuname = '" + tbTitle.Text + "' WHERE nick = '" + nick + "'";
+        utils.ExecuteNonQuery(sql);
+
+        Response.Redirect("xiuxiudetail.aspx");
     }
 }
