@@ -197,7 +197,7 @@ a:active {
             page_no += 1;
     }
     get_rates();
-    //var i = 4;
+    var i = 0;
     function go_up() {
         if (i == <%=time %>) {
             c_record += 1;
