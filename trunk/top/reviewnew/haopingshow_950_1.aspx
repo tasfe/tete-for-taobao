@@ -148,14 +148,12 @@ a:active {
             <div style="color:Red; font-weight:bold; font-size:12px;"><%#Eval("showcontent")%></div> <br />
             <%# hidden(Eval("buynick").ToString()) %> <img src='http://haoping.7fshop.com/top/crm/level/<%#Eval("userlevel") %>.gif' />
           </td>
+            <td valign="bottom"><div class="buyer_box"> <span class="share_btn_box" rid="<%#Eval("itemid") %>"></span>
+              </div></td>
         </tr>
       </table>
       
       </td>
-  </tr>
-  <tr>
-    <td valign="bottom"><div class="buyer_box"> <span class="share_btn_box" rid="<%#Eval("itemid") %>"></span>
-      </div></td>
   </tr>
 </table>
     </ItemTemplate>
