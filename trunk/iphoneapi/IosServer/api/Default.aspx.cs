@@ -45,13 +45,17 @@ public partial class api_Default : System.Web.UI.Page
         {
             Response.Write("<result>busy</result>");
         }
-        else if (result.IndexOf("验证码错误") != -1)
+        else if (result.IndexOf("请输入正确的验证码") != -1)
         {
-            Response.Write("<result>验证码错误</result>");
+            Response.Write("<result>请输入正确的验证码</result>");
         }
-        else if (result.IndexOf("密码错误") != -1)
+        else if (result.IndexOf("邮箱不存在") != -1)
         {
-            Response.Write("<result>密码错误</result>");
+            Response.Write("<result>邮箱不存在</result>");
+        }
+        else if (result.IndexOf("密码输入错误") != -1)
+        {
+            Response.Write("<result>密码输入错误</result>");
         }
         else
         {
