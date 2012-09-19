@@ -27,7 +27,18 @@ public partial class api_Default : System.Web.UI.Page
         string cookieStr = t.GetVerifyImg();
 
         Common.Cookie cookie = new Common.Cookie();
-        cookie.setCookie("session", cookieStr, 999999);
+
+        string[] ary = cookieStr.Split('|');
+
+        cookie.setCookie("JSESSIONID", ary[0], 999999);
+
+        if (ary.Length > 1)
+        {
+            cookie.setCookie("BIGipServerotsweb", ary[1], 999999);
+            //ck = new Cookie("BIGipServerotsweb", ary[1], "/", "dynamic.12306.cn");
+            //cc.Add(ck);
+            //resultNew += "BIGipServerotsweb=" + ary[1];
+        }
 
         Response.End();
     }
