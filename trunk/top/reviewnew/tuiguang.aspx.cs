@@ -72,7 +72,7 @@ AND ip NOT LIKE '117.80%'
 
 
         sql = @"SELECT COUNT(*) AS count1,SUM(count) AS count2,DATEDIFF(D,adddate, GETDATE()) AS count3 FROM [TCS_Tui]
-  GROUP BY DATEDIFF(D,adddate, GETDATE())";
+  GROUP BY DATEDIFF(D,adddate, GETDATE()) ORDER BY DATEDIFF(D,adddate, GETDATE())  DESC";
 
         DataTable dt3 = utils.ExecuteDataTable(sql);
 
