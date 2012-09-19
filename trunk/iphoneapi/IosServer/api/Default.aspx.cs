@@ -22,6 +22,41 @@ public partial class api_Default : System.Web.UI.Page
         {
             LoginPost();
         }
+
+        if (act == "search")
+        {
+            SearchPost();
+        }
+
+        if (act == "submitorder")
+        {
+            SubmitOrderPost();
+        }
+    }
+
+    /// <summary>
+    /// 订票操作
+    /// </summary>
+    private void SubmitOrderPost()
+    {
+        
+    }
+
+    /// <summary>
+    /// 车次搜索
+    /// </summary>
+    private void SearchPost()
+    {
+        string session = Common.utils.NewRequest("session", Common.utils.RequestType.Form);
+        string date = Common.utils.NewRequest("date", Common.utils.RequestType.Form);
+        string startcity = Common.utils.NewRequest("startcity", Common.utils.RequestType.Form);
+        string endcity = Common.utils.NewRequest("endcity", Common.utils.RequestType.Form);
+        string no = Common.utils.NewRequest("no", Common.utils.RequestType.Form);
+        string rtyp = Common.utils.NewRequest("rtyp", Common.utils.RequestType.Form);
+        string ttype = Common.utils.NewRequest("ttype", Common.utils.RequestType.Form);
+        string student = Common.utils.NewRequest("student", Common.utils.RequestType.Form);
+
+
     }
 
     /// <summary>
@@ -41,7 +76,7 @@ public partial class api_Default : System.Web.UI.Page
         Train send = new Train();
         string result = send.SendLoginRequest(uid, pass, verify, str1 + "|" + str2);
 
-        if (result.IndexOf("登录人数") != -1)
+        if (result.IndexOf("访问用户过多") != -1)
         {
             Response.Write("busy");
         }
