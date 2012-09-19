@@ -101,7 +101,7 @@ public partial class api_Default : System.Web.UI.Page
         {
             if (result.IndexOf("我的12306") == -1)
             {
-                Response.Write("密码输入错误超过4次，用户将锁定20分钟，请稍后再试！--" + result);
+                Response.Write("密码输入错误超过4次或者验证码失效，请重试！");
             }
             else
             {
