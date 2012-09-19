@@ -83,7 +83,7 @@ h4 a {
 
 <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="javascript:;" class="nolink">好评有礼</a> 功能介绍 </div>
+  <div class="crumbs"><a href="javascript:;" class="nolink">好评有礼</a> 引导教程 </div>
   <div class="absright">
     <ul>
       <li>
@@ -93,7 +93,7 @@ h4 a {
       </li>
     </ul>
   </div>
-    <div id="main-content" style="padding:0px; margin:0px;">
+   <!-- <div id="main-content" style="padding:0px; margin:0px;">
     <a href='http://fuwu.taobao.com/service/service.htm?service_code=ts-30642&from=haoping' target="_blank"><img src='http://haoping.7fshop.com/top/reviewnew/images/xiuxiu2.jpg' border=0 /></a>
     <br />
             <div class="user_box2"
@@ -267,6 +267,11 @@ h4 a {
   </div>
 </div>
 
+    </div> -->
+
+    
+    <div id="main-content" style="padding:0px; margin:0px;">
+        <img src='images/yindao.jpg' />
     </div>
 </div>
 
