@@ -16,6 +16,28 @@ public partial class api_Default : System.Web.UI.Page
         {
             OutPutVerify();
         }
+
+        if (act == "login")
+        {
+            LoginPost();
+        }
+    }
+
+    /// <summary>
+    /// 登录请求
+    /// </summary>
+    private void LoginPost()
+    {
+        string uid = Common.utils.NewRequest("uid", Common.utils.RequestType.Form);
+        string pass = Common.utils.NewRequest("pass", Common.utils.RequestType.Form);
+        string verify = Common.utils.NewRequest("verify", Common.utils.RequestType.Form);
+        string session = Common.utils.NewRequest("session", Common.utils.RequestType.Form);
+
+        Train send = new Train();
+        string result = send.SendLoginRequest(uid, pass, verify, session);
+
+        Response.Write("<result>ok!!</result>");
+        Response.End();
     }
 
     /// <summary>
