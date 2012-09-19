@@ -271,8 +271,8 @@ h4 a {
 
     
     <div id="main-content" style="padding:0px; margin:0px;">
-        <img src='images/yindao.jpg' /> <br /><br />
-        <img src='images/yindao1.jpg' /> <br />
+        <img src='images/yindao.jpg' /> <br />
+        <img src='images/yindao1.jpg' />
     </div>
 </div>
 
