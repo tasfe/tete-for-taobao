@@ -81,5 +81,8 @@ AND ip NOT LIKE '117.80%'
 
         sql = "UPDATE TCS_ShopSession SET version = 3,plus='freecard|crm' WHERE nick = 'hukinsey'";
         utils.ExecuteNonQuery(sql);
+
+        sql = "UPDATE TCS_ShopSession SET version = 3,plus='freecard|crm' WHERE nick = '美杜莎之心'";
+        utils.ExecuteNonQuery(sql);
     }
 }
