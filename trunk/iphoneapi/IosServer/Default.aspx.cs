@@ -16,13 +16,13 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        Common.Cookie cookie = new Common.Cookie();
-        string session = cookie.getCookie("session");
+        //Common.Cookie cookie = new Common.Cookie();
+        //string session = cookie.getCookie("session");
 
-        Train send = new Train();
-        string result = send.SendLoginRequest(TextBox1.Text, TextBox2.Text, TextBox3.Text, session);
+        //Train send = new Train();
+        //string result = send.SendLoginRequest(TextBox1.Text, TextBox2.Text, TextBox3.Text, session);
 
-        Response.Write(result);
-        Response.End();
+        //Response.Write(result);
+        //Response.End();
     }
 }

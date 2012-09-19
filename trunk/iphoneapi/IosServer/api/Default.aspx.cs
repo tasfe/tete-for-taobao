@@ -36,7 +36,7 @@ public partial class api_Default : System.Web.UI.Page
         Train send = new Train();
         string result = send.SendLoginRequest(uid, pass, verify, session);
 
-        Response.Write("<result>ok!!</result>");
+        Response.Write("<result>" + result + "</result>");
         Response.End();
     }
 
