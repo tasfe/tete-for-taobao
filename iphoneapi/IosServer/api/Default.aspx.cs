@@ -41,7 +41,22 @@ public partial class api_Default : System.Web.UI.Page
         Train send = new Train();
         string result = send.SendLoginRequest(uid, pass, verify, str1 + "|" + str2);
 
-        Response.Write("<result>" + result + "</result>");
+        if (result.IndexOf("登录人数") != -1)
+        {
+            Response.Write("<result>busy</result>");
+        }
+        else if (result.IndexOf("验证码错误") != -1)
+        {
+            Response.Write("<result>验证码错误</result>");
+        }
+        else if (result.IndexOf("密码错误") != -1)
+        {
+            Response.Write("<result>密码错误</result>");
+        }
+        else
+        {
+            Response.Write("<result>ok</result>");
+        }
         Response.End();
     }
 
