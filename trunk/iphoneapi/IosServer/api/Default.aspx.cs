@@ -57,6 +57,10 @@ public partial class api_Default : System.Web.UI.Page
         {
             Response.Write("<result>密码输入错误</result>");
         }
+        else if (result.IndexOf("用户将锁定") != -1)
+        {
+            Response.Write("<result>密码输入错误超过4次，用户将锁定20分钟，请稍后再试！</result>");
+        }
         else
         {
             Response.Write("<result>ok</result>");
