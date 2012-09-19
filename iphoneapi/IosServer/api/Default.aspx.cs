@@ -27,16 +27,6 @@ public partial class api_Default : System.Web.UI.Page
         {
             SearchPost();
         }
-
-        if (act == "submitorder")
-        {
-            SubmitOrderPost();
-        }
-
-        if (act == "submitorder")
-        {
-            SubmitOrderPost();
-        }
     }
 
     /// <summary>
@@ -62,6 +52,15 @@ public partial class api_Default : System.Web.UI.Page
         string student = Common.utils.NewRequest("student", Common.utils.RequestType.Form);
 
 
+        string str1 = new Regex(@"JSESSIONID=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str2 = new Regex(@"BIGipServerotsweb=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str = str1 + "|" + str2;
+
+        Train send = new Train();
+        string result = send.SendSearchRequest(date, startcity, endcity, no, rtyp, ttype, student, str1 + "|" + str2);
+        
+        Response.Write("ok");
+        Response.End();
     }
 
     /// <summary>
@@ -116,23 +115,28 @@ public partial class api_Default : System.Web.UI.Page
     /// </summary>
     private void OutPutVerify()
     {
-        Train t = new Train();
-        string cookieStr = t.GetVerifyImg();
-
-        Common.Cookie cookie = new Common.Cookie();
-
-        string[] ary = cookieStr.Split('|');
-
-        cookie.setCookie("JSESSIONID", ary[0], 999999);
-
-        if (ary.Length > 1)
+        try
         {
-            cookie.setCookie("BIGipServerotsweb", ary[1], 999999);
-            //ck = new Cookie("BIGipServerotsweb", ary[1], "/", "dynamic.12306.cn");
-            //cc.Add(ck);
-            //resultNew += "BIGipServerotsweb=" + ary[1];
-        }
+            Train t = new Train();
+            string cookieStr = t.GetVerifyImg();
 
-        Response.End();
+            Common.Cookie cookie = new Common.Cookie();
+
+            string[] ary = cookieStr.Split('|');
+
+            cookie.setCookie("JSESSIONID", ary[0], 999999);
+
+            if (ary.Length > 1)
+            {
+                cookie.setCookie("BIGipServerotsweb", ary[1], 999999);
+            }
+
+            Response.End();
+        }
+        catch
+        {
+            Response.Write("err");
+            Response.End();
+        }
     }
 }
