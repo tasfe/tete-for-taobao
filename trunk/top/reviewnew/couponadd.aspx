@@ -72,7 +72,7 @@
             <tr>
                 <td align="left" height="30">优惠券使用条件：</td>
                 <td>
-                    购物满<input name="condition" type="text" value="0" size="2" />元可以使用，写0则为不限制
+                    购物满<input name="condition" type="text" value="0" size="2" />元可以使用，<b style="color:red">写0则为不限制</b>
                 </td>
             </tr>
             <tr>
