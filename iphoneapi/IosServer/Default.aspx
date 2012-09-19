@@ -7,17 +7,15 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form action="api/default.aspx?act=login" method=post>
     <div>
-        
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        <input type="" name="uid" />
         <br />
-        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+        <input type="" name="pass" />
         <br />
-        <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox> <img src='api/default.aspx?act=verify' />
+        <input type="" name="verify" /> <img src='api/default.aspx?act=verify' />
         <br />
-        <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="Button" />
-        
+        <input type="submit" value="test" />
     </div>
     </form>
 </body>
