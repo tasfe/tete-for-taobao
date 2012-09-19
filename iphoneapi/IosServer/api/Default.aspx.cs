@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using TeteIosTrain;
 using System.IO;
+using System.Text.RegularExpressions;
 
 public partial class api_Default : System.Web.UI.Page
 {
@@ -33,8 +34,12 @@ public partial class api_Default : System.Web.UI.Page
         string verify = Common.utils.NewRequest("verify", Common.utils.RequestType.Form);
         string session = Common.utils.NewRequest("session", Common.utils.RequestType.Form);
 
+        //JSESSIONID=2D196E71DE9C9DDF0BE726984B66C03C;
+        string str1 = new Regex(@"JSESSIONID=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str2 = new Regex(@"BIGipServerotsweb=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+
         Train send = new Train();
-        string result = send.SendLoginRequest(uid, pass, verify, session);
+        string result = send.SendLoginRequest(uid, pass, verify, str1 + "|" + str2);
 
         Response.Write("<result>" + result + "</result>");
         Response.End();
