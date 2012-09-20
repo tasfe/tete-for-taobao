@@ -86,6 +86,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
             ary = aryStr;
             //Response.Write(ary);
             this.lb2.Text = ary;
+            Response.Write(lb2.Text);
         }
     }
 
@@ -159,10 +160,10 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
 
         for (int i = 0; i < dt.Rows.Count; i++)
         {
-            //Response.Write(lb2.Text);
+            Response.Write(lb2.Text);
             //Response.Write(dt.Rows[i]["cateid"].ToString());
             //Response.Write(getCate(lb2.Text, dt.Rows[i]["cateid"].ToString()));
-            //Response.Write("<hr>");
+            Response.Write("<hr>");
             dt.Rows[i]["title"] = getCate(lb2.Text, dt.Rows[i]["cateid"].ToString());
         }
 
