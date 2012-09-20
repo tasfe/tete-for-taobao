@@ -99,7 +99,7 @@ public partial class api_Default : System.Web.UI.Page
         Regex reg = new Regex(@"<br>&nbsp;&nbsp;&nbsp;&nbsp;([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),", RegexOptions.IgnoreCase);
         MatchCollection match = reg.Matches(result);
 
-        Regex regBottom = new Regex(@"onclick=javascript:getSelected('([^']*)')", RegexOptions.IgnoreCase);
+        Regex regBottom = new Regex(@"onclick\=javascript\:getSelected\('([^']*)'\)", RegexOptions.IgnoreCase);
         MatchCollection matchBottom = regBottom.Matches(result);
 
         for (int i = 0; i < matchBottom.Count; i++)
@@ -114,6 +114,8 @@ public partial class api_Default : System.Web.UI.Page
 
             outStr += matchBottom[i].Groups[1].ToString();
         }
+
+        //File.WriteAllText(Server.MapPath("111.txt"), matchBottom.Count + "-" + result);
 
         Response.Write(outStr);
         Response.End();
