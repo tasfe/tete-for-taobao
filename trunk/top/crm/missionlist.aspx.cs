@@ -90,7 +90,42 @@ public partial class top_crm_missionlist : System.Web.UI.Page
         }
         else
         {
-            str = "全部会员";
+            if (grade == "0")
+            {
+                str = "未成功购买的会员";
+            }
+            else if (grade == "1")
+            {
+                str = "购买过一次的会员";
+            }
+            else if (grade == "2")
+            {
+                str = "购买过多次的会员";
+            }
+            else if (grade == "a")
+            {
+                str = "未购买";
+            }
+            else if (grade == "b")
+            {
+                str = "普通会员";
+            }
+            else if (grade == "c")
+            {
+                str = "高级会员";
+            }
+            else if (grade == "d")
+            {
+                str = "VIP会员";
+            }
+            else if (grade == "e")
+            {
+                str = "至尊VIP会员";
+            }
+            else
+            {
+                str = "全部会员";
+            }
         }
 
         return str;
