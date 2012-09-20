@@ -111,7 +111,7 @@ public partial class api_Default : System.Web.UI.Page
 
             for (int j = 1; j < 17; j++)
             {
-                outStr += match[i].Groups[j].ToString().Replace("<font color='#008800'>", "").Replace("</font>", "") + ",";
+                outStr += match[i].Groups[j].ToString().Replace("<font color='#008800'>", "").Replace("</font>", "").Replace("<font color='darkgray'>", "") + ",";
             }
 
             outStr += matchBottom[i].Groups[1].ToString();
