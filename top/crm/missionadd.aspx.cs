@@ -71,29 +71,29 @@ public partial class top_crm_missionadd : System.Web.UI.Page
             string sql = "SELECT COUNT(DISTINCT buynick) FROM TCS_Customer WHERE nick = '" + nick + "' AND mobile <> ''";
             totalcustomer = utils.ExecuteString(sql);
 
-            sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND tradecount = 0 AND mobile <> ''";
-            count2 = utils.ExecuteString(sql);
+            //sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND tradecount = 0 AND mobile <> ''";
+            //count2 = utils.ExecuteString(sql);
 
-            sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND tradecount = 1 AND mobile <> ''";
-            count3 = utils.ExecuteString(sql);
+            //sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND tradecount = 1 AND mobile <> ''";
+            //count3 = utils.ExecuteString(sql);
 
-            sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND tradecount > 2 AND mobile <> ''";
-            count4 = utils.ExecuteString(sql);
+            //sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND tradecount > 2 AND mobile <> ''";
+            //count4 = utils.ExecuteString(sql);
 
-            sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 0 AND mobile <> ''";
-            count5 = utils.ExecuteString(sql);
+            //sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 0 AND mobile <> ''";
+            //count5 = utils.ExecuteString(sql);
 
-            sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 1 AND mobile <> ''";
-            count6 = utils.ExecuteString(sql);
+            //sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 1 AND mobile <> ''";
+            //count6 = utils.ExecuteString(sql);
 
-            sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 2 AND mobile <> ''";
-            count7 = utils.ExecuteString(sql);
+            //sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 2 AND mobile <> ''";
+            //count7 = utils.ExecuteString(sql);
 
-            sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 3 AND mobile <> ''";
-            count8 = utils.ExecuteString(sql);
+            //sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 3 AND mobile <> ''";
+            //count8 = utils.ExecuteString(sql);
 
-            sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 4 AND mobile <> ''";
-            count9 = utils.ExecuteString(sql);
+            //sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '" + nick + "' AND grade = 4 AND mobile <> ''";
+            //count9 = utils.ExecuteString(sql);
 
             sql = "SELECT * FROM TCS_Group WHERE nick = '" + nick + "' AND isdel = 0";
             DataTable dt = utils.ExecuteDataTable(sql);
