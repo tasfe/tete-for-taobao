@@ -23,7 +23,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
     public string cate2 = string.Empty;
     public string cate3 = string.Empty;
 
-    public string[] ary;
+    public string[] ary = null;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -70,7 +70,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
             }
 
             string aryStr = string.Empty;
-            sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + st + "' AND parentid=0 ORDER BY orderid";
+            sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + st + "' ORDER BY orderid";
             dt = utils.ExecuteDataTable(sql);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
