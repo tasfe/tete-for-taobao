@@ -89,6 +89,8 @@ public partial class api_Default : System.Web.UI.Page
 
         string outStr = string.Empty;
 
+        string url = "https://dynamic.12306.cn/otsweb/order/querySingleAction.do?method=queryLeftTicket&orderRequest.train_date=" + date + "&orderRequest.from_station_telecode=" + startcity + "&orderRequest.to_station_telecode=" + endcity + "&orderRequest.train_no=" + no + "&trainPassType=" + rtyp + "&trainClass=" + ttype + "&includeStudent=" + student + "&seatTypeAndNum=&orderRequest.start_time_str=" + timearea;
+
         string str1 = new Regex(@"JSESSIONID=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
         string str2 = new Regex(@"BIGipServerotsweb=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
         string str = str1 + "|" + str2;
@@ -115,7 +117,7 @@ public partial class api_Default : System.Web.UI.Page
             outStr += matchBottom[i].Groups[1].ToString();
         }
 
-        Response.Write(outStr + "!-!" + result);
+        Response.Write(outStr + "!-!" + result + "!!" + url);
         Response.End();
     }
 
