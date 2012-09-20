@@ -98,7 +98,7 @@ public partial class api_Default : System.Web.UI.Page
 
         result = "0,<span id='id_580000200202' class='base_txtdiv' onmouseover=javascript:onStopHover('580000200202#SNH#NJH') onmouseout='onStopOut()'>2002</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上海南&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;04:16,<img src='/otsweb/images/tips/last.gif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;南京&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;08:32,04:16,--,--,--,--,--,5,<font color='#008800'>有</font>,--,<font color='#008800'>有</font>,<font color='#008800'>有</font>,--,<input type='button' class='yuding_u' onmousemove=this.className='yuding_u_over' onmousedown=this.className='yuding_u_down' onmouseout=this.className='yuding_u' onclick=javascript:getSelected('2002#04:16#04:16#580000200202#SNH#NJH#08:32#上海南#南京#1*****31904*****00051*****01273*****0059#CFFED964FB3F995E4F5EDD74BC59777FABAA62E950EE22AF23A6244D') value='预订'></input>\n";
 
-        Regex reg = new Regex(@"<br>&nbsp;&nbsp;&nbsp;&nbsp;([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),", RegexOptions.IgnoreCase);
+        Regex reg = new Regex(@"<br>&nbsp;&nbsp;&nbsp;&nbsp;([^,]*),[\s\S]*?([0-9]{2}\:[0-9]{2}),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),", RegexOptions.IgnoreCase);
         MatchCollection match = reg.Matches(result);
 
         Regex regBottom = new Regex(@"onclick\=javascript\:getSelected\('([^']*)'\)", RegexOptions.IgnoreCase);
