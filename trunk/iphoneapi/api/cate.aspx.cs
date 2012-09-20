@@ -21,7 +21,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
-        string sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + st + "' AND parentid=0 ORDER BY orderid";
+        string sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + st + "' AND catename <> '' ORDER BY orderid1";
 
         if (!IsPostBack)
         {
@@ -44,7 +44,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
             name = utils.NewRequest("cate_" + ary[i], utils.RequestType.Form);
             orderid = utils.NewRequest("orderid_" + ary[i], utils.RequestType.Form);
 
-            sql = "UPDATE TeteShopCategory SET catename = '" + name + "',orderid='" + orderid + "' WHERE nick = '" + st + "' AND cateid = '" + ary[i] + "'";
+            sql = "UPDATE TeteShopCategory SET orderid1='" + orderid + "' WHERE nick = '" + st + "' AND cateid = '" + ary[i] + "'";
             utils.ExecuteNonQuery(sql);
         }
 
