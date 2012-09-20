@@ -76,7 +76,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
             {
                 if (i == 0)
                 {
-                    aryStr += "0|全部," + dt.Rows[i]["cateid"].ToString() + "|" + dt.Rows[i]["catename"].ToString();
+                    aryStr += "0|链接到指定网址," + dt.Rows[i]["cateid"].ToString() + "|" + dt.Rows[i]["catename"].ToString();
                 }
                 else
                 {
@@ -84,7 +84,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
                 }
             }
             ary = aryStr;
-            Response.Write(ary);
+            //Response.Write(ary);
         }
     }
 
@@ -126,20 +126,24 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
 
     public static string getCate(string html, string cateid)
     {
-        return "";
+        //return "";
         string[] htmlAry = html.Split(',');
         string str = string.Empty;
         for (int i = 0; i < htmlAry.Length; i++)
         {
-            string[] htmlAryChild = htmlAry[i].Split('|');
-            if (htmlAry[i] == cateid)
+            try
             {
-                str += "<option selected value='" + htmlAryChild[1] + "'>" + htmlAryChild[0] + "</option>";
+                string[] htmlAryChild = htmlAry[i].Split('|');
+                if (htmlAry[i] == cateid)
+                {
+                    str += "<option selected value='" + htmlAryChild[1] + "'>" + htmlAryChild[0] + "</option>";
+                }
+                else
+                {
+                    str += "<option value='" + htmlAryChild[1] + "'>" + htmlAryChild[0] + "</option>";
+                }
             }
-            else
-            {
-                str += "<option value='" + htmlAryChild[1] + "'>" + htmlAryChild[0] + "</option>";
-            }
+            catch { }
         }
         return str;
     }
