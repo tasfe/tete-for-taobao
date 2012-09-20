@@ -161,6 +161,9 @@ namespace TeteIosTrain
 
             IDictionary<string, string> param = new Dictionary<string, string>();
 
+            url = "https://dynamic.12306.cn/otsweb/order/querySingleAction.do?method=init";
+            result1 = utils.CommonGet(url, session);
+
             //查询请求
             url = "https://dynamic.12306.cn/otsweb/order/querySingleAction.do?method=queryLeftTicket&orderRequest.train_date=" + date + "&orderRequest.from_station_telecode=" + startcity + "&orderRequest.to_station_telecode=" + endcity + "&orderRequest.train_no=" + no + "&trainPassType=" + rtyp + "&trainClass=" + ttype + "&includeStudent=" + student + "&seatTypeAndNum=&orderRequest.start_time_str=" + timearea;
             

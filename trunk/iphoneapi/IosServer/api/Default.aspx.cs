@@ -115,7 +115,7 @@ public partial class api_Default : System.Web.UI.Page
             outStr += matchBottom[i].Groups[1].ToString();
         }
 
-        //File.WriteAllText(Server.MapPath("111.txt"), matchBottom.Count + "-" + result);
+        File.WriteAllText(Server.MapPath("111.txt"), matchBottom.Count + "-" + outStr + "-" + result);
 
         Response.Write(outStr);
         Response.End();
