@@ -84,6 +84,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
                 }
             }
             ary = aryStr;
+            Response.Write(ary);
         }
     }
 
@@ -125,6 +126,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
 
     public static string getCate(string html, string cateid)
     {
+        return "";
         string[] htmlAry = html.Split(',');
         string str = string.Empty;
         for (int i = 0; i < htmlAry.Length; i++)
