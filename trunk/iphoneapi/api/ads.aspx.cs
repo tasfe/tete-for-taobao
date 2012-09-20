@@ -151,10 +151,17 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
     protected void rpt1_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
         Label lb = (Label)e.Item.FindControl("lb1");
+        Label lb2 = (Label)e.Item.FindControl("lb2");
         string sql = "SELECT * FROM TeteShopAds WHERE typ = '" + lb.Text + "' AND nick = '"+st+"' ORDER BY orderid";
         DataTable dt = utils.ExecuteDataTable(sql);
 
         Repeater rpt2 = (Repeater)e.Item.FindControl("rpt2");
+
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            dt.Rows[i]["title"] = getCate(lb2.Text, dt.Rows[i]["cateid"].ToString());
+        }
+
         rpt2.DataSource = dt;
         rpt2.DataBind();
     }
