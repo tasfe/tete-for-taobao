@@ -28,11 +28,12 @@
                 <b>【<%#Eval("oldname") %>】分类广告3张</b><br />
                 <input name="id" type="hidden" value="<%#Eval("cateid") %>" />
                 <asp:Label ID="lb1" runat="server" Text='<%#Eval("cateid") %>' Visible="false"></asp:Label>
+                <asp:Label ID="lb2" runat="server" Text='<%=ary%>' Visible="false"></asp:Label>
                 <asp:Repeater ID="rpt2" runat="server">
                     <ItemTemplate>
                          广告图片：<input name="pic_<%#Eval("typ") %>_<%#Eval("orderid") %>" value="<%#Eval("logo") %>" />
                          链接地址：<input name="url_<%#Eval("typ") %>_<%#Eval("orderid") %>" value="<%#Eval("url") %>" />
-                         分类ID： <select name="cate_<%#Eval("typ") %>_<%#Eval("orderid") %>"><%# getCate(ary, Eval("cateid").ToString())%></select> <br />
+                         分类ID： <select name="cate_<%#Eval("typ") %>_<%#Eval("orderid") %>"><%#Eval("title") %></select> <br />
                     </ItemTemplate>
                 </asp:Repeater>
                 <br />
