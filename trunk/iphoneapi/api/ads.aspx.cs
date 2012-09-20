@@ -23,7 +23,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
     public string cate2 = string.Empty;
     public string cate3 = string.Empty;
 
-    public string ary = string.Empty;;
+    public string ary = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
