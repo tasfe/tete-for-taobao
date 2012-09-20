@@ -23,7 +23,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
     public string cate2 = string.Empty;
     public string cate3 = string.Empty;
 
-    public string[] ary = null;
+    public string ary = string.Empty;;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -83,7 +83,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
                     aryStr += "," +dt.Rows[i]["catename"].ToString();
                 }
             }
-            ary = aryStr.Split(',');
+            ary = aryStr;
         }
     }
 
@@ -123,8 +123,9 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
         Response.Redirect("ads.aspx");
     }
 
-    public static string getCate(string[] htmlAry, string cateid)
+    public static string getCate(string html, string cateid)
     {
+        string[] htmlAry = html.Split(',');
         string str = string.Empty;
         for (int i = 0; i < htmlAry.Length; i++)
         {
