@@ -23,7 +23,7 @@
         分类ID：<select name="cate_index_3"><%=getCate(ary, cate3) %></select><br />
         <br />
         
-                <asp:Label ID="lb2" runat="server" Text='<%=ary%>' Visible="false"></asp:Label>
+                <asp:Label ID="lb2" runat="server" Visible="false"></asp:Label>
 
         <asp:Repeater ID="rpt1" runat="server" OnItemDataBound="rpt1_ItemDataBound">
             <ItemTemplate>

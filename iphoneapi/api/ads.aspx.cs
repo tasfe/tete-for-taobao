@@ -85,6 +85,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
             }
             ary = aryStr;
             //Response.Write(ary);
+            this.lb2.Text = ary;
         }
     }
 
