@@ -23,6 +23,8 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
     public string cate2 = string.Empty;
     public string cate3 = string.Empty;
 
+    public string[] ary;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         Common.Cookie cookie = new Common.Cookie();
@@ -66,6 +68,22 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
                     cate3 = dt.Rows[i]["cateid"].ToString();
                 }
             }
+
+            string aryStr = string.Empty;
+            sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + st + "' AND parentid=0 ORDER BY orderid";
+            dt = utils.ExecuteDataTable(sql);
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (i == 0)
+                {
+                    aryStr += "0," + dt.Rows[i]["catename"].ToString();
+                }
+                else
+                {
+                    aryStr += "," +dt.Rows[i]["catename"].ToString();
+                }
+            }
+            ary = aryStr.Split(',');
         }
     }
 
@@ -103,6 +121,23 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
         }
 
         Response.Redirect("ads.aspx");
+    }
+
+    public static string getCate(string[] htmlAry, string cateid)
+    {
+        string str = string.Empty;
+        for (int i = 0; i < htmlAry.Length; i++)
+        {
+            if (htmlAry[i] == cateid)
+            {
+                str += "<option selected value='" + htmlAry[i] + "'>" + htmlAry[i] + "</option>";
+            }
+            else
+            {
+                str += "<option value='" + htmlAry[i] + "'>" + htmlAry[i] + "</option>";
+            }
+        }
+        return str;
     }
 
     protected void rpt1_ItemDataBound(object sender, RepeaterItemEventArgs e)
