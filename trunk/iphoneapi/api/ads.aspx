@@ -12,15 +12,15 @@
         <b>新品广告3张</b><br />
         广告图片1：<input name="pic_index_1" value="<%=logo1 %>" />
         链接地址1：<input name="url_index_1" value="<%=url1 %>" />
-        分类ID：<input name="cate_index_1" value="<%=cate1 %>" /><br />
+        分类ID：<select name="cate_index_1"><%=getCate(ary, cate1) %></select><br />
         
         广告图片2：<input name="pic_index_2" value="<%=logo2 %>" />
         链接地址2：<input name="url_index_2" value="<%=url2 %>" />
-        分类ID：<input name="cate_index_2" value="<%=cate2 %>" /><br />
+        分类ID：<select name="cate_index_2"><%=getCate(ary, cate2) %></select><br />
         
         广告图片3：<input name="pic_index_3" value="<%=logo3 %>" />
         链接地址3：<input name="url_index_3" value="<%=url3 %>" />
-        分类ID：<input name="cate_index_3" value="<%=cate3 %>" /><br />
+        分类ID：<select name="cate_index_3"><%=getCate(ary, cate3) %></select><br />
         <br />
 
         <asp:Repeater ID="rpt1" runat="server" OnItemDataBound="rpt1_ItemDataBound">
@@ -32,7 +32,7 @@
                     <ItemTemplate>
                          广告图片：<input name="pic_<%#Eval("typ") %>_<%#Eval("orderid") %>" value="<%#Eval("logo") %>" />
                          链接地址：<input name="url_<%#Eval("typ") %>_<%#Eval("orderid") %>" value="<%#Eval("url") %>" />
-                         分类ID：<input name="cate_<%#Eval("typ") %>_<%#Eval("orderid") %>" value="<%#Eval("cateid") %>" /><br />
+                         分类ID： <select name="cate_<%#Eval("typ") %>_<%#Eval("orderid") %>"><%# getCate(ary, Eval("cateid").ToString())%></select> <br />
                     </ItemTemplate>
                 </asp:Repeater>
                 <br />
