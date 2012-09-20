@@ -115,7 +115,7 @@ public partial class api_Default : System.Web.UI.Page
             outStr += matchBottom[i].Groups[1].ToString();
         }
 
-        Response.Write(outStr + "-" + result);
+        Response.Write(outStr + "!-!" + result);
         Response.End();
     }
 
