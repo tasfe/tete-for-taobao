@@ -96,13 +96,13 @@ public partial class api_Default : System.Web.UI.Page
         Train send = new Train();
         string result = send.SendSearchRequest(date, startcity, endcity, no, rtyp, ttype, student, timearea, str1 + "|" + str2);
 
-        Regex reg = new Regex(@"<br>&nbsp;&nbsp;&nbsp;&nbsp;([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),<font color='#008800'>([^<]*)</font>,([^,]*),([^,]*),", RegexOptions.IgnoreCase);
+        Regex reg = new Regex(@"<br>&nbsp;&nbsp;&nbsp;&nbsp;([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),", RegexOptions.IgnoreCase);
         MatchCollection match = reg.Matches(result);
 
         Regex regBottom = new Regex(@"onclick=javascript:getSelected('([^']*)')", RegexOptions.IgnoreCase);
         MatchCollection matchBottom = regBottom.Matches(result);
 
-        for (int i = 0; i < match.Count; i++)
+        for (int i = 0; i < matchBottom.Count; i++)
         {
             if (i != 0)
                 outStr += "|";
