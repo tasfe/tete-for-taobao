@@ -109,7 +109,7 @@ public partial class api_Default : System.Web.UI.Page
             if (i != 0)
                 outStr += "|";
 
-            for (int j = 1; j < 14; j++)
+            for (int j = 1; j < 17; j++)
             {
                 outStr += match[i].Groups[j].ToString().Replace("<font color='#008800'>", "").Replace("</font>", "") + ",";
             }
