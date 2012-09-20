@@ -21,7 +21,7 @@ namespace TeteIosTrain
         /// 登录验证请求
         /// </summary>
         /// <returns></returns>
-        public string SendLoginRequest(string uid,string pass, string verify, string cookie)
+        public string SendLoginRequest(string uid, string pass, string verify, string session)
         {
             string url = string.Empty;
             string result = string.Empty;
@@ -33,7 +33,7 @@ namespace TeteIosTrain
 
             //获取验证字符
             url = "https://dynamic.12306.cn/otsweb/loginAction.do?method=loginAysnSuggest";
-            result1 = utils.CommonGet(url, cookie);
+            result1 = utils.CommonGet(url, session);
             //解析
             Regex reg = new Regex(@"{""loginRand"":""([0-9]*)""", RegexOptions.IgnoreCase);
             if (reg.IsMatch(result1))
@@ -57,11 +57,11 @@ namespace TeteIosTrain
             param.Add("randCode", verify);
             param.Add("randErrorFocus", "");
 
-            while (!isok)
-            {
+            //while (!isok)
+            //{
                 //发送登录请求
                 url = "https://dynamic.12306.cn/otsweb/loginAction.do?method=login";
-                result = utils.CommonPost(url, param, cookie);
+                result = utils.CommonPost(url, param, session);
 
                 //解析
                 //reg = new Regex(@"style=""color: red;"">([^\<]*)</span>", RegexOptions.IgnoreCase);
@@ -74,13 +74,13 @@ namespace TeteIosTrain
                 //    flag = result1 + "!!!" + result + "other";
                 //}
 
-                if (result.IndexOf("当前访问用户过多") == -1)
-                {
-                    isok = true;
-                }
+                //if (result.IndexOf("当前访问用户过多") == -1)
+                //{
+                //    isok = true;
+                //}
 
                 //Thread.Sleep(1000);
-            }
+            //}
 
             return result;
         }
@@ -147,6 +147,66 @@ namespace TeteIosTrain
 
             stream.Close();
             HttpWebResponse.Close();
+
+            return result;
+        }
+
+        public string SendSearchRequest(string date, string startcity, string endcity, string no, string rtyp, string ttype, string student, string timearea, string session)
+        {
+            string url = string.Empty;
+            string result = string.Empty;
+            string result1 = string.Empty;
+            string flag = string.Empty;
+            string loginRand = string.Empty;
+
+            IDictionary<string, string> param = new Dictionary<string, string>();
+
+            //查询请求
+            url = "https://dynamic.12306.cn/otsweb/order/querySingleAction.do?method=queryLeftTicket&orderRequest.train_date=" + date + "&orderRequest.from_station_telecode=" + startcity + "&orderRequest.to_station_telecode=" + endcity + "&orderRequest.train_no=" + no + "&trainPassType=" + rtyp + "&trainClass=" + ttype + "&includeStudent=" + student + "&seatTypeAndNum=&orderRequest.start_time_str=" + timearea;
+            
+            param.Add("method", "queryLeftTicket");
+            param.Add("orderRequest.train_date", date);
+            param.Add("orderRequest.from_station_telecode", startcity);
+            param.Add("orderRequest.to_station_telecode", endcity);
+            param.Add("orderRequest.train_no", no);
+            param.Add("trainPassType", rtyp);
+            param.Add("trainClass", ttype);
+            param.Add("includeStudent", student);
+            param.Add("seatTypeAndNum", "");
+            param.Add("orderRequest.start_time_str", timearea);
+
+            //url = "https://dynamic.12306.cn/otsweb/order/querySingleAction.do";
+
+
+
+            result = utils.CommonGet(url, session);
+
+            return result;
+        }
+
+        /// <summary>
+        /// 列车详情查询
+        /// </summary>
+        /// <param name="date"></param>
+        /// <param name="startcity"></param>
+        /// <param name="endcity"></param>
+        /// <param name="no"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public string SendSearchDetailRequest(string date, string startcity, string endcity, string no, string session)
+        {
+            string url = string.Empty;
+            string result = string.Empty;
+            string result1 = string.Empty;
+            string flag = string.Empty;
+            string loginRand = string.Empty;
+
+            IDictionary<string, string> param = new Dictionary<string, string>();
+
+            //查询请求
+            url = "https://dynamic.12306.cn/otsweb/order/querySingleAction.do?method=queryaTrainStopTimeByTrainNo&depart_date=" + date + "&from_station_telecode=" + startcity + "&to_station_telecode=" + endcity + "&train_no=" + no + "";
+
+            result = utils.CommonGet(url, session);
 
             return result;
         }

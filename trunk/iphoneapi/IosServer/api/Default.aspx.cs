@@ -27,6 +27,33 @@ public partial class api_Default : System.Web.UI.Page
         {
             SearchPost();
         }
+
+        if (act == "detail")
+        {
+            SearchDetailPost();
+        }
+    }
+
+    /// <summary>
+    /// 查询火车详情
+    /// </summary>
+    private void SearchDetailPost()
+    {
+        string session = Common.utils.NewRequest("session", Common.utils.RequestType.Form);
+        string date = Common.utils.NewRequest("date", Common.utils.RequestType.Form);
+        string startcity = Common.utils.NewRequest("startcity", Common.utils.RequestType.Form);
+        string endcity = Common.utils.NewRequest("endcity", Common.utils.RequestType.Form);
+        string no = Common.utils.NewRequest("no", Common.utils.RequestType.Form);
+
+        string str1 = new Regex(@"JSESSIONID=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str2 = new Regex(@"BIGipServerotsweb=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str = str1 + "|" + str2;
+
+        Train send = new Train();
+        string result = send.SendSearchDetailRequest(date, startcity, endcity, no, str1 + "|" + str2);
+
+        Response.Write(result);
+        Response.End();
     }
 
     /// <summary>
@@ -34,7 +61,15 @@ public partial class api_Default : System.Web.UI.Page
     /// </summary>
     private void SubmitOrderPost()
     {
-        
+        string session = Common.utils.NewRequest("session", Common.utils.RequestType.Form);
+        string date = Common.utils.NewRequest("date", Common.utils.RequestType.Form);
+        string startcity = Common.utils.NewRequest("startcity", Common.utils.RequestType.Form);
+        string endcity = Common.utils.NewRequest("endcity", Common.utils.RequestType.Form);
+        string no = Common.utils.NewRequest("no", Common.utils.RequestType.Form);
+        string data = Common.utils.NewRequest("data", Common.utils.RequestType.Form);
+
+        Response.Write("ok");
+        Response.End();
     }
 
     /// <summary>
@@ -50,16 +85,37 @@ public partial class api_Default : System.Web.UI.Page
         string rtyp = Common.utils.NewRequest("rtyp", Common.utils.RequestType.Form);
         string ttype = Common.utils.NewRequest("ttype", Common.utils.RequestType.Form);
         string student = Common.utils.NewRequest("student", Common.utils.RequestType.Form);
+        string timearea = Common.utils.NewRequest("timearea", Common.utils.RequestType.Form);
 
+        string outStr = string.Empty;
 
         string str1 = new Regex(@"JSESSIONID=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
         string str2 = new Regex(@"BIGipServerotsweb=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
         string str = str1 + "|" + str2;
 
         Train send = new Train();
-        string result = send.SendSearchRequest(date, startcity, endcity, no, rtyp, ttype, student, str1 + "|" + str2);
-        
-        Response.Write("ok");
+        string result = send.SendSearchRequest(date, startcity, endcity, no, rtyp, ttype, student, timearea, str1 + "|" + str2);
+
+        Regex reg = new Regex(@"<br>&nbsp;&nbsp;&nbsp;&nbsp;([^,]*),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[^\&]*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),<font color='#008800'>([^<]*)</font>,([^,]*),([^,]*),", RegexOptions.IgnoreCase);
+        MatchCollection match = reg.Matches(result);
+
+        Regex regBottom = new Regex(@"onclick=javascript:getSelected('([^']*)')", RegexOptions.IgnoreCase);
+        MatchCollection matchBottom = regBottom.Matches(result);
+
+        for (int i = 0; i < match.Count; i++)
+        {
+            if (i != 0)
+                outStr += "|";
+
+            for (int j = 1; j < 14; j++)
+            {
+                outStr += match[i].Groups[j].ToString() + ",";
+            }
+
+            outStr += matchBottom[i].Groups[1].ToString();
+        }
+
+        Response.Write(outStr);
         Response.End();
     }
 
