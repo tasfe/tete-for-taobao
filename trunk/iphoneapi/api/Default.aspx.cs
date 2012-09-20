@@ -990,7 +990,7 @@ public partial class api_Default : System.Web.UI.Page
         string sql = string.Empty;
         string str = string.Empty;
 
-        sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + uid + "'";
+        sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + uid + "' AND catename <> ''";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
