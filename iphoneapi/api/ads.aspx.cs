@@ -19,6 +19,10 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
     public string logo3 = string.Empty;
     public string url3 = string.Empty;
 
+    public string cate1 = string.Empty;
+    public string cate2 = string.Empty;
+    public string cate3 = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         Common.Cookie cookie = new Common.Cookie();
@@ -45,18 +49,21 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
                 {
                     logo1 = dt.Rows[i]["logo"].ToString();
                     url1 = dt.Rows[i]["url"].ToString();
+                    cate1 = dt.Rows[i]["cateid"].ToString();
                 }
 
                 if (i == 1)
                 {
                     logo2 = dt.Rows[i]["logo"].ToString();
                     url2 = dt.Rows[i]["url"].ToString();
+                    cate2 = dt.Rows[i]["cateid"].ToString();
                 }
 
                 if (i == 2)
                 {
                     logo3 = dt.Rows[i]["logo"].ToString();
                     url3 = dt.Rows[i]["url"].ToString();
+                    cate3 = dt.Rows[i]["cateid"].ToString();
                 }
             }
         }
@@ -67,6 +74,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
         string sql = string.Empty;
         string name = string.Empty;
         string orderid = string.Empty;
+        string cateid = string.Empty;
 
         string ids = utils.NewRequest("id", utils.RequestType.Form);
         string[] ary = ids.Split(',');
@@ -76,8 +84,9 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
             {
                 name = utils.NewRequest("pic_" + ary[i] + "_" + j, utils.RequestType.Form);
                 orderid = utils.NewRequest("url_" + ary[i] + "_" + j, utils.RequestType.Form);
+                cateid = utils.NewRequest("cate_" + ary[i] + "_" + j, utils.RequestType.Form);
 
-                sql = "UPDATE TeteShopAds SET logo = '" + name + "',url='" + orderid + "' WHERE nick = '" + st + "' AND typ = '" + ary[i] + "' AND orderid = '" + j + "'";
+                sql = "UPDATE TeteShopAds SET logo = '" + name + "',url='" + orderid + "',cateid='" + cateid + "' WHERE nick = '" + st + "' AND typ = '" + ary[i] + "' AND orderid = '" + j + "'";
                 utils.ExecuteNonQuery(sql);
             }
         }
@@ -87,8 +96,9 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
         {
             name = utils.NewRequest("pic_" + typ + "_" + j, utils.RequestType.Form);
             orderid = utils.NewRequest("url_" + typ + "_" + j, utils.RequestType.Form);
+            cateid = utils.NewRequest("cate_" + typ + "_" + j, utils.RequestType.Form);
 
-            sql = "UPDATE TeteShopAds SET logo = '" + name + "',url='" + orderid + "' WHERE nick = '" + st + "' AND typ = '" + typ + "' AND orderid = '" + j + "'";
+            sql = "UPDATE TeteShopAds SET logo = '" + name + "',url='" + orderid + "',cateid='" + cateid + "' WHERE nick = '" + st + "' AND typ = '" + typ + "' AND orderid = '" + j + "'";
             utils.ExecuteNonQuery(sql);
         }
 
