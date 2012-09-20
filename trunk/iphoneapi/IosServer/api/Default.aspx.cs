@@ -89,8 +89,6 @@ public partial class api_Default : System.Web.UI.Page
 
         string outStr = string.Empty;
 
-        string url = "https://dynamic.12306.cn/otsweb/order/querySingleAction.do?method=queryLeftTicket&orderRequest.train_date=" + date + "&orderRequest.from_station_telecode=" + startcity + "&orderRequest.to_station_telecode=" + endcity + "&orderRequest.train_no=" + no + "&trainPassType=" + rtyp + "&trainClass=" + ttype + "&includeStudent=" + student + "&seatTypeAndNum=&orderRequest.start_time_str=" + timearea;
-
         string str1 = new Regex(@"JSESSIONID=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
         string str2 = new Regex(@"BIGipServerotsweb=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
         string str = str1 + "|" + str2;
@@ -98,7 +96,7 @@ public partial class api_Default : System.Web.UI.Page
         Train send = new Train();
         string result = send.SendSearchRequest(date, startcity, endcity, no, rtyp, ttype, student, timearea, str1 + "|" + str2);
 
-        Regex reg = new Regex(@"<br>&nbsp;&nbsp;&nbsp;&nbsp;([^,]*),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[^\&]*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),<font color='#008800'>([^<]*)</font>,([^,]*),([^,]*),", RegexOptions.IgnoreCase);
+        Regex reg = new Regex(@"<br>&nbsp;&nbsp;&nbsp;&nbsp;([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),<font color='#008800'>([^<]*)</font>,([^,]*),([^,]*),", RegexOptions.IgnoreCase);
         MatchCollection match = reg.Matches(result);
 
         Regex regBottom = new Regex(@"onclick=javascript:getSelected('([^']*)')", RegexOptions.IgnoreCase);
@@ -117,7 +115,7 @@ public partial class api_Default : System.Web.UI.Page
             outStr += matchBottom[i].Groups[1].ToString();
         }
 
-        Response.Write(outStr + "!-!" + result + "!!" + url);
+        Response.Write(outStr);
         Response.End();
     }
 
