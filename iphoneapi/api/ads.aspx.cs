@@ -76,11 +76,11 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
             {
                 if (i == 0)
                 {
-                    aryStr += "0," + dt.Rows[i]["catename"].ToString();
+                    aryStr += "0|全部," + dt.Rows[i]["cateid"].ToString() + "|" + dt.Rows[i]["catename"].ToString();
                 }
                 else
                 {
-                    aryStr += "," +dt.Rows[i]["catename"].ToString();
+                    aryStr += "," + dt.Rows[i]["cateid"].ToString() + "|" + dt.Rows[i]["catename"].ToString();
                 }
             }
             ary = aryStr;
@@ -129,13 +129,14 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
         string str = string.Empty;
         for (int i = 0; i < htmlAry.Length; i++)
         {
+            string[] htmlAryChild = htmlAry[i].Split('|');
             if (htmlAry[i] == cateid)
             {
-                str += "<option selected value='" + htmlAry[i] + "'>" + htmlAry[i] + "</option>";
+                str += "<option selected value='" + htmlAryChild[1] + "'>" + htmlAryChild[0] + "</option>";
             }
             else
             {
-                str += "<option value='" + htmlAry[i] + "'>" + htmlAry[i] + "</option>";
+                str += "<option value='" + htmlAryChild[1] + "'>" + htmlAryChild[0] + "</option>";
             }
         }
         return str;
