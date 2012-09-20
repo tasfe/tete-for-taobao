@@ -70,7 +70,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
             }
 
             string aryStr = string.Empty;
-            sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + st + "' ORDER BY orderid";
+            sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + st + "' AND catename <> '' ORDER BY orderid";
             dt = utils.ExecuteDataTable(sql);
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -136,11 +136,11 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
                 string[] htmlAryChild = htmlAry[i].Split('|');
                 if (htmlAry[i] == cateid)
                 {
-                    str += "<option selected value='" + htmlAryChild[1] + "'>" + htmlAryChild[0] + "</option>";
+                    str += "<option selected value='" + htmlAryChild[0] + "'>" + htmlAryChild[1] + "</option>";
                 }
                 else
                 {
-                    str += "<option value='" + htmlAryChild[1] + "'>" + htmlAryChild[0] + "</option>";
+                    str += "<option value='" + htmlAryChild[0] + "'>" + htmlAryChild[1] + "</option>";
                 }
             }
             catch { }
