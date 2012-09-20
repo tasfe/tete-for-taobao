@@ -134,7 +134,7 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
             try
             {
                 string[] htmlAryChild = htmlAry[i].Split('|');
-                if (htmlAry[i] == cateid)
+                if (htmlAryChild[0] == cateid)
                 {
                     str += "<option selected value='" + htmlAryChild[0] + "'>" + htmlAryChild[1] + "</option>";
                 }
