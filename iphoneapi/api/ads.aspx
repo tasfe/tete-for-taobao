@@ -25,7 +25,7 @@
 
         <asp:Repeater ID="rpt1" runat="server" OnItemDataBound="rpt1_ItemDataBound">
             <ItemTemplate>
-                <b>【<%#Eval("oldname") %>】分类广告3张</b><br />
+                <b>【<%#Eval("oldname") %>】分类广告3张-<%=ary%></b><br />
                 <input name="id" type="hidden" value="<%#Eval("cateid") %>" />
                 <asp:Label ID="lb1" runat="server" Text='<%#Eval("cateid") %>' Visible="false"></asp:Label>
                 <asp:Label ID="lb2" runat="server" Text='<%=ary%>' Visible="false"></asp:Label>
