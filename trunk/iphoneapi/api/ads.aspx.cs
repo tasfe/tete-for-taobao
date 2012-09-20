@@ -84,9 +84,6 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
                 }
             }
             ary = aryStr;
-            //Response.Write(ary);
-            this.lb2.Text = ary;
-            Response.Write(lb2.Text);
         }
     }
 
@@ -158,13 +155,26 @@ public partial class iphoneapi_api_cate : System.Web.UI.Page
 
         Repeater rpt2 = (Repeater)e.Item.FindControl("rpt2");
 
+
+        string aryStr = string.Empty;
+        sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + st + "' AND catename <> '' ORDER BY orderid";
+        DataTable dt1 = utils.ExecuteDataTable(sql);
+        for (int i = 0; i < dt1.Rows.Count; i++)
+        {
+            if (i == 0)
+            {
+                aryStr += "0|链接到指定网址," + dt1.Rows[i]["cateid"].ToString() + "|" + dt1.Rows[i]["catename"].ToString();
+            }
+            else
+            {
+                aryStr += "," + dt1.Rows[i]["cateid"].ToString() + "|" + dt1.Rows[i]["catename"].ToString();
+            }
+        }
+
+
         for (int i = 0; i < dt.Rows.Count; i++)
         {
-            Response.Write(lb2.Text);
-            //Response.Write(dt.Rows[i]["cateid"].ToString());
-            //Response.Write(getCate(lb2.Text, dt.Rows[i]["cateid"].ToString()));
-            Response.Write("<hr>");
-            dt.Rows[i]["title"] = getCate(lb2.Text, dt.Rows[i]["cateid"].ToString());
+            dt.Rows[i]["title"] = getCate(aryStr, dt.Rows[i]["cateid"].ToString());
         }
 
         rpt2.DataSource = dt;
