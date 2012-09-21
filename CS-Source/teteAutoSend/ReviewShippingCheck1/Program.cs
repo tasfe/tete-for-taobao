@@ -5,7 +5,7 @@ using System.Text;
 using TeteTopApi.Logic;
 using System.Threading;
 
-namespace ReviewShippingCheck
+namespace ReviewShippingCheck1
 {
     class Program
     {
@@ -55,7 +55,7 @@ namespace ReviewShippingCheck
                     if (DateTime.Now.Hour > 8 && DateTime.Now.Hour < 22)
                     {
                         ShippingSuccess act = new ShippingSuccess();
-                        act.Start("0");
+                        act.Start("3");
 
                         //30分钟检查一次
                         Thread.Sleep(60000);
@@ -77,7 +77,7 @@ namespace ReviewShippingCheck
                     if (DateTime.Now.Hour > 8 && DateTime.Now.Hour < 22)
                     {
                         ShippingSuccess act = new ShippingSuccess();
-                        act.Start("1");
+                        act.Start("4");
 
                         //30分钟检查一次
                         Thread.Sleep(60000);
@@ -99,7 +99,7 @@ namespace ReviewShippingCheck
                     if (DateTime.Now.Hour > 8 && DateTime.Now.Hour < 22)
                     {
                         ShippingSuccess act = new ShippingSuccess();
-                        act.Start("2");
+                        act.Start("5");
 
                         //30分钟检查一次
                         Thread.Sleep(60000);

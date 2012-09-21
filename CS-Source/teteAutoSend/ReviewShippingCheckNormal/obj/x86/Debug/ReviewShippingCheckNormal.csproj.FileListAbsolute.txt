@@ -1,0 +1,12 @@
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheckNormal\bin\Debug\ReviewShippingCheckNormal.exe.config
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheckNormal\bin\Debug\ReviewShippingCheckNormal.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheckNormal\bin\Debug\ReviewShippingCheckNormal.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheckNormal\bin\Debug\TeteTopApi.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheckNormal\bin\Debug\QWeiboSDK.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheckNormal\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheckNormal\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheckNormal\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheckNormal\bin\Debug\TeteTopApi.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheckNormal\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheckNormal\obj\x86\Debug\ReviewShippingCheckNormal.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheckNormal\obj\x86\Debug\ReviewShippingCheckNormal.pdb

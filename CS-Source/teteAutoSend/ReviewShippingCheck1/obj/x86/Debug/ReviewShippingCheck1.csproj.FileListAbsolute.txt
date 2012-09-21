@@ -1,0 +1,12 @@
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheck1\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheck1\bin\Debug\ReviewShippingCheck1.exe.config
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheck1\bin\Debug\ReviewShippingCheck1.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheck1\bin\Debug\ReviewShippingCheck1.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheck1\bin\Debug\TeteTopApi.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheck1\bin\Debug\QWeiboSDK.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheck1\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheck1\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheck1\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheck1\bin\Debug\TeteTopApi.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheck1\obj\x86\Debug\ReviewShippingCheck1.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheck1\obj\x86\Debug\ReviewShippingCheck1.pdb
