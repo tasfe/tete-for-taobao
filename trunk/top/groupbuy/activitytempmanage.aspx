@@ -21,7 +21,7 @@
 
     <div class="navigation">
 
-        <div class="crumbs"><a href="default.aspx" class="nolink">特特团购</a> 模板管理 </div>
+        <div class="crumbs"><a href="default.aspx" class="nolink">特特团购</a> 模板管理 <font color="red">注：图片更新用于模板图片不显示，点击图片更新后，请清除宝贝描述，重新同步！</font></div>
     
         <div id="main-content">
           <table width="800px;" border="0" cellspacing="0" cellpadding="0" style="margin:4px; padding:0px">			
