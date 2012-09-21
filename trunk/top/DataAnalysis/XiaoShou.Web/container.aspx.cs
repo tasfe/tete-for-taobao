@@ -59,7 +59,11 @@ public partial class container : System.Web.UI.Page
             //ServiceLog.RecodeLog("session:" + session + "获取淘宝服务响应错误：" + ex.Message);
         }
 
-        Response.Write(result);
+        System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+
+        ValiInfo info = js.Deserialize<ValiInfo>(result);
+
+        Response.Write(info.access_token + info.taobao_user_nick);
         Response.End();
         ////签名验证
         //top_appkey = "21093339";
