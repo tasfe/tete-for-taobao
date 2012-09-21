@@ -10,13 +10,23 @@ namespace TeteTopApi.Logic
 {
     public class ShippingSuccess
     {
-        private static object padlock1 = new object();
-
+        public static object padlock1 = new object();
+        
         public void Start()
+        {
+            Start("0");
+            Start("1");
+            Start("2");
+            Start("3");
+            Start("4");
+            Start("5");
+        }
+
+        public void Start(string index)
         {
             //获取目前正在使用的卖家(需要改成全部卖家，否则物流状态无法获取)
             ShopData dbShop = new ShopData();
-            List<ShopInfo> list = dbShop.GetShopInfoListShippingAlert();
+            List<ShopInfo> list = dbShop.GetShopInfoListShippingAlert(index);
 
             //循环判定这些卖家的订单是否物流到货
             for (int i = 0; i < list.Count; i++)
@@ -65,7 +75,7 @@ namespace TeteTopApi.Logic
                             else
                             {
                                 //根据服务器的物流状态进行判断，如果物流状态是已签收
-                                if (status == "ACCEPTED_BY_RECEIVER")
+                                if (status == "ACCEPTED_BY_RECEIVER" || status == "ACCEPTING" || status == "ACCEPTED")
                                 {
                                     string result = api.GetShippingStatusDetailByTid(trade);
                                     Console.Write("【" + result + "】\r\n");
@@ -78,7 +88,7 @@ namespace TeteTopApi.Logic
                                     }
 
                                     //再根据订单的详细物流信息判断签收的状态
-                                    if (result.IndexOf("签收人") != -1 || result.IndexOf(" 签收") != -1 || result.IndexOf("正常签收") != -1)
+                                    if (result.IndexOf("签收人") != -1 || result.IndexOf(" 签收") != -1 || result.IndexOf(" 已签收") != -1 || result.IndexOf(" 妥投") != -1 || result.IndexOf("正常签收") != -1)
                                     {
                                         //如果物流已经签收了则更新对应订单状态
                                         trade.DeliveryEnd = utils.GetShippingEndTime(result); ;
@@ -96,17 +106,18 @@ namespace TeteTopApi.Logic
                                         dbTrade.UpdateTradeShippingStatusSystem(trade, status);
 
                                         //发送短信-上LOCK锁定
-                                        lock (padlock1)
+                                        lock (ShippingSuccess.padlock1)
                                         {
                                             //判断同类型的短信该客户今天是否只收到一条
                                             ShopData db = new ShopData();
-                                            if (!db.IsSendMsgOrder(trade, "shipping"))
+                                            if (!db.IsSendMsgOrder(trade, "shipping") && !db.IsSendMsgNear(trade, "shipping"))
                                             {
                                                 //判断该用户是否开启了发货短信
                                                 if (shop.MsgIsShipping == "1" && int.Parse(shop.MsgCount) > 0)
                                                 {
                                                     //发送短信
-                                                    string msg = Message.GetMsg(shop.MsgShippingContent, shop.MsgShopName, trade.BuyNick, shop.IsCoupon);
+                                                    //string msg = Message.GetMsg(shop.MsgShippingContent, shop.MsgShopName, trade.BuyNick, shop.IsCoupon);
+                                                    string msg = Message.GetMsg(shop, trade, shop.MsgShippingContent);
                                                     string msgResult = Message.Send(trade.Mobile, msg);
 
                                                     //记录

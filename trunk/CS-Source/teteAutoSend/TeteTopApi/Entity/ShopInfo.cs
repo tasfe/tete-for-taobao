@@ -56,6 +56,16 @@ namespace TeteTopApi.Entity
         public string MinDateSelf { get; set; }
 
         /// <summary>
+        /// 是否为虚拟商品
+        /// </summary>
+        public string IsXuni { get; set; }
+
+        /// <summary>
+        /// 虚拟商品最迟评价天数
+        /// </summary>
+        public string XuniDate { get; set; }
+
+        /// <summary>
         /// 客服审核开关
         /// </summary>
         public string IsKefu { get; set; }
@@ -76,6 +86,51 @@ namespace TeteTopApi.Entity
         public string IsCancelAuto { get; set; }
 
         /// <summary>
+        /// 好评！
+        /// </summary>
+        public string Cancel1 { get; set; }
+
+        /// <summary>
+        /// 评价方未及时做出评价,系统默认好评！
+        /// </summary>
+        public string Cancel2 { get; set; }
+
+        /// <summary>
+        /// 是否开启包邮卡赠送
+        /// </summary>
+        public string IsFreeCard { get; set; }
+
+        /// <summary>
+        /// 包邮卡id
+        /// </summary>
+        public string FreeCardId { get; set; }
+
+        /// <summary>
+        /// 是否开启指定商品赠送
+        /// </summary>
+        public string IsItem { get; set; }
+
+        /// <summary>
+        /// 指定商品清单，多个numiid用逗号分开
+        /// </summary>
+        public string ItemList { get; set; }
+
+        /// <summary>
+        /// 是否开启订单商品判断
+        /// </summary>
+        public string IsIncludeProduct { get; set; }
+
+        /// <summary>
+        /// 订单商品判断类型，0包含商品就送，1不包含商品就送
+        /// </summary>
+        public string IncludeProductFlag { get; set; }
+
+        /// <summary>
+        /// 包含商品清单，多个商品ID用英文逗号分开
+        /// </summary>
+        public string IncludeProductList { get; set; }
+
+        /// <summary>
         /// 发货短信开关
         /// </summary>
         public string MsgIsFahuo { get; set; }
@@ -84,6 +139,16 @@ namespace TeteTopApi.Entity
         /// 发货短信内容
         /// </summary>
         public string MsgFahuoContent { get; set; }
+
+        /// <summary>
+        /// 包邮卡短信开关
+        /// </summary>
+        public string MsgIsFreecard { get; set; }
+
+        /// <summary>
+        /// 包邮卡短信内容
+        /// </summary>
+        public string MsgFreecardContent { get; set; }
 
         /// <summary>
         /// 优惠券赠送短信开关

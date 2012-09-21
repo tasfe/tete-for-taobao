@@ -87,6 +87,9 @@ namespace TeteTopApi
                 case "TradeRated":
                     ActTradeSuccess(trade);
                     break;
+                case "TradeBuyerPay":
+                    ActTradeBuyerPay(trade);
+                    break;
             }
         }
 
@@ -100,6 +103,15 @@ namespace TeteTopApi
             act.Start();
         }
 
+        /// <summary>
+        /// 付款状态订单处理
+        /// </summary>
+        /// <param name="trade"></param>
+        private void ActTradeBuyerPay(Trade trade)
+        {
+            TradeBuyerPay act = new TradeBuyerPay(trade);
+            act.Start();
+        }
 
 
         /// <summary>

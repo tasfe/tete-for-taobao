@@ -18,29 +18,29 @@ namespace TeteTopApi.Logic
         /// </summary>
         public void StartUnChecked()
         {
-            //获取账户里面有1周前未审核评价的卖家
-            ShopData dbShop = new ShopData();
-            List<ShopInfo> list = dbShop.GetShopInfoListUnChecked();
+            ////获取账户里面有1周前未审核评价的卖家
+            //ShopData dbShop = new ShopData();
+            //List<ShopInfo> list = dbShop.GetShopInfoListUnChecked();
 
-            TradeRateData dbTradeRate = new TradeRateData();
-            MessageData dbMessage = new MessageData();
-            string typ = "uncheck";
+            //TradeRateData dbTradeRate = new TradeRateData();
+            //MessageData dbMessage = new MessageData();
+            //string typ = "uncheck";
 
-            //循环获取这些卖家的未审核订单
-            for (int i = 0; i < list.Count; i++)
-            {
-                ShopInfo shop = list[i];
-                //获取数据库中未审核的数据列表
-                string count = dbTradeRate.GetUncheckedTradeRateCount(shop);
-                string msg = "好评有礼:亲爱的" + shop.Nick + ",您目前有" + count + "条评价未审核,您可以到服务里面的\"待审核列表\"中处理是否赠送优惠券";
+            ////循环获取这些卖家的未审核订单
+            //for (int i = 0; i < list.Count; i++)
+            //{
+            //    ShopInfo shop = list[i];
+            //    //获取数据库中未审核的数据列表
+            //    string count = dbTradeRate.GetUncheckedTradeRateCount(shop);
+            //    string msg = "好评有礼:亲爱的" + shop.Nick + ",您目前有" + count + "条评价未审核,您可以到服务里面的\"待审核列表\"中处理是否赠送优惠券";
                 
-                //如果7天内已经发送过类似短信的话则不再提醒
-                if (!dbMessage.IsSendMsgNearDays(shop, typ))
-                {
-                    string msgResult = Message.Send(shop.Mobile, msg);
-                    dbMessage.InsertShopAlertMsgLog(shop, msg, msgResult, typ);
-                }
-            }
+            //    //如果7天内已经发送过类似短信的话则不再提醒
+            //    if (!dbMessage.IsSendMsgNearDays(shop, typ))
+            //    {
+            //        string msgResult = Message.Send(shop.Mobile, msg);
+            //        dbMessage.InsertShopAlertMsgLog(shop, msg, msgResult, typ);
+            //    }
+            //}
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace TeteTopApi.Logic
             {
                 ShopInfo shop = list[i];
                 //告之这些卖家他们的优惠券已经过期，需要重新设置
-                string msg = "好评有礼:亲爱的" + shop.Nick + "，您的短信已用完，请尽快充值以免影响正常使用，4月活动5分好评就送100条短信，详情请联系客服！";
+                string msg = "好评有礼:亲爱的" + shop.Nick + "，您的短信已用完，请尽快充值以免影响正常使用，详情请联系客服！";
 
                 //如果7天内已经发送过类似短信的话则不再提醒
                 if (!dbMessage.IsSendMsgNearDays(shop, typ))

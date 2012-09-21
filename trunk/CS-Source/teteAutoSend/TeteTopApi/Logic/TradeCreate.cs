@@ -45,13 +45,20 @@ namespace TeteTopApi.Logic
                 //记录免邮订单方便统计销售
             }
 
+            //如果该客户没短信直接推出
+            if (int.Parse(shop.MsgCount) <= 0)
+            {
+                return "1";
+            }
+
             //判断该客户是否开启了催单短信
             if (data.IsCuiByShop(TradeInfo))
             { 
                 //获取小时数
                 string timecount = data.GetCuiDateByShop(shop);
-                if (timecount != "0")
-                {
+                //Console.WriteLine(timecount);
+                //if (timecount != "0")
+                //{
                     //判断下单时间离现在有多久
                     TimeSpan ts1 = new TimeSpan(DateTime.Now.Ticks);
                     TimeSpan ts2 = new TimeSpan(DateTime.Parse(TradeInfo.Modified).Ticks);
@@ -59,7 +66,7 @@ namespace TeteTopApi.Logic
                     string minutes = ((int)ts.TotalMinutes).ToString();
 
                     Console.Write(TradeInfo.Tid + "-" + minutes + "....\r\n");
-                    if (int.Parse(minutes) > 60 * int.Parse(timecount))
+                    if (int.Parse(minutes) > int.Parse(timecount))
                     {
                         if (int.Parse(shop.MsgCount) > 0)
                         {
@@ -67,6 +74,8 @@ namespace TeteTopApi.Logic
                             ShopData db = new ShopData();
                             if (!db.IsSendMsgToday(TradeInfo, "cui"))
                             {
+                                //特殊判断催单订单不获取物流信息
+                                TradeInfo.Status = "CuiDan";
                                 Trade trade = api.GetTradeByTid(TradeInfo);
                                 //如果是货到交易付款则不发送催单短信并结束改消息
                                 if (trade.OrderType.ToLower() == "cod")
@@ -74,6 +83,7 @@ namespace TeteTopApi.Logic
                                     return "1";
                                 }
 
+                                Console.WriteLine(trade.Status.ToUpper());
                                 //如果该订单已付款则取消发送
                                 if (trade.Status.ToUpper() != "WAIT_BUYER_PAY")
                                 {
@@ -109,7 +119,7 @@ namespace TeteTopApi.Logic
                     {
                         return "0";
                     }
-                }
+                //}
             }
 
             return "1";
@@ -150,6 +160,47 @@ namespace TeteTopApi.Logic
             {
                 //中断
                 return false;
+            }
+
+            //该订单是否满足包邮卡设定的金额
+            string freeCardPrice = data.GetFreeCardPrice(guid);
+            TopApiHaoping api = new TopApiHaoping(shop.Session);
+            trade = api.GetTradeByTid(trade);
+            if (decimal.Parse(trade.OrderPrice) < decimal.Parse(freeCardPrice))
+            {
+                //如果不满足中断
+                return false;
+            }
+
+            //该订单是否满足包邮卡的地区限制
+            FreeCard free = data.GetUserFreeCardById(guid);
+            string[] ary = free.AreaList.Split(',');
+            if (free.AreaList.Length != 0)
+            {
+                if (free.IsFreeAreaList == "1")
+                {
+                    //设置地区免运费
+                    for (int i = 0; i < ary.Length; i++)
+                    {
+                        if (trade.receiver_state.IndexOf(ary[i]) != -1)
+                        {
+                            //记录免运费次数
+                            data.RecordFreeCardLog(guid, trade);
+                            return true;
+                        }
+                    }
+                }
+                else
+                {
+                    //设置地区不免运费
+                    for (int i = 0; i < ary.Length; i++)
+                    {
+                        if (trade.receiver_state.IndexOf(ary[i]) != -1)
+                        {
+                            return false;
+                        }
+                    }
+                }
             }
 
             //记录免运费次数

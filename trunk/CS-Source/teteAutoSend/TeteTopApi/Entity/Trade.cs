@@ -46,6 +46,11 @@ namespace TeteTopApi.Entity
         public string Tid { get; set; }
 
         /// <summary>
+        /// 买家下单所在区域
+        /// </summary>
+        public string BuyerArea { get; set; }
+
+        /// <summary>
         /// 订单创建时间
         /// </summary>
         public string Created { get; set; }
@@ -59,6 +64,11 @@ namespace TeteTopApi.Entity
         /// 商品id
         /// </summary>
         public string NumIid { get; set; }
+
+        /// <summary>
+        /// 多商品id集合
+        /// </summary>
+        public string[] NumIidList { get; set; }
 
         /// <summary>
         /// 配送方式(可查物流(system)还是不可查物流(self))

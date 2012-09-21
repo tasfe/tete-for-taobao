@@ -217,7 +217,7 @@ namespace TeteTopApi.DataContract
         /// <returns></returns>
         public List<ShopInfo> GetShopInfoListMsgZero()
         {
-            string sql = "SELECT * FROM TCS_ShopConfig r WITH (NOLOCK) INNER JOIN TCS_ShopSession s WITH (NOLOCK) ON s.nick = r.nick WHERE isdel = 0 AND phone IS NOT NULL AND total < =0 AND used > 0";
+            string sql = "SELECT * FROM TCS_ShopConfig r WITH (NOLOCK) INNER JOIN TCS_ShopSession s WITH (NOLOCK) ON s.nick = r.nick WHERE isdel = 0 AND phone IS NOT NULL AND total < =0 AND used > 0 AND r.nick IN (SELECT DISTINCT nick FROM TCS_PayLog WHERE typ LIKE 'service%')";
             Console.Write(sql + "\r\n");
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count != 0)
@@ -338,6 +338,29 @@ namespace TeteTopApi.DataContract
         public List<ShopInfo> GetShopInfoListShippingAlert()
         {
             string sql = "SELECT * FROM TCS_ShopConfig r WITH (NOLOCK) INNER JOIN TCS_ShopSession s WITH (NOLOCK) ON s.nick = r.nick AND r.isdel = 0 AND (r.shippingflag = 1 OR r.reviewflag = 1) AND r.total > 0";
+
+            Console.Write(sql + "\r\n");
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                return FormatDataList(dt);
+            }
+            else
+            {
+                return new List<ShopInfo>();
+            }
+        }
+
+
+        /// <summary>
+        /// 获取当前正在使用物流到货短信通知并有短信可发的卖家信息(增加延迟发货短信的卖家，否则无法获取物流状态)
+        /// </summary>
+        /// <param name="nick"></param>
+        /// <returns></returns>
+        public List<ShopInfo> GetShopInfoListShippingAlert(string index)
+        {
+            string sql = "[GetShippingShop] " + index;
+
             Console.Write(sql + "\r\n");
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count != 0)
@@ -384,6 +407,8 @@ namespace TeteTopApi.DataContract
             info.Mobile = dt.Rows[0]["phone"].ToString();
             info.IsAlipay = dt.Rows[0]["IsAlipay"].ToString();
             info.AlipayID = dt.Rows[0]["AlipayID"].ToString();
+            info.IsFreeCard = dt.Rows[0]["isfree"].ToString();
+            info.FreeCardId = dt.Rows[0]["freeid"].ToString();
 
             info.BadKeyword = dt.Rows[0]["BadKeyword"].ToString();
             info.KeywordIsBad = dt.Rows[0]["KeywordIsBad"].ToString();
@@ -393,6 +418,18 @@ namespace TeteTopApi.DataContract
             info.CuiCouponId = dt.Rows[0]["CuiCouponId"].ToString();
             info.CuiFreeCard = dt.Rows[0]["CuiFreeCard"].ToString();
             info.Plus = dt.Rows[0]["Plus"].ToString();
+
+            info.Cancel1 = dt.Rows[0]["Cancel1"].ToString();
+            info.Cancel2 = dt.Rows[0]["Cancel2"].ToString();
+
+            info.IsXuni = dt.Rows[0]["IsXuni"].ToString();
+            info.XuniDate = dt.Rows[0]["XuniDate"].ToString();
+
+            info.MsgIsFreecard = dt.Rows[0]["freecardflag"].ToString();
+            info.MsgFreecardContent = dt.Rows[0]["freecardcontent"].ToString();
+
+            info.IsItem = dt.Rows[0]["isitem"].ToString();
+            info.ItemList = dt.Rows[0]["itemlist"].ToString();
 
             Console.Write(dt.Rows[0]["session"].ToString() + "@@@@@@@@@@@@@\r\n");
             Console.Write(info.Session + "############\r\n");
@@ -439,6 +476,8 @@ namespace TeteTopApi.DataContract
                 info.Mobile = dt.Rows[i]["phone"].ToString();
                 info.IsAlipay = dt.Rows[i]["IsAlipay"].ToString();
                 info.AlipayID = dt.Rows[i]["AlipayID"].ToString();
+                info.IsFreeCard = dt.Rows[i]["isfree"].ToString();
+                info.FreeCardId = dt.Rows[i]["freeid"].ToString();
 
                 info.BadKeyword = dt.Rows[i]["BadKeyword"].ToString();
                 info.KeywordIsBad = dt.Rows[i]["KeywordIsBad"].ToString();
@@ -448,6 +487,18 @@ namespace TeteTopApi.DataContract
                 info.CuiCouponId = dt.Rows[i]["CuiCouponId"].ToString();
                 info.CuiFreeCard = dt.Rows[i]["CuiFreeCard"].ToString();
                 info.Plus = dt.Rows[i]["Plus"].ToString();
+
+                info.Cancel1 = dt.Rows[i]["Cancel1"].ToString();
+                info.Cancel2 = dt.Rows[i]["Cancel2"].ToString();
+
+                info.IsXuni = dt.Rows[i]["IsXuni"].ToString();
+                info.XuniDate = dt.Rows[i]["XuniDate"].ToString();
+
+                info.MsgIsFreecard = dt.Rows[i]["freecardflag"].ToString();
+                info.MsgFreecardContent = dt.Rows[i]["freecardcontent"].ToString();
+
+                info.IsItem = dt.Rows[i]["isitem"].ToString();
+                info.ItemList = dt.Rows[i]["itemlist"].ToString();
 
                 infoList.Add(info);
             }
@@ -506,7 +557,57 @@ namespace TeteTopApi.DataContract
         /// <returns></returns>
         public bool IsSendMsgToday(Trade trade, string typ)
         {
+            //判断是否为黑名单
+            if (IsBlack(trade))
+            {
+                return true;
+            }
+
             string sql = "SELECT cguid FROM TCS_MsgSend WHERE buynick = '" + trade.BuyNick + "' AND nick = '" + trade.Nick + "' AND typ = '" + typ + "' AND DATEDIFF(d, adddate, GETDATE()) = 0";
+            Console.Write(sql + "\r\n");
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count == 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// 是否为黑名单
+        /// </summary>
+        /// <param name="trade"></param>
+        /// <returns></returns>
+        private bool IsBlack(Trade trade)
+        {
+            string sql = "SELECT COUNT(*) FROM TCS_BlackList WHERE nick = '" + trade.Nick + "' AND mobile = '" + trade.Mobile + "'";
+            string count = utils.ExecuteString(sql);
+            if (count == "0")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// 判断该短信最近3天是否发过
+        /// </summary>
+        /// <param name="trade"></param>
+        /// <param name="typ"></param>
+        /// <returns></returns>
+        public bool IsSendMsgNear(Trade trade, string typ)
+        {
+            //判断是否为黑名单
+            if (IsBlack(trade))
+            {
+                return true;
+            }
+
+            string sql = "SELECT cguid FROM TCS_MsgSend WHERE buynick = '" + trade.BuyNick + "' AND nick = '" + trade.Nick + "' AND typ = '" + typ + "' AND DATEDIFF(d, adddate, GETDATE()) < 3";
             Console.Write(sql + "\r\n");
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count == 0)
@@ -525,6 +626,12 @@ namespace TeteTopApi.DataContract
         /// <returns></returns>
         public bool IsSendMsgOrder(Trade trade, string typ)
         {
+            //判断是否为黑名单
+            if (IsBlack(trade))
+            {
+                return true;
+            }
+
             string sql = "SELECT cguid FROM TCS_MsgSend WHERE buynick = '" + trade.BuyNick + "' AND nick = '" + trade.Nick + "' AND typ = '" + typ + "' AND orderid = '" + trade.Tid + "'";
             Console.Write(sql + "\r\n");
             DataTable dt = utils.ExecuteDataTable(sql);

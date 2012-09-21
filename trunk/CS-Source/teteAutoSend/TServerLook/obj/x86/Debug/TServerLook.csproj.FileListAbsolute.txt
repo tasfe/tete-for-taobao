@@ -1,0 +1,9 @@
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TServerLook\bin\Debug\TServerLook.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TServerLook\bin\Debug\TServerLook.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TServerLook\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TServerLook\obj\x86\Debug\TServerLook.Form1.resources
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TServerLook\obj\x86\Debug\TServerLook.Properties.Resources.resources
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TServerLook\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TServerLook\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TServerLook\obj\x86\Debug\TServerLook.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TServerLook\obj\x86\Debug\TServerLook.pdb
