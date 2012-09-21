@@ -166,6 +166,8 @@ public partial class top_groupbuy_activitytempmanage : System.Web.UI.Page
             {
                 //上传图片
                 string newurl = TaobaoUpload(dts3.Rows[j]["url"].ToString(), "temp" + templetid.ToString() + "" + j.ToString(), long.Parse(categoryid));
+                sql = "update tete_shoptempletimg set taobaourl='" + newurl + "' where url= '" + dts3.Rows[j]["url"].ToString() + "' and nick='" + taobaoNick + "'";
+                utils.ExecuteNonQuery(sql);
                 //创建本地店铺模板图片地址
                 sql = "insert into tete_shoptempletimg ([templetID],[url] ,[taobaourl] ,[nick]) VALUES (" + templetid + ",'" + dts3.Rows[j]["url"].ToString() + "','" + newurl + "','" + taobaoNick + "')";
                 utils.ExecuteNonQuery(sql);
