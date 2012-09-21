@@ -26,79 +26,79 @@ public partial class container : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        //if (!string.IsNullOrEmpty(Request.QueryString["code"]) && !string.IsNullOrEmpty(Request.QueryString["state"]))
-        //{
-        //Response.Redirect("https://oauth.taobao.com/token?client_id=21093339&client_secret=c1c22ba85fb91bd20279213ef7b9ee80&grant_type=authorization_code&code=" + Request.QueryString["code"] + "&redirect_uri=http://www.fensehenghuo.com/container.aspx");
-        //}
-
-        //IDictionary<string, string> param = new Dictionary<string, string>();
-        //param.Add("client_id", "21093339");
-        //param.Add("client_secret", "c1c22ba85fb91bd20279213ef7b9ee80");
-        //param.Add("grant_type", "authorization_code");
-        //param.Add("code", Request.QueryString["code"]);
-        //param.Add("redirect_uri", "http://www.fensehenghuo.com/containerNew.aspx");
-        //string result = "";
-        //HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://oauth.taobao.com/token");
-        //req.Method = "POST";
-        //req.KeepAlive = true;
-        //req.Timeout = 300000;
-        //req.ContentType = "application/x-www-form-urlencoded;charset=gb2312";
-        //byte[] postData = Encoding.UTF8.GetBytes(PostData(param));
-        //Stream reqStream = req.GetRequestStream();
-        //reqStream.Write(postData, 0, postData.Length);
-        //reqStream.Close();
-        //try
-        //{
-        //    HttpWebResponse rsp = (HttpWebResponse)req.GetResponse();
-        //    Encoding encoding = Encoding.GetEncoding(rsp.CharacterSet);
-        //    Stream stream = null;
-        //    StreamReader reader = null;
-        //    stream = rsp.GetResponseStream();
-        //    reader = new StreamReader(stream, encoding);
-        //    result = reader.ReadToEnd();
-        //    if (reader != null) reader.Close();
-        //    if (stream != null) stream.Close();
-        //    if (rsp != null) rsp.Close();
-        //}
-        //catch (Exception ex)
-        //{
-        //    //ServiceLog.RecodeLog("session:" + session + "获取淘宝服务响应错误：" + ex.Message);
-        //}
-
-        //Response.Write(result);
-        //Response.End();
-        //签名验证
-        top_appkey = "21093339";
-        app_secret = "c1c22ba85fb91bd20279213ef7b9ee80";
-
-        string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString).Replace(" ", "+");
-        top_session = utils.NewRequest("top_session", utils.RequestType.QueryString).Replace(" ", "+");
-
-        string top_sign = utils.NewRequest("top_sign", utils.RequestType.QueryString).Replace(" ", "+"); //字符串中的+在获取后会被替换成空格，要再替换回来
-
-        string sign = utils.NewRequest("sign", utils.RequestType.QueryString).Replace(" ", "+");
-
-        string leaseId = utils.NewRequest("leaseId", utils.RequestType.QueryString).Replace(" ", "+"); //可以从 QueryString 来获取,也可以固定 
-
-        string timestamp = utils.NewRequest("timestamp", utils.RequestType.QueryString).Replace(" ", "+"); //可以从 QueryString 来获取 
-
-        string agreementsign = utils.NewRequest("agreementsign", utils.RequestType.QueryString).Replace(" ", "+");
-
-        Response.Write(Request.QueryString);
-        if (!Taobao.Top.Api.Util.TopUtils.VerifyTopResponse(top_parameters, top_session, top_sign, top_appkey, app_secret))
+        if (!string.IsNullOrEmpty(Request.QueryString["code"]) && !string.IsNullOrEmpty(Request.QueryString["state"]))
         {
-            Response.Write("top签名验证不通过，请不要非法注入");
-            Response.End();
-            return;
+            Response.Redirect("https://oauth.taobao.com/token?client_id=21093339&client_secret=c1c22ba85fb91bd20279213ef7b9ee80&grant_type=authorization_code&code=" + Request.QueryString["code"] + "&redirect_uri=http://www.fensehenghuo.com/container.aspx");
         }
-        Response.Write(123);
-        nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["visitor_nick"];
-        if (nick == null || nick == "")
+
+        IDictionary<string, string> param = new Dictionary<string, string>();
+        param.Add("client_id", "21093339");
+        param.Add("client_secret", "c1c22ba85fb91bd20279213ef7b9ee80");
+        param.Add("grant_type", "authorization_code");
+        param.Add("code", Request.QueryString["code"]);
+        param.Add("redirect_uri", "http://www.fensehenghuo.com/containerNew.aspx");
+        string result = "";
+        HttpWebRequest req = (HttpWebRequest)WebRequest.Create("https://oauth.taobao.com/token");
+        req.Method = "POST";
+        req.KeepAlive = true;
+        req.Timeout = 300000;
+        req.ContentType = "application/x-www-form-urlencoded;charset=gb2312";
+        byte[] postData = Encoding.UTF8.GetBytes(PostData(param));
+        Stream reqStream = req.GetRequestStream();
+        reqStream.Write(postData, 0, postData.Length);
+        reqStream.Close();
+        try
         {
-            Response.Write("top签名验证不通过，请不要非法注入");
-            Response.End();
-            return;
+            HttpWebResponse rsp = (HttpWebResponse)req.GetResponse();
+            Encoding encoding = Encoding.GetEncoding(rsp.CharacterSet);
+            Stream stream = null;
+            StreamReader reader = null;
+            stream = rsp.GetResponseStream();
+            reader = new StreamReader(stream, encoding);
+            result = reader.ReadToEnd();
+            if (reader != null) reader.Close();
+            if (stream != null) stream.Close();
+            if (rsp != null) rsp.Close();
         }
+        catch (Exception ex)
+        {
+            //ServiceLog.RecodeLog("session:" + session + "获取淘宝服务响应错误：" + ex.Message);
+        }
+
+        Response.Write(result);
+        Response.End();
+        ////签名验证
+        //top_appkey = "21093339";
+        //app_secret = "c1c22ba85fb91bd20279213ef7b9ee80";
+
+        //string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString).Replace(" ", "+");
+        //top_session = utils.NewRequest("top_session", utils.RequestType.QueryString).Replace(" ", "+");
+
+        //string top_sign = utils.NewRequest("top_sign", utils.RequestType.QueryString).Replace(" ", "+"); //字符串中的+在获取后会被替换成空格，要再替换回来
+
+        //string sign = utils.NewRequest("sign", utils.RequestType.QueryString).Replace(" ", "+");
+
+        //string leaseId = utils.NewRequest("leaseId", utils.RequestType.QueryString).Replace(" ", "+"); //可以从 QueryString 来获取,也可以固定 
+
+        //string timestamp = utils.NewRequest("timestamp", utils.RequestType.QueryString).Replace(" ", "+"); //可以从 QueryString 来获取 
+
+        //string agreementsign = utils.NewRequest("agreementsign", utils.RequestType.QueryString).Replace(" ", "+");
+
+        //Response.Write(Request.QueryString);
+        //if (!Taobao.Top.Api.Util.TopUtils.VerifyTopResponse(top_parameters, top_session, top_sign, top_appkey, app_secret))
+        //{
+        //    Response.Write("top签名验证不通过，请不要非法注入");
+        //    Response.End();
+        //    return;
+        //}
+        //Response.Write(123);
+        //nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["visitor_nick"];
+        //if (nick == null || nick == "")
+        //{
+        //    Response.Write("top签名验证不通过，请不要非法注入");
+        //    Response.End();
+        //    return;
+        //}
 
         //插入信息
         InsertSession();
