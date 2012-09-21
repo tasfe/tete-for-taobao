@@ -28,7 +28,7 @@ namespace ActTradeInfo
                         sql = "UPDATE TCS_TaobaoMsgLog SET isok = 1 WHERE id = " + dt.Rows[0][1].ToString();
                         utils.ExecuteNonQuery(sql);
 
-                        sql = "INSERT INTO TCS_TaobaoMsgLog22 SELECT * FROM [TCS_TaobaoMsgLog].[dbo].[TCS_Trade] WHERE id = " + dt.Rows[0][1].ToString();
+                        sql = "INSERT INTO TCS_TaobaoMsgLog22 SELECT * FROM [TCS_TaobaoMsgLog] WHERE id = " + dt.Rows[0][1].ToString();
                         utils.ExecuteNonQuery(sql);
 
                         sql = "DELETE FROM TCS_TaobaoMsgLog WHERE id = " + dt.Rows[0][1].ToString();

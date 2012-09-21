@@ -1,0 +1,12 @@
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ActUnpayTrade\bin\Debug\ActUnpayTrade.exe.config
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ActUnpayTrade\bin\Debug\ActUnpayTrade.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ActUnpayTrade\bin\Debug\ActUnpayTrade.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ActUnpayTrade\bin\Debug\TeteTopApi.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ActUnpayTrade\bin\Debug\QWeiboSDK.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ActUnpayTrade\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ActUnpayTrade\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ActUnpayTrade\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ActUnpayTrade\bin\Debug\TeteTopApi.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ActUnpayTrade\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ActUnpayTrade\obj\x86\Debug\ActUnpayTrade.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ActUnpayTrade\obj\x86\Debug\ActUnpayTrade.pdb
