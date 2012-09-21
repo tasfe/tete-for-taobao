@@ -30,13 +30,13 @@ public partial class top_review_testapi : System.Web.UI.Page
         string taobaonick = "红色时代灯饰";
 
         string sql = "SELECT nick,COUNT(nick) FROM [TeteCrmSaasNew].[dbo].[Tmp_LostMobile] group by nick ORDER BY COUNT(nick) DESC";
-        DataTable dt = utils.ExecuteDataTable(sql);
-        for (int i = 0; i < dt.Rows.Count; i++)
-        {
-            sql = "UPDATE TCS_ShopConfig SET total = total + " + dt.Rows[i][1].ToString() + " WHERE nick = '" + dt.Rows[i][0].ToString() + "'";
-            Response.Write(sql + "<br>");
-            utils.ExecuteNonQuery(sql);
-        }
+        //DataTable dt = utils.ExecuteDataTable(sql);
+        //for (int i = 0; i < dt.Rows.Count; i++)
+        //{
+        //    sql = "UPDATE TCS_ShopConfig SET total = total + " + dt.Rows[i][1].ToString() + " WHERE nick = '" + dt.Rows[i][0].ToString() + "'";
+        //    Response.Write(sql + "<br>");
+        //    utils.ExecuteNonQuery(sql);
+        //}
         ////91599347271901
 
         //TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
