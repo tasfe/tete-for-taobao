@@ -24,7 +24,9 @@ namespace teteiPhone
             bool sandbox = false;
 
             //Put your device token in here
-            string testDeviceToken = "6f1b59af2923e964fa6c56690c6ec9c219658f51a85021093018a2853ee33874";
+            //hu-2cab0faa9e6e47663ffe79dcc0b979cfd481cd8aa9b65a8dac236d178de51f87
+            //lv-fb77f2d0962ccea6061ece2873d29d252397a31dc36a301d7f7e3761fe5b460e
+            string testDeviceToken = "2cab0faa9e6e47663ffe79dcc0b979cfd481cd8aa9b65a8dac236d178de51f87";
 
             //Put your PKCS12 .p12 or .pfx filename here.
             // Assumes it is in the same directory as your app
@@ -72,7 +74,7 @@ namespace teteiPhone
                 //Create a new notification to send
                 Notification alertNotification = new Notification(testDeviceToken);
 
-                alertNotification.Payload.Alert.Body = string.Format("请问是胡益民吗？", i);
+                alertNotification.Payload.Alert.Body = string.Format("尊重的胡先生，您的100元抵扣券即将过期，请您马上使用", i);
                 alertNotification.Payload.Sound = "default";
                 alertNotification.Payload.Badge = i;
 
