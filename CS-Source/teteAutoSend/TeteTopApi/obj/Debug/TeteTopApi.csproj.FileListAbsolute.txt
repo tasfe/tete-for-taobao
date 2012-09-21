@@ -1,10 +1,10 @@
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\bin\Debug\TeteTopApi.dll
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\bin\Debug\TeteTopApi.pdb
-D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\obj\Debug\ResolveAssemblyReference.cache
-D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\obj\Debug\TeteTopApi.dll
-D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\obj\Debug\TeteTopApi.pdb
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Caching.dll
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\bin\Debug\QWeiboSDK.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\obj\Debug\ResolveAssemblyReference.cache
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\obj\Debug\TeteTopApi.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteTopApi\obj\Debug\TeteTopApi.pdb

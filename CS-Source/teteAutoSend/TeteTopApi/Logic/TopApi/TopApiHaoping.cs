@@ -26,13 +26,14 @@ namespace TeteTopApi.TopApi
             Api top = new Api(AppKey, Secret, Session, Url);
 
             IDictionary<string, string> param = new Dictionary<string, string>();
-            param.Add("fields", "receiver_mobile, orders.num_iid, created, consign_time, total_fee, promotion_details, type, receiver_name, receiver_state, receiver_city, receiver_district, receiver_address, status");
+            param.Add("fields", "receiver_mobile, orders.num_iid, created, consign_time, total_fee, promotion_details, type, receiver_name, receiver_state, receiver_city, receiver_district, receiver_address, status, buyer_area");
             param.Add("tid", simpleTrade.Tid);
 
             string result = top.CommonTopApi("taobao.trade.fullinfo.get", param, Session);
             Console.Write(Session + "\r\n");
             Console.Write(result);
             simpleTrade.Mobile = utils.GetValueByProperty(result, "receiver_mobile");
+            simpleTrade.BuyerArea = utils.GetValueByProperty(result, "buyer_area");
             simpleTrade.NumIid = utils.GetValueByPropertyNum(result, "num_iid");
             simpleTrade.Created = utils.GetValueByProperty(result, "created");
             simpleTrade.SendTime = utils.GetValueByProperty(result, "consign_time");
@@ -48,7 +49,12 @@ namespace TeteTopApi.TopApi
                 simpleTrade.IsUseCoupon = "0";
             }
 
-            simpleTrade = GetOrderShippingInfo(simpleTrade);
+            //特殊判断催单订单不获取物流信息
+            if (simpleTrade.Status != "CuiDan")
+            {
+                simpleTrade = GetOrderShippingInfo(simpleTrade);
+            }
+
             //新增订单类型，判断是否为分销订单
             simpleTrade.OrderType = utils.GetValueByProperty(result, "type");
             //新增订单收货信息，为CRM做准备
@@ -241,6 +247,12 @@ namespace TeteTopApi.TopApi
             IDictionary<string, string> param = new Dictionary<string, string>();
             param.Add("tid", trade.Tid);
             param.Add("fields", "out_sid, company_name");
+
+            ////临时处理TID为空的情况
+            //if (trade.Tid.Length == 0)
+            //{
+            //    return trade;
+            //}   
 
             string result = top.CommonTopApi("taobao.logistics.orders.detail.get", param, Session);
             Console.Write(result + "\r\n");

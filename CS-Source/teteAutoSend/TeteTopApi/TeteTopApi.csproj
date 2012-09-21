@@ -71,6 +71,7 @@
     <Compile Include="Entity\AlipayDetail.cs" />
     <Compile Include="Entity\Coupon.cs" />
     <Compile Include="Entity\Customer.cs" />
+    <Compile Include="Entity\FreeCard.cs" />
     <Compile Include="Entity\Item.cs" />
     <Compile Include="Entity\ShopInfo.cs" />
     <Compile Include="Entity\Trade.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Logic\ShopAlert.cs" />
     <Compile Include="Logic\ShopTotalSend.cs" />
     <Compile Include="Logic\TopApi\TopApiFree.cs" />
+    <Compile Include="Logic\TradeBuyerPay.cs" />
     <Compile Include="Logic\TradeCreate.cs" />
     <Compile Include="Logic\TradeSuccess.cs" />
     <Compile Include="Logic\TradeSellerShip.cs" />

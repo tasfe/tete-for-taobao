@@ -50,7 +50,6 @@ namespace TeteTopApi.Logic
                 dbTrade.InsertTradeInfo(trade);
             }
 
-
             try
             {
                 //更新订单的优惠券使用情况
@@ -91,7 +90,7 @@ namespace TeteTopApi.Logic
                     if (!db.IsSendMsgToday(trade, "fahuo"))
                     {
                         //发送短信
-                        string msg = Message.GetMsg(shop.MsgFahuoContent, shop.MsgShopName, TradeInfo.BuyNick, shop.IsCoupon, TradeInfo.ShippingCompanyName, TradeInfo.ShippingNumber);
+                        string msg = Message.GetMsg(shop.MsgFahuoContent, shop.MsgShopName, TradeInfo.BuyNick, shop.IsCoupon, TradeInfo.ShippingCompanyName, TradeInfo.ShippingNumber, shop, trade);
                         string msgResult = Message.Send(trade.Mobile, msg);
 
                         //记录

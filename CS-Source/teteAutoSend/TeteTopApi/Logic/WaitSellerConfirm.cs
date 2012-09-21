@@ -23,11 +23,21 @@ namespace TeteTopApi.Logic
             {
                 ShopInfo shop = list[i];
                 Console.Write(shop.Nick + "-" + shop.MsgReviewTime + "-" + DateTime.Now.Hour.ToString() + "\r\n");
-                if (DateTime.Now.Hour.ToString() == list[i].MsgReviewTime)
+                if (DateTime.Now.Hour.ToString() == list[i].MsgReviewTime || shop.IsXuni == "1")
                 { 
                     //获取那些延迟不确认且没发过短信的订单给予提示
                     TradeData dbTrade = new TradeData();
-                    List<Trade> listTrade = dbTrade.GetUnconfirmTrade(shop);
+                    List<Trade> listTrade = new List<Trade>();
+
+                    if (shop.IsXuni == "1")
+                    {
+                        //如果是虚拟商品
+                        listTrade = dbTrade.GetUnconfirmTradeXuni(shop);
+                    }
+                    else
+                    {
+                        listTrade = dbTrade.GetUnconfirmTrade(shop);
+                    }
 
                     Console.Write(listTrade.Count.ToString() + "\r\n");
                     for (int j = 0; j < listTrade.Count; j++)
@@ -51,7 +61,8 @@ namespace TeteTopApi.Logic
                                 if (shop.MsgIsReview == "1" && int.Parse(shop.MsgCount) > 0)
                                 {
                                     //发送短信
-                                    string msg = Message.GetMsg(shop.MsgReviewContent, shop.MsgShopName, trade.BuyNick, shop.IsCoupon);
+                                    //string msg = Message.GetMsg(shop.MsgReviewContent, shop.MsgShopName, trade.BuyNick, shop.IsCoupon);
+                                    string msg = Message.GetMsg(shop, trade, shop.MsgReviewContent);
                                     string msgResult = Message.Send(trade.Mobile, msg);
 
                                     //记录

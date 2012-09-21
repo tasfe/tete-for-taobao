@@ -19,7 +19,7 @@ namespace TeteTopApi.DataContract
         public bool InsertCouponSendRecord(Trade trade, ShopInfo shop, string couponId)
         {
             //判断该订单是否赠送过
-            string sql = "SELECT COUNT(*) FROM TCS_CouponSend WHERE orderid = '" + trade.Tid + "'";
+            string sql = "SendCouponInfo '" + trade.Nick + "','" + trade.BuyNick + "','" + shop.CouponID + "','" + trade.Tid + "'";
             string count = utils.ExecuteString(sql);
 
             //如果该订单送过则中断
@@ -27,26 +27,48 @@ namespace TeteTopApi.DataContract
             {
                 return false;
             }
+            else
+            {
+                return true;
+            }
 
-            sql = "INSERT INTO TCS_CouponSend (" +
-                                "nick, " +
-                                "guid, " +
-                                "buynick, " +
-                                "orderid, " +
-                                "taobaonumber " +
-                            " ) VALUES ( " +
-                                " '" + trade.Nick + "', " +
-                                " '" + shop.CouponID + "', " +
-                                " '" + trade.BuyNick + "', " +
-                                " '" + trade.Tid + "', " +
-                                " '" + couponId + "' " +
-                            ") ";
-            Console.Write(sql + "\r\n");
-            utils.ExecuteNonQuery(sql);
+            //sql = "INSERT INTO TCS_CouponSend (" +
+            //                    "nick, " +
+            //                    "guid, " +
+            //                    "buynick, " +
+            //                    "orderid, " +
+            //                    "taobaonumber " +
+            //                " ) VALUES ( " +
+            //                    " '" + trade.Nick + "', " +
+            //                    " '" + shop.CouponID + "', " +
+            //                    " '" + trade.BuyNick + "', " +
+            //                    " '" + trade.Tid + "', " +
+            //                    " '" + couponId + "' " +
+            //                ") ";
+            //Console.Write(sql + "\r\n");
+            //utils.ExecuteNonQuery(sql);
 
-            return true;
+            //return true;
         }
 
+        /// <summary>
+        /// 是否为黑名单
+        /// </summary>
+        /// <param name="trade"></param>
+        /// <returns></returns>
+        public bool IsBlack(Trade trade)
+        {
+            string sql = "SELECT COUNT(*) FROM TCS_BlackListGift WHERE nick = '" + trade.Nick + "' AND buynick = '" + trade.BuyNick + "'";
+            string count = utils.ExecuteString(sql);
+            if (count == "0")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
         /// <summary>
         /// 记录该优惠券的赠送信息
@@ -187,6 +209,26 @@ namespace TeteTopApi.DataContract
             return true;
         }
 
+
+
+        /// <summary>
+        /// 每订单最多赠送一个
+        /// </summary>
+        /// <param name="shop"></param>
+        /// <returns></returns>
+        public bool CheckOrderAlipayCanSend(Trade trade, Alipay alipay)
+        {
+            string sql = "SELECT guid FROM [TCS_AlipayDetail] WITH (NOLOCK) WHERE buynick= '" + trade.BuyNick + "' AND guid = '" + alipay.GUID + "' AND orderid = '" + trade.Tid + "'";
+            Console.Write(sql + "\r\n");
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count > 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         /// <summary>
         /// 判断该订单的优惠券是否赠送过-因为数据库优惠券赠送表没加订单号，所以暂时用每天赠送一个代替
         /// </summary>
@@ -230,12 +272,11 @@ namespace TeteTopApi.DataContract
         /// <returns></returns>
         public bool CheckUserCanGetAlipay(Trade trade, Alipay alipay)
         {
-            string sql = "SELECT guid FROM TCS_AlipayDetail WITH (NOLOCK) WHERE buynick= '" + trade.BuyNick + "' AND guid = '" + alipay.GUID + "' AND orderid = '" + trade.Tid + "'";
+            string sql = "SELECT guid FROM TCS_AlipayDetail WITH (NOLOCK) WHERE buynick= '" + trade.BuyNick + "' AND guid = '" + alipay.GUID + "'";
             Console.Write(sql + "\r\n");
             DataTable dt = utils.ExecuteDataTable(sql);
 
             //获取优惠券最大赠送数量
-
             if (dt.Rows.Count >= int.Parse(alipay.Per))
             {
                 return false;
@@ -328,6 +369,7 @@ namespace TeteTopApi.DataContract
             Alipay info = new Alipay();
 
             info.GUID = dt.Rows[0]["GUID"].ToString().Trim();
+            info.Num = dt.Rows[0]["Num"].ToString().Trim();
             info.Per = dt.Rows[0]["per"].ToString().Trim();
             info.Count = dt.Rows[0]["count"].ToString().Trim();
             info.EndDate = dt.Rows[0]["enddate"].ToString().Trim();
@@ -340,6 +382,7 @@ namespace TeteTopApi.DataContract
             Coupon info = new Coupon();
 
             info.Per = dt.Rows[0]["per"].ToString().Trim();
+            info.Num = dt.Rows[0]["num"].ToString().Trim();
             info.CouponGUID = dt.Rows[0]["guid"].ToString().Trim();
             info.TaobaoCouponId = dt.Rows[0]["taobaocouponid"].ToString().Trim();
 

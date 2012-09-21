@@ -13,6 +13,11 @@ namespace TeteTopApi.Entity
         public string Per { get; set; }
 
         /// <summary>
+        /// 金额
+        /// </summary>
+        public string Num { get; set; }
+
+        /// <summary>
         /// 红包最大赠送数量
         /// </summary>
         public string Count { get; set; }

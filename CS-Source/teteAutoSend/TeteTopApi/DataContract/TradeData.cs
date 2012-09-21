@@ -34,6 +34,7 @@ namespace TeteTopApi.DataContract
                                 "receiver_city, " +
                                 "receiver_district, " +
                                 "receiver_address, " +
+                                "orderArea, " +
                                 "mobile " +
                             " ) VALUES ( " +
                                 " '" + trade.Nick + "', " +
@@ -53,6 +54,7 @@ namespace TeteTopApi.DataContract
                                 " '" + trade.receiver_city + "', " +
                                 " '" + trade.receiver_district + "', " +
                                 " '" + trade.receiver_address + "', " +
+                                " '" + trade.BuyerArea + "', " +
                                 " '" + trade.Mobile + "' " +
                             ") ";
             Console.Write(sql + "\r\n");
@@ -164,7 +166,7 @@ namespace TeteTopApi.DataContract
         /// <param name="tradeRate"></param>
         public void UpdateTradeRateById(Trade trade, TradeRate tradeRate)
         {
-            string sql = "UPDATE TCS_Trade WITH (ROWLOCK) SET reviewdate='" + tradeRate.Created + "' WHERE orderid = '" + trade.Tid + "'";
+            string sql = "UPDATE TCS_Trade WITH (ROWLOCK) SET reviewdate='" + tradeRate.Created + "',status='TRADE_FINISHED' WHERE orderid = '" + trade.Tid + "'";
             Console.Write(sql + "\r\n");
             utils.ExecuteNonQuery(sql);
         }
@@ -225,6 +227,20 @@ namespace TeteTopApi.DataContract
         /// </summary>
         /// <param name="shop"></param>
         /// <returns></returns>
+        public List<Trade> GetUnconfirmTradeXuni(ShopInfo shop)
+        {
+            string sql = "SELECT t.nick,t.buynick,t.orderid,t.ordertype,c.mobile FROM TCS_Trade t INNER JOIN TCS_Customer c ON c.buynick = t.buynick AND c.mobile <> '' WHERE t.nick = '" + shop.Nick + "' AND reviewdate IS NULL AND DATEDIFF(MINUTE, adddate, GETDATE()) > " + shop.XuniDate + " AND DATEDIFF(MINUTE, adddate, GETDATE()) < " + (int.Parse(shop.XuniDate) + 30).ToString() + " AND t.status <> 'TRADE_FINISHED'";
+            Console.Write(sql + "\r\n");
+            DataTable dt = utils.ExecuteDataTable(sql);
+
+            return FormatDataList(dt);
+        }
+
+        /// <summary>
+        /// 获取指定卖家的长期未确认的订单
+        /// </summary>
+        /// <param name="shop"></param>
+        /// <returns></returns>
         public List<Trade> GetUnconfirmTradeTest(ShopInfo shop)
         {
             string sql = "SELECT * FROM TCS_Trade WHERE (nick = '" + shop.Nick + "' AND typ = 'system' AND reviewdate IS NULL AND DATEDIFF(d, shippingdate, GETDATE()) >= " + shop.MinDateSystem + " AND DATEDIFF(d, shippingdate, GETDATE()) <= " + (int.Parse(shop.MinDateSystem) + 4).ToString() + ") OR (nick = '" + shop.Nick + "' AND typ = 'self' AND reviewdate IS NULL AND DATEDIFF(d, senddate, GETDATE()) >= " + shop.MinDateSelf + " AND DATEDIFF(d, senddate, GETDATE()) <= " + (int.Parse(shop.MinDateSelf) + 4).ToString() + ")";
@@ -266,6 +282,63 @@ namespace TeteTopApi.DataContract
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// 订单是否包含指定商品判断
+        /// </summary>
+        /// <param name="trade"></param>
+        /// <param name="shop"></param>
+        /// <returns></returns>
+        public bool IsIncludeProduct(Trade trade, ShopInfo shop)
+        {
+            string[] tradeProduct = trade.NumIidList;
+            string includeProduct = shop.IncludeProductList;
+
+            //如果没设置商品则不生效
+            if (shop.IncludeProductList.Length == 0)
+            {
+                return false;
+            }
+
+            //如果是包含商品就送
+            if (shop.IncludeProductFlag == "0")
+            {
+                for (int i = 0; i < tradeProduct.Length; i++)
+                {
+                    if (includeProduct.IndexOf("," + tradeProduct[i]) != -1)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            //如果是不包含商品就送
+            if (shop.IncludeProductFlag == "1")
+            {
+                for (int i = 0; i < tradeProduct.Length; i++)
+                {
+                    if (includeProduct.IndexOf("," + tradeProduct[i]) != -1)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        public Trade GetTradeDetailShippingInfo(Trade trade)
+        {
+            string sql = "SELECT * FROM TCS_Trade WHERE orderid = '" + trade.Tid + "'";
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                trade.SendTime = dt.Rows[0]["senddate"].ToString();
+                trade.DeliveryEnd = dt.Rows[0]["shippingdate"].ToString();
+                trade.ShippingType = dt.Rows[0]["typ"].ToString();
+            }
+            return trade;
         }
 
         /// <summary>

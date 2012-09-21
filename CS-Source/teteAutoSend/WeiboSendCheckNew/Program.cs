@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using System.Threading;
 
 namespace WeiboSendCheckNew
 {
@@ -22,6 +23,8 @@ namespace WeiboSendCheckNew
                     //启动程序
                     processShipping = Process.Start("WeiboSend.exe");
                 }
+
+                Thread.Sleep(5000);
             }
         }
     }
