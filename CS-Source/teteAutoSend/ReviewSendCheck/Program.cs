@@ -27,6 +27,7 @@ namespace ReviewSendCheck
             Process process2 = new Process();
             Process process3 = new Process();
             Process process4 = new Process();
+            Process process5 = new Process();
             while (true)
             {
                 //判断消息接收服务的运行状态
@@ -60,13 +61,13 @@ namespace ReviewSendCheck
                 }
 
                 //判断订单物流状态查询服务的运行状态
-                Process[] oldProShipping = Process.GetProcessesByName("ReviewShippingCheck");
+                Process[] oldProShipping = Process.GetProcessesByName("AutoMsgSend");
                 if (oldProShipping.Length <= 0) //
                 {
                     j++;
-                    Console.Write("[" + DateTime.Now.ToString() + "] - [" + j.ToString() + "] ReviewShippingCheck程序没有运行!!!!!! \r\n");
+                    Console.Write("[" + DateTime.Now.ToString() + "] - [" + j.ToString() + "] AutoMsgSend程序没有运行!!!!!! \r\n");
                     //启动程序
-                    processShipping = Process.Start("ReviewShippingCheck.exe");
+                    processShipping = Process.Start("AutoMsgSend.exe");
                 }
 
                 //判断订单物流状态查询服务的运行状态
@@ -80,27 +81,92 @@ namespace ReviewSendCheck
                 }
 
 
-                //判断订单物流状态查询服务的运行状态
-                Process[] ActRateInfo = Process.GetProcessesByName("ActRateInfo");
-                if (ActRateInfo.Length <= 0) //
+                ////判断订单物流状态查询服务的运行状态
+                //Process[] ActRateInfo = Process.GetProcessesByName("ActRateInfo");
+                //if (ActRateInfo.Length <= 0) //
+                //{
+                //    j1++;
+                //    Console.Write("[" + DateTime.Now.ToString() + "] - [" + j1.ToString() + "] ActRateInfo程序没有运行!!!!!! \r\n");
+                //    //启动程序
+                //    process1 = Process.Start("ActRateInfo.exe");
+                //}
+
+                ////判断订单物流状态查询服务的运行状态
+                //Process[] ActRateInfo1 = Process.GetProcessesByName("ActRateInfo1");
+                //if (ActRateInfo1.Length <= 0) //
+                //{
+                //    j1++;
+                //    Console.Write("[" + DateTime.Now.ToString() + "] - [" + j1.ToString() + "] ActRateInfo1程序没有运行!!!!!! \r\n");
+                //    //启动程序
+                //    process1 = Process.Start("ActRateInfo1.exe");
+                //}
+
+                ////判断订单物流状态查询服务的运行状态
+                //Process[] ActRateInfo2 = Process.GetProcessesByName("ActRateInfo2");
+                //if (ActRateInfo2.Length <= 0) //
+                //{
+                //    j1++;
+                //    Console.Write("[" + DateTime.Now.ToString() + "] - [" + j1.ToString() + "] ActRateInfo2程序没有运行!!!!!! \r\n");
+                //    //启动程序
+                //    process1 = Process.Start("ActRateInfo2.exe");
+                //}
+
+
+                ////判断订单物流状态查询服务的运行状态
+                //Process[] ActShippingInfo = Process.GetProcessesByName("ActShippingInfo");
+                //if (ActShippingInfo.Length <= 0) //
+                //{
+                //    j2++;
+                //    Console.Write("[" + DateTime.Now.ToString() + "] - [" + j2.ToString() + "] ActShippingInfo程序没有运行!!!!!! \r\n");
+                //    //启动程序
+                //    process2 = Process.Start("ActShippingInfo.exe");
+                //}
+
+
+                ////判断订单物流状态查询服务的运行状态
+                //Process[] ActUnpayTrade = Process.GetProcessesByName("ActUnpayTrade");
+                //if (ActUnpayTrade.Length <= 0) //
+                //{
+                //    j3++;
+                //    Console.Write("[" + DateTime.Now.ToString() + "] - [" + j3.ToString() + "] ActUnpayTrade程序没有运行!!!!!! \r\n");
+                //    //启动程序
+                //    process5 = Process.Start("ActUnpayTrade.exe");
+                //}
+
+
+                ////判断订单物流状态查询服务的运行状态
+                //Process[] ReviewShippingCheckNormal = Process.GetProcessesByName("ReviewShippingCheckNormal");
+                //if (ReviewShippingCheckNormal.Length <= 0) //
+                //{
+                //    j3++;
+                //    Console.Write("[" + DateTime.Now.ToString() + "] - [" + j3.ToString() + "] ReviewShippingCheckNormal程序没有运行!!!!!! \r\n");
+                //    //启动程序
+                //    process5 = Process.Start("ReviewShippingCheckNormal.exe");
+                //}
+
+
+                //刷新session和整理队伍
+                if (DateTime.Now.Hour.ToString() == "0" && DateTime.Now.Minute.ToString() == "0" && DateTime.Now.Second.ToString() == "1")
                 {
-                    j1++;
-                    Console.Write("[" + DateTime.Now.ToString() + "] - [" + j1.ToString() + "] ActRateInfo程序没有运行!!!!!! \r\n");
-                    //启动程序
-                    process1 = Process.Start("ActRateInfo.exe");
+                    Process[] ReviewLostGet = Process.GetProcessesByName("TeteGetUserOrder");
+                    if (ReviewLostGet.Length <= 0) //
+                    {
+                        //启动程序
+                        process4 = Process.Start("TeteGetUserOrder.exe");
+                    }
                 }
 
 
-                //判断订单物流状态查询服务的运行状态
-                Process[] ActShippingInfo = Process.GetProcessesByName("ActShippingInfo");
-                if (ActShippingInfo.Length <= 0) //
+                //整点启动丢失数据找回服务
+                if (DateTime.Now.Minute.ToString() == "11" && DateTime.Now.Second.ToString() == "11")
                 {
-                    j2++;
-                    Console.Write("[" + DateTime.Now.ToString() + "] - [" + j2.ToString() + "] ActShippingInfo程序没有运行!!!!!! \r\n");
-                    //启动程序
-                    process2 = Process.Start("ActShippingInfo.exe");
+                    Process[] ReviewLostGet = Process.GetProcessesByName("ReviewLostGet");
+                    if (ReviewLostGet.Length <= 0) //
+                    {
+                        //启动程序
+                        process4 = Process.Start("ReviewLostGet.exe");
+                    }
                 }
-
 
                 //判断订单物流状态查询服务的运行状态
                 if (DateTime.Now.Hour.ToString() == "14" && DateTime.Now.Minute.ToString() == "34" && DateTime.Now.Second.ToString() == "50")

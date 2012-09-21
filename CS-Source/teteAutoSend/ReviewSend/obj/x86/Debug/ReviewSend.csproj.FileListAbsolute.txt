@@ -9,3 +9,4 @@ D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSend\bin\Debug\ReviewS
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSend\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSend\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSend\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSend\bin\Debug\QWeiboSDK.dll

@@ -13,7 +13,7 @@ namespace ReviewOrderAlert
         {
             while (true)
             {
-                WaitSellerConfirmTest act = new WaitSellerConfirmTest();
+                WaitSellerConfirm act = new WaitSellerConfirm();
                 act.Start();
 
                 //30分钟检查一次
