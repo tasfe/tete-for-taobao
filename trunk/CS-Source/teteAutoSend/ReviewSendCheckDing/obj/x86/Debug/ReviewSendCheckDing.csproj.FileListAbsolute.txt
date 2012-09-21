@@ -1,0 +1,6 @@
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSendCheckDing\bin\Debug\ReviewSendCheckDing.exe.config
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSendCheckDing\bin\Debug\ReviewSendCheckDing.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSendCheckDing\bin\Debug\ReviewSendCheckDing.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSendCheckDing\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSendCheckDing\obj\x86\Debug\ReviewSendCheckDing.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewSendCheckDing\obj\x86\Debug\ReviewSendCheckDing.pdb

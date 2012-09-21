@@ -10,10 +10,19 @@ namespace ReviewLostGet
     {
         static void Main(string[] args)
         {
-            LostMessageGet lostGet = new LostMessageGet();
-            lostGet.Start();
+            DateTime startDate = DateTime.Now.AddHours(-1);
+            DateTime endDate = DateTime.Now;
+            string start = startDate.ToString("yyyy-MM-dd HH:00:00");
+            string end = endDate.ToString("yyyy-MM-dd HH:00:00");
 
-            Console.ReadLine();
+            Console.Write(start + "\r\n");
+            Console.Write(end + "\r\n");
+            //Console.ReadLine();
+
+            LostMessageGet lostGet = new LostMessageGet();
+            lostGet.Start(start, end);
+
+            //Console.ReadLine();
         }
     }
 }

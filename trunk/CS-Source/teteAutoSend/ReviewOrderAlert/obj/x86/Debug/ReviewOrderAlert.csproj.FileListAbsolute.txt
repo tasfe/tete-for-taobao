@@ -9,3 +9,4 @@ D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewOrderAlert\bin\Debug\M
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewOrderAlert\bin\Debug\TeteTopApi.pdb
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewOrderAlert\obj\x86\Debug\ReviewOrderAlert.exe
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewOrderAlert\obj\x86\Debug\ReviewOrderAlert.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewOrderAlert\bin\Debug\QWeiboSDK.dll
