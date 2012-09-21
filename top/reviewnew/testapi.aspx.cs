@@ -17,6 +17,7 @@ using System.Xml;
 using Taobao.Top.Api;
 using Taobao.Top.Api.Request;
 using Taobao.Top.Api.Domain;
+using Common;
 
 public partial class top_review_testapi : System.Web.UI.Page
 {
@@ -28,23 +29,30 @@ public partial class top_review_testapi : System.Web.UI.Page
         string session = "6101a28530ce2b42ef7b281d0379338df80b16652ef263d150153910";
         string taobaonick = "红色时代灯饰";
 
-
-        //91599347271901
-
-        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
-
-        ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
-        request.Fields = "num_iid,title,price,pic_url,seller_cids";
-        request.PageSize = 200;
-        request.PageNo = 1;
-
-        string str = "0";
-
-        PageList<Item> product = client.ItemsOnsaleGet(request, session);
-        for (int i = 0; i < product.Content.Count; i++)
+        string sql = "SELECT nick,COUNT(nick) FROM [TeteCrmSaasNew].[dbo].[Tmp_LostMobile] group by nick ORDER BY COUNT(nick) DESC";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        for (int i = 0; i < dt.Rows.Count; i++)
         {
-            str += "," + product.Content[i].NumIid;
+            sql = "UPDATE TCS_ShopConfig SET total = total + " + dt.Rows[i][1].ToString() + " WHERE nick = '" + dt.Rows[i][0].ToString() + "'";
+            Response.Write(sql + "<br>");
+            utils.ExecuteNonQuery(sql);
         }
+        ////91599347271901
+
+        //TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
+
+        //ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
+        //request.Fields = "num_iid,title,price,pic_url,seller_cids";
+        //request.PageSize = 200;
+        //request.PageNo = 1;
+
+        //string str = "0";
+
+        //PageList<Item> product = client.ItemsOnsaleGet(request, session);
+        //for (int i = 0; i < product.Content.Count; i++)
+        //{
+        //    str += "," + product.Content[i].NumIid;
+        //}
 
         //IDictionary<string, string> param = new Dictionary<string, string>();
 
@@ -55,7 +63,7 @@ public partial class top_review_testapi : System.Web.UI.Page
         //string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupondetail.get", session, param);
         //////<coupon_number>1323930538</coupon_number>
 
-        Response.Write(str);
+        //Response.Write(str);
 
         //param = new Dictionary<string, string>();
         //param.Add("num_iid", "16791228388");
