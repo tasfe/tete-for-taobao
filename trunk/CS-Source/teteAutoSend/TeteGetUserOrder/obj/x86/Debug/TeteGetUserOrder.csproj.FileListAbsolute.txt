@@ -1,0 +1,12 @@
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteGetUserOrder\bin\Debug\TeteGetUserOrder.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteGetUserOrder\bin\Debug\TeteGetUserOrder.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteGetUserOrder\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteGetUserOrder\obj\x86\Debug\TeteGetUserOrder.exe
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteGetUserOrder\obj\x86\Debug\TeteGetUserOrder.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteGetUserOrder\bin\Debug\TeteGetUserOrder.exe.config
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteGetUserOrder\bin\Debug\TeteTopApi.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteGetUserOrder\bin\Debug\QWeiboSDK.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteGetUserOrder\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteGetUserOrder\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteGetUserOrder\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\TeteGetUserOrder\bin\Debug\TeteTopApi.pdb
