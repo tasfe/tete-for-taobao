@@ -9,3 +9,4 @@ D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheck\bin\Debu
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheck\obj\x86\Debug\ResolveAssemblyReference.cache
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheck\obj\x86\Debug\ReviewShippingCheck.exe
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheck\obj\x86\Debug\ReviewShippingCheck.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\ReviewShippingCheck\bin\Debug\QWeiboSDK.dll
