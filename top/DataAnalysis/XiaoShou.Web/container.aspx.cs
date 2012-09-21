@@ -59,30 +59,30 @@ public partial class container : System.Web.UI.Page
             //ServiceLog.RecodeLog("session:" + session + "获取淘宝服务响应错误：" + ex.Message);
         }
 
-        //Response.Write(result);
-        //Response.End();
-        //签名验证
-        top_appkey = "21093339";
-        app_secret = "c1c22ba85fb91bd20279213ef7b9ee80";
-
-        //string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString).Replace(" ", "+");
-        top_session = utils.NewRequest("access_token", utils.RequestType.QueryString).Replace(" ", "+");
-        //nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["taobao_user_nick"];
-
-        //Response.Write(nick);
-        Response.Write(top_session);
+        Response.Write(result);
         Response.End();
+        ////签名验证
+        //top_appkey = "21093339";
+        //app_secret = "c1c22ba85fb91bd20279213ef7b9ee80";
 
-        if (nick == null || nick == "")
-        {
-            Response.Write("top签名验证不通过，请不要非法注入");
-            Response.End();
-            return;
-        }
+        ////string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString).Replace(" ", "+");
+        //top_session = utils.NewRequest("access_token", utils.RequestType.QueryString).Replace(" ", "+");
+        ////nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["taobao_user_nick"];
+        
+        ////Response.Write(nick);
+        //Response.Write(top_session);
+        //Response.End();
 
-        //插入信息
-        InsertSession();
-        Response.Redirect("indextongji.html");
+        //if (nick == null || nick == "")
+        //{
+        //    Response.Write("top签名验证不通过，请不要非法注入");
+        //    Response.End();
+        //    return;
+        //}
+
+        ////插入信息
+        //InsertSession();
+        //Response.Redirect("indextongji.html");
     }
 
     protected static string PostData(IDictionary<string, string> parameters)
