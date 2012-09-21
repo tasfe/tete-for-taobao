@@ -23,8 +23,18 @@ public partial class container : System.Web.UI.Page
     public string top_appkey = string.Empty;
     public string app_secret = string.Empty;
 
+    public string shopId = string.Empty;
+    public string refreshToken = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (string.IsNullOrEmpty(Request.QueryString["code"]))
+        {
+            Response.Write("请从淘宝授权登录");
+            Response.End();
+            return;
+        }
+
         IDictionary<string, string> param = new Dictionary<string, string>();
         param.Add("client_id", "21093339");
         param.Add("client_secret", "c1c22ba85fb91bd20279213ef7b9ee80");
@@ -63,30 +73,27 @@ public partial class container : System.Web.UI.Page
 
         ValiInfo info = js.Deserialize<ValiInfo>(result);
 
-        Response.Write(info.access_token + info.taobao_user_nick);
-        Response.End();
+        //Response.Write(info.access_token + info.taobao_user_nick);
+        //Response.End();
         ////签名验证
-        //top_appkey = "21093339";
-        //app_secret = "c1c22ba85fb91bd20279213ef7b9ee80";
+        top_appkey = "21093339";
+        app_secret = "c1c22ba85fb91bd20279213ef7b9ee80";
 
         ////string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString).Replace(" ", "+");
-        //top_session = utils.NewRequest("access_token", utils.RequestType.QueryString).Replace(" ", "+");
-        ////nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["taobao_user_nick"];
-        
-        ////Response.Write(nick);
-        //Response.Write(top_session);
-        //Response.End();
+        top_session = info.access_token;
+        nick = HttpUtility.UrlDecode(info.taobao_user_nick);
+        shopId = info.taobao_user_id;
 
-        //if (nick == null || nick == "")
-        //{
-        //    Response.Write("top签名验证不通过，请不要非法注入");
-        //    Response.End();
-        //    return;
-        //}
+        if (nick == null || nick == "")
+        {
+            Response.Write("top签名验证不通过，请不要非法注入");
+            Response.End();
+            return;
+        }
 
-        ////插入信息
-        //InsertSession();
-        //Response.Redirect("indextongji.html");
+        //插入信息
+        InsertSession();
+        Response.Redirect("indextongji.html");
     }
 
     protected static string PostData(IDictionary<string, string> parameters)
@@ -126,8 +133,9 @@ public partial class container : System.Web.UI.Page
         DateTime now = DateTime.Now;
         info.JoinDate = now;
         info.LastGetOrderTime = now;
-        info.ShopId = "";//先赋空值
+        info.ShopId = shopId;
         info.ServiceId = Enum.TopTaoBaoService.YingXiaoJueCe;
+        info.RefreshToken = refreshToken;
         //有则不添加
         if (CacheCollection.GetNickSessionList().Where(o => o.Nick == nick && o.ServiceId == Enum.TopTaoBaoService.YingXiaoJueCe).ToList().Count == 0)
         {
@@ -141,11 +149,11 @@ public partial class container : System.Web.UI.Page
             CacheCollection.GetNickSessionList().Where(o => o.Nick == nick && o.ServiceId == Enum.TopTaoBaoService.YingXiaoJueCe).ToList()[0].Session = top_session;
         }
         //修改缓存后读取店铺信息
-        info.ShopId = TaoBaoAPI.GetShopInfo(nick, top_session);
+        //info.ShopId = TaoBaoAPI.GetShopInfo(nick, top_session);
         //更新店铺信息
-        new NickSessionService().UpdateSession(info);
+        //new NickSessionService().UpdateSession(info);
         //更新缓存
-        CacheCollection.GetNickSessionList().Where(o => o.Nick == nick && o.ServiceId == Enum.TopTaoBaoService.YingXiaoJueCe).ToList()[0].ShopId = info.ShopId;
+        //CacheCollection.GetNickSessionList().Where(o => o.Nick == nick && o.ServiceId == Enum.TopTaoBaoService.YingXiaoJueCe).ToList()[0].ShopId = info.ShopId;
 
         HttpCookie cookie = new HttpCookie("nick", HttpUtility.UrlEncode(nick));
         HttpCookie cooksession = new HttpCookie("nicksession", top_session);
