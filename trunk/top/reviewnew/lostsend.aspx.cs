@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -24,8 +23,8 @@ public partial class top_reviewnew_lostsend : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         for (int i = 0; i < dt.Rows.Count; i++)
         {
-            try
-            {
+            //try
+            //{
                 string phone = dt.Rows[i]["mobile"].ToString();
                 string content = dt.Rows[i]["content"].ToString();
 
@@ -61,8 +60,8 @@ public partial class top_reviewnew_lostsend : System.Web.UI.Page
                     utils.ExecuteNonQuery(sql);
                 }
                 index++;
-            }
-            catch { }
+            //}
+            //catch { }
         }
 
         //插入充值记录并更新短信条数
