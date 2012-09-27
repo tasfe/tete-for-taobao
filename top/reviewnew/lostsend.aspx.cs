@@ -15,7 +15,7 @@ public partial class top_reviewnew_lostsend : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string nick = "奥美姿旗舰店";
+        string nick = "";//奥美姿旗舰店";
         string buynick = string.Empty;
         string sql = "SELECT * FROM Tmp_FailedList";
         int index = 0;
