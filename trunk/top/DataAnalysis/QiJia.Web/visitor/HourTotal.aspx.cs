@@ -23,6 +23,7 @@ public partial class HourPVTotal : BasePage
             {
                 //Response.Redirect("CreateCode.aspx");
                 Response.Write("暂时没有人访问!");
+                Response.End();
             }
             else
             {
