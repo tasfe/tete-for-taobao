@@ -65,6 +65,24 @@ public partial class top_reviewnew_lostsend : System.Web.UI.Page
             catch { }
         }
 
+        //插入充值记录并更新短信条数
+        sql = "INSERT INTO TCS_PayLog (" +
+                        "typ, " +
+                        "enddate, " +
+                        "nick, " +
+                        "count " +
+                    " ) VALUES ( " +
+                        " '短信漏发重发补偿', " +
+                        " GETDATE(), " +
+                        " '" + nick + "', " +
+                        " '" + index.ToString() + "' " +
+                  ") ";
+        utils.ExecuteNonQuery(sql);
+
+        //加短信
+        sql = "UPDATE TCS_ShopConfig SET total = total + " + index.ToString() + " WHERE nick = '" + nick + "'";
+        utils.ExecuteNonQuery(sql);
+
         Response.Write("重发成功，数量【" + index.ToString() + "】条!!");
     }
 
