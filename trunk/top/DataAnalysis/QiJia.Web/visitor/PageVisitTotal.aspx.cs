@@ -17,9 +17,11 @@ public partial class PageVisitTotal : BasePage
         {
             if (!VisitService.CheckTable(Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value))))
             {
-                Response.Redirect("CreateCode.aspx");
+                //Response.Redirect("CreateCode.aspx");
                 //Response.Write("<script>alert('抱歉,您还没有添加统计代码!');</script>");
                 //Response.End();
+                Response.Write("暂时没有人访问!");
+                Response.End();
             }
             else
             {
