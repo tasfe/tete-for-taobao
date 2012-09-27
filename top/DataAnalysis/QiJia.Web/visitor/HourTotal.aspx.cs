@@ -22,6 +22,7 @@ public partial class HourPVTotal : BasePage
             if (!VisitService.CheckTable(Encrypt(HttpUtility.UrlDecode(Request.Cookies["nick"].Value))))
             {
                 //Response.Redirect("CreateCode.aspx");
+                Response.Write("暂时没有人访问!");
             }
             else
             {
