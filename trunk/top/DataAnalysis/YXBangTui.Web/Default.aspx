@@ -45,9 +45,10 @@
                        为了更精准的找到目标客户，我公司特推出特搜索搜索引擎推广，<br />详情请查看
                        <a href="http://fuwu.taobao.com/serv/detail.htm?service_id=24224"
                                 target="_blank" title="推广" style="color:Red">特搜索推广</a></p>
-                        <p>
-                        
-                        
+                        <p />
+                        亲们，我公司于9月30日至10月7日放假调休，共8天。10月8日上班，有问题咨询请等我们上班回复，祝各位亲中秋快乐，阖家幸福!
+
+                        <P>
                             立即 <a href="/UserAddAds.aspx">推广宝贝</a>&nbsp;立即&nbsp;<a href="/AddShopAds.aspx">推广店铺</a></p>
                         <p>
                             您还可以<a href="/AddShopAds.aspx">推广淘宝以外网站</a></p>
