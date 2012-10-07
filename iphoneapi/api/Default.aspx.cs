@@ -174,7 +174,7 @@ public partial class api_Default : System.Web.UI.Page
         string str = string.Empty;
         string msgCount = string.Empty;
         string url = "https://sandbox.itunes.apple.com/verifyReceipt";
-        //url = "https://buy.itunes.apple.com/verifyReceipt";
+        url = "https://buy.itunes.apple.com/verifyReceipt";
         string result = SendPostData(url, data);
         string orderid = Regex.Match(result, @"""original_transaction_id"":""([^""]*)""").Groups[1].ToString();
         string typ = Regex.Match(result, @"""product_id"":""([^""]*)""").Groups[1].ToString();
