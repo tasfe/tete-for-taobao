@@ -15,7 +15,7 @@
     
   <div class="content">
   <div style="	width:950px;
-	margin:0 auto;
+	margin:6px auto;
 	font-family:微软雅黑;
 	color:#fff;
 	font-weight:bold;">
