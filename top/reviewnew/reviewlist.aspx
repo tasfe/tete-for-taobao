@@ -57,7 +57,7 @@
                 <td><img src='<%#getimg(Eval("result").ToString())%>' /></td>
                 <td><%#left(Eval("content").ToString())%></td>
                 <td><%#Eval("reviewdate") %></td>
-                <td><a href="http://item.tmall.com/item.htm?id=<%#Eval("itemid") %>" title='<%#Eval("sendresult") %>' target="_blank">查看宝贝</a>|
+                <td><a href="http://item.tmall.com/item.htm?id=<%#Eval("itemid") %>" title='<%#Eval("sendresult") %>.......<%#Eval("sendresultalipay") %>' target="_blank">查看宝贝</a>|
                 <a href='reviewindex.aspx?act=add&id=<%#Eval("orderid") %>'>展示该评价</a></td>
             </tr>
             </ItemTemplate>
