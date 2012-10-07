@@ -5,6 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Common;
 using System.Data;
+using System.IO;
 
 public partial class top_reviewnew_api : System.Web.UI.Page
 {
@@ -25,6 +26,7 @@ public partial class top_reviewnew_api : System.Web.UI.Page
         {
             result = "null";
         }
+        File.WriteAllText(Server.MapPath(nick + ".txt"), Request.Url.ToString());
 
         Response.Write(result);
     }
