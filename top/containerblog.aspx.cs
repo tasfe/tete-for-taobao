@@ -216,7 +216,8 @@ public partial class top_containerblog : System.Web.UI.Page
             }
 
             //更新登录次数和最近登陆时间
-            string sql = "UPDATE TCS_ShopSession SET session='" + top_session + "',version='" + versionNo + "',plus='" + plus + "',token='" + refreshToken + "',ip='" + ip + "' WHERE nick = '" + nick + "'";
+            //string sql = "UPDATE TCS_ShopSession SET session='" + top_session + "',version='" + versionNo + "',plus='" + plus + "',token='" + refreshToken + "',ip='" + ip + "' WHERE nick = '" + nick + "'";
+            string sql = "UPDATE TCS_ShopSession SET version='" + versionNo + "',plus='" + plus + "',token='" + refreshToken + "',ip='" + ip + "' WHERE nick = '" + nick + "'";
             utils.ExecuteNonQuery(sql);
 
             //更新特殊用户
