@@ -27,7 +27,7 @@ public partial class top_reviewnew_haopingshow_190_1 : System.Web.UI.Page
 
         string sql = "SELECT TOP 20 * FROM TCS_TradeRate WHERE nick = '" + nick + "' AND isshow = 1 ORDER BY showindex,reviewdate DESC";
         DataTable dt = utils.ExecuteDataTable(sql);
-
+                                            
         rptTradeRate.DataSource = dt;
         rptTradeRate.DataBind();
 
