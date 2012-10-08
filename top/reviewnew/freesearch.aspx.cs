@@ -36,7 +36,7 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
 
         if (dt.Rows.Count != 0)
         {
-            con += "<div style='margin:0 0 0 16px; padding:3px; font-size:18px;'>★ 动态评分全5分才送</div>";
+            con += "<div style='margin:0 0 0 16px; padding:3px; font-size:18px;'>★ 三项动态评分全5分</div>";
             if (dt.Rows[0]["iscancelauto"].ToString() == "1")
             {
                 con += "<div style='margin:0 0 0 16px; padding:3px; font-size:18px;'>★ 默认好评不赠送</div>";
@@ -45,7 +45,7 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
             {
                 if (dt.Rows[0]["wordcount"].ToString() != "0")
                 {
-                    con += "<div style='margin:0 0 0 16px; padding:3px; font-size:18px;'>★ 评价字数必须大于" + dt.Rows[0]["wordcount"].ToString() + "个字</div>";
+                    con += "<div style='margin:0 0 0 16px; padding:3px; font-size:18px;'>★ 评价字数≥" + dt.Rows[0]["wordcount"].ToString() + "个字</div>";
                 }
 
                 if (dt.Rows[0]["keywordisbad"].ToString() == "0")
@@ -58,7 +58,7 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
                 //con += "【" + dt.Rows[0]["keyword"].ToString() + "】</div>";
             }
 
-            con += "<div style='margin:0 0 0 16px; padding:3px; font-size:18px;'>★ 物流签收后" + dt.Rows[0]["mindate"].ToString() + "天内评价确认则赠送</div>";
+            con += "<div style='margin:0 0 0 16px; padding:3px; font-size:18px;'>★ 物流签收后" + dt.Rows[0]["mindate"].ToString() + "天内评价</div>";
 
             //优惠券
             if (dt.Rows[0]["iscoupon"].ToString() == "1")
@@ -67,7 +67,7 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
                 DataTable dt1 = utils.ExecuteDataTable(sql);
                 if (dt1.Rows.Count != 0)
                 {
-                    gift += "<div style='float:left; width:290px; padding:0px 5px; font-size:14px;'><img src='images/gift2.jpg'><br>★ 赠送优惠券【" + dt1.Rows[0]["name"].ToString() + "】满" + dt1.Rows[0]["condition"].ToString() + "元减" + dt1.Rows[0]["num"].ToString() + "元 <br>（每人限领" + dt1.Rows[0]["per"].ToString() + "张）</div>";
+                    gift += "<div style='float:left; width:290px; padding:0px 5px; font-size:14px;'><img src='images/gift2.jpg'><br>★ 赠送优惠券【" + dt1.Rows[0]["name"].ToString() + "】满" + dt1.Rows[0]["condition"].ToString() + "元减" + dt1.Rows[0]["num"].ToString() + "元 <br>（每人限领" + dt1.Rows[0]["per"].ToString() + "张）<br> 有效期：</div>";
                 }
             }
 
