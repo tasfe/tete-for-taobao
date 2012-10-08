@@ -70,7 +70,7 @@
                     <b>亲，如果您的店铺宝贝很多，请您耐心等待一会~</b>
             <hr />
 
-            好评有礼活动展示页和包邮卡客户查询链接：
+            <b style="font-size:16px;">好评有礼活动展示页和包邮卡客户查询链接：</b> <br />
             <textarea cols=50 rows=4>http://container.api.taobao.com/container?action=freecard&appkey=12690739&newnick=<%=nickencode%></textarea>
     </div>
 </div>
