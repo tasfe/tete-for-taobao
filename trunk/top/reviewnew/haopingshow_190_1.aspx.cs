@@ -22,6 +22,11 @@ public partial class top_reviewnew_haopingshow_190_1 : System.Web.UI.Page
         nickencode = HttpUtility.UrlEncode(nick);
         buynick = utils.NewRequest("buynick", utils.RequestType.QueryString);
 
+        if (nick == "美杜莎之心")
+        {
+            this.panel1.Visible = false;
+        }
+
         string sql = "SELECT TOP 20 * FROM TCS_TradeRate WHERE nick = '" + nick + "' AND isshow = 1 ORDER BY showindex,reviewdate DESC";
         DataTable dt = utils.ExecuteDataTable(sql);
 
