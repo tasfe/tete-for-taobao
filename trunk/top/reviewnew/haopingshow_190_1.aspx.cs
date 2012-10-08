@@ -24,7 +24,7 @@ public partial class top_reviewnew_haopingshow_190_1 : System.Web.UI.Page
 
         if (nick == "美杜莎之心")
         {
-            this.panel1.Visible = false;
+            this.panel1.Visible = true;
         }
 
         string sql = "SELECT TOP 20 * FROM TCS_TradeRate WHERE nick = '" + nick + "' AND isshow = 1 ORDER BY showindex,reviewdate DESC";
