@@ -1,10 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
-html {
-	overflow-y:scroll;
-	overflow-x:hidden;
-}
+
 body {
 	color:#666666;
 	font-size:12px;
