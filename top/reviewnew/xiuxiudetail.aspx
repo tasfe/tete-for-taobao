@@ -40,7 +40,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="left" height="30">是否展示广告图片：</td>
+                <td align="left" height="30">是否展示头部广告图片：</td>
                 <td>
                     <asp:DropDownList ID="ddlShow" runat="server">
                         <asp:ListItem Value="0" Text="不展示"></asp:ListItem>
@@ -50,9 +50,9 @@
             </tr>
             
             <tr>
-                <td align="left" height="30">展示广告图片：</td>
+                <td align="left" height="30">自定义广告图片地址：</td>
                 <td>
-                    <asp:TextBox ID="TextBox1" runat="server" Width="400px"></asp:TextBox> <br /> （留空则显示默认广告图片，图片高度120，宽度为您添加模块的宽度【190、550、750、950四种】）
+                    <asp:TextBox ID="TextBox1" runat="server" Width="400px"></asp:TextBox> <br /> （留空则显示默认广告图片，图片高度120，宽度为您添加模块的宽度【550、750、950三种】）
                 </td>
             </tr>
             <tr>
