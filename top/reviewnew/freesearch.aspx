@@ -93,10 +93,10 @@
 align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=<%=nickencode %>&site=cntaobao&s=1&charset=utf-8" alt="有问题请点这里" /></a>
     <br />
 </div>   
-
+<!--
 <div class="content">
   <div class="footer" id="foot"> Copyright © 2010-2012 <a href='http://fuwu.taobao.com/ser/detail.htm?service_code=service-0-22904&from=client' target="_blank">好评有礼</a> 版权所有 </div>
-</div>  
+</div>  -->
     
 </body>
 </html>
