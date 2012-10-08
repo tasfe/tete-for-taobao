@@ -27,7 +27,7 @@
         <div style="clear:both"></div>
   </div>
 </div>
-<div class="w950" style="height:700px;">
+<div class="w950" style="height:900px;">
 
         <div style="clear:both;margin:10px 0px;"></div>
 
@@ -35,7 +35,7 @@
 
 <div style="width:900px;">
         <div style="clear:both;margin:10px 0px;"></div>
-<div style="width:450px;">
+<div>
             <h1 style="ling-height:50px;"><img src='images/gift01.jpg' /></h1>
             <%=con %><br /> 
 </div>
@@ -53,9 +53,9 @@
 </div>
 
 
-        <br />
       <asp:Panel ID="Panel1" runat="server">
-      <div class="h40 f4f p5">
+         <div class="h40 f4f p5" style="margin-top:5px">
+            <h1 style="ling-height:50px;"><img src='images/gift02.jpg'/></h1>
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
                 <td width="80"><b>名称</b></td>
