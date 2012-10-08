@@ -39,6 +39,11 @@
             <h1><img src='images/gift0.jpg' width=56 align="middle" /> 本店好评有礼赠送条件：</h1>
             <%=con %><br /> 
 </div>
+</div>
+</div>
+
+
+ <div class="h40 f4f p5">
 
 <div style="width:900px; height:380px">
             <h1><img src='images/gift0.jpg' width=56 align="middle" /> 赠送礼品清单：</h1>
@@ -47,7 +52,6 @@
 <div style="clear:both"></div>
 </div>
 
-        </div>
 
         <br />
       <asp:Panel ID="Panel1" runat="server">
