@@ -67,7 +67,7 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
                 DataTable dt1 = utils.ExecuteDataTable(sql);
                 if (dt1.Rows.Count != 0)
                 {
-                    gift += "<div style='float:left; width:290px; padding:0px 5px; font-size:14px;'><img src='images/gift2.jpg'><br>★ 赠送优惠券【" + dt1.Rows[0]["name"].ToString() + "】满" + dt1.Rows[0]["condition"].ToString() + "元减" + dt1.Rows[0]["num"].ToString() + "元 <br>（每人限领" + dt1.Rows[0]["per"].ToString() + "张）<br> 有效期：</div>";
+                    gift += "<div style='float:left; width:290px; padding:0px 5px; font-size:14px;'><img src='images/gift2.jpg'><br>★ 赠送优惠券【" + dt1.Rows[0]["name"].ToString() + "】满" + dt1.Rows[0]["condition"].ToString() + "元减" + dt1.Rows[0]["num"].ToString() + "元 <br>（每人限领" + dt1.Rows[0]["per"].ToString() + "张）<br> 有效期：" + dt1.Rows[0]["endsenddate"].ToString() + "</div>";
                 }
             }
 
@@ -77,7 +77,18 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
                 DataTable dt1 = utils.ExecuteDataTable(sql);
                 if (dt1.Rows.Count != 0)
                 {
-                    gift += "<div style='float:left; width:290px; padding:0px 5px; font-size:14px;'><img src='images/gift1.jpg'><br>★ 赠送包邮卡1张" + show(dt1.Rows[0]["areaisfree"].ToString(), dt1.Rows[0]["arealist"].ToString()) + "，满" + dt1.Rows[0]["price"].ToString() + "元可用，可用次数" + show1(dt1.Rows[0]["usecount"].ToString()) + "</div>";
+                    string endstr = string.Empty;
+
+                    if (dt1.Rows[0]["carddate"].ToString() == "0")
+                    {
+                        endstr = "无限制";
+                    }
+                    else
+                    {
+                        endstr = "领取后" + dt1.Rows[0]["carddate"].ToString() + "个月内有效";
+                    }
+
+                    gift += "<div style='float:left; width:290px; padding:0px 5px; font-size:14px;'><img src='images/gift1.jpg'><br>★ 赠送包邮卡1张" + show(dt1.Rows[0]["areaisfree"].ToString(), dt1.Rows[0]["arealist"].ToString()) + "，满" + dt1.Rows[0]["price"].ToString() + "元可用，可用次数" + show1(dt1.Rows[0]["usecount"].ToString()) + " <br> 有效期：" + endstr + "</div>";
                 }
             }
 
@@ -87,7 +98,7 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
                 DataTable dt1 = utils.ExecuteDataTable(sql);
                 if (dt1.Rows.Count != 0)
                 {
-                    gift += "<div style='float:left; width:290px; padding:0px 5px; font-size:14px;'><img src='images/gift3.jpg'><br>★ 赠送价值" + dt1.Rows[0]["num"].ToString() + "元支付宝红包1张 <br> （每人限领" + dt1.Rows[0]["per"].ToString() + "张）</div>";
+                    gift += "<div style='float:left; width:290px; padding:0px 5px; font-size:14px;'><img src='images/gift3.jpg'><br>★ 赠送价值" + dt1.Rows[0]["num"].ToString() + "元支付宝红包1张 <br> （每人限领" + dt1.Rows[0]["per"].ToString() + "张） <br> 有效期：" + dt1.Rows[0]["enddate"].ToString() + "</div>";
                 }
             }
         }
