@@ -2,13 +2,6 @@
 /* CSS Document */
 
 
-body {
-	color:#666666;
-	font-size:12px;
-	margin:0;
-	background:#e2e2e2;
-	background-image:url(text.txt); /* for ie6 */background-attachment:fixed;
-}
 .content {
 	margin:0 auto;
 }
