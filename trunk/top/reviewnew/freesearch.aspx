@@ -64,9 +64,9 @@
         <tr>
                 <td width="180" height=30><b>名称</b></td>
                 <td width="140"><b>领取时间</b></td>
-                <td width="60"><b>免邮时间</b></td>
-                <td width="60"><b>使用次数</b></td>
-                <td width="80"><b>满金额可用</b></td>
+                <td width="90"><b>免邮时间</b></td>
+                <td width="90"><b>使用次数</b></td>
+                <td width="90"><b>满金额可用</b></td>
                 <td width="180"><b>地区</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
