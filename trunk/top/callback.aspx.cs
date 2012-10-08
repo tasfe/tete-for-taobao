@@ -64,13 +64,13 @@ public partial class top_callback : System.Web.UI.Page
             {
                 Response.Redirect("reviewnew/haopingshow_950_1.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&buynick=" + HttpUtility.UrlEncode(buynick) + "");
             }
-            else if (module_width == "750")
-            {
-                if (nick == "美杜莎之心")
-                {
-                    Response.Redirect("reviewnew/haopingshow_750_1.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&buynick=" + HttpUtility.UrlEncode(buynick) + "");
-                }
-            }
+            //else if (module_width == "750")
+            //{
+            //    //if (nick == "美杜莎之心")
+            //    //{
+            //        Response.Redirect("reviewnew/haopingshow_750_1.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&buynick=" + HttpUtility.UrlEncode(buynick) + "");
+            //    //}
+            //}
             else
             {
                 Response.Redirect("reviewnew/haopingshow_190_1.aspx?nick=" + HttpUtility.UrlEncode(nick) + "&buynick=" + HttpUtility.UrlEncode(buynick) + "");
