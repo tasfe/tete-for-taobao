@@ -35,7 +35,7 @@
 
 <div style="width:900px;">
         <div style="clear:both;margin:10px 0px;"></div>
-<div style="width:450px; height:170px">
+<div style="width:450px;">
             <h1>本店好评有礼赠送条件：</h1>
             <%=con %><br /> 
 </div>
