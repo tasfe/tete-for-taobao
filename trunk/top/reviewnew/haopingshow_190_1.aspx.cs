@@ -51,10 +51,10 @@ public partial class top_reviewnew_haopingshow_190_1 : System.Web.UI.Page
             ads = "http://haoping.7fshop.com/top/reviewnew/images/shopshow1.jpg";
         }
 
-        if (isshow == "1")
-        {
-            this.panel1.Visible = true;
-        }
+        //if (isshow == "1")
+        //{
+        //    this.panel1.Visible = true;
+        //}
     }
 
     public static string hidden(string str)
