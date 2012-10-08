@@ -36,7 +36,7 @@
 <div style="width:900px;">
         <div style="clear:both;margin:10px 0px;"></div>
 <div style="width:450px;">
-            <h1 style="ling-height:50px;"><img src='images/gift0.jpg' width=56 align="middle" /> 本店好评有礼赠送条件：</h1>
+            <h1 style="ling-height:50px;"><img src='images/gift01.jpg' /></h1>
             <%=con %><br /> 
 </div>
 </div>
@@ -46,7 +46,7 @@
  <div class="h40 f4f p5" style="margin-top:5px">
 
 <div style="width:900px; height:380px">
-            <h1 style="ling-height:50px;"><img src='images/gift0.jpg' width=56 align="middle" /> 赠送礼品清单：</h1>
+            <h1 style="ling-height:50px;"><img src='images/gift02.jpg'/></h1>
             <%=gift %><br clear="all" /> 
 </div>
 <div style="clear:both"></div>
