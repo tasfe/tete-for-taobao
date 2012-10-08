@@ -27,7 +27,7 @@
         <div style="clear:both"></div>
   </div>
 </div>
-<div class="w950">
+<div class="w950" style="height:700px;">
 
         <div style="clear:both;margin:10px 0px;"></div>
 
