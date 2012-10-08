@@ -57,8 +57,8 @@ public partial class top_reviewnew_xiuxiudetail : System.Web.UI.Page
             this.TextBox1.Text = dt.Rows[0]["xiuxiuads"].ToString();
         }
 
-        if (tbTitle.Text.Length == 0)
-        {
+        if (tbTitle.Text.Length == 0)       
+        {                                  
             tbTitle.Text = "好评有礼";
         }
     }
