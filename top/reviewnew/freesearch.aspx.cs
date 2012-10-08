@@ -50,10 +50,10 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
 
                 if (dt.Rows[0]["keywordisbad"].ToString() == "0")
                 {
-                    con += "<div style='margin:0 0 0 16px; padding:3px; font-size:18px;'>★ 评价内包含以下关键字则赠送：";
+                    //con += "<div style='margin:0 0 0 16px; padding:3px; font-size:18px;'>★ 评价内包含以下关键字则赠送：";
                 }
                 else {
-                    con += "<div style='margin:0 0 0 16px; padding:3px; font-size:18px;'>★ 评价内包含以下关键字则不赠送：";
+                    //con += "<div style='margin:0 0 0 16px; padding:3px; font-size:18px;'>★ 评价内包含以下关键字则不赠送：";
                 }
                 con += "【" + dt.Rows[0]["keyword"].ToString() + "】</div>";
             }
