@@ -31,7 +31,7 @@
     <div id="main-content">
             <b style="font-size:16px;">好评有礼活动展示页和包邮卡客户查询链接：</b> <br />
             <a href='http://container.api.taobao.com/container?action=freecard&appkey=12690739&newnick=<%=nickencode%>' target="_blank"><img src='images/shopshow1.jpg' width="700" border=0 /></a><br />
-            <textarea id=txt cols=70 rows=5><a href='http://container.api.taobao.com/container?action=freecard&appkey=12690739&newnick=<%=nickencode%>' target="_blank"><img src='images/shopshow1.jpg' border=0 /></a></textarea>
+            <textarea id=txt cols=70 rows=5><a href='http://container.api.taobao.com/container?action=freecard&appkey=12690739&newnick=<%=nickencode%>' target="_blank"><img src='http://haoping.7fshop.com/top/reviewnew/images/shopshow1.jpg' border=0 /></a></textarea>
             <br /> <input type="button" value="复制链接" onclick="copyToClipBoard('txt')" />
      <hr />
 
