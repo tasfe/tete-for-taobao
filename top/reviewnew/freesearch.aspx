@@ -29,7 +29,7 @@
   </div>
 </div>
 -->
-<div class="w950" style="height:900px;">
+<div class="w950">
 
         <div style="clear:both;margin:10px 0px;"></div>
 
@@ -62,7 +62,7 @@
             <h1><img src='images/gift03.jpg'/></h1>
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
-                <td width="80" height=30><b>名称</b></td>
+                <td width="180" height=30><b>名称</b></td>
                 <td width="140"><b>领取时间</b></td>
                 <td width="60"><b>免邮时间</b></td>
                 <td width="60"><b>使用次数</b></td>
