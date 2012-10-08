@@ -60,7 +60,7 @@
             <img src="images/gift04.jpg" />
       <asp:Panel ID="Panel1" runat="server">
          <div class="h40 f4f p5" style="margin-top:5px; padding:10px;">
-            <span style="font-weight:bold; font-size:14px; color:#A86C9F;">亲爱的买家，感谢您的选择与支持，以下礼品是本店对亲及时优质好评的一点心意，祝亲生活愉快~</span>
+            <span style="font-weight:bold; font-size:14px; color:#FF00FF;">亲爱的买家，感谢您的选择与支持，以下礼品是本店对亲及时优质好评的一点心意，祝亲生活愉快~</span>
     <br /><br />
             <img src="images/gift03.jpg" />
     <table width="700" cellpadding="0" cellspacing="0">
