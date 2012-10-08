@@ -236,6 +236,8 @@ public partial class top_review_kefulist : System.Web.UI.Page
 
         string giftflag = string.Empty;
         string giftcontent = string.Empty;
+        string freeflag = string.Empty;
+        string freecontent = string.Empty;
         string shopname = string.Empty;
 
         string isalipay = string.Empty;
@@ -260,6 +262,9 @@ public partial class top_review_kefulist : System.Web.UI.Page
 
             isfreecard = dt.Rows[0]["isfree"].ToString();
             freecardid = dt.Rows[0]["freeid"].ToString();
+
+            freeflag = dt.Rows[0]["freecardflag"].ToString();
+            freecontent = dt.Rows[0]["freecardcontent"].ToString();
         }
         else
         {
@@ -324,6 +329,81 @@ public partial class top_review_kefulist : System.Web.UI.Page
                     //更新包邮卡赠送数量
                     sql = "UPDATE TCS_FreeCardAction SET sendcount = sendcount + 1 WHERE guid = '" + freecardid + "'";
                     utils.ExecuteNonQuery(sql);
+
+                    
+                    //先看还有没有短信了
+                    sql = "SELECT total FROM TCS_ShopConfig WHERE nick = '" + nick + "'";
+                    string totalFree = utils.ExecuteString(sql);
+                    if (int.Parse(totalFree) > 0)
+                    {
+                        if (freeflag == "1")
+                        {
+                            //每张物流订单最多提示一次
+                            sql = "SELECT COUNT(*) FROM TCS_MsgSend WITH (NOLOCK) WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND buynick = '" + buynick + "' AND nick = '" + nick + "' AND typ = 'freecard'";
+                            string freeCount = utils.ExecuteString(sql);
+
+                            if (freeCount == "0")
+                            {
+                                //开始发送
+                                string msg = GetMsg(freecontent, shopname, buynick, iscoupon, isfree);
+
+                                //强行截取
+                                if (msg.Length > 66)
+                                {
+                                    msg = msg.Substring(0, 66);
+                                }
+
+                                //黑名单判断
+                                if (!IsBlack(nick, phone))
+                                {
+                                    string result = SendMessage(phone, msg);
+
+                                    if (result != "0")
+                                    {
+                                        string number = "1";
+
+                                        //如果内容超过70个字则算2条
+                                        if (msg.Length > 66)
+                                        {
+                                            number = "2";
+                                        }
+
+                                        //记录短信发送记录
+                                        sql = "INSERT INTO TCS_MsgSend (" +
+                                                            "nick, " +
+                                                            "buynick, " +
+                                                            "mobile, " +
+                                                            "[content], " +
+                                                            "yiweiid, " +
+                                                            "num, " +
+                                                            "typ " +
+                                                        " ) VALUES ( " +
+                                                            " '" + nick + "', " +
+                                                            " '" + buynick + "', " +
+                                                            " '" + phone + "', " +
+                                                            " '" + msg.Replace("'", "''") + "', " +
+                                                            " '" + result + "', " +
+                                                            " '" + number + "', " +
+                                                            " 'freecard' " +
+                                                        ") ";
+
+                                        if (phone.Length != 0)
+                                        {
+                                            utils.ExecuteNonQuery(sql);
+                                        }
+
+                                        //更新短信数量
+                                        sql = "UPDATE TCS_ShopConfig SET used = used + " + number + ",total = total-" + number + " WHERE nick = '" + nick + "'";
+                                        utils.ExecuteNonQuery(sql);
+                                    }
+                                    else
+                                    {
+                                        //发送失败
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
             #endregion
@@ -498,7 +578,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
         //发送短信
         if (1 == 1) //短信测试中
         {
-            if (iscoupon == "1" || isfree == "1")
+            if (iscoupon == "1")
             {
                 //判断是否开启该短信发送节点
                 if (giftflag == "1")
@@ -510,7 +590,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                     if (int.Parse(total) > 0)
                     {
                         //每张物流订单最多提示一次
-                        sql = "SELECT COUNT(*) FROM TCS_MsgSend WITH (NOLOCK) WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND  buynick = '" + buynick + "' AND typ = 'gift'";
+                        sql = "SELECT COUNT(*) FROM TCS_MsgSend WITH (NOLOCK) WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND buynick = '" + buynick + "' AND nick = '" + nick + "' AND typ = 'gift'";
                         string giftCount = utils.ExecuteString(sql);
 
                         if (giftCount == "0")
@@ -611,6 +691,8 @@ public partial class top_review_kefulist : System.Web.UI.Page
     private void Delete()
     {
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
+
+
         string send = utils.NewRequest("send", utils.RequestType.QueryString);
         string sql = string.Empty;
         string couponid = string.Empty;
@@ -634,6 +716,9 @@ public partial class top_review_kefulist : System.Web.UI.Page
 
         if (send == "1")
         {
+            ActOrder(id);
+            Response.Write("<script>alert('选中的订单【" + id + "】已成功赠送！');window.location.href='kefulist.aspx';</script>");
+            return;
             //获取优惠券信息
             sql = "SELECT * FROM TCS_ShopConfig WITH (NOLOCK) WHERE nick = '" + nick + "'";
             DataTable dt = utils.ExecuteDataTable(sql);
@@ -718,6 +803,9 @@ public partial class top_review_kefulist : System.Web.UI.Page
                         //更新包邮卡赠送数量
                         sql = "UPDATE TCS_FreeCardAction SET sendcount = sendcount + 1 WHERE guid = '" + freecardid + "'";
                         utils.ExecuteNonQuery(sql);
+
+
+                       
                     }
                 }
                 #endregion
