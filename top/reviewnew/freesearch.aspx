@@ -36,12 +36,12 @@
 <div style="width:900px;">
         <div style="clear:both;margin:10px 0px;"></div>
 <div style="width:450px;">
-            <img src='images/gift0.jpg' /><h1>本店好评有礼赠送条件：</h1>
+            <h1><img src='images/gift0.jpg' /> 本店好评有礼赠送条件：</h1>
             <%=con %><br /> 
 </div>
 
 <div style="width:900px; height:380px">
-            <img src='images/gift0.jpg' /><h1>赠送礼品清单：</h1>
+            <h1><img src='images/gift0.jpg' /> 赠送礼品清单：</h1>
             <%=gift %><br clear="all" /> 
 </div>
 <div style="clear:both"></div>
