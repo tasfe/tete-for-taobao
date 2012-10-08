@@ -9,6 +9,9 @@ body {
 	background:#e2e2e2;
 	background-image:url(text.txt); /* for ie6 */background-attachment:fixed;
 }
+
+b td{font-size:18px;}
+
 .content {
 	margin:0 auto;
 }
@@ -42,7 +45,7 @@ body {
 	padding:10px
 }
 .p5 {
-	padding:5px 5px 5px 25px;font-size:12px;
+	padding:0px 0px 0px 25px;font-size:12px;
 }
 .h100 {
 	height:100px;

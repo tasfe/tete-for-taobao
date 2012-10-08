@@ -58,7 +58,7 @@
             <h1 style="ling-height:50px;"><img src='images/gift02.jpg'/></h1>
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
-                <td width="80"><b>名称</b></td>
+                <td width="80" height=30><b>名称</b></td>
                 <td width="140"><b>领取时间</b></td>
                 <td width="60"><b>免邮时间</b></td>
                 <td width="60"><b>使用次数</b></td>
@@ -68,7 +68,7 @@
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
             <tr>
-                <td height="20"><%#Eval("name")%></td>
+                <td height="24"><%#Eval("name")%></td>
                 <td><%#Eval("startdate")%></td>
                 <td><%#Eval("carddate")%>个月</td>
                 <td><%#Eval("usecount")%>/<%#Eval("usecountlimit")%></td>
