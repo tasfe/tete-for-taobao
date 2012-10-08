@@ -60,9 +60,9 @@
             <img src="images/gift04.jpg" />
       <asp:Panel ID="Panel1" runat="server">
          <div class="h40 f4f p5" style="margin-top:5px; padding:10px;">
-            <span style="font-weight:bold; font-size:14px; color:#A86C9F;">亲爱的买家，感谢您的选择与支持，以下礼品是本店对亲及时优质好评的一点心意，祝亲生活愉快~</span> <br /> 在线客服：
+            <span style="font-weight:bold; font-size:14px; color:#A86C9F;">亲爱的买家，感谢您的选择与支持，以下礼品是本店对亲及时优质好评的一点心意，祝亲生活愉快~
             <a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid=<%=nickencode %>&site=cntaobao&s=1&charset=utf-8" ><img border="0" 
-align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=<%=nickencode %>&site=cntaobao&s=1&charset=utf-8" alt="有问题请点这里" /></a>
+align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=<%=nickencode %>&site=cntaobao&s=1&charset=utf-8" alt="有问题请点这里" /></a> </span>
     <br />
             <img src="images/gift03.jpg" />
     <table width="700" cellpadding="0" cellspacing="0">
