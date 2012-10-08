@@ -67,7 +67,7 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
                 DataTable dt1 = utils.ExecuteDataTable(sql);
                 if (dt1.Rows.Count != 0)
                 {
-                    gift += "<div style='float:left; width:300px; padding:0px 25px; font-size:14px;'><img src='images/gift1.jpg'><br>★ 赠送优惠券【" + dt1.Rows[0]["name"].ToString() + "】满" + dt1.Rows[0]["condition"].ToString() + "元减" + dt1.Rows[0]["num"].ToString() + "元 （每人限领" + dt1.Rows[0]["per"].ToString() + "张）</div>";
+                    gift += "<div style='float:left; width:300px; padding:0px 25px; font-size:14px;'><img src='images/gift1.jpg'><br>★ 赠送优惠券【" + dt1.Rows[0]["name"].ToString() + "】满" + dt1.Rows[0]["condition"].ToString() + "元减" + dt1.Rows[0]["num"].ToString() + "元 <br>（每人限领" + dt1.Rows[0]["per"].ToString() + "张）</div>";
                 }
             }
 
