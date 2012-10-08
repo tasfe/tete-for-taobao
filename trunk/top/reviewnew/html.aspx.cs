@@ -20,6 +20,7 @@ public partial class top_review_html : System.Web.UI.Page
     public string session = string.Empty;
     public string nick = string.Empty;
     public string nickencode = string.Empty;
+    public string url = string.Empty;
     public string leftimgurl = string.Empty;
     public string leftimgistop = string.Empty;
     public string leftimgname = string.Empty;
@@ -36,6 +37,7 @@ public partial class top_review_html : System.Web.UI.Page
         nick = encode.Decrypt(taobaoNick);
 
         nickencode = HttpUtility.UrlEncode(nick);
+        url = HttpUtility.UrlEncode("http://container.api.taobao.com/container?action=freecard&appkey=12690739&newnick=");
 
         //过期判断
         if (string.IsNullOrEmpty(taobaoNick))
