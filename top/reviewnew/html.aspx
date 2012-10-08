@@ -68,6 +68,10 @@
                     <asp:Button ID="Button3" runat="server" onclick="Button3_Click" Text="一键同步到宝贝描述" OnClientClick="check(this)" />
                     <asp:Button ID="Button4" runat="server" onclick="Button4_Click" Text="一键清除" OnClientClick="check(this)" /><br />
                     <b>亲，如果您的店铺宝贝很多，请您耐心等待一会~</b>
+            <hr />
+
+            好评有礼活动展示页和包邮卡客户查询链接：
+            <textarea cols=50 rows=4>http://container.api.taobao.com/container?action=freecard&appkey=12690739&newnick=<%=nickencode%></textarea>
     </div>
 </div>
 </form>
