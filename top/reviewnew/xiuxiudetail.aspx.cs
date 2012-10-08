@@ -53,6 +53,8 @@ public partial class top_reviewnew_xiuxiudetail : System.Web.UI.Page
         {
             tbTime.Text = dt.Rows[0]["xiuxiutime"].ToString();
             tbTitle.Text = dt.Rows[0]["xiuxiuname"].ToString();
+            ddlShow.SelectedValue = dt.Rows[0]["xiuxiuisshow"].ToString();
+            this.TextBox1.Text = dt.Rows[0]["xiuxiuads"].ToString();
         }
 
         if (tbTitle.Text.Length == 0)
@@ -64,7 +66,7 @@ public partial class top_reviewnew_xiuxiudetail : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        string sql = "UPDATE TCS_ShopConfig SET xiuxiutime = '" + tbTime.Text + "',xiuxiuname = '" + tbTitle.Text + "' WHERE nick = '" + nick + "'";
+        string sql = "UPDATE TCS_ShopConfig SET xiuxiutime = '" + tbTime.Text + "',xiuxiuname = '" + tbTitle.Text + "',xiuxiuisshow = '" + ddlShow.SelectedValue + "',xiuxiuads = '" + this.TextBox1.Text + "' WHERE nick = '" + nick + "'";
         utils.ExecuteNonQuery(sql);
 
         Response.Redirect("xiuxiudetail.aspx");

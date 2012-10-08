@@ -39,7 +39,22 @@
                     <asp:TextBox ID="tbTime" runat="server"></asp:TextBox> 秒
                 </td>
             </tr>
+            <tr>
+                <td align="left" height="30">是否展示广告图片：</td>
+                <td>
+                    <asp:DropDownList ID="ddlShow" runat="server">
+                        <asp:ListItem Value="0" Text="不展示"></asp:ListItem>
+                        <asp:ListItem Value="1" Text="展示"></asp:ListItem>
+                    </asp:DropDownList>
+                </td>
+            </tr>
             
+            <tr>
+                <td align="left" height="30">展示广告图片：</td>
+                <td>
+                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox> （留空则显示默认广告图片，图片高度120，宽度为您添加模块的宽度【190、550、750、950四种】）
+                </td>
+            </tr>
             <tr>
                 <td align="left" colspan="2">
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" />
