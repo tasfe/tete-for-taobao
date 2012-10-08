@@ -15,6 +15,8 @@ public partial class top_reviewnew_haopingshow_190_1 : System.Web.UI.Page
     public string buynick = string.Empty;
     public string title = string.Empty;
     public string time = string.Empty;
+    public string ads = string.Empty;
+    public string isshow = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -22,10 +24,6 @@ public partial class top_reviewnew_haopingshow_190_1 : System.Web.UI.Page
         nickencode = HttpUtility.UrlEncode(nick);
         buynick = utils.NewRequest("buynick", utils.RequestType.QueryString);
 
-        if (nick == "美杜莎之心")
-        {
-            this.panel1.Visible = true;
-        }
 
         string sql = "SELECT TOP 20 * FROM TCS_TradeRate WHERE nick = '" + nick + "' AND isshow = 1 ORDER BY showindex,reviewdate DESC";
         DataTable dt = utils.ExecuteDataTable(sql);
@@ -39,11 +37,23 @@ public partial class top_reviewnew_haopingshow_190_1 : System.Web.UI.Page
         {
             title = dt.Rows[0]["xiuxiuname"].ToString();
             time = dt.Rows[0]["xiuxiutime"].ToString();
+            ads = dt.Rows[0]["xiuxiuads"].ToString();
+            isshow = dt.Rows[0]["xiuxiuisshow"].ToString();
         }
 
         if (title.Length == 0)
         {
             title = "好评有礼";
+        }
+
+        if (ads.Length == 0)
+        {
+            ads = "http://haoping.7fshop.com/top/reviewnew/images/shopshow1.jpg";
+        }
+
+        if (isshow == "1")
+        {
+            this.panel1.Visible = true;
         }
     }
 

@@ -124,7 +124,7 @@ a:active {
 </style>
 <body style="background-color:#FFF;">
 <asp:Panel ID="panel1" runat="server" Visible="false">
-<a href="http://container.api.taobao.com/container?action=freecard&appkey=12690739&newnick=<%=nickencode %>" target="_blank"><img src="http://haoping.7fshop.com/top/reviewnew/images/shopshow1.jpg" border=0 /></a>
+<a href="http://container.api.taobao.com/container?action=freecard&appkey=12690739&newnick=<%=nickencode %>" target="_blank"><img src="<%=ads %>" border=0 /></a>
 </asp:Panel>
 <div style="position:absolute; width:100%; z-index:10;background-image: url(images/title_bar.png); margin:0px; line-height:30px; height:30px; font-size:12px; padding:0px 0px 0px 10px; font-weight:bold;"><a href="http://fuwu.taobao.com/serv/detail.htm?service_id=4545&from=shopindex" target="_blank"><%=title %></a></div>
 <div style="overflow:hidden;position:relative;border:solid 1px #E6E6E6;height:498px;">
