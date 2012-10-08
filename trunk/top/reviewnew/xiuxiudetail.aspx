@@ -52,7 +52,7 @@
             <tr>
                 <td align="left" height="30">展示广告图片：</td>
                 <td>
-                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox> （留空则显示默认广告图片，图片高度120，宽度为您添加模块的宽度【190、550、750、950四种】）
+                    <asp:TextBox ID="TextBox1" runat="server" Width="400px"></asp:TextBox> <br /> （留空则显示默认广告图片，图片高度120，宽度为您添加模块的宽度【190、550、750、950四种】）
                 </td>
             </tr>
             <tr>
