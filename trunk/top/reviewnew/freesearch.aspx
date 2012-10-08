@@ -27,7 +27,7 @@
         <div style="clear:both"></div>
   </div>
 </div>
-<div class="w950" style="height:500px;">
+<div class="w950">
 
         <div style="clear:both;margin:10px 0px;"></div>
 
@@ -40,7 +40,7 @@
             <%=con %><br /> 
 </div>
 
-<div style="width:900px; height:400px">
+<div style="width:900px; height:380px">
             <h1>赠送礼品清单：</h1>
             <%=gift %><br clear="all" /> 
 </div>
