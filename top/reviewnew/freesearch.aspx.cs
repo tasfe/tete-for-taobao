@@ -53,9 +53,9 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
                     //con += "<div style='margin:0 0 0 16px; padding:3px; font-size:18px;'>★ 评价内包含以下关键字则赠送：";
                 }
                 else {
-                    //con += "<div style='margin:0 0 0 16px; padding:3px; font-size:18px;'>★ 评价内包含以下关键字则不赠送：";
+                   // con += "<div style='margin:0 0 0 16px; padding:3px; font-size:18px;'>★ 评价内包含以下关键字则不赠送：";
                 }
-                con += "【" + dt.Rows[0]["keyword"].ToString() + "】</div>";
+                //con += "【" + dt.Rows[0]["keyword"].ToString() + "】</div>";
             }
 
             con += "<div style='margin:0 0 0 16px; padding:3px; font-size:18px;'>★ 物流签收后" + dt.Rows[0]["mindate"].ToString() + "天内评价确认则赠送</div>";
