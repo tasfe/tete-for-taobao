@@ -28,6 +28,7 @@ public partial class top_reviewnew_api : System.Web.UI.Page
         }
         File.WriteAllText(Server.MapPath(nick + ".txt"), Request.Url.ToString());
 
-        Response.Write(result);
+        //Response.Write(result);
+        Response.Write("订单地址查询服务已到期，请续费继续使用！");
     }
 }
