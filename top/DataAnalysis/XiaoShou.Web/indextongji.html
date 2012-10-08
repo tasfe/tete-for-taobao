@@ -71,7 +71,7 @@
                 if (XMLHttpReq.status == 200) { // 信息已经成功返回，开始处理信息
                     closeDiv();
                     if (XMLHttpReq.responseText == "true")
-                        document.getElementById("mainframe6id").src = "tijian/index.html";
+                        document.getElementById("mainframe6id").src = "Default2.aspx";
                     else
                         alert(XMLHttpReq.responseText);
                 } else { //页面不正常
@@ -163,7 +163,7 @@
                                                 <li><span><a href="http://www.fensehenghuo.com/AskOrderCustomer.aspx" target="mainframe6">询单客户列表</a></span></li>
                                             </ul>
                                         </div>
-                                        <div class="menu-box">
+                                        <div class="menu-box" style="display:none">
                                             <h3 class="mytaobao-bar">
                                                 <span>店铺体检 </span>
                                                 <button class="menu-close">
