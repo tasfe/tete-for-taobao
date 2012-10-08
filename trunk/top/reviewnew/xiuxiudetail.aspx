@@ -39,6 +39,7 @@
                     <asp:TextBox ID="tbTime" runat="server"></asp:TextBox> 秒
                 </td>
             </tr>
+            <!--
             <tr>
                 <td align="left" height="30">是否展示头部广告图片：</td>
                 <td>
@@ -60,6 +61,7 @@
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" />
                 </td>
             </tr>
+            -->
         </table>
     </div>
 </div>
