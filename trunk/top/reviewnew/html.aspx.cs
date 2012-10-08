@@ -19,6 +19,7 @@ public partial class top_review_html : System.Web.UI.Page
 {
     public string session = string.Empty;
     public string nick = string.Empty;
+    public string nickencode = string.Empty;
     public string leftimgurl = string.Empty;
     public string leftimgistop = string.Empty;
     public string leftimgname = string.Empty;
@@ -33,6 +34,8 @@ public partial class top_review_html : System.Web.UI.Page
         session = cookie.getCookie("top_sessiongroupbuy");
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
+
+        nickencode = HttpUtility.UrlEncode(nick);
 
         //过期判断
         if (string.IsNullOrEmpty(taobaoNick))
