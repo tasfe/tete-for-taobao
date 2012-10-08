@@ -31,7 +31,7 @@
 
         <div style="clear:both;margin:10px 0px;"></div>
 
-        <div class="h40 p5">
+        <div class="h40 f4f p5">
 
 <div style="width:900px;">
         <div style="clear:both;margin:10px 0px;"></div>
@@ -51,7 +51,7 @@
 
         <br />
       <asp:Panel ID="Panel1" runat="server">
-      <div class="h40 p5">
+      <div class="h40 f4f p5">
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
                 <td width="80"><b>名称</b></td>
