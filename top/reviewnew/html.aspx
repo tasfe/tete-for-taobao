@@ -31,8 +31,8 @@
     <div id="main-content">
             <b style="font-size:16px;">好评有礼活动展示页和包邮卡客户查询链接：</b> <br />
             <a href='http://container.api.taobao.com/container?action=freecard&appkey=12690739&newnick=<%=nickencode%>' target="_blank"><img src='images/shopshow1.jpg' width="700" border=0 /></a><br />
-            <textarea cols=70 rows=4><a href='http://container.api.taobao.com/container?action=freecard&appkey=12690739&newnick=<%=nickencode%>' target="_blank"><img src='images/shopshow1.jpg' border=0 /></a></textarea>
-   
+            <textarea id=txt cols=70 rows=5><a href='http://container.api.taobao.com/container?action=freecard&appkey=12690739&newnick=<%=nickencode%>' target="_blank"><img src='images/shopshow1.jpg' border=0 /></a></textarea>
+            <br /> <input type="button" value="复制链接" onclick="copyToClipBoard('txt')" />
      <hr />
 
             <table width="700">
@@ -90,6 +90,17 @@
 
     if ('0' == '<%=detailimgistop %>') {
         document.getElementById("detailimgistop").selectedIndex = 1;
+    }
+
+    function copyToClipBoard(id) {
+        str = document.getElementById(id).innerHTML;
+        var clipBoardContent = str;
+        if (window.clipboardData) {
+            window.clipboardData.setData("Text", clipBoardContent);
+            alert("复制成功");
+        } else {
+            alert("FireFox浏览器不支持此功能,请手动复制");
+        }
     }
 </script>
 
