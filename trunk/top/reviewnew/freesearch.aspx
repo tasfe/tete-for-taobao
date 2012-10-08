@@ -13,24 +13,27 @@
 </head>
 <body>
     
+    <!--
   <div class="content">
   <div style="	width:950px;
 	margin:6px auto;
 	font-family:微软雅黑;
 	color:#fff;
-	font-weight:bold;">
+	font-weight:bold;">-->
         <!--<div style="width:200; float:left; padding:10px;">
             <b style="color:white"><%=buynick %>，您好！</b>  <br /><br />
             <a href='http://ecrm.taobao.com/mallcoupon/got_bonus.htm' style="color:white" target="_blank">查看我的优惠券</a>
         </div>-->
-        <div style="width:950px; float:left;"><img src='images/clientbanner.jpg' width="950" /></div>
+        <!--<div style="width:950px; float:left;"><img src='images/clientbanner.jpg' width="950" /></div>
         <div style="clear:both"></div>
   </div>
 </div>
+-->
 <div class="w950" style="height:900px;">
 
         <div style="clear:both;margin:10px 0px;"></div>
 
+        <!--
         <div class="h40 f4f p5">
 
 <div style="width:900px;">
@@ -51,6 +54,7 @@
 </div>
 <div style="clear:both"></div>
 </div>
+-->
 
 
       <asp:Panel ID="Panel1" runat="server">
@@ -82,8 +86,7 @@
   </div>
       </asp:Panel>
 </div>   
-<!--
--->
+
 <div class="content">
   <div class="footer" id="foot"> Copyright © 2010-2012 <a href='http://fuwu.taobao.com/ser/detail.htm?service_code=service-0-22904&from=client' target="_blank">好评有礼</a> 版权所有 </div>
 </div>  
