@@ -55,7 +55,7 @@
 
       <asp:Panel ID="Panel1" runat="server">
          <div class="h40 f4f p5" style="margin-top:5px">
-            <h1 style="ling-height:50px;"><img src='images/gift02.jpg'/></h1>
+            <h1><img src='images/gift03.jpg'/></h1>
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
                 <td width="80" height=30><b>名称</b></td>
