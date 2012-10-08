@@ -39,6 +39,7 @@
             <h1>本店好评有礼赠送条件：</h1>
             <%=con %><br /> 
 </div>
+<br />
 <div style="float:left; width:450px; height:170px">
             <h1>赠送礼品清单：</h1>
             <%=gift %><br /> 
