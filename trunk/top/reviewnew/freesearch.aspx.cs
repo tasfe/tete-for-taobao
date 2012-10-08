@@ -10,6 +10,7 @@ using System.Text;
 public partial class top_reviewnew_freesearch : System.Web.UI.Page
 {
     public string buynick = string.Empty;
+    public string nickencode = string.Empty;
     public string con = string.Empty;
     public string gift = string.Empty;
 
@@ -18,6 +19,7 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
         string nick = utils.NewRequest("nick", utils.RequestType.QueryString);
         buynick = utils.NewRequest("buynick", utils.RequestType.QueryString);
         //StringBuilder builder = new StringBuilder();
+        nickencode = HttpUtility.UrlEncode(nick);
 
         string sql = "SELECT a.name,a.areaisfree,a.arealist,f.startdate,f.carddate,f.usecount,f.usecountlimit,f.price FROM TCS_FreeCard f INNER JOIN TCS_FreeCardAction a ON a.guid = f.cardid WHERE f.nick = '" + nick + "' AND f.buynick = '" + buynick + "' AND f.isdel=0";
 
