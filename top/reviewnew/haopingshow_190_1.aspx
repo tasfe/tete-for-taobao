@@ -118,7 +118,7 @@ a:active {
 	background-position:-71px 0;
 }
 .s_jianghu {
-	width:16px;
+	width:16px; 
 	background-position:-54px 0;
 }
 </style>
