@@ -40,7 +40,7 @@
             <%=con %><br /> 
 </div>
 
-<div style="width:900px; height:300px">
+<div style="width:900px; height:400px">
             <h1>赠送礼品清单：</h1>
             <%=gift %><br clear="all" /> 
 </div>
