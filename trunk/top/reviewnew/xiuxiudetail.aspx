@@ -56,12 +56,12 @@
                     <asp:TextBox ID="TextBox1" runat="server" Width="400px"></asp:TextBox> <br /> （留空则显示默认广告图片，图片高度120，宽度为您添加模块的宽度【550、750、950三种】）
                 </td>
             </tr>
+            -->
             <tr>
                 <td align="left" colspan="2">
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" />
                 </td>
             </tr>
-            -->
         </table>
     </div>
 </div>
