@@ -11,6 +11,7 @@ using System.Data;
 public partial class top_reviewnew_haopingshow_190_1 : System.Web.UI.Page
 {
     public string nick = string.Empty;
+    public string nickencode = string.Empty;
     public string buynick = string.Empty;
     public string title = string.Empty;
     public string time = string.Empty;
@@ -18,6 +19,7 @@ public partial class top_reviewnew_haopingshow_190_1 : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         nick = utils.NewRequest("nick", utils.RequestType.QueryString);
+        nickencode = HttpUtility.UrlEncode(nick);
         buynick = utils.NewRequest("buynick", utils.RequestType.QueryString);
 
         string sql = "SELECT TOP 20 * FROM TCS_TradeRate WHERE nick = '" + nick + "' AND isshow = 1 ORDER BY showindex,reviewdate DESC";
