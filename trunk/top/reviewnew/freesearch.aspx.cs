@@ -58,7 +58,7 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
                 con += "【" + dt.Rows[0]["keyword"].ToString() + "】</div>";
             }
 
-            con += "<div style='margin:0 0 0 16px; padding:3px;'>★ 物流签收后" + dt.Rows[0]["mindate"].ToString() + "天内评价确认则赠送</div>";
+            con += "<div style='margin:0 0 0 16px; padding:3px; font-size:14px;'>★ 物流签收后" + dt.Rows[0]["mindate"].ToString() + "天内评价确认则赠送</div>";
 
             //优惠券
             if (dt.Rows[0]["iscoupon"].ToString() == "1")
@@ -67,7 +67,7 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
                 DataTable dt1 = utils.ExecuteDataTable(sql);
                 if (dt1.Rows.Count != 0)
                 {
-                    gift += "<div style='float:left; width:290px; padding:0px 5px; font-size:14px;'><img src='images/gift2.jpg' width=56><br>★ 赠送优惠券【" + dt1.Rows[0]["name"].ToString() + "】满" + dt1.Rows[0]["condition"].ToString() + "元减" + dt1.Rows[0]["num"].ToString() + "元 <br>（每人限领" + dt1.Rows[0]["per"].ToString() + "张）</div>";
+                    gift += "<div style='float:left; width:290px; padding:0px 5px; font-size:14px;'><img src='images/gift2.jpg'><br>★ 赠送优惠券【" + dt1.Rows[0]["name"].ToString() + "】满" + dt1.Rows[0]["condition"].ToString() + "元减" + dt1.Rows[0]["num"].ToString() + "元 <br>（每人限领" + dt1.Rows[0]["per"].ToString() + "张）</div>";
                 }
             }
 
@@ -77,7 +77,7 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
                 DataTable dt1 = utils.ExecuteDataTable(sql);
                 if (dt1.Rows.Count != 0)
                 {
-                    gift += "<div style='float:left; width:290px; padding:0px 5px; font-size:14px;'><img src='images/gift1.jpg' width=56><br>★ 赠送包邮卡1张" + show(dt1.Rows[0]["areaisfree"].ToString(), dt1.Rows[0]["arealist"].ToString()) + "，满" + dt1.Rows[0]["price"].ToString() + "元可用，可用次数" + show1(dt1.Rows[0]["usecount"].ToString()) + "</div>";
+                    gift += "<div style='float:left; width:290px; padding:0px 5px; font-size:14px;'><img src='images/gift1.jpg'><br>★ 赠送包邮卡1张" + show(dt1.Rows[0]["areaisfree"].ToString(), dt1.Rows[0]["arealist"].ToString()) + "，满" + dt1.Rows[0]["price"].ToString() + "元可用，可用次数" + show1(dt1.Rows[0]["usecount"].ToString()) + "</div>";
                 }
             }
 
@@ -87,7 +87,7 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
                 DataTable dt1 = utils.ExecuteDataTable(sql);
                 if (dt1.Rows.Count != 0)
                 {
-                    gift += "<div style='float:left; width:290px; padding:0px 5px; font-size:14px;'><img src='images/gift3.jpg' width=56><br>★ 赠送价值" + dt1.Rows[0]["num"].ToString() + "元支付宝红包1张 <br> （每人限领" + dt1.Rows[0]["per"].ToString() + "张）</div>";
+                    gift += "<div style='float:left; width:290px; padding:0px 5px; font-size:14px;'><img src='images/gift3.jpg'><br>★ 赠送价值" + dt1.Rows[0]["num"].ToString() + "元支付宝红包1张 <br> （每人限领" + dt1.Rows[0]["per"].ToString() + "张）</div>";
                 }
             }
         }
