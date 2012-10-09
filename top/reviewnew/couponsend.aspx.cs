@@ -75,7 +75,7 @@ public partial class top_review_couponsend : System.Web.UI.Page
     {
 
         StringBuilder builder = new StringBuilder();
-        string sql = "SELECT s.*,c.num,c.condition,t.totalprice,c.name FROM TCS_CouponSend s LEFT JOIN TCS_Coupon c ON c.guid = s.guid LEFT JOIN TCS_Trade t ON t.orderid = s.orderid WHERE nick = '" + nick + "' ORDER BY taobaonumber DESC";
+        string sql = "SELECT s.*,c.num,c.condition,t.totalprice,c.name FROM TCS_CouponSend s LEFT JOIN TCS_Coupon c ON c.guid = s.guid LEFT JOIN TCS_Trade t ON t.orderid = s.orderid WHERE nick = '" + nick + "' ORDER BY s.taobaonumber DESC";
         DataTable dt = utils.ExecuteDataTable(sql);
         builder.Append("名称,优惠券编号,买家,优惠金额,订单号,订单金额,赠送日期");
         for (int i = 0; i < dt.Rows.Count; i++)
