@@ -38,11 +38,11 @@
     <hr />
                 <div style="width:700px; font-size:14px;">
             购买短信服务：<br />
-            短信包100条短信，剩余可累积  10元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-4:1;' target="_blank">点击购买</a><br />
-            短信包500条短信，剩余可累积(9折)  45元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-5:1;' target="_blank">点击购买</a> (现在购买立即赠送10条短信) <br />
-            短信包1000条短信，剩余可累积(85折)  85元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-6:1;' target="_blank">点击购买</a> (现在购买立即赠送30条短信) <br />
-            短信包5000条短信，剩余可累积(8折)  400元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-7:1;' target="_blank">点击购买</a>  (现在购买立即赠送200条短信) <br />
-            短信包10000条短信，剩余可累积(75折)  750元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-8:1;' target="_blank">点击购买</a>  (现在购买立即赠送500条短信) <br /><br />
+            短信包100条短信，当月剩余可累积至下月  10元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-4:1;' target="_blank">点击购买</a><br />
+            短信包500条短信，当月剩余可累积至下月(9折)  45元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-5:1;' target="_blank">点击购买</a> (现在购买立即赠送10条短信) <br />
+            短信包1000条短信，当月剩余可累积至下月(85折)  85元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-6:1;' target="_blank">点击购买</a> (现在购买立即赠送30条短信) <br />
+            短信包5000条短信，当月剩余可累积至下月(8折)  400元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-7:1;' target="_blank">点击购买</a>  (现在购买立即赠送200条短信) <br />
+            短信包10000条短信，当月剩余可累积至下月(75折)  750元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-8:1;' target="_blank">点击购买</a>  (现在购买立即赠送500条短信) <br /><br />
             <b style="color:Red; font-size:28px">购买完毕后请重新进入好评有礼服务，否则短信充值不上去，非常感谢！</b>
 
              <br> 
