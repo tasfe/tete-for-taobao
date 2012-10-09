@@ -104,6 +104,41 @@ public partial class top_reviewnew_alipay : System.Web.UI.Page
         BindData();
     }
 
+
+
+
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+        StringBuilder builder = new StringBuilder();
+        string sql = "SELECT * FROM TCS_AlipayDetail d INNER JOIN TCS_Alipay a ON a.guid = d.guid WHERE d.nick = '" + nick + "' AND buynick <> '' ORDER BY senddate DESC";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        builder.Append("红包名称,红包金额,买家,红包卡号,红包密码,订单号,赠送日期");
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            builder.Append("\r\n");
+            builder.Append(dt.Rows[i]["name"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["num"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["buynick"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["card"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["pass"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["orderid"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["senddate"].ToString());
+        }
+        //生成excel文件
+        string fileName = "tmp/" + nick + DateTime.Now.Ticks.ToString() + ".csv";
+        File.WriteAllText(Server.MapPath(fileName), builder.ToString(), Encoding.Default);
+
+        Response.Redirect(fileName);
+    }
+
+
+
     private void DeleteGroup()
     {
         //如果是基本设置里面绑定的则无法删除

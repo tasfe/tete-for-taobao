@@ -26,6 +26,7 @@
     <div id="main-content">
                 <input type="button" value="添加支付宝红包" onclick="window.location.href='alipayadd.aspx'" />
                 <input type="button" value="返回基本设置" onclick="window.location.href='setting.aspx'" />
+    <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Text="导出红包赠送记录" />
     
     <hr />
 
