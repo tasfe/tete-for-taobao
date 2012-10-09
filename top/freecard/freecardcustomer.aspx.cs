@@ -64,7 +64,7 @@ public partial class top_freecard_freecardcustomer : System.Web.UI.Page
     protected void Button3_Click(object sender, EventArgs e)
     {
         StringBuilder builder = new StringBuilder();
-        string sql = "SELECT * FROM TCS_FreeCard b INNER JOIN TCS_FreeCardAction a ON a.guid = b.guid WHERE b.nick = '" + nick + "' AND b.isdel = 0";
+        string sql = "SELECT * FROM TCS_FreeCard b INNER JOIN TCS_FreeCardAction a ON a.guid = b.cardid WHERE b.nick = '" + nick + "' AND b.isdel = 0 ORDER BY b.startdate DESC";
         DataTable dt = utils.ExecuteDataTable(sql);
         builder.Append("名称,包邮地区,包邮次数,满金额,买家,订单号,赠送日期,有效期");
         for (int i = 0; i < dt.Rows.Count; i++)
