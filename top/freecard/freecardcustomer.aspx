@@ -29,6 +29,7 @@
     <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Text="搜索" />
                 <input type="button" value="返回列表" onclick="window.location.href='freecardlist.aspx'" />
                 <input type="button" value="手动赠送" onclick="window.location.href='freecardsend.aspx'" />
+    <asp:Button ID="Button1" runat="server" onclick="Button3_Click" Text="导出包邮卡赠送记录" />
     
     <hr />
 
