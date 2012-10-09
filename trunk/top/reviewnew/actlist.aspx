@@ -27,6 +27,11 @@
     </ul>
   </div>
     <div id="main-content">
+
+<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
+    活动里面的赠送礼品可以跟基本设置里面的条件同时生效，但是每种礼品每订单最多赠送一张。
+</div>
+
                 <input type="button" value="创建新活动" onclick="window.location.href='actadd.aspx'" />
     
     <hr />
@@ -34,12 +39,12 @@
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
                 <td width="90"><b>活动名称</b></td>
-                <td width="40"><b>开始日期</b></td>
-                <td width="70"><b>结束日期</b></td>
+                <td width="80"><b>开始日期</b></td>
+                <td width="80"><b>结束日期</b></td>
                 <td width="140"><b>满足金额</b></td>
                 <td width="100"><b>指定商品</b></td>
-                <td width="60"><b>赠送礼品</b> </td>
-                <td width="40"><b>操作</b></td>
+                <td width="80"><b>赠送礼品</b> </td>
+                <td width="60"><b>操作</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
             <ItemTemplate>
