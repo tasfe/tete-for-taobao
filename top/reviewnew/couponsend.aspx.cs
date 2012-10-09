@@ -5,6 +5,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Common;
 using System.Data;
+using System.IO;
+using System.Text;
 
 public partial class top_review_couponsend : System.Web.UI.Page
 {
@@ -66,6 +68,38 @@ public partial class top_review_couponsend : System.Web.UI.Page
         }
 
         ShowSearchData(search.Text.Replace("'", "''"));
+    }
+
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+
+        StringBuilder builder = new StringBuilder();
+        string sql = "SELECT s.*,c.num,c.condition,t.totalprice,c.name FROM TCS_CouponSend s LEFT JOIN TCS_Coupon c ON c.guid = s.guid LEFT JOIN TCS_Trade t ON t.orderid = s.orderid WHERE nick = '" + nick + "' ORDER BY taobaonumber DESC";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        builder.Append("名称,优惠券编号,买家,优惠金额,订单号,订单金额,赠送日期");
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            builder.Append("\r\n");
+            builder.Append(dt.Rows[i]["name"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["taobaonumber"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["buynick"].ToString());
+            builder.Append(",");
+            builder.Append("满" + dt.Rows[i]["condition"].ToString() + "元减" + dt.Rows[i]["num"].ToString() + "元");
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["orderid"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["totalprice"].ToString());
+            builder.Append(",");
+            builder.Append(dt.Rows[i]["senddate"].ToString());
+        }
+        //生成excel文件
+        string fileName = "tmp/" + nick + DateTime.Now.Ticks.ToString() + ".csv";
+        File.WriteAllText(Server.MapPath(fileName), builder.ToString(), Encoding.Default);
+
+        Response.Redirect(fileName);
     }
 
     private void ShowSearchData(string buynick)
