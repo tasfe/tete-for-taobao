@@ -1,0 +1,6 @@
+d:\我的文档\Visual Studio 2010\Projects\TeteIosTrain\bin\Debug\TeteIosTrain.dll
+d:\我的文档\Visual Studio 2010\Projects\TeteIosTrain\bin\Debug\TeteIosTrain.pdb
+d:\我的文档\Visual Studio 2010\Projects\TeteIosTrain\obj\Debug\ResolveAssemblyReference.cache
+d:\我的文档\Visual Studio 2010\Projects\TeteIosTrain\obj\Debug\TeteIosTrain.dll
+d:\我的文档\Visual Studio 2010\Projects\TeteIosTrain\obj\Debug\TeteIosTrain.pdb
+d:\我的文档\Visual Studio 2010\Projects\TeteIosTrain\bin\Debug\Common.dll
