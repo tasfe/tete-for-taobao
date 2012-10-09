@@ -63,7 +63,7 @@ public partial class top_js_userinfoblog : System.Web.UI.Page
                     num = "10";
                     break;
                 case "2":
-                    level = "专业版客户 <a href=http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-3:1; target=_blank style=color:red;font-weight:bold>升级成VIP！</a>";
+                    level = "专业版客户";// <a href=http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-3:1; target=_blank style=color:red;font-weight:bold>升级成VIP！</a>";
                     num = "30";
                     break;
                 case "3":
