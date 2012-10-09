@@ -80,7 +80,7 @@ public partial class top_freecard_freecardcustomer : System.Web.UI.Page
             builder.Append(",");
             builder.Append(dt.Rows[i]["buynick"].ToString());
             builder.Append(",");
-            builder.Append(dt.Rows[i]["senddate"].ToString());
+            builder.Append(dt.Rows[i]["startdate"].ToString());
             builder.Append(",");
             builder.Append(dt.Rows[i]["carddate"].ToString());
         }
