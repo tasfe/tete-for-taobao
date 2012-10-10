@@ -37,7 +37,6 @@
     
     请输入买家昵称：<asp:TextBox ID="search" runat="server"></asp:TextBox>
     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="搜索" />
-    <asp:Button ID="Button3" runat="server" onclick="Button3_Click" Width="120px" Text="批量展示选中评价" />
 <input type="button" value="展示中评价" onclick="window.location.href='reviewindex.aspx'" />
     <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Width="160px" Text="导出符合赠送条件的评价" OnClientClick="return confirm('如果您的评价比较多的话，可能需要较长时间，您确定要导出吗？')" />
     
