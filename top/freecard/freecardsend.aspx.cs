@@ -235,7 +235,7 @@ public partial class top_freecard_freecardsend : System.Web.UI.Page
                 }
             }
 
-            Response.Write("<script>alert('包邮卡赠送成功！');window.location.href='freecardcustomer.aspx';</script>");
+            Response.Write("<script>alert('包邮卡赠送成功！');window.location.href='freecardsend.aspx';</script>");
             Response.End();
             return;
         }
