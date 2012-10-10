@@ -89,7 +89,7 @@ public partial class top_review_reviewlist : System.Web.UI.Page
         TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
         ItemGetRequest request = new ItemGetRequest();
         request.Fields = "title,price,pic_url";
-        request.NumIid = long.Parse(itemid);
+        request.NumIid = (long)itemid;
         Item product = client.ItemGet(request, session);
 
         //获取最近30天商品售出数量
