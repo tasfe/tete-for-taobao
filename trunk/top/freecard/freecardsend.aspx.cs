@@ -153,6 +153,9 @@ public partial class top_freecard_freecardsend : System.Web.UI.Page
                 }
                 else
                 {
+
+                    Response.Write("<script>alert('包邮卡赠送成功！');window.location.href='freecardsend.aspx';</script>");
+                    Response.End();
                     return;
                 }
                 //判断是否开启该短信发送节点
@@ -170,6 +173,8 @@ public partial class top_freecard_freecardsend : System.Web.UI.Page
                     }
                     else
                     {
+                        Response.Write("<script>alert('包邮卡赠送成功！');window.location.href='freecardsend.aspx';</script>");
+                        Response.End();
                         return;
                     }
 
