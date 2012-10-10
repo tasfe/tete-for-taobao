@@ -163,6 +163,17 @@ public partial class top_review_html : System.Web.UI.Page
         return path;
     }
 
+
+    protected void Button13_Click(object sender, EventArgs e)
+    {
+        UploadImg();
+
+
+        Response.Write("<script>alert('重新上传图片成功！');window.location.href='html.aspx';</script>");
+        Response.End();
+        return;
+    }
+
     /// <summary>
     /// 增加活动图片到店铺分类
     /// </summary>
