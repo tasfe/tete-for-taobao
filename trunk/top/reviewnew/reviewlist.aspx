@@ -42,7 +42,10 @@
     <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Width="160px" Text="导出符合赠送条件的评价" OnClientClick="return confirm('如果您的评价比较多的话，可能需要较长时间，您确定要导出吗？')" />
     
     <hr />
-
+    <div style="margin-bottom:10px;">
+        <input type="checkbox" onclick="selectAll()" />
+        <input type="button" value="批量展示选中评价" onclick="setOK()" />
+    </div>
     <table width="720" cellpadding="0" cellspacing="0">
         <tr>
                 <td width="120"><b>评价人</b></td>
@@ -55,7 +58,7 @@
             <ItemTemplate>
             <tr>
                 <td height="30">
-                <input type="checkbox" id="ids" value='<%#Eval("orderid") %>' />
+                <input type="checkbox" id="id" value='<%#Eval("orderid") %>' />
                 <%#Eval("buynick") %></td>
                 <td><img src='<%#getimg(Eval("result").ToString())%>' /></td>
                 <td><%#left(Eval("content").ToString())%></td>
@@ -66,12 +69,36 @@
             </ItemTemplate>
         </asp:Repeater>
     </table>
-
+    
+    <div style="margin-bottom:10px;">
+        <input type="checkbox" onclick="selectAll()" />
+        <input type="button" value="批量展示选中评价" onclick="setOK()" />
+    </div>
     <div>
         <asp:Label ID="lbPage" runat="server"></asp:Label>
     </div>
     </div>
 </div>
+
+
+<script language="javascript" type="text/javascript">
+    function setOK() {
+        document.getElementById("t").value = "ok";
+        document.getElementById("form1").submit();
+    }
+
+    function selectAll() {
+        var ids = document.getElementsByName("id");
+        for (i = 0; i < ids.length; i++) {
+            if (ids[i].checked == true) {
+                ids[i].checked = false;
+            } else {
+                ids[i].checked = true;
+            }
+        }
+    }
+</script>
+
 </form>
 
 </body>
