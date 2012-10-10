@@ -31,7 +31,7 @@
     <div id="main-content">
 
 <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
-    这里的图片将传到您的淘宝图片空间内，请不要自行删除导致功能无法正常使用，如果误删导致图片不显示请
+    这里的图片将传到您的淘宝图片空间内，请不要自行删除导致功能无法正常使用<br /> 如果误删导致图片不显示请
     <asp:Button ID="Button2" runat="server" onclick="Button13_Click" Text="重新上传图片到图片空间" OnClientClick="return confirm('非图片误删问题请不要使用此功能!')" />并重新同步图片。
 </div>
 
