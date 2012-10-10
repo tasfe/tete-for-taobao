@@ -321,6 +321,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                     string enddate = DateTime.Now.ToString();
                     string usecountlimit = dt.Rows[0]["usecount"].ToString();
                     string carddate = dt.Rows[0]["carddate"].ToString();
+                    string cardname = dt.Rows[0]["name"].ToString();
 
                     //赠送包邮卡
                     sql = "INSERT INTO TCS_FreeCard (nick,buynick,cardid,startdate,enddate,carddate,usecountlimit) VALUES ('" + nick + "', '" + buynick + "','" + freecardid + "','" + startdate + "','" + enddate + "','" + carddate + "','" + usecountlimit + "')";
@@ -1098,6 +1099,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
             giftstr += "精美礼品";
         }
 
+        giftcontent = giftcontent.Replace("[freecard]", shopname);
         giftcontent = giftcontent.Replace("[shopname]", shopname);
         giftcontent = giftcontent.Replace("[buynick]", buynick);
         giftcontent = giftcontent.Replace("[gift]", giftstr);//.Replace("[buynick]", buynick);
