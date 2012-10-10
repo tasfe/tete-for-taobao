@@ -65,8 +65,8 @@
                 <td align="left" height="30">选择赠送的支付宝红包：</td>
                 <td>
                     <%=couponstr%>
-                    <a href="../reviewnew/couponadd.aspx">创建支付宝红包</a>
-                    <a href="../reviewnew/couponsend.aspx">查看支付宝红包赠送记录</a>
+                    <a href="../reviewnew/alipayadd.aspx">创建支付宝红包</a>
+                    <a href="../reviewnew/alipay.aspx">查看支付宝红包赠送记录</a>
                 </td>
             </tr>
             <tr>
