@@ -89,9 +89,7 @@ public partial class top_review_reviewlist : System.Web.UI.Page
         TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
         ItemGetRequest request = new ItemGetRequest();
         request.Fields = "title,price,pic_url";
-        Response.Write(itemid);
-        Response.End();
-        return;
+
         request.NumIid = long.Parse(itemid);
         Item product = client.ItemGet(request, session);
 
