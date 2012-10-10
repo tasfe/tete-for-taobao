@@ -7,6 +7,9 @@ using Common;
 using System.Data;
 using System.Text;
 using System.IO;
+using Taobao.Top.Api;
+using Taobao.Top.Api.Domain;
+using Taobao.Top.Api.Request;
 
 public partial class top_review_reviewlist : System.Web.UI.Page
 {
@@ -45,13 +48,82 @@ public partial class top_review_reviewlist : System.Web.UI.Page
             }
         }
 
-        BindData();
+        if (!IsPostBack)
+        {
+            BindData();
+        }
+
+        string t = utils.NewRequest("t", utils.RequestType.Form);
+        string ids = utils.NewRequest("id", utils.RequestType.Form);
+
+        if (t == "ok")
+        {
+            string[] idsArray = ids.Split(',');
+            for (int i = 0; i < idsArray.Length; i++)
+            {
+                try
+                {
+                    UpdateReview(idsArray[i]);
+                }
+                catch { }
+            }
+
+            Response.Write("<script>alert('设置成功!');history.go(-1);</script>");
+            Response.End();
+            return;
+        }
     }
 
+    /// <summary>
+    /// 更新展示评价
+    /// </summary>
+    private void UpdateReview(string id)
+    {
+        //根据商品ID获取商品详细信息
+        string sql = "SELECT itemid FROM TCS_TradeRate WHERE orderid = '" + id + "' AND nick = '" + nick + "'";
+        string itemid = utils.ExecuteString(sql);
 
-    protected void Button3_Click(object sender, EventArgs e)
-    { 
-    
+        //发送请求获取
+        string appkey = "12159997";
+        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+        TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
+        ItemGetRequest request = new ItemGetRequest();
+        request.Fields = "title,price,pic_url";
+        request.NumIid = long.Parse(itemid);
+        Item product = client.ItemGet(request, session);
+
+        //获取最近30天商品售出数量
+        sql = "SELECT COUNT(*) FROM TCS_TradeRate WHERE itemid = '" + itemid + "'";
+        string sale = utils.ExecuteString(sql);
+
+        //获取优惠券赠送信息
+        sql = "SELECT * FROM TCS_Coupon WHERE guid = (SELECT couponid FROM TCS_ShopConfig WHERE nick = '" + nick + "')";
+        string showcontent = string.Empty;
+
+        try
+        {
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                showcontent = "恭喜该用户获得本店送出的满" + dt.Rows[0]["condition"].ToString() + "减" + dt.Rows[0]["num"].ToString() + "元的优惠券！";
+            }
+        }
+        catch
+        {
+
+        }
+
+        //获取用户等级
+        sql = "SELECT buynick FROM TCS_TradeRate WHERE orderid = '" + id + "' AND nick = '" + nick + "'";
+        string buynick = utils.ExecuteString(sql);
+
+        sql = "SELECT buyerlevel FROM TCS_Customer WHERE buynick = '" + buynick + "'";
+        string userlevel = utils.ExecuteString(sql);
+
+        sql = "UPDATE TCS_TradeRate SET isshow = 1,itemname='" + product.Title + "',itemsrc='" + product.PicUrl + "',price='" + product.Price + "',sale='" + sale + "',showcontent = '" + showcontent + "',userlevel='" + userlevel + "',showindex=100 WHERE orderid = '" + id + "' AND nick = '" + nick + "'";
+        //Response.Write(sql);
+
+        utils.ExecuteNonQuery(sql);
     }
 
 
