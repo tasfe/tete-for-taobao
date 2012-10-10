@@ -346,7 +346,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                             if (freeCount == "0")
                             {
                                 //开始发送
-                                string msg = GetMsg(freecontent, shopname, buynick, iscoupon, isfree);
+                                string msg = GetMsgFree(freecontent, shopname, buynick, cardname);
 
                                 //强行截取
                                 if (msg.Length > 66)
@@ -682,6 +682,15 @@ public partial class top_review_kefulist : System.Web.UI.Page
         //更新订单状态-不需要审核
         sql = "UPDATE TCS_TradeRateCheck SET issend = 1,ischeck = 1,checkdate = GETDATE() WHERE orderid = '" + id + "'";
         utils.ExecuteNonQuery(sql);
+    }
+
+    private string GetMsgFree(string giftcontent, string shopname, string buynick, string cardname)
+    {
+        giftcontent = giftcontent.Replace("[freecard]", cardname);
+        giftcontent = giftcontent.Replace("[shopname]", shopname);
+        giftcontent = giftcontent.Replace("[buynick]", buynick);
+
+        return giftcontent;
     }
 
 
