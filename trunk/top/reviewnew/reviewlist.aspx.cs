@@ -61,11 +61,11 @@ public partial class top_review_reviewlist : System.Web.UI.Page
             string[] idsArray = ids.Split(',');
             for (int i = 0; i < idsArray.Length; i++)
             {
-                try
-                {
+                //try
+                //{
                     UpdateReview(idsArray[i]);
-                }
-                catch { }
+                //}
+                //catch { }
             }
 
             Response.Write("<script>alert('设置成功!');history.go(-1);</script>");
