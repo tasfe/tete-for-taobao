@@ -57,7 +57,7 @@
             <ItemTemplate>
             <tr>
                 <td height="30">
-                <input type="checkbox" id="id" value='<%#Eval("orderid") %>' />
+                <input type="checkbox" name="id" id="id" value='<%#Eval("orderid") %>' />
                 <%#Eval("buynick") %></td>
                 <td><img src='<%#getimg(Eval("result").ToString())%>' /></td>
                 <td><%#left(Eval("content").ToString())%></td>
