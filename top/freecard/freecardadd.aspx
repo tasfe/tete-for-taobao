@@ -49,7 +49,7 @@
             <tr>
                 <td align="left" height="30">满多少金额可用：</td>
                 <td>
-                    满<input name="price" type="text" value="0" size="6" />元可用 （写0则为不限制）
+                    满<input name="price" type="text" value="0" size="6" />元可用 <b style='color:red'>（写0则为不限制）</b>
                 </td>
             </tr>
             <tr>
