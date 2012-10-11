@@ -38,18 +38,36 @@
     <hr />
                 <div style="width:700px; font-size:14px;">
             购买短信服务：<br />
-            短信包 &nbsp;100条短信，当月剩余可累积至下月  10元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-4:1;' target="_blank">点击购买</a><br />
-            短信包 &nbsp;510条短信，当月剩余可累积至下月  45元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-5:1;' target="_blank">点击购买</a> <br />
-            短信包 1030条短信，当月剩余可累积至下月 85元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-6:1;' target="_blank">点击购买</a> <br />
-            短信包 5200条短信，当月剩余可累积至下月 400元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-7:1;' target="_blank">点击购买</a>   <br />
+
+            <table>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+
+            短信包100条短信，当月剩余可累积至下月  10元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-4:1;' target="_blank">点击购买</a><br />
+            短信包510条短信，当月剩余可累积至下月  45元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-5:1;' target="_blank">点击购买</a> <br />
+            短信包1030条短信，当月剩余可累积至下月 85元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-6:1;' target="_blank">点击购买</a> <br />
+            短信包5200条短信，当月剩余可累积至下月 400元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-7:1;' target="_blank">点击购买</a>   <br />
             短信包10500条短信，当月剩余可累积至下月  750元  <a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-8:1;' target="_blank">点击购买</a>  <br /><br />
-            <b style="color:Red; font-size:28px">温馨提醒：短信购买完毕后请重新进入好评有礼服务，否则短信充值不上去，非常感谢！ </b>
+            
+            <p>
+	<strong><font color="#ff0000" size="6">温馨提醒：</font></strong></p>
+<p>
+	<strong><font color="#ff0000" size="6"><span style="font-size: 18px">短信购买完毕后请重新进入好评有礼服务，否则短信充值不上去，非常感谢！</span> </font><br />
+	<br />
+	<span style="color: #f00">赠送的短信和购买的短信都无时间限制，在好评有礼软件到期前使用完即可。</span></strong></p>
+<p>
+	<strong><span style="color: #f00">如若软件到期，还有剩余短信，我们也会帮亲保存，您续订软件后即可使用~ </span><span style="color: #f00"></span></strong><br />
+	&nbsp;</p>
+            
+            <!--<b style="color:Red; font-size:28px">温馨提醒：</b><b style="color:Red; font-size:22px">短信购买完毕后请重新进入好评有礼服务，否则短信充值不上去，非常感谢！ </b>
             
              <br> 
              <br> 
-              <b style="color:Red; font-size:28px">
+              <b style="color:Red; font-size:24px">
              赠送的短信和购买的短信都无时间限制，在好评有礼软件到期前使用完即可。如若软件到期，还有剩余短信，我们也会帮亲保存，您续订软件后即可使用~
-             </b>
+             </b>-->
              <br />
         <br> 
         <br> 
