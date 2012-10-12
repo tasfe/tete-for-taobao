@@ -50,13 +50,26 @@
             </tr>
             <tr>
                 <td align="left" colspan="2">
-                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="赠送优惠券给买家" />
+                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="赠送优惠券给买家" OnClick="return hidden(this)" />
                 </td>
             </tr>
         </table>
 
     </div>
 </div>
+
+<script language="javascript">
+    var isclick = false;
+
+    function hidden(obj) {
+        if (isclick) {
+            return false;
+        } else {
+            this.value = '赠送中，请不要重复点击！';
+            isclick = true;
+        }
+    }
+</script>
 </form>
 
 </body>
