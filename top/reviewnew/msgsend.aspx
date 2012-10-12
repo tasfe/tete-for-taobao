@@ -50,7 +50,7 @@
             </tr>
             <tr>
                 <td align="left" colspan="2">
-                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="赠送优惠券给买家" OnClick="return hidden(this)" />
+                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="赠送优惠券给买家" OnClientClick="return hidden(this)" />
                 </td>
             </tr>
         </table>
