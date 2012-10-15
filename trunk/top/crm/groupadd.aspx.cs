@@ -14,6 +14,9 @@ public partial class top_crm_groupadd : System.Web.UI.Page
     public string now = string.Empty;
     public string totalcustomer = string.Empty;
 
+    public string startdatejs = string.Empty;
+    public string enddatejs = string.Empty;
+
     public string startdate = string.Empty;
     public string enddate = string.Empty;
 
@@ -27,8 +30,11 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
-        startdate = DateTime.Now.AddMonths(-3).ToString("MM/dd/yyyy");
-        enddate = DateTime.Now.ToString("MM/dd/yyyy");
+        startdatejs = DateTime.Now.AddMonths(-12).ToString("MM/dd/yyyy");
+        enddatejs = DateTime.Now.ToString("MM/dd/yyyy");
+
+        startdate = DateTime.Now.AddMonths(-12).ToShortDateString();
+        enddate = DateTime.Now.ToShortDateString();
 
         DateTime start = DateTime.Now.AddMonths(-3);
         DateTime end = DateTime.Now;

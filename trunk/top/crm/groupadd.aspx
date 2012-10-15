@@ -10,8 +10,8 @@
     <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
     <script type="text/javascript" src="js/cal.js"></script>
     <script type="text/javascript">
-        var startdatestr = '<%=startdate %>';
-        var enddatestr = '<%=enddate %>';
+        var startdatestr = '<%=startdatejs %>';
+        var enddatestr = '<%=enddatejs %>';
 
         jQuery(document).ready(function () {
             $('input#actdate').simpleDatepicker({ chosendate: startdatestr, startdate: startdatestr, enddate: enddatestr });
