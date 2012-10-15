@@ -51,6 +51,9 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         string name = utils.NewRequest("name", utils.RequestType.Form);
         string price = utils.NewRequest("price", utils.RequestType.Form);
         string priceend = utils.NewRequest("priceend", utils.RequestType.Form);
+        string actdate = utils.NewRequest("actdate", utils.RequestType.Form);
+        string actdateend = utils.NewRequest("actdateend", utils.RequestType.Form);
+        string area = utils.NewRequest("area", utils.RequestType.Form);
         string id = Guid.NewGuid().ToString();
         string str = string.Empty;
 
@@ -63,7 +66,7 @@ public partial class top_crm_groupadd : System.Web.UI.Page
             return;
         }
 
-        sql = "INSERT INTO TCS_Group (guid,name,nick,price,priceend) VALUES ('" + id + "','" + name + "','" + nick + "','" + price + "','" + priceend + "')";
+        sql = "INSERT INTO TCS_Group (guid,name,nick,price,priceend,arealist,actdate,actdateend) VALUES ('" + id + "','" + name + "','" + nick + "','" + price + "','" + priceend + "','" + area + "','" + actdate + "','" + actdateend + "')";
         utils.ExecuteNonQuery(sql);
 
         ////获取符合条件的会员并更新会员分组ID
