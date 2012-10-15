@@ -30,6 +30,7 @@
   </div>
 </div>
 -->
+<asp:Panel ID="p1" runat="server" Visible="false">
 <div class="w950">
 
         <div style="clear:both;margin:10px 0px;"></div>
@@ -94,6 +95,7 @@
 align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=<%=nickencode %>&site=cntaobao&s=1&charset=utf-8" alt="有问题请点这里" /></a>
     <br />
 </div>   
+</asp:Panel>
 <!--
 <div class="content">
   <div class="footer" id="foot"> Copyright © 2010-2012 <a href='http://fuwu.taobao.com/ser/detail.htm?service_code=service-0-22904&from=client' target="_blank">好评有礼</a> 版权所有 </div>
@@ -103,6 +105,7 @@ align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=<%=nickencod
 
 TOP.ui("authbtn", {
     container: '.top-authbtn-container',
+    name: '点击查询包邮卡情况',
     type: 'mini',
     callback: function (data) { alert(JSON.stringify(data)); }
 }); 
