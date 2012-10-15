@@ -97,7 +97,7 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         {
             left += ",priceend";
             right += ",'" + priceend + "'";
-            condition += " AND tradeamount <= '" + price + "'";
+            condition += " AND tradeamount <= '" + priceend + "'";
         }
 
         left += ",arealist";
