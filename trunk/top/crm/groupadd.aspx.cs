@@ -27,8 +27,8 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
-        startdate = DateTime.Now.AddMonths(-3).ToString();
-        enddate = DateTime.Now.ToString();
+        startdate = DateTime.Now.AddMonths(-3).ToShortDateString();
+        enddate = DateTime.Now.ToShortDateString();
 
 
         //过期判断
