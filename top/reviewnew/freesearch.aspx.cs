@@ -6,6 +6,7 @@ using System.Web.UI.WebControls;
 using Common;
 using System.Data;
 using System.Text;
+using System.Text.RegularExpressions;
 
 public partial class top_reviewnew_freesearch : System.Web.UI.Page
 {
@@ -25,6 +26,8 @@ public partial class top_reviewnew_freesearch : System.Web.UI.Page
         {
             p1.Visible = true;
             p2.Visible = false;
+
+            buynick = Regex.Match(buynick, @"""result"":{""taobao_user_nick"":""([^""]*)""").Groups[1].ToString();
         }
         else
         {
