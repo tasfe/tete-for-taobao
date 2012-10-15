@@ -57,6 +57,9 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         string id = Guid.NewGuid().ToString();
         string str = string.Empty;
 
+        string left = string.Empty;
+        string right = string.Empty;
+
         string sql = "SELECT COUNT(*) FROM TCS_Group WHERE nick = '" + nick + "' AND price = '" + price + "' AND isdel = 0";
         string count = utils.ExecuteString(sql);
         if (count != "0")
@@ -66,7 +69,34 @@ public partial class top_crm_groupadd : System.Web.UI.Page
             return;
         }
 
-        sql = "INSERT INTO TCS_Group (guid,name,nick,price,priceend,arealist,actdate,actdateend) VALUES ('" + id + "','" + name + "','" + nick + "','" + price + "','" + priceend + "','" + area + "','" + actdate + "','" + actdateend + "')";
+        left = "guid,name,nick";
+        right = "'" + id + "','" + name + "','" + nick + "'";
+        if (price.Length == 0)
+        {
+            left += ",price";
+            right += ",'" + price + "'";
+        }
+        if (priceend.Length == 0)
+        {
+            left += ",priceend";
+            right += ",'" + priceend + "'";
+        }
+
+        left += ",arealist";
+        right += ",'" + area + "'";
+
+        if (actdate.Length == 0)
+        {
+            left += ",priceend";
+            right += ",'" + actdate + "'";
+        }
+        if (actdateend.Length == 0)
+        {
+            left += ",priceend";
+            right += ",'" + actdateend + "'";
+        }
+
+        sql = "INSERT INTO TCS_Group (" + left + ") VALUES (" + right + ")";
         Response.Write(sql);
         utils.ExecuteNonQuery(sql);
 
@@ -78,7 +108,7 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         //sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TS_Customer WHERE guid = '" + id + "')";
         //utils.ExecuteNonQuery(sql);
 
-        Response.Redirect("grouplist.aspx");
+        //Response.Redirect("grouplist.aspx");
     }
 
     /// <summary>
