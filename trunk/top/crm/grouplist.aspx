@@ -27,7 +27,6 @@
     <div id="main-content">
     
         <input type="button" value="添加分组" onclick="window.location.href='groupadd.aspx'" />
-        <input type="button" value="更新会员" onclick="window.location.href='grouplist.aspx?act=update'" />
 
         <hr />
 
