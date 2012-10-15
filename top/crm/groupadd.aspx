@@ -13,7 +13,7 @@
 
         jQuery(document).ready(function () {
             $('input#actdate').simpleDatepicker({ chosendate: startdatestr, startdate: startdatestr, enddate: enddatestr });
-            $('input#actdateend').simpleDatepicker({ chosendate: todatestr, startdate: todatestr, enddate: enddatestr });
+            $('input#actdateend').simpleDatepicker({ chosendate: enddatestr, startdate: startdatestr, enddate: enddatestr });
         });
     </script>
     <style>
@@ -101,7 +101,7 @@
             <tr>
                 <td align="left" width="120">成交时间：</td>
                 <td>
-                    <input name="actdate" id="actdate" type="text" value="" size="16" />  - <input name="actdateend" id="actdateend" type="text" value="" size="16" />
+                    <input name="actdate" id="actdate" type="text" value="<%=startdate %>" size="16" />  - <input name="actdateend" id="actdateend" type="text" value="<%=enddate %>" size="16" />
                 </td>
             </tr>
             <tr>
