@@ -98,17 +98,13 @@ align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=<%=nickencod
 <div class="content">
   <div class="footer" id="foot"> Copyright © 2010-2012 <a href='http://fuwu.taobao.com/ser/detail.htm?service_code=service-0-22904&from=client' target="_blank">好评有礼</a> 版权所有 </div>
 </div>  -->
-<script> 
+<script language="javascript">
+ 
 TOP.ui("authbtn", { 
-
      container: '.top-authbtn-container', 
-
      name:'默认是【立即使用】', 
-
-     type:'mini' 
-
+     type:'mini', 
      callback: function(data){ alert(JSON.stringify(data)); } 
-
 } 
 
 </script>
