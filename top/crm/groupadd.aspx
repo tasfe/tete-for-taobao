@@ -49,9 +49,6 @@
             <tr>
                 <td align="left" height="30">地区限制：</td>
                 <td width="500">
-                    <input name="areaisfree" type="radio" value="0" checked />选中地区不包邮
-                    <input name="areaisfree" type="radio" value="1" />只有选中地区包邮 <br />
-
                     <input type=checkbox name=area value="安徽">安徽
           	        <input type=checkbox name=area value="北京">北京
                     <input type=checkbox name=area value="重庆">重庆
