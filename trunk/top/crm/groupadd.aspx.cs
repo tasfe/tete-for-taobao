@@ -119,19 +119,22 @@ public partial class top_crm_groupadd : System.Web.UI.Page
 
         sql = "INSERT INTO TCS_Group (" + left + ") VALUES (" + right + ")";
         Response.Write(sql);
+        Response.Write("<br>");
         utils.ExecuteNonQuery(sql);
 
         //获取符合条件的会员并更新会员分组ID
         sql = "UPDATE TCS_Customer SET groupguid = '" + id + "' WHERE nick = '" + nick + "' " + condition;
         Response.Write(sql);
+        Response.Write("<br>");
         utils.ExecuteNonQuery(sql);
 
         //获取总数并更新
         sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TCS_Customer WHERE guid = '" + id + "') WHERE guid = '" + id + "'";
         Response.Write(sql);
+        Response.Write("<br>");
         utils.ExecuteNonQuery(sql);
 
-        Response.Redirect("grouplist.aspx");
+        //Response.Redirect("grouplist.aspx");
     }
 
     /// <summary>
