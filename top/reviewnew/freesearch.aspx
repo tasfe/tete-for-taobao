@@ -7,7 +7,6 @@
     <title>好评有礼</title>
     <link rel="stylesheet" href="images/show.css" />
     <script src="js/jquery-1.5.2.min.js"></script>
-<script src="http://a.tbcdn.cn/apps/top/x/sdk.js?appkey=12690739"></script>
     <style>
     .other_coupon {padding-left:10px;}
     .other_coupon img{border:0;}
@@ -99,7 +98,8 @@ align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=<%=nickencod
 <div class="content">
   <div class="footer" id="foot"> Copyright © 2010-2012 <a href='http://fuwu.taobao.com/ser/detail.htm?service_code=service-0-22904&from=client' target="_blank">好评有礼</a> 版权所有 </div>
 </div>  -->
-<script language="javascript">
+<script src="http://a.tbcdn.cn/apps/top/x/sdk.js?appkey=12690739"></script>
+<script type="text/javascript" language="javascript">
  
 TOP.ui("authbtn", { 
      container: '.top-authbtn-container', 
@@ -108,7 +108,6 @@ TOP.ui("authbtn", {
      callback: function(data){ alert(JSON.stringify(data)); } 
 } 
 
-alert(111);
 </script>
 </body>
 </html>
