@@ -30,6 +30,12 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         startdate = DateTime.Now.AddMonths(-3).ToString("MM/dd/yyyy");
         enddate = DateTime.Now.ToString("MM/dd/yyyy");
 
+        DateTime start = DateTime.Now.AddMonths(-3);
+        DateTime end = DateTime.Now;
+
+        startdate = start.Month.ToString() + "/" + start.Day.ToString() + "/" + start.Year.ToString();
+        enddate = end.Month.ToString() + "/" + end.Day.ToString() + "/" + end.Year.ToString();
+
 
         //过期判断
         if (string.IsNullOrEmpty(taobaoNick))
