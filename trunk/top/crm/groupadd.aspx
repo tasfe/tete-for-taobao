@@ -43,7 +43,7 @@
             <tr>
                 <td align="left" width="120">满足金额：</td>
                 <td>
-                    <input name="price" type="text" value="0" size="4" />  - <input name="priceend" type="text" value="" size="4" /> 元
+                    <input name="price" type="text" value="" size="4" />  - <input name="priceend" type="text" value="" size="4" /> 元  (不填写则为不限制)
                 </td>
             </tr>
             <tr>
