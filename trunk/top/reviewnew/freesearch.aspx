@@ -6,13 +6,14 @@
 <head runat="server">
     <title>好评有礼</title>
     <link rel="stylesheet" href="images/show.css" />
+    <script src="http://a.tbcdn.cn/apps/top/x/sdk.js?appkey=12690739"></script>
     <style>
     .other_coupon {padding-left:10px;}
     .other_coupon img{border:0;}
     </style>  
 </head>
 <body>
-    
+     <div class="top-authbtn-container"></div>
     <!--
   <div class="content">
   <div style="	width:950px;
@@ -97,6 +98,19 @@ align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=<%=nickencod
 <div class="content">
   <div class="footer" id="foot"> Copyright © 2010-2012 <a href='http://fuwu.taobao.com/ser/detail.htm?service_code=service-0-22904&from=client' target="_blank">好评有礼</a> 版权所有 </div>
 </div>  -->
-    
+<script> 
+TOP.ui("authbtn", { 
+
+     container: '.top-authbtn-container', 
+
+     name:'默认是【立即使用】', 
+
+     type:'mini' 
+
+     callback: function(data){ alert(JSON.stringify(data)); } 
+
+} 
+
+</script>
 </body>
 </html>
