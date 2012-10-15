@@ -96,7 +96,7 @@
             </tr>
             <tr id="Area3">
                 <td align="left" width="250">
-                    <textarea name="reviewcontent" cols="40" rows="3"><%=reviewcontent%></textarea>  
+                    <textarea name="reviewcontent" id="reviewcontent" cols="40" rows="3"><%=reviewcontent%></textarea>  
                     <input type="button" value="短信预览" onclick="yulanMsg('reviewcontent')" /><br />
                     短信自动发送时间
                     <select name="reviewtime" id="reviewtime">
@@ -223,7 +223,7 @@
 
         if(msg.length > 64){
             showMsg = "本条短信共计个"+msg.length+"字符，被截取成64个字符";
-            msg = msg.substr(0,64);
+            msg = msg.substring(0,64);
         }
 
         document.getElementById("yulanContent").value = msg;
