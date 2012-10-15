@@ -87,6 +87,12 @@
                 </td>
             </tr>
             <tr>
+                <td align="left" width="120">成交时间：</td>
+                <td>
+                    <input name="orderdate" type="text" value="0" size="4" />  - <input name="orderdateend" type="text" value="" size="4" />
+                </td>
+            </tr>
+            <tr>
                 <td align="left" colspan="2">
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="创建会员分组" OnClientClick="return check()" />
                 </td>
