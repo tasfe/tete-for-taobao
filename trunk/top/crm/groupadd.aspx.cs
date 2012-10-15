@@ -123,7 +123,7 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         utils.ExecuteNonQuery(sql);
 
         //获取符合条件的会员并更新会员分组ID
-        sql = "UPDAET TS_Customer SET groupguid = '" + id + "' WHERE nick = '" + nick + "' " + condition;
+        sql = "UPDAET TCS_Customer SET groupguid = '" + id + "' WHERE nick = '" + nick + "' " + condition;
         Response.Write(sql);
         Response.Write("<br>");
         utils.ExecuteNonQuery(sql);
