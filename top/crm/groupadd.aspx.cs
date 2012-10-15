@@ -74,6 +74,7 @@ public partial class top_crm_groupadd : System.Web.UI.Page
 
         string left = string.Empty;
         string right = string.Empty;
+        string condition = "1=1 ";
 
         string sql = "SELECT COUNT(*) FROM TCS_Group WHERE nick = '" + nick + "' AND price = '" + price + "' AND isdel = 0";
         string count = utils.ExecuteString(sql);
@@ -90,38 +91,43 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         {
             left += ",price";
             right += ",'" + price + "'";
+            condition += "AND tradeamount >= '" + price + "'";
         }
         if (priceend.Length != 0)
         {
             left += ",priceend";
             right += ",'" + priceend + "'";
+            condition += "AND tradeamount <= '" + price + "'";
         }
 
         left += ",arealist";
         right += ",'" + area + "'";
+        condition += "AND CHARINDEX(REPLACE(sheng,'省',''),'" + area + "') > 0";
 
         if (actdate.Length != 0)
         {
             left += ",actdate";
             right += ",'" + actdate + "'";
+            condition += "AND lastorderdate >= '" + actdate + "'";
         }
         if (actdateend.Length != 0)
         {
             left += ",actdateend";
             right += ",'" + actdateend + "'";
+            condition += "AND lastorderdate <= '" + actdate + "'";
         }
 
         sql = "INSERT INTO TCS_Group (" + left + ") VALUES (" + right + ")";
         //Response.Write(sql);
         utils.ExecuteNonQuery(sql);
 
-        ////获取符合条件的会员并更新会员分组ID
-        //sql = "UPDAET TS_Customer SET groupguid = '" + id + "' WHERE nick = '" + nick + "' AND tradeamount > " + price + "";
-        //utils.ExecuteNonQuery(sql);
+        //获取符合条件的会员并更新会员分组ID
+        sql = "UPDAET TS_Customer SET groupguid = '" + id + "' WHERE nick = '" + nick + "' AND tradeamount > " + price + "";
+        utils.ExecuteNonQuery(sql);
 
-        ////获取总数并更新
-        //sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TS_Customer WHERE guid = '" + id + "')";
-        //utils.ExecuteNonQuery(sql);
+        //获取总数并更新
+        sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TCS_Customer WHERE guid = '" + id + "')";
+        utils.ExecuteNonQuery(sql);
 
         Response.Redirect("grouplist.aspx");
     }
