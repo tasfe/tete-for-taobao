@@ -89,7 +89,7 @@
             <tr>
                 <td align="left" width="120">成交时间：</td>
                 <td>
-                    <input name="orderdate" type="text" value="" size="16" />  - <input name="orderdateend" type="text" value="" size="16" />
+                    <input name="actdate" type="text" value="" size="16" />  - <input name="actdateend" type="text" value="" size="16" />
                 </td>
             </tr>
             <tr>
