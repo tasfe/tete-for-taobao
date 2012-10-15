@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>特特CRM_客户营销</title>
-    <link href="../css/common.css" rel="stylesheet" />
+    <link href="js/common.css" rel="stylesheet" />
     <link href="js/calendar.css" rel="stylesheet" />
     <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
     <script type="text/javascript" src="js/cal.js"></script>
