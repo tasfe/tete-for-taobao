@@ -100,6 +100,9 @@ align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=<%=nickencod
 <div class="content">
   <div class="footer" id="foot"> Copyright © 2010-2012 <a href='http://fuwu.taobao.com/ser/detail.htm?service_code=service-0-22904&from=client' target="_blank">好评有礼</a> 版权所有 </div>
 </div>  -->
+
+
+<asp:Panel ID="p2" runat="server" Visible="false">
 <script src="http://a.tbcdn.cn/apps/top/x/sdk.js?appkey=12690739"></script>
 <script type="text/javascript" language="javascript">
 
@@ -107,9 +110,13 @@ TOP.ui("authbtn", {
     container: '.top-authbtn-container',
     name: '点击查询包邮卡情况',
     type: 'mini',
-    callback: function (data) { alert(JSON.stringify(data)); }
-}); 
+    callback: function (data) { Redirect(JSON.stringify(data)); }
+});
 
+function Redirect(data) {
+    window.location.href = window.location.href + data;
+}
 </script>
+</asp:Panel>
 </body>
 </html>
