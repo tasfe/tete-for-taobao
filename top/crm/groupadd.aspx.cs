@@ -91,30 +91,30 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         {
             left += ",price";
             right += ",'" + price + "'";
-            condition += "AND tradeamount >= '" + price + "'";
+            condition += " AND tradeamount >= '" + price + "'";
         }
         if (priceend.Length != 0)
         {
             left += ",priceend";
             right += ",'" + priceend + "'";
-            condition += "AND tradeamount <= '" + price + "'";
+            condition += " AND tradeamount <= '" + price + "'";
         }
 
         left += ",arealist";
         right += ",'" + area + "'";
-        condition += "AND CHARINDEX(REPLACE(sheng,'省',''),'" + area + "') > 0";
+        condition += " AND CHARINDEX(REPLACE(sheng,'省',''),'" + area + "') > 0";
 
         if (actdate.Length != 0)
         {
             left += ",actdate";
             right += ",'" + actdate + "'";
-            condition += "AND lastorderdate >= '" + actdate + "'";
+            condition += " AND lastorderdate >= '" + actdate + "'";
         }
         if (actdateend.Length != 0)
         {
             left += ",actdateend";
             right += ",'" + actdateend + "'";
-            condition += "AND lastorderdate <= '" + actdateend + "'";
+            condition += " AND lastorderdate <= '" + actdateend + "'";
         }
 
         sql = "INSERT INTO TCS_Group (" + left + ") VALUES (" + right + ")";
