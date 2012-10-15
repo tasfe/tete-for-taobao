@@ -44,7 +44,7 @@
             <ItemTemplate>
             <tr>
                 <td height="35"><%#Eval("name") %> </td>
-                <td><%#Eval("price")%></td>
+                <td><%#Eval("price")%>-<%#Eval("priceend")%></td>
                 <td><%#Eval("arealist")%></td>
                 <td><%#Eval("count")%></td>
                 <td> <a href='groupmodify.aspx?id=<%#Eval("guid")%>'>编辑</a> | <a href='grouplist.aspx?act=del&id=<%#Eval("guid")%>'>删除</a> </td>
