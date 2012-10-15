@@ -103,7 +103,6 @@ align="absmiddle" src="http://amos.im.alisoft.com/online.aw?v=2&uid=<%=nickencod
 
 TOP.ui("authbtn", {
     container: '.top-authbtn-container',
-    name: '默认是【立即使用】',
     type: 'mini',
     callback: function (data) { alert(JSON.stringify(data)); }
 }); 
