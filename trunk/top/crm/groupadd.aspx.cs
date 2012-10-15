@@ -71,12 +71,12 @@ public partial class top_crm_groupadd : System.Web.UI.Page
 
         left = "guid,name,nick";
         right = "'" + id + "','" + name + "','" + nick + "'";
-        if (price.Length == 0)
+        if (price.Length != 0)
         {
             left += ",price";
             right += ",'" + price + "'";
         }
-        if (priceend.Length == 0)
+        if (priceend.Length != 0)
         {
             left += ",priceend";
             right += ",'" + priceend + "'";
@@ -85,12 +85,12 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         left += ",arealist";
         right += ",'" + area + "'";
 
-        if (actdate.Length == 0)
+        if (actdate.Length != 0)
         {
             left += ",priceend";
             right += ",'" + actdate + "'";
         }
-        if (actdateend.Length == 0)
+        if (actdateend.Length != 0)
         {
             left += ",priceend";
             right += ",'" + actdateend + "'";
