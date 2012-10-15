@@ -112,7 +112,7 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         }
 
         sql = "INSERT INTO TCS_Group (" + left + ") VALUES (" + right + ")";
-        Response.Write(sql);
+        //Response.Write(sql);
         utils.ExecuteNonQuery(sql);
 
         ////获取符合条件的会员并更新会员分组ID
@@ -123,7 +123,7 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         //sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TS_Customer WHERE guid = '" + id + "')";
         //utils.ExecuteNonQuery(sql);
 
-        //Response.Redirect("grouplist.aspx");
+        Response.Redirect("grouplist.aspx");
     }
 
     /// <summary>
