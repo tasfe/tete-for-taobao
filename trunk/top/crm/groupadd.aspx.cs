@@ -118,18 +118,26 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         }
 
         sql = "INSERT INTO TCS_Group (" + left + ") VALUES (" + right + ")";
-        //Response.Write(sql);
-        utils.ExecuteNonQuery(sql);
+        Response.Write(sql);
+        Response.Write("<br>");
+        Response.Write("<br>");
+        //utils.ExecuteNonQuery(sql);
 
         //获取符合条件的会员并更新会员分组ID
         sql = "UPDAET TS_Customer SET groupguid = '" + id + "' WHERE nick = '" + nick + "' AND tradeamount > " + price + "";
-        utils.ExecuteNonQuery(sql);
+        Response.Write(sql);
+        Response.Write("<br>");
+        Response.Write("<br>");
+        //utils.ExecuteNonQuery(sql);
 
         //获取总数并更新
         sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TCS_Customer WHERE guid = '" + id + "')";
-        utils.ExecuteNonQuery(sql);
+        Response.Write(sql);
+        Response.Write("<br>");
+        Response.Write("<br>");
+        //utils.ExecuteNonQuery(sql);
 
-        Response.Redirect("grouplist.aspx");
+        //Response.Redirect("grouplist.aspx");
     }
 
     /// <summary>
