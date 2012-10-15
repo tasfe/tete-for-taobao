@@ -67,6 +67,7 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         }
 
         sql = "INSERT INTO TCS_Group (guid,name,nick,price,priceend,arealist,actdate,actdateend) VALUES ('" + id + "','" + name + "','" + nick + "','" + price + "','" + priceend + "','" + area + "','" + actdate + "','" + actdateend + "')";
+        Response.Write(sql);
         utils.ExecuteNonQuery(sql);
 
         ////获取符合条件的会员并更新会员分组ID
