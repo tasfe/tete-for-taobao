@@ -102,7 +102,11 @@ public partial class top_crm_groupadd : System.Web.UI.Page
 
         left += ",arealist";
         right += ",'" + area + "'";
-        condition += " AND CHARINDEX(REPLACE(sheng,'省',''),'" + area + "') > 0";
+
+        if (area.Length > 0)
+        {
+            condition += " AND CHARINDEX(REPLACE(sheng,'省',''),'" + area + "') > 0";
+        }
 
         if (actdate.Length != 0)
         {
