@@ -37,7 +37,8 @@
                 <td width="80"><b>组名</b></td>
                 <td width="120"><b>满足金额</b></td>
                 <td width="100"><b>地区</b></td>
-                <td width="185"><b>会员数</b></td>
+                <td width="160"><b>消费时间</b></td>
+                <td width="85"><b>会员数</b></td>
                 <td width="160"><b>操作</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
@@ -46,6 +47,7 @@
                 <td height="35"><%#Eval("name") %> </td>
                 <td><%#Eval("price")%>-<%#Eval("priceend")%></td>
                 <td><%#Eval("arealist")%></td>
+                <td><%#Eval("actdate")%>-<%#Eval("actdateend")%></td>
                 <td><%#Eval("count")%></td>
                 <td> <a href='groupmodify.aspx?id=<%#Eval("guid")%>'>编辑</a> | <a href='grouplist.aspx?act=del&id=<%#Eval("guid")%>'>删除</a> </td>
             </tr>
