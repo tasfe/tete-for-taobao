@@ -127,7 +127,7 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         utils.ExecuteNonQuery(sql);
 
         //获取总数并更新
-        sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TCS_Customer WHERE guid = '" + id + "')";
+        sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TCS_Customer WHERE guid = '" + id + "') WHERE guid = '" + id + "'";
         Response.Write(sql);
         utils.ExecuteNonQuery(sql);
 
