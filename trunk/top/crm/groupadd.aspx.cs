@@ -102,12 +102,12 @@ public partial class top_crm_groupadd : System.Web.UI.Page
 
         if (actdate.Length != 0)
         {
-            left += ",priceend";
+            left += ",actdate";
             right += ",'" + actdate + "'";
         }
         if (actdateend.Length != 0)
         {
-            left += ",priceend";
+            left += ",actdateend";
             right += ",'" + actdateend + "'";
         }
 
