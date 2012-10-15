@@ -33,7 +33,7 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         startdate = DateTime.Now.AddMonths(-12).ToShortDateString();
         enddate = DateTime.Now.ToShortDateString();
 
-        DateTime start = DateTime.Now.AddMonths(-3);
+        DateTime start = DateTime.Now.AddMonths(-12);
         DateTime end = DateTime.Now;
 
         startdatejs = start.Month.ToString() + "/" + start.Day.ToString() + "/" + start.Year.ToString();
