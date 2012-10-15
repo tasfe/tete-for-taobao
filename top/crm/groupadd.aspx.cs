@@ -30,17 +30,14 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
-        startdatejs = DateTime.Now.AddMonths(-12).ToString("MM/dd/yyyy");
-        enddatejs = DateTime.Now.ToString("MM/dd/yyyy");
-
         startdate = DateTime.Now.AddMonths(-12).ToShortDateString();
         enddate = DateTime.Now.ToShortDateString();
 
         DateTime start = DateTime.Now.AddMonths(-3);
         DateTime end = DateTime.Now;
 
-        startdate = start.Month.ToString() + "/" + start.Day.ToString() + "/" + start.Year.ToString();
-        enddate = end.Month.ToString() + "/" + end.Day.ToString() + "/" + end.Year.ToString();
+        startdatejs = start.Month.ToString() + "/" + start.Day.ToString() + "/" + start.Year.ToString();
+        enddatejs = end.Month.ToString() + "/" + end.Day.ToString() + "/" + end.Year.ToString();
 
 
         //过期判断
