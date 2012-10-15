@@ -76,8 +76,8 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         string right = string.Empty;
         string condition = "1=1 ";
 
-        string sql = "SELECT COUNT(*) FROM TCS_Group WHERE nick = '" + nick + "' AND price = '" + price + "' AND isdel = 0";
-        string count = utils.ExecuteString(sql);
+        string sql = string.Empty;// "SELECT COUNT(*) FROM TCS_Group WHERE nick = '" + nick + "' AND price = '" + price + "' AND isdel = 0";
+        //string count = utils.ExecuteString(sql);
         //if (count != "0")
         //{
         //    Response.Write("<script>alert('该价格的会员组已经存在，请修改价格！');history.go(-1);</script>");
