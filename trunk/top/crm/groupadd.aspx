@@ -4,6 +4,18 @@
 <head id="Head1" runat="server">
     <title>特特CRM_客户营销</title>
     <link href="../css/common.css" rel="stylesheet" />
+    <link href="js/calendar.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="js/cal.js"></script>
+    <script type="text/javascript">
+        var startdatestr = '<%=startdate %>';
+        var enddatestr = '<%=enddate %>';
+
+        jQuery(document).ready(function () {
+            $('input#actdate').simpleDatepicker({ chosendate: startdatestr, startdate: startdatestr, enddate: enddatestr });
+            $('input#actdateend').simpleDatepicker({ chosendate: todatestr, startdate: todatestr, enddate: enddatestr });
+        });
+    </script>
     <style>
         td{font-size:12px;}
         a{color:Blue; text-decoration:none;}
@@ -89,7 +101,7 @@
             <tr>
                 <td align="left" width="120">成交时间：</td>
                 <td>
-                    <input name="actdate" type="text" value="" size="16" />  - <input name="actdateend" type="text" value="" size="16" />
+                    <input name="actdate" id="actdate" type="text" value="" size="16" />  - <input name="actdateend" id="actdateend" type="text" value="" size="16" />
                 </td>
             </tr>
             <tr>

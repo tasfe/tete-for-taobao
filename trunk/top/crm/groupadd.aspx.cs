@@ -14,6 +14,9 @@ public partial class top_crm_groupadd : System.Web.UI.Page
     public string now = string.Empty;
     public string totalcustomer = string.Empty;
 
+    public string startdate = string.Empty;
+    public string enddate = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
@@ -23,6 +26,9 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         string iscrm = cookie.getCookie("iscrm");
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
+
+        startdate = DateTime.Now.AddMonths(-3).ToString();
+        enddate = DateTime.Now.ToString();
 
 
         //过期判断
