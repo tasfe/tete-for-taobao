@@ -6,7 +6,8 @@
 <head runat="server">
     <title>好评有礼</title>
     <link rel="stylesheet" href="images/show.css" />
-    <script src="http://a.tbcdn.cn/apps/top/x/sdk.js?appkey=12690739"></script>
+    <script src="js/jquery-1.5.2.min.js"></script>
+<script src="http://a.tbcdn.cn/apps/top/x/sdk.js?appkey=12690739"></script>
     <style>
     .other_coupon {padding-left:10px;}
     .other_coupon img{border:0;}
@@ -107,6 +108,7 @@ TOP.ui("authbtn", {
      callback: function(data){ alert(JSON.stringify(data)); } 
 } 
 
+alert(111);
 </script>
 </body>
 </html>
