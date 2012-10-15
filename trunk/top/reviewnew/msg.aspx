@@ -223,7 +223,7 @@
 
         if(msg.length > 64){
             showMsg = "本条短信共计个"+msg.length+"字符，被截取成64个字符";
-            msg = msg.substring(0,64);
+            msg = msg.substr(0,64);
         }
 
         document.getElementById("yulanContent").value = msg;
