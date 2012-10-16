@@ -212,7 +212,7 @@ public partial class top_crm_missionadd : System.Web.UI.Page
                 string buynick = dt.Rows[i]["buynick"].ToString();
                 string mobile = dt.Rows[i]["mobile"].ToString();
 
-                sql = "SELECT COUNT(*) FROM TCS_MsgSendTmp WHERE buynick = '" + buynick + "' AND nick = '" + nick + "' AND typ = 'act' AND DATEDIFF(d, adddate, GETDATE()) = 0";
+                sql = "SELECT COUNT(*) FROM TCS_MsgSend WHERE buynick = '" + buynick + "' AND nick = '" + nick + "' AND typ = 'act' AND DATEDIFF(d, adddate, GETDATE()) = 0";
                 string count = utils.ExecuteString(sql);
                 if (count == "0")
                 {
@@ -228,7 +228,7 @@ public partial class top_crm_missionadd : System.Web.UI.Page
                         string number = "1";
 
                         //记录短信发送记录
-                        sql = "INSERT INTO TCS_MsgSendTmp (" +
+                        sql = "INSERT INTO TCS_MsgSend (" +
                                             "nick, " +
                                             "buynick, " +
                                             "mobile, " +
