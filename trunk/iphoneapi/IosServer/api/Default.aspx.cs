@@ -143,12 +143,15 @@ public partial class api_Default : System.Web.UI.Page
         string result = send.SendOrderRequest(str, key, date, startcity, endcity, no, rtyp, ttype, student, timearea);
 
         //返回车票价格阶梯
+        string ticketList = Regex.Match(result, @"var limitBuySeatTicketDTO =([[][^[]]]*][]];)").Groups[1].ToString();
 
         //返回联系人列表
+        string userList = Regex.Match(result, @"var passengerJson =([^;]*;)").Groups[1].ToString();
 
         //返回验证码
+        outStr = "1234(南京-上海)|2012-10-15 16:31-20:58(04:27)|" + ticketList + "|" + userList;
 
-        File.WriteAllText(Server.MapPath("1112.txt"),outStr + "-" + result);
+        File.WriteAllText(Server.MapPath("1112.txt"), outStr + "-" + result);
 
         Response.Write(outStr);
         Response.End();
