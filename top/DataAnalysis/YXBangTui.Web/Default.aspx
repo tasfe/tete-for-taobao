@@ -46,8 +46,10 @@
                        <a href="http://fuwu.taobao.com/serv/detail.htm?service_id=24224"
                                 target="_blank" title="推广" style="color:Red">特搜索推广</a></p>
                         <p />
-                        亲们，我公司于9月30日至10月7日放假调休，共8天。10月8日上班，有问题咨询请等我们上班回复，祝各位亲中秋快乐，阖家幸福!
-
+                        <font style="color:Red">
+                        亲们，本公司为感谢亲们一直以来的支持，特举行一次感恩促销活动：每推荐一位新用户订购我们的服务，我们将送推荐者和被推荐者各一个展示
+                        周期为一个月的广告，买任何版本都送，3块的那个也送的，亲们，活动截止时间为今晚23点59分59秒，抓紧时间哦，逾期不送的哦！
+</font>
                         <P>
                             立即 <a href="/UserAddAds.aspx">推广宝贝</a>&nbsp;立即&nbsp;<a href="/AddShopAds.aspx">推广店铺</a></p>
                         <p>
