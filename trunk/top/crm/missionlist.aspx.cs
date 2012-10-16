@@ -79,9 +79,14 @@ public partial class top_crm_missionlist : System.Web.UI.Page
         string str = string.Empty;
         string sql = string.Empty;
 
-        if (typ != "act")
+        if (typ == "birthday" || typ == "back")
         {
             return "全部会员";
+        }
+
+        if (typ == "unpay")
+        {
+            return "未成功购买的会员";
         }
 
         if (grade.Length > 5)
