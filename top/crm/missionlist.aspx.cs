@@ -74,10 +74,15 @@ public partial class top_crm_missionlist : System.Web.UI.Page
         rptArticle.DataBind();
     }
 
-    public static string checkGrade(string grade)
+    public static string checkGrade(string grade, string typ)
     {
         string str = string.Empty;
         string sql = string.Empty;
+
+        if (typ != "act")
+        {
+            return "全部会员";
+        }
 
         if (grade.Length > 5)
         {

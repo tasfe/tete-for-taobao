@@ -45,7 +45,7 @@
                 <ItemTemplate>
                 <tr>
                     <td height="35"><%#gettyp(Eval("typ").ToString())%></td>
-                    <td><%#checkGrade(Eval("grade").ToString())%></td>
+                    <td><%#checkGrade(Eval("grade").ToString(), Eval("typ").ToString())%></td>
                     <td><%#Eval("adddate")%></td>
                     <td><%#getsend(Eval("senddate").ToString())%></td>
                     <td><%#getstop(Eval("isstop").ToString())%></td>
