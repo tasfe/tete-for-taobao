@@ -33,10 +33,16 @@ public partial class api_Default : System.Web.UI.Page
             SearchDetailPost();
         }
 
-        //车票下单
+        //车票预下单
         if (act == "order")
         {
             TicketOrderPost();
+        }
+
+        //车票正式下单
+        if (act == "submit")
+        {
+            SubmitOrderPost();
         }
         
         //订单支付
