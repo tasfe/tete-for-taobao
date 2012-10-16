@@ -17,6 +17,47 @@ namespace TeteIosTrain
             System.Net.ServicePointManager.ServerCertificateValidationCallback += (se, cert, chain, sslerror) => { return true; };
         }
 
+        
+        /// <summary>
+        /// 下单预请求
+        /// </summary>
+        /// <returns></returns>
+        public string SendOrderRequest(string session, string key, string date, string startcity, string endcity, string no, string rtyp, string ttype, string student, string timearea)
+        {
+            string url = string.Empty;
+            string result = string.Empty;
+            string result1 = string.Empty;
+            string flag = string.Empty;
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            string[] ary = key.Split('#');
+
+            param.Add("station_train_code", ary[0]);
+            param.Add("train_date", date);
+            param.Add("seattype_num", "");
+            param.Add("from_station_telecode", ary[4]);
+            param.Add("to_station_telecode", ary[5]);
+            param.Add("include_student", student);
+            param.Add("from_station_telecode_name", startcity);
+            param.Add("to_station_telecode_name", endcity);
+            param.Add("round_train_date", date);
+            param.Add("round_start_time_str", timearea);
+            param.Add("single_round_type", "1");
+            param.Add("train_pass_type", rtyp);
+            param.Add("train_class_arr", ttype);
+            param.Add("start_time_str", timearea);
+            param.Add("lishi", ary[1]);
+            param.Add("train_start_time", ary[2]);
+            param.Add("trainno4", ary[3]);
+            param.Add("arrive_time", ary[6]);
+            param.Add("from_station_name", ary[7]);
+            param.Add("to_station_name", ary[8]);
+            param.Add("ypInfoDetail", ary[9]);
+            param.Add("mmStr", ary[10]);
+
+            result = utils.CommonPost(url, param, session);
+            return result;
+        }
+
         /// <summary>
         /// 登录验证请求
         /// </summary>
