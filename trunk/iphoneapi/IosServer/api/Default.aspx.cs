@@ -32,6 +32,93 @@ public partial class api_Default : System.Web.UI.Page
         {
             SearchDetailPost();
         }
+
+        //车票下单
+        if (act == "order")
+        {
+            TicketOrderPost();
+        }
+        
+        //订单支付
+        if (act == "pay")
+        {
+            OrderPayPost();
+        }
+
+        //取消订单
+        if (act == "cancel")
+        {
+            OrderCancelPost();
+        }
+
+        //订单下单状态查询
+        if (act == "statussearch")
+        {
+            StatusSearchPost();
+        }
+
+        //添加联系人
+        if (act == "personadd")
+        {
+            PersonActPost("add");
+        }
+
+        //联系人查询
+        if (act == "personsearch")
+        {
+            PersonActPost("search");
+        }
+
+        //编辑联系人
+        if (act == "personedit")
+        {
+            PersonActPost("edit");
+        }
+
+        //删除联系人
+        if (act == "persondel")
+        {
+            PersonActPost("del");
+        }
+    }
+
+    /// <summary>
+    /// 订单下单成功状态查询
+    /// </summary>
+    private void StatusSearchPost()
+    {
+
+    }
+
+    /// <summary>
+    /// 订单取消
+    /// </summary>
+    private void OrderCancelPost()
+    {
+    
+    }
+
+    /// <summary>
+    /// 订单支付银行清单
+    /// </summary>
+    private void OrderPayPost()
+    {
+    
+    }
+
+    //添加联系人
+    private void PersonActPost(string act)
+    {
+        //根据动作操作会员联系人
+    }
+
+    private void TicketOrderPost()
+    {
+        //返回车票价格阶梯
+
+        //返回联系人列表
+
+        //返回验证码
     }
 
     /// <summary>
@@ -96,7 +183,7 @@ public partial class api_Default : System.Web.UI.Page
         Train send = new Train();
         string result = send.SendSearchRequest(date, startcity, endcity, no, rtyp, ttype, student, timearea, str1 + "|" + str2);
 
-        result = "0,<span id='id_580000200202' class='base_txtdiv' onmouseover=javascript:onStopHover('580000200202#SNH#NJH') onmouseout='onStopOut()'>2002</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上海南&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;04:16,<img src='/otsweb/images/tips/last.gif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;南京&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;08:32,04:16,--,--,--,--,--,5,<font color='#008800'>有</font>,--,<font color='#008800'>有</font>,<font color='#008800'>有</font>,--,<input type='button' class='yuding_u' onmousemove=this.className='yuding_u_over' onmousedown=this.className='yuding_u_down' onmouseout=this.className='yuding_u' onclick=javascript:getSelected('2002#04:16#04:16#580000200202#SNH#NJH#08:32#上海南#南京#1*****31904*****00051*****01273*****0059#CFFED964FB3F995E4F5EDD74BC59777FABAA62E950EE22AF23A6244D') value='预订'></input>\n1,<span id='id_630000K5280B' class='base_txtdiv' onmouseover=javascript:onStopHover('630000K5280B#SNH#NJH') onmouseout='onStopOut()'>K528</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上海南&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;04:29,<img src='/otsweb/images/tips/last.gif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;南京&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;08:10,03:41,--,--,--,--,--,1,10,--,<font color='darkgray'>无</font>,<font color='#008800'>有</font>,--,<input type='button' class='yuding_u' onmousemove=this.className='yuding_u_over' onmousedown=this.className='yuding_u_down' onmouseout=this.className='yuding_u' onclick=javascript:getSelected('K528#03:41#04:29#630000K5280B#SNH#NJH#08:10#上海南#南京#1*****34224*****00011*****00003*****0010#923D194A6C3DA8AEEFC224D9D7D6E9C444B680F5B34074E4ABF4792B') value='预订'></input>\n";
+        //result = "0,<span id='id_580000200202' class='base_txtdiv' onmouseover=javascript:onStopHover('580000200202#SNH#NJH') onmouseout='onStopOut()'>2002</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上海南&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;04:16,<img src='/otsweb/images/tips/last.gif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;南京&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;08:32,04:16,--,--,--,--,--,5,<font color='#008800'>有</font>,--,<font color='#008800'>有</font>,<font color='#008800'>有</font>,--,<input type='button' class='yuding_u' onmousemove=this.className='yuding_u_over' onmousedown=this.className='yuding_u_down' onmouseout=this.className='yuding_u' onclick=javascript:getSelected('2002#04:16#04:16#580000200202#SNH#NJH#08:32#上海南#南京#1*****31904*****00051*****01273*****0059#CFFED964FB3F995E4F5EDD74BC59777FABAA62E950EE22AF23A6244D') value='预订'></input>\n1,<span id='id_630000K5280B' class='base_txtdiv' onmouseover=javascript:onStopHover('630000K5280B#SNH#NJH') onmouseout='onStopOut()'>K528</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上海南&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;04:29,<img src='/otsweb/images/tips/last.gif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;南京&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;08:10,03:41,--,--,--,--,--,1,10,--,<font color='darkgray'>无</font>,<font color='#008800'>有</font>,--,<input type='button' class='yuding_u' onmousemove=this.className='yuding_u_over' onmousedown=this.className='yuding_u_down' onmouseout=this.className='yuding_u' onclick=javascript:getSelected('K528#03:41#04:29#630000K5280B#SNH#NJH#08:10#上海南#南京#1*****34224*****00011*****00003*****0010#923D194A6C3DA8AEEFC224D9D7D6E9C444B680F5B34074E4ABF4792B') value='预订'></input>\n";
 
         Regex reg = new Regex(@">([^\<]*)</span>,[\s\S]*?&nbsp;([^\&\;']+)&nbsp;[\s\S]*?([0-9]{2}\:[0-9]{2}),[\s\S]*?&nbsp;([^\&\;']+)&nbsp;[\s\S]*?([0-9]{2}\:[0-9]{2}),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),", RegexOptions.IgnoreCase);
         MatchCollection match = reg.Matches(result);
