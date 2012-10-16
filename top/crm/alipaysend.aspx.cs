@@ -268,7 +268,7 @@ public partial class top_crm_alipaysend : System.Web.UI.Page
 
                             string result = SendMessage(phone, msgAlipay);
                             //记录短信发送记录
-                            sql = "INSERT INTO TCS_MsgSend (" +
+                            sql = "INSERT INTO TCS_MsgSendTmp (" +
                                                 "nick, " +
                                                 "buynick, " +
                                                 "mobile, " +
