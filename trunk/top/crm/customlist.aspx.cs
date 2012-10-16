@@ -51,7 +51,7 @@ public partial class top_crm_customlist : System.Web.UI.Page
         //过期判断
         if (!IsBuy(nick))
         {
-            string msg = "尊敬的" + nick + "，非常抱歉的告诉您，只有VIP版本才能使用【客户关系营销】功能，如需继续使用请<a href='http://fuwu.taobao.com/item/subsc.htm?items=service-0-22904-3:1;' target='_blank'>购买高级会员服务</a>，谢谢！";
+            string msg = "尊敬的" + nick + "，非常抱歉的告诉您，只有VIP版本才能使用【客户关系营销】功能，如需继续使用请<a href='http://fuwu.taobao.com/ser/detail.htm?service_code=service-0-22904&frm=haoping' target='_blank'>购买高级会员服务</a>，谢谢！";
             Response.Redirect("buy.aspx?msg=" + HttpUtility.UrlEncode(msg));
             Response.End();
             return;
