@@ -33,7 +33,7 @@ public partial class top_reviewnew_lostsend : System.Web.UI.Page
 
                 string result = SendMessage(phone, content);
                 //记录短信发送记录
-                sql = "INSERT INTO TCS_MsgSendTmp (" +
+                sql = "INSERT INTO TCS_MsgSend (" +
                                     "nick, " +
                                     "buynick, " +
                                     "mobile, " +
