@@ -31,6 +31,8 @@ namespace TeteIosTrain
             IDictionary<string, string> param = new Dictionary<string, string>();
             string[] ary = key.Split('#');
 
+            url = "https://dynamic.12306.cn/otsweb/order/querySingleAction.do?method=submutOrderRequest";
+
             param.Add("station_train_code", ary[0]);
             param.Add("train_date", date);
             param.Add("seattype_num", "");
