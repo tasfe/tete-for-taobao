@@ -340,7 +340,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                         if (freeflag == "1")
                         {
                             //每张物流订单最多提示一次
-                            sql = "SELECT COUNT(*) FROM TCS_MsgSend WITH (NOLOCK) WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND buynick = '" + buynick + "' AND nick = '" + nick + "' AND typ = 'freecard'";
+                            sql = "SELECT COUNT(*) FROM TCS_MsgSendTmp WITH (NOLOCK) WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND buynick = '" + buynick + "' AND nick = '" + nick + "' AND typ = 'freecard'";
                             string freeCount = utils.ExecuteString(sql);
 
                             if (freeCount == "0")
@@ -370,7 +370,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                         }
 
                                         //记录短信发送记录
-                                        sql = "INSERT INTO TCS_MsgSend (" +
+                                        sql = "INSERT INTO TCS_MsgSendTmp (" +
                                                             "nick, " +
                                                             "buynick, " +
                                                             "mobile, " +
@@ -456,7 +456,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                     {
                                         string result = SendMessage(phone, msgAlipay);
                                         //记录短信发送记录
-                                        sql = "INSERT INTO TCS_MsgSend (" +
+                                        sql = "INSERT INTO TCS_MsgSendTmp (" +
                                                             "nick, " +
                                                             "buynick, " +
                                                             "mobile, " +
@@ -591,7 +591,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                     if (int.Parse(total) > 0)
                     {
                         //每张物流订单最多提示一次
-                        sql = "SELECT COUNT(*) FROM TCS_MsgSend WITH (NOLOCK) WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND buynick = '" + buynick + "' AND nick = '" + nick + "' AND typ = 'gift'";
+                        sql = "SELECT COUNT(*) FROM TCS_MsgSendTmp WITH (NOLOCK) WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND buynick = '" + buynick + "' AND nick = '" + nick + "' AND typ = 'gift'";
                         string giftCount = utils.ExecuteString(sql);
 
                         if (giftCount == "0")
@@ -621,7 +621,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                     }
 
                                     //记录短信发送记录
-                                    sql = "INSERT INTO TCS_MsgSend (" +
+                                    sql = "INSERT INTO TCS_MsgSendTmp (" +
                                                         "nick, " +
                                                         "buynick, " +
                                                         "mobile, " +
@@ -858,7 +858,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
 
                                         string result = SendMessage(phone, msgAlipay);
                                         //记录短信发送记录
-                                        sql = "INSERT INTO TCS_MsgSend (" +
+                                        sql = "INSERT INTO TCS_MsgSendTmp (" +
                                                             "nick, " +
                                                             "buynick, " +
                                                             "mobile, " +
@@ -990,7 +990,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
 
                         if (int.Parse(total) > 0)
                         {
-                            sql = "SELECT COUNT(*) FROM TCS_MsgSend WHERE buynick = '" + buynick + "' AND nick = '" + nick + "' AND typ = 'gift' AND DATEDIFF(d, adddate, GETDATE()) = 0";
+                            sql = "SELECT COUNT(*) FROM TCS_MsgSendTmp WHERE buynick = '" + buynick + "' AND nick = '" + nick + "' AND typ = 'gift' AND DATEDIFF(d, adddate, GETDATE()) = 0";
                             string count = utils.ExecuteString(sql);
                             if (count == "0")
                             {
@@ -1018,7 +1018,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                     }
 
                                     //记录短信发送记录
-                                    sql = "INSERT INTO TCS_MsgSend (" +
+                                    sql = "INSERT INTO TCS_MsgSendTmp (" +
                                                         "nick, " +
                                                         "buynick, " +
                                                         "mobile, " +

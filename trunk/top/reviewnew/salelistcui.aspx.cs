@@ -66,7 +66,7 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
         int pageCount = 12;
         int dataCount = (pageNow - 1) * pageCount;
 
-        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.adddate DESC) AS rownumber FROM TCS_Trade b WHERE b.nick = '" + nick + "' AND b.orderid IN (SELECT orderid FROM TCS_MsgSend WHERE nick = '" + nick + "' AND typ = 'cui')) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY a.adddate DESC";
+        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY b.adddate DESC) AS rownumber FROM TCS_Trade b WHERE b.nick = '" + nick + "' AND b.orderid IN (SELECT orderid FROM TCS_MsgSendTmp WHERE nick = '" + nick + "' AND typ = 'cui')) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY a.adddate DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         //if (1 == 2)  
@@ -115,7 +115,7 @@ public partial class top_reviewnew_salelist : System.Web.UI.Page
         rptArticle.DataBind();
 
         //分页数据初始化
-        sqlNew = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND orderid IN (SELECT orderid FROM TCS_MsgSend WHERE nick = '" + nick + "' AND typ = 'cui')";
+        sqlNew = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND orderid IN (SELECT orderid FROM TCS_MsgSendTmp WHERE nick = '" + nick + "' AND typ = 'cui')";
         int totalCount = int.Parse(utils.ExecuteString(sqlNew));
 
         lbPage.Text = InitPageStr(totalCount, "salelistcui.aspx");
