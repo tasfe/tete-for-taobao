@@ -114,11 +114,38 @@ public partial class api_Default : System.Web.UI.Page
 
     private void TicketOrderPost()
     {
+        string session = Common.utils.NewRequest("session", Common.utils.RequestType.Form);
+        //车次关键字
+        string key = Common.utils.NewRequest("key", Common.utils.RequestType.Form);
+        //上页查询信息
+        string date = HttpUtility.UrlEncode(Common.utils.NewRequest("date", Common.utils.RequestType.Form));
+        string startcity = HttpUtility.UrlEncode(Common.utils.NewRequest("startcity", Common.utils.RequestType.Form));
+        string endcity = HttpUtility.UrlEncode(Common.utils.NewRequest("endcity", Common.utils.RequestType.Form));
+        string no = HttpUtility.UrlEncode(Common.utils.NewRequest("no", Common.utils.RequestType.Form));
+        string rtyp = HttpUtility.UrlEncode(Common.utils.NewRequest("rtyp", Common.utils.RequestType.Form));
+        string ttype = HttpUtility.UrlEncode(Common.utils.NewRequest("ttype", Common.utils.RequestType.Form));
+        string student = HttpUtility.UrlEncode(Common.utils.NewRequest("student", Common.utils.RequestType.Form));
+        string timearea = HttpUtility.UrlEncode(Common.utils.NewRequest("timearea", Common.utils.RequestType.Form));
+
+        string outStr = string.Empty;
+
+        string str1 = new Regex(@"JSESSIONID=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str2 = new Regex(@"BIGipServerotsweb=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str = str1 + "|" + str2;
+
+        Train send = new Train();
+        string result = send.SendOrderRequest(str, key, date, startcity, endcity, no, rtyp, ttype, student, timearea);
+
         //返回车票价格阶梯
 
         //返回联系人列表
 
         //返回验证码
+
+        File.WriteAllText(Server.MapPath("1112.txt"),outStr + "-" + result);
+
+        Response.Write(outStr);
+        Response.End();
     }
 
     /// <summary>
