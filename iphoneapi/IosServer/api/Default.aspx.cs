@@ -18,6 +18,11 @@ public partial class api_Default : System.Web.UI.Page
             OutPutVerify();
         }
 
+        if (act == "verifyorder")
+        {
+            OutPutVerifyOrder();
+        }
+
         if (act == "login")
         {
             LoginPost();
@@ -43,6 +48,12 @@ public partial class api_Default : System.Web.UI.Page
         if (act == "submit")
         {
             SubmitOrderPost();
+        }
+
+        //排队获取订单号
+        if (act == "getorder")
+        {
+            GetOrderPost();
         }
         
         //订单支付
@@ -86,6 +97,13 @@ public partial class api_Default : System.Web.UI.Page
         {
             PersonActPost("del");
         }
+    }
+
+    private void GetOrderPost()
+    {
+        //如果左边是-1则需为排队人数，5为排队
+        Response.Write("5|E256633001");
+        Response.End();
     }
 
     /// <summary>
@@ -206,6 +224,9 @@ public partial class api_Default : System.Web.UI.Page
         string endcity = Common.utils.NewRequest("endcity", Common.utils.RequestType.Form);
         string no = Common.utils.NewRequest("no", Common.utils.RequestType.Form);
         string data = Common.utils.NewRequest("data", Common.utils.RequestType.Form);
+                      
+        //Train send = new Train();
+        //string result = send.SendOrderSubmitRequest();
 
         Response.Write("ok");
         Response.End();
@@ -315,7 +336,7 @@ public partial class api_Default : System.Web.UI.Page
     private void OutPutVerify()
     {
         try
-        {
+        {                   
             Train t = new Train();
             string cookieStr = t.GetVerifyImg();
 
@@ -330,6 +351,26 @@ public partial class api_Default : System.Web.UI.Page
                 cookie.setCookie("BIGipServerotsweb", ary[1], 999999);
             }
 
+            Response.End();
+        }
+        catch
+        {
+            Response.Write("err");
+            Response.End();
+        }
+    }
+
+
+    /// <summary>
+    /// 输出验证码
+    /// </summary>
+    private void OutPutVerifyOrder()
+    {
+        try
+        {
+            string session = Common.utils.NewRequest("session", Common.utils.RequestType.Form);
+            Train t = new Train();
+            string cookieStr = t.GetVerifyImgOrder(session);
             Response.End();
         }
         catch
