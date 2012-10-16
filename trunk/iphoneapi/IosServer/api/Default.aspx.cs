@@ -154,10 +154,10 @@ public partial class api_Default : System.Web.UI.Page
         {
             //返回车票价格阶梯
             userList = Regex.Match(result, @"passengerJson[\s]*=[\s]*([^;]*);").Groups[1].ToString();
+            userList = "{\"data\":" + userList + "}";
 
             //返回联系人列表
             ticketList = Regex.Match(result, @"limitBuySeatTicketDTO[\s]*=[\s]*([^;]*);").Groups[1].ToString();
-            ticketList = "{\"data\":" + ticketList + "}";
 
             //车票价格和剩余数量
             priceList = "一等座(230.00元)7张票,二等座(135.00元)3张票,特等座(260.00元)10张票";
