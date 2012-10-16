@@ -223,7 +223,7 @@ public partial class top_review_msglist : System.Web.UI.Page
             return;
         }
 
-        string sqlNew = "SELECT b.* FROM TCS_MsgSend b WITH (NOLOCK) WHERE b.nick = '" + nick + "' AND b.buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
+        string sqlNew = "SELECT b.* FROM TCS_MsgSendTmp b WITH (NOLOCK) WHERE b.nick = '" + nick + "' AND b.buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
@@ -247,14 +247,14 @@ public partial class top_review_msglist : System.Web.UI.Page
         int pageCount = 10;
         int dataCount = (pageNow - 1) * pageCount;
 
-        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT b.*,ROW_NUMBER() OVER (ORDER BY b.adddate DESC) AS rownumber FROM TCS_MsgSend b WITH (NOLOCK) WHERE b.nick = '" + nick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY adddate DESC";
+        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT b.*,ROW_NUMBER() OVER (ORDER BY b.adddate DESC) AS rownumber FROM TCS_MsgSendTmp b WITH (NOLOCK) WHERE b.nick = '" + nick + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY adddate DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
         rptArticle.DataBind();
 
         //分页数据初始化
-        sqlNew = "SELECT COUNT(*) FROM TCS_MsgSend WITH (NOLOCK) WHERE nick = '" + nick + "'";
+        sqlNew = "SELECT COUNT(*) FROM TCS_MsgSendTmp WITH (NOLOCK) WHERE nick = '" + nick + "'";
         int totalCount = int.Parse(utils.ExecuteString(sqlNew));
 
         lbPage.Text = InitPageStr(totalCount, "msglist.aspx");

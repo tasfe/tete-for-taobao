@@ -74,10 +74,10 @@ public partial class top_reviewnew_saletotal : System.Web.UI.Page
         totalprice1 = utils.ExecuteString(sql);
 
         //催单有礼带来的
-        sql = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND orderid IN (SELECT orderid FROM TCS_MsgSend WHERE nick = '" + nick + "' AND typ = 'cui') AND mobile <> ''";
+        sql = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND orderid IN (SELECT orderid FROM TCS_MsgSendTmp WHERE nick = '" + nick + "' AND typ = 'cui') AND mobile <> ''";
         totalcount2 = utils.ExecuteString(sql);
 
-        sql = "SELECT SUM(Convert(decimal,totalprice)) FROM TCS_Trade WHERE nick = '" + nick + "' AND orderid IN (SELECT orderid FROM TCS_MsgSend WHERE nick = '" + nick + "' AND typ = 'cui') AND mobile <> ''";
+        sql = "SELECT SUM(Convert(decimal,totalprice)) FROM TCS_Trade WHERE nick = '" + nick + "' AND orderid IN (SELECT orderid FROM TCS_MsgSendTmp WHERE nick = '" + nick + "' AND typ = 'cui') AND mobile <> ''";
         totalprice2 = utils.ExecuteString(sql);
     }
 }

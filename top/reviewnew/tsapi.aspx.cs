@@ -94,10 +94,10 @@ public partial class top_reviewnew_tsapi : System.Web.UI.Page
     private void OutGiftMsg(string typ)
     {
         string str = string.Empty;
-        string sql = "SELECT COUNT(*) FROM TCS_MsgSend WHERE typ='" + typ + "' AND DATEDIFF(D,adddate,GETDATE()) = 0";
+        string sql = "SELECT COUNT(*) FROM TCS_MsgSendTmp WHERE typ='" + typ + "' AND DATEDIFF(D,adddate,GETDATE()) = 0";
         str = utils.ExecuteString(sql);
 
-        sql = "SELECT TOP 1 * FROM TCS_MsgSend WHERE typ='" + typ + "' AND DATEDIFF(D,adddate,GETDATE()) = 0 ORDER BY adddate DESC";
+        sql = "SELECT TOP 1 * FROM TCS_MsgSendTmp WHERE typ='" + typ + "' AND DATEDIFF(D,adddate,GETDATE()) = 0 ORDER BY adddate DESC";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
