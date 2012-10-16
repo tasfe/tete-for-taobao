@@ -146,14 +146,25 @@ public partial class api_Default : System.Web.UI.Page
         //        var ticketTypeReserveFlags = [{""epayFlag"":true,""ticket_type_code"":""1""},{""epayFlag"":true,""ticket_type_code"":""2""},{""epayFlag"":false,""ticket_type_code"":""3""},{""epayFlag"":false,""ticket_type_code"":""4""}];
         //        var limitBuySeatTicketDTO  = {""seat_type_codes"":[{""end_station_name"":"""",""end_time"":"""",""id"":""M"",""start_station_name"":"""",""start_time"":"""",""value"":""一等座""},{""end_station_name"":"""",""end_time"":"""",""id"":""O"",""start_station_name"":"""",""start_time"":"""",""value"":""二等座""},{""end_station_name"":"""",""end_time"":"""",""id"":""9"",""start_station_name"":"""",""start_time"":"""",""value"":""商务座""}],""ticket_seat_codeMap"":{""3"":[{""end_station_name"":"""",""end_time"":"""",""id"":""O"",""start_station_name"":"""",""start_time"":"""",""value"":""二等座""}],""2"":[{""end_station_name"":"""",""end_time"":"""",""id"":""9"",""start_station_name"":"""",""start_time"":"""",""value"":""商务座""},{""end_station_name"":"""",""end_time"":"""",""id"":""M"",""start_station_name"":"""",""start_time"":"""",""value"":""一等座""},{""end_station_name"":"""",""end_time"":"""",""id"":""O"",""start_station_name"":"""",""start_time"":"""",""value"":""二等座""}],""1"":[{""end_station_name"":"""",""end_time"":"""",""id"":""9"",""start_station_name"":"""",""start_time"":"""",""value"":""商务座""},{""end_station_name"":"""",""end_time"":"""",""id"":""M"",""start_station_name"":"""",""start_time"":"""",""value"":""一等座""},{""end_station_name"":"""",""end_time"":"""",""id"":""O"",""start_station_name"":"""",""start_time"":"""",""value"":""二等座""}],""4"":[{""end_station_name"":"""",""end_time"":"""",""id"":""9"",""start_station_name"":"""",""start_time"":"""",""value"":""商务座""},{""end_station_name"":"""",""end_time"":"""",""id"":""M"",""start_station_name"":"""",""start_time"":"""",""value"":""一等座""},{""end_station_name"":"""",""end_time"":"""",""id"":""O"",""start_station_name"":"""",""start_time"":"""",""value"":""二等座""}]},""ticket_type_codes"":[{""end_station_name"":"""",""end_time"":"""",""id"":""1"",""start_station_name"":"""",""start_time"":"""",""value"":""成人票""},{""end_station_name"":"""",""end_time"":"""",""id"":""2"",""start_station_name"":"""",""start_time"":"""",""value"":""儿童票""},{""end_station_name"":"""",""end_time"":"""",""id"":""3"",""start_station_name"":"""",""start_time"":"""",""value"":""学生票""},{""end_station_name"":"""",""end_time"":"""",""id"":""4"",""start_station_name"":"""",""start_time"":"""",""value"":""残军票""}]};";
 
-        //返回车票价格阶梯
-        string userList = Regex.Match(result, @"var passengerJson = ([^;]*);").Groups[1].ToString();
+        string userList = string.Empty;
+        string ticketList = string.Empty;
+        string priceList = string.Empty;
 
-        //返回联系人列表
-        string ticketList = Regex.Match(result, @"var limitBuySeatTicketDTO  = ([^;]*);").Groups[1].ToString();
+        try
+        {
+            //返回车票价格阶梯
+            userList = Regex.Match(result, @"passengerJson[\s*]=[\s*]([^;]*);").Groups[1].ToString();
+
+            //返回联系人列表
+            ticketList = Regex.Match(result, @"limitBuySeatTicketDTO[\s*]=[\s*]([^;]*);").Groups[1].ToString();
+
+            //车票价格和剩余数量
+            priceList = "一等座(230.00元)7张票,二等座(135.00元)3张票,特等座(260.00元)10张票";
+        }
+        catch { }
 
         //返回验证码
-        outStr = "1234(南京-上海)|2012-10-15 16:31-20:58(04:27)|" + ticketList + "|" + userList;
+        outStr = "1234(南京-上海)|2012-10-15 16:31-20:58(04:27)|" + ticketList + "|" + userList + "|" + priceList;
 
         File.WriteAllText(Server.MapPath("1112.txt"), outStr + "-" + result);
 
