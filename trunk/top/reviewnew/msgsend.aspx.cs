@@ -204,7 +204,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
                 if (int.Parse(total) > 0)
                 {
                     //每张物流订单最多提示一次
-                    sql = "SELECT COUNT(*) FROM TCS_MsgSendTmp WITH (NOLOCK) WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND  buynick = '" + buynick + "' AND typ = 'gift'";
+                    sql = "SELECT COUNT(*) FROM TCS_MsgSend WITH (NOLOCK) WHERE DATEDIFF(d, adddate, GETDATE()) = 0 AND  buynick = '" + buynick + "' AND typ = 'gift'";
                     string giftCount = utils.ExecuteString(sql);
 
                     if (giftCount == "0")
@@ -231,7 +231,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
                             }
 
                             //记录短信发送记录
-                            sql = "INSERT INTO TCS_MsgSendTmp (" +
+                            sql = "INSERT INTO TCS_MsgSend (" +
                                                 "nick, " +
                                                 "buynick, " +
                                                 "mobile, " +

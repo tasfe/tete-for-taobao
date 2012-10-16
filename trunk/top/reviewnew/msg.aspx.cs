@@ -598,7 +598,7 @@ public partial class top_review_msg : System.Web.UI.Page
                 }
 
                 //记录短信发送记录
-                sql = "INSERT INTO TCS_MsgSendTmp (" +
+                sql = "INSERT INTO TCS_MsgSend (" +
                                     "nick, " +
                                     "buynick, " +
                                     "mobile, " +
