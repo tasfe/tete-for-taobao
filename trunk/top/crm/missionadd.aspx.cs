@@ -130,6 +130,15 @@ public partial class top_crm_missionadd : System.Web.UI.Page
             return;
         }
 
+        string black = string.Empty;
+        //判断是否为黑词
+        if (CheckIsBlack(msg, ref black))
+        {
+            Response.Write("<script>alert('短信内容包含黑词“" + black + "”！');history.go(-1);</script>");
+            Response.End();
+            return;
+        }
+
         switch (typ)
         {
             case "unpay":
@@ -183,6 +192,22 @@ public partial class top_crm_missionadd : System.Web.UI.Page
 
         //Response.Write(sql);
         Response.Redirect("missionlist.aspx");
+    }
+
+    private bool CheckIsBlack(string p, ref string black)
+    {
+        string sql = "SELECT * FROM TCS_BlackWord";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            if (p.IndexOf(dt.Rows[i]["word"].ToString()) != -1)
+            {
+                black = dt.Rows[i]["word"].ToString();
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /// <summary>
