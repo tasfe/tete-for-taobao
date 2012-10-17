@@ -175,9 +175,18 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
         }
         else
         {
-            Response.Write("<script>alert('该会员的订单信息中没有记录手机号码，无法发送支付宝红包！');window.location.href='alipaymsgsend.aspx';</script>");
-            Response.End();
-            return;
+            sql = "SELECT * FROM TCS_Customer WITH (NOLOCK) WHERE nick = '" + nick + "' AND buynick = '" + buynick + "' AND mobile <> ''";
+            dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                phone = dt.Rows[0]["mobile"].ToString();
+            }
+            else
+            {
+                Response.Write("<script>alert('该会员的订单信息中没有记录手机号码，无法发送支付宝红包！');window.location.href='alipaymsgsend.aspx';</script>");
+                Response.End();
+                return;
+            }
         }
 
         //先看还有没有短信了
