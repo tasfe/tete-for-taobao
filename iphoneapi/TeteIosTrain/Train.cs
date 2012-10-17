@@ -17,6 +17,37 @@ namespace TeteIosTrain
             System.Net.ServicePointManager.ServerCertificateValidationCallback += (se, cert, chain, sslerror) => { return true; };
         }
 
+        public string GetOrderNumberRequest(string session)
+        {
+            string result = string.Empty;
+            string resultNew = string.Empty;
+            string url = string.Empty;
+            url = "http://dynamic.12306.cn/otsweb/order/myOrderAction.do?method=getOrderWaitTime&tourFlag=dc";
+
+            CookieContainer cc = new CookieContainer();
+            IDictionary<string, string> param = new Dictionary<string, string>();
+
+            //获取服务器sessionid
+            url = "https://dynamic.12306.cn/otsweb/loginAction.do?method=init";
+            result = utils.CommonGetFirst(url);
+
+            string[] ary = result.Split('|');
+            //设置COOKIE
+            Cookie ck = new Cookie("JSESSIONID", ary[0], "/otsweb", "dynamic.12306.cn");
+            resultNew = "JSESSIONID=" + ary[0] + ";";
+
+            cc.Add(ck);
+            if (ary.Length > 1)
+            {
+                ck = new Cookie("BIGipServerotsweb", ary[1], "/", "dynamic.12306.cn");
+                cc.Add(ck);
+                resultNew += "BIGipServerotsweb=" + ary[1];
+            }
+
+            result = utils.CommonGet(url, session);
+
+            return result;
+        }
         
         /// <summary>
         /// 下单预请求

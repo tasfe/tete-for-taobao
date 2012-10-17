@@ -15,3 +15,6 @@ C:\svngoogle\iphoneapi\TeteIosTrain\bin\Debug\TeteIosTrain.pdb
 C:\svngoogle\iphoneapi\TeteIosTrain\obj\Debug\ResolveAssemblyReference.cache
 C:\svngoogle\iphoneapi\TeteIosTrain\obj\Debug\TeteIosTrain.dll
 C:\svngoogle\iphoneapi\TeteIosTrain\obj\Debug\TeteIosTrain.pdb
+D:\svngoogle\tete-for-taobao\iphoneapi\TeteIosTrain\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\svngoogle\tete-for-taobao\iphoneapi\TeteIosTrain\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\svngoogle\tete-for-taobao\iphoneapi\TeteIosTrain\bin\Debug\Microsoft.Practices.ObjectBuilder.dll

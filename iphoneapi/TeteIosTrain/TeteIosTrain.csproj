@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common">
-      <HintPath>C:\Documents and Settings\Administrator\桌面\火车票\IosServer\bin\Common.dll</HintPath>
+      <HintPath>..\bin\Common.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
