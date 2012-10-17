@@ -132,7 +132,7 @@ public partial class top_crm_missionadd : System.Web.UI.Page
 
         string black = string.Empty;
         //判断是否为黑词
-        if (CheckIsBlack(msg, ref black))
+        if (CheckIsBlack(cuicontent, ref black) || CheckIsBlack(birthdaycontent, ref black) || CheckIsBlack(backcontent, ref black) || CheckIsBlack(actcontent, ref black))
         {
             Response.Write("<script>alert('短信内容包含黑词“" + black + "”！');history.go(-1);</script>");
             Response.End();
