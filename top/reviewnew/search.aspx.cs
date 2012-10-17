@@ -47,6 +47,7 @@ public partial class top_reviewnew_search : System.Web.UI.Page
         string nick = this.TextBox7.Text;
         string date = TextBox9.Text;
         string result = string.Empty;
+        int total = 0;
 
         IDictionary<string, string> param = new Dictionary<string, string>();
 
@@ -54,17 +55,48 @@ public partial class top_reviewnew_search : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            param = new Dictionary<string, string>();
-            param.Add("status", "TradeRated");
-            param.Add("nick", nick);
-            param.Add("start_modified", date + " 00:00:00");
-            param.Add("end_modified", date + " 23:59:59");
-            param.Add("page_no", "1");
-            param.Add("page_size", "200");
-            result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.increment.trades.get", session, param);
+            for (int i = 1; i < 200; i++)
+            {
+                param = new Dictionary<string, string>();
+                param.Add("status", "TradeRated");
+                param.Add("nick", nick);
+                param.Add("start_modified", date + " 00:00:00");
+                param.Add("end_modified", date + " 23:59:59");
+                param.Add("page_no", i.ToString());
+                param.Add("page_size", "200");
+                result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.increment.trades.get", session, param);
 
-            Response.Write(result);
+                Regex reg1 = new Regex(@"\{""buyer_nick""[^\}]*\}", RegexOptions.IgnoreCase);
+                MatchCollection match1 = reg1.Matches(result);
+                for (int k = 0; k < match1.Count; k++)
+                {
+                    Console.Write(match1[k].Groups[0].ToString() + "\r\n");
+                    string resultNew = "\"msg\":{\"notify_trade\":" + match1[k].Groups[0].ToString() + "}";
+                    InsertMsgLogInfo(nick, "TradeRated", resultNew);
+                }
+
+                total += match1.Count;
+                if (match1.Count < 200)
+                {
+                    break;
+                }
+            }
         }
+        Response.Write("共导入【" + total.ToString() + "】条评价数据，系统正在处理中，请不要重复点击！");
+    }
+
+    public void InsertMsgLogInfo(string nick, string typ, string result)
+    {
+        string sql = "INSERT INTO TCS_TaobaoMsgLog (" +
+                            "nick, " +
+                            "typ, " +
+                            "result " +
+                        " ) VALUES ( " +
+                            " '" + nick + "', " +
+                            " '" + typ + "', " +
+                            " '" + result + "' " +
+                        ") ";
+        utils.ExecuteNonQuery(sql);
     }
 
 
