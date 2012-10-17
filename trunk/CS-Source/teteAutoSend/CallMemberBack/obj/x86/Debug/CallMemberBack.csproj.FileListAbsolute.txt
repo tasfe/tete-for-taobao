@@ -4,3 +4,9 @@ D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\CallMemberBack\bin\Debug\Cal
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\CallMemberBack\obj\x86\Debug\ResolveAssemblyReference.cache
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\CallMemberBack\obj\x86\Debug\CallMemberBack.exe
 D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\CallMemberBack\obj\x86\Debug\CallMemberBack.pdb
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\CallMemberBack\bin\Debug\TeteTopApi.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\CallMemberBack\bin\Debug\QWeiboSDK.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\CallMemberBack\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\CallMemberBack\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\CallMemberBack\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+D:\svngoogle\tete-for-taobao\CS-Source\teteAutoSend\CallMemberBack\bin\Debug\TeteTopApi.pdb
