@@ -50,6 +50,12 @@
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TeteTopApi\TeteTopApi.csproj">
+      <Project>{F1175121-6CAF-4B7A-8588-9CDF2B598059}</Project>
+      <Name>TeteTopApi</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

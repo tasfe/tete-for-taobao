@@ -177,7 +177,7 @@ namespace AutoMsgSend
                         if (!db.IsSendMsgToday(trade, "act"))
                         {
                             //先插入数据库 解决多优惠券赠送短信多发问题
-                            string msgResult = Message.Send(trade.Mobile, Msg);
+                            string msgResult = Message.SendMuti(trade.Mobile, Msg);
 
                             db.InsertShopMsgLog(shop, trade, Msg, msgResult, "act");
                         }
