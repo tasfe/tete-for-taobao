@@ -24,6 +24,12 @@
 
         <asp:TextBox ID="TextBox8" runat="server"></asp:TextBox>
         <asp:Button ID="Button3" runat="server" onclick="Button3_Click" Text="看下此客户是否进过服务" />
+        <hr />
+        
+        卖家昵称：<asp:TextBox ID="TextBox7" runat="server"></asp:TextBox>
+        评价日期：<asp:TextBox ID="TextBox9" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox10" runat="server"></asp:TextBox>
+        <asp:Button ID="Button4" runat="server" onclick="Button3_Click" Text="获取该客户评价消息" />
     </div>
     </form>
 </body>
