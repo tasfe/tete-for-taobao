@@ -22,13 +22,13 @@ namespace TeteIosTrain
             string result = string.Empty;
             string resultNew = string.Empty;
             string url = string.Empty;
-            url = "http://dynamic.12306.cn/otsweb/order/myOrderAction.do?method=getOrderWaitTime&tourFlag=dc";
+            url = "https://dynamic.12306.cn/otsweb/order/myOrderAction.do?method=getOrderWaitTime&tourFlag=dc";
 
             CookieContainer cc = new CookieContainer();
             IDictionary<string, string> param = new Dictionary<string, string>();
 
             //获取服务器sessionid
-            url = "https://dynamic.12306.cn/otsweb/loginAction.do?method=init";
+            url = "https://dynamic.12306.cn/otsweb/order/confirmPassengerAction.do?method=init";
             result = utils.CommonGetFirst(url);
 
             string[] ary = result.Split('|');
