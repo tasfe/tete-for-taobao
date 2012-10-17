@@ -46,17 +46,22 @@ public partial class top_reviewnew_search : System.Web.UI.Page
         string session = string.Empty;
         string nick = this.TextBox7.Text;
         string date = TextBox9.Text;
+        string result = string.Empty;
+
+        IDictionary<string, string> param = new Dictionary<string, string>();
 
         string sql = "SELECT * FROM TCS_ShopSession WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            IDictionary<string, string> param = new Dictionary<string, string>();
+            param = new Dictionary<string, string>();
             param.Add("status", "TradeRated");
             param.Add("nick", nick);
             param.Add("start_modified", date + " 00:00:00");
             param.Add("end_modified", date + " 23:59:59");
-            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.increment.trades.get", session, param);
+            param.Add("page_no", "1");
+            param.Add("page_size", "200");
+            result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.increment.trades.get", session, param);
 
             Response.Write(result);
         }
@@ -181,7 +186,7 @@ public partial class top_reviewnew_search : System.Web.UI.Page
         param.Add("method", method);
         param.Add("session", session);
         param.Add("timestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-        param.Add("format", "xml");
+        param.Add("format", "json");
         param.Add("v", "2.0");
         param.Add("sign_method", "md5");
         param.Add("sign", CreateSign(param, appSecret));
