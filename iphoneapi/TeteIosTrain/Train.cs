@@ -194,6 +194,69 @@ namespace TeteIosTrain
             return result;
         }
 
+
+        /// <summary>
+        /// 获取验证码和session
+        /// </summary>
+        public string GetVerifyImgOrder(string cookie)
+        {
+            string result = string.Empty;
+            string resultNew = string.Empty;
+            string url = string.Empty;
+            CookieContainer cc = new CookieContainer();
+            IDictionary<string, string> param = new Dictionary<string, string>();
+
+            string[] ary = cookie.Split('|');
+            //设置COOKIE
+            Cookie ck = new Cookie("JSESSIONID", ary[0], "/otsweb", "dynamic.12306.cn");
+            resultNew = "JSESSIONID=" + ary[0] + ";";
+
+            cc.Add(ck);
+            if (ary.Length > 1)
+            {
+                ck = new Cookie("BIGipServerotsweb", ary[1], "/", "dynamic.12306.cn");
+                cc.Add(ck);
+                resultNew += "BIGipServerotsweb=" + ary[1];
+            }
+
+            //请求验证码图片
+            url = "https://dynamic.12306.cn/otsweb/passCodeAction.do?rand=sjrand";
+            //构造web请求，发送请求，获取响应
+            HttpWebRequest HttpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            HttpWebRequest.KeepAlive = true;
+            HttpWebRequest.Timeout = 300000;
+            HttpWebRequest.Accept = "image/gif, image/jpeg, image/pjpeg, image/pjpeg, application/x-shockwave-flash, application/xaml+xml, application/x-ms-xbap, application/x-ms-application, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/msword, application/QVOD, application/QVOD, application/vnd.ms-xpsdocument, */*";
+            HttpWebRequest.Referer = "http://dynamic.12306.cn/otsweb/order/confirmPassengerAction.do?method=payOrder&orderSequence_no=E230063644";
+            HttpWebRequest.UserAgent = "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; QQDownload 702; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)";
+            HttpWebRequest.ContentType = "application/x-www-form-urlencoded";
+            HttpWebRequest.CookieContainer = cc;
+
+            WebResponse HttpWebResponse = HttpWebRequest.GetResponse();
+            byte[] arrayByte;
+
+            Stream stream = HttpWebResponse.GetResponseStream();
+
+
+            HttpContext.Current.Response.ClearContent();
+            HttpContext.Current.Response.ContentType = "image/gif";
+
+            //读取长度
+            int l = 1;
+            arrayByte = new byte[1024];
+
+            while (l != 0)
+            {
+                int i = stream.Read(arrayByte, 0, 1024);
+                l = i;
+                HttpContext.Current.Response.BinaryWrite(arrayByte);
+            }
+
+            stream.Close();
+            HttpWebResponse.Close();
+
+            return result;
+        }
+
         public string SendSearchRequest(string date, string startcity, string endcity, string no, string rtyp, string ttype, string student, string timearea, string session)
         {
             string url = string.Empty;
@@ -255,6 +318,55 @@ namespace TeteIosTrain
             result = utils.CommonGet(url, session);
 
             return result;
+        }
+                           
+
+        public string SendOrderSubmitRequest()
+        {
+            IDictionary<string, string> param = new Dictionary<string, string>();
+
+            param.Add("org.apache.struts.taglib.html.TOKEN", "d01e9d70a77ab0abd474b1e1c6ebaf1f");
+            param.Add("leftTicketStr", "O014000445M022000044O014003000");
+            param.Add("textfield", "中文或拼音首字母");
+            param.Add("checkbox0", "0");
+            param.Add("checkbox1", "1");
+            param.Add("checkbox2", "2");
+            param.Add("checkbox6", "6");
+            param.Add("checkbox7", "7");
+            param.Add("orderRequest.train_date", "2012-10-16");
+            param.Add("orderRequest.train_no", "55000G708420");
+
+            param.Add("orderRequest.station_train_code", "G7084");
+            param.Add("orderRequest.from_station_telecode", "SHH");
+            param.Add("orderRequest.to_station_telecode", "NJH");
+            param.Add("orderRequest.seat_type_code", "");
+            param.Add("orderRequest.seat_detail_type_code", "");
+            param.Add("orderRequest.ticket_type_order_num", "");
+            param.Add("orderRequest.bed_level_order_num", "000000000000000000000000000000");
+            param.Add("orderRequest.start_time", "20:32");
+            param.Add("orderRequest.end_time", "22:29");
+            param.Add("orderRequest.from_station_name", "上海");
+
+            param.Add("orderRequest.to_station_name", "南京");
+            param.Add("orderRequest.cancel_flag", "1");
+            param.Add("orderRequest.id_mode", "Y");
+
+            param.Add("passengerTickets", "M,0,1,吕鑫,1,230524198309181311,18606297190,Y");
+            param.Add("oldPassengers", "吕鑫,1,230524198309181311");
+            param.Add("passenger_1_seat", "M");
+            param.Add("passenger_1_seat_detail", "0");
+            param.Add("passenger_1_ticket", "1");
+            param.Add("passenger_1_name", "吕鑫");
+            param.Add("passenger_1_cardtype", "1");
+            param.Add("passenger_1_cardno", "230524198309181311");
+            param.Add("passenger_1_mobileno", "18606297190");
+            param.Add("checkbox9", "Y");
+
+            param.Add("randCode", "7aay");
+            param.Add("orderRequest.reserve_flag", "A");
+
+
+            return "";
         }
     }
 }
