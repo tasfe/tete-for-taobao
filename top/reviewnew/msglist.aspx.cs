@@ -294,6 +294,10 @@ public partial class top_review_msglist : System.Web.UI.Page
         {
             newstr = "<font color=#F7D729>新品活动营销</font>";
         }
+        else if (str == "back")
+        {
+            newstr = "<font color=#F7D729>买家定期回访</font>";
+        }
         else if (str == "test")
         {
             newstr = "短信测试";
