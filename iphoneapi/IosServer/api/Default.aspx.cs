@@ -119,6 +119,7 @@ public partial class api_Default : System.Web.UI.Page
             orderid = new Regex(@"""orderId"":""([^""]*)""", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             outStr += orderid;
         }
+        File.WriteAllText(Server.MapPath("11112.txt"), outStr + "-" + result);
 
         //如果左边是-1则需为排队人数，5为排队
         Response.Write(outStr);
