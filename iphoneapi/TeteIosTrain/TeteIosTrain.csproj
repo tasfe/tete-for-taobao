@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Train.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
