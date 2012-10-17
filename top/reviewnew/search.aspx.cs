@@ -96,6 +96,7 @@ public partial class top_reviewnew_search : System.Web.UI.Page
                             " '" + typ + "', " +
                             " '" + result + "' " +
                         ") ";
+        Response.Write(sql + "<br>");
         utils.ExecuteNonQuery(sql);
     }
 
