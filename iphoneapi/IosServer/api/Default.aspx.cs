@@ -12,8 +12,7 @@ public partial class api_Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string content = File.ReadAllText(Server.MapPath("requestlog.txt"));
-        File.WriteAllText(Server.MapPath("requestlog.txt"), Request.Url.ToString() + "---" + DateTime.Now.ToString() + "\r\n" + content);
+        Log(Request.Url.ToString());
 
         string act = Common.utils.NewRequest("act", Common.utils.RequestType.QueryString);
         if (act == "verify")
@@ -106,6 +105,12 @@ public partial class api_Default : System.Web.UI.Page
         {
             PersonActPost("del");
         }
+    }
+
+    private void Log(string txt)
+    {
+        string content = File.ReadAllText(Server.MapPath("requestlog.txt"));
+        File.WriteAllText(Server.MapPath("requestlog.txt"), txt + "---" + DateTime.Now.ToString() + "\r\n" + content);
     }
 
     private void GetOrderPost()
@@ -229,6 +234,8 @@ public partial class api_Default : System.Web.UI.Page
 
         File.WriteAllText(Server.MapPath("1112.txt"), outStr + "-" + result);
 
+        Log(outStr);
+
         Response.Write(outStr);
         Response.End();
     }
@@ -311,6 +318,7 @@ public partial class api_Default : System.Web.UI.Page
         string result = send.PreSendOrderSubmitRequest(str, randCode, userList, key, date, token, ticket, ref paramStr, train_no);
 
         File.WriteAllText(Server.MapPath("8888881.txt"), paramStr + "-" + result + "-" + session);
+        Log(paramStr + "-" + result + "-" + session);
 
         Response.Write(result);
         Response.End();
@@ -490,6 +498,7 @@ public partial class api_Default : System.Web.UI.Page
 
             Train t = new Train();
             string cookieStr = t.GetVerifyImgOrder(str1 + "|" + str2);
+            Log(session);
             Response.End();
         }
         catch
