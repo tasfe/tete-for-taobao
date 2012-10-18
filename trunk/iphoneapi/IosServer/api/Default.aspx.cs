@@ -241,7 +241,11 @@ public partial class api_Default : System.Web.UI.Page
         Log(str);
         File.WriteAllText(Server.MapPath("test2222.txt"), result);
 
-        Response.Write(result);
+        if (result.IndexOf("取消订单成功") != -1)
+        {
+            Response.Write("ok");
+        }
+
         Response.End();
     }
 
@@ -263,9 +267,9 @@ public partial class api_Default : System.Web.UI.Page
         string result = send.SendPayRequest(str, token, orderid, ticketid);
 
         Log(str);
-        File.WriteAllText(Server.MapPath("test111.txt"), result);
+        //File.WriteAllText(Server.MapPath("test111.txt"), result);
 
-        Response.Write(result);
+        Response.Write(@"支付方式1,支付1简介,<form id=payform action=""https://epay.12306.cn/pay/payGateway"" method=""post"" name=""myform""></form><script>document.getElementById('payform').submit();</script>|支付方式2,支付2简介,<form id=payform action=""https://epay.12306.cn/pay/payGateway"" method=""post"" name=""myform""></form><script>document.getElementById('payform').submit();</script>|支付方式3,支付3简介,<form id=payform action=""https://epay.12306.cn/pay/payGateway"" method=""post"" name=""myform""></form><script>document.getElementById('payform').submit();</script>");
         Response.End();
     }
 
