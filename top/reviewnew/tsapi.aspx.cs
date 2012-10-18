@@ -74,18 +74,34 @@ public partial class top_reviewnew_tsapi : System.Web.UI.Page
     {
         string sql = string.Empty;
         string str = string.Empty;
-        
-        sql = "SELECT COUNT(*) FROM TCS_TaobaoMsgLog WHERE typ = 'TradeSellerShip' AND isok = 0";
-        str = utils.ExecuteString(sql);
 
-        sql = "SELECT COUNT(*) FROM TCS_TaobaoMsgLog WHERE typ = 'TradeCreate' AND isok = 0";
-        str += ","+utils.ExecuteString(sql);
+        try
+        {
+            sql = "SELECT COUNT(*) FROM TCS_TaobaoMsgLog WHERE typ = 'TradeSellerShip' AND isok = 0";
+            str = utils.ExecuteString(sql);
+        }
+        catch { str = "--"; }
 
-        sql = "SELECT COUNT(*) FROM TCS_TaobaoMsgLog WHERE typ = 'TradeRated' AND isok = 0";
-        str += "," + utils.ExecuteString(sql);
+        try
+        {
+            sql = "SELECT COUNT(*) FROM TCS_TaobaoMsgLog WHERE typ = 'TradeCreate' AND isok = 0";
+            str += "," + utils.ExecuteString(sql);
+        }
+        catch { str += "," + "--"; }
 
-        sql = "SELECT COUNT(*) FROM TCS_TaobaoMsgLog WHERE typ = 'TradeBuyerPay' AND isok = 0";
-        str += "," + utils.ExecuteString(sql);
+        try
+        {
+            sql = "SELECT COUNT(*) FROM TCS_TaobaoMsgLog WHERE typ = 'TradeRated' AND isok = 0";
+            str += "," + utils.ExecuteString(sql);
+        }
+        catch { str += "," + "--"; }
+
+        try
+        {
+            sql = "SELECT COUNT(*) FROM TCS_TaobaoMsgLog WHERE typ = 'TradeBuyerPay' AND isok = 0";
+            str += "," + utils.ExecuteString(sql);
+        }
+        catch { str += "," + "--"; }
 
         Response.Write(str);
         Response.End();
