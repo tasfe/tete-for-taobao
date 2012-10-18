@@ -285,7 +285,7 @@ public partial class api_Default : System.Web.UI.Page
 
         string[] ary = list.Split(',');
         string[] ary1 = list1.Split(',');
-        for (int i = 0; i < ary.Length; i++)
+        for (int i = 1; i < ary.Length; i++)
         {
             User u = new User();
 
