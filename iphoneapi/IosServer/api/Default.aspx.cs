@@ -307,7 +307,7 @@ public partial class api_Default : System.Web.UI.Page
         Train send = new Train();
         string result = send.PreSendOrderSubmitRequest(str, randCode, userList, key, date, token, ticket, ref paramStr, train_no);
 
-        File.WriteAllText(Server.MapPath("8888881.txt"), paramStr + "-" + result);
+        File.WriteAllText(Server.MapPath("8888881.txt"), paramStr + "-" + result + "-" + session);
 
         Response.Write(result);
         Response.End();
