@@ -192,7 +192,7 @@ namespace TeteIosTrain
         /// </summary> 
         /// <param name="parameters">Key-Value形式请求参数字典</param> 
         /// <returns>URL编码后的请求数据</returns> 
-        protected static string PostData(IDictionary<string, string> parameters)
+        public static string PostData(IDictionary<string, string> parameters)
         {
             StringBuilder postData = new StringBuilder();
             bool hasParam = false;

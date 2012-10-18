@@ -329,9 +329,9 @@ namespace TeteIosTrain
 
             return result;
         }
-                           
 
-        public string SendOrderSubmitRequest(string session, string verify, string orderid, List<User> userList, string key, string date, string token, string ticket)
+
+        public string SendOrderSubmitRequest(string session, string verify, string orderid, List<User> userList, string key, string date, string token, string ticket, ref string paramStr)
         {
             string url = string.Empty;
             string result = string.Empty;
@@ -381,6 +381,7 @@ namespace TeteIosTrain
             param.Add("randCode", verify);
             param.Add("orderRequest.reserve_flag", "A");
 
+            paramStr = utils.PostData(param);
 
             result = utils.CommonPost(url, param, session);
 
