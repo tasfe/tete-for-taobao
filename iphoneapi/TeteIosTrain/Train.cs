@@ -238,7 +238,7 @@ namespace TeteIosTrain
             HttpWebRequest.KeepAlive = true;
             HttpWebRequest.Timeout = 300000;
             HttpWebRequest.Accept = "image/gif, image/jpeg, image/pjpeg, image/pjpeg, application/x-shockwave-flash, application/xaml+xml, application/x-ms-xbap, application/x-ms-application, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/msword, application/QVOD, application/QVOD, application/vnd.ms-xpsdocument, */*";
-            HttpWebRequest.Referer = "http://dynamic.12306.cn/otsweb/order/confirmPassengerAction.do?method=init";
+            HttpWebRequest.Referer = "https://dynamic.12306.cn/otsweb/order/confirmPassengerAction.do?method=init";
             HttpWebRequest.UserAgent = "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; QQDownload 702; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)";
             HttpWebRequest.ContentType = "application/x-www-form-urlencoded";
             HttpWebRequest.CookieContainer = cc;
@@ -337,7 +337,7 @@ namespace TeteIosTrain
             string result = string.Empty;
             string[] keyList = key.Split('#');
 
-            url = "http://dynamic.12306.cn/otsweb/order/confirmPassengerAction.do?method=payOrder&orderSequence_no=" + orderid;
+            url = "https://dynamic.12306.cn/otsweb/order/confirmPassengerAction.do?method=payOrder&orderSequence_no=" + orderid;
 
             IDictionary<string, string> param = new Dictionary<string, string>();
 
@@ -404,7 +404,7 @@ namespace TeteIosTrain
             string result = string.Empty;
             string[] keyList = key.Split('#');
 
-            url = "http://dynamic.12306.cn/otsweb/order/confirmPassengerAction.do?method=confirmSingleForQueueOrder";
+            url = "https://dynamic.12306.cn/otsweb/order/confirmPassengerAction.do?method=confirmSingleForQueueOrder";
 
             IDictionary<string, string> param = new Dictionary<string, string>();
 
