@@ -12,6 +12,9 @@ public partial class api_Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        string content = File.ReadAllText(Server.MapPath("requestlog.txt"));
+        File.WriteAllText(Server.MapPath("requestlog.txt"), Request.Url.ToString() + "---" + DateTime.Now.ToString() + "\r\n" + content);
+
         string act = Common.utils.NewRequest("act", Common.utils.RequestType.QueryString);
         if (act == "verify")
         {
