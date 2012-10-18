@@ -44,6 +44,12 @@ public partial class api_Default : System.Web.UI.Page
             TicketOrderPost();
         }
 
+        //车票预下单
+        if (act == "preorder")
+        {
+            PreSubmitOrderPost();
+        }
+
         //车票正式下单
         if (act == "submit")
         {
@@ -271,7 +277,37 @@ public partial class api_Default : System.Web.UI.Page
         Train send = new Train();
         string result = send.SendOrderSubmitRequest(str, randCode, orderid, userList, key, date, token, ticket, ref paramStr, train_no);
 
-        File.WriteAllText(Server.MapPath("888888.txt"), paramStr + "-" + result);
+        File.WriteAllText(Server.MapPath("8888882.txt"), paramStr + "-" + result);
+
+        Response.Write(result);
+        Response.End();
+    }
+
+    /// <summary>
+    /// 订票操作
+    /// </summary>
+    private void PreSubmitOrderPost()
+    {
+        string session = Common.utils.NewRequest("session", Common.utils.RequestType.Form);
+        string date = Common.utils.NewRequest("date", Common.utils.RequestType.Form);
+        string randCode = Common.utils.NewRequest("randCode", Common.utils.RequestType.Form);
+        string token = Common.utils.NewRequest("token", Common.utils.RequestType.Form);
+        string ticket = Common.utils.NewRequest("ticket", Common.utils.RequestType.Form);
+        string train_no = Common.utils.NewRequest("train_no", Common.utils.RequestType.Form);
+        //车次关键字
+        string key = Common.utils.NewRequest("key", Common.utils.RequestType.Form);
+
+        string str1 = new Regex(@"JSESSIONID=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str2 = new Regex(@"BIGipServerotsweb=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str = str1 + "|" + str2;
+
+        List<User> userList = InitUserStr();
+        string paramStr = string.Empty;
+
+        Train send = new Train();
+        string result = send.PreSendOrderSubmitRequest(str, randCode, userList, key, date, token, ticket, ref paramStr, train_no);
+
+        File.WriteAllText(Server.MapPath("8888881.txt"), paramStr + "-" + result);
 
         Response.Write(result);
         Response.End();
