@@ -187,7 +187,7 @@ namespace TeteIosTrain
 
 
             HttpContext.Current.Response.ClearContent();
-            HttpContext.Current.Response.ContentType = "image/gif";
+            HttpContext.Current.Response.ContentType = "image/jpeg";
 
             //读取长度
             int l = 1;
@@ -243,7 +243,6 @@ namespace TeteIosTrain
             HttpWebRequest.Accept = "image/gif, image/jpeg, image/pjpeg, image/pjpeg, application/x-shockwave-flash, application/xaml+xml, application/x-ms-xbap, application/x-ms-application, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/msword, application/QVOD, application/QVOD, application/vnd.ms-xpsdocument, */*";
             HttpWebRequest.Referer = "https://dynamic.12306.cn/otsweb/order/confirmPassengerAction.do?method=init";
             HttpWebRequest.UserAgent = "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; QQDownload 702; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)";
-            HttpWebRequest.ContentType = "application/x-www-form-urlencoded";
             HttpWebRequest.CookieContainer = cc;
 
             WebResponse HttpWebResponse = HttpWebRequest.GetResponse();
@@ -253,7 +252,7 @@ namespace TeteIosTrain
 
 
             HttpContext.Current.Response.ClearContent();
-            HttpContext.Current.Response.ContentType = "image/gif";
+            HttpContext.Current.Response.ContentType = "image/jpeg";
 
             //读取长度
             int l = 1;
