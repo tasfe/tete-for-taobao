@@ -258,6 +258,7 @@ public partial class api_Default : System.Web.UI.Page
         Train send = new Train();
         string result = send.SendSearchDetailRequest(date, startcity, endcity, no, str1 + "|" + str2);
 
+        Log(session);
         Response.Write(result);
         Response.End();
     }
@@ -289,6 +290,7 @@ public partial class api_Default : System.Web.UI.Page
 
         File.WriteAllText(Server.MapPath("8888882.txt"), paramStr + "-" + result);
 
+        Log(session);
         Response.Write(result);
         Response.End();
     }
@@ -402,6 +404,7 @@ public partial class api_Default : System.Web.UI.Page
 
         File.WriteAllText(Server.MapPath("111.txt"), matchBottom.Count + "-" + outStr + "-" + result);
 
+        Log(session);
         Response.Write(outStr);
         Response.End();
     }
@@ -450,6 +453,7 @@ public partial class api_Default : System.Web.UI.Page
                 Response.Write("ok");
             }
         }
+        Log(session);
         Response.End();
     }
 
@@ -473,7 +477,7 @@ public partial class api_Default : System.Web.UI.Page
             {
                 cookie.setCookie("BIGipServerotsweb", ary[1], 999999);
             }
-
+            Log(cookieStr);
             Response.End();
         }
         catch
