@@ -331,11 +331,13 @@ namespace TeteIosTrain
         }
 
 
-        public string SendOrderSubmitRequest(string session, string verify, string orderid, List<User> userList, string key, string date, string token, string ticket, ref string paramStr)
+        public string SendOrderSubmitRequest(string session, string verify, string orderid, List<User> userList, string key, string date, string token, string ticket, ref string paramStr, string train_no)
         {
             string url = string.Empty;
             string result = string.Empty;
             string[] keyList = key.Split('#');
+
+            url = "http://dynamic.12306.cn/otsweb/order/confirmPassengerAction.do?method=payOrder&orderSequence_no=" + orderid;
 
             IDictionary<string, string> param = new Dictionary<string, string>();
 
@@ -348,7 +350,7 @@ namespace TeteIosTrain
             param.Add("checkbox6", "6");
             param.Add("checkbox7", "7");
             param.Add("orderRequest.train_date", date);
-            param.Add("orderRequest.train_no", orderid);
+            param.Add("orderRequest.train_no", train_no);
 
             param.Add("orderRequest.station_train_code", keyList[0]);
             param.Add("orderRequest.from_station_telecode", keyList[4]);
