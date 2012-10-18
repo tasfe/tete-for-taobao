@@ -474,6 +474,22 @@ namespace TeteIosTrain
             return result;
         }
 
+        public string SendCancelRequest(string session, string token, string orderid, string ticketid)
+        {
+            string url = "http://dynamic.12306.cn/otsweb/order/myOrderAction.do?method=laterEpay&orderSequence_no=" + orderid + "&con_pay_type=epay";
+
+            IDictionary<string, string> param = new Dictionary<string, string>();
+
+            param.Add("org.apache.struts.taglib.html.TOKEN", token);
+            param.Add("queryOrderDTO.from_order_date", "");
+            param.Add("queryOrderDTO.to_order_date", "");
+            param.Add("ticket_key", ticketid);
+
+            string result = utils.CommonPost(url, param, session);
+
+            return result;
+        }
+
         public string SendPayRequest(string session, string token, string orderid, string ticketid)
         {
             string url = "http://dynamic.12306.cn/otsweb/order/myOrderAction.do?method=laterEpay&orderSequence_no=" + orderid + "&con_pay_type=epay";
