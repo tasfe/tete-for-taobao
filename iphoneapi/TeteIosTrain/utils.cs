@@ -208,7 +208,16 @@ namespace TeteIosTrain
                     {
                         postData.Append("&");
                     }
-                    postData.Append(name);
+
+                    if (name.IndexOf("---") != -1)
+                    {
+                        name = Regex.Replace(name, @"---[0-9]*", "");
+                        postData.Append(name);
+                    }
+                    else
+                    {
+                        postData.Append(name);
+                    }
                     postData.Append("=");
                     postData.Append(Uri.EscapeDataString(value));
                     hasParam = true;

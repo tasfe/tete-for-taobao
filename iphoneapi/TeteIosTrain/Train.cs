@@ -368,8 +368,8 @@ namespace TeteIosTrain
 
             for (int i = 0; i < userList.Count; i++)
             {
-                param.Add("passengerTickets", userList[i].Str1);
-                param.Add("oldPassengers", userList[i].Str2);
+                param.Add("passengerTickets---" + (i+1).ToString(), userList[i].Str1);
+                param.Add("oldPassengers---" + (i + 1).ToString(), userList[i].Str2);
                 param.Add("passenger_"+(i+1).ToString()+"_seat", userList[i].Str3);
                 param.Add("passenger_"+(i+1).ToString()+"_seat_detail", userList[i].Str4);
                 param.Add("passenger_"+(i+1).ToString()+"_ticket", userList[i].Str5);
@@ -377,13 +377,13 @@ namespace TeteIosTrain
                 param.Add("passenger_"+(i+1).ToString()+"_cardtype", userList[i].Str7);
                 param.Add("passenger_"+(i+1).ToString()+"_cardno", userList[i].Str8);
                 param.Add("passenger_"+(i+1).ToString()+"_mobileno", userList[i].Str9);
-                param.Add("checkbox9", "Y");
+                param.Add("checkbox9---" + (i + 1).ToString(), "Y");
             }
 
             for (int i = 0; i < (5 - userList.Count); i++)
             {
-                param.Add("oldPassengers", "");
-                param.Add("checkbox9", "Y");
+                param.Add("oldPassengers---" + (userList.Count + i + 1).ToString(), "");
+                param.Add("checkbox9---" + (userList.Count + i + 1).ToString(), "Y");
             }
 
             param.Add("randCode", verify);
