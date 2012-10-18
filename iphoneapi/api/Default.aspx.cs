@@ -470,6 +470,9 @@ public partial class api_Default : System.Web.UI.Page
         string sql = string.Empty;
         string str = string.Empty;
 
+        sql = "UPDATE [TeteUserToken] SET updatedate = GETDATE() WHERE token = '" + token + "'";
+        utils.ExecuteNonQuery(sql);
+
         sql = "SELECT COUNT(*) FROM TeteUserMsg WHERE token = '" + token + "' AND nick = '" + uid + "' AND isread = 0";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
