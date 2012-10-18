@@ -547,6 +547,7 @@ public partial class api_Default : System.Web.UI.Page
             }
         }
         Log(session);
+        File.WriteAllText(Server.MapPath("111000.txt"), result);
         Response.End();
     }
 
