@@ -285,19 +285,19 @@ public partial class api_Default : System.Web.UI.Page
 
         string[] ary = list.Split(',');
         string[] ary1 = list1.Split(',');
-        for (int i = 1; i < ary.Length; i++)
+        for (int i = 0; i < ary.Length; i++)
         {
             User u = new User();
 
             u.Str1 = ary[i].Replace("|", ",");
             u.Str2 = ary1[i].Replace("|", ",");
-            u.Str3 = Common.utils.NewRequest("passenger_" + i.ToString() + "_seat", Common.utils.RequestType.Form);
-            u.Str4 = Common.utils.NewRequest("passenger_" + i.ToString() + "_seat_detail", Common.utils.RequestType.Form);
-            u.Str5 = Common.utils.NewRequest("passenger_" + i.ToString() + "_ticket", Common.utils.RequestType.Form);
-            u.Str6 = Common.utils.NewRequest("passenger_" + i.ToString() + "_name", Common.utils.RequestType.Form);
-            u.Str7 = Common.utils.NewRequest("passenger_" + i.ToString() + "_cardtype", Common.utils.RequestType.Form);
-            u.Str8 = Common.utils.NewRequest("passenger_" + i.ToString() + "_cardno", Common.utils.RequestType.Form);
-            u.Str9 = Common.utils.NewRequest("passenger_" + i.ToString() + "_mobileno", Common.utils.RequestType.Form);
+            u.Str3 = Common.utils.NewRequest("passenger_" + (i+1).ToString() + "_seat", Common.utils.RequestType.Form);
+            u.Str4 = Common.utils.NewRequest("passenger_" + (i+1).ToString() + "_seat_detail", Common.utils.RequestType.Form);
+            u.Str5 = Common.utils.NewRequest("passenger_" + (i+1).ToString() + "_ticket", Common.utils.RequestType.Form);
+            u.Str6 = Common.utils.NewRequest("passenger_" + (i+1).ToString() + "_name", Common.utils.RequestType.Form);
+            u.Str7 = Common.utils.NewRequest("passenger_" + (i+1).ToString() + "_cardtype", Common.utils.RequestType.Form);
+            u.Str8 = Common.utils.NewRequest("passenger_" + (i+1).ToString() + "_cardno", Common.utils.RequestType.Form);
+            u.Str9 = Common.utils.NewRequest("passenger_" + (i+1).ToString() + "_mobileno", Common.utils.RequestType.Form);
 
             userList.Add(u);
         }
