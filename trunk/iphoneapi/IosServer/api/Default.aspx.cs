@@ -180,13 +180,16 @@ public partial class api_Default : System.Web.UI.Page
         Train send = new Train();
         string result = send.SendOrderRequest(str, key, date, startcity, endcity, no, rtyp, ttype, student, timearea);
 
-        ////string result = @"var passengerJson = [{""first_letter"":""LEONFEIFEI0"",""isUserSelf"":"""",""mobile_no"":""18651613908"",""old_passenger_id_no"":"""",""old_passenger_id_type_code"":"""",""old_passenger_name"":"""",""passenger_flag"":""0"",""passenger_id_no"":""320105198207291617"",""passenger_id_type_code"":""1"",""passenger_id_type_name"":"""",""passenger_name"":""王里"",""passenger_type"":""1"",""passenger_type_name"":"""",""recordCount"":""3""},{""first_letter"":""WANGLI"",""isUserSelf"":"""",""mobile_no"":""18651613908"",""old_passenger_id_no"":"""",""old_passenger_id_type_code"":"""",""old_passenger_name"":"""",""passenger_flag"":""0"",""passenger_id_no"":""320105198207291617"",""passenger_id_type_code"":""1"",""passenger_id_type_name"":"""",""passenger_name"":""wangli"",""passenger_type"":""1"",""passenger_type_name"":"""",""recordCount"":""3""},{""first_letter"":""MYJ"",""isUserSelf"":"""",""mobile_no"":"""",""old_passenger_id_no"":"""",""old_passenger_id_type_code"":"""",""old_passenger_name"":"""",""passenger_flag"":""0"",""passenger_id_no"":""320103197801030527"",""passenger_id_type_code"":""1"",""passenger_id_type_name"":"""",""passenger_name"":""马永洁"",""passenger_type"":""1"",""passenger_type_name"":"""",""recordCount"":""3""}];
-        //        var ticketTypeReserveFlags = [{""epayFlag"":true,""ticket_type_code"":""1""},{""epayFlag"":true,""ticket_type_code"":""2""},{""epayFlag"":false,""ticket_type_code"":""3""},{""epayFlag"":false,""ticket_type_code"":""4""}];
-        //        var limitBuySeatTicketDTO  = {""seat_type_codes"":[{""end_station_name"":"""",""end_time"":"""",""id"":""M"",""start_station_name"":"""",""start_time"":"""",""value"":""一等座""},{""end_station_name"":"""",""end_time"":"""",""id"":""O"",""start_station_name"":"""",""start_time"":"""",""value"":""二等座""},{""end_station_name"":"""",""end_time"":"""",""id"":""9"",""start_station_name"":"""",""start_time"":"""",""value"":""商务座""}],""ticket_seat_codeMap"":{""3"":[{""end_station_name"":"""",""end_time"":"""",""id"":""O"",""start_station_name"":"""",""start_time"":"""",""value"":""二等座""}],""2"":[{""end_station_name"":"""",""end_time"":"""",""id"":""9"",""start_station_name"":"""",""start_time"":"""",""value"":""商务座""},{""end_station_name"":"""",""end_time"":"""",""id"":""M"",""start_station_name"":"""",""start_time"":"""",""value"":""一等座""},{""end_station_name"":"""",""end_time"":"""",""id"":""O"",""start_station_name"":"""",""start_time"":"""",""value"":""二等座""}],""1"":[{""end_station_name"":"""",""end_time"":"""",""id"":""9"",""start_station_name"":"""",""start_time"":"""",""value"":""商务座""},{""end_station_name"":"""",""end_time"":"""",""id"":""M"",""start_station_name"":"""",""start_time"":"""",""value"":""一等座""},{""end_station_name"":"""",""end_time"":"""",""id"":""O"",""start_station_name"":"""",""start_time"":"""",""value"":""二等座""}],""4"":[{""end_station_name"":"""",""end_time"":"""",""id"":""9"",""start_station_name"":"""",""start_time"":"""",""value"":""商务座""},{""end_station_name"":"""",""end_time"":"""",""id"":""M"",""start_station_name"":"""",""start_time"":"""",""value"":""一等座""},{""end_station_name"":"""",""end_time"":"""",""id"":""O"",""start_station_name"":"""",""start_time"":"""",""value"":""二等座""}]},""ticket_type_codes"":[{""end_station_name"":"""",""end_time"":"""",""id"":""1"",""start_station_name"":"""",""start_time"":"""",""value"":""成人票""},{""end_station_name"":"""",""end_time"":"""",""id"":""2"",""start_station_name"":"""",""start_time"":"""",""value"":""儿童票""},{""end_station_name"":"""",""end_time"":"""",""id"":""3"",""start_station_name"":"""",""start_time"":"""",""value"":""学生票""},{""end_station_name"":"""",""end_time"":"""",""id"":""4"",""start_station_name"":"""",""start_time"":"""",""value"":""残军票""}]};";
-
         string userList = string.Empty;
         string ticketList = string.Empty;
         string priceList = string.Empty;
+        string token = string.Empty;
+        string ticketStr = string.Empty;
+
+        string[] ary = key.Split('#');
+
+        //<input type="hidden" name="org.apache.struts.taglib.html.TOKEN" value="ee3f5476cc070983f99484be47ddd53d">
+        //<input type="hidden" name="leftTicketStr" id="left_ticket" value="O013500000M0230000009043000012" />
 
         try
         {
@@ -199,11 +202,17 @@ public partial class api_Default : System.Web.UI.Page
 
             //车票价格和剩余数量
             priceList = "一等座(230.00元)7张票,二等座(135.00元)3张票,特等座(260.00元)10张票";
+
+            //token
+            token = Regex.Match(result, @"TOKEN""[\s]*value=""([^""]*)""").Groups[1].ToString();
+
+            //ticketstr
+            ticketStr = Regex.Match(result, @"left_ticket""[\s]*value=""([^""]*)""").Groups[1].ToString();
         }
         catch { }
 
         //返回验证码
-        outStr = "1234(南京-上海)|2012-10-15 16:31-20:58(04:27)|" + ticketList + "|" + userList + "|" + priceList;
+        outStr = ary[0] + "(" + ary[7] + "-" + ary[8] + ")|" + date + " " + ary[2] + "-" + ary[6] + "(" + ary[0] + ")|" + ticketList + "|" + userList + "|" + priceList + "|" + token + "|" + ticketStr;
 
         File.WriteAllText(Server.MapPath("1112.txt"), outStr + "-" + result);
 
@@ -239,17 +248,47 @@ public partial class api_Default : System.Web.UI.Page
     private void SubmitOrderPost()
     {
         string session = Common.utils.NewRequest("session", Common.utils.RequestType.Form);
+        string orderid = Common.utils.NewRequest("orderid", Common.utils.RequestType.Form);
         string date = Common.utils.NewRequest("date", Common.utils.RequestType.Form);
-        string startcity = Common.utils.NewRequest("startcity", Common.utils.RequestType.Form);
-        string endcity = Common.utils.NewRequest("endcity", Common.utils.RequestType.Form);
-        string no = Common.utils.NewRequest("no", Common.utils.RequestType.Form);
-        string data = Common.utils.NewRequest("data", Common.utils.RequestType.Form);
-                      
-        //Train send = new Train();
-        //string result = send.SendOrderSubmitRequest();
+        string randCode = Common.utils.NewRequest("randCode", Common.utils.RequestType.Form);
+        //车次关键字
+        string key = Common.utils.NewRequest("key", Common.utils.RequestType.Form);
+
+        List<User> userList = InitUserStr();
+
+        Train send = new Train();
+        string result = send.SendOrderSubmitRequest(session, randCode, orderid, userList, key,date);
 
         Response.Write("ok");
         Response.End();
+    }
+
+    private List<User> InitUserStr()
+    {
+        List<User> userList = new List<User>();
+        string list = Common.utils.NewRequest("passengerTickets", Common.utils.RequestType.Form);
+        string list1 = Common.utils.NewRequest("oldPassengers", Common.utils.RequestType.Form);
+
+        string[] ary = list.Split(',');
+        string[] ary1 = list1.Split(',');
+        for (int i = 0; i < ary.Length; i++)
+        {
+            User u = new User();
+
+            u.Str1 = ary[i].Replace("|", ",");
+            u.Str2 = ary1[i].Replace("|", ",");
+            u.Str3 = Common.utils.NewRequest("passenger_" + i.ToString() + "_seat", Common.utils.RequestType.Form);
+            u.Str4 = Common.utils.NewRequest("passenger_" + i.ToString() + "_seat_detail", Common.utils.RequestType.Form);
+            u.Str5 = Common.utils.NewRequest("passenger_" + i.ToString() + "_ticket", Common.utils.RequestType.Form);
+            u.Str6 = Common.utils.NewRequest("passenger_" + i.ToString() + "_name", Common.utils.RequestType.Form);
+            u.Str7 = Common.utils.NewRequest("passenger_" + i.ToString() + "_cardtype", Common.utils.RequestType.Form);
+            u.Str8 = Common.utils.NewRequest("passenger_" + i.ToString() + "_cardno", Common.utils.RequestType.Form);
+            u.Str9 = Common.utils.NewRequest("passenger_" + i.ToString() + "_mobileno", Common.utils.RequestType.Form);
+
+            userList.Add(u);
+        }
+
+        return userList;
     }
 
     /// <summary>
