@@ -252,13 +252,15 @@ public partial class api_Default : System.Web.UI.Page
         string orderid = Common.utils.NewRequest("orderid", Common.utils.RequestType.Form);
         string date = Common.utils.NewRequest("date", Common.utils.RequestType.Form);
         string randCode = Common.utils.NewRequest("randCode", Common.utils.RequestType.Form);
+        string token = Common.utils.NewRequest("token", Common.utils.RequestType.Form);
+        string ticket = Common.utils.NewRequest("ticket", Common.utils.RequestType.Form);
         //车次关键字
         string key = Common.utils.NewRequest("key", Common.utils.RequestType.Form);
 
         List<User> userList = InitUserStr();
 
         Train send = new Train();
-        string result = send.SendOrderSubmitRequest(session, randCode, orderid, userList, key,date);
+        string result = send.SendOrderSubmitRequest(session, randCode, orderid, userList, key, date, token, ticket);
 
         Response.Write("ok");
         Response.End();

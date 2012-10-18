@@ -331,7 +331,7 @@ namespace TeteIosTrain
         }
                            
 
-        public string SendOrderSubmitRequest(string session, string verify, string orderid, List<User> userList, string key, string date)
+        public string SendOrderSubmitRequest(string session, string verify, string orderid, List<User> userList, string key, string date, string token, string ticket)
         {
             string url = string.Empty;
             string result = string.Empty;
@@ -339,8 +339,8 @@ namespace TeteIosTrain
 
             IDictionary<string, string> param = new Dictionary<string, string>();
 
-            param.Add("org.apache.struts.taglib.html.TOKEN", "d01e9d70a77ab0abd474b1e1c6ebaf1f");
-            param.Add("leftTicketStr", "O014000445M022000044O014003000");
+            param.Add("org.apache.struts.taglib.html.TOKEN", token);
+            param.Add("leftTicketStr", ticket);
             param.Add("textfield", "中文或拼音首字母");
             param.Add("checkbox0", "0");
             param.Add("checkbox1", "1");
