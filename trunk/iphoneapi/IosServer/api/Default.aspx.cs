@@ -239,6 +239,7 @@ public partial class api_Default : System.Web.UI.Page
         string result = send.SendCancelRequest(str, token, orderid, ticketid);
 
         Log(str);
+        File.WriteAllText(Server.MapPath("test2222.txt"), result);
 
         Response.Write(result);
         Response.End();
@@ -262,6 +263,7 @@ public partial class api_Default : System.Web.UI.Page
         string result = send.SendPayRequest(str, token, orderid, ticketid);
 
         Log(str);
+        File.WriteAllText(Server.MapPath("test111.txt"), result);
 
         Response.Write(result);
         Response.End();
