@@ -125,14 +125,54 @@ public partial class api_Default : System.Web.UI.Page
         Train send = new Train();
         string result = send.GetWaitingOrder(str);
 
+        //订单号
         string orderid = new Regex(@"epayOrder[(]'([^']*)'", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-
         outStr = orderid + "|";
 
-
+        //token
         token = Regex.Match(result, @"TOKEN""[\s]*value=""([^""]*)""").Groups[1].ToString();
-        outStr += token;
+        outStr += token + "|";
         
+        //ticketlist
+        string ticketlist = string.Empty;
+        MatchCollection matchList = new Regex(@"<td[\s]*class=""blue_bold"">[\s]*<input[\s]*type=""hidden""[\s]*id=""checkbox_pay""[\s]*name=""[^""]*""[\s]*value=""([^""]*)""[\s]*/>[\s]*([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*([^<]*)</td>[\s]*<td>([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*([^,]*),[\s]*([^<]*)</td>[\s]*<td>([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*</td>[\s]*<td>([^<]*)</td>", RegexOptions.IgnoreCase).Matches(result);
+
+        for (int i = 0; i < matchList.Count; i++)
+        {
+            if (i == 0)
+            {
+                outStr += matchList[i].Groups[1].ToString() + ";|";
+                for (int j = 2; j <= 13; j++)
+                {
+                    if (j == 2)
+                    {
+                        ticketlist = matchList[i].Groups[j].ToString();
+                    }
+                    else
+                    {
+                        ticketlist += "*" + matchList[i].Groups[j].ToString();
+                    }
+                }
+            }
+            else
+            {
+                ticketlist += ",";
+                for (int j = 2; j <= 13; j++)
+                {
+                    if (j == 2)
+                    {
+                        ticketlist += matchList[i].Groups[j].ToString();
+                    }
+                    else
+                    {
+                        ticketlist += "*" + matchList[i].Groups[j].ToString();
+                    }
+                }
+            }
+        }
+
+        outStr += ticketlist;
+
         File.WriteAllText(Server.MapPath("1111233.txt"), outStr + "-" + result);
 
         //如果左边是-1则需为排队人数，5为排队
