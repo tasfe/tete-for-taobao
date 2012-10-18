@@ -234,7 +234,23 @@ public partial class api_Default : System.Web.UI.Page
     /// </summary>
     private void OrderPayPost()
     {
-    
+        string session = Common.utils.NewRequest("session", Common.utils.RequestType.Form);
+        string token = Common.utils.NewRequest("token", Common.utils.RequestType.Form);
+        string orderid = Common.utils.NewRequest("orderid", Common.utils.RequestType.Form);
+        string ticketid = Common.utils.NewRequest("ticketid", Common.utils.RequestType.Form);
+
+
+        string str1 = new Regex(@"JSESSIONID=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str2 = new Regex(@"BIGipServerotsweb=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str = str1 + "|" + str2;
+
+        Train send = new Train();
+        string result = send.SendPayRequest(str, token, orderid, ticketid);
+
+        Log(str);
+
+        Response.Write(result);
+        Response.End();
     }
 
     //添加联系人
@@ -514,6 +530,10 @@ public partial class api_Default : System.Web.UI.Page
         else if (result.IndexOf("密码输入错误") != -1)
         {
             Response.Write("密码输入错误");
+        }
+        else if (result.IndexOf("激活帐号") != -1)
+        {
+            Response.Write("请您先激活帐号再登录");
         }
         else
         {
