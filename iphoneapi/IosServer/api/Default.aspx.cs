@@ -212,7 +212,7 @@ public partial class api_Default : System.Web.UI.Page
         catch { }
 
         //返回验证码
-        outStr = ary[0] + "(" + ary[7] + "-" + ary[8] + ")|" + date + " " + ary[2] + "-" + ary[6] + "(" + ary[0] + ")|" + ticketList + "|" + userList + "|" + priceList + "|" + token + "|" + ticketStr;
+        outStr = ary[0] + "(" + ary[7] + "-" + ary[8] + ")|" + date + " " + ary[2] + "-" + ary[6] + "(" + ary[1] + ")|" + ticketList + "|" + userList + "|" + priceList + "|" + token + "|" + ticketStr;
 
         File.WriteAllText(Server.MapPath("1112.txt"), outStr + "-" + result);
 
