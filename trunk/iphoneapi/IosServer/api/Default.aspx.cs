@@ -326,7 +326,7 @@ public partial class api_Default : System.Web.UI.Page
 
         Regex regBottom = new Regex(@"onclick\=javascript\:getSelected\('([^']*)'\)", RegexOptions.IgnoreCase);
         MatchCollection matchBottom = regBottom.Matches(result);
-
+        int index = 0;
         for (int i = 0; i < match.Count; i++)
         {
             if (i != 0)
@@ -340,7 +340,8 @@ public partial class api_Default : System.Web.UI.Page
             //如果有票才加
             if (match[i].Groups[0].ToString().IndexOf("getSelected") != -1)
             {
-                outStr += matchBottom[i].Groups[1].ToString();
+                outStr += matchBottom[index].Groups[1].ToString();
+                index++;
             }
         }
 
