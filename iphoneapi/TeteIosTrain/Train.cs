@@ -345,10 +345,10 @@ namespace TeteIosTrain
             param.Add("leftTicketStr", ticket);
             param.Add("textfield", "中文或拼音首字母");
             param.Add("checkbox0", "0");
-            param.Add("checkbox1", "1");
-            param.Add("checkbox2", "2");
-            param.Add("checkbox6", "6");
-            param.Add("checkbox7", "7");
+            //param.Add("checkbox1", "1");
+            //param.Add("checkbox2", "2");
+            //param.Add("checkbox6", "6");
+            //param.Add("checkbox7", "7");
             param.Add("orderRequest.train_date", date);
             param.Add("orderRequest.train_no", train_no);
 
@@ -370,13 +370,19 @@ namespace TeteIosTrain
             {
                 param.Add("passengerTickets", userList[i].Str1);
                 param.Add("oldPassengers", userList[i].Str2);
-                param.Add("passenger_1_seat", userList[i].Str3);
-                param.Add("passenger_1_seat_detail", userList[i].Str4);
-                param.Add("passenger_1_ticket", userList[i].Str5);
-                param.Add("passenger_1_name", userList[i].Str6);
-                param.Add("passenger_1_cardtype", userList[i].Str7);
-                param.Add("passenger_1_cardno", userList[i].Str8);
-                param.Add("passenger_1_mobileno", userList[i].Str9);
+                param.Add("passenger_"+(i+1).ToString()+"_seat", userList[i].Str3);
+                param.Add("passenger_"+(i+1).ToString()+"_seat_detail", userList[i].Str4);
+                param.Add("passenger_"+(i+1).ToString()+"_ticket", userList[i].Str5);
+                param.Add("passenger_"+(i+1).ToString()+"_name", userList[i].Str6);
+                param.Add("passenger_"+(i+1).ToString()+"_cardtype", userList[i].Str7);
+                param.Add("passenger_"+(i+1).ToString()+"_cardno", userList[i].Str8);
+                param.Add("passenger_"+(i+1).ToString()+"_mobileno", userList[i].Str9);
+                param.Add("checkbox9", "Y");
+            }
+
+            for (int i = 0; i < (5 - userList.Count); i++)
+            {
+                param.Add("oldPassengers", "");
                 param.Add("checkbox9", "Y");
             }
 
