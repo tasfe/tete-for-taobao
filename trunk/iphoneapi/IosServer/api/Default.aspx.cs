@@ -261,11 +261,15 @@ public partial class api_Default : System.Web.UI.Page
         //车次关键字
         string key = Common.utils.NewRequest("key", Common.utils.RequestType.Form);
 
+        string str1 = new Regex(@"JSESSIONID=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str2 = new Regex(@"BIGipServerotsweb=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str = str1 + "|" + str2;
+
         List<User> userList = InitUserStr();
         string paramStr = string.Empty;
 
         Train send = new Train();
-        string result = send.SendOrderSubmitRequest(session, randCode, orderid, userList, key, date, token, ticket, ref paramStr, train_no);
+        string result = send.SendOrderSubmitRequest(str, randCode, orderid, userList, key, date, token, ticket, ref paramStr, train_no);
 
         File.WriteAllText(Server.MapPath("888888.txt"), paramStr + "-" + result);
 
