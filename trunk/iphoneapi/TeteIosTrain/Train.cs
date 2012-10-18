@@ -467,7 +467,7 @@ namespace TeteIosTrain
 
         public string GetWaitingOrder(string session)
         {
-            string url = "http://dynamic.12306.cn/otsweb/order/myOrderAction.do?method=queryMyOrderNotComplete&leftmenu=Y";
+            string url = "https://dynamic.12306.cn/otsweb/order/myOrderAction.do?method=queryMyOrderNotComplete&leftmenu=Y";
 
             string result = utils.CommonGet(url, session);
 
@@ -476,14 +476,13 @@ namespace TeteIosTrain
 
         public string SendCancelRequest(string session, string token, string orderid, string ticketid)
         {
-            string url = "http://dynamic.12306.cn/otsweb/order/myOrderAction.do?method=laterEpay&orderSequence_no=" + orderid + "&con_pay_type=epay";
+            string url = "https://dynamic.12306.cn/otsweb/order/orderAction.do?method=cancelMyOrderNotComplete";
 
             IDictionary<string, string> param = new Dictionary<string, string>();
 
             param.Add("org.apache.struts.taglib.html.TOKEN", token);
-            param.Add("queryOrderDTO.from_order_date", "");
-            param.Add("queryOrderDTO.to_order_date", "");
-            param.Add("ticket_key", ticketid);
+            param.Add("sequence_no", orderid);
+            param.Add("orderRequest.tour_flag", "");
 
             string result = utils.CommonPost(url, param, session);
 
@@ -492,7 +491,7 @@ namespace TeteIosTrain
 
         public string SendPayRequest(string session, string token, string orderid, string ticketid)
         {
-            string url = "http://dynamic.12306.cn/otsweb/order/myOrderAction.do?method=laterEpay&orderSequence_no=" + orderid + "&con_pay_type=epay";
+            string url = "https://dynamic.12306.cn/otsweb/order/myOrderAction.do?method=laterEpay&orderSequence_no=" + orderid + "&con_pay_type=epay";
 
             IDictionary<string, string> param = new Dictionary<string, string>();
 
