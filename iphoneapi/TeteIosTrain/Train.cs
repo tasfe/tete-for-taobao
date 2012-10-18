@@ -231,8 +231,8 @@ namespace TeteIosTrain
                 resultNew += "BIGipServerotsweb=" + ary[1];
             }
 
-            url = "https://dynamic.12306.cn/otsweb/order/confirmPassengerAction.do?method=init";
-            result = utils.CommonGet(url, cookie);
+            //url = "https://dynamic.12306.cn/otsweb/order/confirmPassengerAction.do?method=init";
+            //result = utils.CommonGet(url, cookie);
 
             //请求验证码图片
             url = "https://dynamic.12306.cn/otsweb/passCodeAction.do?rand=randp";
