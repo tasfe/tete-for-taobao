@@ -321,13 +321,13 @@ public partial class api_Default : System.Web.UI.Page
         Train send = new Train();
         string result = send.SendSearchRequest(date, startcity, endcity, no, rtyp, ttype, student, timearea, str1 + "|" + str2);
 
-        Regex reg = new Regex(@">([^\<]*)</span>,[\s\S]*?&nbsp;([^\&\;']+)&nbsp;[\s\S]*?([0-9]{2}\:[0-9]{2}),[\s\S]*?&nbsp;([^\&\;']+)&nbsp;[\s\S]*?([0-9]{2}\:[0-9]{2}),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),", RegexOptions.IgnoreCase);
+        Regex reg = new Regex(@">([^\<]*)</span>,[\s\S]*?&nbsp;([^\&\;']+)&nbsp;[\s\S]*?([0-9]{2}\:[0-9]{2}),[\s\S]*?&nbsp;([^\&\;']+)&nbsp;[\s\S]*?([0-9]{2}\:[0-9]{2}),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),([^,]*),[\s\S]*?value='预订'", RegexOptions.IgnoreCase);
         MatchCollection match = reg.Matches(result);
 
         Regex regBottom = new Regex(@"onclick\=javascript\:getSelected\('([^']*)'\)", RegexOptions.IgnoreCase);
         MatchCollection matchBottom = regBottom.Matches(result);
 
-        for (int i = 0; i < matchBottom.Count; i++)
+        for (int i = 0; i < match.Count; i++)
         {
             if (i != 0)
                 outStr += "|";
@@ -337,7 +337,11 @@ public partial class api_Default : System.Web.UI.Page
                 outStr += match[i].Groups[j].ToString().Replace("<font color='#008800'>", "").Replace("</font>", "").Replace("<font color='darkgray'>", "") + ",";
             }
 
-            outStr += matchBottom[i].Groups[1].ToString();
+            //如果有票才加
+            if (match[i].Groups[0].ToString().IndexOf("getSelected") != -1)
+            {
+                outStr += matchBottom[i].Groups[1].ToString();
+            }
         }
 
         File.WriteAllText(Server.MapPath("111.txt"), matchBottom.Count + "-" + outStr + "-" + result);
