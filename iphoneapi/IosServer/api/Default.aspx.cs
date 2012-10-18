@@ -531,7 +531,7 @@ public partial class api_Default : System.Web.UI.Page
         {
             Response.Write("密码输入错误");
         }
-        else if (result.IndexOf("激活帐号") != -1)
+        else if (result.IndexOf(@"class=""text_14"" id=""activeEamil""") != -1)
         {
             Response.Write("请您先到12306官方网站上激活帐号再登录");
         }
