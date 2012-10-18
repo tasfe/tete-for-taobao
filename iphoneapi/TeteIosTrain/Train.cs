@@ -395,5 +395,72 @@ namespace TeteIosTrain
 
             return result;
         }
+
+
+
+        public string PreSendOrderSubmitRequest(string session, string verify, List<User> userList, string key, string date, string token, string ticket, ref string paramStr, string train_no)
+        {
+            string url = string.Empty;
+            string result = string.Empty;
+            string[] keyList = key.Split('#');
+
+            url = "http://dynamic.12306.cn/otsweb/order/confirmPassengerAction.do?method=confirmSingleForQueueOrder";
+
+            IDictionary<string, string> param = new Dictionary<string, string>();
+
+            param.Add("org.apache.struts.taglib.html.TOKEN", token);
+            param.Add("leftTicketStr", ticket);
+            param.Add("textfield", "中文或拼音首字母");
+            param.Add("checkbox0", "0");
+            //param.Add("checkbox1", "1");
+            //param.Add("checkbox2", "2");
+            //param.Add("checkbox6", "6");
+            //param.Add("checkbox7", "7");
+            param.Add("orderRequest.train_date", date);
+            param.Add("orderRequest.train_no", train_no);
+
+            param.Add("orderRequest.station_train_code", keyList[0]);
+            param.Add("orderRequest.from_station_telecode", keyList[4]);
+            param.Add("orderRequest.to_station_telecode", keyList[5]);
+            param.Add("orderRequest.seat_type_code", "");
+            param.Add("orderRequest.seat_detail_type_code", "");
+            param.Add("orderRequest.ticket_type_order_num", "");
+            param.Add("orderRequest.bed_level_order_num", "000000000000000000000000000000");
+            param.Add("orderRequest.start_time", keyList[2]);
+            param.Add("orderRequest.end_time", keyList[6]);
+            param.Add("orderRequest.from_station_name", keyList[7]);
+            param.Add("orderRequest.to_station_name", keyList[8]);
+            param.Add("orderRequest.cancel_flag", "1");
+            param.Add("orderRequest.id_mode", "Y");
+
+            for (int i = 0; i < userList.Count; i++)
+            {
+                param.Add("passengerTickets---" + (i + 1).ToString(), userList[i].Str1);
+                param.Add("oldPassengers---" + (i + 1).ToString(), userList[i].Str2);
+                param.Add("passenger_" + (i + 1).ToString() + "_seat", userList[i].Str3);
+                param.Add("passenger_" + (i + 1).ToString() + "_seat_detail", userList[i].Str4);
+                param.Add("passenger_" + (i + 1).ToString() + "_ticket", userList[i].Str5);
+                param.Add("passenger_" + (i + 1).ToString() + "_name", userList[i].Str6);
+                param.Add("passenger_" + (i + 1).ToString() + "_cardtype", userList[i].Str7);
+                param.Add("passenger_" + (i + 1).ToString() + "_cardno", userList[i].Str8);
+                param.Add("passenger_" + (i + 1).ToString() + "_mobileno", userList[i].Str9);
+                param.Add("checkbox9---" + (i + 1).ToString(), "Y");
+            }
+
+            for (int i = 0; i < (5 - userList.Count); i++)
+            {
+                param.Add("oldPassengers---" + (userList.Count + i + 1).ToString(), "");
+                param.Add("checkbox9---" + (userList.Count + i + 1).ToString(), "Y");
+            }
+
+            param.Add("randCode", verify);
+            param.Add("orderRequest.reserve_flag", "A");
+
+            paramStr = utils.PostData(param);
+
+            result = utils.CommonPost(url, param, session);
+
+            return result;
+        }
     }
 }
