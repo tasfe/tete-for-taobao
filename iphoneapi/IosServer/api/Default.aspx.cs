@@ -185,6 +185,7 @@ public partial class api_Default : System.Web.UI.Page
         string priceList = string.Empty;
         string token = string.Empty;
         string ticketStr = string.Empty;
+        string train_no = string.Empty;
 
         string[] ary = key.Split('#');
 
@@ -209,11 +210,13 @@ public partial class api_Default : System.Web.UI.Page
 
             //ticketstr
             ticketStr = Regex.Match(result, @"left_ticket""[\s]*value=""([^""]*)""").Groups[1].ToString();
+
+            train_no = Regex.Match(result, @"train_no""[\s]*value=""([^""]*)""").Groups[1].ToString();
         }
         catch { }
 
         //返回验证码
-        outStr = ary[0] + "(" + ary[7] + "-" + ary[8] + ")|" + date + " " + ary[2] + "-" + ary[6] + "(" + ary[1] + ")|" + ticketList + "|" + userList + "|" + priceList + "|" + token + "|" + ticketStr;
+        outStr = ary[0] + "(" + ary[7] + "-" + ary[8] + ")|" + date + " " + ary[2] + "-" + ary[6] + "(" + ary[1] + ")|" + ticketList + "|" + userList + "|" + priceList + "|" + token + "|" + ticketStr + "|" + train_no;
 
         File.WriteAllText(Server.MapPath("1112.txt"), outStr + "-" + result);
 
@@ -254,6 +257,7 @@ public partial class api_Default : System.Web.UI.Page
         string randCode = Common.utils.NewRequest("randCode", Common.utils.RequestType.Form);
         string token = Common.utils.NewRequest("token", Common.utils.RequestType.Form);
         string ticket = Common.utils.NewRequest("ticket", Common.utils.RequestType.Form);
+        string train_no = Common.utils.NewRequest("train_no", Common.utils.RequestType.Form);
         //车次关键字
         string key = Common.utils.NewRequest("key", Common.utils.RequestType.Form);
 
@@ -261,7 +265,7 @@ public partial class api_Default : System.Web.UI.Page
         string paramStr = string.Empty;
 
         Train send = new Train();
-        string result = send.SendOrderSubmitRequest(session, randCode, orderid, userList, key, date, token, ticket, ref paramStr);
+        string result = send.SendOrderSubmitRequest(session, randCode, orderid, userList, key, date, token, ticket, ref paramStr, train_no);
 
         File.WriteAllText(Server.MapPath("888888.txt"), paramStr + "-" + result);
 
