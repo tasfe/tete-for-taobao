@@ -235,7 +235,7 @@ namespace TeteIosTrain
             result = utils.CommonGet(url, cookie);
 
             //请求验证码图片
-            url = "https://dynamic.12306.cn/otsweb/passCodeAction.do?rand=sjrand";
+            url = "https://dynamic.12306.cn/otsweb/passCodeAction.do?rand=randp";
             //构造web请求，发送请求，获取响应
             HttpWebRequest HttpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             HttpWebRequest.KeepAlive = true;
