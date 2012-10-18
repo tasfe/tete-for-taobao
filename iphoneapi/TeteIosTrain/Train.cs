@@ -24,26 +24,7 @@ namespace TeteIosTrain
             string url = string.Empty;
             url = "https://dynamic.12306.cn/otsweb/order/myOrderAction.do?method=getOrderWaitTime&tourFlag=dc";
 
-            CookieContainer cc = new CookieContainer();
-            IDictionary<string, string> param = new Dictionary<string, string>();
-
             //获取服务器sessionid
-            url = "https://dynamic.12306.cn/otsweb/order/confirmPassengerAction.do?method=init";
-            result = utils.CommonGetFirst(url);
-
-            string[] ary = result.Split('|');
-            //设置COOKIE
-            Cookie ck = new Cookie("JSESSIONID", ary[0], "/otsweb", "dynamic.12306.cn");
-            resultNew = "JSESSIONID=" + ary[0] + ";";
-
-            cc.Add(ck);
-            if (ary.Length > 1)
-            {
-                ck = new Cookie("BIGipServerotsweb", ary[1], "/", "dynamic.12306.cn");
-                cc.Add(ck);
-                resultNew += "BIGipServerotsweb=" + ary[1];
-            }
-
             result = utils.CommonGet(url, session);
 
             return result;
@@ -317,8 +298,6 @@ namespace TeteIosTrain
 
             //url = "https://dynamic.12306.cn/otsweb/order/querySingleAction.do";
 
-
-
             result = utils.CommonGet(url, session);
 
             return result;
@@ -352,8 +331,12 @@ namespace TeteIosTrain
         }
                            
 
-        public string SendOrderSubmitRequest()
+        public string SendOrderSubmitRequest(string session, string verify, string orderid, List<User> userList, string key, string date)
         {
+            string url = string.Empty;
+            string result = string.Empty;
+            string[] keyList = key.Split('#');
+
             IDictionary<string, string> param = new Dictionary<string, string>();
 
             param.Add("org.apache.struts.taglib.html.TOKEN", "d01e9d70a77ab0abd474b1e1c6ebaf1f");
@@ -364,40 +347,44 @@ namespace TeteIosTrain
             param.Add("checkbox2", "2");
             param.Add("checkbox6", "6");
             param.Add("checkbox7", "7");
-            param.Add("orderRequest.train_date", "2012-10-16");
-            param.Add("orderRequest.train_no", "55000G708420");
+            param.Add("orderRequest.train_date", date);
+            param.Add("orderRequest.train_no", orderid);
 
-            param.Add("orderRequest.station_train_code", "G7084");
-            param.Add("orderRequest.from_station_telecode", "SHH");
-            param.Add("orderRequest.to_station_telecode", "NJH");
+            param.Add("orderRequest.station_train_code", keyList[0]);
+            param.Add("orderRequest.from_station_telecode", keyList[4]);
+            param.Add("orderRequest.to_station_telecode", keyList[5]);
             param.Add("orderRequest.seat_type_code", "");
             param.Add("orderRequest.seat_detail_type_code", "");
             param.Add("orderRequest.ticket_type_order_num", "");
             param.Add("orderRequest.bed_level_order_num", "000000000000000000000000000000");
-            param.Add("orderRequest.start_time", "20:32");
-            param.Add("orderRequest.end_time", "22:29");
-            param.Add("orderRequest.from_station_name", "上海");
-
-            param.Add("orderRequest.to_station_name", "南京");
+            param.Add("orderRequest.start_time", keyList[2]);
+            param.Add("orderRequest.end_time", keyList[6]);
+            param.Add("orderRequest.from_station_name", keyList[7]);
+            param.Add("orderRequest.to_station_name", keyList[8]);
             param.Add("orderRequest.cancel_flag", "1");
             param.Add("orderRequest.id_mode", "Y");
 
-            param.Add("passengerTickets", "M,0,1,吕鑫,1,230524198309181311,18606297190,Y");
-            param.Add("oldPassengers", "吕鑫,1,230524198309181311");
-            param.Add("passenger_1_seat", "M");
-            param.Add("passenger_1_seat_detail", "0");
-            param.Add("passenger_1_ticket", "1");
-            param.Add("passenger_1_name", "吕鑫");
-            param.Add("passenger_1_cardtype", "1");
-            param.Add("passenger_1_cardno", "230524198309181311");
-            param.Add("passenger_1_mobileno", "18606297190");
-            param.Add("checkbox9", "Y");
+            for (int i = 0; i < userList.Count; i++)
+            {
+                param.Add("passengerTickets", userList[i].Str1);
+                param.Add("oldPassengers", userList[i].Str2);
+                param.Add("passenger_1_seat", userList[i].Str3);
+                param.Add("passenger_1_seat_detail", userList[i].Str4);
+                param.Add("passenger_1_ticket", userList[i].Str5);
+                param.Add("passenger_1_name", userList[i].Str6);
+                param.Add("passenger_1_cardtype", userList[i].Str7);
+                param.Add("passenger_1_cardno", userList[i].Str8);
+                param.Add("passenger_1_mobileno", userList[i].Str9);
+                param.Add("checkbox9", "Y");
+            }
 
-            param.Add("randCode", "7aay");
+            param.Add("randCode", verify);
             param.Add("orderRequest.reserve_flag", "A");
 
 
-            return "";
+            result = utils.CommonPost(url, param, session);
+
+            return result;
         }
     }
 }
