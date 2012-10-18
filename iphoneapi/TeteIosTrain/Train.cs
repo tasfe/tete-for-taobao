@@ -464,5 +464,14 @@ namespace TeteIosTrain
 
             return result;
         }
+
+        public string GetWaitingOrder(string session)
+        {
+            string url = "http://dynamic.12306.cn/otsweb/order/myOrderAction.do?method=queryMyOrderNotComplete&leftmenu=Y";
+
+            string result = utils.CommonGet(url, session);
+
+            return result;
+        }
     }
 }

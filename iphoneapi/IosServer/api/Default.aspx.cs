@@ -30,6 +30,11 @@ public partial class api_Default : System.Web.UI.Page
             LoginPost();
         }
 
+        if (act == "waitingorder")
+        {
+            GetWaitingOrder();
+        }
+
         if (act == "search")
         {
             SearchPost();
@@ -105,6 +110,34 @@ public partial class api_Default : System.Web.UI.Page
         {
             PersonActPost("del");
         }
+    }
+
+    private void GetWaitingOrder()
+    {
+        string session = Common.utils.NewRequest("session", Common.utils.RequestType.Form);
+        string outStr = string.Empty;
+        string token = string.Empty;
+
+        string str1 = new Regex(@"JSESSIONID=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str2 = new Regex(@"BIGipServerotsweb=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str = str1 + "|" + str2;
+
+        Train send = new Train();
+        string result = send.GetWaitingOrder(str);
+
+        string orderid = new Regex(@"epayOrder[(]'([^']*)'", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+
+        outStr = orderid + "|";
+
+
+        token = Regex.Match(result, @"TOKEN""[\s]*value=""([^""]*)""").Groups[1].ToString();
+        outStr += token;
+        
+        File.WriteAllText(Server.MapPath("1111233.txt"), outStr + "-" + result);
+
+        //如果左边是-1则需为排队人数，5为排队
+        Response.Write(outStr);
+        Response.End();
     }
 
     private void Log(string txt)
