@@ -481,8 +481,12 @@ public partial class api_Default : System.Web.UI.Page
         try
         {
             string session = Common.utils.NewRequest("session", Common.utils.RequestType.Form);
+
+            string str1 = new Regex(@"JSESSIONID=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+            string str2 = new Regex(@"BIGipServerotsweb=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+
             Train t = new Train();
-            string cookieStr = t.GetVerifyImgOrder(session);
+            string cookieStr = t.GetVerifyImgOrder(str1 + "|" + str2);
             Response.End();
         }
         catch
