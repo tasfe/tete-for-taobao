@@ -146,11 +146,11 @@ public partial class api_Default : System.Web.UI.Page
                 {
                     if (j == 2)
                     {
-                        ticketlist = matchList[i].Groups[j].ToString();
+                        ticketlist = matchList[i].Groups[j].ToString().Trim();
                     }
                     else
                     {
-                        ticketlist += "*" + matchList[i].Groups[j].ToString();
+                        ticketlist += "*" + matchList[i].Groups[j].ToString().Trim();
                     }
                 }
             }
@@ -161,11 +161,11 @@ public partial class api_Default : System.Web.UI.Page
                 {
                     if (j == 2)
                     {
-                        ticketlist += matchList[i].Groups[j].ToString();
+                        ticketlist += matchList[i].Groups[j].ToString().Trim();
                     }
                     else
                     {
-                        ticketlist += "*" + matchList[i].Groups[j].ToString();
+                        ticketlist += "*" + matchList[i].Groups[j].ToString().Trim();
                     }
                 }
             }
