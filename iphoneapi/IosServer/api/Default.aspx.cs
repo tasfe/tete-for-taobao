@@ -201,7 +201,8 @@ public partial class api_Default : System.Web.UI.Page
             ticketList = Regex.Match(result, @"limitBuySeatTicketDTO[\s]*=[\s]*([^;]*);").Groups[1].ToString();
 
             //车票价格和剩余数量
-            priceList = "一等座(230.00元)7张票,二等座(135.00元)3张票,特等座(260.00元)10张票";
+            Match match = Regex.Match(result, @"class=""bluetext"">[^<]*</td>[\s]*</tr>[\s]*<tr>[\s]*<td>([^<]*)</td>[\s]*<td>([^<]*)</td>[\s]*<td>([^<]*)</td>");
+            priceList = match.Groups[1].ToString() + "," + match.Groups[2].ToString() + "," + match.Groups[3].ToString();
 
             //token
             token = Regex.Match(result, @"TOKEN""[\s]*value=""([^""]*)""").Groups[1].ToString();
