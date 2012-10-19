@@ -184,19 +184,19 @@ public partial class api_Default : System.Web.UI.Page
         {
             if (typ == "com.coco.sms_10")
             {
-                msgCount = "10";
+                msgCount = "20";
             }
             if (typ == "com.coco.sms_25")
             {
-                msgCount = "25";
+                msgCount = "50";
             }
             if (typ == "com.coco.sms_80")
             {
-                msgCount = "80";
+                msgCount = "160";
             }
             if (typ == "com.coco.sms_200")
             {
-                msgCount = "200";
+                msgCount = "400";
             }
 
 
