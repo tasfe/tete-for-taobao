@@ -48,7 +48,7 @@ public partial class top_reviewnew_search : System.Web.UI.Page
         string sql = "UPDATE TCS_ShopConfig SET phone = '" + this.TextBox11.Text + "',qq='" + this.TextBox12.Text + "' WHERE nick = '" + this.TextBox1.Text + "'";
         utils.ExecuteNonQuery(sql);
 
-        Response.Write("修改成功！")
+        Response.Write("修改成功！");
     }
 
 
