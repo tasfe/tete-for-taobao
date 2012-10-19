@@ -38,7 +38,7 @@ public partial class top_reviewnew_search : System.Web.UI.Page
     }
 
 
-    protected void Button4_Click(object sender, EventArgs e)
+    protected void Button5_Click(object sender, EventArgs e)
     {
         if (TextBox2.Text != "xiaoman")
         {
