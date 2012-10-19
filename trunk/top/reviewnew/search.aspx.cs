@@ -32,8 +32,23 @@ public partial class top_reviewnew_search : System.Web.UI.Page
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
-            Response.Write("该客户的手机号是" + dt.Rows[0]["phone"].ToString() + "，QQ号码是" + dt.Rows[0]["qq"].ToString());
+            this.TextBox11.Text = dt.Rows[0]["phone"].ToString();
+            this.TextBox12.Text = dt.Rows[0]["qq"].ToString();
         }
+    }
+
+
+    protected void Button4_Click(object sender, EventArgs e)
+    {
+        if (TextBox2.Text != "xiaoman")
+        {
+            return;
+        }
+
+        string sql = "UPDATE TCS_ShopConfig SET phone = '" + this.TextBox11.Text + "',qq='" + this.TextBox12.Text + "' WHERE nick = '" + this.TextBox1.Text + "'";
+        utils.ExecuteNonQuery(sql);
+
+        Response.Write("修改成功！")
     }
 
 

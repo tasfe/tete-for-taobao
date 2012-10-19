@@ -13,6 +13,9 @@
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
         <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
         <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="查询客户详细资料" />
+        该客户的手机号是<asp:TextBox ID="TextBox11" runat="server"></asp:TextBox>，QQ号码是
+        <asp:TextBox ID="TextBox12" runat="server"></asp:TextBox>
+        <asp:Button ID="Button5" runat="server" onclick="Button5_Click" Text="更新客户资料" />
         <hr />
         
         用户名：<asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
