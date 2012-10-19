@@ -15,7 +15,10 @@ public partial class top_reviewnew_search : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        this.TextBox9.Text = DateTime.Now.AddDays(-1).ToShortDateString();
+        if (!IsPostBack)
+        {
+            this.TextBox9.Text = DateTime.Now.AddDays(-1).ToShortDateString();
+        }
     }
 
     protected void Button1_Click(object sender, EventArgs e)
