@@ -308,14 +308,14 @@ group by VisitBrower,VisitIP,VisitUserAgent
             info.SitePVCount = int.Parse(dr["SitePVCount"].ToString());
 
             info.SiteUVCount = int.Parse(dr["SiteUVCount"].ToString());
-            info.SiteOrderCount = int.Parse(dr["SiteOrderCount"].ToString());
-            info.SiteOrderPay = decimal.Parse(dr["SiteOrderPay"].ToString());
+            //info.SiteOrderCount = int.Parse(dr["SiteOrderCount"].ToString());
+            //info.SiteOrderPay = decimal.Parse(dr["SiteOrderPay"].ToString());
             info.SiteUVBack = int.Parse(dr["SiteUVBack"].ToString());
 
-            info.SiteSecondBuy = int.Parse(dr["SiteSecondBuy"].ToString());
-            info.PostFee = decimal.Parse(dr["SitePostFee"].ToString());
-            info.GoodsCount = int.Parse(dr["SiteGoodsCount"].ToString());
-            info.SiteBuyCustomTotal = int.Parse(dr["SiteBuyCustomTotal"].ToString());
+            //info.SiteSecondBuy = int.Parse(dr["SiteSecondBuy"].ToString());
+            //info.PostFee = decimal.Parse(dr["SitePostFee"].ToString());
+            //info.GoodsCount = int.Parse(dr["SiteGoodsCount"].ToString());
+            //info.SiteBuyCustomTotal = int.Parse(dr["SiteBuyCustomTotal"].ToString());
 
             info.SiteNick = nick;
 
