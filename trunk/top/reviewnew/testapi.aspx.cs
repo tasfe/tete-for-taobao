@@ -29,7 +29,7 @@ public partial class top_review_testapi : System.Web.UI.Page
         string session = "6101a28530ce2b42ef7b281d0379338df80b16652ef263d150153910";
         string taobaonick = "红色时代灯饰";
 
-        string sql = "SELECT nick,COUNT(nick) FROM [TeteCrmSaasNew].[dbo].[Tmp_LostMobile] group by nick ORDER BY COUNT(nick) DESC";
+        //string sql = "SELECT nick,COUNT(nick) FROM [TeteCrmSaasNew].[dbo].[Tmp_LostMobile] group by nick ORDER BY COUNT(nick) DESC";
         //DataTable dt = utils.ExecuteDataTable(sql);
         //for (int i = 0; i < dt.Rows.Count; i++)
         //{
@@ -46,7 +46,7 @@ public partial class top_review_testapi : System.Web.UI.Page
         //request.PageSize = 200;
         //request.PageNo = 1;
 
-        //string str = "0";
+        string str = "0";
 
         //PageList<Item> product = client.ItemsOnsaleGet(request, session);
         //for (int i = 0; i < product.Content.Count; i++)
@@ -54,16 +54,15 @@ public partial class top_review_testapi : System.Web.UI.Page
         //    str += "," + product.Content[i].NumIid;
         //}
 
-        //IDictionary<string, string> param = new Dictionary<string, string>();
+        IDictionary<string, string> param = new Dictionary<string, string>();
 
-        ////param.Add("coupon_id", "11815000");
-        //param.Add("fields", "receiver_mobile, orders.num_iid, created, consign_time, total_fee, promotion_details, type, receiver_name, receiver_state, receiver_city, receiver_district, receiver_address, status, buyer_area");
-        //param.Add("tid", "");
+        param.Add("tid", "162787109223811");
+        param.Add("fields", "receiver_mobile, orders.num_iid, created, consign_time, total_fee, promotion_details, type, receiver_name, receiver_state, receiver_city, receiver_district, receiver_address, status, buyer_area, orders");
 
-        //string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupondetail.get", session, param);
-        //////<coupon_number>1323930538</coupon_number>
+        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.trade.fullinfo.get", session, param);
+        ////<coupon_number>1323930538</coupon_number>
 
-        //Response.Write(str);
+        Response.Write(str);
 
         //param = new Dictionary<string, string>();
         //param.Add("num_iid", "16791228388");
