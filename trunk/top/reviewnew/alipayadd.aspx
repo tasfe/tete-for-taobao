@@ -43,7 +43,7 @@
             <tr>
                 <td align="left" height="30">红包金额：</td>
                 <td>
-                    <input id="alipaynum" name="num" type="text" value="" size="2" />
+                    <input id="alipaynum" name="num" type="text" value="" size="2" />元
                 </td>
             </tr>
             <tr>
