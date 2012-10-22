@@ -676,6 +676,8 @@ public partial class top_review_msg : System.Web.UI.Page
             {
                 string content = reader.ReadToEnd();
 
+                content = Regex.Replace(content, @"<[^>]*>", "");
+
                 return content;
             }
         }
