@@ -351,6 +351,26 @@ namespace TeteTopApi.DataContract
             }
         }
 
+        /// <summary>
+        /// 获取正在执行买家回访信息的客户
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public List<ShopInfo> GetActMissionShop(string typ)
+        {
+            string sql = "SELECT * FROM TCS_Mission m INNER JOIN TCS_ShopConfig c ON c.nick = m.nick INNER JOIN TCS_ShopSession s ON s.nick = m.nick WHERE m.typ = '" + typ + "' AND m.isdel = 0 AND m.isstop = 0 AND s.version > 2";
+            Console.WriteLine(sql);
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                return FormatDataListMission(dt);
+            }
+            else
+            {
+                return new List<ShopInfo>();
+            }
+        }
+
 
         /// <summary>
         /// 获取当前正在使用物流到货短信通知并有短信可发的卖家信息(增加延迟发货短信的卖家，否则无法获取物流状态)
@@ -435,6 +455,19 @@ namespace TeteTopApi.DataContract
             Console.Write(info.Session + "############\r\n");
 
             return info;
+        }
+
+        private List<ShopInfo> FormatDataListMission(DataTable dt)
+        {
+            List<ShopInfo> infoList = FormatDataList(dt);
+
+            for (int i = 0; i < infoList.Count; i++)
+            {
+                infoList[i].MissionContent = dt.Rows[i]["content"].ToString();
+                infoList[i].MissionBackDay = dt.Rows[i]["timecount"].ToString();
+            }
+
+            return infoList;
         }
 
         /// <summary>
@@ -542,6 +575,37 @@ namespace TeteTopApi.DataContract
             //sql = "UPDATE TopOrder WITH (ROWLOCK) SET isgiftmsg = 1 WHERE orderid = '" + trade.Tid + "'";
             //Console.Write(sql + "\r\n");
             //utils.ExecuteNonQuery(sql);
+
+            //更新短信数量
+            sql = "UPDATE TCS_ShopConfig WITH (ROWLOCK) SET used = used + 1,total = total-1 WHERE nick = '" + shop.Nick + "'";
+            Console.Write(sql + "\r\n");
+            utils.ExecuteNonQuery(sql);
+        }
+
+        public void InsertShopMsgLog(ShopInfo shop, Customer customer, string msg, string result, string typ)
+        {
+            //记录短信发送记录
+            string sql = "INSERT INTO TCS_MsgSend (" +
+                                "nick, " +
+                                "buynick, " +
+                                "mobile, " +
+                                "[content], " +
+                                "yiweiid, " +
+                                "orderid, " +
+                                "num, " +
+                                "typ " +
+                            " ) VALUES ( " +
+                                " '" + shop.Nick + "', " +
+                                " '" + customer.BuyNick + "', " +
+                                " '" + customer.Mobile + "', " +
+                                " '" + msg.Replace("'", "''") + "', " +
+                                " '" + result + "', " +
+                                " '00001111', " +
+                                " '1', " +
+                                " '" + typ + "' " +
+                            ") ";
+            Console.Write(sql + "\r\n");
+            utils.ExecuteNonQuery(sql);
 
             //更新短信数量
             sql = "UPDATE TCS_ShopConfig WITH (ROWLOCK) SET used = used + 1,total = total-1 WHERE nick = '" + shop.Nick + "'";

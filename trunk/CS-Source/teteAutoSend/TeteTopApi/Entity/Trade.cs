@@ -36,6 +36,16 @@ namespace TeteTopApi.Entity
         public string Status { get; set; }
 
         /// <summary>
+        /// 是否购物车订单
+        /// </summary>
+        public string IsCart { get; set; }
+
+        /// <summary>
+        /// 购物车订单是否全部评价完毕-0未评价完毕，1评价完毕而且全好评，2评价完毕但是部分好评
+        /// </summary>
+        public string IsCartOK { get; set; }
+
+        /// <summary>
         /// 子订单号
         /// </summary>
         public string Oid { get; set; }
@@ -49,6 +59,11 @@ namespace TeteTopApi.Entity
         /// 买家下单所在区域
         /// </summary>
         public string BuyerArea { get; set; }
+
+        /// <summary>
+        /// 子订单列表
+        /// </summary>
+        public List<TradeList> Orders { get; set; }
 
         /// <summary>
         /// 订单创建时间

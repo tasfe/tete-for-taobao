@@ -3,11 +3,76 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TeteTopApi.Entity;
+using System.Data;
 
 namespace TeteTopApi.DataContract
 {
     public class CustomerData
     {
+        /// <summary>
+        /// 获取买家生日短信
+        /// </summary>
+        /// <param name="shop"></param>
+        /// <returns></returns>
+        public List<Customer> GetBackCustomer(ShopInfo shop)
+        {
+            string sql = "SELECT * FROM TCS_Customer WHERE nick = '" + shop.Nick + "' AND DATEDIFF(d, lastorderdate, GETDATE()) > " + shop.MissionBackDay;
+            Console.WriteLine(sql);
+            DataTable dt = utils.ExecuteDataTable(sql);
+
+            if (dt.Rows.Count != 0)
+            {
+                return FormatData(dt);
+            }
+            else
+            {
+                return new List<Customer>();
+            }
+        }
+
+        /// <summary>
+        /// 获取回访的买家清单
+        /// </summary>
+        /// <param name="shop"></param>
+        /// <returns></returns>
+        public List<Customer> GetBirthdayCustomer(ShopInfo shop)
+        {
+            string sql = "SELECT * FROM TCS_Customer WHERE nick = '" + shop.Nick + "' AND DATEDIFF(d, birthday, GETDATE()) = 0";
+            Console.WriteLine(sql);
+            DataTable dt = utils.ExecuteDataTable(sql);
+
+            if (dt.Rows.Count != 0)
+            {
+                return FormatData(dt);
+            }
+            else
+            {
+                return new List<Customer>();
+            }
+        }
+
+        /// <summary>
+        /// 转换为买家实体
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        private List<Customer> FormatData(DataTable dt)
+        {
+            List<Customer> infoList = new List<Customer>();
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Customer info = new Customer();
+
+                info.Nick = dt.Rows[i]["Nick"].ToString();
+                info.BuyNick = dt.Rows[i]["BuyNick"].ToString();
+                info.Mobile = dt.Rows[i]["Mobile"].ToString();
+
+                infoList.Add(info);
+            }
+            return infoList;
+        }
+
         /// <summary>
         /// 插入CRM会员记录
         /// </summary>

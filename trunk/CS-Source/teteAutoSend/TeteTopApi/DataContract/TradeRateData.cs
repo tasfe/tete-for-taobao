@@ -59,6 +59,17 @@ namespace TeteTopApi.DataContract
         }
 
         /// <summary>
+        /// 记录包邮卡赠送的结果
+        /// </summary>
+        /// <param name="tradeRate"></param>
+        /// <param name="result"></param>
+        public void UpdateTradeRateResultFree(TradeRate tradeRate, string result)
+        {
+            string sql = "UPDATE TCS_TradeRate SET sendresultfree = '" + result + "' WHERE orderid = '" + tradeRate.Tid + "'";
+            utils.ExecuteNonQuery(sql);
+        }
+
+        /// <summary>
         /// 判断该评价信息是否已经记录过
         /// </summary>
         /// <param name="tradeRate"></param>

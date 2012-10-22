@@ -726,6 +726,77 @@ namespace TeteTopApi.Logic
                 return false;
             }
 
+            //包含了指定的关键字赠送或者不赠送
+            if (shop.IsKeyword == "1")
+            {
+                //先判定字数是否满足条件
+                if (tradeRate.Content.Length < int.Parse(shop.WordCount))
+                {
+                    result = "卖家开启了评价内容自动审核，此评价的字数是【" + tradeRate.Content.Length.ToString() + "】个字，小于卖家设置的最少评论字数【" + shop.WordCount + "】个字，所以不赠送支付宝红包！";
+                    data.UpdateTradeRateResultAlipay(tradeRate, result);
+                    return false;
+                }
+
+                //判定是否为差评关键字判断
+                if (shop.KeywordIsBad == "1")
+                {
+                    if (shop.BadKeyword != "")
+                    {
+                        int isInclude = 0;
+                        string badword = string.Empty;
+                        string[] keyArray = shop.BadKeyword.Split('|');
+                        for (int i = 0; i < keyArray.Length; i++)
+                        {
+                            if (keyArray[i].Trim() != "")
+                            {
+                                if (tradeRate.Content.IndexOf(keyArray[i].Trim()) != -1)
+                                {
+                                    badword = keyArray[i].Trim();
+                                    isInclude = 1;
+                                    break;
+                                }
+                            }
+                        }
+
+                        //判定
+                        if (isInclude == 1)
+                        {
+                            result = "卖家开启了评价内容自动审核，买家评价包含差评关键字【" + badword + "】，所以不赠送支付宝红包！";
+                            data.UpdateTradeRateResultAlipay(tradeRate, result);
+                            return false;
+                        }
+                    }
+                }
+                else
+                {
+                    //再判定是否包含关键字
+                    if (shop.Keyword != "")
+                    {
+                        int isInclude = 0;
+                        string[] keyArray = shop.Keyword.Split('|');
+                        for (int i = 0; i < keyArray.Length; i++)
+                        {
+                            if (keyArray[i].Trim() != "")
+                            {
+                                if (tradeRate.Content.IndexOf(keyArray[i].Trim()) != -1)
+                                {
+                                    isInclude = 1;
+                                    break;
+                                }
+                            }
+                        }
+
+                        //判定
+                        if (isInclude == 0)
+                        {
+                            result = "卖家开启了评价内容自动审核，买家评价没有包含关键字，所以不赠送支付宝红包！";
+                            data.UpdateTradeRateResultAlipay(tradeRate, result);
+                            return false;
+                        }
+                    }
+                }
+            }
+
             //如果该支付宝红包已经过期
             if (dbCoupon.CheckAlipayExpired(trade, alipay))
             {
@@ -751,7 +822,7 @@ namespace TeteTopApi.Logic
             if (shop.IsFreeCard == "0")
             {
                 result = "卖家没有开启包邮卡赠送！";
-                data.UpdateTradeRateResultAlipay(tradeRate, result);
+                data.UpdateTradeRateResultFree(tradeRate, result);
                 return false;
             }
 
@@ -767,7 +838,7 @@ namespace TeteTopApi.Logic
             if (tradeRate.Result != "good")
             {
                 result = "买家没有给好评，不赠送包邮卡！";
-                data.UpdateTradeRateResultAlipay(tradeRate, result);
+                data.UpdateTradeRateResultFree(tradeRate, result);
                 return false;
             }
 
@@ -776,7 +847,7 @@ namespace TeteTopApi.Logic
             if (couponData.IsBlack(trade))
             {
                 result = "买家【" + trade.BuyNick + "】在礼品黑名单中，不赠送包邮卡！";
-                data.UpdateTradeRateResultAlipay(tradeRate, result);
+                data.UpdateTradeRateResultFree(tradeRate, result);
                 return false;
             }
 
@@ -787,7 +858,7 @@ namespace TeteTopApi.Logic
                 if (shop.ItemList.IndexOf(trade.NumIid) == -1)
                 {
                     result = "买家订单商品为【" + trade.NumIid + "】，不包含指定商品【" + shop.ItemList + "】，不赠送包邮卡！";
-                    data.UpdateTradeRateResultAlipay(tradeRate, result);
+                    data.UpdateTradeRateResultFree(tradeRate, result);
                     return false;
                 }
             }
@@ -796,7 +867,7 @@ namespace TeteTopApi.Logic
             if (trade.ShippingType == "self" && (DateTime.Parse(tradeRate.Created) - DateTime.Parse(trade.SendTime)).TotalSeconds > int.Parse(shop.MinDateSelf) * 86400)
             {
                 result = "没有在规定时间内好评，该物流配送状态不可查，按照发货时间开始计算，发货时间是【" + trade.SendTime + "】，评价时间是【" + tradeRate.Created + "】，周期超过了卖家设定的最短时间【" + shop.MinDateSelf + "】天，不赠送支付宝红包！";
-                data.UpdateTradeRateResultAlipay(tradeRate, result);
+                data.UpdateTradeRateResultFree(tradeRate, result);
                 return false;
             }
 
@@ -804,7 +875,7 @@ namespace TeteTopApi.Logic
             if (trade.ShippingType == "system" && (DateTime.Parse(tradeRate.Created) - DateTime.Parse(trade.DeliveryEnd)).TotalSeconds > int.Parse(shop.MinDateSystem) * 86400)
             {
                 result = "没有在规定时间内好评，该物流配送状态可查，按照物流签收时间开始计算，物流签收时间是【" + trade.DeliveryEnd + "】，评价时间是【" + tradeRate.Created + "】，周期超过了卖家设定的最短时间【" + shop.MinDateSystem + "】天，不赠送支付宝红包！";
-                data.UpdateTradeRateResultAlipay(tradeRate, result);
+                data.UpdateTradeRateResultFree(tradeRate, result);
                 return false;
             }
 
@@ -815,7 +886,7 @@ namespace TeteTopApi.Logic
         ))
             {
                 result = "卖家设置了默认好评不赠送包邮卡，此买家给的是系统默认评价，不赠送包邮卡！";
-                data.UpdateTradeRateResultAlipay(tradeRate, result);
+                data.UpdateTradeRateResultFree(tradeRate, result);
                 return false;
             }
 
@@ -834,9 +905,86 @@ namespace TeteTopApi.Logic
             if (!dbFreeCard.CheckFreeCardCanSend(trade, shop))
             {
                 result = "每个买家最多只能领取一张包邮卡，所以不再赠送包邮卡！";
-                data.UpdateTradeRateResultAlipay(tradeRate, result);
+                data.UpdateTradeRateResultFree(tradeRate, result);
                 return false;
             }
+
+
+
+
+
+            //包含了指定的关键字赠送或者不赠送
+            if (shop.IsKeyword == "1")
+            {
+                //先判定字数是否满足条件
+                if (tradeRate.Content.Length < int.Parse(shop.WordCount))
+                {
+                    result = "卖家开启了评价内容自动审核，此评价的字数是【" + tradeRate.Content.Length.ToString() + "】个字，小于卖家设置的最少评论字数【" + shop.WordCount + "】个字，所以不赠送包邮卡！";
+                    data.UpdateTradeRateResultFree(tradeRate, result);
+                    return false;
+                }
+
+                //判定是否为差评关键字判断
+                if (shop.KeywordIsBad == "1")
+                {
+                    if (shop.BadKeyword != "")
+                    {
+                        int isInclude = 0;
+                        string badword = string.Empty;
+                        string[] keyArray = shop.BadKeyword.Split('|');
+                        for (int i = 0; i < keyArray.Length; i++)
+                        {
+                            if (keyArray[i].Trim() != "")
+                            {
+                                if (tradeRate.Content.IndexOf(keyArray[i].Trim()) != -1)
+                                {
+                                    badword = keyArray[i].Trim();
+                                    isInclude = 1;
+                                    break;
+                                }
+                            }
+                        }
+
+                        //判定
+                        if (isInclude == 1)
+                        {
+                            result = "卖家开启了评价内容自动审核，买家评价包含差评关键字【" + badword + "】，所以不赠送包邮卡！";
+                            data.UpdateTradeRateResultFree(tradeRate, result);
+                            return false;
+                        }
+                    }
+                }
+                else
+                {
+                    //再判定是否包含关键字
+                    if (shop.Keyword != "")
+                    {
+                        int isInclude = 0;
+                        string[] keyArray = shop.Keyword.Split('|');
+                        for (int i = 0; i < keyArray.Length; i++)
+                        {
+                            if (keyArray[i].Trim() != "")
+                            {
+                                if (tradeRate.Content.IndexOf(keyArray[i].Trim()) != -1)
+                                {
+                                    isInclude = 1;
+                                    break;
+                                }
+                            }
+                        }
+
+                        //判定
+                        if (isInclude == 0)
+                        {
+                            result = "卖家开启了评价内容自动审核，买家评价没有包含关键字，所以不赠送包邮卡！";
+                            data.UpdateTradeRateResultFree(tradeRate, result);
+                            return false;
+                        }
+                    }
+                }
+            }
+
+
 
             //该订单是否满足包邮卡赠送的地区限制
             FreeCard free = dbFreeCard.GetFreeCardById(shop.FreeCardId);
@@ -859,7 +1007,7 @@ namespace TeteTopApi.Logic
                 if (ary.Length > 0)
                 {
                     result = "只有免运费的地区才赠送包邮卡，订单地区为【" + trade.receiver_state + "】，包邮地区为【" + free.AreaList + "】！";
-                    data.UpdateTradeRateResultAlipay(tradeRate, result);
+                    data.UpdateTradeRateResultFree(tradeRate, result);
                     return false;
                 }
             }
@@ -871,7 +1019,7 @@ namespace TeteTopApi.Logic
                     if (trade.receiver_state.IndexOf(ary[i]) != -1)
                     {
                         result = "不免运费的包邮卡不赠送，订单地区为【" + trade.receiver_state + "】，不包邮地区为【" + ary[i] + "】！";
-                        data.UpdateTradeRateResultAlipay(tradeRate, result);
+                        data.UpdateTradeRateResultFree(tradeRate, result);
                         return false;
                     }
                 }

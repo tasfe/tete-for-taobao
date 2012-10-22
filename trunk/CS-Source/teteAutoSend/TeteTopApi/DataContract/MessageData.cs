@@ -41,6 +41,18 @@ namespace TeteTopApi.DataContract
             utils.ExecuteNonQuery(sql);
         }
 
+        public bool IsSendMsgNearDays(Customer customer, string typ, string day)
+        {
+            string sql = "SELECT cguid FROM TCS_MsgSend WHERE nick = '" + customer.Nick + "' AND buynick = '" + customer.BuyNick + "' AND typ = '" + typ + "' AND DATEDIFF(d, adddate, GETDATE()) < " + day;
+            Console.Write(sql + "\r\n");
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count == 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         /// <summary>
         /// 判断今天该短信是否发过
