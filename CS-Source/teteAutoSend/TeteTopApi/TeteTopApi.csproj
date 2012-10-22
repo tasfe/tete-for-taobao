@@ -65,6 +65,7 @@
     <Compile Include="DataContract\MessageData.cs" />
     <Compile Include="DataContract\ShopData.cs" />
     <Compile Include="DataContract\TradeData.cs" />
+    <Compile Include="Entity\TradeList.cs" />
     <Compile Include="DataContract\TradeRateData.cs" />
     <Compile Include="DataContract\WeiboData.cs" />
     <Compile Include="Entity\Alipay.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Entity\TradeRate.cs" />
     <Compile Include="Entity\Weibo.cs" />
     <Compile Include="Entity\WeiboID.cs" />
+    <Compile Include="Logic\CustomerNotice.cs" />
     <Compile Include="Logic\GetUserData.cs" />
     <Compile Include="Logic\LostMessageGet.cs" />
     <Compile Include="Logic\ShippingSuccess.cs" />

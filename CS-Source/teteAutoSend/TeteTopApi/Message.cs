@@ -275,5 +275,66 @@ namespace TeteTopApi
                 }
             }
         }
+
+
+        public static string SendMuti(string phone, string msg)
+        {
+            //有客户没有手机号也发送短信
+            if (phone.Length < 11)
+            {
+                return "0";
+            }
+
+            string uid = "ZXHD-SDK-0107-HGMJMN";
+            string pass = utils.MD5("ZWXLE4AA").ToLower();
+
+            msg = UrlEncode(msg);
+
+            string param = "regcode=" + uid + "&pwd=" + pass + "&phone=" + phone + "&CONTENT=" + msg + "&extnum=11&level=1&schtime=null&reportflag=0&url=&smstype=0&key=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            byte[] bs = Encoding.ASCII.GetBytes(param);
+
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://sms.pica.com/zqhdServer/sendSMS.jsp" + "?" + param);
+
+            req.Method = "GET";
+
+            using (HttpWebResponse myResponse = (HttpWebResponse)req.GetResponse())
+            {
+                using (StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.GetEncoding("GB2312")))
+                {
+                    string content = reader.ReadToEnd();
+                    //File.WriteAllText(Server.MapPath("aaa.txt"), content);
+
+                    if (content.IndexOf("<result>0</result>") == -1)
+                    {
+                        Regex reg = new Regex(@"<result>([^<]*)</result>", RegexOptions.IgnoreCase);
+                        MatchCollection match = reg.Matches(content);
+                        string number = string.Empty;
+                        if (reg.IsMatch(content))
+                        {
+                            number = match[0].Groups[1].ToString(); // match[0].Groups[1].ToString();
+                        }
+                        else
+                        {
+                            number = "888888";
+                        }
+
+                        if (number.Length > 50)
+                        {
+                            number = content.Substring(0, 50);
+                        }
+                        return number;
+                    }
+                    else
+                    {
+                        if (content.Length > 50)
+                        {
+                            content = content.Substring(0, 50);
+                        }
+
+                        return content;
+                    }
+                }
+            }
+        }
     }
 }

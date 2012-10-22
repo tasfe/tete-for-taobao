@@ -239,5 +239,15 @@ namespace TeteTopApi.Entity
         /// 卖家订购信息
         /// </summary>
         public string Plus { get; set; }
+
+        /// <summary>
+        /// 卖家CRM短信内容
+        /// </summary>
+        public string MissionContent { get; set; }
+
+        /// <summary>
+        /// 卖家CRM买家回访天数
+        /// </summary>
+        public string MissionBackDay { get; set; }
     }
 }

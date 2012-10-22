@@ -26,7 +26,7 @@ namespace TeteTopApi.TopApi
             Api top = new Api(AppKey, Secret, Session, Url);
 
             IDictionary<string, string> param = new Dictionary<string, string>();
-            param.Add("fields", "receiver_mobile, orders.num_iid, created, consign_time, total_fee, promotion_details, type, receiver_name, receiver_state, receiver_city, receiver_district, receiver_address, status, buyer_area");
+            param.Add("fields", "receiver_mobile, orders.num_iid, created, consign_time, total_fee, promotion_details, type, receiver_name, receiver_state, receiver_city, receiver_district, receiver_address, status, buyer_area,orders");
             param.Add("tid", simpleTrade.Tid);
 
             string result = top.CommonTopApi("taobao.trade.fullinfo.get", param, Session);
@@ -65,8 +65,28 @@ namespace TeteTopApi.TopApi
             simpleTrade.receiver_address = utils.GetValueByProperty(result, "receiver_address");
             //获取订单状态，为催单服务
             simpleTrade.Status = utils.GetValueByProperty(result, "status");
+            //获取子订单状态，为判断购物车订单做准备
+            simpleTrade.Orders = GetTradeOrdersInfo(result);
+            if (simpleTrade.Orders.Count > 1)
+            {
+                //如果子订单大于1个则为购物车订单
+                simpleTrade.IsCart = "1";
+            }
 
             return simpleTrade;
+        }
+
+        /// <summary>
+        /// 获取交易子订单列表
+        /// </summary>
+        /// <returns></returns>
+        private List<TradeList> GetTradeOrdersInfo(string result)
+        {
+            List<TradeList> list = new List<TradeList>();
+
+            
+
+            return list;
         }
 
         /// <summary>
@@ -305,6 +325,7 @@ namespace TeteTopApi.TopApi
             param.Add("tid", trade.Tid);
 
             string result = top.CommonTopApi("taobao.traderates.get", param, Session);
+            Console.WriteLine(result);
             //如果主订单没有评价记录则获取子订单的评价记录
             //如果买家先评则有通知但是获取不到买家评价
             //如果是卖家先评则有通知只能取到卖家的评价，不做记录
