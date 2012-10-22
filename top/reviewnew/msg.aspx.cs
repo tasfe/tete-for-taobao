@@ -665,7 +665,7 @@ public partial class top_review_msg : System.Web.UI.Page
 
         msg = UrlEncode(msg + "【淘宝】");
 
-        string param = "OperID=" + uid + "&OperPass=" + pass + "&SendTime=&ValidTime=&AppendID=1234&DesMobile=" + phone + "&Content=" + msg + "&ContentType=15";
+        string param = "OperID=" + uid + "&OperPass=" + pass + "&SendTime=&ValidTime=&AppendID=1234&DesMobile=" + phone + "&Content=" + msg + "&ContentType=8";
         byte[] bs = Encoding.ASCII.GetBytes(param);
 
         HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://221.179.180.158:9001/QxtSms/QxtFirewall" + "?" + param);
