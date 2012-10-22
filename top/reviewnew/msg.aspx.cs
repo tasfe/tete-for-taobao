@@ -661,7 +661,7 @@ public partial class top_review_msg : System.Web.UI.Page
         string pass = "hao1234";
         string result = string.Empty;
 
-        msg = UrlEncode(msg + "【淘宝】");
+        msg = UrlEncode(msg + "");
 
         string param = "OperID=" + uid + "&OperPass=" + pass + "&SendTime=&ValidTime=&AppendID=1234&DesMobile=" + phone + "&Content=" + msg + "&ContentType=15";
         byte[] bs = Encoding.ASCII.GetBytes(param);
@@ -675,8 +675,6 @@ public partial class top_review_msg : System.Web.UI.Page
             using (StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.GetEncoding("GB2312")))
             {
                 string content = reader.ReadToEnd();
-
-                content = Regex.Replace(content, @"<[^>]*>", "");
 
                 return content;
             }
