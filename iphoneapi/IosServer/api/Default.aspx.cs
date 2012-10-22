@@ -273,8 +273,24 @@ public partial class api_Default : System.Web.UI.Page
         result = send.SendPayRequestEpay(data, msg);
         File.WriteAllText(Server.MapPath("test1112222.txt"), result);
 
-        Response.Write(@"支付方式1,支付1简介,<form id=payform action=""https://epay.12306.cn/pay/payGateway"" method=""post"" name=""myform""></form><script>document.getElementById('payform').submit();</script>|支付方式2,支付2简介,<form id=payform action=""https://epay.12306.cn/pay/payGateway"" method=""post"" name=""myform""></form><script>document.getElementById('payform').submit();</script>|支付方式3,支付3简介,<form id=payform action=""https://epay.12306.cn/pay/payGateway"" method=""post"" name=""myform""></form><script>document.getElementById('payform').submit();</script>");
+        Response.Write(@"支付方式1,支付1简介," + getFormStr(result, "01020000") + "|支付方式2,支付2简介," + getFormStr(result, "01030000"));
         Response.End();
+    }
+
+    /// <summary>
+    /// 获取表单html
+    /// </summary>
+    /// <returns></returns>
+    private string getFormStr(string html, string bankid)
+    {
+        string str = string.Empty;
+
+        str = Regex.Match(html, @"<form[^>]*>([\s\S]*?)</form>").Groups[0].ToString();
+        str += @"<SCRIPT type=text/javascript>
+		document.getElementsByName(""bankId"")[0].value='" + bankid + @"';
+		document.getElementsByName(""myform"")[0].submit();}</SCRIPT>";
+
+        return str;
     }
 
     //添加联系人
