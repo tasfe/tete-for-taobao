@@ -504,5 +504,23 @@ namespace TeteIosTrain
 
             return result;
         }
+
+        public string SendPayRequestEpay(string data, string msg)
+        {
+            string url = "https://epay.12306.cn/pay/payGateway";
+
+            IDictionary<string, string> param = new Dictionary<string, string>();
+
+            param.Add("interfaceName", "PAY_SERVLET");
+            param.Add("interfaceVersion", "1.0");
+            param.Add("tranData", data);
+            param.Add("merSignMsg", msg);
+            param.Add("appId", "0001");
+            param.Add("transType", "01");
+
+            string result = utils.CommonPost(url, param, "|");
+
+            return result;
+        }
     }
 }
