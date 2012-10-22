@@ -615,6 +615,8 @@ public partial class top_review_msg : System.Web.UI.Page
                                     " '" + number + "', " +
                                     " 'test' " +
                                 ") ";
+                File.WriteAllText(Server.MapPath("test1.txt"), sql);
+
                 if (phone.Length != 0)
                 {
                     utils.ExecuteNonQuery(sql);
@@ -661,7 +663,7 @@ public partial class top_review_msg : System.Web.UI.Page
         string pass = "hao1234";
         string result = string.Empty;
 
-        msg = UrlEncode(msg + "");
+        msg = UrlEncode(msg + "【淘宝】");
 
         string param = "OperID=" + uid + "&OperPass=" + pass + "&SendTime=&ValidTime=&AppendID=1234&DesMobile=" + phone + "&Content=" + msg + "&ContentType=15";
         byte[] bs = Encoding.ASCII.GetBytes(param);
