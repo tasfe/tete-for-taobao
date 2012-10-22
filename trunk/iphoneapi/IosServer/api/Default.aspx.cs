@@ -267,7 +267,11 @@ public partial class api_Default : System.Web.UI.Page
         string result = send.SendPayRequest(str, token, orderid, ticketid);
 
         Log(str);
-        //File.WriteAllText(Server.MapPath("test111.txt"), result);
+        File.WriteAllText(Server.MapPath("test111221.txt"), result);
+        string data = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""tranData""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string msg = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""merSignMsg""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        result = send.SendPayRequestEpay(data, msg);
+        File.WriteAllText(Server.MapPath("test1112222.txt"), result);
 
         Response.Write(@"支付方式1,支付1简介,<form id=payform action=""https://epay.12306.cn/pay/payGateway"" method=""post"" name=""myform""></form><script>document.getElementById('payform').submit();</script>|支付方式2,支付2简介,<form id=payform action=""https://epay.12306.cn/pay/payGateway"" method=""post"" name=""myform""></form><script>document.getElementById('payform').submit();</script>|支付方式3,支付3简介,<form id=payform action=""https://epay.12306.cn/pay/payGateway"" method=""post"" name=""myform""></form><script>document.getElementById('payform').submit();</script>");
         Response.End();
@@ -277,6 +281,7 @@ public partial class api_Default : System.Web.UI.Page
     private void PersonActPost(string act)
     {
         //根据动作操作会员联系人
+
     }
 
     private void TicketOrderPost()
