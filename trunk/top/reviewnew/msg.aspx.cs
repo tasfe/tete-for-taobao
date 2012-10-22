@@ -585,7 +585,7 @@ public partial class top_review_msg : System.Web.UI.Page
                 msg = msg.Substring(0, 64);
             }
 
-            string result = SendMessage(phone, msg);
+            string result = SendGuodu(phone, msg);
 
             if (result != "0")
             {
@@ -651,6 +651,34 @@ public partial class top_review_msg : System.Web.UI.Page
     public static string MD5AAA(string str)
     {
         return FormsAuthentication.HashPasswordForStoringInConfigFile(str, "MD5");
+    }
+
+
+
+    public static string SendGuodu(string phone, string msg)
+    {
+        string uid = "haopyl";
+        string pass = "hao1234";
+        string result = string.Empty;
+
+        msg = UrlEncode(msg + "【淘宝】");
+
+        string param = "OperID=" + uid + "&OperPass=" + pass + "&SendTime=&ValidTime=&AppendID=1234&DesMobile=" + phone + "&Content=" + msg + "&ContentType=15";
+        byte[] bs = Encoding.ASCII.GetBytes(param);
+
+        HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://221.179.180.158:9001/QxtSms/QxtFirewall" + "?" + param);
+
+        req.Method = "GET";
+
+        using (HttpWebResponse myResponse = (HttpWebResponse)req.GetResponse())
+        {
+            using (StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.GetEncoding("GB2312")))
+            {
+                string content = reader.ReadToEnd();
+
+                return content;
+            }
+        }
     }
 
     public string SendMessage(string phone, string msg)
