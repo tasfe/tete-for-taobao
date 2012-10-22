@@ -68,7 +68,7 @@ public partial class api_Default : System.Web.UI.Page
         {
             GetOrderPost();
         }
-        
+
         //订单支付
         if (act == "pay")
         {
@@ -132,7 +132,7 @@ public partial class api_Default : System.Web.UI.Page
         //token
         token = Regex.Match(result, @"TOKEN""[\s]*value=""([^""]*)""").Groups[1].ToString();
         outStr += token + "|";
-        
+
         //ticketlist
         string ticketlist = string.Empty;
         MatchCollection matchList = new Regex(@"<td[\s]*class=""blue_bold"">[\s]*<input[\s]*type=""hidden""[\s]*id=""checkbox_pay""[\s]*name=""[^""]*""[\s]*value=""([^""]*)""[\s]*/>[\s]*([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*([^<]*)</td>[\s]*<td>([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*([^,]*),[\s]*([^<]*)</td>[\s]*<td>([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*</td>[\s]*<td>([^<]*)</td>", RegexOptions.IgnoreCase).Matches(result);
@@ -400,9 +400,9 @@ public partial class api_Default : System.Web.UI.Page
         File.WriteAllText(Server.MapPath("8888882.txt"), paramStr + "-" + result);
 
         Log(session);
-        Response.Write(result);
+        Response.Write(result);     
         Response.End();
-    }
+    }                                 
 
     /// <summary>
     /// 订票操作
@@ -449,13 +449,13 @@ public partial class api_Default : System.Web.UI.Page
 
             u.Str1 = ary[i].Replace("|", ",");
             u.Str2 = ary1[i].Replace("|", ",");
-            u.Str3 = Common.utils.NewRequest("passenger_" + (i+1).ToString() + "_seat", Common.utils.RequestType.Form);
-            u.Str4 = Common.utils.NewRequest("passenger_" + (i+1).ToString() + "_seat_detail", Common.utils.RequestType.Form);
-            u.Str5 = Common.utils.NewRequest("passenger_" + (i+1).ToString() + "_ticket", Common.utils.RequestType.Form);
-            u.Str6 = Common.utils.NewRequest("passenger_" + (i+1).ToString() + "_name", Common.utils.RequestType.Form);
-            u.Str7 = Common.utils.NewRequest("passenger_" + (i+1).ToString() + "_cardtype", Common.utils.RequestType.Form);
-            u.Str8 = Common.utils.NewRequest("passenger_" + (i+1).ToString() + "_cardno", Common.utils.RequestType.Form);
-            u.Str9 = Common.utils.NewRequest("passenger_" + (i+1).ToString() + "_mobileno", Common.utils.RequestType.Form);
+            u.Str3 = Common.utils.NewRequest("passenger_" + (i + 1).ToString() + "_seat", Common.utils.RequestType.Form);
+            u.Str4 = Common.utils.NewRequest("passenger_" + (i + 1).ToString() + "_seat_detail", Common.utils.RequestType.Form);
+            u.Str5 = Common.utils.NewRequest("passenger_" + (i + 1).ToString() + "_ticket", Common.utils.RequestType.Form);
+            u.Str6 = Common.utils.NewRequest("passenger_" + (i + 1).ToString() + "_name", Common.utils.RequestType.Form);
+            u.Str7 = Common.utils.NewRequest("passenger_" + (i + 1).ToString() + "_cardtype", Common.utils.RequestType.Form);
+            u.Str8 = Common.utils.NewRequest("passenger_" + (i + 1).ToString() + "_cardno", Common.utils.RequestType.Form);
+            u.Str9 = Common.utils.NewRequest("passenger_" + (i + 1).ToString() + "_mobileno", Common.utils.RequestType.Form);
 
             userList.Add(u);
         }
@@ -577,7 +577,7 @@ public partial class api_Default : System.Web.UI.Page
     private void OutPutVerify()
     {
         try
-        {                   
+        {
             Train t = new Train();
             string cookieStr = t.GetVerifyImg();
 
