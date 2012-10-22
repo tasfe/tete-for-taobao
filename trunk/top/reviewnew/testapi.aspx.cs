@@ -62,7 +62,7 @@ public partial class top_review_testapi : System.Web.UI.Page
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.trade.fullinfo.get", session, param);
         ////<coupon_number>1323930538</coupon_number>
 
-        Response.Write(str);
+        Response.Write(result);
 
         //param = new Dictionary<string, string>();
         //param.Add("num_iid", "16791228388");
