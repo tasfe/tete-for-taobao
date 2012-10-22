@@ -133,6 +133,13 @@ public partial class top_reviewnew_alipayadd : System.Web.UI.Page
             return;
         }
 
+        if (!utils.IsInt32(utils.NewRequest("num", utils.RequestType.Form)))
+        {
+            Response.Write("<script>alert('支付宝红包金额必须是数字！');history.go(-1);</script>");
+            Response.End();
+            return;
+        }
+
         string sql = "INSERT INTO TCS_Alipay (guid, nick, name, count, num, enddate, per) VALUES ('" + guid + "','" + nick + "','" + utils.NewRequest("name", utils.RequestType.Form) + "','" + (arr.Length - 1).ToString() + "','" + utils.NewRequest("num", utils.RequestType.Form) + "','" + utils.NewRequest("end_time", utils.RequestType.Form) + "','" + utils.NewRequest("per", utils.RequestType.Form) + "')";
         utils.ExecuteNonQuery(sql);
 
