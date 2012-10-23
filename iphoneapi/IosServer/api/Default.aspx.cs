@@ -294,8 +294,8 @@ public partial class api_Default : System.Web.UI.Page
 
     private void Log(string txt)
     {
-        string content = File.ReadAllText(Server.MapPath("requestlog.txt"));
-        File.WriteAllText(Server.MapPath("requestlog.txt"), txt + "---" + DateTime.Now.ToString() + "\r\n" + content);
+        //string content = File.ReadAllText(Server.MapPath("requestlog.txt"));
+        //File.WriteAllText(Server.MapPath("requestlog.txt"), txt + "---" + DateTime.Now.ToString() + "\r\n" + content);
     }
 
     private void GetOrderPost()
