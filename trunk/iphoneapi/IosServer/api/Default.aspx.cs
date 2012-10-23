@@ -340,7 +340,7 @@ public partial class api_Default : System.Web.UI.Page
             Train send = new Train();
             string result = send.SendDelRequest(str, name, sex, card_type, card_no, passenger_type);
 
-            Response.Write("ok!!");
+            Response.Write("删除成功");
             Response.End();
             return;
         }
