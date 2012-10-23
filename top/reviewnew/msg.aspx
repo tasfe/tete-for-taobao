@@ -178,7 +178,7 @@
 <script language="javascript" type="text/javascript">
     function checkSave(){
         if(document.getElementById("shippingflag").checked && document.getElementById("reviewflag").checked){
-            return confirm('物流签收短信和过期未评价短信建议只开启一种，买家会有可能在短信时间内收到2条短信，您确定要这样设置吗？');
+            return confirm('物流签收短信和过期未评价短信建议只开启一种，买家会有可能在短时间内收到2条短信，您确定要这样设置吗？');
         }
     }
 
