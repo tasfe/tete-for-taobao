@@ -320,7 +320,7 @@ public partial class api_Default : System.Web.UI.Page
             string result = send.SendAddRequest(str, name, sex, card_type, card_no, passenger_type, mobile);
 
             Response.Write("ok");
-            //File.WriteAllText(Server.MapPath("token2.txt"), result);
+            File.WriteAllText(Server.MapPath("token0.txt"), result);
             Response.End();
             return;
         }
@@ -331,7 +331,7 @@ public partial class api_Default : System.Web.UI.Page
             Train send = new Train();
             string result = send.SendEditRequest(str, name, sex, card_type, card_no, passenger_type, mobile);
 
-            File.WriteAllText(Server.MapPath("token2.txt"), result);
+            File.WriteAllText(Server.MapPath("token1.txt"), result);
             Response.Write("ok");
             Response.End();
             return;
@@ -346,7 +346,7 @@ public partial class api_Default : System.Web.UI.Page
             //File.WriteAllText(Server.MapPath("token1.txt"), "");
 
             Response.Write("ok");
-            //File.WriteAllText(Server.MapPath("token2.txt"), result);
+            File.WriteAllText(Server.MapPath("token2.txt"), result);
             Response.End();
             return;
         }
