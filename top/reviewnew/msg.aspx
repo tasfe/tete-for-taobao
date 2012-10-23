@@ -99,7 +99,7 @@
             <tr>
                 <td align="left">
         开启过期未评价短信提示 <input id="reviewflag" name="reviewflag" type="checkbox" value="1" onclick="showArea3(this)" /> <br />
-        <span style="color:red">【过期未评价短信是指在您设置的最短评价时间的前一天提醒买家及时评价的短信】</span>
+        <span style="color:red">【过期未评价短信】是指在您在基本设置中 最短评价时间的前一天提醒买家及时评价。 如果开启这条提醒，建议将基本设置时间加长些！</span>
                 </td>
             </tr>
             <tr id="Area3">
@@ -178,7 +178,7 @@
 <script language="javascript" type="text/javascript">
     function checkSave(){
         if(document.getElementById("shippingflag").checked && document.getElementById("reviewflag").checked){
-            return confirm('物流签收短信和过期未评价短信建议只开启一种，否则买家有可能同一时间内收到2条短信，您确定要这样设置吗？');
+            return confirm('物流签收短信和过期未评价短信建议只开启一种，买家会有可能在短信时间内收到2条短信，您确定要这样设置吗？');
         }
     }
 
