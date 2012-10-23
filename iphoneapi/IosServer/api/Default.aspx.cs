@@ -268,10 +268,14 @@ public partial class api_Default : System.Web.UI.Page
 
         Log(str);
         File.WriteAllText(Server.MapPath("test111221.txt"), result);
+        //第一次支付界面
         string data = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""tranData""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
         string msg = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""merSignMsg""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
         result = send.SendPayRequestEpay(data, msg);
+        
+        //第二次支付界面
         File.WriteAllText(Server.MapPath("test1112222.txt"), result);
+        result = send.SendPayRequestEpayStep(data, msg);
 
         Response.Write(@"支付方式1,支付1简介," + getFormStr(result, "01020000") + "|支付方式2,支付2简介," + getFormStr(result, "01030000"));
         Response.End();
@@ -295,9 +299,62 @@ public partial class api_Default : System.Web.UI.Page
 
     //添加联系人
     private void PersonActPost(string act)
-    {
-        //根据动作操作会员联系人
+    {                            
+        string session = Common.utils.NewRequest("session", Common.utils.RequestType.Form);
+        
+        string name = Common.utils.NewRequest("name", Common.utils.RequestType.Form);
+        string sex = Common.utils.NewRequest("sex", Common.utils.RequestType.Form);  
+        string card_type = Common.utils.NewRequest("card_type", Common.utils.RequestType.Form);
+        string card_no = Common.utils.NewRequest("card_no", Common.utils.RequestType.Form);
+        string passenger_type = Common.utils.NewRequest("passenger_type", Common.utils.RequestType.Form);
+                  
+        string str1 = new Regex(@"JSESSIONID=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str2 = new Regex(@"BIGipServerotsweb=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str = str1 + "|" + str2;
 
+        //根据动作操作会员联系人   
+        if (act == "add")
+        { 
+            Train send = new Train();
+            string result = send.SendAddRequest(str, name, sex, card_type, card_no, passenger_type);
+
+            Response.Write("ok!!");
+            Response.End();
+            return;
+        }
+
+        //根据动作操作会员联系人   
+        if (act == "edit")
+        {
+            Train send = new Train();
+            string result = send.SendEditRequest(str, name, sex, card_type, card_no, passenger_type);
+
+            Response.Write("ok!!");
+            Response.End();
+            return;
+        }
+
+        //根据动作操作会员联系人   
+        if (act == "del")
+        {
+            Train send = new Train();
+            string result = send.SendDelRequest(str, name, sex, card_type, card_no, passenger_type);
+
+            Response.Write("ok!!");
+            Response.End();
+            return;
+        }
+
+        //根据动作操作会员联系人   
+        if (act == "search")
+        {
+            Train send = new Train();
+            string result = send.SendSearchRequest(str);
+
+            Response.Write(result);
+            Response.End();
+            return;
+        }
     }
 
     private void TicketOrderPost()

@@ -522,5 +522,45 @@ namespace TeteIosTrain
 
             return result;
         }
+
+        public string SendAddRequest(string str, string name, string sex, string card_type, string card_no, string passenger_type)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string SendEditRequest(string str, string name, string sex, string card_type, string card_no, string passenger_type)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string SendPayRequestEpayStep(string data, string msg)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string SendDelRequest(string str, string name, string sex, string card_type, string card_no, string passenger_type)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 常见联系人查询
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public string SendSearchRequest(string str)
+        {
+            string url = "http://dynamic.12306.cn/otsweb/passengerAction.do?method=queryPagePassenger";
+
+            IDictionary<string, string> param = new Dictionary<string, string>();
+
+            param.Add("pageIndex", "0");
+            param.Add("pageSize", "7");
+            param.Add("passenger_name", "请输入汉字或拼音首字母");
+
+            string result = utils.CommonPost(url, param, "|");
+
+            return result;
+        }
     }
 }
