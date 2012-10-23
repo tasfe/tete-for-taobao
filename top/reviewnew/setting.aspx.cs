@@ -157,8 +157,8 @@ public partial class top_review_setting : System.Web.UI.Page
         else
         { 
             //设置默认值
-            mindate = "3";
-            maxdate = "6";
+            mindate = "5";
+            maxdate = "8";
             iscoupon = "1";
             issendmsg = "1";
             iscancelauto = "1";
