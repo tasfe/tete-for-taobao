@@ -292,10 +292,11 @@ public partial class api_Default : System.Web.UI.Page
             string amount = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""orderAmount""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             string mer = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""merReserved""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             string payorderid = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""orderNumber""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-            result = send.SendPayRequestEpayStepNew(time, backUrl, merId, frontUrl, signature, amount, mer, payorderid, str);
-            File.WriteAllText(Server.MapPath("test1112222344.txt"), result);
+            //result = send.SendPayRequestEpayStepNew(time, backUrl, merId, frontUrl, signature, amount, mer, payorderid, str);
+            //File.WriteAllText(Server.MapPath("test1112222344.txt"), result);
+            result = new Regex(@"<form[\s\S]*?</form>", RegexOptions.IgnoreCase).Match(result).Groups[0].ToString();
 
-            Response.Write(@"支付方式1,支付1简介,321321321|支付方式2,支付2简介,32132132134gwfsfs");
+            Response.Write(@"支付方式1,支付1简介," + result.Replace(",", ""));
             Response.End();
         }
         else
