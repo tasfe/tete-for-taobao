@@ -266,8 +266,8 @@ public partial class api_Default : System.Web.UI.Page
         Train send = new Train();
         string result = send.SendPayRequest(str, token, orderid, ticketid);
 
-        Log(str);
-        File.WriteAllText(Server.MapPath("test111221.txt"), result);
+        //Log(str);
+        //File.WriteAllText(Server.MapPath("test111221.txt"), result);
         //第一次支付界面
         string data = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""tranData""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
         string msg = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""merSignMsg""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
