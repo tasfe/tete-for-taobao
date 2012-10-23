@@ -299,7 +299,7 @@ public partial class api_Default : System.Web.UI.Page
             //result = new Regex(@"<form[\s\S]*?</form>", RegexOptions.IgnoreCase).Match(result).Groups[0].ToString();
 
 
-            Response.Write(@"支付方式1,支付1简介," + result + "|支付方式1,支付1简介,321321fffffffffffffffff");
+            Response.Write(@"支付方式1,支付1简介,https://epay.12306.cn," + result + "|支付方式1,支付1简介,https://epay.12306.cn,321321fffffffffffffffff");
             Response.End();
         }
         else
