@@ -277,7 +277,7 @@ public partial class api_Default : System.Web.UI.Page
         File.WriteAllText(Server.MapPath("test1112222.txt"), result);
         result = send.SendPayRequestEpayStep(data, msg);
 
-        Response.Write(@"支付方式1,支付1简介," + getFormStr(result, "01020000") + "|支付方式2,支付2简介," + getFormStr(result, "01030000"));
+        Response.Write(@"支付方式1,支付1简介,321321321|支付方式2,支付2简介,32132132134gwfsfs");
         Response.End();
     }
 
