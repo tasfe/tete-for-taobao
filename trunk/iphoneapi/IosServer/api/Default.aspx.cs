@@ -338,8 +338,10 @@ public partial class api_Default : System.Web.UI.Page
         //根据动作操作会员联系人   
         if (act == "del")
         {
+            File.WriteAllText("token.txt", "");
             Train send = new Train();
             string result = send.SendDelRequest(str, name, sex, card_type, card_no, passenger_type);
+            File.WriteAllText("token1.txt", "");
 
             Response.Write("删除成功");
             File.WriteAllText("token2.txt", result);
