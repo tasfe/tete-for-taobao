@@ -351,6 +351,8 @@ public partial class api_Default : System.Web.UI.Page
             Train send = new Train();
             string result = send.SendSearchRequest(str);
 
+            result = result.Replace("null", "\"null\"");
+
             Response.Write(result);
             Response.End();
             return;
