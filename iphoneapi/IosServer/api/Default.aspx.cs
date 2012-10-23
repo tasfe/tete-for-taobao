@@ -185,7 +185,11 @@ public partial class api_Default : System.Web.UI.Page
             }
         }
 
-        outStr += ticketlist;
+        outStr += ticketlist + "|";
+
+        string start = Regex.Match(result, @"var[\s]*loseTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
+        string end = Regex.Match(result, @"var[\s]*beginTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
+        outStr += (long.Parse(end) - long.Parse(start)).ToString();
 
         File.WriteAllText(Server.MapPath("1111233.txt"), outStr + "-" + result);
 
