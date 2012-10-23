@@ -36,7 +36,7 @@ public partial class top_reviewnew_search : System.Web.UI.Page
 
         string result = SendGuodu(phone, msg);
 
-        //记录短信发送记录
+        //记录短信发送记录 
         string sql = "INSERT INTO TCS_MsgSend (" +
                             "nick, " +
                             "buynick, " +
