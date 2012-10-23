@@ -257,10 +257,10 @@ public partial class api_Default : System.Web.UI.Page
         string delay = utils.NewRequest("delay", utils.RequestType.QueryString);
 
 
-        //str = "{\"err\":\"短信服务器安全维护，定时短信暂时无法提交，非常抱歉！\"}";
-        //Response.Write(str);
-        //Response.End();
-        //return;
+        str = "{\"err\":\"短信服务器安全维护，定时短信暂时无法提交，非常抱歉！\"}";
+        Response.Write(str);
+        Response.End();
+        return;
 
         sql = "SELECT total FROM TeteUserToken WHERE token = '" + token + "' AND nick = '" + uid + "'";
         string total = utils.ExecuteString(sql);
