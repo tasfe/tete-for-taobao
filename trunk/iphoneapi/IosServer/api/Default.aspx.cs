@@ -281,6 +281,10 @@ public partial class api_Default : System.Web.UI.Page
 
         Train send = new Train();
         string result = send.SendPayRequest(str, token, orderid, ticketid);
+
+        string start = Regex.Match(result, @"var[\s]*loseTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
+        string end = Regex.Match(result, @"var[\s]*beginTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
+
         File.WriteAllText(Server.MapPath("test111221.txt"), result);
 
         if (result.IndexOf("该车次在互联网已停止办理业务") == -1)
@@ -344,10 +348,6 @@ public partial class api_Default : System.Web.UI.Page
 
             resStr = @"招商银行,招商银行支付简介,https://epay.12306.cn/pay/webBusiness," + utils.PostData(param) + ",";
             resStr += "|网银支付（银联）,网银支付（银联）,https://epay.12306.cn/pay/webBusiness," + utils.PostData(param1) + ",,window.location.href=document.getElementById('CSPayTab').href;";
-
-            string start = Regex.Match(result, @"var[\s]*loseTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
-            string end = Regex.Match(result, @"var[\s]*beginTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
-            //resStr += "|" + ((long.Parse(end) - long.Parse(start)) / 60000).ToString();
 
             File.WriteAllText(Server.MapPath("test11122223.txt"), start + "|" + end + "|" + result);
             Response.Write(resStr);
