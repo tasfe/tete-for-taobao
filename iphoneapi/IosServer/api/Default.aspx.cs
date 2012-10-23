@@ -307,6 +307,7 @@ public partial class api_Default : System.Web.UI.Page
         string card_type = Common.utils.NewRequest("card_type", Common.utils.RequestType.Form);
         string card_no = Common.utils.NewRequest("card_no", Common.utils.RequestType.Form);
         string passenger_type = Common.utils.NewRequest("passenger_type", Common.utils.RequestType.Form);
+        string mobile = Common.utils.NewRequest("mobile", Common.utils.RequestType.Form);
                   
         string str1 = new Regex(@"JSESSIONID=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
         string str2 = new Regex(@"BIGipServerotsweb=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
@@ -316,10 +317,10 @@ public partial class api_Default : System.Web.UI.Page
         if (act == "add")
         { 
             Train send = new Train();
-            string result = send.SendAddRequest(str, name, sex, card_type, card_no, passenger_type);
+            string result = send.SendAddRequest(str, name, sex, card_type, card_no, passenger_type, mobile);
 
-            Response.Write("ok!!");
-            File.WriteAllText(Server.MapPath("token2.txt"), result);
+            Response.Write("ok");
+            //File.WriteAllText(Server.MapPath("token2.txt"), result);
             Response.End();
             return;
         }
@@ -328,10 +329,10 @@ public partial class api_Default : System.Web.UI.Page
         if (act == "edit")
         {
             Train send = new Train();
-            string result = send.SendEditRequest(str, name, sex, card_type, card_no, passenger_type);
+            string result = send.SendEditRequest(str, name, sex, card_type, card_no, passenger_type, mobile);
 
             File.WriteAllText(Server.MapPath("token2.txt"), result);
-            Response.Write("ok!!");
+            Response.Write("ok");
             Response.End();
             return;
         }
@@ -341,10 +342,10 @@ public partial class api_Default : System.Web.UI.Page
         {
             //File.WriteAllText(Server.MapPath("token.txt"), "");
             Train send = new Train();
-            string result = send.SendDelRequest(str, name, sex, card_type, card_no, passenger_type);
+            string result = send.SendDelRequest(str, name, sex, card_type, card_no, passenger_type, mobile);
             //File.WriteAllText(Server.MapPath("token1.txt"), "");
 
-            Response.Write("删除成功");
+            Response.Write("ok");
             //File.WriteAllText(Server.MapPath("token2.txt"), result);
             Response.End();
             return;
