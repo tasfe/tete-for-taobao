@@ -284,7 +284,7 @@ public partial class api_Default : System.Web.UI.Page
             data = new Regex(@"<input[\s]*type=""hidden""[\s]*value=""([^""]*)""[\s]*name=""tranData"" />", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             msg = new Regex(@"<input[\s]*type=""hidden""[\s]*value=""([^""]*)""[\s]*name=""merSignMsg"" />", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             orderid = new Regex(@"<input[\s]*type=""hidden""[\s]*value=""([^""]*)""[\s]*name=""orderTimeoutDate"" />", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-            result = send.SendPayRequestEpayStep(data, msg, orderid, str, "00011000");
+            //result = send.SendPayRequestEpayStep(data, msg, orderid, str, "00011000");
             result1 = send.SendPayRequestEpayStep(data, msg, orderid, str, "03080000");
             File.WriteAllText(Server.MapPath("test11122223.txt"), result);
 
