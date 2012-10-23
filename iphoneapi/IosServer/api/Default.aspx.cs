@@ -274,15 +274,15 @@ public partial class api_Default : System.Web.UI.Page
             string data = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""tranData""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             string msg = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""merSignMsg""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             result = send.SendPayRequestEpay(str, data, msg);
-            result = result.Replace("</body>", "<script type=\"text/javascript\">formsubmit('00011000');</script></body>");
-            result = result.Replace(",", "").Replace("|", "");
+            //result = result.Replace("</body>", "<script type=\"text/javascript\">formsubmit('00011000');</script></body>");
+            //result = result.Replace(",", "").Replace("|", "");
             File.WriteAllText(Server.MapPath("test1112222.txt"), result);
 
             //第二次支付界面
             data = new Regex(@"<input[\s]*type=""hidden""[\s]*value=""([^""]*)""[\s]*name=""tranData"" />", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             msg = new Regex(@"<input[\s]*type=""hidden""[\s]*value=""([^""]*)""[\s]*name=""merSignMsg"" />", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             orderid = new Regex(@"<input[\s]*type=""hidden""[\s]*value=""([^""]*)""[\s]*name=""orderTimeoutDate"" />", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-            //result = send.SendPayRequestEpayStep(data, msg, orderid, str);
+            result = send.SendPayRequestEpayStep(data, msg, orderid, str);
             //File.WriteAllText(Server.MapPath("test11122223.txt"), result);
 
             //第三次支付界面
@@ -299,7 +299,7 @@ public partial class api_Default : System.Web.UI.Page
             //result = new Regex(@"<form[\s\S]*?</form>", RegexOptions.IgnoreCase).Match(result).Groups[0].ToString();
 
 
-            Response.Write(@"支付方式1,支付1简介,https://epay.12306.cn," + result + "|支付方式1,支付1简介,https://epay.12306.cn,321321fffffffffffffffff");
+            Response.Write(@"网银支付（银联）,网银支付（银联）,https://epay.12306.cn," + result.Replace(",", "").Replace("|", "") + "|支付方式1,支付1简介,https://epay.12306.cn,321321fffffffffffffffff");
             Response.End();
         }
         else
