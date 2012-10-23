@@ -35,6 +35,11 @@ public partial class api_Default : System.Web.UI.Page
             GetWaitingOrder();
         }
 
+        if (act == "myorder")
+        {
+            GetMyOrder();
+        }
+
         if (act == "search")
         {
             SearchPost();
@@ -118,6 +123,66 @@ public partial class api_Default : System.Web.UI.Page
         }
     }
 
+    private void GetMyOrder()
+    {
+        string session = Common.utils.NewRequest("session", Common.utils.RequestType.Form);
+        string start = Common.utils.NewRequest("start", Common.utils.RequestType.Form);
+        string end = Common.utils.NewRequest("end", Common.utils.RequestType.Form);
+        string token = Common.utils.NewRequest("token", Common.utils.RequestType.Form);
+        string outStr = string.Empty;
+
+        string str1 = new Regex(@"JSESSIONID=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str2 = new Regex(@"BIGipServerotsweb=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str = str1 + "|" + str2;
+        string ticketid = string.Empty;
+
+        Train send = new Train();
+        string result = send.GetMyOrder(str, token, start, end);
+
+        string ticketlist = string.Empty;
+        MatchCollection matchList = new Regex(@"<td[\s]*class=""blue_bold"">[\s]*([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*([^<]*)</td>[\s]*<td>([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*([^,]*),[\s]*([^<]*)</td>[\s]*<td>([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*</td>[\s]*<td>([^<]*)</td>", RegexOptions.IgnoreCase).Matches(result);
+
+        for (int i = 0; i < matchList.Count; i++)
+        {
+            if (i == 0)
+            {
+                for (int j = 1; j <= 13; j++)
+                {
+                    if (j == 1)
+                    {
+                        ticketlist = matchList[i].Groups[j].ToString().Trim();
+                    }
+                    else
+                    {
+                        ticketlist += "*" + matchList[i].Groups[j].ToString().Trim();
+                    }
+                }
+            }
+            else
+            {
+                ticketlist += ",";
+                for (int j = 1; j <= 13; j++)
+                {
+                    if (j == 1)
+                    {
+                        ticketlist += matchList[i].Groups[j].ToString().Trim();
+                    }
+                    else
+                    {
+                        ticketlist += "*" + matchList[i].Groups[j].ToString().Trim();
+                    }
+                }
+            }
+        }
+
+        outStr += ticketlist;
+
+        File.WriteAllText(Server.MapPath("1111233.txt"), outStr + "-" + result);
+
+        Response.Write(outStr);
+        Response.End();
+    }
+
     private void GetIP()
     {
         string ip = Request.UserHostAddress.ToString();
@@ -197,8 +262,6 @@ public partial class api_Default : System.Web.UI.Page
             outStr += "|" + ((long.Parse(end) - long.Parse(start)) / 60000).ToString();
         }
         catch { }
-
-        File.WriteAllText(Server.MapPath("1111233.txt"), outStr + "-" + result);
 
         //如果左边是-1则需为排队人数，5为排队
         Response.Write(outStr);
