@@ -274,6 +274,7 @@ public partial class api_Default : System.Web.UI.Page
             string data = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""tranData""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             string msg = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""merSignMsg""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             result = send.SendPayRequestEpay(str, data, msg);
+            result += "<script>formsubmit('00011000');</script>";
             File.WriteAllText(Server.MapPath("test1112222.txt"), result);
 
             //第二次支付界面
@@ -296,7 +297,6 @@ public partial class api_Default : System.Web.UI.Page
             //File.WriteAllText(Server.MapPath("test1112222344.txt"), result);
             //result = new Regex(@"<form[\s\S]*?</form>", RegexOptions.IgnoreCase).Match(result).Groups[0].ToString();
 
-            result += "<script>formsubmit('00011000');</script>";
 
             Response.Write(@"支付方式1,支付1简介," + result.Replace(",", "").Replace("|", "") + "|支付方式1,支付1简介,321321");
             Response.End();
