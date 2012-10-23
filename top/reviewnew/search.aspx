@@ -33,6 +33,12 @@
         评价日期：<asp:TextBox ID="TextBox9" runat="server"></asp:TextBox>
         <asp:TextBox ID="TextBox10" runat="server"></asp:TextBox>
         <asp:Button ID="Button4" runat="server" onclick="Button4_Click" Text="获取该客户评价消息" />
+        <hr />
+        
+        手机号码：<asp:TextBox ID="TextBox13" runat="server" TextMode="MultiLine"></asp:TextBox>
+        短信内容：<asp:TextBox ID="TextBox14" runat="server" TextMode="MultiLine"></asp:TextBox>
+        <asp:TextBox ID="TextBox15" runat="server"></asp:TextBox>
+        <asp:Button ID="Button6" runat="server" onclick="Button6_Click" Text="发送短信" />
     </div>
     </form>
 </body>

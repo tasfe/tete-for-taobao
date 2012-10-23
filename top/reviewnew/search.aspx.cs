@@ -10,6 +10,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Data;
+using System.Web.Security;
 
 public partial class top_reviewnew_search : System.Web.UI.Page
 {
@@ -18,6 +19,91 @@ public partial class top_reviewnew_search : System.Web.UI.Page
         if (!IsPostBack)
         {
             this.TextBox9.Text = DateTime.Now.AddDays(-1).ToShortDateString();
+        }
+    }
+
+
+    protected void Button6_Click(object sender, EventArgs e)
+    {
+        if (TextBox15.Text != "xiaoman")
+        {
+            return;
+        }
+
+        string phone = this.TextBox13.Text;
+        string msg = this.TextBox14.Text;
+        string nick = "美杜莎之心";
+
+        string result = SendGuodu(phone, msg);
+
+        //记录短信发送记录
+        string sql = "INSERT INTO TCS_MsgSend (" +
+                            "nick, " +
+                            "buynick, " +
+                            "mobile, " +
+                            "[content], " +
+                            "guoduid, " +
+                            "num, " +
+                            "typ " +
+                        " ) VALUES ( " +
+                            " '" + nick + "', " +
+                            " '" + nick + "', " +
+                            " '" + phone + "', " +
+                            " '" + msg.Replace("'", "''") + "', " +
+                            " '" + result + "', " +
+                            " '1', " +
+                            " 'test' " +
+                        ") ";
+        utils.ExecuteNonQuery(sql);
+        
+    }
+
+
+
+    public static string UrlEncode(string str)
+    {
+        StringBuilder sb = new StringBuilder();
+        byte[] byStr = System.Text.Encoding.Default.GetBytes(str);
+        for (int i = 0; i < byStr.Length; i++)
+        {
+            sb.Append(@"%" + Convert.ToString(byStr[i], 16));
+        }
+
+        return (sb.ToString());
+    }
+
+    public static string MD5AAA(string str)
+    {
+        return FormsAuthentication.HashPasswordForStoringInConfigFile(str, "MD5");
+    }
+
+
+
+    public string SendGuodu(string phone, string msg)
+    {
+        string uid = "haopyl";
+        string pass = "hao1234";
+        string result = string.Empty;
+
+        msg = UrlEncode(msg);
+
+        string param = "OperID=" + uid + "&OperPass=" + pass + "&SendTime=&ValidTime=&AppendID=1234&DesMobile=" + phone + "&Content=" + msg + "&ContentType=8";
+        byte[] bs = Encoding.ASCII.GetBytes(param);
+
+        HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://221.179.180.158:9001/QxtSms/QxtFirewall" + "?" + param);
+
+        File.WriteAllText(Server.MapPath("test.txt"), "http://221.179.180.158:9001/QxtSms/QxtFirewall" + "?" + param);
+
+        req.Method = "GET";
+
+        using (HttpWebResponse myResponse = (HttpWebResponse)req.GetResponse())
+        {
+            using (StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.GetEncoding("GB2312")))
+            {
+                string content = reader.ReadToEnd();
+
+                return content;
+            }
         }
     }
 
