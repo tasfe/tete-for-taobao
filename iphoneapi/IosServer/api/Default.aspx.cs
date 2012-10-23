@@ -267,18 +267,26 @@ public partial class api_Default : System.Web.UI.Page
         string result = send.SendPayRequest(str, token, orderid, ticketid);
         File.WriteAllText(Server.MapPath("test111221.txt"), result);
 
-        //Log(str);
-        //第一次支付界面
-        string data = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""tranData""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
-        string msg = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""merSignMsg""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
-        result = send.SendPayRequestEpay(str, data, msg);
-        File.WriteAllText(Server.MapPath("test1112222.txt"), result);
-        
-        //第二次支付界面
-        result = send.SendPayRequestEpayStep(data, msg);
+        if (result.IndexOf("该车次在互联网已停止办理业务") == -1)
+        {
+            //Log(str);
+            //第一次支付界面
+            string data = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""tranData""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+            string msg = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""merSignMsg""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+            result = send.SendPayRequestEpay(str, data, msg);
+            File.WriteAllText(Server.MapPath("test1112222.txt"), result);
 
-        Response.Write(@"支付方式1,支付1简介,321321321|支付方式2,支付2简介,32132132134gwfsfs");
-        Response.End();
+            //第二次支付界面
+            result = send.SendPayRequestEpayStep(data, msg);
+
+            Response.Write(@"支付方式1,支付1简介,321321321|支付方式2,支付2简介,32132132134gwfsfs");
+            Response.End();
+        }
+        else
+        {
+            Response.Write(@"该车次在互联网已停止办理业务,该车次在互联网已停止办理业务,该车次在互联网已停止办理业务");
+            Response.End();
+        }
     }
 
     /// <summary>
