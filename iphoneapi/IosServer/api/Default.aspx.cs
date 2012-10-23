@@ -263,6 +263,8 @@ public partial class api_Default : System.Web.UI.Page
         string str2 = new Regex(@"BIGipServerotsweb=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
         string str = str1 + "|" + str2;
 
+        string result1 = string.Empty;
+
         Train send = new Train();
         string result = send.SendPayRequest(str, token, orderid, ticketid);
         File.WriteAllText(Server.MapPath("test111221.txt"), result);
@@ -282,7 +284,8 @@ public partial class api_Default : System.Web.UI.Page
             data = new Regex(@"<input[\s]*type=""hidden""[\s]*value=""([^""]*)""[\s]*name=""tranData"" />", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             msg = new Regex(@"<input[\s]*type=""hidden""[\s]*value=""([^""]*)""[\s]*name=""merSignMsg"" />", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             orderid = new Regex(@"<input[\s]*type=""hidden""[\s]*value=""([^""]*)""[\s]*name=""orderTimeoutDate"" />", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
-            result = send.SendPayRequestEpayStep(data, msg, orderid, str);
+            result = send.SendPayRequestEpayStep(data, msg, orderid, str, "00011000");
+            result1 = send.SendPayRequestEpayStep(data, msg, orderid, str, "03080000");
             File.WriteAllText(Server.MapPath("test11122223.txt"), result);
 
             //替换为网银支付                                          
@@ -304,8 +307,8 @@ public partial class api_Default : System.Web.UI.Page
 
             string resStr = string.Empty;
 
-            resStr = @"网银支付（银联）,网银支付（银联）,https://epay.12306.cn," + result;
-            resStr += "|招商银行,招商银行支付简介,https://epay.12306.cn," + result;
+            resStr = @"招商银行,招商银行支付简介,https://epay.12306.cn," + result1;
+            resStr += "|网银支付（银联）,网银支付（银联）,https://epay.12306.cn," + result;
 
             Response.Write(resStr);
             Response.End();
