@@ -265,16 +265,16 @@ public partial class api_Default : System.Web.UI.Page
 
         Train send = new Train();
         string result = send.SendPayRequest(str, token, orderid, ticketid);
+        File.WriteAllText(Server.MapPath("test111221.txt"), result);
 
         //Log(str);
-        //File.WriteAllText(Server.MapPath("test111221.txt"), result);
         //第一次支付界面
         string data = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""tranData""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
         string msg = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""merSignMsg""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
         result = send.SendPayRequestEpay(data, msg);
+        File.WriteAllText(Server.MapPath("test1112222.txt"), result);
         
         //第二次支付界面
-        File.WriteAllText(Server.MapPath("test1112222.txt"), result);
         result = send.SendPayRequestEpayStep(data, msg);
 
         Response.Write(@"支付方式1,支付1简介,321321321|支付方式2,支付2简介,32132132134gwfsfs");
