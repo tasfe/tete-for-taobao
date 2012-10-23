@@ -271,8 +271,8 @@ public partial class api_Default : System.Web.UI.Page
         {
             //Log(str);
             //第一次支付界面
-            string data = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""tranData""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
-            string msg = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""merSignMsg""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+            string data = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""tranData""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+            string msg = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""merSignMsg""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             result = send.SendPayRequestEpay(str, data, msg);
             File.WriteAllText(Server.MapPath("test1112222.txt"), result);
 
