@@ -98,7 +98,8 @@
             </tr>
             <tr>
                 <td align="left">
-        开启过期未评价短信提示 <input id="reviewflag" name="reviewflag" type="checkbox" value="1" onclick="showArea3(this)" />
+        开启过期未评价短信提示 <input id="reviewflag" name="reviewflag" type="checkbox" value="1" onclick="showArea3(this)" /> <br />
+        <span style="color:red">过期未评价短信是指在您设置的最短评价时间的前一天提醒买家及时评价的短信</span>
                 </td>
             </tr>
             <tr id="Area3">
@@ -164,7 +165,7 @@
             </tr>
             <tr>
                 <td align="left">
-                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" />
+                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" OnClientClick="return checkSave()" />
                     <input type="button" value="短信黑名单" onclick="window.location.href='blacklist.aspx'" />
                 </td>
             </tr>
@@ -175,6 +176,13 @@
 
 
 <script language="javascript" type="text/javascript">
+    function checkSave(){
+        if(document.getElementById("shippingflag").checked && document.getElementById("reviewflag").checked){
+            return confirm('物流签收短信和过期未评价短信建议只开启一种，否则买家有可能同一时间内收到2条短信，您确定要这样设置吗？');
+        }
+    }
+
+
     function showArea(obj) {
         var str = obj.checked;
         if (str == false) {
