@@ -318,7 +318,7 @@ public partial class api_Default : System.Web.UI.Page
             IDictionary<string, string> param1 = new Dictionary<string, string>();
             param1.Add("tranData", data);
             param1.Add("transType", "01");
-            param1.Add("channelId", "1");
+            param1.Add("channelId", "5");
             param1.Add("appId", "0001");
             param1.Add("merSignMsg", msg);
             param1.Add("merCustomIp", "{ip}");
