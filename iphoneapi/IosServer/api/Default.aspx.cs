@@ -300,7 +300,6 @@ public partial class api_Default : System.Web.UI.Page
             orderid = new Regex(@"<input[\s]*type=""hidden""[\s]*value=""([^""]*)""[\s]*name=""orderTimeoutDate"" />", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             //result = send.SendPayRequestEpayStep(data, msg, orderid, str, "00011000");
             //result1 = send.SendPayRequestEpayStep(data, msg, orderid, str, "03080000");
-            File.WriteAllText(Server.MapPath("test11122223.txt"), result);
 
             //招商银行支付     
             IDictionary<string, string> param = new Dictionary<string, string>();
@@ -349,7 +348,8 @@ public partial class api_Default : System.Web.UI.Page
             string start = Regex.Match(result, @"var[\s]*loseTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
             string end = Regex.Match(result, @"var[\s]*beginTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
             resStr += "|" + ((long.Parse(end) - long.Parse(start)) / 60000).ToString();
-          
+
+            File.WriteAllText(Server.MapPath("test11122223.txt"), resStr + "|" + result);
             Response.Write(resStr);
             Response.End();
         }
