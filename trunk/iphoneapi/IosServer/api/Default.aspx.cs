@@ -347,9 +347,9 @@ public partial class api_Default : System.Web.UI.Page
 
             string start = Regex.Match(result, @"var[\s]*loseTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
             string end = Regex.Match(result, @"var[\s]*beginTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
-            resStr += "|" + ((long.Parse(end) - long.Parse(start)) / 60000).ToString();
+            //resStr += "|" + ((long.Parse(end) - long.Parse(start)) / 60000).ToString();
 
-            File.WriteAllText(Server.MapPath("test11122223.txt"), resStr + "|" + result);
+            File.WriteAllText(Server.MapPath("test11122223.txt"), start + "|" + end + "|" + result);
             Response.Write(resStr);
             Response.End();
         }
