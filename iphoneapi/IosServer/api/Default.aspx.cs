@@ -92,6 +92,12 @@ public partial class api_Default : System.Web.UI.Page
             OrderCancelPost();
         }
 
+        //订单退票
+        if (act == "returnticket")
+        {
+            ReturnTicketPost();
+        }
+
         //订单下单状态查询
         if (act == "statussearch")
         {
@@ -121,6 +127,24 @@ public partial class api_Default : System.Web.UI.Page
         {
             PersonActPost("del");
         }
+    }
+
+    private void ReturnTicketPost()
+    {
+        string session = Common.utils.NewRequest("session", Common.utils.RequestType.Form);
+        string token = Common.utils.NewRequest("token", Common.utils.RequestType.Form);
+        string ticketid = Common.utils.NewRequest("ticketid", Common.utils.RequestType.Form);
+        string result = string.Empty;
+
+        string str1 = new Regex(@"JSESSIONID=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str2 = new Regex(@"BIGipServerotsweb=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
+        string str = str1 + "|" + str2;
+
+        Train send = new Train();
+        result = send.ReturnTicket(str, token, ticketid);
+
+        Response.Write(result);
+        Response.End();
     }
 
     private void GetMyOrder()
