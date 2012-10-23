@@ -105,7 +105,7 @@
                 <td align="left" width="250">
                     <textarea name="reviewcontent" id="reviewcontent" cols="40" rows="3"><%=reviewcontent%></textarea>  
                     <input type="button" value="短信预览" onclick="yulanMsg('reviewcontent')" /><br />
-                    短信自动发送时间
+                    过期未评价短信提示自动发送时间
                     <select name="reviewtime" id="reviewtime">
                         <option value="0">0</option>
                         <option value="1">1</option>
