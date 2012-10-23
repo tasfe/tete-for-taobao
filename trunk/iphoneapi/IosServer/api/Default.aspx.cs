@@ -274,7 +274,7 @@ public partial class api_Default : System.Web.UI.Page
             string data = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""tranData""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             string msg = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""merSignMsg""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             result = send.SendPayRequestEpay(str, data, msg);
-            result += "<script type=\"text/javascript\">document.getElementsByName(\"bankId\")[0].value='00011000';document.getElementsByName(\"myform\")[0].submit();</script>";
+            result = result.Replace("</body>", "<script type=\"text/javascript\">formsubmit('00011000');</script></body>");
             result = result.Replace(",", "").Replace("|", "");
             File.WriteAllText(Server.MapPath("test1112222.txt"), result);
 
