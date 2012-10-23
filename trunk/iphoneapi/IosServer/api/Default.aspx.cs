@@ -135,6 +135,7 @@ public partial class api_Default : System.Web.UI.Page
         string str1 = new Regex(@"JSESSIONID=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
         string str2 = new Regex(@"BIGipServerotsweb=([^;]*);", RegexOptions.IgnoreCase).Match(session).Groups[1].ToString();
         string str = str1 + "|" + str2;
+        string ticketid = string.Empty;
 
         Train send = new Train();
         string result = send.GetWaitingOrder(str);
@@ -155,6 +156,7 @@ public partial class api_Default : System.Web.UI.Page
         {
             if (i == 0)
             {
+                ticketid = matchList[i].Groups[1].ToString();
                 outStr += matchList[i].Groups[1].ToString() + ";|";
                 for (int j = 2; j <= 13; j++)
                 {
@@ -187,10 +189,14 @@ public partial class api_Default : System.Web.UI.Page
 
         outStr += ticketlist +"|";
 
-        result = send.SendPayRequest(str, token, orderid, matchList[0].Groups[1].ToString());
+        result = send.SendPayRequest(str, token, orderid, ticketid);
         string start = Regex.Match(result, @"var[\s]*beginTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
         string end = Regex.Match(result, @"var[\s]*loseTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
-        outStr += ((long.Parse(end) - long.Parse(start)) / 60000).ToString();
+        try
+        {
+            outStr += ((long.Parse(end) - long.Parse(start)) / 60000).ToString();
+        }
+        catch { }
 
         File.WriteAllText(Server.MapPath("1111233.txt"), outStr + "-" + result);
 
