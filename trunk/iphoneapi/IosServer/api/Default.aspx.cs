@@ -185,12 +185,8 @@ public partial class api_Default : System.Web.UI.Page
             }
         }
 
-        outStr += ticketlist + "|";
+        outStr += ticketlist;// +"|";
 
-        string start = Regex.Match(result, @"var[\s]*loseTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
-        string end = Regex.Match(result, @"var[\s]*beginTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
-        //outStr += ((long.Parse(end) - long.Parse(start)) / 60000).ToString();
-        outStr += start + "|" + end;
         File.WriteAllText(Server.MapPath("1111233.txt"), outStr + "-" + result);
 
         //如果左边是-1则需为排队人数，5为排队
@@ -350,6 +346,10 @@ public partial class api_Default : System.Web.UI.Page
             resStr = @"招商银行,招商银行支付简介,https://epay.12306.cn/pay/webBusiness," + utils.PostData(param) + ",";
             resStr += "|网银支付（银联）,网银支付（银联）,https://epay.12306.cn/pay/webBusiness," + utils.PostData(param1) + ",,window.location.href=document.getElementById('CSPayTab').href;";
 
+            string start = Regex.Match(result, @"var[\s]*loseTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
+            string end = Regex.Match(result, @"var[\s]*beginTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
+            resStr += "|" + ((long.Parse(end) - long.Parse(start)) / 60000).ToString();
+          
             Response.Write(resStr);
             Response.End();
         }
