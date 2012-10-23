@@ -296,6 +296,8 @@ public partial class api_Default : System.Web.UI.Page
             //File.WriteAllText(Server.MapPath("test1112222344.txt"), result);
             //result = new Regex(@"<form[\s\S]*?</form>", RegexOptions.IgnoreCase).Match(result).Groups[0].ToString();
 
+            result += "<script>formsubmit('00011000');</script>";
+
             Response.Write(@"支付方式1,支付1简介," + result.Replace(",", "").Replace("|", "") + "|支付方式1,支付1简介,321321");
             Response.End();
         }
