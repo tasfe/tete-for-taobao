@@ -558,7 +558,7 @@ namespace TeteIosTrain
             param.Add("pageSize", "7");
             param.Add("passenger_name", "请输入汉字或拼音首字母");
 
-            string result = utils.CommonPost(url, param, "|");
+            string result = utils.CommonPost(url, param, str);
 
             return result;
         }
