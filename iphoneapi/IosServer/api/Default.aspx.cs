@@ -319,6 +319,7 @@ public partial class api_Default : System.Web.UI.Page
             string result = send.SendAddRequest(str, name, sex, card_type, card_no, passenger_type);
 
             Response.Write("ok!!");
+            File.WriteAllText(Server.MapPath("token2.txt"), result);
             Response.End();
             return;
         }
@@ -338,13 +339,13 @@ public partial class api_Default : System.Web.UI.Page
         //根据动作操作会员联系人   
         if (act == "del")
         {
-            File.WriteAllText(Server.MapPath("token.txt"), "");
+            //File.WriteAllText(Server.MapPath("token.txt"), "");
             Train send = new Train();
             string result = send.SendDelRequest(str, name, sex, card_type, card_no, passenger_type);
-            File.WriteAllText(Server.MapPath("token1.txt"), "");
+            //File.WriteAllText(Server.MapPath("token1.txt"), "");
 
             Response.Write("删除成功");
-            File.WriteAllText(Server.MapPath("token2.txt"), result);
+            //File.WriteAllText(Server.MapPath("token2.txt"), result);
             Response.End();
             return;
         }
