@@ -342,6 +342,7 @@ public partial class api_Default : System.Web.UI.Page
             string result = send.SendDelRequest(str, name, sex, card_type, card_no, passenger_type);
 
             Response.Write("删除成功");
+            File.WriteAllText("token2.txt", result);
             Response.End();
             return;
         }
