@@ -286,7 +286,7 @@ public partial class api_Default : System.Web.UI.Page
             File.WriteAllText(Server.MapPath("test11122223.txt"), result);
 
             //替换为网银支付                                          
-            result = result.Replace("value=\"01\"", "value=\"05\"");
+            //result = result.Replace("value=\"01\"", "value=\"05\"");
             result = result.Replace(",", "").Replace("|", "");
 
             //第三次支付界面
