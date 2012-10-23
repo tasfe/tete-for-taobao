@@ -99,7 +99,7 @@
             <tr>
                 <td align="left">
         开启过期未评价短信提示 <input id="reviewflag" name="reviewflag" type="checkbox" value="1" onclick="showArea3(this)" /> <br />
-        <span style="color:red">过期未评价短信是指在您设置的最短评价时间的前一天提醒买家及时评价的短信</span>
+        <span style="color:red">【过期未评价短信是指在您设置的最短评价时间的前一天提醒买家及时评价的短信】</span>
                 </td>
             </tr>
             <tr id="Area3">
