@@ -189,8 +189,8 @@ public partial class api_Default : System.Web.UI.Page
 
         string start = Regex.Match(result, @"var[\s]*loseTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
         string end = Regex.Match(result, @"var[\s]*beginTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
-        outStr += ((long.Parse(end) - long.Parse(start)) / 60000).ToString();
-
+        //outStr += ((long.Parse(end) - long.Parse(start)) / 60000).ToString();
+        outStr += start + "|" + end;
         File.WriteAllText(Server.MapPath("1111233.txt"), outStr + "-" + result);
 
         //如果左边是-1则需为排队人数，5为排队
