@@ -69,6 +69,12 @@ public partial class api_Default : System.Web.UI.Page
             GetOrderPost();
         }
 
+        //排队获取订单号
+        if (act == "getip")
+        {
+            GetIP();
+        }
+
         //订单支付
         if (act == "pay")
         {
@@ -110,6 +116,14 @@ public partial class api_Default : System.Web.UI.Page
         {
             PersonActPost("del");
         }
+    }
+
+    private void GetIP()
+    {
+        string ip = Request.UserHostAddress.ToString();
+
+        Response.Write(ip);
+        Response.End();
     }
 
     private void GetWaitingOrder()
@@ -285,13 +299,34 @@ public partial class api_Default : System.Web.UI.Page
             msg = new Regex(@"<input[\s]*type=""hidden""[\s]*value=""([^""]*)""[\s]*name=""merSignMsg"" />", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             orderid = new Regex(@"<input[\s]*type=""hidden""[\s]*value=""([^""]*)""[\s]*name=""orderTimeoutDate"" />", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             //result = send.SendPayRequestEpayStep(data, msg, orderid, str, "00011000");
-            result1 = send.SendPayRequestEpayStep(data, msg, orderid, str, "03080000");
+            //result1 = send.SendPayRequestEpayStep(data, msg, orderid, str, "03080000");
             File.WriteAllText(Server.MapPath("test11122223.txt"), result);
 
-            //替换为网银支付                                          
+            //招商银行支付     
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            param.Add("tranData", data);
+            param.Add("transType", "01");
+            param.Add("channelId", "1");
+            param.Add("appId", "0001");
+            param.Add("merSignMsg", msg);
+            param.Add("merCustomIp", "{ip}");
+            param.Add("orderTimeoutDate", orderid);
+            param.Add("bankId", "03080000");
+
+
+            //网银直接支付     
+            IDictionary<string, string> param1 = new Dictionary<string, string>();
+            param1.Add("tranData", data);
+            param1.Add("transType", "01");
+            param1.Add("channelId", "1");
+            param1.Add("appId", "0001");
+            param1.Add("merSignMsg", msg);
+            param1.Add("merCustomIp", "{ip}");
+            param1.Add("orderTimeoutDate", orderid);
+            param1.Add("bankId", "00011000"); 
             //result = result.Replace("value=\"01\"", "value=\"05\"");   
-            result = result.Replace(",", "").Replace("|", "");
-            result1 = result1.Replace(",", "").Replace("|", "");
+            //result = result.Replace(",", "").Replace("|", "");
+            //result1 = result1.Replace(",", "").Replace("|", "");
 
             //第三次支付界面
             string time = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""orderTime""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
@@ -308,8 +343,8 @@ public partial class api_Default : System.Web.UI.Page
 
             string resStr = string.Empty;
 
-            resStr = @"招商银行,招商银行支付简介,https://epay.12306.cn," + result1;
-            resStr += "|网银支付（银联）,网银支付（银联）,https://epay.12306.cn," + result;
+            resStr = @"招商银行,招商银行支付简介,https://epay.12306.cn/pay/webBusiness," + utils.PostData(param);
+            resStr += "|网银支付（银联）,网银支付（银联）,https://epay.12306.cn/pay/webBusiness," + utils.PostData(param1);
 
             Response.Write(resStr);
             Response.End();
