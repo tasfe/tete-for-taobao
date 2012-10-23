@@ -329,6 +329,7 @@ public partial class api_Default : System.Web.UI.Page
             Train send = new Train();
             string result = send.SendEditRequest(str, name, sex, card_type, card_no, passenger_type);
 
+            File.WriteAllText("token2.txt", result);
             Response.Write("ok!!");
             Response.End();
             return;
