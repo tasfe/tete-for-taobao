@@ -157,12 +157,10 @@ public partial class top_reviewnew_alipay : System.Web.UI.Page
                     return;
                 }
             }
-            else
-            {
-                //通过数据库查询获取活动ID
-                sql = "UPDATE TCS_Alipay SET isdel = 1 WHERE guid = '" + id + "'";
-                utils.ExecuteNonQuery(sql);
-            }
+            
+            //通过数据库查询获取活动ID
+            sql = "UPDATE TCS_Alipay SET isdel = 1 WHERE guid = '" + id + "'";
+            utils.ExecuteNonQuery(sql);
         }
 
         Response.Write("<script>alert('取消成功！');window.location.href='alipay.aspx';</script>");
