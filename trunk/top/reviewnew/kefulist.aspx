@@ -62,9 +62,9 @@
             <ItemTemplate>
             <tr>
                 <td height="35"><input name="id" type="checkbox" value="<%#Eval("orderid")%>" /></td>
-                <td><%#Eval("buynick")%></td>
+                <td><a href='http://trade.taobao.com/trade/itemlist/list_sold_items.htm?buyerNick=<%#Eval("buynick")%>&event_submit_do_query=1&user_type=1&pageNum=0&action=itemlist%2FQueryAction' target="_blank" title="点击查看订单详情"><%#Eval("buynick")%></a></td>
                 <td><a href='couponsend.aspx?buynick=<%#HttpUtility.UrlEncode(Eval("buynick").ToString())%>' target="_blank">赠送：<%#Eval("giftcount")%></a> <br /> <a href='salelist.aspx?buynick=<%#HttpUtility.UrlEncode(Eval("buynick").ToString())%>' target="_blank">下单：<%#Eval("couponcount")%></a></td>
-                <td><a href='http://trade.taobao.com/trade/detail/trade_item_detail.htm?bizOrderId=<%#Eval("orderid")%>' target="_blank" title="点击查看订单详情"><%#Eval("orderid")%></a></td>
+                <td><a href='http://trade.taobao.com/trade/itemlist/list_sold_items.htm?bizOrderId=<%#Eval("orderid")%>&event_submit_do_query=1&user_type=1&pageNum=0&action=itemlist%2FQueryAction' target="_blank" title="点击查看订单详情"><%#Eval("orderid")%></a></td>
                 <td><%#Eval("totalprice")%></td>
                 <td><%#Eval("adddate")%></td>
                 <td><%#Eval("reviewdate")%></td>
