@@ -25,6 +25,11 @@ public partial class api_Default : System.Web.UI.Page
             GetToken();
         }
 
+        if (act == "about")
+        {
+            GetAbout();
+        }
+
         if (act == "encodetoken")
         {
             GetEncodeToken();
@@ -144,6 +149,12 @@ public partial class api_Default : System.Web.UI.Page
         }
     }
 
+    private void GetAbout()
+    {
+        Response.Write("特特软件 版本所有");
+        Response.End();
+    }
+
     private void GetEncodeToken()
     {
         string str = "7f9150850f349dc45234063593e2da74f9053bb2";
@@ -167,6 +178,7 @@ public partial class api_Default : System.Web.UI.Page
     private void GetToken()
     {
         string usertoken = Common.utils.NewRequest("usertoken", Common.utils.RequestType.Form);
+        string alerttoken = Common.utils.NewRequest("alerttoken", Common.utils.RequestType.Form);
 
         Response.Write("http://free.7fshop.com");
         Response.End();
