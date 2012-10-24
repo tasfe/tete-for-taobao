@@ -372,13 +372,13 @@ public partial class top_review_reviewlist : System.Web.UI.Page
     public static string left(string str)
     {
         string newstr = string.Empty;
-        if (str.Length < 25)
+        if (str.Length < 22)
         {
             newstr = str;
         }
         else
         {
-            newstr = "<span title='" + str + "'>" + str.Substring(0, 25) + "..</span>";
+            newstr = "<span title='" + str + "'>" + str.Substring(0, 22) + "..</span>";
         }
         return newstr;
     }
