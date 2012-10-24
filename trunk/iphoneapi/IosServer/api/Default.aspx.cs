@@ -164,13 +164,14 @@ public partial class api_Default : System.Web.UI.Page
         string result = send.GetMyOrder(str, token, start, end);
 
         string ticketlist = string.Empty;
-        MatchCollection matchList = new Regex(@"<td[\s]*class=""blue_bold"">[\s]*([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*([^<]*)</td>[\s]*<td>([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*([^,]*),[\s]*([^<]*)</td>[\s]*<td>([^<]*)<br/>[\s]*([^<]*)<br/>[\s]*</td>[\s]*<td>([^<]*)</td>", RegexOptions.IgnoreCase).Matches(result);
+        MatchCollection matchList = new Regex(@"<td[\s]*class=""blue_bold"">([^<]*)<br />[\s]*([^<]*)<br />[\s]*([^<]*)<br />[\s]*([^<]*)</td>[\s]*<td>([^<]*)<br />([^<]*)<br />[\s]*([^<]*)<br />[\s]*([^<]*),([^<]*)[\s]*</td>[\s]*<td>([^<]*)<br />[\s]*([^<]*)<br />[\s]*<!--[\s\S]*?--></td>[\s]*<td>[\s]*([^<]*)[\s]*</td>[\s]*<td>[\s]*<button type=""button""[\s]*onclick=""javascript:refundTicket(this,'([^']*)')""[\s]*onmouseout=""this.className='long_button_u'""[\s]*onmousedown=""this.className='long_button_u_down'""[\s]*onmousemove=""this.className='long_button_u_over'""[\s]*class=""long_button_u"" id=""refund_btn"">退票</button>[\s]*</td>[\s]*</tr>", RegexOptions.IgnoreCase).Matches(result);
+
 
         for (int i = 0; i < matchList.Count; i++)
         {
             if (i == 0)
             {
-                for (int j = 1; j <= 13; j++)
+                for (int j = 1; j <= 14; j++)
                 {
                     if (j == 1)
                     {
@@ -185,7 +186,7 @@ public partial class api_Default : System.Web.UI.Page
             else
             {
                 ticketlist += ",";
-                for (int j = 1; j <= 13; j++)
+                for (int j = 1; j <= 14; j++)
                 {
                     if (j == 1)
                     {
