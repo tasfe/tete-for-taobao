@@ -26,7 +26,7 @@ namespace TeteTopApi.TopApi
             Api top = new Api(AppKey, Secret, Session, Url);
 
             IDictionary<string, string> param = new Dictionary<string, string>();
-            param.Add("fields", "receiver_mobile, orders.num_iid, created, consign_time, total_fee, promotion_details, type, receiver_name, receiver_state, receiver_city, receiver_district, receiver_address, status, buyer_area,orders");
+            param.Add("fields", "receiver_mobile, orders.num_iid, created, consign_time, total_fee, promotion_details, type, receiver_name, receiver_state, receiver_city, receiver_district, receiver_address, status, buyer_area");
             param.Add("tid", simpleTrade.Tid);
 
             string result = top.CommonTopApi("taobao.trade.fullinfo.get", param, Session);

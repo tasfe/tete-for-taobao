@@ -91,7 +91,7 @@ namespace TeteTopApi.Logic
                     {
                         //发送短信
                         string msg = Message.GetMsg(shop.MsgFahuoContent, shop.MsgShopName, TradeInfo.BuyNick, shop.IsCoupon, TradeInfo.ShippingCompanyName, TradeInfo.ShippingNumber, shop, trade);
-                        string msgResult = Message.Send(trade.Mobile, msg);
+                        string msgResult = Message.SendGuodu(trade.Mobile, msg);
 
                         //记录
                         if (msgResult != "0")

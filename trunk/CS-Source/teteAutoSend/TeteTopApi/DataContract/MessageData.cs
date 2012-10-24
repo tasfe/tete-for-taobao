@@ -25,7 +25,7 @@ namespace TeteTopApi.DataContract
                                 "buynick, " +
                                 "mobile, " +
                                 "[content], " +
-                                "yiweiid, " +
+                                "guoduid, " +
                                 "num, " +
                                 "typ " +
                             " ) VALUES ( " +
