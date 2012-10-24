@@ -169,6 +169,17 @@ namespace ReviewSendCheck
                 }
 
                 //判断订单物流状态查询服务的运行状态
+                if (DateTime.Now.Hour.ToString() == "13" && DateTime.Now.Minute.ToString() == "13" && DateTime.Now.Second.ToString() == "13")
+                {
+                    Process[] CallMemberBack = Process.GetProcessesByName("CallMemberBack");
+                    if (CallMemberBack.Length <= 0) //
+                    {
+                        //启动程序
+                        process4 = Process.Start("CallMemberBack.exe");
+                    }
+                }
+
+                //判断订单物流状态查询服务的运行状态
                 if (DateTime.Now.Hour.ToString() == "14" && DateTime.Now.Minute.ToString() == "34" && DateTime.Now.Second.ToString() == "50")
                 {
                     Process[] ReviewShopAlert = Process.GetProcessesByName("ReviewShopAlert");
