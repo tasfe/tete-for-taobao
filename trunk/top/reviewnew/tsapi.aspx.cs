@@ -47,6 +47,9 @@ public partial class top_reviewnew_tsapi : System.Web.UI.Page
             case "freecarduse":
                 OutFreeCardUseMsg();
                 break;
+            case "customer":
+                OutGiftMsg("back");
+                break;
         }
     }
 
