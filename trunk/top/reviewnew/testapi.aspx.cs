@@ -26,8 +26,8 @@ public partial class top_review_testapi : System.Web.UI.Page
         string appkey = "12159997";
         string secret = "614e40bfdb96e9063031d1a9e56fbed5";
 
-        string session = "6101a28530ce2b42ef7b281d0379338df80b16652ef263d150153910";
-        string taobaonick = "红色时代灯饰";
+        string session = "6102a28c7dc9ad3f71b1c98c7708502a228316b5bdb250414732390";
+        string taobaonick = "tangchao4010790";
 
         //string sql = "SELECT nick,COUNT(nick) FROM [TeteCrmSaasNew].[dbo].[Tmp_LostMobile] group by nick ORDER BY COUNT(nick) DESC";
         //DataTable dt = utils.ExecuteDataTable(sql);
@@ -56,8 +56,8 @@ public partial class top_review_testapi : System.Web.UI.Page
 
         IDictionary<string, string> param = new Dictionary<string, string>();
 
-        param.Add("tid", "162787109223811");
-        param.Add("fields", "tid, receiver_mobile, created, consign_time, total_fee, promotion_details, type, receiver_name, receiver_state, receiver_city, receiver_district, receiver_address, status, buyer_area, orders.num_iid, orders.oid");
+        param.Add("tid", "237341240518934");
+        param.Add("fields", "tid, receiver_mobile, created, consign_time, total_fee, promotion_details, type, receiver_name, receiver_state, receiver_city, receiver_district, receiver_address, status, buyer_area, orders.num_iid, orders");
 
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.trade.fullinfo.get", session, param);
         ////<coupon_number>1323930538</coupon_number>
