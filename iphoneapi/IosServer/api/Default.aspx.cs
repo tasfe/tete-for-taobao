@@ -144,7 +144,7 @@ public partial class api_Default : System.Web.UI.Page
         result = send.ReturnTicket(str, token, ticketid);
 
 
-        File.WriteAllText(Server.MapPath("11112336565.txt"), result);
+        //File.WriteAllText(Server.MapPath("11112336565.txt"), result);
 
         Response.Write(result);
         Response.End();
@@ -166,7 +166,7 @@ public partial class api_Default : System.Web.UI.Page
         Train send = new Train();
         string result = send.GetMyOrder(str, token, start, end);
 
-        File.WriteAllText(Server.MapPath("1111233.txt"), result);
+        //File.WriteAllText(Server.MapPath("1111233.txt"), result);
 
         string ticketlist = string.Empty;
         MatchCollection matchList = new Regex(@"<td[\s]*class=""blue_bold"">([^<]*)<br />[\s]*([^<]*)<br />[\s]*([^<]*)<br />[\s]*([^<]*)</td>[\s]*<td>([^<]*)<br />([^<]*)<br />[\s]*([^<]*)<br />[\s]*([^<]*),([^<]*)[\s]*</td>[\s]*<td>([^<]*)<br />[\s]*([^<]*)<br />[\s]*<!--[\s\S]*?--></td>[\s]*<td>[\s]*([^<]*)[\s]*</td>[\s]*<td>[\s]*<button type=""button""[\s]*onclick=""javascript:refundTicket[(]this,'([^']*)'[)]""", RegexOptions.IgnoreCase).Matches(result);
@@ -207,7 +207,7 @@ public partial class api_Default : System.Web.UI.Page
 
         outStr += ticketlist;
 
-        File.WriteAllText(Server.MapPath("1111233.txt"), outStr + "-" + result);
+        //File.WriteAllText(Server.MapPath("1111233.txt"), outStr + "-" + result);
 
         Response.Write(outStr);
         Response.End();
@@ -301,7 +301,7 @@ public partial class api_Default : System.Web.UI.Page
     private void Log(string txt)
     {
         //string content = File.ReadAllText(Server.MapPath("requestlog.txt"));
-        //File.WriteAllText(Server.MapPath("requestlog.txt"), txt + "---" + DateTime.Now.ToString() + "\r\n" + content);
+        ////File.WriteAllText(Server.MapPath("requestlog.txt"), txt + "---" + DateTime.Now.ToString() + "\r\n" + content);
     }
 
     private void GetOrderPost()
@@ -324,7 +324,7 @@ public partial class api_Default : System.Web.UI.Page
             orderid = new Regex(@"""orderId"":""([^""]*)""", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             outStr += orderid;
         }
-        File.WriteAllText(Server.MapPath("11112.txt"), outStr + "-" + result);
+        //File.WriteAllText(Server.MapPath("11112.txt"), outStr + "-" + result);
 
         //如果左边是-1则需为排队人数，5为排队
         Response.Write(outStr);
@@ -357,7 +357,7 @@ public partial class api_Default : System.Web.UI.Page
         string result = send.SendCancelRequest(str, token, orderid, ticketid);
 
         Log(str);
-        File.WriteAllText(Server.MapPath("test2222.txt"), result);
+        //File.WriteAllText(Server.MapPath("test2222.txt"), result);
 
         if (result.IndexOf("取消订单成功") != -1)
         {
@@ -388,7 +388,7 @@ public partial class api_Default : System.Web.UI.Page
 
  
 
-        File.WriteAllText(Server.MapPath("test111221.txt"), result);
+        //File.WriteAllText(Server.MapPath("test111221.txt"), result);
 
         if (result.IndexOf("该车次在互联网已停止办理业务") == -1)
         {
@@ -399,7 +399,7 @@ public partial class api_Default : System.Web.UI.Page
             result = send.SendPayRequestEpay(str, data, msg);
             //result = result.Replace("</body>", "<script type=\"text/javascript\">formsubmit('00011000');</script></body>");
             //result = result.Replace(",", "").Replace("|", "");
-            File.WriteAllText(Server.MapPath("test1112222.txt"), result);
+            //File.WriteAllText(Server.MapPath("test1112222.txt"), result);
 
             //第二次支付界面
             data = new Regex(@"<input[\s]*type=""hidden""[\s]*value=""([^""]*)""[\s]*name=""tranData"" />", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
@@ -444,7 +444,7 @@ public partial class api_Default : System.Web.UI.Page
             string mer = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""merReserved""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             string payorderid = new Regex(@"<input[\s]*type=""hidden""[\s]*name=""orderNumber""[\s]*value=""([^""]*)"">", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
             //result = send.SendPayRequestEpayStepNew(time, backUrl, merId, frontUrl, signature, amount, mer, payorderid, str);
-            //File.WriteAllText(Server.MapPath("test1112222344.txt"), result);
+            ////File.WriteAllText(Server.MapPath("test1112222344.txt"), result);
             //result = new Regex(@"<form[\s\S]*?</form>", RegexOptions.IgnoreCase).Match(result).Groups[0].ToString();
 
             string resStr = string.Empty;
@@ -452,7 +452,7 @@ public partial class api_Default : System.Web.UI.Page
             resStr = @"招商银行,招商银行支付简介,https://epay.12306.cn/pay/webBusiness," + utils.PostData(param) + ",";
             resStr += "|网银支付（银联）,网银支付（银联）,https://epay.12306.cn/pay/webBusiness," + utils.PostData(param1) + ",,window.location.href=document.getElementById('CSPayTab').href;";
 
-            File.WriteAllText(Server.MapPath("test11122223.txt"), result);
+            //File.WriteAllText(Server.MapPath("test11122223.txt"), result);
             Response.Write(resStr);
             Response.End();
         }
@@ -502,7 +502,7 @@ public partial class api_Default : System.Web.UI.Page
             string result = send.SendAddRequest(str, name, sex, card_type, card_no, passenger_type, mobile);
 
             Response.Write("ok");
-            File.WriteAllText(Server.MapPath("token0.txt"), result);
+            //File.WriteAllText(Server.MapPath("token0.txt"), result);
             Response.End();
             return;
         }
@@ -513,7 +513,7 @@ public partial class api_Default : System.Web.UI.Page
             Train send = new Train();
             string result = send.SendEditRequest(str, name, sex, card_type, card_no, passenger_type, mobile);
 
-            File.WriteAllText(Server.MapPath("token1.txt"), result);
+            //File.WriteAllText(Server.MapPath("token1.txt"), result);
             Response.Write("ok");
             Response.End();
             return;
@@ -522,13 +522,13 @@ public partial class api_Default : System.Web.UI.Page
         //根据动作操作会员联系人   
         if (act == "del")
         {
-            //File.WriteAllText(Server.MapPath("token.txt"), "");
+            ////File.WriteAllText(Server.MapPath("token.txt"), "");
             Train send = new Train();
             string result = send.SendDelRequest(str, name, sex, card_type, card_no, passenger_type, mobile);
-            //File.WriteAllText(Server.MapPath("token1.txt"), "");
+            ////File.WriteAllText(Server.MapPath("token1.txt"), "");
 
             Response.Write("ok");
-            File.WriteAllText(Server.MapPath("token2.txt"), result);
+            //File.WriteAllText(Server.MapPath("token2.txt"), result);
             Response.End();
             return;
         }
@@ -609,7 +609,7 @@ public partial class api_Default : System.Web.UI.Page
         //返回验证码
         outStr = ary[0] + "(" + ary[7] + "-" + ary[8] + ")|" + date + " " + ary[2] + "-" + ary[6] + "(" + ary[1] + ")|" + ticketList + "|" + userList + "|" + priceList + "|" + token + "|" + ticketStr + "|" + train_no;
 
-        File.WriteAllText(Server.MapPath("1112.txt"), outStr + "-" + result);
+        //File.WriteAllText(Server.MapPath("1112.txt"), outStr + "-" + result);
 
         Log(outStr);
 
@@ -665,7 +665,7 @@ public partial class api_Default : System.Web.UI.Page
         Train send = new Train();
         string result = send.SendOrderSubmitRequest(str, randCode, orderid, userList, key, date, token, ticket, ref paramStr, train_no);
 
-        File.WriteAllText(Server.MapPath("8888882.txt"), paramStr + "-" + result);
+        //File.WriteAllText(Server.MapPath("8888882.txt"), paramStr + "-" + result);
 
         Log(session);
         Response.Write(result);     
@@ -696,7 +696,7 @@ public partial class api_Default : System.Web.UI.Page
         Train send = new Train();
         string result = send.PreSendOrderSubmitRequest(str, randCode, userList, key, date, token, ticket, ref paramStr, train_no);
 
-        File.WriteAllText(Server.MapPath("8888881.txt"), paramStr + "-" + result + "-" + session);
+        //File.WriteAllText(Server.MapPath("8888881.txt"), paramStr + "-" + result + "-" + session);
         Log(paramStr + "-" + result + "-" + session);
 
         Response.Write(result);
@@ -779,7 +779,7 @@ public partial class api_Default : System.Web.UI.Page
             }
         }
 
-        File.WriteAllText(Server.MapPath("111.txt"), matchBottom.Count + "-" + outStr + "-" + result);
+        //File.WriteAllText(Server.MapPath("111.txt"), matchBottom.Count + "-" + outStr + "-" + result);
 
         Log(session);
         Response.Write(outStr);
@@ -835,7 +835,7 @@ public partial class api_Default : System.Web.UI.Page
             }
         }
         Log(session);
-        File.WriteAllText(Server.MapPath("111000.txt"), result);
+        //File.WriteAllText(Server.MapPath("111000.txt"), result);
         Response.End();
     }
 
