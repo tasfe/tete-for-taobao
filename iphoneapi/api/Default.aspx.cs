@@ -118,6 +118,9 @@ public partial class api_Default : System.Web.UI.Page
             case "buy":
                 BuyInfo();
                 break;
+            case "checkstatus":
+                GetCheckStatus();
+                break;
             //case "bindtoken":
             //    BindToken();
             //    break;
@@ -129,6 +132,14 @@ public partial class api_Default : System.Web.UI.Page
         //    Response.Write(str);
         //}
        //File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), Request.Url.ToString());
+    }
+
+    private void GetCheckStatus()
+    {
+        string str = "{\"status\":0}";
+
+        Response.Write(str);
+        Response.End();
     }
 
     private void ShowAdsListInfo()
@@ -272,7 +283,7 @@ public partial class api_Default : System.Web.UI.Page
             //Response.Write(sql);
         }
 
-        str = "{\"guid\":\"" + guid + "\"}";
+        str = "{\"guid\":\"" + guid + "\",\"status\":-1}";
         Response.Write(str);
     }
 
