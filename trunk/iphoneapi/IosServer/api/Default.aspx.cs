@@ -143,6 +143,9 @@ public partial class api_Default : System.Web.UI.Page
         Train send = new Train();
         result = send.ReturnTicket(str, token, ticketid);
 
+
+        File.WriteAllText(Server.MapPath("11112336565.txt"), result);
+
         Response.Write(result);
         Response.End();
     }
