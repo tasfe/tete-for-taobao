@@ -173,7 +173,7 @@ public partial class api_Default : System.Web.UI.Page
         {
             if (i == 0)
             {
-                for (int j = 1; j <= 14; j++)
+                for (int j = 1; j <= 13; j++)
                 {
                     if (j == 1)
                     {
@@ -188,7 +188,7 @@ public partial class api_Default : System.Web.UI.Page
             else
             {
                 ticketlist += ",";
-                for (int j = 1; j <= 14; j++)
+                for (int j = 1; j <= 13; j++)
                 {
                     if (j == 1)
                     {
