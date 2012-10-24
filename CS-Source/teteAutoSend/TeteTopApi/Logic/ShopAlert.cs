@@ -65,7 +65,7 @@ namespace TeteTopApi.Logic
                 //如果7天内已经发送过类似短信的话则不再提醒
                 if (!dbMessage.IsSendMsgNearDays(shop, typ))
                 {
-                    string msgResult = Message.Send(shop.Mobile, msg);
+                    string msgResult = Message.SendGuodu(shop.Mobile, msg);
                     dbMessage.InsertShopAlertMsgLog(shop, msg, msgResult, typ);
                 }
             }
@@ -94,7 +94,7 @@ namespace TeteTopApi.Logic
                 //如果7天内已经发送过类似短信的话则不再提醒
                 if (!dbMessage.IsSendMsgNearDays(shop, typ))
                 {
-                    string msgResult = Message.Send(shop.Mobile, msg);
+                    string msgResult = Message.SendGuodu(shop.Mobile, msg);
                     dbMessage.InsertShopAlertMsgLog(shop, msg, msgResult, typ);
                 }
             }
@@ -122,7 +122,7 @@ namespace TeteTopApi.Logic
                 //如果7天内已经发送过类似短信的话则不再提醒
                 if (!dbMessage.IsSendMsgNearDays(shop, typ))
                 {
-                    string msgResult = Message.Send(shop.Mobile, msg);
+                    string msgResult = Message.SendGuodu(shop.Mobile, msg);
                     dbMessage.InsertShopAlertMsgLog(shop, msg, msgResult, typ);
                 }
             }
@@ -150,7 +150,7 @@ namespace TeteTopApi.Logic
                 //如果7天内已经发送过类似短信的话则不再提醒
                 if (!dbMessage.IsSendMsgNearDays(shop, typ))
                 {
-                    string msgResult = Message.Send(shop.Mobile, msg);
+                    string msgResult = Message.SendGuodu(shop.Mobile, msg);
                     dbMessage.InsertShopAlertMsgLog(shop, msg, msgResult, typ);
                 }
             }
@@ -259,7 +259,7 @@ namespace TeteTopApi.Logic
                 //如果14天内已经发送过类似短信的话则不再提醒
                 if (!dbMessage.IsSendMsgNearDays(shop, typ))
                 {
-                    string msgResult = Message.Send(shop.Mobile, msg);
+                    string msgResult = Message.SendGuodu(shop.Mobile, msg);
                     dbMessage.InsertShopAlertMsgLog(shop, msg, msgResult, typ);
                     Console.Write(msg + "[" + msg.Length.ToString() + "]\r\n");
                 }

@@ -358,7 +358,7 @@ namespace TeteTopApi.DataContract
         /// <returns></returns>
         public List<ShopInfo> GetActMissionShop(string typ)
         {
-            string sql = "SELECT * FROM TCS_Mission m INNER JOIN TCS_ShopConfig c ON c.nick = m.nick INNER JOIN TCS_ShopSession s ON s.nick = m.nick WHERE m.typ = '" + typ + "' AND m.isdel = 0 AND m.isstop = 0 AND s.version > 2";
+            string sql = "SELECT * FROM TCS_Mission m INNER JOIN TCS_ShopConfig c ON c.nick = m.nick INNER JOIN TCS_ShopSession s ON s.nick = m.nick WHERE m.typ = '" + typ + "' AND m.isdel = 0 AND m.isstop = 0 AND s.version > 2 AND c.total > 0";
             Console.WriteLine(sql);
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count != 0)
@@ -554,7 +554,7 @@ namespace TeteTopApi.DataContract
                                 "buynick, " +
                                 "mobile, " +
                                 "[content], " +
-                                "yiweiid, " +
+                                "guoduid, " +
                                 "orderid, " +
                                 "num, " +
                                 "typ " +
@@ -590,7 +590,7 @@ namespace TeteTopApi.DataContract
                                 "buynick, " +
                                 "mobile, " +
                                 "[content], " +
-                                "yiweiid, " +
+                                "guoduid, " +
                                 "orderid, " +
                                 "num, " +
                                 "typ " +

@@ -29,12 +29,12 @@ namespace TeteTopApi.Logic
 
                 try
                 {
-                    //debug
-                    //if (shop.Nick != "hehohu21")
-                    //    continue;
-
                     //获取该卖家符合条件的买家清单
                     List<Customer> cusList = cusData.GetBackCustomer(shop);
+
+                    //每天最多发送100条提醒
+                    int total = 0;
+
                     for (int j = 0; j < cusList.Count; j++)
                     {
                         Customer customer = cusList[j];
@@ -43,9 +43,14 @@ namespace TeteTopApi.Logic
                         {
                             if (!dbMessage.IsSendMsgNearDays(customer, typ, shop.MissionBackDay))
                             {
-                                string msgResult = Message.Send(customer.Mobile, shop.MissionContent);
+                                string msgResult = Message.SendGuodu(customer.Mobile, shop.MissionContent);
                                 data.InsertShopMsgLog(shop, customer, shop.MissionContent, msgResult, typ);
                                 Console.Write(shop.MissionContent + "--" + customer.Nick + "--" + customer.BuyNick + "[" + shop.MissionContent.Length.ToString() + "]\r\n");
+                                total++;
+
+                                //每天最多发送100条
+                                if (total > 100)
+                                    break;
                             }
                         }
                     }
@@ -55,7 +60,7 @@ namespace TeteTopApi.Logic
                     Console.WriteLine(shop.Nick + "------------err!!");
                 }
 
-                Console.ReadLine();
+                //Console.ReadLine();
             }
         }
 
@@ -86,7 +91,7 @@ namespace TeteTopApi.Logic
                         {
                             if (!dbMessage.IsSendMsgNearDays(customer, typ, "30"))
                             {
-                                string msgResult = Message.Send(customer.Mobile, shop.MissionContent);
+                                string msgResult = Message.SendGuodu(customer.Mobile, shop.MissionContent);
                                 data.InsertShopMsgLog(shop, customer, shop.MissionContent, msgResult, typ);
                                 Console.Write(shop.MissionContent + "--" + customer.Nick + "--" + customer.BuyNick + "[" + shop.MissionContent.Length.ToString() + "]\r\n");
                             }

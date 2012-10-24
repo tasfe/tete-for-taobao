@@ -46,7 +46,6 @@ namespace TeteTopApi.Logic
             tradeRate.ItemId = trade.NumIid;
             tradeRate.Nick = TradeInfo.Nick;
 
-
             //只有双方都评价了才会有插入数据库和赠送的操作
             if (tradeRate.Content != "")
             {

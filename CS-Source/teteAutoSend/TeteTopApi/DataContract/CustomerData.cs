@@ -106,6 +106,7 @@ namespace TeteTopApi.DataContract
                                         "avgprice, " +
                                         "source, " +
                                         "buyerid, " +
+                                        "lastorderdate," +
 
                                         "truename, " +
                                         "address, " +
@@ -138,6 +139,7 @@ namespace TeteTopApi.DataContract
                                         " '" + customer.AvgPrice + "', " +
                                         " '" + customer.Source + "', " +
                                         " '" + customer.BuyerId + "', " +
+                                        " GETDATE(), " +
 
                                         " '" + trade.receiver_name + "', " +
                                         " '" + trade.receiver_address + "', " +
@@ -252,6 +254,7 @@ namespace TeteTopApi.DataContract
                                         "avgprice = '" + customer.AvgPrice + "', " +
                                         "source = '" + customer.Source + "', " +
                                         "buyerid = '" + customer.BuyerId + "', " +
+                                        "lastorderdate = GETDATE(), " +
 
                                        "truename = '" + trade.receiver_name + "', " +
                                        "address = '" + trade.receiver_address + "', " +
