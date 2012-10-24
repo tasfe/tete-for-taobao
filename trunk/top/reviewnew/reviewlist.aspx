@@ -49,7 +49,7 @@
         <tr>
                 <td width="120"><b>评价人</b></td>
                 <td width="60"><b>评分 </b></td>
-                <td width="280"><b>内容 </b></td>
+                <td width="260"><b>内容 </b></td>
                 <td width="100"><b>时间</b></td>
                 <td width="70"><b>操作</b></td>
             </tr>
@@ -63,7 +63,7 @@
                 <td><%#left(Eval("content").ToString())%></td>
                 <td><%#Eval("reviewdate") %></td>
                 <td><a href="http://item.tmall.com/item.htm?id=<%#Eval("itemid") %>" title='<%#Eval("sendresult") %>.......<%#Eval("sendresultalipay") %>......<%#Eval("sendresultFree") %>' target="_blank">查看宝贝</a>|
-                <a href='http://trade.taobao.com/trade/detail/trade_item_detail.htm?bizOrderId=<%#Eval("orderid")%>'>查看订单</a>|
+                <a href='http://trade.taobao.com/trade/detail/trade_item_detail.htm?bizOrderId=<%#Eval("orderid")%>'>订单</a>|
                 <a href='reviewindex.aspx?act=add&id=<%#Eval("orderid") %>'>展示评价</a></td>
             </tr>
             </ItemTemplate>
