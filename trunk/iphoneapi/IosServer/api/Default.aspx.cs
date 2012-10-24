@@ -779,7 +779,7 @@ public partial class api_Default : System.Web.UI.Page
             }
         }
 
-        //File.WriteAllText(Server.MapPath("111.txt"), matchBottom.Count + "-" + outStr + "-" + result);
+        File.WriteAllText(Server.MapPath("111.txt"), matchBottom.Count + "-" + outStr + "-" + result);
 
         Log(session);
         Response.Write(outStr);
