@@ -22,17 +22,13 @@ namespace AutoMsgSend
                 DataTable dt = utils.ExecuteDataTable(sql);
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    Console.WriteLine(dt.Rows[i]["nick"].ToString() + DateTime.Now.ToString() + dt.Rows[i]["content"].ToString() + dt.Rows[i]["grade"].ToString());
-                    sql = "UPDATE TCS_Mission SET issend = 2 WHERE guid = '" + dt.Rows[i]["guid"].ToString() + "'";
-                    Console.WriteLine(sql);
-                    utils.ExecuteNonQuery(sql);
+                    //Console.WriteLine(dt.Rows[i]["nick"].ToString() + DateTime.Now.ToString() + dt.Rows[i]["content"].ToString() + dt.Rows[i]["grade"].ToString());
+                    //sql = "UPDATE TCS_Mission SET issend = 2 WHERE guid = '" + dt.Rows[i]["guid"].ToString() + "'";
+                    //Console.WriteLine(sql);
+                    //utils.ExecuteNonQuery(sql);
 
-                    MsgAutoSend m = new MsgAutoSend(dt.Rows[i]["nick"].ToString(), dt.Rows[i]["content"].ToString(), dt.Rows[i]["grade"].ToString());
+                    MsgAutoSend m = new MsgAutoSend(dt.Rows[i]["nick"].ToString(), dt.Rows[i]["content"].ToString(), dt.Rows[i]["grade"].ToString(), dt.Rows[i]["guid"].ToString());
                     m.Send();
-
-                    sql = "UPDATE TCS_Mission SET issend = 1 WHERE guid = '" + dt.Rows[i]["guid"].ToString() + "'";
-                    Console.WriteLine(sql);
-                    utils.ExecuteNonQuery(sql);
                 }
 
                 Thread.Sleep(2000);
@@ -46,12 +42,15 @@ namespace AutoMsgSend
         public string Nick { get; set; }
         public string Msg { get; set; }
         public string Grade { get; set; }
+        public string Guid { get; set; }
+        public int index = 0;
 
-        public MsgAutoSend(string a,string b,string c)
+        public MsgAutoSend(string a, string b, string c, string d)
         {
             this.Nick = a;
             this.Msg = b;
             this.Grade = c;
+            this.Guid = d;
         }
 
         public void Send()
@@ -111,43 +110,55 @@ namespace AutoMsgSend
 
         private void CheckNew1()
         {
-            string sql = "AutoMsgSend '" + Nick + "','" + Grade + "',0";
-            ActRateInfoDetail(sql);
+            CheckNewIndex("0");
         }
         private void CheckNew2()
         {
-            string sql = "AutoMsgSend '" + Nick + "','" + Grade + "',1";
-            ActRateInfoDetail(sql);
+            CheckNewIndex("1");
         }
         private void CheckNew3()
         {
-            string sql = "AutoMsgSend '" + Nick + "','" + Grade + "',2";
-            ActRateInfoDetail(sql);
+            CheckNewIndex("2");
         }
         private void CheckNew4()
         {
-            string sql = "AutoMsgSend '" + Nick + "','" + Grade + "',3";
-            ActRateInfoDetail(sql);
+            CheckNewIndex("3");
         }
         private void CheckNew5()
         {
-            string sql = "AutoMsgSend '" + Nick + "','" + Grade + "',4";
-            ActRateInfoDetail(sql);
+            CheckNewIndex("4");
         }
         private void CheckNew6()
         {
-            string sql = "AutoMsgSend '" + Nick + "','" + Grade + "',5";
-            ActRateInfoDetail(sql);
+            CheckNewIndex("5");
         }
         private void CheckNew7()
         {
-            string sql = "AutoMsgSend '" + Nick + "','" + Grade + "',6";
-            ActRateInfoDetail(sql);
+            CheckNewIndex("6");
         }
         private void CheckNew8()
         {
-            string sql = "AutoMsgSend '" + Nick + "','" + Grade + "',7";
-            ActRateInfoDetail(sql);
+            CheckNewIndex("7");
+        }
+
+        private void CheckNewIndex(string i)
+        {
+            string sql = "AutoMsgSend '" + Nick + "','" + Grade + "'," + i;
+
+            try
+            {
+                ActRateInfoDetail(sql);
+                index++;
+            }
+            catch { }
+
+            if (index == 8)
+            {
+                //发送完毕
+                sql = "UPDATE TCS_Mission SET issend = 1 WHERE guid = '" + this.Guid + "'";
+                Console.WriteLine(sql);
+                utils.ExecuteNonQuery(sql);
+            }
         }
 
         private void ActRateInfoDetail(string sql)
