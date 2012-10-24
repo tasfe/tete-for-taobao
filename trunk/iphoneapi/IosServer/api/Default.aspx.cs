@@ -25,6 +25,11 @@ public partial class api_Default : System.Web.UI.Page
             GetToken();
         }
 
+        if (act == "encodetoken")
+        {
+            GetEncodeToken();
+        }
+
         if (act == "review")
         {
             InitReview();
@@ -137,6 +142,13 @@ public partial class api_Default : System.Web.UI.Page
         {
             PersonActPost("del");
         }
+    }
+
+    private void GetEncodeToken()
+    {
+        string str = "7f9150850f349dc45234063593e2da74f9053bb2";
+
+        Response.Write(AES.AESEncrypt(str));
     }
 
     private void InitReview()
