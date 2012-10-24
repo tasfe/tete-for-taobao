@@ -163,6 +163,8 @@ public partial class api_Default : System.Web.UI.Page
         Train send = new Train();
         string result = send.GetMyOrder(str, token, start, end);
 
+        File.WriteAllText(Server.MapPath("1111233.txt"), result);
+
         string ticketlist = string.Empty;
         MatchCollection matchList = new Regex(@"<td[\s]*class=""blue_bold"">([^<]*)<br />[\s]*([^<]*)<br />[\s]*([^<]*)<br />[\s]*([^<]*)</td>[\s]*<td>([^<]*)<br />([^<]*)<br />[\s]*([^<]*)<br />[\s]*([^<]*),([^<]*)[\s]*</td>[\s]*<td>([^<]*)<br />[\s]*([^<]*)<br />[\s]*<!--[\s\S]*?--></td>[\s]*<td>[\s]*([^<]*)[\s]*</td>[\s]*<td>[\s]*<button type=""button""[\s]*onclick=""javascript:refundTicket[(]this,'([^']*)'[)]""", RegexOptions.IgnoreCase).Matches(result);
 
