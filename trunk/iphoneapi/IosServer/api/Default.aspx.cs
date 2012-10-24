@@ -20,6 +20,16 @@ public partial class api_Default : System.Web.UI.Page
             OutPutVerify();
         }
 
+        if (act == "token")
+        {
+            GetToken();
+        }
+
+        if (act == "review")
+        {
+            InitReview();
+        }
+
         if (act == "verifyorder")
         {
             OutPutVerifyOrder();
@@ -127,6 +137,23 @@ public partial class api_Default : System.Web.UI.Page
         {
             PersonActPost("del");
         }
+    }
+
+    private void InitReview()
+    {
+        string usertoken = Common.utils.NewRequest("usertoken", Common.utils.RequestType.Form);
+        string content = Common.utils.NewRequest("content", Common.utils.RequestType.Form);
+
+        Response.Write("提交成功");
+        Response.End();
+    }
+
+    private void GetToken()
+    {
+        string usertoken = Common.utils.NewRequest("usertoken", Common.utils.RequestType.Form);
+
+        Response.Write("http://free.7fshop.com");
+        Response.End();
     }
 
     private void ReturnTicketPost()
