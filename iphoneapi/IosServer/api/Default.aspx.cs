@@ -148,7 +148,11 @@ public partial class api_Default : System.Web.UI.Page
     {
         string str = "7f9150850f349dc45234063593e2da74f9053bb2";
 
-        Response.Write(AES.AESEncrypt(str));
+        string code = AES.AESEncrypt(str);
+
+        Response.Write(code);
+
+        Response.Write(AES.AESDecrypt(code));
     }
 
     private void InitReview()
