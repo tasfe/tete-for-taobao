@@ -517,7 +517,7 @@ public partial class api_Default : System.Web.UI.Page
 
             string resStr = string.Empty;
 
-            resStr = @"招商银行*招商银行支付简介,https://epay.12306.cn/pay/webBusiness*" + utils.PostData(param) + "*";
+            resStr = @"招商银行*招商银行支付简介*https://epay.12306.cn/pay/webBusiness*" + utils.PostData(param) + "*";
             resStr += "|网银支付（银联）*网银支付（银联）*https://epay.12306.cn/pay/webBusiness*" + utils.PostData(param1) + "**setTimeout('direct()',1000); function direct(){if(document.getElementById('CSPayTab')){window.location.href=document.getElementById('CSPayTab').getAttribute('href');}}";
 
             //File.WriteAllText(Server.MapPath("test11122223.txt"), result);
