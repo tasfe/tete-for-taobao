@@ -519,7 +519,7 @@ public partial class api_Default : System.Web.UI.Page
 
             resStr = @"招商银行*招商银行支付简介*https://epay.12306.cn/pay/webBusiness*" + utils.PostData(param) + "*";
             resStr += "|网银支付（银联）*网银支付（银联）*https://epay.12306.cn/pay/webBusiness*" + utils.PostData(param1) + "*********setTimeout('direct()',1000); function direct(){if(document.getElementById('CSPayTab')){window.location.href=document.getElementById('CSPayTab').getAttribute('href');}}";
-            resStr += "|建行支付（银联）*建行支付（银联）*https://epay.12306.cn/pay/webBusiness*" + utils.PostData(param1) + "*********setTimeout('direct()',1000); function direct(){if(document.getElementById('CSPayTab')){window.location.href=document.getElementById('CSPayTab').getAttribute('href');}}*****alert('1');setTimeout('direct()',1000); function direct(){document.getElementByName('csBank')[3].checked = true;document.getElementById('csForm').submit();}";
+            resStr += "|建行支付（银联）*建行支付（银联）*https://epay.12306.cn/pay/webBusiness*" + utils.PostData(param1) + "*********setTimeout('direct()',1000); function direct(){if(document.getElementById('CSPayTab')){window.location.href=document.getElementById('CSPayTab').getAttribute('href');}}*****setTimeout('direct()',1000); function direct(){document.getElementsByName('csBank')[3].checked = true;document.getElementById('csForm').submit();}";
 
             //File.WriteAllText(Server.MapPath("test11122223.txt"), result);
             Response.Write(resStr);
