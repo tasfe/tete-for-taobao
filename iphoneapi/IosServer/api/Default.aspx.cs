@@ -666,7 +666,7 @@ public partial class api_Default : System.Web.UI.Page
         //返回验证码
         outStr = ary[0] + "(" + ary[7] + "-" + ary[8] + ")|" + date + " " + ary[2] + "-" + ary[6] + "(" + ary[1] + ")|" + ticketList + "|" + userList + "|" + priceList + "|" + token + "|" + ticketStr + "|" + train_no;
 
-        //File.WriteAllText(Server.MapPath("1112.txt"), outStr + "-" + result);
+        File.WriteAllText(Server.MapPath("1112.txt"), outStr + "-" + result);
 
         Log(outStr);
 
