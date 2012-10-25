@@ -307,7 +307,6 @@ public partial class api_Default : System.Web.UI.Page
             if (i == 0)
             {
                 ticketid = matchList[i].Groups[1].ToString();
-                outStr += matchList[i].Groups[1].ToString() + ";|";
                 for (int j = 2; j <= 13; j++)
                 {
                     if (j == 2)
@@ -340,6 +339,7 @@ public partial class api_Default : System.Web.UI.Page
 
         token = Regex.Match(result, @"TOKEN""[\s]*value=""([^""]*)""").Groups[1].ToString();
         outStr += token + "|";
+        outStr += ticketid + ";|";
         outStr += ticketlist;
 
         result = send.SendPayRequest(str, token, orderid, ticketid);
