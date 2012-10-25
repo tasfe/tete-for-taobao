@@ -225,46 +225,46 @@ public partial class api_Default : System.Web.UI.Page
 
         string ticketlist = string.Empty;
         result = Regex.Replace(result, @"[\s]", "");
-        MatchCollection matchList = new Regex(@"<tdclass=""blue_bold"">([^<]*)<br />([^<]*)<br />([^<]*)<br />([^<]*)</td><td>([^<]*)<br />([^<]*)<br />([^<]*)<br />([^<]*),([^<]*)</td><td>([^<]*)<br />([^<]*)<br /><!--[\s\S]*?--></td><td>([^<]*)</td><td><buttontype=""button""onclick=""javascript:refundTicket[(]this,'([^']*)'[)]""", RegexOptions.IgnoreCase).Matches(result);
+        MatchCollection matchList = new Regex(@"<tdclass=""blue_bold"">([^<]*)<br />([^<]*)<br />([^<]*)<br />([^<]*)</td><td>([^<]*)<br />([^<]*)<br />([^<]*)<br />([^<]*),([^<]*)</td><td>([^<]*)<br />([^<]*)<br /><!--[^-]*--></td><td>([^<]*)</td><td><buttontype=""button""onclick=""javascript:refundTicket[(]this,'([^']*)'[)]""", RegexOptions.IgnoreCase).Matches(result);
 
-        Response.Write(matchList.Count.ToString() + " | ");
-        Response.Write(result);
-        //for (int i = 0; i < matchList.Count; i++)
-        //{
-        //    if (i == 0)
-        //    {
-        //        for (int j = 1; j <= 13; j++)
-        //        {
-        //            if (j == 1)
-        //            {
-        //                ticketlist = matchList[i].Groups[j].ToString().Trim();
-        //            }
-        //            else
-        //            {
-        //                ticketlist += "*" + matchList[i].Groups[j].ToString().Trim();
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        ticketlist += ",";
-        //        for (int j = 1; j <= 13; j++)
-        //        {
-        //            if (j == 1)
-        //            {
-        //                ticketlist += matchList[i].Groups[j].ToString().Trim();
-        //            }
-        //            else
-        //            {
-        //                ticketlist += "*" + matchList[i].Groups[j].ToString().Trim();
-        //            }
-        //        }
-        //    }
-        //}
+        //Response.Write(matchList.Count.ToString() + " | ");
+        //Response.Write(result);
+        for (int i = 0; i < matchList.Count; i++)
+        {
+            if (i == 0)
+            {
+                for (int j = 1; j <= 13; j++)
+                {
+                    if (j == 1)
+                    {
+                        ticketlist = matchList[i].Groups[j].ToString().Trim();
+                    }
+                    else
+                    {
+                        ticketlist += "*" + matchList[i].Groups[j].ToString().Trim();
+                    }
+                }
+            }
+            else
+            {
+                ticketlist += ",";
+                for (int j = 1; j <= 13; j++)
+                {
+                    if (j == 1)
+                    {
+                        ticketlist += matchList[i].Groups[j].ToString().Trim();
+                    }
+                    else
+                    {
+                        ticketlist += "*" + matchList[i].Groups[j].ToString().Trim();
+                    }
+                }
+            }
+        }
 
-        //outStr += ticketlist;
+        outStr += ticketlist;
 
-        //File.WriteAllText(Server.MapPath("1111233.txt"), outStr + "-" + result);
+        File.WriteAllText(Server.MapPath("1111233.txt"), outStr + "-" + result);
 
         Response.Write(outStr);
         Response.End();
