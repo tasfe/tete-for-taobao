@@ -350,6 +350,8 @@ public partial class api_Default : System.Web.UI.Page
         }
         catch { }
 
+        File.WriteAllText(Server.MapPath("1111233aaa.txt"), outStr + "-" + result);
+
         //如果左边是-1则需为排队人数，5为排队
         Response.Write(outStr);
         Response.End();
