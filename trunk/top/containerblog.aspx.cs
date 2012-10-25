@@ -368,6 +368,7 @@ public partial class top_containerblog : System.Web.UI.Page
         IDictionary<string, string> param = new Dictionary<string, string>();
         param.Add("article_code", "service-0-22904");
         param.Add("nick", nick);
+        Common.Cookie cookie = new Common.Cookie();
 
         string result = PostJson("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.vas.subscribe.get", top_session, param);
         if (result.IndexOf("\"article_user_subscribes\":{}") == -1)
@@ -407,6 +408,13 @@ public partial class top_containerblog : System.Web.UI.Page
         {
             plus = "crm|freecard";
         }
+        string tuiguang = cookie.getCookie("tuiguang");
+        string istui = "0";
+
+        if (tuiguang != null && tuiguang != "")
+        {
+            istui = "1";
+        }
 
         //记录到本地数据库
         string sql = "INSERT INTO TCS_ShopSession (" +
@@ -417,6 +425,7 @@ public partial class top_containerblog : System.Web.UI.Page
                        "plus, " +
                        "token, " +
                        "ip, " +
+                       "istui, " +
                        "session" +
                    " ) VALUES ( " +
                        " '" + shop.Sid + "', " +
@@ -426,13 +435,13 @@ public partial class top_containerblog : System.Web.UI.Page
                        " '" + plus + "', " +
                        " '" + refreshToken + "', " +
                        " '" + ip + "', " +
+                       " '" + istui + "', " +
                        " '" + top_session + "' " +
                  ") ";
 
         utils.ExecuteNonQuery(sql);
 
         //如果是好友推荐来的，记录到推荐数据库
-        Common.Cookie cookie = new Common.Cookie();
         string tuijianid = cookie.getCookie("tuijianid");
         if (tuijianid != null && tuijianid != "")
         {

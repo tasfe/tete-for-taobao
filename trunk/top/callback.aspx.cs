@@ -34,6 +34,10 @@ public partial class top_callback : System.Web.UI.Page
             //记录
             string sql = string.Empty;
             sql = "SELECT COUNT(*) FROM TCS_Tui WHERE nick = '" + buynick + "' AND ip = '" + ip + "' AND DATEDIFF(D,adddate, GETDATE()) = 0";
+
+            Cookie cookie = new Cookie();
+            cookie.setCookie("tuiguang", "bangpai", 999999);
+
             string count = utils.ExecuteString(sql);
             if (count == "0")
             {
