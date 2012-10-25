@@ -336,13 +336,13 @@ public partial class api_Default : System.Web.UI.Page
             }
         }
 
+        result = send.SendPayRequest(str, token, orderid, ticketid);
 
         token = Regex.Match(result, @"TOKEN""[\s]*value=""([^""]*)""").Groups[1].ToString();
         outStr += token + "|";
         outStr += ticketid + ";|";
         outStr += ticketlist;
 
-        result = send.SendPayRequest(str, token, orderid, ticketid);
 
 
         string start = Regex.Match(result, @"var[\s]*beginTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
