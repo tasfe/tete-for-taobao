@@ -640,6 +640,13 @@ public partial class api_Default : System.Web.UI.Page
         //<input type="hidden" name="org.apache.struts.taglib.html.TOKEN" value="ee3f5476cc070983f99484be47ddd53d">
         //<input type="hidden" name="leftTicketStr" id="left_ticket" value="O013500000M0230000009043000012" />
 
+        if (result.IndexOf("目前您还有未处理的订单") != -1)
+        {
+            Response.Write("目前您还有未处理的订单，请您到【未完成订单】进行处理");
+            Response.End();
+            return;
+        }
+
         try
         {
             //返回车票价格阶梯
