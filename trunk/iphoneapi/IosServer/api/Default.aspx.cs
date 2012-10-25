@@ -296,9 +296,6 @@ public partial class api_Default : System.Web.UI.Page
         string orderid = new Regex(@"epayOrder[(]'([^']*)'", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
         outStr = orderid + "|";
 
-        //token
-        token = Regex.Match(result, @"TOKEN""[\s]*value=""([^""]*)""").Groups[1].ToString();
-        outStr += token + "|";
 
         //ticketlist
         string ticketlist = string.Empty;
@@ -338,10 +335,12 @@ public partial class api_Default : System.Web.UI.Page
                 }
             }
         }
-
-        outStr += ticketlist;
-
         result = send.SendPayRequest(str, token, orderid, ticketid);
+
+        //token
+        token = Regex.Match(result, @"TOKEN""[\s]*value=""([^""]*)""").Groups[1].ToString();
+        outStr += token + "|";
+        outStr += ticketlist;
 
 
         string start = Regex.Match(result, @"var[\s]*beginTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
