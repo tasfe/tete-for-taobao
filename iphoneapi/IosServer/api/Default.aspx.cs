@@ -297,8 +297,6 @@ public partial class api_Default : System.Web.UI.Page
         outStr = orderid + "|";
 
         //token
-        token = Regex.Match(result, @"TOKEN""[\s]*value=""([^""]*)""").Groups[1].ToString();
-        outStr += token + "|";
 
         //ticketlist
         string ticketlist = string.Empty;
@@ -339,6 +337,9 @@ public partial class api_Default : System.Web.UI.Page
             }
         }
 
+
+        token = Regex.Match(result, @"TOKEN""[\s]*value=""([^""]*)""").Groups[1].ToString();
+        outStr += token + "|";
         outStr += ticketlist;
 
         result = send.SendPayRequest(str, token, orderid, ticketid);
