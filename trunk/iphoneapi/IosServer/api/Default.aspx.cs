@@ -226,7 +226,7 @@ public partial class api_Default : System.Web.UI.Page
         string ticketlist = string.Empty;
         MatchCollection matchList = new Regex(@"<td[\s]*class=""blue_bold"">([^<]*)<br />[\s]*([^<]*)<br />[\s]*([^<]*)<br />[\s]*([^<]*)</td>[\s]*<td>([^<]*)<br />([^<]*)<br />[\s]*([^<]*)<br />[\s]*([^<]*),([^<]*)[\s]*</td>[\s]*<td>([^<]*)<br />[\s]*([^<]*)<br />[\s]*<!--[\s\S]*?--></td>[\s]*<td>[\s]*([^<]*)[\s]*</td>[\s]*<td>[\s]*<button type=""button""[\s]*onclick=""javascript:refundTicket[(]this,'([^']*)'[)]""", RegexOptions.IgnoreCase).Matches(result);
 
-        Response.Write(matchList.Count.ToString());
+        Response.Write(result);
         //for (int i = 0; i < matchList.Count; i++)
         //{
         //    if (i == 0)
