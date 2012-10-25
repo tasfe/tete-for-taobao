@@ -227,6 +227,7 @@ public partial class api_Default : System.Web.UI.Page
         result = Regex.Replace(result, @"[\s]", "");
         MatchCollection matchList = new Regex(@"<tdclass=""blue_bold"">([^<]*)<br />([^<]*)<br />([^<]*)<br />([^<]*)</td><td>([^<]*)<br />([^<]*)<br />([^<]*)<br />([^<]*),([^<]*)</td><td>([^<]*)<br />([^<]*)<br /><!--[\s\S]*?--></td><td>([^<]*)</td><td><buttontype=""button""onclick=""javascript:refundTicket[(]this,'([^']*)'[)]""", RegexOptions.IgnoreCase).Matches(result);
 
+        Response.Write(matchList.Count.ToString() + " | ");
         Response.Write(result);
         //for (int i = 0; i < matchList.Count; i++)
         //{
