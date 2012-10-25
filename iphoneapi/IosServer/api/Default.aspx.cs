@@ -342,6 +342,13 @@ public partial class api_Default : System.Web.UI.Page
         outStr += ticketlist;
 
         result = send.SendPayRequest(str, token, orderid, ticketid);
+
+        if (result.IndexOf("停止办理业务") != -1)
+        {
+            Response.Write("该车次在互联网已停止办理业务！");
+            Response.End();
+        }
+
         string start = Regex.Match(result, @"var[\s]*beginTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
         string end = Regex.Match(result, @"var[\s]*loseTime[\s]*=[\s]*""([^""]*)"";").Groups[1].ToString();
         try
@@ -349,6 +356,7 @@ public partial class api_Default : System.Web.UI.Page
             outStr += "|" + ((long.Parse(end) - long.Parse(start)) / 60000).ToString();
         }
         catch { }
+
 
         File.WriteAllText(Server.MapPath("1111233aaa.txt"), outStr + "-" + result);
 
