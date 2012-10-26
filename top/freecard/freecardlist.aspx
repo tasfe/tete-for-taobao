@@ -25,6 +25,11 @@
     </ul>
   </div>
     <div id="main-content">
+
+<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
+    买家查询包邮卡链接：<a href="http://container.api.taobao.com/container?action=freecard&appkey=12690739&newnick=<%=nickencode %>" target="_blank"><img src="<%=ads %>" border=0 /></a>
+</div>
+
                 <input type="button" value="创建包邮卡" onclick="window.location.href='freecardadd.aspx'" />
                 <input type="button" value="手动赠送" onclick="window.location.href='freecardsend.aspx'" />
     
