@@ -45,6 +45,12 @@
                 </td>
             </tr>
             <tr>
+                <td align="left" height="30">是否强行赠送：</td>
+                <td>
+                    <input type="checkbox" name="issend" value = "1" /> 强行赠送是指支付宝红包赠送时不受红包设定数量限制
+                </td>
+            </tr>
+            <tr>
                 <td align="left" colspan="2">
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="赠送支付宝红包给买家" />
                 </td>
