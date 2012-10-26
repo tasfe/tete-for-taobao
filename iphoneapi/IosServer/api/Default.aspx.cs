@@ -177,18 +177,10 @@ public partial class api_Default : System.Web.UI.Page
 
     private void GetToken()
     {
-        string usertoken = Common.utils.NewRequest("usertoken", Common.utils.RequestType.Form);
-        string alerttoken = Common.utils.NewRequest("usertoken", Common.utils.RequestType.Form);
-        string tokenStr = Common.utils.NewRequest("token", Common.utils.RequestType.QueryString);
+        string usertoken = Common.utils.NewRequest("token", Common.utils.RequestType.Form);
+        string alerttoken = Common.utils.NewRequest("alerttoken", Common.utils.RequestType.Form);
 
-        string[] ary = Regex.Split(alerttoken, @"tokenStr=");
-
-        if (ary.Length > 1)
-        {
-            alerttoken = ary[1];
-        }
-
-        File.WriteAllText(Server.MapPath("token.txt"), tokenStr + "|" + alerttoken + "|" + Request.Url.ToString());
+        File.WriteAllText(Server.MapPath("token.txt"), usertoken + "|" + alerttoken + "|" + Request.Url.ToString());
 
         Response.Write("http://free.7fshop.com");
         Response.End();
