@@ -71,9 +71,9 @@ public partial class top_review_testapi : System.Web.UI.Page
 
             if (count == "0")
             {
-                if (match[i].Groups[3].ToString() != "OTHER" && match[i].Groups[3].ToString() != "POST")
+                if (match[i].Groups[1].ToString() != "OTHER" && match[i].Groups[1].ToString() != "POST")
                 {
-                    sql = "INSERT INTO TCS_TaobaoShippingCompany (name, short) VALUES ('" + match[i].Groups[1].ToString() + "', '" + match[i].Groups[3].ToString() + "')";
+                    sql = "INSERT INTO TCS_TaobaoShippingCompany (name, short) VALUES ('" + match[i].Groups[3].ToString() + "', '" + match[i].Groups[1].ToString() + "')";
                     Response.Write(sql + "<br>");
                     utils.ExecuteNonQuery(sql);
                 }
