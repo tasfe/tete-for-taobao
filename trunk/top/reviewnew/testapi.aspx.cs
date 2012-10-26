@@ -29,30 +29,24 @@ public partial class top_review_testapi : System.Web.UI.Page
         string session = "6102a28c7dc9ad3f71b1c98c7708502a228316b5bdb250414732390";
         string taobaonick = "tangchao4010790";
 
-        //string sql = "SELECT nick,COUNT(nick) FROM [TeteCrmSaasNew].[dbo].[Tmp_LostMobile] group by nick ORDER BY COUNT(nick) DESC";
-        //DataTable dt = utils.ExecuteDataTable(sql);
-        //for (int i = 0; i < dt.Rows.Count; i++)
-        //{
-        //    sql = "UPDATE TCS_ShopConfig SET total = total + " + dt.Rows[i][1].ToString() + " WHERE nick = '" + dt.Rows[i][0].ToString() + "'";
-        //    Response.Write(sql + "<br>");
-        //    utils.ExecuteNonQuery(sql);
-        //}
-        ////91599347271901
+        IDictionary<string, string> param = new Dictionary<string, string>();
 
-        //TopXmlRestClient client = new TopXmlRestClient("http://gw.api.taobao.com/router/rest", appkey, secret);
+        param.Add("fields", "receiver_mobile, orders.num_iid, created, consign_time, total_fee, promotion_details, type, receiver_name, receiver_state, receiver_city, receiver_district, receiver_address, status, buyer_area, orders");
+        param.Add("tid", "186768431538372");
 
-        //ItemsOnsaleGetRequest request = new ItemsOnsaleGetRequest();
-        //request.Fields = "num_iid,title,price,pic_url,seller_cids";
-        //request.PageSize = 200;
-        //request.PageNo = 1;
+        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.trade.fullinfo.get", session, param);
 
-        string str = "0";
+        Response.Write(result);
+    }
 
-        //PageList<Item> product = client.ItemsOnsaleGet(request, session);
-        //for (int i = 0; i < product.Content.Count; i++)
-        //{
-        //    str += "," + product.Content[i].NumIid;
-        //}
+
+    private void Fresh()
+    {
+        string appkey = "12159997";
+        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+
+        string session = "6102a28c7dc9ad3f71b1c98c7708502a228316b5bdb250414732390";
+        string taobaonick = "tangchao4010790";
 
         IDictionary<string, string> param = new Dictionary<string, string>();
 
@@ -79,60 +73,7 @@ public partial class top_review_testapi : System.Web.UI.Page
                 }
             }
         }
-
-
-        //param = new Dictionary<string, string>();
-        //param.Add("num_iid", "16791228388");
-        //param.Add("food_security.prd_license_no", "130917020079");
-        ////param.Add("food_security.design_code", "130917020079");
-        //param.Add("food_security.factory", "黄骅市绿之源食品有限公司");
-        //param.Add("food_security.factory_site", "河北省沧州市黄骅市孔店冬枣市场");
-        //param.Add("food_security.contact", "5469827");
-        //param.Add("food_security.mix", "鲜冬枣 棕榈油");
-        //param.Add("food_security.plan_storage", "低于24度阴凉干燥处存放");
-        //param.Add("food_security.period", "300天");
-        //param.Add("food_security.food_additive", "无");
-        //param.Add("food_security.product_date_start", "2012-06-01");
-        //param.Add("food_security.product_date_end", "2012-07-06");
-        //param.Add("food_security.stock_date_start", "2012-07-06");
-        //string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update", session, param);
-        //Response.Write("<textarea>" + result + "</textarea>");
-        //return;
-        //param = new Dictionary<string, string>();
-        //param.Add("promotion_id", "97049550");
-        //result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.marketing.promotions.delete", session, param);
-        //Response.Write("<textarea>" + result + "</textarea>");
-
-        ////IDictionary<string, string> param = new Dictionary<string, string>();
-        ////param.Add("tid", "88346138077381");
-        ////param.Add("seller_nick", "天生一对6695");
-
-        //////物流接口暂时停用，因为会影响错误率
-        //string result = string.Empty;
-
-        ////result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.logistics.trace.search", session, param);
-
-        ////Response.Write("<textarea>" + result + "</textarea>");
-
-        //////88345525137141
-        //////88346168134906
-
-        //param = new Dictionary<string, string>();
-        //param.Add("tid", "76048779201050");
-        //param.Add("fields", "delivery_start,delivery_end,status");
-
-        ////物流接口暂时停用，因为会影响错误率
-        //result = string.Empty;
-
-        //result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.logistics.orders.get", session, param);
-
-        //Response.Write("<textarea>" + result + "</textarea>");
-
-        //string txt = @"<?xml version=""1.0"" encoding=""utf-8"" ?><error_response><args list=""true""><arg><key>app_key</key><value>12159997</value></arg><arg><key>fields</key><value>delivery_start,delivery_end,status</value></arg><arg><key>format</key><value>xml</value></arg><arg><key>method</key><value>taobao.logistics.orders.get</value></arg><arg><key>session</key><value>508312894419b8bd5d07d89e7c65e1c439e36KFsf109a97618794262</value></arg><arg><key>sign</key><value>901E73FB0655390CA336769BA149C420</value></arg><arg><key>sign_method</key><value>md5</value></arg><arg><key>tid</key><value>76048779201050</value></arg><arg><key>timestamp</key><value>2011-09-05 11:38:11</value></arg><arg><key>v</key><value>2.0</value></arg></args><code>550</code><msg>Remote service error</msg><sub_code>isv.invalid-parameter:trade_id:P07</sub_code><sub_msg>查询不到结果,或者交易id不存在</sub_msg></error_response><!--top202077.cm3-->";
-
-        //Response.Write(txt.IndexOf("不存在").ToString());
     }
-
 
 
     #region TOP API
