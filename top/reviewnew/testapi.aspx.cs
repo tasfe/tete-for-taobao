@@ -61,7 +61,20 @@ public partial class top_review_testapi : System.Web.UI.Page
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.logistics.companies.get", session, param);
         ////<coupon_number>1323930538</coupon_number>
 
-        Response.Write(result);
+        Regex reg = new Regex(@"<code>([^<]*)</code><id>([^<]*)</id><name>([^<]*)</name>", RegexOptions.IgnoreCase);
+        MatchCollection match = reg.Matches(result);
+
+        for (int i = 0; i < match.Count; i++)
+        {
+            string sql = "SELECT COUNT(*) FROM TCS_TaobaoShippingCompany WHERE short = '" + match[i].Groups[1].ToString() + "'";
+            string count = utils.ExecuteString(sql);
+
+            if (count != "0")
+            {
+                Response.Write(match[i].Groups[3].ToString() + "<br>");
+            }
+        }
+
 
         //param = new Dictionary<string, string>();
         //param.Add("num_iid", "16791228388");
