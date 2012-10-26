@@ -239,7 +239,7 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
                                                 "buynick, " +
                                                 "mobile, " +
                                                 "[content], " +
-                                                "yiweiid, " +
+                                                "guoduid, " +
                                                 "num, " +
                                                 "typ " +
                                             " ) VALUES ( " +

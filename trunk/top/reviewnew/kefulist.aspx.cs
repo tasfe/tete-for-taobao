@@ -387,7 +387,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                                             "buynick, " +
                                                             "mobile, " +
                                                             "[content], " +
-                                                            "yiweiid, " +
+                                                            "guoduid, " +
                                                             "num, " +
                                                             "typ " +
                                                         " ) VALUES ( " +
@@ -473,7 +473,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                                             "buynick, " +
                                                             "mobile, " +
                                                             "[content], " +
-                                                            "yiweiid, " +
+                                                            "guoduid, " +
                                                             "num, " +
                                                             "typ " +
                                                         " ) VALUES ( " +
@@ -638,7 +638,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                                         "buynick, " +
                                                         "mobile, " +
                                                         "[content], " +
-                                                        "yiweiid, " +
+                                                        "guoduid, " +
                                                         "num, " +
                                                         "typ " +
                                                     " ) VALUES ( " +
@@ -875,7 +875,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                                             "buynick, " +
                                                             "mobile, " +
                                                             "[content], " +
-                                                            "yiweiid, " +
+                                                            "guoduid, " +
                                                             "num, " +
                                                             "typ " +
                                                         " ) VALUES ( " +
@@ -1035,7 +1035,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                                                         "buynick, " +
                                                         "mobile, " +
                                                         "[content], " +
-                                                        "yiweiid, " +
+                                                        "guoduid, " +
                                                         "num, " +
                                                         "typ " +
                                                     " ) VALUES ( " +
