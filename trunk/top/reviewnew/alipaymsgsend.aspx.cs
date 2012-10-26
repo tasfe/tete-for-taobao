@@ -230,7 +230,7 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
                                     msgAlipay = msgAlipay.Substring(0, 66);
                                 }
 
-                                string result = SendMessage(phone, msgAlipay);
+                                string result = SendGuodu(phone, msgAlipay);
                                 //记录短信发送记录
                                 sql = "INSERT INTO TCS_MsgSend (" +
                                                     "nick, " +
@@ -281,6 +281,33 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
 
 
 
+    public string SendGuodu(string phone, string msg)
+    {
+        string uid = "haopyl";
+        string pass = "hao1234";
+        string result = string.Empty;
+
+        msg = UrlEncode(msg + "【淘宝】");
+
+        string param = "OperID=" + uid + "&OperPass=" + pass + "&SendTime=&ValidTime=&AppendID=1234&DesMobile=" + phone + "&Content=" + msg + "&ContentType=8";
+        byte[] bs = Encoding.ASCII.GetBytes(param);
+
+        HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://221.179.180.158:9001/QxtSms/QxtFirewall" + "?" + param);
+
+        File.WriteAllText(Server.MapPath("test.txt"), "http://221.179.180.158:9001/QxtSms/QxtFirewall" + "?" + param);
+
+        req.Method = "GET";
+
+        using (HttpWebResponse myResponse = (HttpWebResponse)req.GetResponse())
+        {
+            using (StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.GetEncoding("GB2312")))
+            {
+                string content = reader.ReadToEnd();
+
+                return content;
+            }
+        }
+    }
 
 
     public static string UrlEncode(string str)
