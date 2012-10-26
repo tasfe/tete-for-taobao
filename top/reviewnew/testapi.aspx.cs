@@ -26,13 +26,13 @@ public partial class top_review_testapi : System.Web.UI.Page
         string appkey = "12159997";
         string secret = "614e40bfdb96e9063031d1a9e56fbed5";
 
-        string session = "6102a28c7dc9ad3f71b1c98c7708502a228316b5bdb250414732390";
-        string taobaonick = "tangchao4010790";
+        string session = "610252000038f8d4d76f20f9008c1c7391c2d63c0a4ff0361056151";
+        string taobaonick = "我爱ivy";
 
         IDictionary<string, string> param = new Dictionary<string, string>();
 
         param.Add("fields", "receiver_mobile, orders.num_iid, created, consign_time, total_fee, promotion_details, type, receiver_name, receiver_state, receiver_city, receiver_district, receiver_address, status, buyer_area, orders");
-        param.Add("tid", "186584870844205");
+        param.Add("tid", "165743500068482");
 
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.trade.fullinfo.get", session, param);
 
