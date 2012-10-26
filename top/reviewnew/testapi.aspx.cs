@@ -67,6 +67,7 @@ public partial class top_review_testapi : System.Web.UI.Page
         for (int i = 0; i < match.Count; i++)
         {
             string sql = "SELECT COUNT(*) FROM TCS_TaobaoShippingCompany WHERE short = '" + match[i].Groups[1].ToString() + "'";
+            Response.Write(sql + "<br>");
             string count = utils.ExecuteString(sql);
 
             if (count != "0")
