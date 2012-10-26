@@ -56,10 +56,9 @@ public partial class top_review_testapi : System.Web.UI.Page
 
         IDictionary<string, string> param = new Dictionary<string, string>();
 
-        param.Add("tid", "237341240518934");
-        param.Add("fields", "tid, receiver_mobile, created, consign_time, total_fee, promotion_details, type, receiver_name, receiver_state, receiver_city, receiver_district, receiver_address, status, buyer_area, orders.num_iid, orders");
+        param.Add("fields", "id,code,name,reg_mail_no");
 
-        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.trade.fullinfo.get", session, param);
+        string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.logistics.companies.get", session, param);
         ////<coupon_number>1323930538</coupon_number>
 
         Response.Write(result);
