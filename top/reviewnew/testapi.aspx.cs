@@ -23,14 +23,7 @@ public partial class top_review_testapi : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string appkey = "12159997";
-        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
-
-        string session = "610252000038f8d4d76f20f9008c1c7391c2d63c0a4ff0361056151";
-        string taobaonick = "我爱ivy";
-        string result = string.Empty;
-
-        GetTrade();
+        GetTradeRate();
     }
 
     private void GetTradeRate()
