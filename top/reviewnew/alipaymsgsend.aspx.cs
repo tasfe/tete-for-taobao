@@ -148,6 +148,7 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
 
         string couponid = utils.NewRequest("couponid", utils.RequestType.Form);
         string buynick = this.txtBuyerNick.Text;
+        string issend = utils.NewRequest("issend", utils.RequestType.Form);
 
         sql = "SELECT * FROM TCS_ShopConfig WITH (NOLOCK) WHERE nick = '" + nick + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
@@ -215,7 +216,8 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
                         sql = "SELECT COUNT(*) FROM TCS_AlipayDetail WHERE guid = '" + couponid + "' AND buynick = '" + buynick + "'";
                         //Response.Write(sql + "<br>");
                         string alipayCount = utils.ExecuteString(sql);
-                        if (int.Parse(alipayCount) < int.Parse(dtAlipayDetail.Rows[0]["per"].ToString()))
+                        //如果客户勾选了强行赠送则不会根据每人最大领取数量进行判断
+                        if (issend != "1" && int.Parse(alipayCount) < int.Parse(dtAlipayDetail.Rows[0]["per"].ToString()))
                         {
                             //赠送支付宝红包
                             sql = "SELECT TOP 1 * FROM TCS_AlipayDetail WITH (NOLOCK) WHERE guid = '" + couponid + "' AND issend = 0";
