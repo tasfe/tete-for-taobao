@@ -30,6 +30,18 @@ public partial class top_review_testapi : System.Web.UI.Page
         string taobaonick = "我爱ivy";
         string result = string.Empty;
 
+        GetTrade();
+    }
+
+    private void GetTradeRate()
+    {
+        string appkey = "12159997";
+        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+
+        string session = "610252000038f8d4d76f20f9008c1c7391c2d63c0a4ff0361056151";
+        string taobaonick = "我爱ivy";
+        string result = string.Empty;
+
         IDictionary<string, string> param = new Dictionary<string, string>();
         param.Add("fields", "content,created,nick,result");
         param.Add("rate_type", "get");
@@ -56,10 +68,7 @@ public partial class top_review_testapi : System.Web.UI.Page
         param.Add("oid", "165816737647778");
         result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.traderates.get", session, param);
         Response.Write(result);
-
     }
-
-
 
     private void GetTrade()
     {
@@ -200,7 +209,7 @@ public partial class top_review_testapi : System.Web.UI.Page
         param.Add("method", method);
         param.Add("session", session);
         param.Add("timestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-        param.Add("format", "xml");
+        param.Add("format", "json");
         param.Add("v", "2.0");
         param.Add("sign_method", "md5");
         param.Add("sign", CreateSign(param, appSecret));
