@@ -273,7 +273,7 @@ public partial class top_crm_alipaysend : System.Web.UI.Page
                                                 "buynick, " +
                                                 "mobile, " +
                                                 "[content], " +
-                                                "yiweiid, " +
+                                                "guoduid, " +
                                                 "num, " +
                                                 "typ " +
                                             " ) VALUES ( " +
