@@ -217,7 +217,7 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
                     //Response.Write(sql + "<br>");
                     string alipayCount = utils.ExecuteString(sql);
                     //如果客户勾选了强行赠送则不会根据每人最大领取数量进行判断
-                    if (issend != "1" && int.Parse(alipayCount) < int.Parse(dtAlipayDetail.Rows[0]["per"].ToString()))
+                    if (issend == "1" || int.Parse(alipayCount) < int.Parse(dtAlipayDetail.Rows[0]["per"].ToString()))
                     {
                         //赠送支付宝红包
                         sql = "SELECT TOP 1 * FROM TCS_AlipayDetail WITH (NOLOCK) WHERE guid = '" + couponid + "' AND issend = 0";
