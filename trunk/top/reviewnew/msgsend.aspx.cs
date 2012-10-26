@@ -236,7 +236,7 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
                                                 "buynick, " +
                                                 "mobile, " +
                                                 "[content], " +
-                                                "yiweiid, " +
+                                                "guoduid, " +
                                                 "num, " +
                                                 "typ " +
                                             " ) VALUES ( " +
