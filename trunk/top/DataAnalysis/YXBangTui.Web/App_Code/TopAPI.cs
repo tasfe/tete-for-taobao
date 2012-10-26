@@ -148,7 +148,7 @@ public class TopAPI
             page_no++;
             Dictionary<string, string> dic = new Dictionary<string, string>();
             dic.Add("nick", nick);
-            dic.Add("fields", "num_iid,title,cid,pic_url,price,seller_cids,modified");
+            dic.Add("fields", "num_iid,title,cid,pic_url,price,seller_cids,num,modified");
             dic.Add("page_no", page_no.ToString());
             dic.Add("page_size", "200");
             string text = Post("taobao.items.onsale.get", session, dic);
