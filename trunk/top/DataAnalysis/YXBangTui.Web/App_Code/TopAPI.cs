@@ -136,6 +136,54 @@ public class TopAPI
         return postData.ToString();
     }
 
+    //public static List<TaoBaoGoodsInfo> GetGoodsInfoListByNick(string nick, string session)
+    //{
+    //    bool notlast = true;
+    //    int page_no = 0;
+
+    //    List<TaoBaoGoodsInfo> list = new List<TaoBaoGoodsInfo>();
+    //    System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+    //    while (notlast)
+    //    {
+    //        page_no++;
+    //        Dictionary<string, string> dic = new Dictionary<string, string>();
+    //        dic.Add("nick", nick);
+    //        dic.Add("fields", "num_iid,title,cid,pic_url,price,seller_cids,num,modified");
+    //        dic.Add("page_no", page_no.ToString());
+    //        dic.Add("page_size", "200");
+    //        string text = Post("taobao.items.onsale.get", session, dic);
+    //        if (!string.IsNullOrEmpty(text))
+    //        {
+    //            if (text.Contains("error_response"))
+    //            {
+    //                LogInfo.Add(nick, "批量获取用户店铺商品列表出错" + text);
+    //                return list;
+    //            }
+
+    //            text = text.Replace("{\"items_onsale_get_response\":{\"items\":{\"item\":", "").Replace("}}}", "");
+    //            Regex regex = new Regex("},\"total_results\":\\d+}}");
+    //            text = regex.Replace(text, "");
+
+    //            try
+    //            {
+    //                List<TaoBaoGoodsInfo> mylist = js.Deserialize<List<TaoBaoGoodsInfo>>(text);
+    //                list.AddRange(mylist);
+
+    //                if (mylist.Count < 200)
+    //                {
+    //                    notlast = false;
+    //                    return list;
+    //                }
+    //            }
+    //            catch (Exception ex)
+    //            {
+    //                LogInfo.Add(nick, "返回json转化为商品信息集合出错,用户nick:" + nick + text + ex.Message);
+    //            }
+    //        }
+    //    }
+    //    return list;
+    //}
+
     public static List<TaoBaoGoodsInfo> GetGoodsInfoListByNick(string nick, string session)
     {
         bool notlast = true;
@@ -151,7 +199,7 @@ public class TopAPI
             dic.Add("fields", "num_iid,title,cid,pic_url,price,seller_cids,num,modified");
             dic.Add("page_no", page_no.ToString());
             dic.Add("page_size", "200");
-            string text = Post("taobao.items.onsale.get", session, dic);
+            string text = Post("taobao.items.list.get", session, dic);
             if (!string.IsNullOrEmpty(text))
             {
                 if (text.Contains("error_response"))
@@ -160,7 +208,7 @@ public class TopAPI
                     return list;
                 }
 
-                text = text.Replace("{\"items_onsale_get_response\":{\"items\":{\"item\":", "").Replace("}}}", "");
+                text = text.Replace("{\"items_list_get_response\":{\"items\":{\"item\":", "").Replace("}}}", "");
                 Regex regex = new Regex("},\"total_results\":\\d+}}");
                 text = regex.Replace(text, "");
 
