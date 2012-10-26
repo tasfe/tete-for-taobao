@@ -13,10 +13,10 @@ using System.Security.Cryptography;
 
 public partial class top_freecard_freecardlist : System.Web.UI.Page
 {
-
     public string session = string.Empty;
     public string nick = string.Empty;
     public string id = string.Empty;
+    public string nickencode = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -27,6 +27,7 @@ public partial class top_freecard_freecardlist : System.Web.UI.Page
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
 
+        nickencode = HttpUtility.UrlEncode(nick);
 
         //过期判断
         if (string.IsNullOrEmpty(taobaoNick))
