@@ -188,7 +188,7 @@ public partial class api_Default : System.Web.UI.Page
             alerttoken = ary[1];
         }
 
-        File.WriteAllText(Server.MapPath("token.txt"), tokenStr + "|" + alerttoken);
+        File.WriteAllText(Server.MapPath("token.txt"), tokenStr + "|" + alerttoken + "|" + Request.Url.ToString());
 
         Response.Write("http://free.7fshop.com");
         Response.End();
