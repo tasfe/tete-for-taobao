@@ -275,6 +275,11 @@ public partial class top_groupbuy_alipaymsgsend : System.Web.UI.Page
                                 }
                             }
                         }
+                        else
+                        {
+                            Response.Write("<script>alert('该买家收到的支付宝红包已经超出了您设置的每人领取上线！');history.go(-1);</script>");
+                            Response.End();
+                        }
                     }
                 }
             //}
