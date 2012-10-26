@@ -178,7 +178,7 @@ public partial class api_Default : System.Web.UI.Page
     private void GetToken()
     {
         string usertoken = Common.utils.NewRequest("usertoken", Common.utils.RequestType.Form);
-        string alerttoken = Common.utils.NewRequest("alerttoken", Common.utils.RequestType.Form);
+        string alerttoken = Common.utils.NewRequest("alerttoken", Common.utils.RequestType.QueryString);
 
         File.WriteAllText(Server.MapPath("token.txt"), usertoken + "|" + alerttoken);
 
