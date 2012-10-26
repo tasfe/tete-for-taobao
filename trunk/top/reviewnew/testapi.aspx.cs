@@ -70,7 +70,7 @@ public partial class top_review_testapi : System.Web.UI.Page
             Response.Write(sql + "<br>");
             string count = utils.ExecuteString(sql);
 
-            if (count != "0")
+            if (count == "0")
             {
                 Response.Write(match[i].Groups[3].ToString() + "<br>");
             }
