@@ -158,7 +158,7 @@
             <tr>
                 <td align="left" colspan="2">
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="保存设置" OnClientClick="return check()" />
-                    <input type="button" value="将好评有礼前台展示" onclick="frameshow('html.aspx', '12', '2')" />
+                    <input type="button" value="将好评有礼前台展示" onclick="frameshow('http://haoping.7fshop.com/top/reviewnew/html.aspx', '12', '2')" />
                     <input type="button" value="礼品黑名单" onclick="window.location.href='blacklistgift.aspx'" />
                 </td>
             </tr>
