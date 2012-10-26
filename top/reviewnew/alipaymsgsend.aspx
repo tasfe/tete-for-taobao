@@ -47,7 +47,7 @@
             <tr>
                 <td align="left" height="30">是否强行赠送：</td>
                 <td>
-                    <input type="checkbox" name="issend" value = "1" /> 强行赠送是指支付宝红包赠送时不受红包设定数量限制
+                    <input type="checkbox" name="issend" value = "1" /> 强行赠送，是指：无视红包赠送的每人领取数量上限。
                 </td>
             </tr>
             <tr>
