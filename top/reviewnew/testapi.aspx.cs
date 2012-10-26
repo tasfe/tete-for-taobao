@@ -28,6 +28,46 @@ public partial class top_review_testapi : System.Web.UI.Page
 
         string session = "610252000038f8d4d76f20f9008c1c7391c2d63c0a4ff0361056151";
         string taobaonick = "我爱ivy";
+        string result = string.Empty;
+
+        IDictionary<string, string> param = new Dictionary<string, string>();
+        param.Add("fields", "content,created,nick,result");
+        param.Add("rate_type", "get");
+        param.Add("role", "buyer");
+        param.Add("tid", "165816737617778");
+        param.Add("oid", "165816737627778");
+        result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.traderates.get", session, param);
+        Response.Write(result);
+
+        param = new Dictionary<string, string>();
+        param.Add("fields", "content,created,nick,result");
+        param.Add("rate_type", "get");
+        param.Add("role", "buyer");
+        param.Add("tid", "165816737617778");
+        param.Add("oid", "165816737637778");
+        result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.traderates.get", session, param);
+        Response.Write(result);
+
+        param = new Dictionary<string, string>();
+        param.Add("fields", "content,created,nick,result");
+        param.Add("rate_type", "get");
+        param.Add("role", "buyer");
+        param.Add("tid", "165816737617778");
+        param.Add("oid", "165816737647778");
+        result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.traderates.get", session, param);
+        Response.Write(result);
+
+    }
+
+
+
+    private void GetTrade()
+    {
+        string appkey = "12159997";
+        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+
+        string session = "610252000038f8d4d76f20f9008c1c7391c2d63c0a4ff0361056151";
+        string taobaonick = "我爱ivy";
 
         IDictionary<string, string> param = new Dictionary<string, string>();
 
