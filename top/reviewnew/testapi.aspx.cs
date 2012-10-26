@@ -67,12 +67,14 @@ public partial class top_review_testapi : System.Web.UI.Page
         for (int i = 0; i < match.Count; i++)
         {
             string sql = "SELECT COUNT(*) FROM TCS_TaobaoShippingCompany WHERE short = '" + match[i].Groups[1].ToString() + "'";
-            Response.Write(sql + "<br>");
             string count = utils.ExecuteString(sql);
 
             if (count == "0")
             {
-                Response.Write(match[i].Groups[3].ToString() + "<br>");
+                if (match[i].Groups[3].ToString() != "OTHER" && match[i].Groups[3].ToString() != "POST")
+                {
+                    sql = "INSERT INTO TCS_TaobaoShippingCompany (name, short) VALUES ('" + match[i].Groups[1].ToString() + "', '" + match[i].Groups[3].ToString() + "')";
+                }
             }
         }
 
