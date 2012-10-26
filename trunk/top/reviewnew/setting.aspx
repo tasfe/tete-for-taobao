@@ -4,7 +4,7 @@
 <head id="Head1" runat="server">
     <title>好评有礼</title>
 <link href="../css/common.css" rel="stylesheet" />
-<link href="../css/common.js" rel="stylesheet" />
+<script language="javascript" src="../css/common.js"></script>
 <style>
     td{font-size:12px;}
     a{color:Blue; text-decoration:none;}
