@@ -1128,18 +1128,6 @@ public partial class top_review_kefulist : System.Web.UI.Page
         return giftcontent;
     }
 
-    public static string UrlEncode(string str)
-    {
-        StringBuilder sb = new StringBuilder();
-        byte[] byStr = System.Text.Encoding.Default.GetBytes(str);
-        for (int i = 0; i < byStr.Length; i++)
-        {
-            sb.Append(@"%" + Convert.ToString(byStr[i], 16));
-        }
-
-        return (sb.ToString());
-    }
-
     public static string MD5AAA(string str)
     {
         return FormsAuthentication.HashPasswordForStoringInConfigFile(str, "MD5");
