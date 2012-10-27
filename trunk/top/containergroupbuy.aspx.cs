@@ -25,6 +25,7 @@ public partial class top_containergroupbuy : System.Web.UI.Page
     public string top_session = string.Empty;
     public string nick = string.Empty;
     public string versionNo = string.Empty;
+    public string refreshToken = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -82,12 +83,65 @@ public partial class top_containergroupbuy : System.Web.UI.Page
             versionNo = "1";
         }
 
+
+        refreshToken = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["refresh_token"];
+
         //Response.Write("!!!通过");
         //Response.End();
         nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["visitor_nick"];
 
+        //刷新session
+        string signStr = CreateSign("12287381", "d3486dac8198ef01000e7bd4504601a4", refreshToken, top_session);
+
+        string url = "http://container.open.taobao.com/container/refresh?appkey=12159997&refresh_token=" + refreshToken + "&sessionkey=" + top_session + "&sign=" + signStr;
+        string result = Post(url);
+
         //判断跳转
         GetData(nick);
+    }
+
+
+    public static string Post(string url)
+    {
+        string result = string.Empty;
+        #region ---- 完成 HTTP POST 请求----
+        HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+        req.Method = "GET";
+        req.KeepAlive = true;
+        req.Timeout = 300000;
+        HttpWebResponse rsp = (HttpWebResponse)req.GetResponse();
+        Encoding encoding = Encoding.GetEncoding(rsp.CharacterSet);
+        Stream stream = null;
+        StreamReader reader = null;
+        stream = rsp.GetResponseStream();
+        reader = new StreamReader(stream, encoding);
+        result = reader.ReadToEnd();
+        if (reader != null) reader.Close();
+        if (stream != null) stream.Close();
+        if (rsp != null) rsp.Close();
+        #endregion
+        return Regex.Replace(result, @"[\x00-\x08\x0b-\x0c\x0e-\x1f]", "");
+    }
+
+    protected static string CreateSign(string appkey, string app_secret, string token, string session)
+    {
+        StringBuilder result = new StringBuilder();
+        System.Security.Cryptography.MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+        result.Append("appkey").Append(appkey).Append("refresh_token").Append(token).Append("sessionkey").Append(session).Append(app_secret);
+        byte[] bytes = MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(result.ToString()));
+
+        result.Remove(0, result.Length);
+        for (int i = 0; i < bytes.Length; i++)
+        {
+            string hex = bytes[i].ToString("X");
+            if (hex.Length == 1)
+            {
+                result.Append("0");
+            }
+            result.Append(hex);
+        }
+
+        return result.ToString();
     }
 
 
@@ -142,6 +196,8 @@ public partial class top_containergroupbuy : System.Web.UI.Page
         request.Nick = nick;
         //User user = client.UserGet(request, session);
 
+
+
         if (CheckUserExits(nick))
         {
             //更新该会员的店铺信息
@@ -154,7 +210,7 @@ public partial class top_containergroupbuy : System.Web.UI.Page
             utils.ExecuteNonQuery(sql);
 
             //更新登录次数和最近登陆时间
-            sql = "UPDATE toptaobaoshop SET logintimes = logintimes + 1,lastlogin = GETDATE(),session='" + top_session + "',sessiongroupbuy='" + top_session + "',versionNo='" + versionNo + "' WHERE nick = '" + nick + "'";
+            sql = "UPDATE toptaobaoshop SET logintimes = logintimes + 1,lastlogin = GETDATE(),session='" + top_session + "',sessiongroupbuy='" + top_session + "',versionNo='" + versionNo + "',token='" + refreshToken + "' WHERE nick = '" + nick + "'";
             utils.ExecuteNonQuery(sql);
         }
         else
@@ -214,6 +270,7 @@ public partial class top_containergroupbuy : System.Web.UI.Page
                         "versionNo, " +
                         "session, " +
                         "sessiongroupbuy, " +
+                        "token, " +
                         "remain_count " +
                     " ) VALUES ( " +
                         " '" + shop.Sid + "', " +
@@ -229,6 +286,7 @@ public partial class top_containergroupbuy : System.Web.UI.Page
                         " '" + versionNo + "', " +
                         " '" + top_session + "', " +
                         " '" + top_session + "', " +
+                        " '" + refreshToken + "', " +
                         " '" + shop.RemainCount + "' " +
                   ") ";
         WriteLog(sql, "0", nick);
