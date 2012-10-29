@@ -327,6 +327,8 @@ public partial class api_Default : System.Web.UI.Page
             }
         }
 
+        File.WriteAllText(Server.MapPath("11112336565.txt"), Request.Url.ToString());
+
         Response.Write("http://free.7fshop.com");
         Response.End();
     }
