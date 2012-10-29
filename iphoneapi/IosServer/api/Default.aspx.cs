@@ -237,12 +237,12 @@ public partial class api_Default : System.Web.UI.Page
             if (count == "0")
             {
                 sql = "INSERT INTO APS_BuyLog (token, adddate, typ, orderid) VALUES ('" + token + "',GETDATE(),'" + typ + "','" + orderid + "')";
-                File.WriteAllText(Server.MapPath("fdsfds1.txt"), Request.Url.ToString());
+                File.WriteAllText(Server.MapPath("fdsfds1.txt"), sql);
                 Common.utils.ExecuteNonQuery(sql);
 
                 //加短信
                 sql = "UPDATE [APS_Token] SET isbuy = 1 WHERE token = '" + token + "' AND typ = 'tjl'";
-                File.WriteAllText(Server.MapPath("fdsfds2.txt"), Request.Url.ToString());
+                File.WriteAllText(Server.MapPath("fdsfds2.txt"), sql);
                 Common.utils.ExecuteNonQuery(sql);
 
                 str = "{\"result\":\"1\"}";
