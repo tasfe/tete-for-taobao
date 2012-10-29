@@ -169,7 +169,6 @@ public partial class api_Default : System.Web.UI.Page
         token = AESencode.DecryptString(token, "tetesoft%&^*%&^*");
 
         string sql = "SELECT * FROM APS_Token WHERE token = '" + token + "'";
-        File.WriteAllText(Server.MapPath("11112336565.txt"), sql);
         DataTable dt = Common.utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
@@ -206,7 +205,7 @@ public partial class api_Default : System.Web.UI.Page
             }
         }
 
-        Response.Write("1");
+        Response.Write("gun!!!");
     }
 
 
