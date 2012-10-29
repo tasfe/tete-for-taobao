@@ -166,7 +166,8 @@ public partial class api_Default : System.Web.UI.Page
     {
         string key = "tetesoft%&^*%&^*";
         string token = Common.utils.NewRequest("token", Common.utils.RequestType.Form);
-        string code = AES.DecryptString(token, key);
+        File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), token);
+        //string code = AES.DecryptString(token, key);
 
         Response.Write("0");
     }
@@ -281,8 +282,19 @@ public partial class api_Default : System.Web.UI.Page
     {
         string usertoken = Common.utils.NewRequest("token", Common.utils.RequestType.QueryString);
         string alerttoken = Common.utils.NewRequest("alerttoken", Common.utils.RequestType.QueryString);
+        string typ = Common.utils.NewRequest("typ", Common.utils.RequestType.QueryString);
+        string sql = string.Empty;
 
-        File.WriteAllText(Server.MapPath("token.txt"), usertoken + "|" + alerttoken + "|" + Request.Url.ToString());
+        if (typ != "")
+        {
+            typ = "tdr";
+        }
+        
+        
+        sql = "INSERT INTO APS_Token (token) VALUES ()";
+        
+
+        //File.WriteAllText(Server.MapPath("token.txt"), usertoken + "|" + alerttoken + "|" + Request.Url.ToString());
 
         Response.Write("http://free.7fshop.com");
         Response.End();
