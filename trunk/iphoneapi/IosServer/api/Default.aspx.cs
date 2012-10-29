@@ -176,7 +176,7 @@ public partial class api_Default : System.Web.UI.Page
             //如果是已经购买直接返回
             if (dt.Rows[0]["isbuy"].ToString() == "1")
             {
-                Response.Write("0");
+                Response.Write("1");
                 return;
             }
 
@@ -185,7 +185,7 @@ public partial class api_Default : System.Web.UI.Page
                 //如果时间不存在则加入时间
                 sql = "UPDATE APS_Token SET firstdate = GETDATE() WHERE token = '" + token + "'";
                 Common.utils.ExecuteNonQuery(sql);
-                Response.Write("0");
+                Response.Write("1");
                 return;
             }
             else
@@ -194,13 +194,13 @@ public partial class api_Default : System.Web.UI.Page
                 if (DateTime.Parse(dt.Rows[0]["firstdate"].ToString()) < DateTime.Now.AddDays(-7))
                 {
                     //如果超过7天
-                    Response.Write("1");
+                    Response.Write("0");
                     return;
                 }
                 else
                 {
                     //如果没超过7天
-                    Response.Write("0");
+                    Response.Write("1");
                     return;
                 }
             }
