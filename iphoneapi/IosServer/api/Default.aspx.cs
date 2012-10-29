@@ -169,6 +169,7 @@ public partial class api_Default : System.Web.UI.Page
         token = AESencode.DecryptString(token, "tetesoft%&^*%&^*");
 
         string sql = "SELECT * FROM APS_Token WHERE token = '" + token + "'";
+        File.WriteAllText(Server.MapPath("11112336565.txt"), sql);
         DataTable dt = Common.utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
@@ -309,8 +310,7 @@ public partial class api_Default : System.Web.UI.Page
 
         if (alerttoken != "")
         {
-            sql = "UPDATE APS_Token SET alerttoken = '" + alerttoken + "' WHERE token = '" + usertoken1 + "' AND typ = '" + typ + "'";
-            File.WriteAllText(Server.MapPath("11112336565.txt"), sql);
+            sql = "UPDATE APS_Token SET alerttoken = '" + alerttoken + "' WHERE token = '" + usertoken1 + "' AND typ = '" + typ + "'";  
             Common.utils.ExecuteNonQuery(sql);
         }
         else
