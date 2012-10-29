@@ -191,11 +191,11 @@ namespace TeteIosTrain
 
             //读取长度
             int l = 1;
-            arrayByte = new byte[1024];
+            arrayByte = new byte[1270];
 
             while (l != 0)
             {
-                int i = stream.Read(arrayByte, 0, 1024);
+                int i = stream.Read(arrayByte, 0, 1270);
                 l = i;
                 HttpContext.Current.Response.BinaryWrite(arrayByte);
             }
@@ -302,7 +302,7 @@ namespace TeteIosTrain
 
             result = utils.CommonGet(url, session);
 
-            return result;
+            return utils.PostData(param) + "|" + result;
         }
 
         /// <summary>
@@ -486,7 +486,7 @@ namespace TeteIosTrain
 
             string result = utils.CommonPost(url, param, session);
 
-            return result;
+            return utils.PostData(param) + "|" + result;
         }
 
         public string SendPayRequest(string session, string token, string orderid, string ticketid)
@@ -505,7 +505,7 @@ namespace TeteIosTrain
             return result;
         }
 
-        public string SendPayRequestEpay(string data, string msg)
+        public string SendPayRequestEpay(string session, string data, string msg)
         {
             string url = "https://epay.12306.cn/pay/payGateway";
 
@@ -518,29 +518,159 @@ namespace TeteIosTrain
             param.Add("appId", "0001");
             param.Add("transType", "01");
 
-            string result = utils.CommonPost(url, param, "|");
+            string result = utils.CommonPost(url, param, session);
 
             return result;
         }
 
-        public string SendAddRequest(string str, string name, string sex, string card_type, string card_no, string passenger_type)
+        public string SendAddRequest(string str, string name, string sex, string card_type, string card_no, string passenger_type, string mobile)
         {
-            throw new NotImplementedException();
+            string url = string.Empty;
+            string result = string.Empty;
+            string result1 = string.Empty;
+            string token = string.Empty;
+
+            url = "https://dynamic.12306.cn/otsweb/passengerAction.do?method=initAddPassenger";
+            result1 = utils.CommonGet(url, str);
+            token = Regex.Match(result1, @"<input[\s]*type=""hidden""[\s]*name=""org.apache.struts.taglib.html.TOKEN""[\s]*value=""([^""]*)"">").Groups[1].ToString();
+
+            url = "https://dynamic.12306.cn/otsweb/passengerAction.do?method=savePassenger";
+
+            IDictionary<string, string> param = new Dictionary<string, string>();
+
+            param.Add("org.apache.struts.taglib.html.TOKEN", token);
+            param.Add("name", name);
+            param.Add("sex_code", sex);
+            param.Add("born_date", "1970-01-01");
+            param.Add("country_code", "CN");
+            param.Add("card_type", card_type);
+            param.Add("card_no", card_no);
+            param.Add("passenger_type", passenger_type);
+
+            param.Add("mobile_no", mobile);
+            param.Add("phone_no", "");
+            param.Add("email", "");
+            param.Add("address", "");
+            param.Add("postalcode", "");
+            param.Add("studentInfo.province_code", "11");
+            param.Add("studentInfo.school_code", "");
+            param.Add("studentInfo.school_name", "简码/汉字");
+            param.Add("studentInfo.department", "");
+
+            param.Add("studentInfo.school_class", "");
+            param.Add("studentInfo.student_no", "");
+            param.Add("studentInfo.school_system", "4");
+            param.Add("studentInfo.enter_year", "2002");
+            param.Add("studentInfo.preference_card_no", "");
+            param.Add("studentInfo.preference_from_station_name", "简码/汉字");
+            param.Add("studentInfo.preference_from_station_code", "");
+            param.Add("studentInfo.preference_to_station_name", "简码/汉字");
+            param.Add("studentInfo.preference_to_station_code", "");
+
+            result = utils.CommonPost(url, param, str);
+
+            return utils.PostData(param) + "|" + token + "|" + result;
         }
 
-        public string SendEditRequest(string str, string name, string sex, string card_type, string card_no, string passenger_type)
+        public string SendEditRequest(string str, string name, string sex, string card_type, string card_no, string passenger_type, string mobile)
         {
-            throw new NotImplementedException();
+            string url = string.Empty;
+            string result = string.Empty;
+            string result1 = string.Empty;
+            string token = string.Empty;
+
+            url = "https://dynamic.12306.cn/otsweb/passengerAction.do?method=initModifyPassenger";
+            result1 = utils.CommonGet(url, str);
+            token = Regex.Match(result1, @"<input[\s]*type=""hidden""[\s]*name=""org.apache.struts.taglib.html.TOKEN""[\s]*value=""([^""]*)"">").Groups[1].ToString();
+
+            url = "https://dynamic.12306.cn/otsweb/passengerAction.do?method=modifyPassenger";
+            IDictionary<string, string> param = new Dictionary<string, string>();
+
+            param.Add("org.apache.struts.taglib.html.TOKEN", token);
+            param.Add("name", name);
+            param.Add("old_name", name);
+            param.Add("gender", sex);
+            param.Add("sex_code", sex);
+            param.Add("born_date", "1970-01-01");
+            param.Add("country_code", "CN");
+            param.Add("card_type", card_type);
+            param.Add("old_card_type", card_type);
+            param.Add("card_no", card_no);
+            param.Add("old_card_no", card_no);
+            param.Add("psgTypeCode", passenger_type);
+            param.Add("passenger_type", passenger_type);
+
+            param.Add("mobile_no", mobile);
+            param.Add("phone_no", "");
+            param.Add("email", "");
+            param.Add("address", "");
+            param.Add("postalcode", "");
+            param.Add("studentInfo.province_code", "11");
+            param.Add("studentInfo.school_code", "");
+            param.Add("studentInfo.school_name", "简码/汉字");
+            param.Add("studentInfo.department", "");
+
+            param.Add("studentInfo.school_class", "");
+            param.Add("studentInfo.student_no", "");
+            param.Add("schoolSystemDefault", "");
+            param.Add("studentInfo.school_system", "4");
+            param.Add("enterYearCode", "");
+            param.Add("studentInfo.enter_year", "2002");
+            param.Add("studentInfo.preference_card_no", "");
+            param.Add("studentInfo.preference_from_station_name", "简码/汉字");
+            param.Add("studentInfo.preference_from_station_code", "");
+            param.Add("studentInfo.preference_to_station_name", "简码/汉字");
+            param.Add("studentInfo.preference_to_station_code", "");
+
+            result = utils.CommonPost(url, param, str);
+
+            return utils.PostData(param) + "|" + token + "|" + result;
         }
 
-        public string SendPayRequestEpayStep(string data, string msg)
+        public string SendPayRequestEpayStep(string data, string msg, string orderid, string session, string bankId)
         {
-            throw new NotImplementedException();
+            string url = "https://epay.12306.cn/pay/webBusiness";
+
+            IDictionary<string, string> param = new Dictionary<string, string>();
+
+            param.Add("tranData", data);
+            param.Add("transType", "01");
+            param.Add("channelId", "1");
+            param.Add("appId", "0001");
+            param.Add("merSignMsg", msg);
+            param.Add("merCustomIp", "223.4.116.85");
+            param.Add("orderTimeoutDate", orderid);
+            param.Add("bankId", bankId);
+
+            string result = utils.CommonPost(url, param, session);
+
+            return result;
         }
 
-        public string SendDelRequest(string str, string name, string sex, string card_type, string card_no, string passenger_type)
+        public string SendDelRequest(string str, string name, string sex, string card_type, string card_no, string passenger_type, string mobile)
         {
-            throw new NotImplementedException();
+            string url = string.Empty;
+            string result = string.Empty;
+            string result1 = string.Empty;
+            string token = string.Empty;
+
+            url = "https://dynamic.12306.cn/otsweb/passengerAction.do?method=initUsualPassenger";
+            result1 = utils.CommonGet(url, str);
+            token = Regex.Match(result1, @"<input[\s]*type=""hidden""[\s]*name=""org.apache.struts.taglib.html.TOKEN""[\s]*value=""([^""]*)"">").Groups[1].ToString();
+
+            url = "https://dynamic.12306.cn/otsweb/passengerAction.do?method=deletePassenger";
+            IDictionary<string, string> param = new Dictionary<string, string>();
+
+            param.Add("org.apache.struts.taglib.html.TOKEN", token);
+            param.Add("name", name + "#");
+            param.Add("card_type", card_type);
+            param.Add("card_no", card_no + "#");
+            param.Add("passenger_type", passenger_type + "#");
+            param.Add("search", "请输入汉字或拼音首字母");
+
+            result = utils.CommonPost(url, param, str);
+
+            return token + "|" + result + "|" + result1;
         }
 
         /// <summary>
@@ -550,7 +680,7 @@ namespace TeteIosTrain
         /// <returns></returns>
         public string SendSearchRequest(string str)
         {
-            string url = "http://dynamic.12306.cn/otsweb/passengerAction.do?method=queryPagePassenger";
+            string url = "https://dynamic.12306.cn/otsweb/passengerAction.do?method=queryPagePassenger";
 
             IDictionary<string, string> param = new Dictionary<string, string>();
 
@@ -561,6 +691,122 @@ namespace TeteIosTrain
             string result = utils.CommonPost(url, param, str);
 
             return result;
+        }
+
+        public string SendPayRequestEpayStepNew(string time, string backUrl, string merId, string frontUrl, string signature, string amount, string mer, string orderid, string str)
+        {
+            string url = "https://unionpaysecure.com/api/Pay.action";
+
+            IDictionary<string, string> param = new Dictionary<string, string>();
+
+            param.Add("orderCurrency", "156");
+            param.Add("orderTime", time);
+            param.Add("backEndUrl", backUrl);
+            param.Add("charset", "UTF-8");
+            param.Add("merId", merId);
+            param.Add("version", "1.0.0");
+            param.Add("merAbbr", "铁道部资金清算中心");
+            param.Add("signMethod", "MD5");
+
+            param.Add("frontEndUrl", frontUrl);
+            param.Add("signature", signature);
+            param.Add("orderAmount", amount);
+            param.Add("customerIp", "223.4.116.85");
+            param.Add("transType", "01");
+            param.Add("merReserved", mer);
+            param.Add("orderNumber", orderid);
+
+            string result = utils.CommonPostBank(url, param, "https://epay.12306.cn/pay/webBusiness");
+
+            return utils.PostData(param) + "|" + result;
+        }
+
+        public string GetMyOrder(string session, string token, string start, string end)
+        {
+            string url = string.Empty;
+            string result = string.Empty;
+
+            url = "http://dynamic.12306.cn/otsweb/order/myOrderAction.do?method=init&showMessage=Y";
+            result = utils.CommonGet(url, session);
+            token = new Regex(@"TOKEN""[\s]*value=""([^""]*)""", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
+
+            url = "http://dynamic.12306.cn/otsweb/order/myOrderAction.do?method=queryMyOrder";
+            IDictionary<string, string> param = new Dictionary<string, string>();
+
+            param.Add("org.apache.struts.taglib.html.TOKEN", token);
+            param.Add("queryOrderDTO.location_code", "_1");
+            param.Add("leftmenu", "Y");
+            param.Add("queryDataFlag", "1");
+            param.Add("queryOrderDTO.from_order_date", start);
+            param.Add("queryOrderDTO.to_order_date", end);
+            param.Add("queryOrderDTO.sequence_no", "");
+            param.Add("queryOrderDTO.train_code", "");
+            param.Add("queryOrderDTO.name", "");
+
+            result = utils.CommonPost(url, param, session);
+
+            return result;
+        }
+
+        public string ReturnTicket(string session, string token, string ticketid)
+        {
+            string url = string.Empty;
+            string result = string.Empty;
+
+            url = "http://dynamic.12306.cn/otsweb/order/ticketAction.do?method=initRefundTicket&ticket_key=" + ticketid;
+            result = utils.CommonGet(url, session);
+
+            url = "http://dynamic.12306.cn/otsweb/order/ticketAction.do?method=confirmRefundTicket";
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            param.Add("org.apache.struts.taglib.html.TOKEN", GetHiddenValue(result, "org.apache.struts.taglib.html.TOKEN"));
+            param.Add("ticket.sequence_no", GetHiddenValue(result, "ticket.sequence_no"));
+            param.Add("ticket.stationTrain.station_train_code", GetHiddenValue(result, "ticket.stationTrain.station_train_code"));
+            param.Add("ticket.train_date", GetHiddenValue(result, "ticket.train_date"));
+            param.Add("ticket.stationTrain.from_station_telecode", GetHiddenValue(result, "ticket.stationTrain.from_station_telecode"));
+            param.Add("ticket.stationTrain.from_station_name", GetHiddenValue(result, "ticket.stationTrain.from_station_name"));
+            param.Add("ticket.stationTrain.to_station_telecode", GetHiddenValue(result, "ticket.stationTrain.to_station_telecode"));
+            param.Add("ticket.stationTrain.to_station_name", GetHiddenValue(result, "ticket.stationTrain.to_station_name"));
+            param.Add("ticket.stationTrain.start_time", GetHiddenValue(result, "ticket.stationTrain.start_time"));
+            param.Add("ticket.stationTrain.arrive_time", GetHiddenValue(result, "ticket.stationTrain.arrive_time"));
+            param.Add("ticket.stationTrain.id_mode", GetHiddenValue(result, "ticket.stationTrain.id_mode"));
+            param.Add("ticket.batch_no", GetHiddenValue(result, "ticket.batch_no"));
+            param.Add("ticket.coach_no", GetHiddenValue(result, "ticket.coach_no"));
+            param.Add("ticket.coach_name", GetHiddenValue(result, "ticket.coach_name"));
+            param.Add("ticket.seat_no", GetHiddenValue(result, "ticket.seat_no"));
+            param.Add("ticket.seat_name", GetHiddenValue(result, "ticket.seat_name"));
+            param.Add("ticket.seat_flag", GetHiddenValue(result, "ticket.seat_flag"));
+            param.Add("ticket.seat_type_code", GetHiddenValue(result, "ticket.seat_type_code"));
+            param.Add("ticket.seat_type_name", GetHiddenValue(result, "ticket.seat_type_name"));
+            param.Add("ticket.ticket_type_code", GetHiddenValue(result, "ticket.ticket_type_code"));
+            param.Add("ticket.ticket_price", GetHiddenValue(result, "ticket.ticket_price"));
+            param.Add("ticket.passenger.passenger_name", GetHiddenValue(result, "ticket.passenger.passenger_name"));
+            param.Add("ticket.passenger.passenger_id_type_code", GetHiddenValue(result, "ticket.passenger.passenger_id_type_code"));
+            param.Add("ticket.passenger.passenger_id_no", GetHiddenValue(result, "ticket.passenger.passenger_id_no"));
+            param.Add("ticket.ticket_status_code", GetHiddenValue(result, "ticket.ticket_status_code"));
+            param.Add("ticket.return_cost", GetHiddenValue(result, "ticket.return_cost"));
+            param.Add("ticket.return_price", GetHiddenValue(result, "ticket.return_price"));
+            param.Add("ticket.order_location_code", GetHiddenValue(result, "ticket.order_location_code"));
+            param.Add("from_order_date", GetHiddenValue(result, "from_order_date"));
+            param.Add("to_order_date", GetHiddenValue(result, "to_order_date"));
+            param.Add("query_class", GetHiddenValue(result, "query_class"));
+            param.Add("come_from_flag", GetHiddenValue(result, "come_from_flag"));
+
+            result = utils.CommonPost(url, param, session);
+
+            return utils.PostData(param) + "|" + result;
+        }
+
+        /// <summary>
+        /// 获取隐藏值
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        private string GetHiddenValue(string result, string key)
+        {
+            Regex reg = new Regex(@"name=""" + key + @""" value=""([^""]*)""", RegexOptions.IgnoreCase);
+
+            return reg.Match(result).Groups[1].ToString();
         }
     }
 }

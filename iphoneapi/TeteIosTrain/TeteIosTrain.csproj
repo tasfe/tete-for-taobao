@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AES.cs" />
     <Compile Include="Train.cs" />
     <Compile Include="User.cs" />
     <Compile Include="utils.cs" />
