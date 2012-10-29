@@ -61,6 +61,46 @@ namespace TeteIosTrain
         }
 
 
+        public static string CommonPostBank(string url, IDictionary<string, string> param, string refer)
+        {
+            try
+            {
+                CookieContainer cc = new CookieContainer();
+                string result = string.Empty;
+                #region ---- 完成 HTTP POST 请求----
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+                req.Method = "POST";
+                req.KeepAlive = true;
+                req.Timeout = 300000;
+                req.Accept = "image/gif, image/jpeg, image/pjpeg, image/pjpeg, application/x-shockwave-flash, application/xaml+xml, application/x-ms-xbap, application/x-ms-application, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/msword, application/QVOD, application/QVOD, application/vnd.ms-xpsdocument, */*";
+                req.Referer = refer;
+                req.UserAgent = "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; QQDownload 702; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)";
+                req.ContentType = "application/x-www-form-urlencoded";
+
+                byte[] postData = Encoding.UTF8.GetBytes(PostData(param));
+                Stream reqStream = req.GetRequestStream();
+                reqStream.Write(postData, 0, postData.Length);
+                reqStream.Close();
+
+                HttpWebResponse rsp = (HttpWebResponse)req.GetResponse();
+                Encoding encoding = Encoding.GetEncoding(rsp.CharacterSet);
+                Stream stream = null;
+                StreamReader reader = null;
+                stream = rsp.GetResponseStream();
+                reader = new StreamReader(stream, encoding);
+                result = reader.ReadToEnd();
+                if (reader != null) reader.Close();
+                if (stream != null) stream.Close();
+                if (rsp != null) rsp.Close();
+                #endregion
+                return Regex.Replace(result, @"[\x00-\x08\x0b-\x0c\x0e-\x1f]", "");
+            }
+            catch (Exception e)
+            {
+                return e.Message + "-" + e.Source + "-" + e.StackTrace;
+            }
+        }
+
         public static string CommonGet(string url, string cookieStr)
         {
             try
@@ -121,6 +161,8 @@ namespace TeteIosTrain
                 return e.StackTrace;
             }
         }
+
+
 
         public static string CommonGetFirst(string url)
         {

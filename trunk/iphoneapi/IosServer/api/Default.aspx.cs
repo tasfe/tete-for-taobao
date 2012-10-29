@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using TeteIosTrain;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Net;
+using System.Text;
 
 public partial class api_Default : System.Web.UI.Page
 {
@@ -23,6 +25,11 @@ public partial class api_Default : System.Web.UI.Page
         if (act == "token")
         {
             GetToken();
+        }
+
+        if (act == "buy")
+        {
+            BuyInfo();
         }
 
         if (act == "about")
@@ -157,13 +164,108 @@ public partial class api_Default : System.Web.UI.Page
 
     private void GetEncodeToken()
     {
-        string str = "7f9150850f349dc45234063593e2da74f9053bb2";
+        string key = "tetesoft%&^*%&^*";
+        string token = Common.utils.NewRequest("token", Common.utils.RequestType.Form);
+        string code = AES.DecryptString(token, key);
 
-        string code = AES.AESEncrypt(str);
+        Response.Write("0");
+    }
 
-        Response.Write(code);
 
-        Response.Write(AES.AESDecrypt(code));
+    /// <summary>
+    /// 购买接口
+    /// </summary>
+    private void BuyInfo()
+    {
+        string token = Common.utils.NewRequest("token", Common.utils.RequestType.Form);
+        string data = Common.utils.NewRequest("data", Common.utils.RequestType.Form);
+        //File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), data);
+        //data = @"{""receipt-data"":""ewoJInNpZ25hdHVyZSIgPSAiQXNQOVNQRThhdUFTV2lwMkhvL1lYaHZua1VTMmRXMUxmdHlTcmdyTzh6TmZ6a3QyNFZTNHVqQ2VvOHpsS2s0MCtUOTR6TXpBaE4xTVNOUnA4ZlFzYloxSDhzSG0yaXNsMXZlNkZIVUhVL3RCdGNNbE8zbHBOVzlGYjNZT3oyRXFESnVLYkhlZzI5cEM1c3VId053Mi9ObDc4dVp3K21HNkNKWUF2dmVSdjY0K0FBQURWekNDQTFNd2dnSTdvQU1DQVFJQ0NHVVVrVTNaV0FTMU1BMEdDU3FHU0liM0RRRUJCUVVBTUg4eEN6QUpCZ05WQkFZVEFsVlRNUk13RVFZRFZRUUtEQXBCY0hCc1pTQkpibU11TVNZd0pBWURWUVFMREIxQmNIQnNaU0JEWlhKMGFXWnBZMkYwYVc5dUlFRjFkR2h2Y21sMGVURXpNREVHQTFVRUF3d3FRWEJ3YkdVZ2FWUjFibVZ6SUZOMGIzSmxJRU5sY25ScFptbGpZWFJwYjI0Z1FYVjBhRzl5YVhSNU1CNFhEVEE1TURZeE5USXlNRFUxTmxvWERURTBNRFl4TkRJeU1EVTFObG93WkRFak1DRUdBMVVFQXd3YVVIVnlZMmhoYzJWU1pXTmxhWEIwUTJWeWRHbG1hV05oZEdVeEd6QVpCZ05WQkFzTUVrRndjR3hsSUdsVWRXNWxjeUJUZEc5eVpURVRNQkVHQTFVRUNnd0tRWEJ3YkdVZ1NXNWpMakVMTUFrR0ExVUVCaE1DVlZNd2daOHdEUVlKS29aSWh2Y05BUUVCQlFBRGdZMEFNSUdKQW9HQkFNclJqRjJjdDRJclNkaVRDaGFJMGc4cHd2L2NtSHM4cC9Sd1YvcnQvOTFYS1ZoTmw0WElCaW1LalFRTmZnSHNEczZ5anUrK0RyS0pFN3VLc3BoTWRkS1lmRkU1ckdYc0FkQkVqQndSSXhleFRldngzSExFRkdBdDFtb0t4NTA5ZGh4dGlJZERnSnYyWWFWczQ5QjB1SnZOZHk2U01xTk5MSHNETHpEUzlvWkhBZ01CQUFHamNqQndNQXdHQTFVZEV3RUIvd1FDTUFBd0h3WURWUjBqQkJnd0ZvQVVOaDNvNHAyQzBnRVl0VEpyRHRkREM1RllRem93RGdZRFZSMFBBUUgvQkFRREFnZUFNQjBHQTFVZERnUVdCQlNwZzRQeUdVakZQaEpYQ0JUTXphTittVjhrOVRBUUJnb3Foa2lHOTJOa0JnVUJCQUlGQURBTkJna3Foa2lHOXcwQkFRVUZBQU9DQVFFQUVhU2JQanRtTjRDL0lCM1FFcEszMlJ4YWNDRFhkVlhBZVZSZVM1RmFaeGMrdDg4cFFQOTNCaUF4dmRXLzNlVFNNR1k1RmJlQVlMM2V0cVA1Z204d3JGb2pYMGlreVZSU3RRKy9BUTBLRWp0cUIwN2tMczlRVWU4Y3pSOFVHZmRNMUV1bVYvVWd2RGQ0TndOWXhMUU1nNFdUUWZna1FRVnk4R1had1ZIZ2JFL1VDNlk3MDUzcEdYQms1MU5QTTN3b3hoZDNnU1JMdlhqK2xvSHNTdGNURXFlOXBCRHBtRzUrc2s0dHcrR0szR01lRU41LytlMVFUOW5wL0tsMW5qK2FCdzdDMHhzeTBiRm5hQWQxY1NTNnhkb3J5L0NVdk02Z3RLc21uT09kcVRlc2JwMGJzOHNuNldxczBDOWRnY3hSSHVPTVoydG04bnBMVW03YXJnT1N6UT09IjsKCSJwdXJjaGFzZS1pbmZvIiA9ICJld29KSW05eWFXZHBibUZzTFhCMWNtTm9ZWE5sTFdSaGRHVXRjSE4wSWlBOUlDSXlNREV5TFRBM0xUSTJJREExT2pVd09qQTRJRUZ0WlhKcFkyRXZURzl6WDBGdVoyVnNaWE1pT3dvSkluVnVhWEYxWlMxcFpHVnVkR2xtYVdWeUlpQTlJQ0kxTURjM09URTFPVFJrWVRrME5qWTBaREUzTmpreE5HUmlNVEU0TVdZMFlUUm1OV0k1TTJVeklqc0tDU0p2Y21sbmFXNWhiQzEwY21GdWMyRmpkR2x2YmkxcFpDSWdQU0FpTVRBd01EQXdNREExTXpRNE56UXhPQ0k3Q2draVluWnljeUlnUFNBaU1TNHdJanNLQ1NKMGNtRnVjMkZqZEdsdmJpMXBaQ0lnUFNBaU1UQXdNREF3TURBMU16UTROelF4T0NJN0Nna2ljWFZoYm5ScGRIa2lJRDBnSWpFaU93b0pJbTl5YVdkcGJtRnNMWEIxY21Ob1lYTmxMV1JoZEdVdGJYTWlJRDBnSWpFek5ETXpNRGN3TURnek5ERWlPd29KSW5CeWIyUjFZM1F0YVdRaUlEMGdJbU52YlM1amIyTnZMbk50YzE4eE1DSTdDZ2tpYVhSbGJTMXBaQ0lnUFNBaU5UUTJOVGN6TXpBeElqc0tDU0ppYVdRaUlEMGdJbU52YlM1amIyTnZMblJwYldsdVoxTk5VeUk3Q2draWNIVnlZMmhoYzJVdFpHRjBaUzF0Y3lJZ1BTQWlNVE0wTXpNd056QXdPRE0wTVNJN0Nna2ljSFZ5WTJoaGMyVXRaR0YwWlNJZ1BTQWlNakF4TWkwd055MHlOaUF4TWpvMU1Eb3dPQ0JGZEdNdlIwMVVJanNLQ1NKd2RYSmphR0Z6WlMxa1lYUmxMWEJ6ZENJZ1BTQWlNakF4TWkwd055MHlOaUF3TlRvMU1Eb3dPQ0JCYldWeWFXTmhMMHh2YzE5QmJtZGxiR1Z6SWpzS0NTSnZjbWxuYVc1aGJDMXdkWEpqYUdGelpTMWtZWFJsSWlBOUlDSXlNREV5TFRBM0xUSTJJREV5T2pVd09qQTRJRVYwWXk5SFRWUWlPd3A5IjsKCSJlbnZpcm9ubWVudCIgPSAiU2FuZGJveCI7CgkicG9kIiA9ICIxMDAiOwoJInNpZ25pbmctc3RhdHVzIiA9ICIwIjsKfQ==""}";
+
+        string sql = string.Empty;
+        string str = string.Empty;
+        string msgCount = string.Empty;
+        string url = "https://sandbox.itunes.apple.com/verifyReceipt";
+        url = "https://buy.itunes.apple.com/verifyReceipt";
+        string result = SendPostData(url, data);
+        string orderid = Regex.Match(result, @"""original_transaction_id"":""([^""]*)""").Groups[1].ToString();
+        string typ = Regex.Match(result, @"""product_id"":""([^""]*)""").Groups[1].ToString();
+        string status = Regex.Match(result, @"""status"":([0-9]*)").Groups[1].ToString();
+
+        if (status == "0")
+        {
+            if (typ == "com.coco.sms_10")
+            {
+                msgCount = "20";
+            }
+            if (typ == "com.coco.sms_25")
+            {
+                msgCount = "50";
+            }
+            if (typ == "com.coco.sms_80")
+            {
+                msgCount = "160";
+            }
+            if (typ == "com.coco.sms_200")
+            {
+                msgCount = "400";
+            }
+
+
+            sql = "SELECT COUNT(*) FROM HuliBuyLog WHERE orderid = '" + orderid + "'";
+            string count = Common.utils.ExecuteString(sql);
+            if (count == "0")
+            {
+                sql = "INSERT INTO HuliBuyLog (token, adddate, typ, orderid, count) VALUES ('" + token + "',GETDATE(),'" + typ + "','" + orderid + "','" + msgCount + "')";
+                Common.utils.ExecuteNonQuery(sql);
+
+                //加短信
+                sql = "UPDATE [TeteUserToken] SET total = total + " + msgCount + " WHERE token = '" + token + "' AND nick = 'huli'";
+                Common.utils.ExecuteNonQuery(sql);
+
+                str = "{\"result\":\"" + msgCount + "\",\"orderid\":\"" + orderid + "\"}";
+                Response.Write(str);
+            }
+            else
+            {
+                str = "{\"result\":\"0\"}";
+                Response.Write(str);
+            }
+        }
+        else
+        {
+            str = "{\"result\":\"-1\"}";
+            Response.Write(str);
+        }
+    }
+
+
+
+    public static string SendPostData(string url, string data)
+    {
+        string result = string.Empty;
+        #region ---- 完成 HTTP POST 请求----
+        HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+        req.Method = "POST";
+        req.KeepAlive = true;
+        req.Timeout = 300000;
+        req.ContentType = "application/x-www-form-urlencoded;charset=utf-8";
+        byte[] postData = Encoding.UTF8.GetBytes(data);
+        Stream reqStream = req.GetRequestStream();
+        reqStream.Write(postData, 0, postData.Length);
+        reqStream.Close();
+        HttpWebResponse rsp = (HttpWebResponse)req.GetResponse();
+        Encoding encoding = Encoding.UTF8;
+        Stream stream = null;
+        StreamReader reader = null;
+        stream = rsp.GetResponseStream();
+        reader = new StreamReader(stream, encoding);
+        result = reader.ReadToEnd();
+        if (reader != null) reader.Close();
+        if (stream != null) stream.Close();
+        if (rsp != null) rsp.Close();
+        #endregion
+        return result;
     }
 
     private void InitReview()
