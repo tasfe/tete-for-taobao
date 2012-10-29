@@ -166,9 +166,9 @@ public partial class api_Default : System.Web.UI.Page
     {
         string token = Common.utils.NewRequest("token", Common.utils.RequestType.Form);
 
-        File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), token);
+        //File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), token);
         token = AESencode.DecryptString(token, "tetesoft%&^*%&^*");
-        File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), token);
+        //File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), token);
 
         Response.Write("0");
     }
@@ -188,7 +188,7 @@ public partial class api_Default : System.Web.UI.Page
         string str = string.Empty;
         string msgCount = string.Empty;
         string url = "https://sandbox.itunes.apple.com/verifyReceipt";
-        url = "https://buy.itunes.apple.com/verifyReceipt";
+        //url = "https://buy.itunes.apple.com/verifyReceipt";
         string result = SendPostData(url, data);
         string orderid = Regex.Match(result, @"""original_transaction_id"":""([^""]*)""").Groups[1].ToString();
         string typ = Regex.Match(result, @"""product_id"":""([^""]*)""").Groups[1].ToString();
@@ -214,25 +214,25 @@ public partial class api_Default : System.Web.UI.Page
             }
 
 
-            sql = "SELECT COUNT(*) FROM HuliBuyLog WHERE orderid = '" + orderid + "'";
-            string count = Common.utils.ExecuteString(sql);
-            if (count == "0")
-            {
-                sql = "INSERT INTO HuliBuyLog (token, adddate, typ, orderid, count) VALUES ('" + token + "',GETDATE(),'" + typ + "','" + orderid + "','" + msgCount + "')";
-                Common.utils.ExecuteNonQuery(sql);
+            //sql = "SELECT COUNT(*) FROM HuliBuyLog WHERE orderid = '" + orderid + "'";
+            //string count = Common.utils.ExecuteString(sql);
+            //if (count == "0")
+            //{
+                //sql = "INSERT INTO HuliBuyLog (token, adddate, typ, orderid, count) VALUES ('" + token + "',GETDATE(),'" + typ + "','" + orderid + "','" + msgCount + "')";
+                //Common.utils.ExecuteNonQuery(sql);
 
-                //加短信
-                sql = "UPDATE [TeteUserToken] SET total = total + " + msgCount + " WHERE token = '" + token + "' AND nick = 'huli'";
-                Common.utils.ExecuteNonQuery(sql);
+                ////加短信
+                //sql = "UPDATE [TeteUserToken] SET total = total + " + msgCount + " WHERE token = '" + token + "' AND nick = 'huli'";
+                //Common.utils.ExecuteNonQuery(sql);
 
-                str = "{\"result\":\"" + msgCount + "\",\"orderid\":\"" + orderid + "\"}";
+            str = "{\"typ\":\"" + typ + "\",\"orderid\":\"" + orderid + "\"}";
                 Response.Write(str);
-            }
-            else
-            {
-                str = "{\"result\":\"0\"}";
-                Response.Write(str);
-            }
+            //}
+            //else
+            //{
+            //    str = "{\"result\":\"0\"}";
+            //    Response.Write(str);
+            //}
         }
         else
         {
