@@ -166,6 +166,8 @@ public partial class api_Default : System.Web.UI.Page
     {
         string token = Common.utils.NewRequest("token", Common.utils.RequestType.Form);
 
+        token = AESencode.DecryptString(token, "tetesoft%&^*%&^*");
+
         Response.Write("0");
     }
 
