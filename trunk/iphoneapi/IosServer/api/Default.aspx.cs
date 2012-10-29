@@ -164,10 +164,7 @@ public partial class api_Default : System.Web.UI.Page
 
     private void GetEncodeToken()
     {
-        //string keyword = "tetesoft%&^*%&^*";
         string token = Common.utils.NewRequest("token", Common.utils.RequestType.Form);
-        string keyword1 = "tetesoft%&^*%&^*";
-        //string code = AESencode.DecryptString(token, "tetesoft%&^*%&^*");
 
         Response.Write("0");
     }
