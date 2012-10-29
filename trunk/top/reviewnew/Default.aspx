@@ -150,10 +150,14 @@ h4 a {
 <a href= 'http://fuwu.taobao.com/ser/detail.htm?service_code=ts-28184&from=haoping' target="_blank"><img alt='掌柜帮' border=0 src='http://img04.taobaocdn.com/imgextra/i4/62192401/T29NXwXXBNXXXXXXXX_!!62192401.png' /></a>
 
  <a href= 'http://fuwu.taobao.com/ser/detail.htm?service_id=17458&from=haoping' target="_blank"><img alt='淘名片' border=0 src='http://img03.taobaocdn.com/imgextra/i3/749864544/T2C09gXXpbXXXXXXXX_!!749864544.png' /></a>
-
+ 
  <a href= 'http://fuwu.taobao.com/ser/detail.htm?service_code=appstore-21767&from=haoping' target="_blank"><img alt='天天旺' border=0 src='http://img.taobaocdn.com/sns_logo/i1/T1bfqWXiddXXaCwpjX.png_80x80.jpg' /></a>
  
  <a href= 'http://fuwu.taobao.com/ser/detail.htm?service_code=ts-19158&tracelog=haopingyouli' target="_blank"><img alt='订单透视' border=0 src='http://img02.taobaocdn.com/imgextra/i2/380087440/T2TBV3Xd8cXXXXXXXX_!!380087440.png' /></a>
+
+ <a href= 'http://fuwu.taobao.com/ser/detail.htm?service_code=appstore-9860&from=haoping' target="_blank"><img alt='数宝网店掌柜' border=0 src='http://img01.taobaocdn.com/top/i1/T1w49nXnJYXXb1upjX.jpg' /></a>
+ 
+ <a href= 'http://fuwu.taobao.com/ser/detail.htm?service_code=ts-12309&from=haoping' target="_blank"><img alt='订单透视' border=0 src='http://img01.taobaocdn.com/top/i1/T1y1GmXkRCXXb1upjX.jpg' /></a>
 
   </div>
 
