@@ -301,7 +301,7 @@ public partial class api_Default : System.Web.UI.Page
         string typ = Common.utils.NewRequest("typ", Common.utils.RequestType.QueryString);
         string sql = string.Empty;
 
-        if (typ != "")
+        if (typ == "")
         {
             typ = "tdr";
         }
