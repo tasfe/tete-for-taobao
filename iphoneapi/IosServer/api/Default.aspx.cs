@@ -297,7 +297,7 @@ public partial class api_Default : System.Web.UI.Page
     private void GetToken()
     {
         string usertoken = Common.utils.NewRequest("usertoken", Common.utils.RequestType.Form);
-        string usertoken1 = Common.utils.NewRequest("token", Common.utils.RequestType.Form);
+        string usertoken1 = Common.utils.NewRequest("token", Common.utils.RequestType.QueryString);
         string alerttoken = Common.utils.NewRequest("alerttoken", Common.utils.RequestType.QueryString);
         string typ = Common.utils.NewRequest("typ", Common.utils.RequestType.QueryString);
         string sql = string.Empty;
