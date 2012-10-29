@@ -164,9 +164,9 @@ public partial class api_Default : System.Web.UI.Page
 
     private void GetEncodeToken()
     {
-        string key = "tetesoft%&^*%&^*";
-        string token = Common.utils.NewRequest("token", Common.utils.RequestType.Form);
-        File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), token);
+        //string key = "tetesoft%&^*%&^*";
+        //string token = Common.utils.NewRequest("token", Common.utils.RequestType.Form);
+        //File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), token);
         //string code = AESencode.DecryptString(token, "tetesoft%&^*%&^*");
 
         Response.Write("0");
