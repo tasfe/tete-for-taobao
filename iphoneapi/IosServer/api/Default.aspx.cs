@@ -225,7 +225,7 @@ public partial class api_Default : System.Web.UI.Page
                 //sql = "UPDATE [TeteUserToken] SET total = total + " + msgCount + " WHERE token = '" + token + "' AND nick = 'huli'";
                 //Common.utils.ExecuteNonQuery(sql);
 
-            str = "{\"typ\":\"" + typ + "\",\"orderid\":\"" + orderid + "\"}";
+                str = "{\"result\":\"1\"}";
                 Response.Write(str);
             //}
             //else
