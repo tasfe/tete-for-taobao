@@ -195,11 +195,13 @@ public partial class api_Default : System.Web.UI.Page
                 {
                     //如果超过7天
                     Response.Write("1");
+                    return;
                 }
                 else
                 {
                     //如果没超过7天
                     Response.Write("0");
+                    return;
                 }
             }
         }
@@ -328,7 +330,6 @@ public partial class api_Default : System.Web.UI.Page
                 Common.utils.ExecuteNonQuery(sql);
             }
         }
-
 
         Response.Write("http://free.7fshop.com");
         Response.End();
