@@ -9,6 +9,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Net;
 using System.Text;
+using System.Data;
 
 public partial class api_Default : System.Web.UI.Page
 {
@@ -165,12 +166,44 @@ public partial class api_Default : System.Web.UI.Page
     private void GetEncodeToken()
     {
         string token = Common.utils.NewRequest("token", Common.utils.RequestType.Form);
-
-        //File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), token);
         token = AESencode.DecryptString(token, "tetesoft%&^*%&^*");
-        //File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), token);
 
-        Response.Write("0");
+        string sql = "SELECT * FROM APS_Token WHERE token = '" + token + "'";
+        DataTable dt = Common.utils.ExecuteDataTable(sql);
+        if (dt.Rows.Count != 0)
+        {
+            //如果是已经购买直接返回
+            if (dt.Rows[0]["isbuy"].ToString() == "1")
+            {
+                Response.Write("0");
+                return;
+            }
+
+            if (dt.Rows[0]["firstdate"] == DBNull.Value)
+            {
+                //如果时间不存在则加入时间
+                sql = "UPDATE APS_Token SET firstdate = GETDATE() WHERE token = '" + token + "'";
+                Common.utils.ExecuteNonQuery(sql);
+                Response.Write("0");
+                return;
+            }
+            else
+            {
+                //如果时间存在则判断是否超过7天
+                if (DateTime.Parse(dt.Rows[0]["firstdate"].ToString()) < DateTime.Now.AddDays(-7))
+                {
+                    //如果超过7天
+                    Response.Write("1");
+                }
+                else
+                {
+                    //如果没超过7天
+                    Response.Write("0");
+                }
+            }
+        }
+
+        Response.Write("1");
     }
 
 
@@ -196,43 +229,25 @@ public partial class api_Default : System.Web.UI.Page
 
         if (status == "0")
         {
-            if (typ == "com.coco.sms_10")
+            sql = "SELECT COUNT(*) FROM APS_BuyLog WHERE token = '" + token + "'";
+            string count = Common.utils.ExecuteString(sql);
+            if (count == "0")
             {
-                msgCount = "20";
-            }
-            if (typ == "com.coco.sms_25")
-            {
-                msgCount = "50";
-            }
-            if (typ == "com.coco.sms_80")
-            {
-                msgCount = "160";
-            }
-            if (typ == "com.coco.sms_200")
-            {
-                msgCount = "400";
-            }
+                sql = "INSERT INTO APS_BuyLog (token, adddate, typ, orderid) VALUES ('" + token + "',GETDATE(),'" + typ + "','" + orderid + "')";
+                Common.utils.ExecuteNonQuery(sql);
 
-
-            //sql = "SELECT COUNT(*) FROM HuliBuyLog WHERE orderid = '" + orderid + "'";
-            //string count = Common.utils.ExecuteString(sql);
-            //if (count == "0")
-            //{
-                //sql = "INSERT INTO HuliBuyLog (token, adddate, typ, orderid, count) VALUES ('" + token + "',GETDATE(),'" + typ + "','" + orderid + "','" + msgCount + "')";
-                //Common.utils.ExecuteNonQuery(sql);
-
-                ////加短信
-                //sql = "UPDATE [TeteUserToken] SET total = total + " + msgCount + " WHERE token = '" + token + "' AND nick = 'huli'";
-                //Common.utils.ExecuteNonQuery(sql);
+                //加短信
+                sql = "UPDATE [APS_Token] SET isbuy = 1 WHERE token = '" + token + "' AND typ = 'tjl'";
+                Common.utils.ExecuteNonQuery(sql);
 
                 str = "{\"result\":\"1\"}";
                 Response.Write(str);
-            //}
-            //else
-            //{
-            //    str = "{\"result\":\"0\"}";
-            //    Response.Write(str);
-            //}
+            }
+            else
+            {
+                str = "{\"result\":\"-1\"}";
+                Response.Write(str);
+            }
         }
         else
         {
@@ -290,12 +305,27 @@ public partial class api_Default : System.Web.UI.Page
         {
             typ = "tdr";
         }
-        
-        
-        sql = "INSERT INTO APS_Token (token) VALUES ()";
-        
 
-        //File.WriteAllText(Server.MapPath("token.txt"), usertoken + "|" + alerttoken + "|" + Request.Url.ToString());
+        if (alerttoken != "")
+        {
+            sql = "UPDATE APS_Token SET alerttoken = '" + alerttoken + "' WHERE token = '" + usertoken + "' AND typ = '" + typ + "'";
+            Common.utils.ExecuteNonQuery(sql);
+        }
+        else
+        {
+            sql = "SELECT COUNT(*) FROM APS_Token WHERE token = '" + usertoken + "' AND typ = '" + typ + "'";
+            string count = Common.utils.ExecuteString(sql);
+            if (count == "0")
+            {
+                sql = "INSERT INTO APS_Token (token, typ) VALUES ('" + usertoken + "', '" + typ + "')";
+                Common.utils.ExecuteNonQuery(sql);
+            }
+            else
+            {
+                sql = "UPDATE APS_Token SET updatedate = GETDATE(),logintimes = logintimes + 1 WHERE token = '" + usertoken + "' AND typ = '" + typ + "'";
+                Common.utils.ExecuteNonQuery(sql);
+            }
+        }
 
         Response.Write("http://free.7fshop.com");
         Response.End();
