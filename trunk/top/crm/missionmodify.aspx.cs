@@ -31,6 +31,12 @@ public partial class top_crm_missionmodify : System.Web.UI.Page
     public string senddate = string.Empty;
     public string index = string.Empty;
 
+    public string startsend = string.Empty;
+    public string endsend = string.Empty;
+    public string price = string.Empty;
+    public string ispayone = string.Empty;
+    public string isclose = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         Common.Cookie cookie = new Common.Cookie();
@@ -39,7 +45,6 @@ public partial class top_crm_missionmodify : System.Web.UI.Page
         string iscrm = cookie.getCookie("iscrm");
         Rijndael_ encode = new Rijndael_("tetesoft");
         nick = encode.Decrypt(taobaoNick);
-
 
         //过期判断
         if (string.IsNullOrEmpty(taobaoNick))
@@ -86,7 +91,21 @@ public partial class top_crm_missionmodify : System.Web.UI.Page
             timecount = dt.Rows[0]["timecount"].ToString();
             senddate = dt.Rows[0]["senddate"].ToString();
             index = gettyp(dt.Rows[0]["typ"].ToString());
+
+            startsend = dt.Rows[0]["startsend"].ToString();
+            endsend = dt.Rows[0]["endsend"].ToString();
+            price = dt.Rows[0]["price"].ToString();
+            ispayone = dt.Rows[0]["ispayone"].ToString();
+            isclose = dt.Rows[0]["isclose"].ToString();
         }
+    }
+
+    public static string getcheck(string str)
+    {
+        if (str == "1")
+            return "checked";
+        else
+            return "";
     }
 
     public static string gettypinfo(string grade)
