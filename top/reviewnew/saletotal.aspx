@@ -24,17 +24,17 @@
     </ul>
   </div>
     <div id="main-content" style="font-size:16px;">
-        好评有礼送出的优惠券共为您带来了<span style="color:red; font-weight:bold; font-size:24px;"><%=totalcount %></span>个二次销售，总金额为<span style="color:red; font-weight:bold; font-size:24px;">￥<%=totalprice %></span>。<br />
+        好评有礼送出的优惠券共为您带来了<%=totalcount %>个二次销售，总金额为<%=totalprice %>。<br />
 
         <a href='salelist.aspx'>点击查看详细清单</a>
         <hr />
         
-        包邮卡共为您带来了<span style="color:red; font-weight:bold; font-size:24px;"><%=totalcount1 %></span>个二次销售，总金额为<span style="color:red; font-weight:bold; font-size:24px;">￥<%=totalprice1 %></span>。<br />
+        包邮卡共为您带来了<%=totalcount1 %>个二次销售，总金额为<%=totalprice1 %>。<br />
 
         <a href='salelistfreecard.aspx'>点击查看详细清单</a> | <a href='../freecard/freecardadd.aspx'>立即使用</a>
         <hr />
         
-        催单短信共为您带来了<span style="color:red; font-weight:bold; font-size:24px;"><%=totalcount2 %></span>个销售，总金额为<span style="color:red; font-weight:bold; font-size:24px;">￥<%=totalprice2 %></span>。<br />
+        催单短信共为您带来了<%=totalcount2 %>个销售，总金额为<%=totalprice2 %>。<br />
 
         <a href='salelistcui.aspx'>点击查看详细清单</a> | <a href='../crm/missionadd.aspx'>立即使用</a>
     </div>
