@@ -24,7 +24,7 @@
     </ul>
   </div>
     <div id="main-content" style="font-size:20px;">
-        好评有礼送出的优惠券共为您带来了<%=totalcount %>个二次销售，总金额为<%=totalprice %>。<br />
+        好评有礼送出的优惠券共为您带来了<span style="color:red; font-weight:bold; font-size:24px;"><%=totalcount %></span>个二次销售，总金额为<span style="color:red; font-weight:bold; font-size:24px;"><%=totalprice %></span>。<br />
 
         <a href='salelist.aspx'>点击查看详细清单</a>
         <hr />
