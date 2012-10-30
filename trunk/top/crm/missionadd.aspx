@@ -92,7 +92,7 @@
                 <tr>
                     <td align="left" height="30">订单满足金额才发：</td>
                     <td>
-                        <input name="cuidate" type="text" value="0" size="4" />元 （这里写0为不限制订单金额）
+                        <input name="price" type="text" value="0" size="4" />元 （这里写0为不限制订单金额）
                     </td>
                 </tr>
                 <tr>
