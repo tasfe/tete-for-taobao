@@ -78,9 +78,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="left" height="30">延迟发送时间：</td>
+                    <td align="left" height="30">发送条件：</td>
                     <td>
-                        <input name="cuidate" type="text" value="60" size="4" />分钟
+                        买家拍下商品后<input name="cuidate" type="text" value="60" size="4" />分钟内不付款则发送
                     </td>
                 </tr>
                 <tr>
