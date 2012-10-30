@@ -84,8 +84,8 @@ public partial class top_reviewnew_saletotal : System.Web.UI.Page
         if (totalprice1.Length == 0) totalprice1 = "0";
         if (totalprice2.Length == 0) totalprice2 = "0";
 
-        totalprice = Math.Round(decimal.Parse(totalprice), 2).ToString();
-        totalprice1 = Math.Round(decimal.Parse(totalprice1), 2).ToString();
-        totalprice2 = Math.Round(decimal.Parse(totalprice2), 2).ToString();
+        totalprice = Math.Round(decimal.Parse(totalprice), 2).ToString("0.00");
+        totalprice1 = Math.Round(decimal.Parse(totalprice1), 2).ToString("0.00");
+        totalprice2 = Math.Round(decimal.Parse(totalprice2), 2).ToString("0.00");
     }
 }
