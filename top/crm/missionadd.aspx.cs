@@ -120,6 +120,14 @@ public partial class top_crm_missionadd : System.Web.UI.Page
         string isstop = utils.NewRequest("isstop", utils.RequestType.Form);
         string sendnow = utils.NewRequest("sendnow", utils.RequestType.Form);
 
+        //新增催单短信判定
+        string startsend = utils.NewRequest("startsend", utils.RequestType.Form);
+        string endsend = utils.NewRequest("endsend", utils.RequestType.Form);
+        string price = utils.NewRequest("price", utils.RequestType.Form);
+        string ispayone = utils.NewRequest("ispayone", utils.RequestType.Form);
+        string isclose = utils.NewRequest("isclose", utils.RequestType.Form);
+
+
         //判断是否有同类型活动
         sql = "SELECT COUNT(*) FROM TCS_Mission WHERE nick = '" + nick + "' AND typ = '" + typ + "' AND grade = '" + groupguid + "' AND isdel = 0";
         string count = utils.ExecuteString(sql);
@@ -149,7 +157,7 @@ public partial class top_crm_missionadd : System.Web.UI.Page
                     return;
                 }
 
-                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade, timecount,isstop) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + cuicontent + "','" + group + "','" + cuidate + "','" + isstop + "')";
+                sql = "INSERT INTO TCS_Mission (guid, nick, typ, content, grade, timecount,isstop,startsend,endsend,price,ispayone,isclose) VALUES ('" + guid + "','" + nick + "','" + typ + "','" + cuicontent + "','" + group + "','" + cuidate + "','" + isstop + "','" + startsend + "','" + endsend + "','" + price + "','" + ispayone + "','" + isclose + "')";
                 break;
             case "birthday":
                 if (birthdaycontent.Length == 0)
