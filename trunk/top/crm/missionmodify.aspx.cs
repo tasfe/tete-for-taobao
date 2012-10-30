@@ -146,10 +146,16 @@ public partial class top_crm_missionmodify : System.Web.UI.Page
         string isstop = utils.NewRequest("isstop", utils.RequestType.Form);
         string sql = string.Empty;
 
+        string startsend = utils.NewRequest("startsend", utils.RequestType.Form);
+        string endsend = utils.NewRequest("endsend", utils.RequestType.Form);
+        string price = utils.NewRequest("price", utils.RequestType.Form);
+        string ispayone = utils.NewRequest("ispayone", utils.RequestType.Form);
+        string isclose = utils.NewRequest("isclose", utils.RequestType.Form);
+
         switch (typ)
         {
             case "unpay":
-                sql = "UPDATE TCS_Mission SET typ = '" + typ + "',content = '" + cuicontent + "',timecount = '" + cuidate + "',isstop = '" + isstop + "' WHERE nick = '" + nick + "' AND guid = '" + id + "'";
+                sql = "UPDATE TCS_Mission SET typ = '" + typ + "',content = '" + cuicontent + "',timecount = '" + cuidate + "',isstop = '" + isstop + "',startsend = '" + startsend + "',endsend = '" + endsend + "',price = '" + price + "',ispayone = '" + ispayone + "',isclose = '" + isclose + "' WHERE nick = '" + nick + "' AND guid = '" + id + "'";
                 break;
             case "birthday":
                 sql = "UPDATE TCS_Mission SET typ = '" + typ + "',content = '" + birthdaycontent + "',isstop = '" + isstop + "' WHERE nick = '" + nick + "' AND guid = '" + id + "'";
