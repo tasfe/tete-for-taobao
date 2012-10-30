@@ -37,7 +37,7 @@
 
         <table width="100%">
             <tr>
-                <td align="left" width="85">任务类型：</td>
+                <td align="left" width="120">任务类型：</td>
                 <td>
                     <select name="typ" id="typ" onchange="InitHiddenArea(this)">
                         <option value="unpay">未付款订单催单</option>
@@ -99,7 +99,7 @@
                     <td align="left" height="30">其他：</td>
                     <td>
                         <input type="checkbox" name="ispayone" id="payone" value="1" />
-                        <label for="payone">同一天拍下多款宝贝只要付款一个其他订单就不发催单</label> <br />
+                        <label for="payone">一天拍下多款宝贝只要付款一个其他订单就不发短信</label> <br />
                         <input type="checkbox" name="isclose" id="close" value="1" />
                         <label for="close">关闭交易的订单不发送催单短信</label> <br />
                     </td>
