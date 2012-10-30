@@ -87,5 +87,9 @@ public partial class top_reviewnew_saletotal : System.Web.UI.Page
         if (totalprice != "0") totalprice = "<span style=\"color:red; font-weight:bold; font-size:24px;\">￥" + Math.Round(decimal.Parse(totalprice), 2).ToString("0.00") + "</span>";
         if (totalprice1 != "0") totalprice1 = "<span style=\"color:red; font-weight:bold; font-size:24px;\">￥" + Math.Round(decimal.Parse(totalprice1), 2).ToString("0.00") + "</span>";
         if (totalprice2 != "0") totalprice2 = "<span style=\"color:red; font-weight:bold; font-size:24px;\">￥" + Math.Round(decimal.Parse(totalprice2), 2).ToString("0.00") + "</span>";
+
+        if (totalcount != "0") totalcount = "<span style=\"color:red; font-weight:bold; font-size:24px;\">" + totalcount + "</span>";
+        if (totalcount1 != "0") totalcount1 = "<span style=\"color:red; font-weight:bold; font-size:24px;\">" + totalcount1 + "</span>";
+        if (totalcount2 != "0") totalcount2 = "<span style=\"color:red; font-weight:bold; font-size:24px;\">" + totalcount2 + "</span>";
     }
 }
