@@ -86,7 +86,7 @@
                 <tr>
                     <td align="left" height="30">短信发送时间：</td>
                     <td>
-                        从<input name="startsend" type="text" value="10" size="4" />点-<input name="endsend" type="text" value="23" size="4" />点
+                        从<input name="startsend" type="text" value="10" size="3" />点-<input name="endsend" type="text" value="23" size="3" />点
                     </td>
                 </tr>
                 <tr>
