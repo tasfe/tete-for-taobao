@@ -83,6 +83,27 @@
                         <input name="cuidate" type="text" value="60" size="4" />分钟
                     </td>
                 </tr>
+                <tr>
+                    <td align="left" height="30">短信发送时间：</td>
+                    <td>
+                        从<input name="startsend" type="text" value="10" size="4" />点-<input name="endsend" type="text" value="23" size="4" />点
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" height="30">订单满足金额才发：</td>
+                    <td>
+                        <input name="cuidate" type="text" value="0" size="4" />元 （这里写0为不限制订单金额）
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" height="30">其他：</td>
+                    <td>
+                        <input type="checkbox" name="ispayone" id="payone" value="1" />
+                        <label for="payone">同一天拍下多款宝贝只要付款一个其他订单就不发催单</label> <br />
+                        <input type="checkbox" name="isclose" id="close" value="1" />
+                        <label for="close">关闭交易的订单不发送催单短信</label> <br />
+                    </td>
+                </tr>
             </table>
             </div>
             
