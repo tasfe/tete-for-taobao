@@ -91,13 +91,13 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         {
             left += ",price";
             right += ",'" + price + "'";
-            condition += " AND tradeamount >= '" + price + "'";
+            condition += " AND Convert(decimal,tradeamount) >= '" + price + "'";
         }
         if (priceend.Length != 0)
         {
             left += ",priceend";
             right += ",'" + priceend + "'";
-            condition += " AND tradeamount <= '" + priceend + "'";
+            condition += " AND Convert(decimal,tradeamount) <= '" + priceend + "'";
         }
 
         left += ",arealist";
@@ -124,6 +124,10 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         sql = "INSERT INTO TCS_Group (" + left + ") VALUES (" + right + ")";
         Response.Write(sql);
         Response.Write("<br>");
+        utils.ExecuteNonQuery(sql);
+
+        //更新价格为空的会员为价格0
+        sql = "UPDATE TCS_Customer SET tradeamount = '0' WHERE tradeamount = '' AND nick = '" + nick + "'";
         utils.ExecuteNonQuery(sql);
 
         //获取符合条件的会员并更新会员分组ID
