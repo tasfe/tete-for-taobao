@@ -126,9 +126,15 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         Response.Write("<br>");
         utils.ExecuteNonQuery(sql);
 
-        //更新价格为空的会员为价格0
-        sql = "UPDATE TCS_Customer SET tradeamount = '0' WHERE tradeamount = '' AND nick = '" + nick + "'";
-        utils.ExecuteNonQuery(sql);
+       
+        sql = "SELECT COUNT(*) FROM TCS_Customer WHERE tradeamount = '0' AND nick = '" + nick + "'";
+        string count = utils.ExecuteString(sql);
+        if (count != "0")
+        {
+            //更新价格为空的会员为价格0
+            sql = "UPDATE TCS_Customer SET tradeamount = '0' WHERE tradeamount = '' AND nick = '" + nick + "'";
+            utils.ExecuteNonQuery(sql);
+        }
 
         //获取符合条件的会员并更新会员分组ID
         sql = "UPDATE TCS_Customer SET groupguid = '" + id + "' WHERE nick = '" + nick + "' " + condition;
