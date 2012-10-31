@@ -112,13 +112,13 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         {
             left += ",actdate";
             right += ",'" + actdate + "'";
-            condition += " AND lastorderdate >= '" + actdate + "'";
+            condition += " AND lastorderdate >= " + actdate + "";
         }
         if (actdateend.Length != 0)
         {
             left += ",actdateend";
             right += ",'" + actdateend + "'";
-            condition += " AND lastorderdate <= '" + actdateend + "'";
+            condition += " AND lastorderdate <= " + actdateend + "";
         }
 
         sql = "INSERT INTO TCS_Group (" + left + ") VALUES (" + right + ")";
