@@ -91,13 +91,13 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         {
             left += ",price";
             right += ",'" + price + "'";
-            condition += " AND Convert(decimal,tradeamount) >= " + price + "";
+            condition += " AND Convert(decimal,a.tradeamount) >= " + price + "";
         }
         if (priceend.Length != 0)
         {
             left += ",priceend";
             right += ",'" + priceend + "'";
-            condition += " AND Convert(decimal,tradeamount) <= " + priceend + "";
+            condition += " AND Convert(decimal,a.tradeamount) <= " + priceend + "";
         }
 
         left += ",arealist";
@@ -105,20 +105,20 @@ public partial class top_crm_groupadd : System.Web.UI.Page
 
         if (area.Length > 0)
         {
-            condition += " AND CHARINDEX(REPLACE(sheng,'省',''),'" + area + "') > 0";
+            condition += " AND CHARINDEX(REPLACE(a.sheng,'省',''),'" + area + "') > 0";
         }
 
         if (actdate.Length != 0)
         {
             left += ",actdate";
             right += ",'" + actdate + "'";
-            condition += " AND lastorderdate >= '" + actdate + "'";
+            condition += " AND a.lastorderdate >= '" + actdate + "'";
         }
         if (actdateend.Length != 0)
         {
             left += ",actdateend";
             right += ",'" + actdateend + "'";
-            condition += " AND lastorderdate <= '" + actdateend + "'";
+            condition += " AND a.lastorderdate <= '" + actdateend + "'";
         }
 
         sql = "INSERT INTO TCS_Group (" + left + ") VALUES (" + right + ")";
@@ -136,19 +136,21 @@ public partial class top_crm_groupadd : System.Web.UI.Page
             utils.ExecuteNonQuery(sql);
         }
 
+        condition = @"guid IN (SELECT guid FROM (SELECT * FROM TCS_Customer WHERE nick = 'xiaoqin223') AS a WHERE 1 = 1 " + condition + ")";
+
         //获取符合条件的会员并更新会员分组ID
-        sql = "UPDATE TCS_Customer SET groupguid = '" + id + "' WHERE nick = '" + nick + "' " + condition;
+        sql = "UPDATE TCS_Customer SET groupguid = '" + id + "' WHERE nick = '" + nick + "' AND " + condition;
         Response.Write(sql);
         Response.Write("<br>");
-        utils.ExecuteNonQuery(sql);
+        //utils.ExecuteNonQuery(sql);
 
         //获取总数并更新
         sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TCS_Customer WHERE groupguid = '" + id + "') WHERE guid = '" + id + "'";
         Response.Write(sql);
         Response.Write("<br>");
-        utils.ExecuteNonQuery(sql);
+        //utils.ExecuteNonQuery(sql);
 
-        Response.Redirect("grouplist.aspx");
+        //Response.Redirect("grouplist.aspx");
     }
 
     /// <summary>
