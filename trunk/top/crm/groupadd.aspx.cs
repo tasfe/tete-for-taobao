@@ -142,15 +142,15 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         sql = "UPDATE TCS_Customer SET groupguid = '" + id + "' WHERE nick = '" + nick + "' AND " + condition;
         Response.Write(sql);
         Response.Write("<br>");
-        //utils.ExecuteNonQuery(sql);
+        utils.ExecuteNonQuery(sql);
 
         //获取总数并更新
         sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TCS_Customer WHERE groupguid = '" + id + "') WHERE guid = '" + id + "'";
         Response.Write(sql);
         Response.Write("<br>");
-        //utils.ExecuteNonQuery(sql);
+        utils.ExecuteNonQuery(sql);
 
-        //Response.Redirect("grouplist.aspx");
+        Response.Redirect("grouplist.aspx");
     }
 
     /// <summary>
