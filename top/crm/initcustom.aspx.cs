@@ -124,16 +124,16 @@ public partial class top_crm_initcustom : System.Web.UI.Page
 
                 //Response.Write(nickresult + "<br>");
 
-                //获取会员在本店的订单地址记录
-                param = new Dictionary<string, string>();
-                param.Add("fields", "receiver_name,receiver_state,receiver_city,receiver_district,receiver_address,receiver_mobile");
-                param.Add("nick", nick);
-                param.Add("buyer_nick", buyer_nick);
-                param.Add("page_size", "1");
-                param.Add("start_created", DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd") + " 00:00:00");
-                param.Add("end_created", DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
+                //获取会员在本店的订单地址记录-此接口有调用限制，取消掉导入会员获取地址的功能
+                //param = new Dictionary<string, string>();
+                //param.Add("fields", "receiver_name,receiver_state,receiver_city,receiver_district,receiver_address,receiver_mobile");
+                //param.Add("nick", nick);
+                //param.Add("buyer_nick", buyer_nick);
+                //param.Add("page_size", "1");
+                //param.Add("start_created", DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd") + " 00:00:00");
+                //param.Add("end_created", DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
 
-                nickresult = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.trades.sold.get", session, param);
+                //nickresult = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.trades.sold.get", session, param);
 
                 string receiver_name = GetValueByProperty(nickresult, "receiver_name");
                 string receiver_state = GetValueByProperty(nickresult, "receiver_state");
