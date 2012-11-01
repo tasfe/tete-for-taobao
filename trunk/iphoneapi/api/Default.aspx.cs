@@ -613,93 +613,134 @@ public partial class api_Default : System.Web.UI.Page
         string str = string.Empty;
         string con = string.Empty;
 
-        int pageNow = 1;
-        if (page == "")
+        if (uid == "taobao1")
         {
-            pageNow = 1;
-        }
-        else
-        {
-            pageNow = int.Parse(page);
-        }
+            //直接查询淘宝客
+            string appkey = "21088121";
+            string secret = "f115a6790148d314cf3214aa029f7eda";
 
-        int pageSizeNow = 20;
-        if (pagesize == "")
-        {
-            pageSizeNow = 20;
-        }
-        else
-        {
-            pageSizeNow = int.Parse(pagesize);
-        }
-        int pageCount = pageSizeNow;
-        int dataCount = (pageNow - 1) * pageCount;
-
-
-        if (cid.Length == 0)
-        {
-            sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1";
-}
-        else
-        {
-
-            sql = "SELECT * FROM TeteShopCategory WHERE parentid = '" + cid + "'";
-            DataTable dt1 = utils.ExecuteDataTable(sql);
-            con = "(1 = 2";
-            for (int i = 0; i < dt1.Rows.Count; i++)
+            if (page == "")
             {
-                con += " OR CHARINDEX('" + dt1.Rows[i]["cateid"].ToString() + "', cateid) > 0";
+                page = "1";
             }
-            con += " OR CHARINDEX('" + cid + "', cateid) > 0)";
 
-            sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1 AND " + con + "";
-        }
-        int totalCount = int.Parse(utils.ExecuteString(sql));
-        int totalPageCount = 1;
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            param.Add("fields", "num_iid,title,pic_url,click_url");
+            param.Add("keyword", "淑女 热卖 服饰");
+            param.Add("sort", "commissionNum_desc");
+            param.Add("is_mobile", "true");
+            param.Add("page_no", page);
+            param.Add("page_size", "20");
 
-        if (totalCount % pageCount == 0)
-        {
-            totalPageCount = totalCount / pageCount;
-        }
-        else
-        {
-            totalPageCount = totalCount / pageCount + 1;
-        }
-        
-        if (cid.Length == 0)
-        {
-            sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY orderid) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY orderid";
-        }
-        else
-        {
-            sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY orderid) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1 AND " + con + ") AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY orderid";
-        }
+            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.taobaoke.items.get", "", param);
 
-        DataTable dt = utils.ExecuteDataTable(sql);
-        if (dt.Rows.Count != 0)
-        {
+            Regex reg = new Regex(@"<click_url>([^<]*)</click_url><num_iid>([^<]*)</num_iid><pic_url>([^<]*)</pic_url><title>([^<]*)</title>", RegexOptions.IgnoreCase);
+            MatchCollection match = reg.Matches(result);
+
+
             str = "{\"item\":[";
-            for (int i = 0; i < dt.Rows.Count; i++)
+            for (int i = 0; i < match.Count; i++)
             {
                 if (i != 0)
                 {
                     str += ",";
                 }
 
-                if (uid == "hishop" || uid == "tacera")
-                {
-                    str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
-                }
-                else
-                {
-                    str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "_240x240.jpg\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
-                }
+                str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
+
             }
-            str += "],\"pagenow\":" + page + ",\"total\":" + totalPageCount + "}";
+            str += "],\"pagenow\":" + page + ",\"total\":100}";
         }
         else
         {
-            str = "{\"count\":\"0\"}";
+            int pageNow = 1;
+            if (page == "")
+            {
+                pageNow = 1;
+            }
+            else
+            {
+                pageNow = int.Parse(page);
+            }
+
+            int pageSizeNow = 20;
+            if (pagesize == "")
+            {
+                pageSizeNow = 20;
+            }
+            else
+            {
+                pageSizeNow = int.Parse(pagesize);
+            }
+            int pageCount = pageSizeNow;
+            int dataCount = (pageNow - 1) * pageCount;
+
+
+            if (cid.Length == 0)
+            {
+                sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1";
+            }
+            else
+            {
+
+                sql = "SELECT * FROM TeteShopCategory WHERE parentid = '" + cid + "'";
+                DataTable dt1 = utils.ExecuteDataTable(sql);
+                con = "(1 = 2";
+                for (int i = 0; i < dt1.Rows.Count; i++)
+                {
+                    con += " OR CHARINDEX('" + dt1.Rows[i]["cateid"].ToString() + "', cateid) > 0";
+                }
+                con += " OR CHARINDEX('" + cid + "', cateid) > 0)";
+
+                sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1 AND " + con + "";
+            }
+            int totalCount = int.Parse(utils.ExecuteString(sql));
+            int totalPageCount = 1;
+
+            if (totalCount % pageCount == 0)
+            {
+                totalPageCount = totalCount / pageCount;
+            }
+            else
+            {
+                totalPageCount = totalCount / pageCount + 1;
+            }
+
+            if (cid.Length == 0)
+            {
+                sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY orderid) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY orderid";
+            }
+            else
+            {
+                sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY orderid) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1 AND " + con + ") AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY orderid";
+            }
+
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                str = "{\"item\":[";
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    if (i != 0)
+                    {
+                        str += ",";
+                    }
+
+                    if (uid == "hishop" || uid == "tacera")
+                    {
+                        str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
+                    }
+                    else
+                    {
+                        str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "_240x240.jpg\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
+                    }
+                }
+                str += "],\"pagenow\":" + page + ",\"total\":" + totalPageCount + "}";
+            }
+            else
+            {
+                str = "{\"count\":\"0\"}";
+            }
         }
 
         Response.Write(str);
