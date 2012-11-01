@@ -41,11 +41,6 @@ public partial class PageVisitTotal : BasePage
         }
     }
 
-    protected string GetLastMonth
-    {
-        get { return DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd HH:mm:ss"); }
-    }
-
     private void Bind(DateTime start, DateTime end)
     {
         int TotalCount = 0;//总记录数
