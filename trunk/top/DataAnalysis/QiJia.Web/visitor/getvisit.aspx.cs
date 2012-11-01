@@ -17,6 +17,21 @@ public partial class visitor_getvisit : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            string id = Request.QueryString["id"];
+            if (string.IsNullOrEmpty(id))
+            {
+                Response.Write("请传入id");
+                Response.End();
+                return;
+            }
+            int s;
+            if (!int.TryParse(id, out s))
+            {
+                Response.Write("id不合法");
+                Response.End();
+                return;
+            }
+
             string refer = Request.QueryString["lasturl"];
 
             InsertInfo(CreateVisitInfo(refer));
