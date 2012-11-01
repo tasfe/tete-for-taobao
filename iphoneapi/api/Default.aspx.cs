@@ -862,56 +862,75 @@ public partial class api_Default : System.Web.UI.Page
         con += " OR CHARINDEX('" + cid + "', cateid) > 0)";
 
 
-
-        sql = "SELECT TOP 5 * FROM TeteShopItem WHERE isnew = 1 AND nick = '" + uid + "' AND " + con + " ORDER BY orderid";
-        //Response.Write(sql);
-        //sql = "SELECT * FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
-        DataTable dt = utils.ExecuteDataTable(sql);
-        if (dt.Rows.Count != 0)
+        if (uid == "taobao1")
         {
-            str = "{\"new\":[";
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                if (i != 0)
-                {
-                    str += ",";
-                }
+            //直接查询淘宝客
+            string appkey = "21088121";
+            string secret = "f115a6790148d314cf3214aa029f7eda";
 
-                if (uid == "hishop" || uid == "tacera")
-                {
-                    str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
-                }
-                else
-                {
-                    str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "_240x240.jpg\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
-                }
-            }
-            str += "]";
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            param.Add("keyword", "淑女 大衣");
+            param.Add("sort", "commissionNum_desc");
+            param.Add("is_mobile", "true");
+            param.Add("page_size", "7");
 
-            str += ",\"hot\":[";
-            //sql = "SELECT TOP 2 * FROM TeteShopItem WHERE nick = '" + uid + "' AND " + con + " ORDER BY price DESC";
-            //dt = utils.ExecuteDataTable(sql);
-            for (int i = 3; i < dt.Rows.Count; i++)
-            {
-                if (i != 3)
-                {
-                    str += ",";
-                }
+            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.taobaoke.items.get", "", param);
 
-                if (uid == "hishop" || uid == "tacera")
-                {
-                    str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
-                }
-                else
-                {
-                    str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "_240x240.jpg\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
-                }
-            }
-            str += "]}";
+            Response.Write(result);
+
         }
         else
         {
-            str = "{\"count\":\"0\"}";
+            sql = "SELECT TOP 5 * FROM TeteShopItem WHERE isnew = 1 AND nick = '" + uid + "' AND " + con + " ORDER BY orderid";
+            //Response.Write(sql);
+            //sql = "SELECT * FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                str = "{\"new\":[";
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    if (i != 0)
+                    {
+                        str += ",";
+                    }
+
+                    if (uid == "hishop" || uid == "tacera")
+                    {
+                        str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
+                    }
+                    else
+                    {
+                        str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "_240x240.jpg\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
+                    }
+                }
+                str += "]";
+
+                str += ",\"hot\":[";
+                //sql = "SELECT TOP 2 * FROM TeteShopItem WHERE nick = '" + uid + "' AND " + con + " ORDER BY price DESC";
+                //dt = utils.ExecuteDataTable(sql);
+                for (int i = 3; i < dt.Rows.Count; i++)
+                {
+                    if (i != 3)
+                    {
+                        str += ",";
+                    }
+
+                    if (uid == "hishop" || uid == "tacera")
+                    {
+                        str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
+                    }
+                    else
+                    {
+                        str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "_240x240.jpg\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
+                    }
+                }
+                str += "]}";
+            }
+            else
+            {
+                str = "{\"count\":\"0\"}";
+            }
         }
 
         //File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), Request.Url.ToString());
