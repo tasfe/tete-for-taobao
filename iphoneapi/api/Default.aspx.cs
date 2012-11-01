@@ -970,7 +970,7 @@ public partial class api_Default : System.Web.UI.Page
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count != 0)
             {
-                str = "{\"item\":[";
+                str = "{\"new\":[";
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     if (i != 0)
@@ -987,6 +987,20 @@ public partial class api_Default : System.Web.UI.Page
                         str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "_240x240.jpg\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
                     }
                 }
+                str += "]";
+
+                str += ",\"hot\":[";
+
+                for (int i = 3; i < dt.Rows.Count; i++)
+                {
+                    if (i != 3)
+                    {
+                        str += ",";
+                    }
+
+                    str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "_240x240.jpg\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
+                }
+
                 str += "]}";
             }
             else
