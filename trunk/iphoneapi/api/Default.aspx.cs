@@ -869,6 +869,7 @@ public partial class api_Default : System.Web.UI.Page
             string secret = "f115a6790148d314cf3214aa029f7eda";
 
             IDictionary<string, string> param = new Dictionary<string, string>();
+            param.Add("fields", "title,pic_url,click_url");
             param.Add("keyword", "淑女 大衣");
             param.Add("sort", "commissionNum_desc");
             param.Add("is_mobile", "true");
