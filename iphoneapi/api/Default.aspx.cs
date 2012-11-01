@@ -737,8 +737,8 @@ public partial class api_Default : System.Web.UI.Page
             MatchCollection match = reg.Matches(result);
 
 
-            str = "{\"new\":[";
-            for (int i = 0; i < 3; i++)
+            str = "{\"item\":[";
+            for (int i = 0; i < match.Count; i++)
             {
                 if (i != 0)
                 {
@@ -747,20 +747,6 @@ public partial class api_Default : System.Web.UI.Page
 
                 str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
 
-            }
-            str += "]";
-
-            str += ",\"hot\":[";
-            //sql = "SELECT TOP 2 * FROM TeteShopItem WHERE nick = '" + uid + "' AND " + con + " ORDER BY price DESC";
-            //dt = utils.ExecuteDataTable(sql);
-            for (int i = 3; i < 5; i++)
-            {
-                if (i != 3)
-                {
-                    str += ",";
-                }
-
-                str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
             }
             str += "]}";
         }
