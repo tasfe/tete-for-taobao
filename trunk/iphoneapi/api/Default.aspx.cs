@@ -870,7 +870,26 @@ public partial class api_Default : System.Web.UI.Page
 
             IDictionary<string, string> param = new Dictionary<string, string>();
             param.Add("fields", "num_iid,title,pic_url,click_url");
-            param.Add("keyword", "淑女 大衣");
+            if (cid == "10001")
+            {
+                param.Add("keyword", "淑女 大衣");
+            }
+            if (cid == "10002")
+            {
+                param.Add("keyword", "美鞋 淑女鞋");
+            }
+            if (cid == "10003")
+            {
+                param.Add("keyword", "潮包 淑女包");
+            }
+            if (cid == "10004")
+            {
+                param.Add("keyword", "配饰 淑女配饰");
+            }
+            if (cid == "10005")
+            {
+                param.Add("keyword", "淑女裙 复古裙");
+            }
             param.Add("sort", "commissionNum_desc");
             param.Add("is_mobile", "true");
             param.Add("page_size", "5");
@@ -889,7 +908,7 @@ public partial class api_Default : System.Web.UI.Page
                     str += ",";
                 }
 
-                str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + match[i].Groups[4].ToString() + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
+                str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
                     
             }
             str += "]";
@@ -904,7 +923,7 @@ public partial class api_Default : System.Web.UI.Page
                     str += ",";
                 }
 
-                str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + match[i].Groups[4].ToString() + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
+                str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
             }
             str += "]}";
         }
@@ -912,6 +931,12 @@ public partial class api_Default : System.Web.UI.Page
         Response.Write(str);
     }
 
+    private string ReplaceTitleHtml(string title)
+    {
+        string str = Regex.Replace(title, @"&lt;[^&]*&gt;", "");
+
+        return str;
+    }
 
     private void ShowListInfo()
     {
