@@ -686,7 +686,7 @@ public partial class api_Default : System.Web.UI.Page
                     str += ",";
                 }
 
-                if (uid == "hishop")
+                if (uid == "hishop" || uid == "tacera")
                 {
                     str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
                 }
@@ -784,7 +784,7 @@ public partial class api_Default : System.Web.UI.Page
                 {
                     str += ",";
                 }
-                if (uid == "hishop")
+                if (uid == "hishop" || uid == "tacera")
                 {
                     str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
                 }
@@ -823,7 +823,7 @@ public partial class api_Default : System.Web.UI.Page
                     str += ",";
                 }
 
-                if (uid == "hishop")
+                if (uid == "hishop" || uid == "tacera")
                 {
                     str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
                 }
@@ -877,7 +877,7 @@ public partial class api_Default : System.Web.UI.Page
                     str += ",";
                 }
 
-                if (uid == "hishop")
+                if (uid == "hishop" || uid == "tacera")
                 {
                     str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
                 }
@@ -898,7 +898,7 @@ public partial class api_Default : System.Web.UI.Page
                     str += ",";
                 }
 
-                if (uid == "hishop")
+                if (uid == "hishop" || uid == "tacera")
                 {
                     str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
                 }
@@ -997,7 +997,7 @@ public partial class api_Default : System.Web.UI.Page
                     str += ",";
                 }
 
-                if (uid == "hishop")
+                if (uid == "hishop" || uid == "tacera")
                 {
                     str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
                 }
