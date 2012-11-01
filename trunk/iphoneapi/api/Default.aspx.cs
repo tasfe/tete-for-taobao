@@ -809,34 +809,69 @@ public partial class api_Default : System.Web.UI.Page
         string sql = string.Empty;
         string str = string.Empty;
 
-        sql = "SELECT TOP 5 * FROM TeteShopItem WHERE isnew = 1 AND nick = '" + uid + "' ORDER BY orderid";
-        //Response.Write(sql);
-        //sql = "SELECT * FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
-        DataTable dt = utils.ExecuteDataTable(sql);
-        if (dt.Rows.Count != 0)
+        if (uid == "taobao1")
         {
+            //直接查询淘宝客
+            string appkey = "21088121";
+            string secret = "f115a6790148d314cf3214aa029f7eda";
+
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            param.Add("fields", "num_iid,title,pic_url,click_url");
+            param.Add("keyword", "淑女 服饰");
+            param.Add("sort", "commissionNum_desc");
+            param.Add("is_mobile", "true");
+            param.Add("page_size", "5");
+
+            string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.taobaoke.items.get", "", param);
+
+            Regex reg = new Regex(@"<click_url>([^<]*)</click_url><num_iid>([^<]*)</num_iid><pic_url>([^<]*)</pic_url><title>([^<]*)</title>", RegexOptions.IgnoreCase);
+            MatchCollection match = reg.Matches(result);
+
+
             str = "{\"item\":[";
-            for (int i = 0; i < dt.Rows.Count; i++)
+            for (int i = 0; i < 5; i++)
             {
                 if (i != 0)
                 {
                     str += ",";
                 }
 
-                if (uid == "hishop" || uid == "tacera")
-                {
-                    str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
-                }
-                else
-                {
-                    str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "_240x240.jpg\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
-                }
+                str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
+
             }
             str += "]}";
         }
         else
         {
-            str = "{\"count\":\"0\"}";
+            sql = "SELECT TOP 5 * FROM TeteShopItem WHERE isnew = 1 AND nick = '" + uid + "' ORDER BY orderid";
+            //Response.Write(sql);
+            //sql = "SELECT * FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                str = "{\"item\":[";
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    if (i != 0)
+                    {
+                        str += ",";
+                    }
+
+                    if (uid == "hishop" || uid == "tacera")
+                    {
+                        str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
+                    }
+                    else
+                    {
+                        str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "_240x240.jpg\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
+                    }
+                }
+                str += "]}";
+            }
+            else
+            {
+                str = "{\"count\":\"0\"}";
+            }
         }
 
         Response.Write(str);
@@ -899,7 +934,7 @@ public partial class api_Default : System.Web.UI.Page
             Regex reg = new Regex(@"<click_url>([^<]*)</click_url><num_iid>([^<]*)</num_iid><pic_url>([^<]*)</pic_url><title>([^<]*)</title>", RegexOptions.IgnoreCase);
             MatchCollection match = reg.Matches(result);
 
-        
+
             str = "{\"new\":[";
             for (int i = 0; i < 3; i++)
             {
@@ -909,7 +944,7 @@ public partial class api_Default : System.Web.UI.Page
                 }
 
                 str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
-                    
+
             }
             str += "]";
 
@@ -926,6 +961,38 @@ public partial class api_Default : System.Web.UI.Page
                 str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
             }
             str += "]}";
+        }
+        else
+        {
+            sql = "SELECT TOP 5 * FROM TeteShopItem WHERE isnew = 1 AND nick = '" + uid + "' ORDER BY orderid";
+            //Response.Write(sql);
+            //sql = "SELECT * FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
+            DataTable dt = utils.ExecuteDataTable(sql);
+            if (dt.Rows.Count != 0)
+            {
+                str = "{\"item\":[";
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    if (i != 0)
+                    {
+                        str += ",";
+                    }
+
+                    if (uid == "hishop" || uid == "tacera")
+                    {
+                        str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
+                    }
+                    else
+                    {
+                        str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "_240x240.jpg\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
+                    }
+                }
+                str += "]}";
+            }
+            else
+            {
+                str = "{\"count\":\"0\"}";
+            }
         }
 
         Response.Write(str);
