@@ -1,0 +1,521 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Sites description="需要要采集的网站">
+
+  <Site id="1" url="http://www.mplife.com/dress/designyourself/" name="服饰搭配" encode="utf-8">
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful='href=".*?"'>&lt;div class=\"list_1\"&gt;.*?&lt;div class=\"list_1con\"&gt;</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="index_[0-9]+\.shtml">&lt;div class=\"list_pag\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;h2 class="title"&gt;.*?&lt;/h2&gt;</title>
+      <meta>&lt;meta name=\"keywords\".*?/&gt;</meta>
+      <desc>&lt;meta name=\"description\".*?/&gt;</desc>
+      <content remove='&lt;div class="pic-atlas"&gt;'>(&lt;div class="news-cont"&gt;.*?&lt;/div&gt;)|(&lt;div class="pic-content"&gt;.*?&lt;div class="pic-atlas"&gt;)</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photo">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+
+    <Parmareters>
+      <Parmareter mapxmlname="Page" reflevel="1"></Parmareter>
+    </Parmareters>
+
+  </Site>
+
+  <Site id="2" url="http://fashion.163.com/special/chaodapainew/" name="明星搭配" encode="gb2312">
+
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful='href=".*?"'>&lt;ul class=\"f12bla\"&gt;.*?&lt;/ul&gt;</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="http://fashion.163.com/special/chaodapainew_[0-9]+/">&lt;div class=\"listPages\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;h1 id="h1title"&gt;.*?&lt;/h1&gt;</title>
+      <meta>&lt;meta name=\"keywords\".*?/&gt;</meta>
+      <desc>&lt;meta name=\"description\".*?/&gt;</desc>
+      <content remove="&lt;iframe[^>]*&gt;.*?&lt;/iframe&gt;">&lt;div id="endText"&gt;.*?&lt;/div&gt;</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photo">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+    
+  </Site>
+
+  <Site id="3" url="http://clothing.lady8844.com/streetsnap/japan/" name="韩日服饰" encode="utf-8">
+    
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful="href='.*?'">&lt;dt&gt;.*?&lt;/dt&gt;</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="index_[0-9]+.html">&lt;div id=\"content_pagelist\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;span id="TEXT_TITLE"&gt;.*?&lt;/span&gt;</title>
+      <meta>&lt;meta name='keywords'.*?/&gt;</meta>
+      <desc>&lt;meta name='description'.*?/&gt;</desc>
+      <content>&lt;span id="TEXT_CONTENT" style="margin-top:3px;display:block;"&gt;.*?&lt;/span&gt;</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photo">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+    
+  </Site>
+
+  <Site id="4" url="http://clothing.lady8844.com/clothing/streetsnap/europe/" name="欧美服饰" encode="utf-8">
+
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful="href='.*?'">&lt;dt&gt;.*?&lt;/dt&gt;</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="index_[0-9]+.html">&lt;div id=\"content_pagelist\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;span id="TEXT_TITLE"&gt;.*?&lt;/span&gt;</title>
+      <meta>&lt;meta name='keywords'.*?/&gt;</meta>
+      <desc>&lt;meta name='description'.*?/&gt;</desc>
+      <content>&lt;span id="TEXT_CONTENT" style="margin-top:3px;display:block;"&gt;.*?&lt;/span&gt;</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photo">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+    
+  </Site>
+
+  <Site id="5" url="http://clothing.lady8844.com/streetsnap/china/" name="街头随拍" encode="utf-8">
+
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful="href='.*?'">&lt;dt&gt;.*?&lt;/dt&gt;</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="index_[0-9]+.html">&lt;div id=\"content_pagelist\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;span id="TEXT_TITLE"&gt;.*?&lt;/span&gt;</title>
+      <meta>&lt;meta name='keywords'.*?/&gt;</meta>
+      <desc>&lt;meta name='description'.*?/&gt;</desc>
+      <content>&lt;span id="TEXT_CONTENT" style="margin-top:3px;display:block;"&gt;.*?&lt;/span&gt;</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photo">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+    
+  </Site>
+
+  <Site id="6" url="http://www.mplife.com/dress/clothes/underwear/" name="内衣达人" encode="utf-8">
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful='href=".*?"'>&lt;div class=\"detail\"&gt;.*?&lt;/div&gt;</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="index_[0-9]+\.shtml">&lt;div class=\"list_pag\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title remove='&lt;div class="a_t"&gt;'>(&lt;h2 class="title"&gt;.*?&lt;/h2&gt;)|(&lt;div class="a_t"&gt;.*?&lt;/h1&gt;)</title>
+      <meta>&lt;meta name=\"keywords\".*?/&gt;</meta>
+      <desc>&lt;meta name=\"description\".*?/&gt;</desc>
+      <content remove='(&lt;div class="pic-atlas"&gt;)|(&lt;div class="a_pic"&gt;)'>(&lt;div class="news-cont"&gt;.*?&lt;/div&gt;)|(&lt;div class="pic-content"&gt;.*?&lt;div class="pic-atlas"&gt;)|(&lt;div class="a_c"&gt;.*?&lt;/div&gt;)</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photo">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+
+    <Parmareters>
+      <Parmareter mapxmlname="Page" reflevel="1"></Parmareter>
+    </Parmareters>
+    
+  </Site>
+
+  <Site id="7" url="http://www.efu.com.cn/fashion/cid-125/newslist.htm" name="潮男服饰" encode="utf-8">
+
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful="href='.*?'">&lt;a href='http://www.efu.com.cn/data/[0-9]{4}/[0-9]{4}-[0-9]{2}-[0-9]{2}/[0-9]+\.shtml'.*?&gt;.*?&lt;/a&gt;</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="/fashion/cid-125(/[a-z0-9]+-[a-z0-9]+)+/newslist.htm">&lt;div class=\"formCon\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;h1&gt;.*?&lt;/h1&gt;</title>
+      <meta>&lt;meta name=\"keywords\".*?/&gt;</meta>
+      <desc>&lt;meta name=\"description\".*?/&gt;</desc>
+      <content remove='(&lt;div id="page"&gt;.*?&lt;/div&gt;)|(&lt;div id="source"&gt;)'>&lt;div id="news-text"&gt;.*?&lt;div id="source"&gt;)</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photoOrText">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+
+    <Parmareters>
+      <Parmareter mapxmlname="Page" reflevel="1"></Parmareter>
+    </Parmareters>
+    
+  </Site>
+
+  <Site id="8" url="http://www.mplife.com/shoes/star/" name="鞋包流行" encode="utf-8">
+
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful='href=".*?"'>&lt;div class=\"list_1\"&gt;.*?&lt;div class=\"list_1con\"&gt;</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="index_[0-9]+\.shtml">&lt;div class=\"list_pag\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;h2 class="title"&gt;.*?&lt;/h2&gt;</title>
+      <meta>&lt;meta name=\"keywords\".*?/&gt;</meta>
+      <desc>&lt;meta name=\"description\".*?/&gt;</desc>
+      <content>&lt;div class="news-cont"&gt;.*?&lt;/div&gt;</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photo">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+    
+  </Site>
+
+  <Site id="9" url="http://www.lady8844.com/hufu/mbhl/" name="肌肤保养" encode="utf-8">
+
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful='href=".*?"'>href="http://www.lady8844.com/hufu/mbhl/[0-9]{4}-[0-9]{2}-[0-9]{2}/[0-9a-z]+.html"</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="index_[0-9]+.html">&lt;div class=\"pageClass\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;span id="TEXT_TITLE"&gt;.*?&lt;/span&gt;</title>
+      <meta>&lt;meta name='keywords'.*?/&gt;</meta>
+      <desc>&lt;meta name='description'.*?/&gt;</desc>
+      <content>&lt;span id="TEXT_CONTENT" style="margin-top:3px;display:block;"&gt;.*?&lt;/span&gt;</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photo">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+    
+  </Site>
+
+  <Site id="10" url="http://www.lady8844.com/zhuanti/cz/lxcz/2006-12-15/1166167856d20777.html" name="前沿美妆" encode="utf-8">
+
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful='href=".*?"'>href="http://www.lady8844.com/caizhuang/star/[0-9]{4}-[0-9]{2}-[0-9]{2}/[0-9a-z]+.html"</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="index_[0-9]+.html">&lt;div class=\"pageClass\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;span id="TEXT_TITLE"&gt;.*?&lt;/span&gt;</title>
+      <meta>&lt;meta name='keywords'.*?/&gt;</meta>
+      <desc>&lt;meta name='description'.*?/&gt;</desc>
+      <content>&lt;span id="TEXT_CONTENT" style="margin-top:3px;display:block;"&gt;.*?&lt;/span&gt;</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photo">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+    
+  </Site>
+
+  <Site id="11" url="http://www.lady8844.com/zhuanti/cz/jnhz/2007-03-22/1174557810d68455.html" name="化妆技巧" encode="utf-8">
+
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful='href=".*?"'>href="http://www.lady8844.com/caizhuang/[a-z]+/[0-9]{4}-[0-9]{2}-[0-9]{2}/[0-9a-z]+.html"</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="index_[0-9]+.html">&lt;div class=\"pageClass\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;span id="TEXT_TITLE"&gt;.*?&lt;/span&gt;</title>
+      <meta>&lt;meta name='keywords'.*?/&gt;</meta>
+      <desc>&lt;meta name='description'.*?/&gt;</desc>
+      <content>&lt;span id="TEXT_CONTENT" style="margin-top:3px;display:block;"&gt;.*?&lt;/span&gt;</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photo">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+    
+  </Site>
+
+  <Site id="12" url="http://www.lady8844.com/xiufa/lxfx/" name="发型潮流" encode="utf-8">
+
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful='href=".*?"'>href="http://www.lady8844.com/xiufa/lxfx/[0-9]{4}-[0-9]{2}-[0-9]{2}/[0-9a-z]+.html"</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="index_[0-9]+.html">&lt;div class=\"pageClass\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;span id="TEXT_TITLE"&gt;.*?&lt;/span&gt;</title>
+      <meta>&lt;meta name='keywords'.*?/&gt;</meta>
+      <desc>&lt;meta name='description'.*?/&gt;</desc>
+      <content>&lt;span id="TEXT_CONTENT" style="margin-top:3px;display:block;"&gt;.*?&lt;/span&gt;</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}(:[0-9]{2}){1,2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photo">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+    
+  </Site>
+
+  <Site id="13" url="http://www.lady8844.com/xiufa/mfcp/" name="美发保养" encode="utf-8">
+
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful='href=".*?"'>href="http://www.lady8844.com/xiufa/mfcp/[0-9]{4}-[0-9]{2}-[0-9]{2}/[0-9a-z]+.html"</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="index_[0-9]+.html">&lt;div class=\"pageClass\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;span id="TEXT_TITLE"&gt;.*?&lt;/span&gt;</title>
+      <meta>&lt;meta name='keywords'.*?/&gt;</meta>
+      <desc>&lt;meta name='description'.*?/&gt;</desc>
+      <content>&lt;span id="TEXT_CONTENT" style="margin-top:3px;display:block;"&gt;.*?&lt;/span&gt;</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}(:[0-9]{2}){1,2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photo">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+    
+  </Site>
+
+  <Site id="14" url="http://www.lady8844.com/xiangshui/jdxs/" name="香水物语" encode="utf-8">
+
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful='href=".*?"'>href="http://www.lady8844.com/xiangshui/jdxs/[0-9]{4}-[0-9]{2}-[0-9]{2}/[0-9a-z]+.html"</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="index_[0-9]+.html">&lt;div id=\"content_pagelist\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;span id="TEXT_TITLE"&gt;.*?&lt;/span&gt;</title>
+      <meta>&lt;meta name='keywords'.*?/&gt;</meta>
+      <desc>&lt;meta name='description'.*?/&gt;</desc>
+      <content>&lt;span id="TEXT_CONTENT" style="margin-top:3px;display:block;"&gt;.*?&lt;/span&gt;</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}(:[0-9]{2}){1,2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photo">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+    
+  </Site>
+
+  <Site id="15" url="http://www.lady8844.com/shoushen/jfcs/" name="减肥瘦身" encode="utf-8">
+
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful='href=".*?"'>href="http://www.lady8844.com/shoushen/jfcs/[0-9]{4}-[0-9]{2}-[0-9]{2}/[0-9a-z]+.html"</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="index_[0-9]+.html">&lt;div class=\"pageClass\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;span id="TEXT_TITLE"&gt;.*?&lt;/span&gt;</title>
+      <meta>&lt;meta name='keywords'.*?/&gt;</meta>
+      <desc>&lt;meta name='description'.*?/&gt;</desc>
+      <content>&lt;span id="TEXT_CONTENT" style="margin-top:3px;display:block;"&gt;.*?&lt;/span&gt;</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}(:[0-9]{2}){1,2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photo">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+    
+  </Site>
+
+  <Site id="16" url="http://www.lady8844.com/shoushen/ywyl/" name="享瘦美食" encode="utf-8">
+
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful='href=".*?"'>href="http://www.lady8844.com/shoushen/ywyl/[0-9]{4}-[0-9]{2}-[0-9]{2}/[0-9a-z]+.html"</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="index_[0-9]+.html">&lt;div class=\"pageClass\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;span id="TEXT_TITLE"&gt;.*?&lt;/span&gt;</title>
+      <meta>&lt;meta name='keywords'.*?/&gt;</meta>
+      <desc>&lt;meta name='description'.*?/&gt;</desc>
+      <content>&lt;span id="TEXT_CONTENT" style="margin-top:3px;display:block;"&gt;.*?&lt;/span&gt;</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}(:[0-9]{2}){1,2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photo">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+    
+  </Site>
+
+  <Site id="17" url="http://www.lady8844.com/shoushen/jfjy/" name="塑身有道" encode="utf-8">
+
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful='href=".*?"'>href="http://www.lady8844.com/shoushen/jfjy/[0-9]{4}-[0-9]{2}-[0-9]{2}/[0-9a-z]+.html"</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="index_[0-9]+.html">&lt;div class=\"pageClass\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;span id="TEXT_TITLE"&gt;.*?&lt;/span&gt;</title>
+      <meta>&lt;meta name='keywords'.*?/&gt;</meta>
+      <desc>&lt;meta name='description'.*?/&gt;</desc>
+      <content>&lt;span id="TEXT_CONTENT" style="margin-top:3px;display:block;"&gt;.*?&lt;/span&gt;</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}(:[0-9]{2}){1,2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photo">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+    
+  </Site>
+
+  <Site id="18" url="http://lady.163.com/special/00263MOR/ladystarface.html" name="明星美体" encode="gb2312">
+
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful='href=".*?"'>href="http://lady.163.com/[0-9]+/[0-9]+/[0-9]+/[a-z0-9]+.html"</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="http://lady.163.com/special/00263MOR/ladystarface_[0-9]+.html">&lt;div class=\"listPages\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;h1 id="h1title"&gt;.*?&lt;/h1&gt;</title>
+      <meta>&lt;meta name=\"keywords\".*?/&gt;</meta>
+      <desc>&lt;meta name=\"description\".*?/&gt;</desc>
+      <content remove='&lt;div class="gg200x300".*?&lt;/iframe&gt;'>&lt;div id="endText"&gt;.*?&lt;/div&gt;</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photo">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+    
+  </Site>
+
+  <Site id="19" url="http://ent.163.com/special/00031K7Q/rss_entstar.xml" name="娱乐资讯" type="xml" encode="GBK">
+
+    <!-- 以下节点必须按此顺序设置 -->s
+    <Categorys>
+      <Category useful=".*">http://ent.163.com/[0-9]{2}/[0-9]{4}/[0-9]{1,2}/[0-9a-z]+\.html</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="http://lady.163.com/special/00263MOR/ladystarface_[0-9]+.html">&lt;div class=\"listPages\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;h1 id="h1title"&gt;.*?&lt;/h1&gt;</title>
+      <meta>&lt;meta name=\"keywords\".*?/&gt;</meta>
+      <desc>&lt;meta name=\"description\".*?/&gt;</desc>
+      <content remove='&lt;div class="gg200x300".*?&lt;/iframe&gt;'>&lt;div id="endText"&gt;.*?&lt;/div&gt;</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photoOrText">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+    
+  </Site>
+
+  <Site id="20" url="http://ent.163.com/special/00031K7Q/rss_toutiao.xml" name="焦点新闻" type="xml" encode="GBK">
+
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful=".*">http://ent.163.com/[0-9]{2}/[0-9]{4}/[0-9]{1,2}/[0-9a-z]+\.html</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="http://lady.163.com/special/00263MOR/ladystarface_[0-9]+.html">&lt;div class=\"listPages\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;h1 id="h1title"&gt;.*?&lt;/h1&gt;</title>
+      <meta>&lt;meta name=\"keywords\".*?/&gt;</meta>
+      <desc>&lt;meta name=\"description\".*?/&gt;</desc>
+      <content remove='&lt;div class="gg200x300".*?&lt;/iframe&gt;'>&lt;div id="endText"&gt;.*?&lt;/div&gt;</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photoOrText">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+    
+  </Site>
+
+  <Site id="21" url="http://lady.163.com/special/00261R8C/ladyrss3.xml" name="情感隐私" type="xml" encode="GBK">
+
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful=".*">http://lady.163.com/[0-9]{2}/[0-9]{4}/[0-9]{1,2}/[0-9a-z]+\.html</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="http://lady.163.com/special/00263MOR/ladystarface_[0-9]+.html">&lt;div class=\"listPages\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;h1 id="h1title"&gt;.*?&lt;/h1&gt;</title>
+      <meta>&lt;meta name=\"keywords\".*?/&gt;</meta>
+      <desc>&lt;meta name=\"description\".*?/&gt;</desc>
+      <content remove='&lt;div class="gg200x300".*?&lt;/iframe&gt;'>&lt;div id="endText"&gt;.*?&lt;/div&gt;</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photoOrText">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+    
+  </Site>
+
+  <Site id="22" url="http://www.mplife.com/k/12790/" name="非主流" encode="utf-8">
+
+    <!-- 以下节点必须按此顺序设置 -->
+    <Categorys>
+      <Category useful='href=".*?"'>&lt;div class=\"list_1\"&gt;.*?&lt;div class=\"list_1con\"&gt;</Category>
+    </Categorys>
+
+    <Pages mapxmlname="Category">
+      <Page useful="index_[0-9]+\.shtml">&lt;div class=\"list_pag\"&gt;.*?&lt;/div&gt;</Page>
+    </Pages>
+
+    <Products mapxmlname="Category">
+      <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
+      <title>&lt;h2 class="title"&gt;.*?&lt;/h2&gt;</title>
+      <meta>&lt;meta name=\"keywords\".*?/&gt;</meta>
+      <desc>&lt;meta name=\"description\".*?/&gt;</desc>
+      <content remove='&lt;div class="pic-atlas"&gt;'>(&lt;div class="news-cont"&gt;.*?&lt;/div&gt;)|(&lt;div class="pic-content"&gt;.*?&lt;div class="pic-atlas"&gt;)|(&lt;div class="a_c"&gt;.*?&lt;/div&gt;)</content>
+      <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{1,2}:[0-9]{2}:[0-9]{2}</newsdate>
+      <newspage useful="\./[0-9]+\.shtml" type="photo">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
+    </Products>
+
+
+  </Site>
+
+</Sites>
