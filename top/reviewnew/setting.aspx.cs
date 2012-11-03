@@ -153,6 +153,8 @@ public partial class top_review_setting : System.Web.UI.Page
 
             isitem = dt.Rows[0]["isitem"].ToString();
             itemlist = dt.Rows[0]["itemlist"].ToString();
+
+            freeid = dt.Rows[0]["freeid"].ToString();
         }
         else
         { 
