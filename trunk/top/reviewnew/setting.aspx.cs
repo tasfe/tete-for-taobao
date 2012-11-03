@@ -200,7 +200,7 @@ public partial class top_review_setting : System.Web.UI.Page
 
         //数据绑定
         DataTable dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_Coupon WHERE nick = '" + nick + "' AND isdel = 0");
-        couponstr = "<select name='couponid'>";
+        couponstr = "<select name='couponid'><option value=''>-请选择-</option>";
         for (int i = 0; i < dtCoupon.Rows.Count; i++)
         {
             if (dtCoupon.Rows[i]["guid"].ToString().Trim() == couponid.Trim())
@@ -217,7 +217,7 @@ public partial class top_review_setting : System.Web.UI.Page
 
 
         dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_Alipay WHERE nick = '" + nick + "' AND isdel = 0");
-        alipaystr = "<select name='alipayid'>";
+        alipaystr = "<select name='alipayid'><option value=''>-请选择-</option>";
         for (int i = 0; i < dtCoupon.Rows.Count; i++)
         {
             if (dtCoupon.Rows[i]["guid"].ToString().Trim() == alipayid.Trim())
@@ -232,7 +232,7 @@ public partial class top_review_setting : System.Web.UI.Page
         alipaystr += "</select>";
 
         dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_FreeCardAction WHERE nick = '" + nick + "' AND isdel = 0");
-        freestr = "<select name='freeid'>";
+        freestr = "<select name='freeid'><option value=''>-请选择-</option>";
         for (int i = 0; i < dtCoupon.Rows.Count; i++)
         {
             if (dtCoupon.Rows[i]["guid"].ToString().Trim() == freeid.Trim())
