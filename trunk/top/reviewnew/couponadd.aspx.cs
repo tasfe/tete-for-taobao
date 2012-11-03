@@ -215,7 +215,7 @@ public partial class top_review_couponadd : System.Web.UI.Page
         }
 
         //如果是首次创建优惠券则自动开启优惠券赠送
-        if (count1 == "0")
+        if (count1 == "0" && utils.NewRequest("isdefault", utils.RequestType.Form) == "1")
         {
             sql = "UPDATE TCS_ShopConfig SET iscoupon = 1 WHERE nick = '" + nick + "'";
             utils.ExecuteNonQuery(sql);
