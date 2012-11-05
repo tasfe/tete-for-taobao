@@ -38,7 +38,7 @@
        </div>
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
-      
+         <td>广告id</td>
          <td><b>广告名称</b></td>
          <td><b>广告大小</b></td>
          <td><b>归属网站</b></td>
@@ -48,6 +48,9 @@
       <asp:Repeater ID="RPT_AdsList" runat="server" onitemcommand="RPT_AdsList_ItemCommand">
         <ItemTemplate>
            <tr>
+              <td>
+                <%# Eval("AdsId")%>
+              </td>
               <td>
                 <%# Eval("AdsName")%>
               </td>
