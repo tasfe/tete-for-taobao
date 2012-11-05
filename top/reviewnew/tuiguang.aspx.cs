@@ -15,7 +15,7 @@ public partial class top_reviewnew_tuiguang : System.Web.UI.Page
                       ,[count]
                       ,[ip]
                       ,[laiyuan]
-                  FROM [TeteCrmSaasNew].[dbo].[TCS_Tui]
+                  FROM [TCS_Tui]
                   WHERE (nick in
                   (select nick from TCS_ShopSession WHERE version > 1)
                   OR ip in
@@ -35,7 +35,7 @@ AND ip NOT LIKE '117.80%'
                       ,[count]
                       ,[ip]
                       ,[laiyuan]
-                  FROM [TeteCrmSaasNew].[dbo].[TCS_Tui] WHERE laiyuan = 'bangpaiht'
+                  FROM [TCS_Tui] WHERE laiyuan = 'bangpaiht'
                   order by adddate desc";
 
         DataTable dt1 = utils.ExecuteDataTable(sql);
@@ -48,7 +48,7 @@ AND ip NOT LIKE '117.80%'
                       ,[count]
                       ,[ip]
                       ,[laiyuan]
-                  FROM [TeteCrmSaasNew].[dbo].[TCS_Tui] WHERE laiyuan = 'bangpaift'
+                  FROM [TCS_Tui] WHERE laiyuan = 'bangpaift'
                   order by adddate desc";
 
         DataTable dt2 = utils.ExecuteDataTable(sql);
@@ -61,7 +61,7 @@ AND ip NOT LIKE '117.80%'
                       ,[count]
                       ,[ip]
                       ,[laiyuan]
-                  FROM [TeteCrmSaasNew].[dbo].[TCS_Tui] WHERE laiyuan = 'bangpaift1'
+                  FROM .[TCS_Tui] WHERE laiyuan = 'bangpaift1'
                   order by adddate desc";
 
         DataTable dt4 = utils.ExecuteDataTable(sql);
