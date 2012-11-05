@@ -9,7 +9,7 @@
                         <td width="100%" align="left" style="font-size: 16px;">
                             <p>
                                 <img src="http://a.tbcdn.cn/sys/wangwang/smiley/48x48/68.gif" />
-                                您好,欢迎您使用特推广_店铺推广专家!&nbsp;</p>
+                                您好,欢迎您使用推广K宝_引爆人气!&nbsp;</p>
                             <p>
                                 为了更精准的找到目标客户，我公司特推出特搜索搜索引擎推广，<br />
                                 详情请查看 <a href="http://fuwu.taobao.com/serv/detail.htm?service_id=24224" target="_blank"
@@ -19,7 +19,7 @@
                             <p>
                                 您还可以<a href="/AddShopAds.aspx">推广淘宝以外网站</a></p>
                             <p>
-                                好评赠送广告位了，立即<a href="good.html" style="color: Red">查看详情</a></p>
+                                好评赠送广告位了，立即<a href="Good.aspx" style="color: Red">查看详情</a></p>
                             <table width="100%" style="border: solid 1px; margin-left: 0px;" cellspacing="1"
                                 cellpadding="1" align="center">
                                 <tr>
@@ -33,19 +33,19 @@
                                     </td>
                                     <td width="131" style="background-color: #3366cc;">
                                         <div align="center" style="color: white; font-weight: bold;">
-                                            优质广告位4个</div>
+                                            优质广告位5个</div>
                                     </td>
                                     <td width="129" style="background-color: #3366cc;">
                                         <div align="center" style="color: white; font-weight: bold;">
-                                            优质广告位8个</div>
+                                            优质广告位10个</div>
                                     </td>
                                     <td width="129" style="background-color: #3366cc;">
                                         <div align="center" style="color: white; font-weight: bold;">
-                                            优质广告位16个</div>
+                                            优质广告位20个</div>
                                     </td>
                                     <td width="129" style="background-color: #3366cc;">
                                         <div align="center" style="color: white; font-weight: bold;">
-                                            优质广告位32个</div>
+                                            优质广告位30个</div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -63,34 +63,34 @@
                                     </td>
                                     <td>
                                         <div align="center">
-                                            28元/月<br />
-                                            78元/季度<br />
-                                            148元/半年<br />
-                                            288元/年
+                                            30元/月<br />
+                                            80元/季度<br />
+                                            158元/半年<br />
+                                            308元/年
                                         </div>
                                     </td>
                                     <td>
                                         <div align="center">
-                                            48元/月<br />
-                                            138元/季度<br />
-                                            268元/半年<br />
-                                            518元/年
+                                            58元/月<br />
+                                            168元/季度<br />
+                                            328元/半年<br />
+                                            638元/年
                                         </div>
                                     </td>
                                     <td>
                                         <div align="center">
-                                            88元/月<br />
-                                            258元/季度<br />
-                                            508元/半年<br />
-                                            998元/年
+                                            108元/月<br />
+                                            318元/季度<br />
+                                            618元/半年<br />
+                                            1208元/年
                                         </div>
                                     </td>
                                     <td>
                                         <div align="center">
-                                            168元/月<br />
-                                            488元/季度<br />
-                                            958元/半年<br />
-                                            1888元/年
+                                            138元/月<br />
+                                            388元/季度<br />
+                                            738元/半年<br />
+                                            1438元/年
                                         </div>
                                     </td>
                                 </tr>
@@ -131,19 +131,19 @@
                                     </td>
                                     <td>
                                         <div align="center">
-                                            4</div>
+                                            5</div>
                                     </td>
                                     <td>
                                         <div align="center">
-                                            8</div>
+                                            10</div>
                                     </td>
                                     <td>
                                         <div align="center">
-                                            16</div>
+                                            20</div>
                                     </td>
                                     <td>
                                         <div align="center">
-                                            32</div>
+                                            30</div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -235,19 +235,19 @@
                                     </td>
                                     <td>
                                         <div align="center">
-                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-22655-3:1;">包月付费</a></div>
+                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-1800709-2:1;">包月付费</a></div>
                                     </td>
                                     <td>
                                         <div align="center">
-                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-22655-4:1;">包月付费</a></div>
+                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-1800709-3:1;">包月付费</a></div>
                                     </td>
                                     <td>
                                         <div align="center">
-                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-22655-5:1;">包月付费</a></div>
+                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-1800709-4:1;">包月付费</a></div>
                                     </td>
                                     <td>
                                         <div align="center">
-                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-22655-6:1;">包月付费</a></div>
+                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-1800709-5:1;">包月付费</a></div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -261,19 +261,19 @@
                                     </td>
                                     <td>
                                         <div align="center">
-                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-22655-3:3;">包季付费</a></div>
+                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-1800709-2:3;">包季付费</a></div>
                                     </td>
                                     <td>
                                         <div align="center">
-                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-22655-4:3;">包季付费</a></div>
+                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-1800709-3:3;">包季付费</a></div>
                                     </td>
                                     <td>
                                         <div align="center">
-                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-22655-5:3;">包季付费</a></div>
+                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-1800709-4:3;">包季付费</a></div>
                                     </td>
                                     <td>
                                         <div align="center">
-                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-22655-6:3;">包季付费</a></div>
+                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-1800709-5:3;">包季付费</a></div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -287,19 +287,19 @@
                                     </td>
                                     <td>
                                         <div align="center">
-                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-22655-3:6;">包半年付费</a></div>
+                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-1800709-2:6;">包半年付费</a></div>
                                     </td>
                                     <td>
                                         <div align="center">
-                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-22655-4:6;">包半年付费</a></div>
+                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-1800709-3:6;">包半年付费</a></div>
                                     </td>
                                     <td>
                                         <div align="center">
-                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-22655-5:6;">包半年付费</a></div>
+                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-1800709-4:6;">包半年付费</a></div>
                                     </td>
                                     <td>
                                         <div align="center">
-                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-22655-6:6;">包半年付费</a></div>
+                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-1800709-5:6;">包半年付费</a></div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -313,19 +313,19 @@
                                     </td>
                                     <td>
                                         <div align="center">
-                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-22655-3:12;">包年付费</a></div>
+                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-1800709-2:12;">包年付费</a></div>
                                     </td>
                                     <td>
                                         <div align="center">
-                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-22655-4:12;">包年付费</a></div>
+                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-1800709-3:12;">包年付费</a></div>
                                     </td>
                                     <td>
                                         <div align="center">
-                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-22655-5:12;">包年付费</a></div>
+                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-1800709-4:12;">包年付费</a></div>
                                     </td>
                                     <td>
                                         <div align="center">
-                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-22655-6:12;">包年付费</a></div>
+                                            <a href="http://fuwu.taobao.com/item/subsc.htm?items=ts-1800709-5:12;">包年付费</a></div>
                                     </td>
                                 </tr>
                             </table>
