@@ -31,7 +31,7 @@ public partial class TestUserSeePage : System.Web.UI.Page
 
             Response.Cookies.Add(cookie);
 
-            Response.Redirect("/index.html");
+            Response.Redirect("/Default.aspx");
         }
     }
 }
