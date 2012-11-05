@@ -149,10 +149,10 @@
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
-                </div>
-        </div>
-        <div style="text-align: center">
+                </div><div style="text-align: center">
             零度E软件有限公司</div>
+        </div>
+        
     </div>
     </form>
 </body>
