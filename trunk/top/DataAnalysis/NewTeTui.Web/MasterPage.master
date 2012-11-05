@@ -1,0 +1,164 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>无标题页</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/JavaScript">
+        var $ = function(id) {
+            return document.getElementById(id);
+        }
+
+        var temp = 0;
+        function show_menuC() {
+            if (temp == 0) {
+                document.getElementById('LeftBox').style.display = 'none';
+                document.getElementById('RightBox').style.marginLeft = '0';
+                document.getElementById('Mobile').style.background = 'url(images/center.gif)';
+
+                temp = 1;
+            } else {
+                document.getElementById('RightBox').style.marginLeft = '222px';
+                document.getElementById('LeftBox').style.display = 'block';
+                document.getElementById('Mobile').style.background = 'url(images/center0.gif)';
+
+                temp = 0;
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <div class="header">
+            <div class="header03">
+            </div>
+            <div class="header01">
+            </div>
+            <div class="header02">
+                推广K宝_引爆人气</div>
+        </div>
+        <div class="left" id="LeftBox">
+            <div class="left01">
+                <div class="left01_right">
+                </div>
+                <div class="left01_left">
+                </div>
+                <div class="left01_c">
+                    您好：<asp:Label ID="Lbl_UserName" runat="server" ForeColor="blue"></asp:Label>，欢迎来到推广K宝</div>
+            </div>
+            <div class="left02">
+                <div class="left02top">
+                    <div class="left02top_right">
+                    </div>
+                    <div class="left02top_left">
+                    </div>
+                    <div class="left02top_c">
+                        推广K宝</div>
+                </div>
+                <div class="left02down">
+                    <div class="left02down01">
+                        <a href="Default.aspx">
+                            <div class="left02down01_img">
+                            </div>
+                            推广首页</a></div>
+                    <div class="left02down01">
+                        <a href="#">
+                            <div class="left02down01_img">
+                            </div>
+                            使用帮助</a></div>
+                </div>
+            </div>
+            <div class="left02">
+                <div class="left02top">
+                    <div class="left02top_right">
+                    </div>
+                    <div class="left02top_left">
+                    </div>
+                    <div class="left02top_c">
+                        广告投放</div>
+                </div>
+                <div class="left02down">
+                    <div class="left02down01">
+                        <a href="UserAddAds.aspx">
+                            <div class="left02down01_img">
+                            </div>
+                            我要推广宝贝</a></div>
+                    <div class="left02down01">
+                        <a href="AddShopAds.aspx">
+                            <div class="left02down01_img">
+                            </div>
+                            我要推广店铺</a></div>
+                    <div class="left02down01">
+                        <a href="UserAdsList.aspx?istou=1">
+                            <div class="left02down01_img">
+                            </div>
+                            投放中的广告</a></div>
+                    <div class="left02down01">
+                        <a href="UserAdsList.aspx">
+                            <div class="left02down01_img">
+                            </div>
+                            未投放的广告</a></div>
+                    <div class="left02down01">
+                        <a href="UpdateGoods.aspx">
+                            <div class="left02down01_img">
+                            </div>
+                            更新宝贝信息</a></div>
+                </div>
+            </div>
+            <div class="left02">
+                <div class="left02top">
+                    <div class="left02top_right">
+                    </div>
+                    <div class="left02top_left">
+                    </div>
+                    <div class="left02top_c">
+                        收费说明</div>
+                </div>
+                <div class="left02down">
+                    <div class="left02down01">
+                        <a href="Better.aspx">
+                            <div class="left02down01_img">
+                            </div>
+                            优质广告收费说明</a></div>
+                    <div class="left02down01">
+                        <a href="VipCase.aspx">
+                            <div class="left02down01_img">
+                            </div>
+                            VIP经典案例</a></div>
+                    <div class="left02down01">
+                        <a href="VipDec.aspx">
+                            <div class="left02down01_img">
+                            </div>
+                            VIP广告说明</a></div>
+                </div>
+            </div>
+            <div class="left01">
+                <div class="left03_right">
+                </div>
+                <div class="left01_left">
+                </div>
+                <div class="left03_c">
+                    <a href="http://www.taobao.com/">安全退出</a></div>
+            </div>
+        </div>
+        <div class="rrcc" id="RightBox">
+            <div class="center" id="Mobile" onclick="show_menuC()">
+            </div>
+            <div class="right" id="li010" style="padding: 5px">
+            
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+                </div>
+        </div>
+        <div style="text-align: center">
+            悦特科技有限公司</div>
+    </div>
+    </form>
+</body>
+</html>
