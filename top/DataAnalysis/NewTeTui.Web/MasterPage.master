@@ -67,10 +67,15 @@
                             </div>
                             推广首页</a></div>
                     <div class="left02down01">
-                        <a href="#">
+                        <a href="Help.aspx">
                             <div class="left02down01_img">
                             </div>
                             使用帮助</a></div>
+                    <div class="left02down01">
+                        <a href="Good.aspx">
+                            <div class="left02down01_img">
+                            </div>
+                            好评送广告位</a></div>
                 </div>
             </div>
             <div class="left02">
@@ -125,16 +130,6 @@
                             <div class="left02down01_img">
                             </div>
                             优质广告收费说明</a></div>
-                    <div class="left02down01">
-                        <a href="VipCase.aspx">
-                            <div class="left02down01_img">
-                            </div>
-                            VIP经典案例</a></div>
-                    <div class="left02down01">
-                        <a href="VipDec.aspx">
-                            <div class="left02down01_img">
-                            </div>
-                            VIP广告说明</a></div>
                 </div>
             </div>
             <div class="left01">
@@ -157,7 +152,7 @@
                 </div>
         </div>
         <div style="text-align: center">
-            悦特科技有限公司</div>
+            零度E软件有限公司</div>
     </div>
     </form>
 </body>
