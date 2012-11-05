@@ -34,6 +34,13 @@
         <asp:TextBox ID="TextBox10" runat="server"></asp:TextBox>
         <asp:Button ID="Button4" runat="server" onclick="Button4_Click" Text="获取该客户评价消息" />
         <hr />
+        
+        卖家昵称：<asp:TextBox ID="TextBox16" runat="server"></asp:TextBox>
+        买家昵称：<asp:TextBox ID="TextBox17" runat="server"></asp:TextBox>
+        订 单 号：<asp:TextBox ID="TextBox18" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox19" runat="server"></asp:TextBox>
+        <asp:Button ID="Button7" runat="server" onclick="Button7_Click" Text="按照订单号获取某客户" />
+        <hr />
          
         手机号码：<asp:TextBox ID="TextBox13" runat="server" TextMode="MultiLine"></asp:TextBox>
         短信内容：<asp:TextBox ID="TextBox14" runat="server" TextMode="MultiLine"></asp:TextBox>

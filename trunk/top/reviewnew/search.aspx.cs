@@ -22,6 +22,21 @@ public partial class top_reviewnew_search : System.Web.UI.Page
         }
     }
 
+    protected void Button7_Click(object sender, EventArgs e)
+    {
+        if (TextBox19.Text != "xiaoman")
+        {
+            return;
+        }
+
+        string nick = this.TextBox16.Text;
+        string buynick = this.TextBox17.Text;
+        string orderid = this.TextBox18.Text;
+
+        string msg = "{\"packet\":{\"code\":202,\"msg\":{\"notify_trade\":{\"topic\":\"trade\",\"status\":\"TradeRated\",\"user_id\":833921326,\"nick\":\"" + nick + "\",\"modified\":\"2012-10-31 18:27:41\",\"buyer_nick\":\"" + buynick + "\",\"payment\":\"950.00\",\"oid\":" + orderid + ",\"is_3D\":true,\"tid\":" + orderid + ",\"type\":\"guarantee_trade\",\"seller_nick\":\"" + nick + "\"}}}}";
+
+        InsertMsgLogInfo(nick, "TradeRated", msg);
+    }
 
     protected void Button6_Click(object sender, EventArgs e)
     {
@@ -55,7 +70,6 @@ public partial class top_reviewnew_search : System.Web.UI.Page
                             " 'test' " +
                         ") ";
         utils.ExecuteNonQuery(sql);
-        
     }
 
 
