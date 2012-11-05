@@ -49,7 +49,7 @@
                 <div class="left01_left">
                 </div>
                 <div class="left01_c">
-                    您好:<asp:Label ID="Lbl_UserName" runat="server" ForeColor="blue"></asp:Label>,欢迎来到推广K宝</div>
+                    您好:<asp:Label ID="Lbl_UserName" runat="server" ForeColor="blue"></asp:Label><br />欢迎来到推广K宝</div>
             </div>
             <div class="left02">
                 <div class="left02top">
