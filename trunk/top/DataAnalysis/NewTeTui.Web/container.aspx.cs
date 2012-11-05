@@ -249,6 +249,7 @@ public partial class container : System.Web.UI.Page
         //加入推荐好友判断
         //Tuijian(nick);
 
+        ReflashSession();
         if (CheckUserExits(nick))
         {
             //更新该会员的店铺信息
@@ -264,7 +265,6 @@ public partial class container : System.Web.UI.Page
             //更新登录次数和最近登陆时间
             sql = "UPDATE toptaobaoshop SET logintimes = logintimes + 1,lastlogin = GETDATE(),session='" + top_session + "',sessionmarket='" + top_session + "',ip='" + ip + "',refreshToken='" + refreshToken + "' WHERE nick = '" + nick + "'";
             utils.ExecuteNonQuery(sql);
-            ReflashSession();
         }
         else
         {
