@@ -68,7 +68,7 @@ public partial class container : System.Web.UI.Page
 
         top_session = info.access_token;
         refreshToken = info.refresh_token;
-        nick = info.taobao_user_nick;
+        nick = HttpUtility.UrlDecode(info.taobao_user_nick);
         if (nick == null || nick == "")
         {
             Response.Write("top签名验证不通过，请不要非法注入");
@@ -88,7 +88,6 @@ public partial class container : System.Web.UI.Page
     /// <returns></returns>
     private string GetVersion(string u)
     {
-        LogInfo.Add("c", u);
         string appkey = "21093339";
         string secret = "c1c22ba85fb91bd20279213ef7b9ee80";
 
@@ -250,7 +249,6 @@ public partial class container : System.Web.UI.Page
         //加入推荐好友判断
         //Tuijian(nick);
 
-        ReflashSession();
         if (CheckUserExits(nick))
         {
             //更新该会员的店铺信息
@@ -266,6 +264,7 @@ public partial class container : System.Web.UI.Page
             //更新登录次数和最近登陆时间
             sql = "UPDATE toptaobaoshop SET logintimes = logintimes + 1,lastlogin = GETDATE(),session='" + top_session + "',sessionmarket='" + top_session + "',ip='" + ip + "',refreshToken='" + refreshToken + "' WHERE nick = '" + nick + "'";
             utils.ExecuteNonQuery(sql);
+            ReflashSession();
         }
         else
         {
