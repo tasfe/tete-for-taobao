@@ -121,6 +121,11 @@ public partial class UserAdsList : System.Web.UI.Page
         get { return ViewState["adscount"] == null ? 0 : int.Parse(ViewState["adscount"].ToString()); }
     }
 
+    protected int ContiTou
+    {
+        get { return (AdsCount - TouCount) < 0 ? 0 : AdsCount - TouCount; }
+    }
+
     protected string GetSite(string adsId)
     {
         IList<AdsInfo> list = CacheCollection.GetAllAdsInfo().Where(o => o.AdsId.ToString() == adsId).ToList();
