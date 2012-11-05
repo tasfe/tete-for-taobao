@@ -88,6 +88,7 @@ public partial class container : System.Web.UI.Page
     /// <returns></returns>
     private string GetVersion(string u)
     {
+        LogInfo.Add("c", u);
         string appkey = "21093339";
         string secret = "c1c22ba85fb91bd20279213ef7b9ee80";
 
