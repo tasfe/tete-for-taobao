@@ -1,0 +1,277 @@
+Log created at: 2012/10/30 14:24:18
+
+Log Entry : 2012/10/30 14:24:18 SELECT CateId,CateName,ParentId FROM BangT_Category WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:24:18 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId FROM [BangT_Goods] WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:26:00 SELECT CateId,CateName,ParentId FROM BangT_Category WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:26:00 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId FROM [BangT_Goods] WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:26:41 SELECT CateId,CateName,ParentId FROM BangT_Category WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:26:41 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId FROM [BangT_Goods] WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:26:44 SELECT CateId,CateName,ParentId FROM BangT_Category WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:26:44 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId FROM [BangT_Goods] WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:27:31 SELECT CateId,CateName,ParentId FROM BangT_Category WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:27:31 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId FROM [BangT_Goods] WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:29:17 SELECT CateId,CateName,ParentId FROM BangT_Category WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:29:17 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId FROM [BangT_Goods] WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:29:36 SELECT CateId,CateName,ParentId FROM BangT_Category WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:29:36 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId FROM [BangT_Goods] WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:39:00 SELECT sid,cid,title,[desc],pic_path FROM TopTaobaoShop WHERE nick=@nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:40:59 SELECT sid,cid,title,[desc],pic_path FROM TopTaobaoShop WHERE nick=@nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:41:42 SELECT sid,cid,title,[desc],pic_path FROM TopTaobaoShop WHERE nick=@nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:41:56 SELECT sid,cid,title,[desc],pic_path FROM TopTaobaoShop WHERE nick=@nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:42:37 SELECT sid,cid,title,[desc],pic_path FROM TopTaobaoShop WHERE nick=@nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:44:29 SELECT sid,cid,title,[desc],pic_path FROM TopTaobaoShop WHERE nick=@nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:44:31 SELECT CateId,CateName,ParentId FROM BangT_Category WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:44:31 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId FROM [BangT_Goods] WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:44:36 SELECT CateId,CateName,ParentId FROM BangT_Category WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:44:36 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId FROM [BangT_Goods] WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:44:37 SELECT sid,cid,title,[desc],pic_path FROM TopTaobaoShop WHERE nick=@nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:53:06 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:53:06 SELECT Nick,FeeId,BuyTime,IsExpied FROM BangT_Buys 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:53:13 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:53:16 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:53:17 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:53:18 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 14:53:19 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 15:02:00 SELECT CateId,CateName,ParentId FROM BangT_Category WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 15:02:00 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId FROM [BangT_Goods] WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 15:02:01 SELECT sid,cid,title,[desc],pic_path FROM TopTaobaoShop WHERE nick=@nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 15:02:09 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 15:02:11 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 15:02:11 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 15:04:00 SELECT CateId,CateName,ParentId FROM BangT_Category WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 15:04:00 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId FROM [BangT_Goods] WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 15:04:01 SELECT sid,cid,title,[desc],pic_path FROM TopTaobaoShop WHERE nick=@nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 15:04:02 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 15:04:04 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 15:16:42 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 15:16:42 SELECT Nick,FeeId,BuyTime,IsExpied FROM BangT_Buys 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 15:16:44 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 15:16:45 SELECT sid,cid,title,[desc],pic_path FROM TopTaobaoShop WHERE nick=@nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 15:16:46 SELECT CateId,CateName,ParentId FROM BangT_Category WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 15:16:46 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId FROM [BangT_Goods] WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 15:22:59 SELECT CateId,CateName,ParentId FROM BangT_Category WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 15:22:59 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId FROM [BangT_Goods] WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 16:15:40 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 16:15:43 SELECT CateId,CateName,ParentId FROM BangT_Category WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 16:15:43 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId FROM [BangT_Goods] WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 16:15:45 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 16:15:46 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 16:28:32 SELECT CateId,CateName,ParentId FROM BangT_Category WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 16:28:32 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId FROM [BangT_Goods] WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 16:28:33 SELECT CateId,CateName,ParentId FROM BangT_Category WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 16:28:33 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId FROM [BangT_Goods] WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 16:28:34 SELECT sid,cid,title,[desc],pic_path FROM TopTaobaoShop WHERE nick=@nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 16:28:35 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 16:28:35 SELECT Nick,FeeId,BuyTime,IsExpied FROM BangT_Buys 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 16:28:36 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 16:31:59 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 16:31:59 SELECT [Id],[AdsTitle],[AdsUrl],[AdsId],[UserAdsState],[AdsShowStartTime],[AdsShowFinishTime],[AliWang],[SellCateName],AddTime,FeeId,AdsPic,IsSend FROM BangT_UserAds WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 16:32:00 SELECT sid,cid,title,[desc],pic_path FROM TopTaobaoShop WHERE nick=@nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 16:32:01 SELECT CateId,CateName,ParentId FROM BangT_Category WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
+
+Log Entry : 2012/10/30 16:32:01 SELECT GoodsId,GoodsName,GoodsPrice,GoodsCount,GoodsPic,Modified,CateId,TaoBaoCId FROM [BangT_Goods] WHERE Nick=@Nick 无法打开登录所请求的数据库 "TopDataAnalysis"。登录失败。
+用户 'sa' 登录失败。
+-------------------------------
