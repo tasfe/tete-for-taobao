@@ -127,7 +127,7 @@ public partial class top_crm_groupadd : System.Web.UI.Page
         utils.ExecuteNonQuery(sql);
 
        
-        sql = "SELECT COUNT(*) FROM TCS_Customer WHERE tradeamount = '0' AND nick = '" + nick + "'";
+        sql = "SELECT COUNT(*) FROM TCS_Customer WHERE tradeamount = '' AND nick = '" + nick + "'";
         string count = utils.ExecuteString(sql);
         if (count != "0")
         {
