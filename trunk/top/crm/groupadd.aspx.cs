@@ -136,7 +136,7 @@ public partial class top_crm_groupadd : System.Web.UI.Page
             utils.ExecuteNonQuery(sql);
         }
 
-        condition = @"guid IN (SELECT guid FROM (SELECT * FROM TCS_Customer WHERE nick = 'xiaoqin223') AS a WHERE 1 = 1 " + condition + ")";
+        condition = @"guid IN (SELECT guid FROM (SELECT * FROM TCS_Customer WHERE nick = '" + nick + "') AS a WHERE 1 = 1 " + condition + ")";
 
         //获取符合条件的会员并更新会员分组ID
         sql = "UPDATE TCS_Customer SET groupguid = '" + id + "' WHERE nick = '" + nick + "' AND " + condition;
