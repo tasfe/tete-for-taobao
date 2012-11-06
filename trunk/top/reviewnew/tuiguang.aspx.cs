@@ -18,6 +18,7 @@ public partial class top_reviewnew_tuiguang : System.Web.UI.Page
                           ON c.nick = s.nick
                           WHERE c.starttime > t.adddate
                           AND c.isdel = 0 )
+                          OR nick IN (SELECT nick FROM TCS_ShopSession WHERE istui = 1)
                           ORDER BY starttime DESC";
 
         DataTable dt = utils.ExecuteDataTable(sql);
