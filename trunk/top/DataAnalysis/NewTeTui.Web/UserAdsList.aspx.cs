@@ -327,8 +327,20 @@ public partial class UserAdsList : System.Web.UI.Page
         if (e.CommandName == "UpSite")
         {
             Guid id = new Guid(e.CommandArgument.ToString());
-            IList<AdsInfo> allads = CacheCollection.GetAllAdsInfo().Where(o => o.AdsType == 5).ToList();
-            Guid adsId = GetRand(allads);
+            IList<AdsInfo> allads = CacheCollection.GetAllAdsInfo();
+
+            IList<AdsInfo> newlist = new List<AdsInfo>(allads);
+            int index = 0;
+            for (int i = 0; i < newlist.Count; i++)
+            {
+                if (newlist[i].AdsId == id)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            newlist.RemoveAt(index);
+            Guid adsId = GetRand(newlist);
             uasDal.UpdateAdsSite(id, adsId);
             Response.Redirect("UserAdsList.aspx?istou=1");
         }
