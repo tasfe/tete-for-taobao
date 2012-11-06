@@ -10,12 +10,12 @@ public partial class top_reviewnew_tuiguang : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string sql = @"SELECT TOP 1000 [nick]
+        string sql = @"SELECT TOP 1000 ss.[nick]
                       ,[adddate]
                       ,[count]
                       ,[ip]
                       ,[laiyuan]
-                  FROM [TCS_Tui]
+                  FROM [TCS_Tui] t INNER JOIN TCS_ShopSession ss ON ss.ip = t.ip
                   WHERE (nick in
                   (select s.nick from TCS_ShopSession s INNER JOIN TCS_ShopConfig c ON c.nick = s.nick WHERE s.version > 1 AND c.starttime > adddate)
                   OR ip in
