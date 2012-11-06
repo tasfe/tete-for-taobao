@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-<div class="right01">
+    <div class="right01">
                     <img src="images/04.gif" />
                     广告投放 &gt; <span>查看投放</span></div>
                    
