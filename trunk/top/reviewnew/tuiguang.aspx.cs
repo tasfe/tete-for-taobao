@@ -13,16 +13,16 @@ public partial class top_reviewnew_tuiguang : System.Web.UI.Page
         string sql = @"SELECT TOP 1000 ss.[nick]
                       ,[adddate]
                       ,[count]
-                      ,[ip]
+                      ,t.[ip]
                       ,[laiyuan]
-                  FROM [TCS_Tui] t INNER JOIN TCS_ShopSession ss ON ss.ip = t.ip
-                  WHERE (nick in
-                  (select s.nick from TCS_ShopSession s INNER JOIN TCS_ShopConfig c ON c.nick = s.nick WHERE s.version > 1 AND c.starttime > adddate)
-                  OR ip in
-                   (select s.ip from TCS_ShopSession s INNER JOIN TCS_ShopConfig c ON c.nick = s.nick WHERE s.version > 1 AND c.starttime > adddate AND ip is not null))
+                  FROM [TCS_Tui] t LEFT JOIN TCS_ShopSession ss ON ss.ip = t.ip
+                  WHERE (t.nick in
+                  (select s.nick from TCS_ShopSession s INNER JOIN TCS_ShopConfig c ON c.nick = s.nick WHERE s.version > 1 AND c.starttime > t.adddate)
+                  OR t.ip in
+                   (select s.ip from TCS_ShopSession s INNER JOIN TCS_ShopConfig c ON c.nick = s.nick WHERE s.version > 1 AND c.starttime > adddate AND t.ip is not null))
 AND (laiyuan = 'bangpaiht' OR laiyuan = 'bangpaift' OR laiyuan = 'bangpaift1')
-AND ip NOT LIKE '117.80%'
-                  order by adddate desc";
+AND t.ip NOT LIKE '117.80%'
+                  order by t.adddate desc";
 
         DataTable dt = utils.ExecuteDataTable(sql);
 
