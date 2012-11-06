@@ -10,19 +10,15 @@ public partial class top_reviewnew_tuiguang : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string sql = @"SELECT TOP 1000 ss.[nick]
-                      ,[adddate]
-                      ,[count]
-                      ,t.[ip]
-                      ,[laiyuan]
-                  FROM [TCS_Tui] t LEFT JOIN TCS_ShopSession ss ON ss.ip = t.ip
-                  WHERE (t.nick in
-                  (select s.nick from TCS_ShopSession s INNER JOIN TCS_ShopConfig c ON c.nick = s.nick WHERE s.version > 1 AND c.starttime > t.adddate)
-                  OR t.ip in
-                   (select s.ip from TCS_ShopSession s INNER JOIN TCS_ShopConfig c ON c.nick = s.nick WHERE s.version > 1 AND c.starttime > adddate AND t.ip is not null))
-AND (laiyuan = 'bangpaiht' OR laiyuan = 'bangpaift' OR laiyuan = 'bangpaift1')
-AND t.ip NOT LIKE '117.80%'
-                  order by t.adddate desc";
+        string sql = @"SELECT * FROM TCS_ShopConfig WHERE nick IN (
+                          SELECT DISTINCT s.nick FROM TCS_Tui t 
+                          INNER JOIN TCS_ShopSession s
+                          ON s.ip = t.ip
+                          INNER JOIN TCS_ShopConfig c
+                          ON c.nick = s.nick
+                          WHERE c.starttime > t.adddate
+                          AND c.isdel = 0 )
+                          ORDER BY starttime DESC";
 
         DataTable dt = utils.ExecuteDataTable(sql);
 

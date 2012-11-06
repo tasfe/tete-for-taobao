@@ -12,19 +12,13 @@
     <table>
     <tr>
         <td>卖家</td>
-        <td>浏览时间</td>
-        <td>浏览次数</td>
-        <td>IP地址</td>
-        <td>来源</td>
+        <td>进入服务时间</td>
     </tr>
         <asp:Repeater ID="rpt" runat="server">
             <ItemTemplate>
             <tr>
               <td> <%#Eval("nick") %> </td>
-              <td> <%#Eval("adddate") %> </td>
-              <td> <%#Eval("count") %> </td>
-              <td> <%#Eval("ip") %> </td>
-              <td> <%#Eval("laiyuan") %> </td>
+              <td> <%#Eval("starttime") %> </td>
               </tr>
             </ItemTemplate>
         </asp:Repeater>
