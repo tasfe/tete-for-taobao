@@ -133,6 +133,8 @@ h4 a {
     <iframe src="http://isvu.haodianpu.com/isvu.php?fid=service-0-22904" frameborder="0" height="120" width="750" scrolling="no" marginheight="0" marginwidth="0"  ></iframe>
 
      <br />
+    <a href= 'http://fuwu.taobao.com/ser/detail.htm?service_code=ts-1800709&from=haoping' target="_blank"><img alt='推广K宝' border=0 src='http://img01.taobaocdn.com/top/i1/T1r9LWXkVoXXb1upjX.jpg' /></a>
+
     <a href= 'http://fuwu.taobao.com/ser/detail.htm?service_code=ts-22655&from=haoping' target="_blank"><img alt='特推广' border=0 src='http://img01.taobaocdn.com/top/i1/T1OnztXa4mXXb1upjX.jpg' /></a>
 
     <a href= 'http://fuwu.taobao.com/ser/detail.htm?service_id=16226&from=haoping' target="_blank"><img alt='数据罗盘' border=0 src='http://img01.taobaocdn.com/top/i1/T162DjXf4aXXaCwpjX.png' /></a>
