@@ -26,9 +26,9 @@
   </div>
     <div id="main-content">
 
-<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
-    系统默认自动获取您订购软件后产生的会员数据，如需店铺以前会员数据，可参考<a href='http://bangpai.taobao.com/group/thread/1091516-277392666.htm' target="_blank">教程</a>导入哦~
-    <br />该分组下共有<%=total %>名会员
+<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:blue; font-weight:bold; width:700px">
+    系统默认自动获取您订购软件后产生的会员数据，如需店铺以前会员数据，可参考<a style="color:Red; font-weight:bold;" href='http://bangpai.taobao.com/group/thread/1091516-277392666.htm' target="_blank">教程</a>导入哦~
+    <br /><span style="color:Red; font-weight:bold;">该分组下共有<%=total %>名会员</span>
 </div>
 
 买家类型：
