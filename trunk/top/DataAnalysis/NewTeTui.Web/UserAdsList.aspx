@@ -53,7 +53,7 @@
                   <asp:Button ID="Btn_Result" CommandName="Result" CommandArgument='<%# Eval("Id") %>' runat="server" Text="效果分析" /><br>
                   <asp:Button ID="Btn_See" CommandName="See" CommandArgument='<%# Eval("AdsId") %>' runat="server" Text="查看投放" /><br>
                   <asp:Button ID="Btn_Stop" CommandName="Stop" CommandArgument='<%# Eval("Id") %>' runat="server" Text="暂停投放" /><br>
-                  <asp:Button ID="Btn_UpSite" CommandName="UpSite" runat="server" Text="换个网站" Visible="false" />
+                  <asp:Button ID="Btn_UpSite" CommandName="UpSite" CommandArgument='<%# Eval("Id") %>' runat="server" Text="换个网站" Visible="false" />
                   
                 </td>
              </tr>
