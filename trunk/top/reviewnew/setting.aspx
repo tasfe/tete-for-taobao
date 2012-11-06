@@ -111,7 +111,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="left" height="30">好评自动判定：</td>
+                <td align="left" height="30">优质好评自动判定：</td>
                 <td>
                     开启<input name="iskeyword" type="radio" value="1" <%=check(iskeyword, "1") %> />
                     不开启<input name="iskeyword" type="radio" value="0" <%=check(iskeyword, "0") %> />
