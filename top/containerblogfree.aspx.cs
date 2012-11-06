@@ -109,7 +109,7 @@ public partial class top_containerblogfree : System.Web.UI.Page
         Cookie cookie = new Cookie();
         cookie.setCookie("nick", nick, 999999);
 
-        Response.Write(" <b style='font-size:14px;'> 亲，您好！本服务用于：<span style='color:red'>好评有礼-会员营销 的客户做前台展示，没有订购 <a href='http://fuwu.taobao.com/serv/detail.htm?service_id=4545&from=xiuxiu'>好评有礼-会员营销</a> 则不可使用本服务</span>，给您带来的不便深感抱歉！ <br> <a href='reviewnew/html1.aspx?session=" + top_session + "' target=_blank>过期用户清除宝贝描述中好评图片请点这里</a> <br></b>");
+        Response.Write(" <b style='font-size:14px;'> 亲，您好！本服务用于：<span style='color:red'>好评有礼-会员营销 的客户做前台展示，没有订购 <a href='http://fuwu.taobao.com/serv/detail.htm?service_id=4545&from=xiuxiu'>好评有礼-会员营销</a> 则不可使用本服务</span>，给您带来的不便深感抱歉！ <br> <a href='reviewnew/html1.aspx?session=" + top_session + "' target=_blank>过期用户清除宝贝描述中好评图片请点这里</a><br> <a href='http://groupbuy.7fshop.com/top/groupbuy/deletegroupbuy.aspx?session=" + top_session + "&nick=" + HttpUtility.UrlEncode(nick) + "' target=_blank>过期用户清除团购宝贝描述中图片请点这里</a> <br></b>");
         // <a href='reviewnew/html1.aspx?session=" + top_session + "'>清除宝贝描述中好评图片请点这里</a>
     }
 }
