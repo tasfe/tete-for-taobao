@@ -29,6 +29,7 @@
     <div id="main-content">
 
 <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
+    此处的评价信息为订购软件后产生的评价信息，订购软件之前产生的评价信息无法获取！！<br />
     新增加前台店铺展示模块，<a href='http://fuwu.taobao.com/serv/detail.htm?service_id=30642&tracelog=other_serv' target="_blank">点击免费订购好评秀秀</a>
       <a href='jiaocheng1.html'>好评秀秀使用教程</a>
 </div>
