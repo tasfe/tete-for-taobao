@@ -373,6 +373,9 @@
             </table>
             <table width="680" border="0" cellspacing="0" cellpadding="0" style="margin: 0 10px;">
                 <tr>
+                 <td width="108" align="center" height="90">
+                    <a href= 'http://fuwu.taobao.com/ser/detail.htm?service_code=ts-1800709&from=haoping' target="_blank"><img alt='推广K宝' border=0 src='http://img01.taobaocdn.com/top/i1/T1r9LWXkVoXXb1upjX.jpg' /></a>
+                    </td>
                     <td width="108" align="center" height="90">
                         <a href="http://seller.taobao.com/fuwu/service.htm?service_id=7888" title="淘模板" target="_blank">
                             <img src="http://img01.taobaocdn.com/imgextra/i1/85662775/T2uMpRXgFaXXXXXXXX_!!85662775.jpg"
