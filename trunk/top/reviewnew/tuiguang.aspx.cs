@@ -17,9 +17,9 @@ public partial class top_reviewnew_tuiguang : System.Web.UI.Page
                       ,[laiyuan]
                   FROM [TCS_Tui]
                   WHERE (nick in
-                  (select nick from TCS_ShopSession WHERE version > 1)
+                  (select s.nick from TCS_ShopSession s INNER JOIN TCS_ShopConfig c ON c.nick = s.nick WHERE s.version > 1 AND c.starttime > adddate)
                   OR ip in
-                   (select ip from TCS_ShopSession where ip is not null AND version > 1))
+                   (select s.ip from TCS_ShopSession s INNER JOIN TCS_ShopConfig c ON c.nick = s.nick WHERE s.version > 1 AND c.starttime > adddate AND ip is not null))
 AND (laiyuan = 'bangpaiht' OR laiyuan = 'bangpaift' OR laiyuan = 'bangpaift1')
 AND ip NOT LIKE '117.80%'
                   order by adddate desc";
