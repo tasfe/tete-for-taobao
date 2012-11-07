@@ -1,0 +1,12 @@
+C:\svngoogle\CS-Source\teteAutoSend\ActShippingInfo4\bin\Debug\ActShippingInfo4.exe.config
+C:\svngoogle\CS-Source\teteAutoSend\ActShippingInfo4\bin\Debug\ActShippingInfo4.exe
+C:\svngoogle\CS-Source\teteAutoSend\ActShippingInfo4\bin\Debug\ActShippingInfo4.pdb
+C:\svngoogle\CS-Source\teteAutoSend\ActShippingInfo4\bin\Debug\TeteTopApi.dll
+C:\svngoogle\CS-Source\teteAutoSend\ActShippingInfo4\bin\Debug\QWeiboSDK.dll
+C:\svngoogle\CS-Source\teteAutoSend\ActShippingInfo4\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\svngoogle\CS-Source\teteAutoSend\ActShippingInfo4\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\svngoogle\CS-Source\teteAutoSend\ActShippingInfo4\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+C:\svngoogle\CS-Source\teteAutoSend\ActShippingInfo4\bin\Debug\TeteTopApi.pdb
+C:\svngoogle\CS-Source\teteAutoSend\ActShippingInfo4\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\svngoogle\CS-Source\teteAutoSend\ActShippingInfo4\obj\x86\Debug\ActShippingInfo4.exe
+C:\svngoogle\CS-Source\teteAutoSend\ActShippingInfo4\obj\x86\Debug\ActShippingInfo4.pdb

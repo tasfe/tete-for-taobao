@@ -1,0 +1,12 @@
+C:\svngoogle\CS-Source\teteAutoSend\ActUnpayTrade1\bin\Debug\ActUnpayTrade1.exe.config
+C:\svngoogle\CS-Source\teteAutoSend\ActUnpayTrade1\bin\Debug\ActUnpayTrade1.exe
+C:\svngoogle\CS-Source\teteAutoSend\ActUnpayTrade1\bin\Debug\ActUnpayTrade1.pdb
+C:\svngoogle\CS-Source\teteAutoSend\ActUnpayTrade1\bin\Debug\TeteTopApi.dll
+C:\svngoogle\CS-Source\teteAutoSend\ActUnpayTrade1\bin\Debug\QWeiboSDK.dll
+C:\svngoogle\CS-Source\teteAutoSend\ActUnpayTrade1\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\svngoogle\CS-Source\teteAutoSend\ActUnpayTrade1\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\svngoogle\CS-Source\teteAutoSend\ActUnpayTrade1\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+C:\svngoogle\CS-Source\teteAutoSend\ActUnpayTrade1\bin\Debug\TeteTopApi.pdb
+C:\svngoogle\CS-Source\teteAutoSend\ActUnpayTrade1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\svngoogle\CS-Source\teteAutoSend\ActUnpayTrade1\obj\x86\Debug\ActUnpayTrade1.exe
+C:\svngoogle\CS-Source\teteAutoSend\ActUnpayTrade1\obj\x86\Debug\ActUnpayTrade1.pdb
