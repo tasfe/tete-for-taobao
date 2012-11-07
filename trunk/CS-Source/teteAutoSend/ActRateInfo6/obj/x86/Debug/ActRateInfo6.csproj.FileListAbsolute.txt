@@ -1,0 +1,12 @@
+C:\svngoogle\CS-Source\teteAutoSend\ActRateInfo6\bin\Debug\ActRateInfo6.exe.config
+C:\svngoogle\CS-Source\teteAutoSend\ActRateInfo6\bin\Debug\ActRateInfo6.exe
+C:\svngoogle\CS-Source\teteAutoSend\ActRateInfo6\bin\Debug\ActRateInfo6.pdb
+C:\svngoogle\CS-Source\teteAutoSend\ActRateInfo6\bin\Debug\TeteTopApi.dll
+C:\svngoogle\CS-Source\teteAutoSend\ActRateInfo6\bin\Debug\QWeiboSDK.dll
+C:\svngoogle\CS-Source\teteAutoSend\ActRateInfo6\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\svngoogle\CS-Source\teteAutoSend\ActRateInfo6\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\svngoogle\CS-Source\teteAutoSend\ActRateInfo6\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+C:\svngoogle\CS-Source\teteAutoSend\ActRateInfo6\bin\Debug\TeteTopApi.pdb
+C:\svngoogle\CS-Source\teteAutoSend\ActRateInfo6\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\svngoogle\CS-Source\teteAutoSend\ActRateInfo6\obj\x86\Debug\ActRateInfo6.exe
+C:\svngoogle\CS-Source\teteAutoSend\ActRateInfo6\obj\x86\Debug\ActRateInfo6.pdb
