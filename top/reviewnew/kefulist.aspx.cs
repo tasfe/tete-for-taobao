@@ -1205,6 +1205,12 @@ public partial class top_review_kefulist : System.Web.UI.Page
             {
                 string content = reader.ReadToEnd();
 
+                Regex reg = new Regex(@"<msgid>([^<]*)</msgid>", RegexOptions.IgnoreCase);
+                if (reg.IsMatch(content))
+                {
+                    content = Regex.Match(content, @"<msgid>([^<]*)</msgid>").Groups[1].ToString();
+                }
+
                 return content;
             }
         }
