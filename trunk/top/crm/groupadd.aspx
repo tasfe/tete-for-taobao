@@ -120,6 +120,7 @@
                     document.getElementById("groupname").focus();
                     return false;
                 }
+                document.getElementById("Button1").value = "创建中，请您稍等。。。";
                 return true;
             }
         </script>
