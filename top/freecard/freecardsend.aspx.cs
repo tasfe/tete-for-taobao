@@ -269,7 +269,7 @@ public partial class top_freecard_freecardsend : System.Web.UI.Page
 
         HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://221.179.180.158:9001/QxtSms/QxtFirewall" + "?" + param);
 
-        File.WriteAllText(Server.MapPath("test.txt"), "http://221.179.180.158:9001/QxtSms/QxtFirewall" + "?" + param);
+        //File.WriteAllText(Server.MapPath("test.txt"), "http://221.179.180.158:9001/QxtSms/QxtFirewall" + "?" + param);
 
         req.Method = "GET";
 
@@ -278,6 +278,12 @@ public partial class top_freecard_freecardsend : System.Web.UI.Page
             using (StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.GetEncoding("GB2312")))
             {
                 string content = reader.ReadToEnd();
+
+                Regex reg = new Regex(@"<msgid>([^<]*)</msgid>", RegexOptions.IgnoreCase);
+                if (reg.IsMatch(content))
+                {
+                    content = Regex.Match(content, @"<msgid>([^<]*)</msgid>").Groups[1].ToString();
+                }
 
                 return content;
             }
