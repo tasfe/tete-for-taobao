@@ -615,7 +615,7 @@ public partial class top_review_msg : System.Web.UI.Page
                                     " '" + number + "', " +
                                     " 'test' " +
                                 ") ";
-                File.WriteAllText(Server.MapPath("test1.txt"), sql);
+                //File.WriteAllText(Server.MapPath("test1.txt"), sql);
 
                 if (phone.Length != 0)
                 {
@@ -679,6 +679,12 @@ public partial class top_review_msg : System.Web.UI.Page
             using (StreamReader reader = new StreamReader(myResponse.GetResponseStream(), Encoding.GetEncoding("GB2312")))
             {
                 string content = reader.ReadToEnd();
+
+                Regex reg = new Regex(@"<msgid>([^<]*)</msgid>", RegexOptions.IgnoreCase);
+                if (reg.IsMatch(content))
+                {
+                    content = Regex.Match(content, @"<msgid>([^<]*)</msgid>").Groups[1].ToString();
+                }
 
                 return content;
             }
