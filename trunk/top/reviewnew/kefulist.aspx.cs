@@ -1195,7 +1195,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
 
         HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("http://221.179.180.158:9001/QxtSms/QxtFirewall" + "?" + param);
 
-        File.WriteAllText(Server.MapPath("test.txt"), "http://221.179.180.158:9001/QxtSms/QxtFirewall" + "?" + param);
+        //File.WriteAllText(Server.MapPath("test.txt"), "http://221.179.180.158:9001/QxtSms/QxtFirewall" + "?" + param);
 
         req.Method = "GET";
 
