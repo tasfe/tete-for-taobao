@@ -22,6 +22,29 @@ public partial class top_reviewnew_search : System.Web.UI.Page
         }
     }
 
+
+    protected void Button8_Click(object sender, EventArgs e)
+    {
+        if (TextBox23.Text != "xiaoman")
+        {
+            return;
+        }
+        string appkey = "12159997";
+        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+        string session = string.Empty;
+        string nick = this.TextBox20.Text;
+        string result = string.Empty;
+
+        IDictionary<string, string> param = new Dictionary<string, string>();
+
+        param = new Dictionary<string, string>();
+        param.Add("type", "get,notify,syn");
+        param.Add("nick", nick);
+        result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.increment.customer.stop", session, param);
+
+        Response.Write(result);
+    }
+
     protected void Button7_Click(object sender, EventArgs e)
     {
         if (TextBox19.Text != "xiaoman")

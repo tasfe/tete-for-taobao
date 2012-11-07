@@ -41,6 +41,11 @@
         <asp:TextBox ID="TextBox19" runat="server"></asp:TextBox>
         <asp:Button ID="Button7" runat="server" onclick="Button7_Click" Text="按照订单号获取某客户" />
         <hr />
+        
+        卖家昵称：<asp:TextBox ID="TextBox20" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBox23" runat="server"></asp:TextBox>
+        <asp:Button ID="Button8" runat="server" onclick="Button8_Click" Text="取消客户消息通知" />
+        <hr />
          
         手机号码：<asp:TextBox ID="TextBox13" runat="server" TextMode="MultiLine"></asp:TextBox>
         短信内容：<asp:TextBox ID="TextBox14" runat="server" TextMode="MultiLine"></asp:TextBox>
