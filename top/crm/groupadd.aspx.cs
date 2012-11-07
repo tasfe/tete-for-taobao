@@ -120,7 +120,7 @@ public partial class top_crm_groupadd : System.Web.UI.Page
             right += ",'" + actdateend + "'";
             condition += " AND a.lastorderdate <= '" + actdateend + "'";
         }
-
+        
         sql = "INSERT INTO TCS_Group (" + left + ") VALUES (" + right + ")";
         Response.Write(sql);
         Response.Write("<br>");
