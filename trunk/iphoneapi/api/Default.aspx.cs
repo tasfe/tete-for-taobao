@@ -28,6 +28,7 @@ public partial class api_Default : System.Web.UI.Page
     private string couponid = string.Empty;
     private string qrcode = string.Empty;
     private string mobile = string.Empty;
+    private string alerttoken = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -47,6 +48,7 @@ public partial class api_Default : System.Web.UI.Page
         couponid = utils.NewRequest("couponid", utils.RequestType.QueryString);
         mobile = utils.NewRequest("mobile", utils.RequestType.QueryString);
         qrcode = utils.NewRequest("qrcode", utils.RequestType.QueryString);
+        alerttoken = utils.NewRequest("alerttoken", utils.RequestType.QueryString);
 
         err = utils.NewRequest("err", utils.RequestType.Form);
 
@@ -63,6 +65,9 @@ public partial class api_Default : System.Web.UI.Page
                 break;
             case "cateindex":
                 ShowCateInfoIndex();
+                break;
+            case "catechild":
+                ShowCateInfoChild();
                 break;
             case "list":
                 ShowListInfo();
@@ -131,7 +136,7 @@ public partial class api_Default : System.Web.UI.Page
         //    string str = "{\"error_response\":\"service_error\"}";
         //    Response.Write(str);
         //}
-       //File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), Request.Url.ToString());
+        //File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), Request.Url.ToString());
     }
 
     private void GetCheckStatus()
@@ -473,7 +478,7 @@ public partial class api_Default : System.Web.UI.Page
                     str += ",";
                 }
 
-                str += "{\"id\":\"" + dt.Rows[i]["id"].ToString() + "\",\"title\":\"" + dt.Rows[i]["title"].ToString() + "\",\"date\":\"" + dt.Rows[i]["adddate"].ToString() + "\",\"isread\":\"" + dt.Rows[i]["isread"].ToString() + "\"}";
+                str += "{\"id\":\"" + dt.Rows[i]["id"].ToString() + "\",\"title\":\"" + dt.Rows[i]["title"].ToString() + "\",\"date\":\"" + DateTime.Parse(dt.Rows[i]["adddate"].ToString()).ToString("yyyy-MM-dd") + "\",\"isread\":\"" + dt.Rows[i]["isread"].ToString() + "\"}";
             }
             str += "]}";
         }
@@ -532,10 +537,10 @@ public partial class api_Default : System.Web.UI.Page
         }
         else
         {
-            sql = "UPDATE TeteUserToken SET mobile = '" + mobile + "',updatedate = GETDATE(),logintimes = logintimes + 1 WHERE token = '" + token + "'";
+            sql = "UPDATE TeteUserToken SET mobile = '" + mobile + "',alerttoken='" + alerttoken + "',updatedate = GETDATE(),logintimes = logintimes + 1 WHERE token = '" + token + "'";
             utils.ExecuteNonQuery(sql);
         }
-
+        File.WriteAllText(Server.MapPath("aaa.txt"), Request.Url.ToString());
         string str = "{\"result\":\"ok\"}";
         Response.Write(str);
     }
@@ -1141,7 +1146,7 @@ public partial class api_Default : System.Web.UI.Page
         int pageCount = pageSizeNow;
         int dataCount = (pageNow - 1) * pageCount;
 
-        
+
         if (cid.Length == 0)
         {
             sql = "SELECT COUNT(*) FROM TeteShopItem WHERE nick = '" + uid + "'";
@@ -1211,6 +1216,36 @@ public partial class api_Default : System.Web.UI.Page
         string str = string.Empty;
 
         sql = "SELECT TOP 5 * FROM TeteShopCategory WHERE nick = '" + uid + "' AND parentid=0 ORDER BY orderid";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        if (dt.Rows.Count != 0)
+        {
+            str = "{\"cate\":[";
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (i != 0)
+                {
+                    str += ",";
+                }
+
+                str += "{\"cid\":\"" + dt.Rows[i]["cateid"].ToString() + "\",\"parent_cid\":\"" + dt.Rows[i]["parentid"].ToString() + "\",\"name\":\"" + dt.Rows[i]["catename"].ToString().Substring(0, 2) + "\",\"count\":\"" + dt.Rows[i]["catecount"].ToString() + "\",\"catepicurl\":\"" + dt.Rows[i]["catepicurl"].ToString() + "\"}";
+            }
+            str += "]}";
+        }
+        else
+        {
+            str = "{\"count\":\"0\"}";
+        }
+
+        Response.Write(str);
+    }
+
+
+    private void ShowCateInfoChild()
+    {
+        string sql = string.Empty;
+        string str = string.Empty;
+
+        sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + uid + "' AND parentid=" + cid + " ORDER BY orderid";
         DataTable dt = utils.ExecuteDataTable(sql);
         if (dt.Rows.Count != 0)
         {
