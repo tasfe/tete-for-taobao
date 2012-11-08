@@ -79,7 +79,7 @@ public partial class top_review_testapi : System.Web.UI.Page
 
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.logistics.companies.get", session, param);
         ////<coupon_number>1323930538</coupon_number>
-
+        Response.Write(result + "<br>");
         Regex reg = new Regex(@"<code>([^<]*)</code><id>([^<]*)</id><name>([^<]*)</name>", RegexOptions.IgnoreCase);
         MatchCollection match = reg.Matches(result);
 
