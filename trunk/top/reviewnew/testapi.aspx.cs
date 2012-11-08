@@ -23,7 +23,24 @@ public partial class top_review_testapi : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Fresh();
+        GetUserCoupon();
+    }
+
+    private void GetUserCoupon()
+    {
+        string result = string.Empty;
+        string appkey = "12159997";
+        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+        string buynick = "qs娜娜";
+        string taobaonick = "奥美姿旗舰店";
+        string session = "6101503745f1265a20262d5e8288968fa2c4e3871eea348679089675";
+
+        IDictionary<string, string> param = new Dictionary<string, string>();
+        param.Add("coupon_id", "12156727");
+        param.Add("buyer_nick", buynick);
+        param.Add("tid", "226860043511902");
+        result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupondetail.get", session, param);
+        Response.Write(result);
     }
 
     private void GetTradeRate()
@@ -79,14 +96,12 @@ public partial class top_review_testapi : System.Web.UI.Page
 
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.logistics.companies.get", session, param);
         ////<coupon_number>1323930538</coupon_number>
-        Response.Write(result + "<br>");
+        //Response.Write(result + "<br>");
         Regex reg = new Regex(@"<code>([^<]*)</code><id>([^<]*)</id><name>([^<]*)</name>", RegexOptions.IgnoreCase);
         MatchCollection match = reg.Matches(result);
 
         for (int i = 0; i < match.Count; i++)
         {
-            Response.Write(match[i].Groups[1].ToString() + "<br>");
-            Response.Write(match[i].Groups[3].ToString() + "<br>");
             string sql = "SELECT COUNT(*) FROM TCS_TaobaoShippingCompany WHERE short = '" + match[i].Groups[1].ToString() + "'";
             string count = utils.ExecuteString(sql);
 
@@ -98,6 +113,12 @@ public partial class top_review_testapi : System.Web.UI.Page
                     Response.Write(sql + "<br>");
                     utils.ExecuteNonQuery(sql);
                 }
+            }
+            else
+            {
+                sql = "UPDATE TCS_TaobaoShippingCompany SET name = '" + match[i].Groups[3].ToString() + "' WHERE short = '" + match[i].Groups[1].ToString() + "'";
+                Response.Write(sql + "<br>");
+                utils.ExecuteNonQuery(sql);
             }
         }
     }
