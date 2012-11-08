@@ -187,7 +187,7 @@ public partial class top_review_testapi : System.Web.UI.Page
         param.Add("method", method);
         param.Add("session", session);
         param.Add("timestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-        param.Add("format", "json");
+        param.Add("format", "xml");
         param.Add("v", "2.0");
         param.Add("sign_method", "md5");
         param.Add("sign", CreateSign(param, appSecret));
