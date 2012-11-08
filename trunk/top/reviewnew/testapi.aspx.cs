@@ -23,7 +23,7 @@ public partial class top_review_testapi : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        GetTradeRate();
+        Fresh();
     }
 
     private void GetTradeRate()
@@ -85,6 +85,8 @@ public partial class top_review_testapi : System.Web.UI.Page
 
         for (int i = 0; i < match.Count; i++)
         {
+            Response.Write(match[i].Groups[1].ToString() + "<br>");
+            Response.Write(match[i].Groups[3].ToString() + "<br>");
             string sql = "SELECT COUNT(*) FROM TCS_TaobaoShippingCompany WHERE short = '" + match[i].Groups[1].ToString() + "'";
             string count = utils.ExecuteString(sql);
 
