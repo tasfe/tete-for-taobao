@@ -48,7 +48,7 @@
                 <td><%#Eval("arealist")%></td>
                 <td><%#Eval("actdate")%><br />-<%#Eval("actdateend")%></td>
                 <td><%#Eval("count")%></td>
-                <td> <a href='grouplist.aspx?act=del&id=<%#Eval("guid")%>'>删除</a> </td>
+                <td> <a href='grouplist.aspx?act=update&id=<%#Eval("guid")%>'>更新会员数据</a> | <a href='grouplist.aspx?act=del&id=<%#Eval("guid")%>'>删除</a> </td>
             </tr>
             </ItemTemplate>
         </asp:Repeater>
