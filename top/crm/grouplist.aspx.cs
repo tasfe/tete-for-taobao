@@ -82,30 +82,61 @@ public partial class top_crm_grouplist : System.Web.UI.Page
     /// </summary>
     private void UpdateData()
     {
-        string sql = "SELECT * FROM TCS_Group WHERE nick = '" + nick + "' AND isdel = 0 ORDER BY price ASC";
+        string id = utils.NewRequest("id", utils.RequestType.QueryString);
+        string sql = "SELECT * FROM TCS_Group WHERE nick = '" + nick + "' AND isdel = 0 AND guid = '" + id + "'";
         //Response.Write(sql);
+        string condition = string.Empty;
         DataTable dt = utils.ExecuteDataTable(sql);
-        for (int i = 0; i < dt.Rows.Count; i++)
+        if (dt.Rows.Count > 0)
         {
-            //如果是最后一个
-            if (i == dt.Rows.Count - 1)
+            string price = dt.Rows[0]["price"].ToString();
+            string priceend = dt.Rows[0]["priceend"].ToString();
+            string area = dt.Rows[0]["arealist"].ToString();
+            string actdate = dt.Rows[0]["actdate"].ToString();
+            string actdateend = dt.Rows[0]["actdateend"].ToString();
+
+            if (price.Length != 0)
             {
-                //获取符合条件的会员并更新会员分组ID
-                sql = "UPDATE TCS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount <> '' AND tradecount > 0 AND cast(tradeamount as decimal(18,2)) >= " + dt.Rows[i]["price"].ToString() + "";
-                //Response.Write(sql);
-                utils.ExecuteNonQuery(sql);
+                condition += " AND Convert(decimal,a.tradeamount) >= " + price + "";
             }
-            else
+            if (priceend.Length != 0)
             {
-                //获取符合条件的会员并更新会员分组ID
-                sql = "UPDATE TCS_Customer SET groupguid = '" + dt.Rows[i]["guid"].ToString() + "' WHERE nick = '" + nick + "' AND tradeamount <> '' AND tradecount > 0 AND cast(tradeamount as decimal(18,2)) >= " + dt.Rows[i]["price"].ToString() + " AND cast(tradeamount as decimal(18,2)) < " + dt.Rows[i + 1]["price"].ToString() + "";
-                //Response.Write(sql);
+                condition += " AND Convert(decimal,a.tradeamount) <= " + priceend + "";
+            }
+            if (area.Length > 0)
+            {
+                condition += " AND CHARINDEX(REPLACE(a.sheng,'省',''),'" + area + "') > 0";
+            }
+            if (actdate.Length != 0)
+            {
+                condition += " AND a.lastorderdate >= '" + actdate + "'";
+            }
+            if (actdateend.Length != 0)
+            {
+                condition += " AND a.lastorderdate <= '" + actdateend + "'";
+            }
+
+            sql = "SELECT COUNT(*) FROM TCS_Customer WHERE tradeamount = '' AND nick = '" + nick + "'";
+            string count = utils.ExecuteString(sql);
+            if (count != "0")
+            {
+                //更新价格为空的会员为价格0
+                sql = "UPDATE TCS_Customer SET tradeamount = '0' WHERE tradeamount = '' AND nick = '" + nick + "'";
                 utils.ExecuteNonQuery(sql);
             }
 
+            condition = @"guid IN (SELECT guid FROM (SELECT * FROM TCS_Customer WHERE nick = '" + nick + "') AS a WHERE 1 = 1 " + condition + ")";
+
+            //获取符合条件的会员并更新会员分组ID
+            sql = "UPDATE TCS_Customer SET groupguid = '" + id + "' WHERE nick = '" + nick + "' AND " + condition;
+            Response.Write(sql);
+            Response.Write("<br>");
+            utils.ExecuteNonQuery(sql);
+
             //获取总数并更新
-            sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TCS_Customer WHERE groupguid = '" + dt.Rows[i]["guid"].ToString() + "') WHERE guid = '" + dt.Rows[i]["guid"].ToString() + "'";
-            //Response.Write(sql);
+            sql = "UPDATE TCS_Group SET count = (SELECT COUNT(*) FROM TCS_Customer WHERE groupguid = '" + id + "') WHERE guid = '" + id + "'";
+            Response.Write(sql);
+            Response.Write("<br>");
             utils.ExecuteNonQuery(sql);
         }
 
