@@ -17,12 +17,15 @@ using System.Collections.Generic;
 using Taobao.Top.Api;
 using Taobao.Top.Api.Request;
 using Taobao.Top.Api.Domain;
+using System.Net;
+using System.IO;
 
 public partial class container : System.Web.UI.Page
 {
     public string top_session = string.Empty;
     public string nick = string.Empty;
     public string versionNo = string.Empty;
+    public string refreshToken = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -48,7 +51,7 @@ public partial class container : System.Web.UI.Page
             string app_secret = "5b384ce1102e72ee0643c5b303e2a96a";
             string top_sign = utils.NewRequest("top_sign", utils.RequestType.QueryString).Replace(" ", "+");
             string sign = utils.NewRequest("sign", utils.RequestType.QueryString).Replace(" ", "+");
-
+            refreshToken = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["refresh_token"];
             versionNo = utils.NewRequest("versionNo", utils.RequestType.QueryString);
             string leaseId = utils.NewRequest("leaseId", utils.RequestType.QueryString).Replace(" ", "+"); ;//可以从 QueryString 来获取,也可以固定 
             string timestamp = utils.NewRequest("timestamp", utils.RequestType.QueryString).Replace(" ", "+"); ;//可以从 QueryString 来获取 
@@ -99,7 +102,7 @@ public partial class container : System.Web.UI.Page
                 utils.ExecuteNonQuery(sql);
 
                 //更新登录次数和最近登陆时间
-                sql = "UPDATE toptaobaoshop SET logintimes = logintimes + 1,lastlogin = GETDATE(),session='" + top_session + "',sessionmarket='" + top_session + "',ip='" + ip + "' WHERE nick = '" + nick + "'";
+                sql = "UPDATE toptaobaoshop SET logintimes = logintimes + 1,lastlogin = GETDATE(),session='" + top_session + "',sessionmarket='" + top_session + "',ip='" + ip + "',refreshToken='" + refreshToken + "' WHERE nick = '" + nick + "'";
                 utils.ExecuteNonQuery(sql);
             }
             else
@@ -107,11 +110,97 @@ public partial class container : System.Web.UI.Page
                 //记录该会员的店铺信息
                 InsertUserInfo(nick);
             }
-
+            ReflashSession();
             //添加cookie
             AddCookie(top_session);
             Response.Redirect("/Index.aspx");
         }
+    }
+
+    private void ReflashSession()
+    {
+        string appkey = "12579340";
+        string secret = "5b384ce1102e72ee0643c5b303e2a96a";
+
+        IDictionary<string, string> param = new Dictionary<string, string>();
+        string url = string.Empty;
+        string result = string.Empty;
+        string str = string.Empty;
+        string sign = string.Empty;
+        sign = CreateNewSign(appkey, secret, refreshToken, top_session);
+
+        url = "http://container.open.taobao.com/container/refresh?appkey=12579340&refresh_token=" + refreshToken
++ "&sessionkey=" + top_session + "&sign=" + sign;
+        result = GetWebSiteContent(url, "get", "", "gbk");
+    }
+
+    private static string GetWebSiteContent(string url, string requestMethod, string requestBody, string encode)
+    {
+        string strReturn = "";
+
+        WebRequest wRequestUTF =
+            WebRequest.Create(url +
+                              (requestMethod.ToUpper() == "GET" && !string.IsNullOrEmpty(requestBody)
+                                   ? "?" + requestBody
+                                   : ""));
+        wRequestUTF.Credentials = CredentialCache.DefaultCredentials;
+        wRequestUTF.Timeout = 10000; //10秒改为5秒超时
+        wRequestUTF.Method = requestMethod.ToUpper();
+        //wRequestUTF.ContentType = "application/X-www-form-urlencoded;charset=utf-8";
+
+        wRequestUTF.ContentType = "application/X-www-form-urlencoded;charset=" + encode;
+        wRequestUTF.Headers.Set("Pragma", "no-cache");
+        //wRequestUTF.Headers.Set("Referer", " http://www.aidai.com/Frames.html");
+        if (wRequestUTF.Method == "POST")
+        {
+            if (requestBody != null)
+            {
+                byte[] bs = Encoding.UTF8.GetBytes(requestBody);
+
+                wRequestUTF.ContentLength = bs.Length;
+
+                using (Stream reqStream = wRequestUTF.GetRequestStream())
+                {
+                    reqStream.Write(bs, 0, bs.Length);
+                }
+            }
+        }
+
+        try
+        {
+            WebResponse wResponseUTF = wRequestUTF.GetResponse();
+            Stream streamUTF = wResponseUTF.GetResponseStream();
+            //StreamReader sReaderUTF = new StreamReader(streamUTF, Encoding.UTF8);
+            StreamReader sReaderUTF = new StreamReader(streamUTF, Encoding.GetEncoding(encode));
+            strReturn = sReaderUTF.ReadToEnd();
+        }
+        catch (Exception ex)
+        {
+            System.Console.WriteLine(url + ex.Message);
+        }
+
+        return strReturn;
+    }
+
+    protected static string CreateNewSign(string appkey, string app_secret, string token, string session)
+    {
+        StringBuilder result = new StringBuilder();
+        System.Security.Cryptography.MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+        result.Append("appkey").Append(appkey).Append("refresh_token").Append(token).Append("sessionkey").Append(session).Append(app_secret);
+        byte[] bytes = MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(result.ToString()));
+
+        result.Remove(0, result.Length);
+        for (int i = 0; i < bytes.Length; i++)
+        {
+            string hex = bytes[i].ToString("X");
+            if (hex.Length == 1)
+            {
+                result.Append("0");
+            }
+            result.Append(hex);
+        }
+
+        return result.ToString();
     }
 
     /// <summary>
@@ -169,7 +258,7 @@ public partial class container : System.Web.UI.Page
                         "shop_score, " +
                         "ip, " +
                         "session, " +
-                        "remain_count " +
+                        "remain_count,refreshToken" +
                     " ) VALUES ( " +
                         " '" + shop.Sid + "', " +
                         " '" + shop.Cid + "', " +
@@ -183,7 +272,7 @@ public partial class container : System.Web.UI.Page
                         " '" + shop.ShopScore + "', " +
                         " '" + ip + "', " +
                         " '" + top_session + "', " +
-                        " '" + shop.RemainCount + "' " +
+                        " '" + shop.RemainCount + "','" + refreshToken + "'" +
                   ") ";
 
         utils.ExecuteNonQuery(sql);
@@ -246,7 +335,7 @@ public partial class container : System.Web.UI.Page
         cooksession.Expires = DateTime.Now.AddDays(1);
 
         Response.Cookies.Add(cookie);
-        LogInfo.Add("添加了cookie", nick);
+        //LogInfo.Add("添加了cookie", nick);
 
         Session["snick"] = nick;
         Session["ssession"] = session;
