@@ -507,7 +507,7 @@
 
     <Products mapxmlname="Category">
       <seotitle>&lt;title&gt;.*?&lt;/title&gt;</seotitle>
-      <title>&lt;h2 class="title"&gt;.*?&lt;/h2&gt;</title>
+      <title>(&lt;h2 class="title"&gt;.*?&lt;/h2&gt;)|(&lt;h1&gt;.*?&lt;/h1&gt;)</title>
       <meta>&lt;meta name=\"keywords\".*?/&gt;</meta>
       <desc>&lt;meta name=\"description\".*?/&gt;</desc>
       <content remove='&lt;div class="pic-atlas"&gt;'>(&lt;div class="news-cont"&gt;.*?&lt;/div&gt;)|(&lt;div class="pic-content"&gt;.*?&lt;div class="pic-atlas"&gt;)|(&lt;div class="a_c"&gt;.*?&lt;/div&gt;)</content>
