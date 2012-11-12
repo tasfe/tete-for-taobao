@@ -618,7 +618,7 @@ public partial class api_Default : System.Web.UI.Page
         string str = string.Empty;
         string con = string.Empty;
 
-        if (uid == "taobao1")
+        if (uid == "taobao1" || uid == "taozhe")
         {
             //直接查询淘宝客
             string appkey = "21088121";
@@ -651,7 +651,14 @@ public partial class api_Default : System.Web.UI.Page
                     str += ",";
                 }
 
-                str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
+                if (uid == "taozhe")
+                {
+                    str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
+                }
+                else
+                {
+                    str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
+                }
 
             }
             str += "],\"pagenow\":" + page + ",\"total\":100}";
@@ -930,9 +937,20 @@ public partial class api_Default : System.Web.UI.Page
         }
         else
         {
-            sql = "SELECT TOP 5 * FROM TeteShopItem WHERE isnew = 1 AND nick = '" + uid + "' ORDER BY orderid";
+            cid = utils.NewRequest("cid", utils.RequestType.Form);
+            sql = "SELECT * FROM TeteShopCategory WHERE parentid = '" + cid + "'";
+            DataTable dt1 = utils.ExecuteDataTable(sql);
+            string con = "(1 = 2";
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                con += " OR CHARINDEX('" + dt1.Rows[i]["cateid"].ToString() + "', cateid) > 0";
+            }
+            con += " OR CHARINDEX('" + cid + "', cateid) > 0)";
+
+            sql = "SELECT TOP 5 * FROM TeteShopItem WHERE isnew = 1 AND nick = '" + uid + "' OR " + con + " ORDER BY orderid";
             //Response.Write(sql);
             //sql = "SELECT * FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
+            File.WriteAllText(Server.MapPath("aaa111.txt"), sql + "-" + Request.Url.ToString());
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count != 0)
             {
@@ -1053,7 +1071,7 @@ public partial class api_Default : System.Web.UI.Page
         {
             sql = "SELECT TOP 5 * FROM TeteShopItem WHERE isnew = 1 AND nick = '" + uid + "' ORDER BY orderid";
             //Response.Write(sql);
-            //sql = "SELECT * FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
+            //sql = "SELECT TOP 5 * FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0 ORDER BY orderid";
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count != 0)
             {
