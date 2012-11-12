@@ -36,8 +36,12 @@ public partial class top_review_testapi : System.Web.UI.Page
         string session = "6101503745f1265a20262d5e8288968fa2c4e3871eea348679089675";
 
         IDictionary<string, string> param = new Dictionary<string, string>();
-        param.Add("coupon_id", "12156727");
-        param.Add("buyer_nick", buynick);
+        param.Add("coupon_id", "14190504");
+        param.Add("state", "unused");
+        param.Add("page_no", "1");
+        param.Add("page_size", "20");
+        param.Add("end_time", "2012-11-08 00:00:00");
+        //param.Add("buyer_nick", buynick);
         result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.promotion.coupondetail.get", session, param);
         Response.Write(result);
     }
