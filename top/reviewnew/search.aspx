@@ -51,6 +51,13 @@
         短信内容：<asp:TextBox ID="TextBox14" runat="server" TextMode="MultiLine"></asp:TextBox>
         <asp:TextBox ID="TextBox15" runat="server"></asp:TextBox>
         <asp:Button ID="Button6" runat="server" onclick="Button6_Click" Text="发送短信" />
+        <hr />
+         
+        卖家昵称：<asp:TextBox ID="TextBox21" runat="server"></asp:TextBox>
+        短信条数：<asp:TextBox ID="TextBox22" runat="server"></asp:TextBox>
+        短信内容：<asp:TextBox ID="TextBox25" runat="server" TextMode="MultiLine"></asp:TextBox>
+        <asp:TextBox ID="TextBox24" runat="server"></asp:TextBox>
+        <asp:Button ID="Button9" runat="server" onclick="Button9_Click" Text="录入短信群发记录" />
     </div>
     </form>
 </body>
