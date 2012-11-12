@@ -29,7 +29,7 @@ public partial class top_reviewnew_search : System.Web.UI.Page
             return;
         }
 
-        string sql = "INSERT INTO TCS_MsgSend (nick, buynick, typ, content) VALUES ('" + this.TextBox21.Text + "','" + this.TextBox21.Text + "','muti','" + this.TextBox25.Text.Replace("'", "''") + "')";
+        string sql = "INSERT INTO TCS_MsgSend (nick, buynick, typ, content) VALUES ('" + this.TextBox21.Text + "','" + this.TextBox21.Text + "','muti','短信手动群发【" + this.TextBox22.Text + "】条<br>内容：" + this.TextBox25.Text.Replace("'", "''") + "')";
         utils.ExecuteNonQuery(sql);
 
         sql = "UPDATE TCS_ShopConfig SET total = total - " + this.TextBox22.Text + " WHERE nick = '" + this.TextBox21.Text + "'";
