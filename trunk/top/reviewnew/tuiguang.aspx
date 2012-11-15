@@ -9,6 +9,8 @@
 <body>
     <form id="form1" runat="server">
     <div>
+    本月总计推广来<%=total %>名卖家，按照每日2个的标准已经超出<%=jiangli %>个卖家！
+    <br />
     <table>
     <tr>
         <td>卖家</td>

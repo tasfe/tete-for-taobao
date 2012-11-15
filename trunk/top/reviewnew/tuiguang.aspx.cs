@@ -8,6 +8,9 @@ using System.Data;
 
 public partial class top_reviewnew_tuiguang : System.Web.UI.Page
 {
+    public int total = 0;
+    public int jiangli = 0;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string sql = @"SELECT * FROM TCS_ShopConfig WHERE nick IN (
@@ -22,6 +25,17 @@ public partial class top_reviewnew_tuiguang : System.Web.UI.Page
                           ORDER BY starttime DESC";
 
         DataTable dt = utils.ExecuteDataTable(sql);
+
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            if (DateTime.Parse(dt.Rows[i]["starttime"].ToString()).Month == DateTime.Now.Month)
+            {
+                total++;
+            }
+        }
+
+        jiangli = DateTime.Now.Day * 2 - total;
+        if (jiangli < 0) jiangli = 0;
 
         rpt.DataSource = dt;
         rpt.DataBind();
