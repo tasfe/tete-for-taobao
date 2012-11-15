@@ -126,6 +126,11 @@ public partial class top_groupbuy_msgsend : System.Web.UI.Page
                 {
                     err = new Regex(@"<sub_msg>([^<]*)</sub_msg>", RegexOptions.IgnoreCase).Match(result).Groups[1].ToString();
                 }
+                try
+                {
+                    File.WriteAllText(Server.MapPath("couponerrlog/" + DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + nick + ".txt"), result);
+                }
+                catch { }
                 Response.Write("<script>alert('【系统错误】：" + err + "，请稍后再试或者联系客服人员！');window.location.href='msgsend.aspx';</script>");
             }
             else
