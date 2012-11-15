@@ -34,7 +34,7 @@ public partial class top_reviewnew_tuiguang : System.Web.UI.Page
             }
         }
 
-        jiangli = DateTime.Now.Day * 2 - total;
+        jiangli = total - DateTime.Now.Day * 2;
         if (jiangli < 0) jiangli = 0;
 
         rpt.DataSource = dt;
