@@ -10,6 +10,7 @@ using System.Net;
 using System.Text;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
+using System.Web.Security;
 
 public partial class api_Default : System.Web.UI.Page
 {
@@ -653,10 +654,15 @@ public partial class api_Default : System.Web.UI.Page
 
                 if (uid == "taozhe")
                 {
+                    string fileName = Server.MapPath("tmpimg/" + MD5(match[i].Groups[3].ToString()) + ".jpg");
+                    
                     //保存临时图片获取图片尺寸
-                    WebClient c = new WebClient();
-                    c.DownloadFile(match[i].Groups[3].ToString(), Server.MapPath("aa.jpg"));
-                    System.Drawing.Image img = System.Drawing.Image.FromFile(Server.MapPath("aa.jpg"));
+                    if (!File.Exists(fileName))
+                    {
+                        WebClient c = new WebClient();
+                        c.DownloadFile(match[i].Groups[3].ToString(), fileName);
+                    }
+                    System.Drawing.Image img = System.Drawing.Image.FromFile(fileName);
 
                     str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\",\"width\":" + img.Width.ToString() + ",\"height\":" + img.Height.ToString() + "}";
                 }
@@ -763,6 +769,11 @@ public partial class api_Default : System.Web.UI.Page
         Response.Write(str);
     }
 
+
+    public static string MD5(string str)
+    {
+        return FormsAuthentication.HashPasswordForStoringInConfigFile(str, "MD5");
+    }
 
     private void ShowHotListInfo()
     {
