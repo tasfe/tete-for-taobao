@@ -464,7 +464,7 @@
       <title>&lt;h1 id="h1title"&gt;.*?&lt;/h1&gt;</title>
       <meta>&lt;meta name=\"keywords\".*?/&gt;</meta>
       <desc>&lt;meta name=\"description\".*?/&gt;</desc>
-      <content remove='&lt;div class="gg200x300".*?&lt;/iframe&gt;'>&lt;div id="endText"&gt;.*?&lt;a href="http://ent.163.com/"&gt;</content>
+      <content remove='&lt;div class="gg200x300".*?&lt;/iframe&gt;'>border="0" /&gt;&lt;div id="endText"&gt;.*?&lt;a href="http://ent.163.com/"&gt;</content>
       <newsdate>[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}</newsdate>
       <newspage useful="\./[0-9]+\.shtml" type="photoOrText">&lt;div class=\"new-page\"&gt;.*?&lt;/div&gt;</newspage>
     </Products>
