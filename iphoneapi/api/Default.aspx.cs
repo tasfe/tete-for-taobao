@@ -654,7 +654,7 @@ public partial class api_Default : System.Web.UI.Page
 
                 if (uid == "taozhe")
                 {
-                    string fileName = Server.MapPath("tmpimg/" + MD5(match[i].Groups[3].ToString()) + ".jpg");
+                    string fileName = Server.MapPath("tmpimg/" + strMD5(match[i].Groups[3].ToString()) + ".jpg");
                     
                     //保存临时图片获取图片尺寸
                     if (!File.Exists(fileName))
@@ -770,7 +770,7 @@ public partial class api_Default : System.Web.UI.Page
     }
 
 
-    public static string MD5(string str)
+    public static string strMD5(string str)
     {
         return FormsAuthentication.HashPasswordForStoringInConfigFile(str, "MD5");
     }
