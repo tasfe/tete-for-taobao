@@ -653,7 +653,12 @@ public partial class api_Default : System.Web.UI.Page
 
                 if (uid == "taozhe")
                 {
-                    str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
+                    //保存临时图片获取图片尺寸
+                    WebClient c = new WebClient();
+                    c.DownloadFile(match[i].Groups[3].ToString(), Server.MapPath("aa.jpg"));
+                    System.Drawing.Image img = System.Drawing.Image.FromFile(Server.MapPath("aa.jpg"));
+
+                    str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\",\"width\":" + img.Width.ToString() + ",\"height\":" + img.Height.ToString() + "}";
                 }
                 else
                 {
