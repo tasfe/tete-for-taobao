@@ -81,6 +81,17 @@ public partial class top_containerblog : System.Web.UI.Page
             return;
         }
 
+
+        //子站点跳转
+        string sql = "SELECT typ FROM TCS_UserTyp WHERE nick = '" + nick + "'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        if (dt.Rows.Count != 0)
+        {
+            string newurl = Request.Url.ToString().Replace("haoping", "haoping" + dt.Rows[0][0].ToString());
+            Response.Redirect(newurl);
+            return;
+        }
+
         //if (agreementsign != "")
         //{
         //    //加密NICK
