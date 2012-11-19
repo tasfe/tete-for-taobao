@@ -226,7 +226,7 @@ public partial class top_reviewnew_search : System.Web.UI.Page
                 {
                     Console.Write(match1[k].Groups[0].ToString() + "\r\n");
                     string resultNew = "\"msg\":{\"notify_trade\":" + match1[k].Groups[0].ToString() + "}";
-                    InsertMsgLogInfo(nick, "TradeRated", resultNew);
+                    InsertMsgLogInfo(nick, ddlType.SelectedValue, resultNew);
                 }
 
                 total += match1.Count;
