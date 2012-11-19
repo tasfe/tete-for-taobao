@@ -307,6 +307,7 @@ public partial class top_containerblog : System.Web.UI.Page
                         "isalipay, " +
                         "alipayid, " +
                         "total, " +
+                        "version, " +
                         "issendmsg " +
                     " ) VALUES ( " +
                         " '" + nick + "', " +
@@ -321,6 +322,7 @@ public partial class top_containerblog : System.Web.UI.Page
                         " '0', " +
                         " '0', " +
                         " '" + giftMsg + "', " +
+                        " '" + version + "', " +
                         " '0' " +
                     ") ";
             utils.ExecuteNonQuery(sql);
