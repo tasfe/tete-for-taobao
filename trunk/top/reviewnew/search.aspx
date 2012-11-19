@@ -44,6 +44,11 @@
         
         卖家昵称：<asp:TextBox ID="TextBox20" runat="server"></asp:TextBox>
         <asp:TextBox ID="TextBox23" runat="server"></asp:TextBox>
+        <asp:DropDownList ID="ddlType" runat="server">
+            <asp:ListItem Text="评价消息" Value="TradeRated"></asp:ListItem>
+            <asp:ListItem Text="发货消息" Value="TradeSellerShip"></asp:ListItem>
+            <asp:ListItem Text="下单消息" Value="TradeCreate"></asp:ListItem>
+        </asp:DropDownList>
         <asp:Button ID="Button8" runat="server" onclick="Button8_Click" Text="取消客户消息通知" />
         <hr />
          

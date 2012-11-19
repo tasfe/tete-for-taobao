@@ -31,8 +31,8 @@ public partial class top_review_testapi : System.Web.UI.Page
         string result = string.Empty;
         string appkey = "12159997";
         string secret = "614e40bfdb96e9063031d1a9e56fbed5";
-        string buynick = "qs娜娜";
-        string taobaonick = "奥美姿旗舰店";
+        string buynick = "ahaqyj";
+        string taobaonick = "沙漏的舞蹈55208";
         string session = "6101503745f1265a20262d5e8288968fa2c4e3871eea348679089675";
 
         IDictionary<string, string> param = new Dictionary<string, string>();
