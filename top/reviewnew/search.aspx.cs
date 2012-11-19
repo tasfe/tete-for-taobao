@@ -212,7 +212,7 @@ public partial class top_reviewnew_search : System.Web.UI.Page
             for (int i = 1; i < 200; i++)
             {
                 param = new Dictionary<string, string>();
-                param.Add("status", "TradeRated");
+                param.Add("status", ddlType.SelectedValue);
                 param.Add("nick", nick);
                 param.Add("start_modified", date + " 00:00:00");
                 param.Add("end_modified", date + " 23:59:59");
