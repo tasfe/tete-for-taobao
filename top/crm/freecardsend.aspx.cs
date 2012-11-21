@@ -208,6 +208,16 @@ public partial class top_crm_freecardsend : System.Web.UI.Page
         int index = 0;
         int err = 0;
         string errtext = string.Empty;
+        string usecountlimit = string.Empty;
+        string carddate = string.Empty;
+
+        sql = "SELECT * FROM TCS_FreeCardAction WHERE guid = '" + cardid + "'";
+        DataTable dtFreecard = utils.ExecuteDataTable(sql);
+        if (dtFreecard.Rows.Count != 0)
+        {
+            usecountlimit = dtFreecard.Rows[0]["usecount"].ToString();
+            carddate = dtFreecard.Rows[0]["carddate"].ToString();
+        }
 
         sql = "SELECT * FROM TCS_Customer b WHERE b.nick = '" + nick + "' " + condition + "";
         DataTable dt = utils.ExecuteDataTable(sql);
@@ -228,34 +238,29 @@ public partial class top_crm_freecardsend : System.Web.UI.Page
 
             string startdate = DateTime.Now.ToString();
             string enddate = DateTime.Now.ToString();
-            sql = "SELECT * FROM TCS_FreeCardAction WHERE guid = '" + cardid + "'";
-            DataTable dtFreecard = utils.ExecuteDataTable(sql);
-            if (dtFreecard.Rows.Count != 0)
+            
+            if (carddate == "0")
             {
-                string usecountlimit = dtFreecard.Rows[0]["usecount"].ToString();
-                string carddate = dtFreecard.Rows[0]["carddate"].ToString();
-                if (carddate == "0")
-                {
-                    enddate = DateTime.Now.AddMonths(999).ToString();
-                }
-                else
-                {
-                    enddate = DateTime.Now.AddMonths(int.Parse(carddate)).ToString();
-                }
-
-                sql = "INSERT INTO TCS_FreeCard (nick,buynick,cardid,startdate,enddate,carddate,usecountlimit) VALUES ('" + nick + "', '" + buynick + "','" + cardid + "','" + startdate + "','" + enddate + "','" + carddate + "','" + usecountlimit + "')";
-                utils.ExecuteNonQuery(sql);
-
-                //增加免邮卡领取次数
-                sql = "UPDATE TCS_FreeCardAction SET sendcount = sendcount + 1 WHERE guid = '" + cardid + "'";
-                utils.ExecuteNonQuery(sql);
-
-                index++;
+                enddate = DateTime.Now.AddMonths(999).ToString();
             }
             else
             {
-                err++;
+                enddate = DateTime.Now.AddMonths(int.Parse(carddate)).ToString();
             }
+
+            sql = "INSERT INTO TCS_FreeCard (nick,buynick,cardid,startdate,enddate,carddate,usecountlimit) VALUES ('" + nick + "', '" + buynick + "','" + cardid + "','" + startdate + "','" + enddate + "','" + carddate + "','" + usecountlimit + "')";
+            utils.ExecuteNonQuery(sql);
+
+            //增加免邮卡领取次数
+            sql = "UPDATE TCS_FreeCardAction SET sendcount = sendcount + 1 WHERE guid = '" + cardid + "'";
+            utils.ExecuteNonQuery(sql);
+
+            index++;
+            //}
+            //else
+            //{
+            //    err++;
+            //}
         }
         if (err == 0)
         {
