@@ -634,7 +634,7 @@ public partial class api_Default : System.Web.UI.Page
 
             IDictionary<string, string> param = new Dictionary<string, string>();
             param.Add("fields", "num_iid,title,pic_url,click_url,price");
-            param.Add("keyword", "淑女 热卖 服饰");
+            param.Add("keyword", "淑女");
             param.Add("sort", "commissionNum_desc");
             param.Add("is_mobile", "true");
             param.Add("page_no", page);
