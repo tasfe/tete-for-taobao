@@ -30,6 +30,7 @@ public partial class api_Default : System.Web.UI.Page
     private string qrcode = string.Empty;
     private string mobile = string.Empty;
     private string alerttoken = string.Empty;
+    private string isrefresh = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -50,6 +51,7 @@ public partial class api_Default : System.Web.UI.Page
         mobile = utils.NewRequest("mobile", utils.RequestType.QueryString);
         qrcode = utils.NewRequest("qrcode", utils.RequestType.QueryString);
         alerttoken = utils.NewRequest("alerttoken", utils.RequestType.QueryString);
+        isrefresh = utils.NewRequest("isrefresh", utils.RequestType.QueryString);
 
         err = utils.NewRequest("err", utils.RequestType.Form);
 
@@ -672,7 +674,7 @@ public partial class api_Default : System.Web.UI.Page
                 }
 
             }
-            str += "],\"pagenow\":" + page + ",\"total\":100}";
+            str += "],\"pagenow\":" + page + ",\"total\":100,\"isrefresh\":0}";
         }
         else
         {
@@ -817,7 +819,7 @@ public partial class api_Default : System.Web.UI.Page
                 str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
 
             }
-            str += "],\"pagenow\":" + page + ",\"total\":100}";
+            str += "],\"pagenow\":" + page + ",\"total\":100,\"isrefresh\":0}";
         }
         else
         {
@@ -949,7 +951,7 @@ public partial class api_Default : System.Web.UI.Page
                 str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
 
             }
-            str += "]}";
+            str += "],\"isrefresh\":0}";
         }
         else
         {
@@ -1081,7 +1083,7 @@ public partial class api_Default : System.Web.UI.Page
 
                 str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
             }
-            str += "]}";
+            str += "],\"isrefresh\":0}";
         }
         else
         {
