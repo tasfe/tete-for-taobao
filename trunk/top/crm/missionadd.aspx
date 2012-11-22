@@ -289,7 +289,7 @@
                     </td>
                 </tr>
             <tr>
-                <td align="left" height="30" colspan="2">
+                <td align="left" height="30" colspan="2">  
                     <span style="color:red">创建新品营销计划的时候，建议不要一次创建多个导致发送失败，多组发送等一个组发送完毕了再创建下一个。</span>
                     <br />
                     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="创建营销计划" />
