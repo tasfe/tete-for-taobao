@@ -634,10 +634,35 @@ public partial class api_Default : System.Web.UI.Page
 
             IDictionary<string, string> param = new Dictionary<string, string>();
             param.Add("fields", "num_iid,title,pic_url,click_url,price");
-            param.Add("keyword", "女");
+
+            if (int.Parse(page) > 10 && int.Parse(page) <= 20)
+            {
+                param.Add("keyword", "潮女");
+                param.Add("page_no", (int.Parse(page) - 10).ToString());
+            }
+            if (int.Parse(page) > 20 && int.Parse(page) <= 30)
+            {
+                param.Add("keyword", "女包");
+                param.Add("page_no", (int.Parse(page) - 20).ToString());
+            }
+            if (int.Parse(page) > 30 && int.Parse(page) <= 40)
+            {
+                param.Add("keyword", "女鞋");
+                param.Add("page_no", (int.Parse(page) - 30).ToString());
+            }
+            if (int.Parse(page) > 40 && int.Parse(page) <= 50)
+            {
+                param.Add("keyword", "首饰");
+                param.Add("page_no", (int.Parse(page) - 40).ToString());
+            }
+            else
+            {
+                param.Add("keyword", "淑女");
+                param.Add("page_no", page);
+            }
+
             param.Add("sort", "commissionNum_desc");
             param.Add("is_mobile", "true");
-            param.Add("page_no", page);
             param.Add("page_size", "20");
 
             string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.taobaoke.items.get", "", param);
