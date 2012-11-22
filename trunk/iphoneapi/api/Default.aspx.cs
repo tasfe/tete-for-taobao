@@ -640,17 +640,17 @@ public partial class api_Default : System.Web.UI.Page
                 param.Add("keyword", "潮女");
                 param.Add("page_no", (int.Parse(page) - 10).ToString());
             }
-            if (int.Parse(page) > 20 && int.Parse(page) <= 30)
+            else if (int.Parse(page) > 20 && int.Parse(page) <= 30)
             {
                 param.Add("keyword", "女包");
                 param.Add("page_no", (int.Parse(page) - 20).ToString());
             }
-            if (int.Parse(page) > 30 && int.Parse(page) <= 40)
+            else if (int.Parse(page) > 30 && int.Parse(page) <= 40)
             {
                 param.Add("keyword", "女鞋");
                 param.Add("page_no", (int.Parse(page) - 30).ToString());
             }
-            if (int.Parse(page) > 40 && int.Parse(page) <= 50)
+            else if (int.Parse(page) > 40 && int.Parse(page) <= 50)
             {
                 param.Add("keyword", "首饰");
                 param.Add("page_no", (int.Parse(page) - 40).ToString());
