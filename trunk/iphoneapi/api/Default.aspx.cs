@@ -662,7 +662,7 @@ public partial class api_Default : System.Web.UI.Page
                     if (!File.Exists(fileName))
                     {
                         WebClient c = new WebClient();
-                        c.DownloadFile(match[i].Groups[3].ToString(), fileName);
+                        c.DownloadFile(match[i].Groups[3].ToString() + "_100x100.jpg", fileName);
                     }
                     System.Drawing.Image img = System.Drawing.Image.FromFile(fileName);
 
