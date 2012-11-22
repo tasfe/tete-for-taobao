@@ -656,7 +656,7 @@ public partial class api_Default : System.Web.UI.Page
 
                 if (uid == "taozhe" || uid == "taobao1")
                 {
-                    string fileName = Server.MapPath("tmpimg/" + strMD5(match[i].Groups[3].ToString()) + "_100x100.jpg.jpg");
+                    string fileName = Server.MapPath("tmpimg/" + strMD5(match[i].Groups[3].ToString()) + "_100x100.jpg");
                     
                     //保存临时图片获取图片尺寸
                     if (!File.Exists(fileName))
