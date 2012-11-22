@@ -633,7 +633,7 @@ public partial class api_Default : System.Web.UI.Page
             }
 
             IDictionary<string, string> param = new Dictionary<string, string>();
-            param.Add("fields", "num_iid,title,pic_url,click_url");
+            param.Add("fields", "num_iid,title,pic_url,click_url,price");
             param.Add("keyword", "淑女 热卖 服饰");
             param.Add("sort", "commissionNum_desc");
             param.Add("is_mobile", "true");
@@ -642,7 +642,7 @@ public partial class api_Default : System.Web.UI.Page
 
             string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.taobaoke.items.get", "", param);
 
-            Regex reg = new Regex(@"<click_url>([^<]*)</click_url><num_iid>([^<]*)</num_iid><pic_url>([^<]*)</pic_url><title>([^<]*)</title>", RegexOptions.IgnoreCase);
+            Regex reg = new Regex(@"<click_url>([^<]*)</click_url><num_iid>([^<]*)</num_iid><pic_url>([^<]*)</pic_url><price>([^<]*)</price><title>([^<]*)</title>", RegexOptions.IgnoreCase);
             MatchCollection match = reg.Matches(result);
 
 
@@ -654,7 +654,7 @@ public partial class api_Default : System.Web.UI.Page
                     str += ",";
                 }
 
-                if (uid == "taozhe")
+                if (uid == "taozhe" || uid == "taobao1")
                 {
                     string fileName = Server.MapPath("tmpimg/" + strMD5(match[i].Groups[3].ToString()) + ".jpg");
                     
@@ -666,11 +666,11 @@ public partial class api_Default : System.Web.UI.Page
                     }
                     System.Drawing.Image img = System.Drawing.Image.FromFile(fileName);
 
-                    str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\",\"width\":" + img.Width.ToString() + ",\"height\":" + img.Height.ToString() + "}";
+                    str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[5].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\",\"width\":" + img.Width.ToString() + ",\"height\":" + img.Height.ToString() + ",\"price\":" + match[i].Groups[4].ToString() + "}";
                 }
                 else
                 {
-                    str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
+                    str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[5].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
                 }
 
             }
