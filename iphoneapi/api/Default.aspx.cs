@@ -650,7 +650,7 @@ public partial class api_Default : System.Web.UI.Page
                 param.Add("keyword", "女鞋");
                 param.Add("page_no", (int.Parse(page) - 30).ToString());
             }
-            else if (int.Parse(page) > 40 && int.Parse(page) <= 50)
+            if (int.Parse(page) > 40 && int.Parse(page) <= 50)
             {
                 param.Add("keyword", "首饰");
                 param.Add("page_no", (int.Parse(page) - 40).ToString());
@@ -841,7 +841,19 @@ public partial class api_Default : System.Web.UI.Page
                     str += ",";
                 }
 
-                str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[5].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\",\"price\":" + match[i].Groups[4].ToString() + "}";
+                string fileName = Server.MapPath("tmpimg/" + strMD5(match[i].Groups[3].ToString() + "_100x100.jpg"));
+                    
+                //保存临时图片获取图片尺寸
+                if (!File.Exists(fileName))
+                {
+                    WebClient c = new WebClient();
+                    c.DownloadFile(match[i].Groups[3].ToString() + "_100x100.jpg", fileName);
+                }
+                System.Drawing.Image img = System.Drawing.Image.FromFile(fileName);
+
+                str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[5].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\",\"width\":" + img.Width.ToString() + ",\"height\":" + img.Height.ToString() + ",\"price\":" + match[i].Groups[4].ToString() + "}";
+
+                //str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[5].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\",\"price\":" + match[i].Groups[4].ToString() + "}";
 
             }
             str += "],\"pagenow\":" + page + ",\"total\":100,\"isrefresh\":0}";
