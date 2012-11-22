@@ -795,7 +795,7 @@ public partial class api_Default : System.Web.UI.Page
             }
 
             IDictionary<string, string> param = new Dictionary<string, string>();
-            param.Add("fields", "num_iid,title,pic_url,click_url");
+            param.Add("fields", "num_iid,title,pic_url,click_url,price");
             param.Add("keyword", "淑女 新品 服饰");
             param.Add("sort", "commissionNum_desc");
             param.Add("is_mobile", "true");
@@ -804,7 +804,7 @@ public partial class api_Default : System.Web.UI.Page
 
             string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.taobaoke.items.get", "", param);
 
-            Regex reg = new Regex(@"<click_url>([^<]*)</click_url><num_iid>([^<]*)</num_iid><pic_url>([^<]*)</pic_url><title>([^<]*)</title>", RegexOptions.IgnoreCase);
+            Regex reg = new Regex(@"<click_url>([^<]*)</click_url><num_iid>([^<]*)</num_iid><pic_url>([^<]*)</pic_url><price>([^<]*)</price><title>([^<]*)</title>", RegexOptions.IgnoreCase);
             MatchCollection match = reg.Matches(result);
 
 
@@ -816,7 +816,7 @@ public partial class api_Default : System.Web.UI.Page
                     str += ",";
                 }
 
-                str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
+                str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[5].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\",\"price\":" + match[i].Groups[4].ToString() + "}";
 
             }
             str += "],\"pagenow\":" + page + ",\"total\":100,\"isrefresh\":0}";
@@ -928,7 +928,7 @@ public partial class api_Default : System.Web.UI.Page
             string secret = "f115a6790148d314cf3214aa029f7eda";
 
             IDictionary<string, string> param = new Dictionary<string, string>();
-            param.Add("fields", "num_iid,title,pic_url,click_url");
+            param.Add("fields", "num_iid,title,pic_url,click_url,price");
             param.Add("keyword", "淑女 服饰");
             param.Add("sort", "commissionNum_desc");
             param.Add("is_mobile", "true");
@@ -936,7 +936,7 @@ public partial class api_Default : System.Web.UI.Page
 
             string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.taobaoke.items.get", "", param);
 
-            Regex reg = new Regex(@"<click_url>([^<]*)</click_url><num_iid>([^<]*)</num_iid><pic_url>([^<]*)</pic_url><title>([^<]*)</title>", RegexOptions.IgnoreCase);
+            Regex reg = new Regex(@"<click_url>([^<]*)</click_url><num_iid>([^<]*)</num_iid><pic_url>([^<]*)</pic_url><price>([^<]*)</price><title>([^<]*)</title>", RegexOptions.IgnoreCase);
             MatchCollection match = reg.Matches(result);
 
 
@@ -948,7 +948,7 @@ public partial class api_Default : System.Web.UI.Page
                     str += ",";
                 }
 
-                str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
+                str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[5].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\",\"price\":" + match[i].Groups[4].ToString() + "}";
 
             }
             str += "],\"isrefresh\":0}";
@@ -1027,7 +1027,7 @@ public partial class api_Default : System.Web.UI.Page
             string secret = "f115a6790148d314cf3214aa029f7eda";
 
             IDictionary<string, string> param = new Dictionary<string, string>();
-            param.Add("fields", "num_iid,title,pic_url,click_url");
+            param.Add("fields", "num_iid,title,pic_url,click_url,price");
             if (cid == "10001")
             {
                 param.Add("keyword", "淑女 大衣");
@@ -1054,7 +1054,7 @@ public partial class api_Default : System.Web.UI.Page
 
             string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.taobaoke.items.get", "", param);
 
-            Regex reg = new Regex(@"<click_url>([^<]*)</click_url><num_iid>([^<]*)</num_iid><pic_url>([^<]*)</pic_url><title>([^<]*)</title>", RegexOptions.IgnoreCase);
+            Regex reg = new Regex(@"<click_url>([^<]*)</click_url><num_iid>([^<]*)</num_iid><pic_url>([^<]*)</pic_url><price>([^<]*)</price><title>([^<]*)</title>", RegexOptions.IgnoreCase);
             MatchCollection match = reg.Matches(result);
 
 
@@ -1066,7 +1066,7 @@ public partial class api_Default : System.Web.UI.Page
                     str += ",";
                 }
 
-                str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "_240x240.jpg\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[4].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\"}";
+                str += "{\"itemid\":\"" + match[i].Groups[2].ToString() + "\",\"pic_url\":\"" + match[i].Groups[3].ToString() + "\",\"name\":\"" + ReplaceTitleHtml(match[i].Groups[5].ToString()) + "\",\"detail_url\":\"" + match[i].Groups[1].ToString() + "\",\"price\":" + match[i].Groups[4].ToString() + "}";
 
             }
             str += "]";
