@@ -281,7 +281,7 @@
             <table width="100%">
                 <tr>
                     <td align="left" height="30" width="120">活动是否启用：</td>
-                    <td>
+                    <td align="left">
                         <select name="isstop">
                             <option value="0">启动</option>
                             <option value="1">暂停</option>
