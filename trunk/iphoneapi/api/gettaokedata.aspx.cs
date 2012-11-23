@@ -62,8 +62,8 @@ public partial class api_getnewdata : System.Web.UI.Page
                                         "nick " +
                                     " ) VALUES ( " +
                                         " '" + i.ToString() + "', " +
-                                        " '" + ary[i] + "', " +
-                                        " '" + ary[i] + "', " +
+                                        " '" + aryList[0] + "', " +
+                                        " '" + aryList[0] + "', " +
                                         " '0', " +
                                         " '" + uid + "' " +
                                   ") ";
