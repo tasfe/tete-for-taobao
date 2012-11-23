@@ -822,7 +822,7 @@ public partial class api_Default : System.Web.UI.Page
         string str = string.Empty;
         string con = string.Empty;
 
-        if (uid == "taobao1")
+        if (uid == "taobao111")
         {
             //直接查询淘宝客
             string appkey = "21088121";
@@ -929,11 +929,25 @@ public partial class api_Default : System.Web.UI.Page
 
             if (cid.Length == 0)
             {
-                sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY price DESC) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY price DESC";
+                if (uid == "taobao1")
+                {
+                    sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY price DESC) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY price DESC";
+                }
+                else
+                {
+                    sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY price DESC) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY NEWID()";
+                }
             }
             else
             {
-                sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY price DESC) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "'  AND " + con + ") AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY price DESC";
+                if (uid == "taobao1")
+                {
+                    sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY price DESC) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "'  AND " + con + ") AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY price DESC";
+                }
+                else
+                {
+                    sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY price DESC) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "'  AND " + con + ") AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY NEWID()";
+                }
             }
 
             DataTable dt = utils.ExecuteDataTable(sql);
@@ -952,7 +966,7 @@ public partial class api_Default : System.Web.UI.Page
                     }
                     else
                     {
-                        str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "_240x240.jpg\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
+                        str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\",\"width\":" + dt.Rows[i]["width"].ToString() + ",\"height\":" + dt.Rows[i]["height"].ToString() + ",\"price\":" + dt.Rows[i]["price"].ToString() + "}";
                     }
                 }
                 str += "],\"pagenow\":" + page + ",\"total\":" + totalPageCount + "}";
