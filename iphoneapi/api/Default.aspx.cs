@@ -621,7 +621,7 @@ public partial class api_Default : System.Web.UI.Page
         string str = string.Empty;
         string con = string.Empty;
 
-        if (uid == "taobao1" || uid == "taozhe")
+        if (uid == "taozhe")
         {
             //直接查询淘宝客
             string appkey = "21088121";
@@ -782,10 +782,10 @@ public partial class api_Default : System.Web.UI.Page
                     }
                     else
                     {
-                        str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "_240x240.jpg\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
+                        str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + ".jpg\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\",\"width\":" + dt.Rows[i]["width"].ToString() + ",\"height\":" + dt.Rows[i]["height"].ToString() + ",\"price\":" + dt.Rows[i]["price"].ToString() + "}";
                     }
                 }
-                str += "],\"pagenow\":" + page + ",\"total\":" + totalPageCount + "}";
+                str += "],\"pagenow\":" + page + ",\"total\":" + totalPageCount + ",\"isrefresh\":0}";
             }
             else
             {
