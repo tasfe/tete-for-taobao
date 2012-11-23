@@ -50,7 +50,7 @@ public partial class api_getnewdata : System.Web.UI.Page
             string secret = dt.Rows[0]["appsecret"].ToString();
 
             string[] ary = cateStr.Split('|');
-            for (int i = 0; i < ary.Length; i++)
+            for (int i = ary.Length-1; i >=0; i--)
             {
                 string[] aryList = ary[i].Split(',');
 
