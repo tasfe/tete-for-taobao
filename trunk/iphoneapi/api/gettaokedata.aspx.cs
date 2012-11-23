@@ -79,7 +79,7 @@ public partial class api_getnewdata : System.Web.UI.Page
                         param.Add("page_no", page.ToString());
                         param.Add("sort", "commissionNum_desc");
                         param.Add("is_mobile", "true");
-                        param.Add("page_size", "20");
+                        param.Add("page_size", "40");
                         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.taobaoke.items.get", "", param);
 
                         Regex reg = new Regex(@"<click_url>([^<]*)</click_url><num_iid>([^<]*)</num_iid><pic_url>([^<]*)</pic_url><price>([^<]*)</price><title>([^<]*)</title>", RegexOptions.IgnoreCase);
