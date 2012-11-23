@@ -758,11 +758,25 @@ public partial class api_Default : System.Web.UI.Page
 
             if (cid.Length == 0)
             {
-                sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY orderid) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY orderid";
+                if (uid == "taobao1")
+                {
+                    sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY orderid) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY NEWID()";
+                }
+                else
+                {
+                    sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY orderid) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1) AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY orderid";
+                }
             }
             else
             {
-                sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY orderid) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1 AND " + con + ") AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY orderid";
+                if (uid == "taobao1")
+                {
+                    sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY orderid) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1 AND " + con + ") AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY NEWID()";
+                }
+                else
+                {
+                    sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY orderid) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1 AND " + con + ") AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY orderid";
+                }
             }
 
             DataTable dt = utils.ExecuteDataTable(sql);
