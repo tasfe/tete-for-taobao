@@ -1085,7 +1085,7 @@ public partial class api_Default : System.Web.UI.Page
         con += " OR CHARINDEX('" + cid + "', cateid) > 0)";
 
 
-        if (uid == "taobao1")
+        if (uid == "taobao11")
         {
             //直接查询淘宝客
             string appkey = "21088121";
