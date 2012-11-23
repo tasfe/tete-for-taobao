@@ -1283,7 +1283,7 @@ public partial class api_Default : System.Web.UI.Page
                 }
                 else
                 {
-                    str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "_240x240.jpg\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\"}";
+                    str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\",\"width\":" + dt.Rows[i]["width"].ToString() + ",\"height\":" + dt.Rows[i]["height"].ToString() + ",\"price\":" + dt.Rows[i]["price"].ToString() + "}";
                 }
             }
             str += "],\"pagenow\":" + page + ",\"total\":" + totalPageCount + "}";
