@@ -782,7 +782,7 @@ public partial class api_Default : System.Web.UI.Page
                     }
                     else
                     {
-                        str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + ".jpg\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\",\"width\":" + dt.Rows[i]["width"].ToString() + ",\"height\":" + dt.Rows[i]["height"].ToString() + ",\"price\":" + dt.Rows[i]["price"].ToString() + "}";
+                        str += "{\"itemid\":\"" + dt.Rows[i]["itemid"].ToString() + "\",\"pic_url\":\"" + dt.Rows[i]["picurl"].ToString() + "\",\"name\":\"" + dt.Rows[i]["itemname"].ToString() + "\",\"detail_url\":\"" + dt.Rows[i]["linkurl"].ToString() + "\",\"width\":" + dt.Rows[i]["width"].ToString() + ",\"height\":" + dt.Rows[i]["height"].ToString() + ",\"price\":" + dt.Rows[i]["price"].ToString() + "}";
                     }
                 }
                 str += "],\"pagenow\":" + page + ",\"total\":" + totalPageCount + ",\"isrefresh\":0}";
