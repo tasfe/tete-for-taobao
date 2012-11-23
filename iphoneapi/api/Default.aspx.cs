@@ -760,7 +760,7 @@ public partial class api_Default : System.Web.UI.Page
             {
                 if (uid == "taobao1")
                 {
-                    sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY orderid) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1) AS a WHERE a.rownumber > " + dataCount.ToString() + " AND width <> height ORDER BY NEWID";
+                    sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY NEWID) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1) AS a WHERE a.rownumber > " + dataCount.ToString() + " AND width <> height ORDER BY NEWID";
                 }
                 else
                 {
@@ -771,7 +771,7 @@ public partial class api_Default : System.Web.UI.Page
             {
                 if (uid == "taobao1")
                 {
-                    sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY orderid) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1 AND " + con + ") AS a WHERE a.rownumber > " + dataCount.ToString() + " AND width <> height ORDER BY NEWID";
+                    sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY NEWID) AS rownumber FROM TeteShopItem WHERE nick = '" + uid + "' AND isnew = 1 AND " + con + ") AS a WHERE a.rownumber > " + dataCount.ToString() + " AND width <> height ORDER BY NEWID";
                 }
                 else
                 {
