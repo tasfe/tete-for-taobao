@@ -5,7 +5,7 @@
                     <img src="images/04.gif" />
                     广告投放 &gt; <span><asp:Label ID="Lbl_ShowAdsDec" runat="server" /></span></div>
                     <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
- 您共有<%=AdsCount %>个广告位，已经投放了<%=TouCount%>个广告，还可以投放<%=ContiTou %>个，有<%=NoTouCount %>个广告在未投放的广告里，<a href='/qubie.html'>点击增加投放广告位</a>！
+ 您共有<%=AdsCount %>个广告位，已经投放了<%=TouCount%>个广告，还可以投放<%=ContiTou %>个，有<%=NoTouCount %>个广告在未投放的广告里，<a href='/Better.aspx'>点击增加投放广告位</a>！
 </div>
     
     <input type=button onclick="window.location.href='useradslist.aspx?istou=1'" value="投放中的广告" />
