@@ -23,7 +23,7 @@ public partial class top_review_testapi : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        GetUserCoupon();
+        GetTrade();
     }
 
     private void GetUserCoupon()
@@ -71,13 +71,13 @@ public partial class top_review_testapi : System.Web.UI.Page
         string appkey = "12159997";
         string secret = "614e40bfdb96e9063031d1a9e56fbed5";
 
-        string session = "610252000038f8d4d76f20f9008c1c7391c2d63c0a4ff0361056151";
-        string taobaonick = "我爱ivy";
+        string session = "6101a08f02ccda601a9ae3d454494eb1b534dfddd2d8743748642333";
+        string taobaonick = "淳爱旗舰店";
 
         IDictionary<string, string> param = new Dictionary<string, string>();
 
-        param.Add("fields", "receiver_mobile, orders.num_iid, created, consign_time, total_fee, promotion_details, type, receiver_name, receiver_state, receiver_city, receiver_district, receiver_address, status, buyer_area, orders.oid");
-        param.Add("tid", "165816737617778");
+        param.Add("fields", "receiver_mobile, orders.num_iid, created, consign_time, total_fee, payment, promotion_details, type, receiver_name, receiver_state, receiver_city, receiver_district, receiver_address, status, buyer_area, orders.oid");
+        param.Add("tid", "176760828152195");
 
         string result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.trade.fullinfo.get", session, param);
 
