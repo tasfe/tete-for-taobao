@@ -32,7 +32,7 @@ public partial class iphoneapi_msgcheck : System.Web.UI.Page
         string sql = "UPDATE HuliUserMsg SET ispass = 1 WHERE CHARINDEX(guid, '"+ids+"') > 0";
         utils.ExecuteNonQuery(sql);
 
-        sql = "SELECT DISTINCT token FROM HuliUserMsg WHERE CHARINDEX(guid, '" + ids + "') > 0 AND token IS NOT NULL";
+        sql = "SELECT DISTINCT alerttoken FROM TeteUserToken WHERE token IN (SELECT DISTINCT token FROM HuliUserMsg WHERE CHARINDEX(guid, '" + ids + "') > 0 AND token IS NOT NULL) AND LEN(alerttoken) = 64";
         DataTable dt = utils.ExecuteDataTable(sql);
 
         string filePath = Server.MapPath("p12/定时短信证书.p12");
