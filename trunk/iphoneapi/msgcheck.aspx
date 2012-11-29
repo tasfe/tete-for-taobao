@@ -14,18 +14,57 @@
             onclick="Button1_Click" Text="审核通过" />
         <asp:Button ID="Button2" runat="server" onclick="Button2_Click" Text="审核不通过" />
         
-        <asp:Button ID="Button3" runat="server" OnClientClick="window.location.href='msgcheck.aspx?ispass=0'" Text="查看历史审核结果" />
-
+        <input type="button" onclick="window.location.href='msgcheck.aspx?ispass=0'" value="查看历史审核结果" />
+        <input type="button" onclick="window.location.href='msgcheck.aspx'" value="审核中内容" />
         
+        <br />
+        <br />
+        
+        <table><tr>
+        <td><input type="checkbox" onclick="selectAll()" /></td>
+        <td>内容</td>
+        <td>添加时间</td>
+         <td>是否通过</td></tr>
         <asp:Repeater ID="rptList" runat="server">
             <ItemTemplate>
-                <input type="checkbox" name="ids" value="<%#Eval("guid") %>" /> 
-                <%#Eval("content") %>
-                <%#Eval("adddate") %>
-                <%#Eval("ispass") %> <br />
+            <tr>
+                <td><input type="checkbox" name="ids" value="<%#Eval("guid") %>" /></td> 
+                <td><%#Eval("content") %></td>
+                <td><%#Eval("adddate") %></td>
+                <td><%#check(Eval("ispass").ToString())%></td>
             </ItemTemplate>
         </asp:Repeater>
+        </table>
     </div>
     </form>
+
+    
+<script language="javascript" type="text/javascript">
+    function setOK() {
+        document.getElementById("t").value = "ok";
+        document.getElementById("form1").submit();
+    }
+
+    function setNotOK() {
+        document.getElementById("t").value = "no";
+        document.getElementById("form1").submit();
+    }
+
+    function passContent() {
+        document.getElementById("t").value = "pass";
+        document.getElementById("form1").submit();
+    }
+
+    function selectAll() {
+        var ids = document.getElementsByName("ids");
+        for (i = 0; i < ids.length; i++) {
+            if (ids[i].checked == true) {
+                ids[i].checked = false;
+            } else {
+                ids[i].checked = true;
+            }
+        }
+    }
+</script>
 </body>
 </html>

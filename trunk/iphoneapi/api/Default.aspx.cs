@@ -120,6 +120,9 @@ public partial class api_Default : System.Web.UI.Page
             case "sendmsg":
                 SendMsgInfo();
                 break;
+            case "getmsglist":
+                GetMsgListInfo();
+                break;
             case "cancel":
                 CancelInfo();
                 break;
@@ -139,7 +142,7 @@ public partial class api_Default : System.Web.UI.Page
         //    string str = "{\"error_response\":\"service_error\"}";
         //    Response.Write(str);
         //}
-        //File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), Request.Url.ToString());
+        ////File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), Request.Url.ToString());
     }
 
     private void GetCheckStatus()
@@ -186,7 +189,7 @@ public partial class api_Default : System.Web.UI.Page
     {
         string data = utils.NewRequest("data", utils.RequestType.Form);
         data = utils.NewRequest("data", utils.RequestType.Form);
-        File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), data);
+        //File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), data);
         //data = @"{""receipt-data"":""ewoJInNpZ25hdHVyZSIgPSAiQXNQOVNQRThhdUFTV2lwMkhvL1lYaHZua1VTMmRXMUxmdHlTcmdyTzh6TmZ6a3QyNFZTNHVqQ2VvOHpsS2s0MCtUOTR6TXpBaE4xTVNOUnA4ZlFzYloxSDhzSG0yaXNsMXZlNkZIVUhVL3RCdGNNbE8zbHBOVzlGYjNZT3oyRXFESnVLYkhlZzI5cEM1c3VId053Mi9ObDc4dVp3K21HNkNKWUF2dmVSdjY0K0FBQURWekNDQTFNd2dnSTdvQU1DQVFJQ0NHVVVrVTNaV0FTMU1BMEdDU3FHU0liM0RRRUJCUVVBTUg4eEN6QUpCZ05WQkFZVEFsVlRNUk13RVFZRFZRUUtEQXBCY0hCc1pTQkpibU11TVNZd0pBWURWUVFMREIxQmNIQnNaU0JEWlhKMGFXWnBZMkYwYVc5dUlFRjFkR2h2Y21sMGVURXpNREVHQTFVRUF3d3FRWEJ3YkdVZ2FWUjFibVZ6SUZOMGIzSmxJRU5sY25ScFptbGpZWFJwYjI0Z1FYVjBhRzl5YVhSNU1CNFhEVEE1TURZeE5USXlNRFUxTmxvWERURTBNRFl4TkRJeU1EVTFObG93WkRFak1DRUdBMVVFQXd3YVVIVnlZMmhoYzJWU1pXTmxhWEIwUTJWeWRHbG1hV05oZEdVeEd6QVpCZ05WQkFzTUVrRndjR3hsSUdsVWRXNWxjeUJUZEc5eVpURVRNQkVHQTFVRUNnd0tRWEJ3YkdVZ1NXNWpMakVMTUFrR0ExVUVCaE1DVlZNd2daOHdEUVlKS29aSWh2Y05BUUVCQlFBRGdZMEFNSUdKQW9HQkFNclJqRjJjdDRJclNkaVRDaGFJMGc4cHd2L2NtSHM4cC9Sd1YvcnQvOTFYS1ZoTmw0WElCaW1LalFRTmZnSHNEczZ5anUrK0RyS0pFN3VLc3BoTWRkS1lmRkU1ckdYc0FkQkVqQndSSXhleFRldngzSExFRkdBdDFtb0t4NTA5ZGh4dGlJZERnSnYyWWFWczQ5QjB1SnZOZHk2U01xTk5MSHNETHpEUzlvWkhBZ01CQUFHamNqQndNQXdHQTFVZEV3RUIvd1FDTUFBd0h3WURWUjBqQkJnd0ZvQVVOaDNvNHAyQzBnRVl0VEpyRHRkREM1RllRem93RGdZRFZSMFBBUUgvQkFRREFnZUFNQjBHQTFVZERnUVdCQlNwZzRQeUdVakZQaEpYQ0JUTXphTittVjhrOVRBUUJnb3Foa2lHOTJOa0JnVUJCQUlGQURBTkJna3Foa2lHOXcwQkFRVUZBQU9DQVFFQUVhU2JQanRtTjRDL0lCM1FFcEszMlJ4YWNDRFhkVlhBZVZSZVM1RmFaeGMrdDg4cFFQOTNCaUF4dmRXLzNlVFNNR1k1RmJlQVlMM2V0cVA1Z204d3JGb2pYMGlreVZSU3RRKy9BUTBLRWp0cUIwN2tMczlRVWU4Y3pSOFVHZmRNMUV1bVYvVWd2RGQ0TndOWXhMUU1nNFdUUWZna1FRVnk4R1had1ZIZ2JFL1VDNlk3MDUzcEdYQms1MU5QTTN3b3hoZDNnU1JMdlhqK2xvSHNTdGNURXFlOXBCRHBtRzUrc2s0dHcrR0szR01lRU41LytlMVFUOW5wL0tsMW5qK2FCdzdDMHhzeTBiRm5hQWQxY1NTNnhkb3J5L0NVdk02Z3RLc21uT09kcVRlc2JwMGJzOHNuNldxczBDOWRnY3hSSHVPTVoydG04bnBMVW03YXJnT1N6UT09IjsKCSJwdXJjaGFzZS1pbmZvIiA9ICJld29KSW05eWFXZHBibUZzTFhCMWNtTm9ZWE5sTFdSaGRHVXRjSE4wSWlBOUlDSXlNREV5TFRBM0xUSTJJREExT2pVd09qQTRJRUZ0WlhKcFkyRXZURzl6WDBGdVoyVnNaWE1pT3dvSkluVnVhWEYxWlMxcFpHVnVkR2xtYVdWeUlpQTlJQ0kxTURjM09URTFPVFJrWVRrME5qWTBaREUzTmpreE5HUmlNVEU0TVdZMFlUUm1OV0k1TTJVeklqc0tDU0p2Y21sbmFXNWhiQzEwY21GdWMyRmpkR2x2YmkxcFpDSWdQU0FpTVRBd01EQXdNREExTXpRNE56UXhPQ0k3Q2draVluWnljeUlnUFNBaU1TNHdJanNLQ1NKMGNtRnVjMkZqZEdsdmJpMXBaQ0lnUFNBaU1UQXdNREF3TURBMU16UTROelF4T0NJN0Nna2ljWFZoYm5ScGRIa2lJRDBnSWpFaU93b0pJbTl5YVdkcGJtRnNMWEIxY21Ob1lYTmxMV1JoZEdVdGJYTWlJRDBnSWpFek5ETXpNRGN3TURnek5ERWlPd29KSW5CeWIyUjFZM1F0YVdRaUlEMGdJbU52YlM1amIyTnZMbk50YzE4eE1DSTdDZ2tpYVhSbGJTMXBaQ0lnUFNBaU5UUTJOVGN6TXpBeElqc0tDU0ppYVdRaUlEMGdJbU52YlM1amIyTnZMblJwYldsdVoxTk5VeUk3Q2draWNIVnlZMmhoYzJVdFpHRjBaUzF0Y3lJZ1BTQWlNVE0wTXpNd056QXdPRE0wTVNJN0Nna2ljSFZ5WTJoaGMyVXRaR0YwWlNJZ1BTQWlNakF4TWkwd055MHlOaUF4TWpvMU1Eb3dPQ0JGZEdNdlIwMVVJanNLQ1NKd2RYSmphR0Z6WlMxa1lYUmxMWEJ6ZENJZ1BTQWlNakF4TWkwd055MHlOaUF3TlRvMU1Eb3dPQ0JCYldWeWFXTmhMMHh2YzE5QmJtZGxiR1Z6SWpzS0NTSnZjbWxuYVc1aGJDMXdkWEpqYUdGelpTMWtZWFJsSWlBOUlDSXlNREV5TFRBM0xUSTJJREV5T2pVd09qQTRJRVYwWXk5SFRWUWlPd3A5IjsKCSJlbnZpcm9ubWVudCIgPSAiU2FuZGJveCI7CgkicG9kIiA9ICIxMDAiOwoJInNpZ25pbmctc3RhdHVzIiA9ICIwIjsKfQ==""}";
 
         string sql = string.Empty;
@@ -262,8 +265,48 @@ public partial class api_Default : System.Web.UI.Page
 
 
 
+    private void GetMsgListInfo()
+    {
+        string sql = string.Empty;
+        string str = string.Empty;
+        string guid = string.Empty;
+        string mobile = utils.NewRequest("mobile", utils.RequestType.QueryString);
+        string page = utils.NewRequest("page", utils.RequestType.QueryString);
+        string content = utils.NewRequest("content", utils.RequestType.QueryString);
+        string delay = utils.NewRequest("delay", utils.RequestType.QueryString);
 
+        int pageNow = 1;
+        if (page == "")
+        {
+            pageNow = 1;
+        }
+        else
+        {
+            pageNow = int.Parse(page);
+        }
+        int pageCount = 20;
+        int dataCount = (pageNow - 1) * pageCount;
 
+        sql = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT *,ROW_NUMBER() OVER (ORDER BY adddate DESC) AS rownumber FROM HuliUserMsg WHERE token='" + token + "' AND nick = '" + uid + "') AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY adddate DESC";
+
+        DataTable dt = utils.ExecuteDataTable(sql);
+        str = "{\"msg\":[";
+        if (dt.Rows.Count != 0)
+        {
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (i != 0)
+                {
+                    str += ",";
+                }
+
+                str += "{\"guid\":\"" + dt.Rows[i]["guid"].ToString() + "\",\"content\":\"" + dt.Rows[i]["content"].ToString() + "\",\"mobile\":\"" + dt.Rows[i]["mobile"].ToString() + "\",\"adddate\":\"" + dt.Rows[i]["adddate"].ToString() + "\",\"ispass\":\"" + dt.Rows[i]["ispass"].ToString() + "\",\"delay\":\"" + dt.Rows[i]["delay"].ToString() + "\",\"issend\":\"" + dt.Rows[i]["issend"].ToString() + "\",\"senddate\":\"" + dt.Rows[i]["senddate"].ToString() + "\",\"iscancel\":\"" + dt.Rows[i]["iscancel"].ToString() + "\"}";
+            }
+        }
+        str += "]}";
+
+        Response.Write(str);
+    }
 
 
     private void SendMsgInfo()
@@ -290,7 +333,7 @@ public partial class api_Default : System.Web.UI.Page
             sql = "SELECT COUNT(*) FROM HuliUserMsg WHERE content = '" + content.Replace("'", "''") + "' AND ispass = 1";
             string count = utils.ExecuteString(sql);
 
-            if (count == "0")
+            if (count != "0")
             {
                 sql = "INSERT INTO HuliUserMsg (guid, nick, token, mobile, content, delay, ispass) VALUES ('" + guid + "','" + uid + "','" + token + "','" + mobile.Replace("'", "''") + "','" + content.Replace("'", "''") + "','" + delay + "','1')";
                 utils.ExecuteNonQuery(sql);
@@ -559,7 +602,7 @@ public partial class api_Default : System.Web.UI.Page
             sql = "UPDATE TeteUserToken SET mobile = '" + mobile + "',alerttoken='" + alerttoken + "',updatedate = GETDATE(),logintimes = logintimes + 1 WHERE token = '" + token + "'";
             utils.ExecuteNonQuery(sql);
         }
-        File.WriteAllText(Server.MapPath("aaa.txt"), Request.Url.ToString());
+        ////File.WriteAllText(Server.MapPath("aaa.txt"), Request.Url.ToString());
         string str = "{\"result\":\"ok\"}";
         Response.Write(str);
     }
@@ -1049,7 +1092,7 @@ public partial class api_Default : System.Web.UI.Page
             sql = "SELECT TOP 5 * FROM TeteShopItem WHERE isnew = 1 AND nick = '" + uid + "' OR " + con + " ORDER BY orderid";
             //Response.Write(sql);
             //sql = "SELECT * FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0";
-            File.WriteAllText(Server.MapPath("aaa111.txt"), sql + "-" + Request.Url.ToString());
+            //File.WriteAllText(Server.MapPath("aaa111.txt"), sql + "-" + Request.Url.ToString());
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count != 0)
             {
@@ -1393,9 +1436,9 @@ public partial class api_Default : System.Web.UI.Page
 
         sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + uid + "' AND catename <> '' ORDER BY orderid1";
         DataTable dt = utils.ExecuteDataTable(sql);
+        str = "{\"cate\":[";
         if (dt.Rows.Count != 0)
         {
-            str = "{\"cate\":[";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 if (i != 0)
@@ -1405,7 +1448,6 @@ public partial class api_Default : System.Web.UI.Page
 
                 str += "{\"cid\":\"" + dt.Rows[i]["cateid"].ToString() + "\",\"parent_cid\":\"" + dt.Rows[i]["parentid"].ToString() + "\",\"name\":\"" + dt.Rows[i]["catename"].ToString() + "\",\"count\":\"" + dt.Rows[i]["catecount"].ToString() + "\",\"catepicurl\":\"" + dt.Rows[i]["catepicurl"].ToString() + "\"}";
             }
-            str += "]}";
         }
         else
         {
