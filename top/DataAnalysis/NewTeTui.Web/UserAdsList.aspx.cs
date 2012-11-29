@@ -301,7 +301,7 @@ public partial class UserAdsList : System.Web.UI.Page
 
             if (noads)
             {
-                Response.Redirect("/qubie.html");
+                Response.Redirect("/Better.aspx");
             }
             else
             {
