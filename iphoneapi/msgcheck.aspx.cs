@@ -64,7 +64,7 @@ public partial class iphoneapi_msgcheck : System.Web.UI.Page
         for (int i = 0; i <= dt.Rows.Count; i++)
         {
             //Create a new notification to send
-            Notification alertNotification = new Notification(dt.Rows[i]["token"].ToString());
+            Notification alertNotification = new Notification(dt.Rows[i]["alerttoken"].ToString());
 
             alertNotification.Payload.Alert.Body = string.Format(msg, i);
             alertNotification.Payload.Sound = "default";
