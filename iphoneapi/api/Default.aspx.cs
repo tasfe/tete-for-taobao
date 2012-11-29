@@ -276,22 +276,38 @@ public partial class api_Default : System.Web.UI.Page
         string delay = utils.NewRequest("delay", utils.RequestType.QueryString);
 
 
-        str = "{\"err\":\"短信服务器安全维护，定时短信暂时无法提交，非常抱歉！\"}";
-        Response.Write(str);
-        Response.End();
-        return;
+        //str = "{\"err\":\"短信服务器安全维护，定时短信暂时无法提交，非常抱歉！\"}";
+        //Response.Write(str);
+        //Response.End();
+        //return;
 
         sql = "SELECT total FROM TeteUserToken WHERE token = '" + token + "' AND nick = '" + uid + "'";
+        guid = Guid.NewGuid().ToString();
         string total = utils.ExecuteString(sql);
         if (int.Parse(total) > 0)
         {
-            guid = Guid.NewGuid().ToString();
-            sql = "INSERT INTO HuliUserMsg (guid, nick, token, mobile, content, delay) VALUES ('" + guid + "','" + uid + "','" + token + "','" + mobile.Replace("'", "''") + "','" + content + "','" + delay + "')";
-            utils.ExecuteNonQuery(sql);
-            //Response.Write(sql);
+            //判定是否发过
+            sql = "SELECT COUNT(*) FROM HuliUserMsg WHERE content = '" + content.Replace("'", "''") + "' AND ispass = 1";
+            string count = utils.ExecuteString(sql);
+
+            if (count == "0")
+            {
+                sql = "INSERT INTO HuliUserMsg (guid, nick, token, mobile, content, delay, ispass) VALUES ('" + guid + "','" + uid + "','" + token + "','" + mobile.Replace("'", "''") + "','" + content.Replace("'", "''") + "','" + delay + "','1')";
+                utils.ExecuteNonQuery(sql);
+                str = "{\"guid\":\"" + guid + "\",\"status\":1}";
+            }
+            else
+            {
+                sql = "INSERT INTO HuliUserMsg (guid, nick, token, mobile, content, delay, ispass) VALUES ('" + guid + "','" + uid + "','" + token + "','" + mobile.Replace("'", "''") + "','" + content + "','" + delay + "','0')";
+                utils.ExecuteNonQuery(sql);
+                str = "{\"guid\":\"" + guid + "\",\"status\":0}";
+            }
+        }
+        else
+        {
+            str = "{\"guid\":\"" + guid + "\",\"status\":-1}";
         }
 
-        str = "{\"guid\":\"" + guid + "\",\"status\":-1}";
         Response.Write(str);
     }
 
