@@ -54,20 +54,26 @@ public partial class api_getnewdata : System.Web.UI.Page
             {
                 string[] aryList = ary[i].Split(',');
 
-                sql = "INSERT INTO TeteShopCategory (" +
-                                        "cateid, " +
-                                        "catename, " +
-                                        "oldname, " +
-                                        "parentid, " +
-                                        "nick " +
-                                    " ) VALUES ( " +
-                                        " '" + i.ToString() + "', " +
-                                        " '" + aryList[0] + "', " +
-                                        " '" + aryList[0] + "', " +
-                                        " '0', " +
-                                        " '" + uid + "' " +
-                                  ") ";
-                utils.ExecuteNonQuery(sql);
+                sql = "SELECT COUNT(*) FROM TeteShopCategory WHERE nick = '" + uid + "' AND catename = '" + aryList[0] + "'";
+                string count1 = utils.ExecuteString(sql);
+
+                if (count1 == "0")
+                {
+                    sql = "INSERT INTO TeteShopCategory (" +
+                                            "cateid, " +
+                                            "catename, " +
+                                            "oldname, " +
+                                            "parentid, " +
+                                            "nick " +
+                                        " ) VALUES ( " +
+                                            " '" + i.ToString() + "', " +
+                                            " '" + aryList[0] + "', " +
+                                            " '" + aryList[0] + "', " +
+                                            " '0', " +
+                                            " '" + uid + "' " +
+                                      ") ";
+                    utils.ExecuteNonQuery(sql);
+                }
 
                 for (int j = 0; j < aryList.Length; j++)
                 {
@@ -87,44 +93,48 @@ public partial class api_getnewdata : System.Web.UI.Page
 
                         for (int k = 0; k < match.Count; k++)
                         {
-                            //判断商品是否存在
-                            sql = "SELECT COUNT(*) FROM TeteShopItem WHERE itemid = '" + match[k].Groups[2].ToString() + "'";
-                            string count = utils.ExecuteString(sql);
-                            if (count == "0")
+                            try
                             {
-                                string fileName = Server.MapPath("tmpimg/" + strMD5(match[k].Groups[3].ToString() + "_100x100.jpg"));
-                                //保存临时图片获取图片尺寸
-                                if (!File.Exists(fileName))
+                                //判断商品是否存在
+                                sql = "SELECT COUNT(*) FROM TeteShopItem WHERE itemid = '" + match[k].Groups[2].ToString() + "'";
+                                string count = utils.ExecuteString(sql);
+                                if (count == "0")
                                 {
-                                    WebClient c = new WebClient();
-                                    c.DownloadFile(match[k].Groups[3].ToString() + "_100x100.jpg", fileName);
+                                    string fileName = Server.MapPath("tmpimg/" + strMD5(match[k].Groups[3].ToString() + "_100x100.jpg"));
+                                    //保存临时图片获取图片尺寸
+                                    if (!File.Exists(fileName))
+                                    {
+                                        WebClient c = new WebClient();
+                                        c.DownloadFile(match[k].Groups[3].ToString() + "_100x100.jpg", fileName);
+                                    }
+                                    System.Drawing.Image img = System.Drawing.Image.FromFile(fileName);
+
+
+                                    sql = "INSERT INTO TeteShopItem (" +
+                                                "cateid, " +
+                                                "itemid, " +
+                                                "itemname, " +
+                                                "picurl, " +
+                                                "linkurl, " +
+                                                "price, " +
+                                                "width, " +
+                                                "height, " +
+                                                "nick " +
+                                            " ) VALUES ( " +
+                                                " '" + i.ToString() + "', " +
+                                                " '" + match[k].Groups[2].ToString() + "', " +
+                                                " '" + ReplaceTitleHtml(match[k].Groups[5].ToString()) + "', " +
+                                                " '" + match[k].Groups[3].ToString() + "', " +
+                                                " '" + match[k].Groups[1].ToString() + "', " +
+                                                " '" + match[k].Groups[4].ToString() + "', " +
+                                                " '" + img.Width + "', " +
+                                                " '" + img.Height + "', " +
+                                                " '" + uid + "' " +
+                                          ") ";
+                                    utils.ExecuteNonQuery(sql);
                                 }
-                                System.Drawing.Image img = System.Drawing.Image.FromFile(fileName);
-
-
-                                sql = "INSERT INTO TeteShopItem (" +
-                                            "cateid, " +
-                                            "itemid, " +
-                                            "itemname, " +
-                                            "picurl, " +
-                                            "linkurl, " +
-                                            "price, " +
-                                            "width, " +
-                                            "height, " +
-                                            "nick " +
-                                        " ) VALUES ( " +
-                                            " '" + i.ToString() + "', " +
-                                            " '" + match[k].Groups[2].ToString() + "', " +
-                                            " '" + ReplaceTitleHtml(match[k].Groups[5].ToString()) + "', " +
-                                            " '" + match[k].Groups[3].ToString() + "', " +
-                                            " '" + match[k].Groups[1].ToString() + "', " +
-                                            " '" + match[k].Groups[4].ToString() + "', " +
-                                            " '" + img.Width + "', " +
-                                            " '" + img.Height + "', " +
-                                            " '" + uid + "' " +
-                                      ") ";
-                                utils.ExecuteNonQuery(sql);
                             }
+                            catch { }
                         }
                     }
                 }

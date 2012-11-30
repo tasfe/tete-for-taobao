@@ -196,7 +196,7 @@ public partial class api_Default : System.Web.UI.Page
         string str = string.Empty;
         string msgCount = string.Empty;
         string url = "https://sandbox.itunes.apple.com/verifyReceipt";
-        url = "https://buy.itunes.apple.com/verifyReceipt";
+        //url = "https://buy.itunes.apple.com/verifyReceipt";
         string result = SendPostData(url, data);
         string orderid = Regex.Match(result, @"""original_transaction_id"":""([^""]*)""").Groups[1].ToString();
         string typ = Regex.Match(result, @"""product_id"":""([^""]*)""").Groups[1].ToString();
@@ -204,21 +204,21 @@ public partial class api_Default : System.Web.UI.Page
 
         if (status == "0")
         {
-            if (typ == "com.coco.sms_10")
+            if (typ == "com.leon.sms_1_15")
             {
-                msgCount = "20";
+                msgCount = "15";
             }
-            if (typ == "com.coco.sms_25")
+            if (typ == "com.leon.sms_3_60")
             {
-                msgCount = "50";
+                msgCount = "60";
             }
-            if (typ == "com.coco.sms_80")
+            if (typ == "com.leon.sms_5_110")
             {
-                msgCount = "160";
+                msgCount = "110";
             }
-            if (typ == "com.coco.sms_200")
+            if (typ == "com.leon.sms_10_240")
             {
-                msgCount = "400";
+                msgCount = "240";
             }
 
 
@@ -594,8 +594,21 @@ public partial class api_Default : System.Web.UI.Page
 
         if (count == "0")
         {
-            sql = "INSERT INTO TeteUserToken (nick, token, mobile) VALUES ('" + uid + "', '" + token + "', '" + mobile + "')";
-            utils.ExecuteNonQuery(sql);
+            if (uid == "huli")
+            {
+                sql = "INSERT INTO TeteUserToken (nick, token, mobile, total) VALUES ('" + uid + "', '" + token + "', '" + mobile + "', 2)";
+                utils.ExecuteNonQuery(sql);
+            }
+            else if (uid == "huli1")
+            {
+                sql = "INSERT INTO TeteUserToken (nick, token, mobile, total)) VALUES ('" + uid + "', '" + token + "', '" + mobile + "', 18)";
+                utils.ExecuteNonQuery(sql);
+            }
+            else
+            {
+                sql = "INSERT INTO TeteUserToken (nick, token, mobile) VALUES ('" + uid + "', '" + token + "', '" + mobile + "')";
+                utils.ExecuteNonQuery(sql);
+            }
         }
         else
         {
@@ -1211,9 +1224,9 @@ public partial class api_Default : System.Web.UI.Page
         }
         else
         {
-            sql = "SELECT TOP 5 * FROM TeteShopItem WHERE isnew = 1 AND nick = '" + uid + "' ORDER BY orderid";
+            //sql = "SELECT TOP 5 * FROM TeteShopItem WHERE isnew = 1 AND nick = '" + uid + "' ORDER BY orderid";
             //Response.Write(sql);
-            //sql = "SELECT TOP 5 * FROM TeteShopItem WHERE nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0 ORDER BY orderid";
+            sql = "SELECT TOP 5 * FROM TeteShopItem WHERE isnew = 1 AND nick = '" + uid + "' AND CHARINDEX('" + cid + "', cateid) > 0 ORDER BY orderid";
             DataTable dt = utils.ExecuteDataTable(sql);
             if (dt.Rows.Count != 0)
             {
@@ -1436,9 +1449,9 @@ public partial class api_Default : System.Web.UI.Page
 
         sql = "SELECT * FROM TeteShopCategory WHERE nick = '" + uid + "' AND catename <> '' ORDER BY orderid1";
         DataTable dt = utils.ExecuteDataTable(sql);
-        str = "{\"cate\":[";
         if (dt.Rows.Count != 0)
         {
+            str = "{\"cate\":[";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 if (i != 0)
@@ -1448,6 +1461,7 @@ public partial class api_Default : System.Web.UI.Page
 
                 str += "{\"cid\":\"" + dt.Rows[i]["cateid"].ToString() + "\",\"parent_cid\":\"" + dt.Rows[i]["parentid"].ToString() + "\",\"name\":\"" + dt.Rows[i]["catename"].ToString() + "\",\"count\":\"" + dt.Rows[i]["catecount"].ToString() + "\",\"catepicurl\":\"" + dt.Rows[i]["catepicurl"].ToString() + "\"}";
             }
+            str += "]}";
         }
         else
         {
