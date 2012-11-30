@@ -27,7 +27,7 @@ public partial class iphoneapi_api_getnewdataecshop : System.Web.UI.Page
         url = "http://www.aa7a.cn/apiios.php?act=showcate";
         html = Post(url);
 
-        Regex reg = new Regex(@"<cat_id><![[]CDATA[([^[]]]*)[]][]]></cat_id>[\s]*<cat_name><![[]CDATA[[]([^[]]]*)[]][]]></cat_name>", RegexOptions.IgnoreCase);
+        Regex reg = new Regex(@"<cat_id>([\s\S]*?)</cat_id>[\s]*<cat_name>([\s\S]*?)</cat_name>", RegexOptions.IgnoreCase);
         MatchCollection match = reg.Matches(html);
         for (int i = 0; i < match.Count; i++) 
         {
