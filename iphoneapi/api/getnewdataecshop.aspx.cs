@@ -134,7 +134,6 @@ public partial class iphoneapi_api_getnewdataecshop : System.Web.UI.Page
         req.Method = "GET";
         req.KeepAlive = true;
         req.Timeout = 300000;
-        Stream reqStream = req.GetRequestStream();
         HttpWebResponse rsp = (HttpWebResponse)req.GetResponse();
         Encoding encoding = Encoding.GetEncoding(rsp.CharacterSet);
         Stream stream = null;
