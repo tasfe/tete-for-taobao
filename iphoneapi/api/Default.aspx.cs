@@ -601,7 +601,7 @@ public partial class api_Default : System.Web.UI.Page
             }
             else if (uid == "huli1")
             {
-                sql = "INSERT INTO TeteUserToken (nick, token, mobile, total)) VALUES ('" + uid + "', '" + token + "', '" + mobile + "', 18)";
+                sql = "INSERT INTO TeteUserToken (nick, token, mobile, total) VALUES ('" + uid + "', '" + token + "', '" + mobile + "', 18)";
                 utils.ExecuteNonQuery(sql);
             }
             else
