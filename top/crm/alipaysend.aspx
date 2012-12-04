@@ -86,7 +86,7 @@
             </tr>-->
             <tr>
                 <td align="left" colspan="2">
-                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="赠送支付宝红包给买家" />
+                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="赠送支付宝红包给买家" OnClientClick="check(this)" />
                 </td>
             </tr>
         </table>
@@ -96,6 +96,11 @@
 </form>
 
 <script>
+    function check(obj) {
+        obj.value = "导入中，请您耐心等待..";
+        //obj.disabled = true;
+    }
+
     function InitUserCount(obj) {
         document.getElementById("lbCount").innerHTML = obj.options[obj.options.selectedIndex].title;
     }
