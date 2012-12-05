@@ -29,10 +29,6 @@
   </div>
     <div id="main-content">
 
-<div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
-    因为找到了新的短信供应商，现在短信价格全面下调，短信最低75折，祝大家生意兴隆！
-</div>
-
     <input type="button" value="返回短信设置页面" onclick="window.location.href='msg.aspx'" />
     
     <hr />
