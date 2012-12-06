@@ -6,9 +6,9 @@
 <head runat="server">
     <title></title>
 </head>
-<body>
+<body  style="background:url(gerenziliao.png); width:640px; height:616px; margin:0px; padding:0px;">
     <form id="form1" runat="server">
-    <div style="background:url(gerenziliao.png); width:640px; height:616px; margin:0px; padding:0px;">
+    <div>
     
     </div>
     </form>
