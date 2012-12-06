@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Common;
 using System.Data;
 using JdSoft.Apple.Apns.Notifications;
+using System.IO;
 
 public partial class iphoneapi_msgcheck : System.Web.UI.Page
 {
@@ -29,18 +30,19 @@ public partial class iphoneapi_msgcheck : System.Web.UI.Page
     {
         string ids = utils.NewRequest("ids", utils.RequestType.Form);
 
-        string sql = "UPDATE HuliUserMsg SET ispass = 1 WHERE CHARINDEX(guid, '"+ids+"') > 0";
-        utils.ExecuteNonQuery(sql);
-
-        sql = "SELECT DISTINCT alerttoken FROM TeteUserToken WHERE token IN (SELECT DISTINCT token FROM HuliUserMsg WHERE CHARINDEX(guid, '" + ids + "') > 0 AND token IS NOT NULL) AND LEN(alerttoken) = 64";
+        string sql = "SELECT DISTINCT alerttoken FROM TeteUserToken WHERE token IN (SELECT DISTINCT token FROM HuliUserMsg WHERE CHARINDEX(guid, '" + ids + "') > 0 AND token IS NOT NULL) AND LEN(alerttoken) = 64";
         DataTable dt = utils.ExecuteDataTable(sql);
 
-        string filePath = Server.MapPath("p12/定时短信证书.p12");
+        string filePath = Server.MapPath("p12/msg.p12");
         string pass = "3561402";
 
         SendAlert(dt, "亲，您的短信审核已经通过，进入等待发送队列中！", filePath, pass);
 
-        Response.Redirect("msgcheck.aspx");
+
+        sql = "UPDATE HuliUserMsg SET ispass = 1 WHERE CHARINDEX(guid, '" + ids + "') > 0";
+        utils.ExecuteNonQuery(sql);
+
+        //Response.Redirect("msgcheck.aspx");
     }
 
     private void SendAlert(DataTable dt, string msg, string file, string pass)
@@ -49,9 +51,14 @@ public partial class iphoneapi_msgcheck : System.Web.UI.Page
         string p12File = file;
         string p12FilePassword = pass;
 
-        string p12Filename = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, p12File);
+        string p12Filename = file;
 
         NotificationService service = new NotificationService(sandbox, p12Filename, p12FilePassword, 1);
+
+
+        //service.NotificationSuccess += new NotificationService.OnNotificationSuccess(service_NotificationSuccess);
+        //service.Connecting += new NotificationService.OnConnecting(service_Connecting);
+        //service.Connected += new NotificationService.OnConnected(service_Connected);
 
         service.SendRetries = 5; //5 retries before generating notificationfailed event
         service.ReconnectDelay = 2000; //5 seconds
@@ -61,10 +68,17 @@ public partial class iphoneapi_msgcheck : System.Web.UI.Page
         //		Testing: 2...
         //		Testing: 3...
         // etc...
-        for (int i = 0; i <= dt.Rows.Count; i++)
+
+
+        //Response.Write(msg + "<br>");
+        //Response.Write(file + "<br>");
+        //Response.Write(pass + "<br>");
+
+        for (int i = 1; i < dt.Rows.Count+1; i++)
         {
             //Create a new notification to send
-            Notification alertNotification = new Notification(dt.Rows[i]["alerttoken"].ToString());
+            Notification alertNotification = new Notification(dt.Rows[i-1]["alerttoken"].ToString());
+            Response.Write(dt.Rows[i-1]["alerttoken"].ToString());
 
             alertNotification.Payload.Alert.Body = string.Format(msg, i);
             alertNotification.Payload.Sound = "default";
@@ -73,26 +87,44 @@ public partial class iphoneapi_msgcheck : System.Web.UI.Page
             service.QueueNotification(alertNotification);
         }
 
-        service.Close();
+        //service.Close();
 
-        //Clean up
-        service.Dispose();
+        ////Clean up
+        //service.Dispose();
     }
+
+
+    //private void service_NotificationSuccess(object sender, Notification notification)
+    //{
+    //    File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), notification.ToString());
+    //}
+
+    //private void service_Connected(object sender)
+    //{
+    //    File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), "Connected...");
+    //}
+
+    //private void service_Connecting(object sender)
+    //{
+    //    File.WriteAllText(Server.MapPath(DateTime.Now.Ticks.ToString() + ".txt"), "service_Connecting...");
+    //}
+
 
     protected void Button2_Click(object sender, EventArgs e)
     {
         string ids = utils.NewRequest("ids", utils.RequestType.Form);
 
-        string sql = "UPDATE HuliUserMsg SET ispass = 2 WHERE CHARINDEX(guid, '" + ids + "') > 0";
-        utils.ExecuteNonQuery(sql);
 
-        sql = "SELECT DISTINCT token FROM HuliUserMsg WHERE CHARINDEX(guid, '" + ids + "') > 0 AND token IS NOT NULL";
+        string sql = "SELECT DISTINCT alerttoken FROM TeteUserToken WHERE token IN (SELECT DISTINCT token FROM HuliUserMsg WHERE CHARINDEX(guid, '" + ids + "') > 0 AND token IS NOT NULL) AND LEN(alerttoken) = 64";
         DataTable dt = utils.ExecuteDataTable(sql);
 
-        string filePath = Server.MapPath("p12/定时短信证书.p12");
+        string filePath = Server.MapPath("p12/msg.p12");
         string pass = "3561402";
 
         SendAlert(dt, "亲，您的短信含有非法信息，审核不通过无法正常发送！", filePath, pass);
+
+        sql = "UPDATE HuliUserMsg SET ispass = 2 WHERE CHARINDEX(guid, '" + ids + "') > 0";
+        utils.ExecuteNonQuery(sql);
 
         Response.Redirect("msgcheck.aspx");
     }
