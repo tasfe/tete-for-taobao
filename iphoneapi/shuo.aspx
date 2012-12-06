@@ -17,7 +17,7 @@
 
         <asp:Repeater ID="rptShuo" runat="server">
             <ItemTemplate>
-                
+                <%#Eval("content") %> - <%#Eval("adddate") %> <br /><br />
             </ItemTemplate>
         </asp:Repeater>
 
