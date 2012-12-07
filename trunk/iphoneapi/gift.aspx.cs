@@ -21,6 +21,9 @@ public partial class iphoneapi_gift : System.Web.UI.Page
         {
             string sql1 = "INSERT INTO MP_TokenOrder (token, orderid, price) VALUES ('" + token + "', '2012121288888888', '88888')";
             utils.ExecuteNonQuery(sql1);
+
+            Response.Redirect("wddd.aspx");
+            return;
         }
 
         string sql = "SELECT * FROM MP_Gift WHERE guid = '" + id + "'";
