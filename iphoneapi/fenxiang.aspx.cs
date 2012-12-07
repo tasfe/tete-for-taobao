@@ -12,6 +12,7 @@ public partial class iphoneapi_fenxiang : System.Web.UI.Page
     {
         string token = "test";
         string sql = "INSERT INTO MP_TokenScoreLog (token, score, remark) VALUES ('" + token + "', '10', '分享拿积分10分')";
+        utils.ExecuteNonQuery(sql);
 
         sql = "UPDATE MP_Token SET score = score + 10 WHERE token = '" + token + "'";
         utils.ExecuteNonQuery(sql);

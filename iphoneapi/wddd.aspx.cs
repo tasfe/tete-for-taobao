@@ -12,7 +12,7 @@ public partial class iphoneapi_wddd : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         string token = "test";
-        string sql = "SELECT * FROM MP_TokenOrder WHERE token = '" + token + "'";
+        string sql = "SELECT * FROM MP_TokenOrder WHERE token = '" + token + "' ORDER BY adddate DESC";
 
         DataTable dt = utils.ExecuteDataTable(sql);
 
