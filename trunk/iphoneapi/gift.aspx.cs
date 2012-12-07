@@ -9,9 +9,20 @@ using System.Data;
 
 public partial class iphoneapi_gift : System.Web.UI.Page
 {
+    public string id = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        string id = utils.NewRequest("id", utils.RequestType.QueryString);
+        id = utils.NewRequest("id", utils.RequestType.QueryString);
+        string act = utils.NewRequest("act", utils.RequestType.QueryString);
+        string token = "test";
+
+        if (act == "buy")
+        {
+            string sql1 = "INSERT INTO MP_TokenOrder (token, orderid, price) VALUES ('" + token + "', '2012121288888888', '88888')";
+            utils.ExecuteNonQuery(sql1);
+        }
+
         string sql = "SELECT * FROM MP_Gift WHERE guid = '" + id + "'";
 
         DataTable dt = utils.ExecuteDataTable(sql);
