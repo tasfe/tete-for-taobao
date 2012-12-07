@@ -16,6 +16,7 @@ public partial class iphoneapi_gift : System.Web.UI.Page
 
         DataTable dt = utils.ExecuteDataTable(sql);
 
-
+        rptDetail.DataSource = dt;
+        rptDetail.DataBind();
     }
 }
