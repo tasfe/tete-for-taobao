@@ -5,11 +5,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+<meta name="viewport" content="width=device-width,
+ initial-scale=0.5, minimum-scale=0.1, 
+maximum-scale=2, user-scalable=no" />
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
-    
+        <asp:Repeater ID="rptCoupon" runat="server">
+            <ItemTemplate>
+                <img src='<%#Eval("imgurl") %>' /> <br /><br />
+            </ItemTemplate>
+        </asp:Repeater>
     </div>
     </form>
 </body>
