@@ -9,8 +9,22 @@
 <body  style="background:url(gerenziliao.png); width:640px; height:616px; margin:0px; padding:0px;">
     <form id="form1" runat="server">
     <div>
-    
+        <input type="checkbox" value="1" name="isqq" onclick="showQQverify()" />
+    </div>
+    <div>
+        <input type="checkbox" value="1" name="issina" onclick="showSinaverify()" />
     </div>
     </form>
+
+    <script>
+        function showQQverify() {
+            alert(1);
+        }
+
+        function showSinaverify() {
+            alert(2);
+        }
+    </script>
+
 </body>
 </html>
