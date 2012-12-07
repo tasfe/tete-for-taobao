@@ -23,8 +23,7 @@
 
     <script>
         function ok() {
-            alert('兑换成功'); 
-            window.location.href = 'wddd.aspx';
+            window.location.href = 'gift.aspx?id=<%=id %>&act=buy';
         }
     </script>
 </body>
