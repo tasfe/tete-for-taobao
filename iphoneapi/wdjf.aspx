@@ -11,7 +11,7 @@ maximum-scale=2, user-scalable=no" />
 </head>
 <body  style="background:url(wdjf.png)  no-repeat; width:640px; height:735px; margin:0px; padding:0px;">
     <form id="form1" runat="server">
-    <div style="margin:140px 0 0 300px; font-size:60px; font-weight:bold">13000</div>
+    <div style="margin:140px 0 0 300px; font-size:60px; font-weight:bold"><%=score%></div>
     </form>
 </body>
 </html>
