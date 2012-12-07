@@ -9,7 +9,7 @@
  initial-scale=0.5, minimum-scale=0.1, 
 maximum-scale=2, user-scalable=no" />
 </head>
-<body  style="background:url(wddd.png); width:640px;; margin:0px; padding:0px;">
+<body  style="background:url(wddd.png); width:640px; margin:0px; padding:0px;">
     <form id="form1" runat="server">
     <asp:Repeater ID="rptOrder" runat="server">
         <ItemTemplate>
