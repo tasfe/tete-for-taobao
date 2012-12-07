@@ -11,7 +11,7 @@ public partial class iphoneapi_fenxiang : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         string token = "test";
-        string sql = "UPDATE MP_Token SET score = score + 1 WHERE nick = '" + token + "'";
+        string sql = "UPDATE MP_Token SET score = score + 1 WHERE token = '" + token + "'";
         utils.ExecuteNonQuery(sql);
     }
 }
