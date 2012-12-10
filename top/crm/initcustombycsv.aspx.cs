@@ -56,6 +56,7 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
     {
         //先判断支付宝红包格式是否合法
         string guid = Guid.NewGuid().ToString();
+        string csvtyp = utils.NewRequest("csvtyp", utils.RequestType.Form);
 
         if (fuAlipay.PostedFile.FileName.IndexOf(".csv") == -1)
         {
@@ -69,11 +70,23 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
 
         string content = File.ReadAllText(filename, Encoding.Default);
 
-        if (content.IndexOf("订单编号\",\"买家会员名\",\"买家支付宝账号\"") == -1)
+        if (csvtyp == "0")
         {
-            Response.Write("<script>alert('您上传的文件格式不正确！');history.go(-1);</script>");
-            Response.End();
-            return;
+            if (content.IndexOf("订单编号\",\"买家会员名\",\"买家支付宝账号\"") == -1)
+            {
+                Response.Write("<script>alert('您上传的文件格式不正确！');history.go(-1);</script>");
+                Response.End();
+                return;
+            }
+        }
+        else
+        {
+            if (content.IndexOf("买家昵称\",\"真实姓名\",\"生日\"") == -1)
+            {
+                Response.Write("<script>alert('您上传的文件格式不正确！');history.go(-1);</script>");
+                Response.End();
+                return;
+            }
         }
 
         string[] arr = Regex.Split(content, "\n");
@@ -86,7 +99,6 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
 
         string sql = string.Empty;
         int index = 0;
-        string csvtyp = utils.NewRequest("csvtyp", utils.RequestType.Form);
 
         for (int i = 1; i < arr.Length-1; i++)
         {
