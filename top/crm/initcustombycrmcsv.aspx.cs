@@ -99,11 +99,11 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
             string count = utils.ExecuteString(sql);
             if (count != "0")
             {
-                sql = "UPDATE tcs_customer SET mobile = '" + mobile + "' WHERE nick = '" + nick + "' AND buynick = '" + buynick + "'";
-                //执行插入操作
+                //sql = "UPDATE tcs_customer SET mobile = '" + mobile + "' WHERE nick = '" + nick + "' AND buynick = '" + buynick + "'";
+                ////执行插入操作
 
-                Response.Write(sql + "<br>");
-                //InsertUserData(buynick, mobile);
+                //Response.Write(sql + "<br>");
+                InsertUserData(buynick, mobile);
                 index++;
             }
         }

@@ -86,12 +86,25 @@ public partial class top_crm_initcustombycsv : System.Web.UI.Page
 
         string sql = string.Empty;
         int index = 0;
+        string csvtyp = utils.NewRequest("csvtyp", utils.RequestType.Form);
 
         for (int i = 1; i < arr.Length-1; i++)
         {
             string[] arrDetail = arr[i].Split(',');
-            string buynick = arrDetail[1].Replace("\"", "");
-            string mobile = arrDetail[16].Replace("\"", "").Replace("'", "");
+            string buynick = string.Empty;
+            string mobile = string.Empty;
+
+            if (csvtyp == "0")
+            {
+                buynick = arrDetail[1].Replace("\"", "");
+                mobile = arrDetail[16].Replace("\"", "").Replace("'", "");
+            }
+            else
+            {
+                buynick = arrDetail[0].Replace("\"", "");
+                mobile = arrDetail[5].Replace("\"", "").Replace("'", "");
+            }
+
             //判断该顾客信息是否录入过
             sql = "SELECT COUNT(*) FROM TCS_Customer WHERE nick = '"+nick+"' AND buynick = '"+buynick+"'";
             //Response.Write(sql + "<br>");
