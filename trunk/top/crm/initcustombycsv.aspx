@@ -27,8 +27,12 @@
     <div id="main-content">
 
 <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 5px 0px; color:Red; font-weight:bold; width:700px">
-    请上传淘宝后台导出的订单CSV文件来导入历史会员数据
+    请上传淘宝后台导出的订单CSV文件或者淘宝的客户关系导出的CSV文件来导入历史会员数据
 </div>
+
+<input type="radio" name="csvtyp" value="0" checked="checked" /> 通过淘宝后台导出的订单CSV文件导入 <br />
+<input type="radio" name="csvtyp" value="1" /> 通过淘宝客户关系导出的CSV文件导入 <br />
+<br />
 
 <asp:FileUpload ID="fuAlipay" Width="200px" runat="server" />  当历史数据很大的时候导入时间会很长，请您耐心等待。。。
 
