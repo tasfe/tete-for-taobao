@@ -89,7 +89,7 @@
             </tr>
             <tr>
                 <td align="left">
-        开启物流签收后短信提示 <input id="shippingflag" name="shippingflag" type="checkbox" value="1" onclick="showArea2(this)" />
+        签收后不评价短信提醒 <input id="shippingflag" name="shippingflag" type="checkbox" value="1" onclick="showArea2(this)" />
                 </td>
             </tr>
             <tr id="Area2">
@@ -111,7 +111,7 @@
             </tr>
             <tr>
                 <td align="left">
-        签收后不评价短信提醒 <input id="reviewflag" name="reviewflag" type="checkbox" value="1" onclick="showArea3(this)" /> <br />
+        过期未评价短信 <input id="reviewflag" name="reviewflag" type="checkbox" value="1" onclick="showArea3(this)" /> <br />
         <span style="color:red">【过期未评价短信】是指在您在基本设置中 最短评价时间的前一天提醒买家及时评价。 如果开启这条提醒，建议将基本设置时间加长些！</span>
                 </td>
             </tr>
