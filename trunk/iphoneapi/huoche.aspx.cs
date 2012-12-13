@@ -33,7 +33,7 @@ public partial class iphoneapi_msgcheck : System.Web.UI.Page
 
     private void SendAlert(DataTable dt, string msg, string file, string pass)
     {
-        bool sandbox = true;
+        bool sandbox = false;
         string p12File = file;
         string p12FilePassword = pass;
 
