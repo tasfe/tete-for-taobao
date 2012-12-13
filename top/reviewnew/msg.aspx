@@ -99,7 +99,7 @@
             </tr>
             <tr>
                 <td align="left">
-        开启到达城市后短信提示 <input id="cityflag" name="cityflag" type="checkbox" value="1" onclick="showArea6(this)" />
+        到达最近城市短信提醒 <input id="cityflag" name="cityflag" type="checkbox" value="1" onclick="showArea6(this)" />
                 </td>
             </tr>
             <tr id="Area6">
@@ -110,7 +110,7 @@
             </tr>
             <tr>
                 <td align="left">
-        开启过期未评价短信提示 <input id="reviewflag" name="reviewflag" type="checkbox" value="1" onclick="showArea3(this)" /> <br />
+        签收后不评价短信提醒 <input id="reviewflag" name="reviewflag" type="checkbox" value="1" onclick="showArea3(this)" /> <br />
         <span style="color:red">【过期未评价短信】是指在您在基本设置中 最短评价时间的前一天提醒买家及时评价。 如果开启这条提醒，建议将基本设置时间加长些！</span>
                 </td>
             </tr>
