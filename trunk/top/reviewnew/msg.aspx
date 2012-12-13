@@ -47,7 +47,8 @@
             [truename]　　= 收货人姓名<br />
             <br />
             快递方式和快递单号只能在发货短信中使用，放在其他短信中会无法正常解析！<br />
-            请大家尽量精简自己的短信内容，一条短信的内容不要超过64个字，否则您的短信内容将会被截取成64个字~ ：）
+            请大家尽量精简自己的短信内容，一条短信的内容不要超过64个字，否则您的短信内容将会被截取成64个字~ ：）<br />
+            新增到达城市短信提醒，友情建议 到达城市短信 和 物流签收短信 不要同时开启，否则买家可能在短时间内收到2条短信
         </div>
 
         <table width="750">
@@ -191,6 +192,10 @@
     function checkSave(){
         if(document.getElementById("shippingflag").checked && document.getElementById("reviewflag").checked){
             return confirm('物流签收短信和过期未评价短信建议只开启一种，买家会有可能在短时间内收到2条短信，您确定要这样设置吗？');
+        }
+        
+        if(document.getElementById("shippingflag").checked && document.getElementById("cityflag").checked){
+            return confirm('物流签收短信和到达城市短信建议只开启一种，买家会有可能在短时间内收到2条短信，您确定要这样设置吗？');
         }
     }
 
