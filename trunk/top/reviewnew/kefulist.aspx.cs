@@ -20,6 +20,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
 {
     public string session = string.Empty;
     public string nick = string.Empty;
+    public string couponhtml = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -80,8 +81,19 @@ public partial class top_review_kefulist : System.Web.UI.Page
 
         if (!IsPostBack)
         {
+            couponhtml = GetCouponHtml();
+
             BindData();
         }
+    }
+
+    /// <summary>
+    /// 获取优惠券HTML方便客户赠送
+    /// </summary>
+    /// <returns></returns>
+    private string GetCouponHtml()
+    {
+        
     }
 
     /// <summary>

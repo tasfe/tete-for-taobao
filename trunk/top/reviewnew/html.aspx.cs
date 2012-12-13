@@ -510,7 +510,7 @@ public partial class top_review_html : System.Web.UI.Page
                     param.Add("num_iid", product.Content[i].NumIid.ToString());
                     param.Add("desc", newcontent);
                     string resultpro = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.item.update", session, param);
-                    builder.Append(resultpro + "\r\n");
+                    builder.Append("宝贝ID：" + product.Content[i].NumIid.ToString() + "\r\n" + resultpro + "\r\n");
                 }
                 catch
                 { }
