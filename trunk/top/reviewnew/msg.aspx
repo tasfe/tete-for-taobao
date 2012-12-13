@@ -99,7 +99,7 @@
             </tr>
             <tr>
                 <td align="left">
-        开启物流签收后短信提示 <input id="cityflag" name="cityflag" type="checkbox" value="1" onclick="showArea6(this)" />
+        开启到达城市后短信提示 <input id="cityflag" name="cityflag" type="checkbox" value="1" onclick="showArea6(this)" />
                 </td>
             </tr>
             <tr id="Area6">
