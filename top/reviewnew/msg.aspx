@@ -99,6 +99,17 @@
             </tr>
             <tr>
                 <td align="left">
+        开启物流签收后短信提示 <input id="cityflag" name="cityflag" type="checkbox" value="1" onclick="showArea6(this)" />
+                </td>
+            </tr>
+            <tr id="Area6">
+                <td align="left" width="250">
+                    <textarea id="citycontent" name="citycontent" cols="40" rows="3"><%=citycontent%></textarea>
+                    <input type="button" value="短信预览" onclick="yulanMsg('citycontent')" />
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
         开启过期未评价短信提示 <input id="reviewflag" name="reviewflag" type="checkbox" value="1" onclick="showArea3(this)" /> <br />
         <span style="color:red">【过期未评价短信】是指在您在基本设置中 最短评价时间的前一天提醒买家及时评价。 如果开启这条提醒，建议将基本设置时间加长些！</span>
                 </td>
@@ -224,6 +235,14 @@
             document.getElementById("Area5").style.display = "block";
         }
     }
+    function showArea6(obj) {
+        var str = obj.checked;
+        if (str == false) {
+            document.getElementById("Area6").style.display = "none";
+        } else {
+            document.getElementById("Area6").style.display = "block";
+        }
+    }
 
     function yulanMsg(id){
         var msg = document.getElementById(id).value;
@@ -285,6 +304,14 @@
     }else{
         document.getElementById("freecardflag").checked = false;
         document.getElementById("Area5").style.display = "none";
+    }
+
+    if(<%=cityflag %> == 1){
+        document.getElementById("cityflag").checked = true;
+        document.getElementById("Area6").style.display = "block";
+    }else{
+        document.getElementById("cityflag").checked = false;
+        document.getElementById("Area6").style.display = "none";
     }
     
     document.getElementById("reviewtime").value = "<%=reviewtime %>";

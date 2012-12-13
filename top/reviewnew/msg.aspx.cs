@@ -40,6 +40,9 @@ public partial class top_review_msg : System.Web.UI.Page
     public string freecardflag = string.Empty;
     public string freecardcontent = string.Empty;
 
+    public string cityflag = string.Empty;
+    public string citycontent = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
@@ -304,6 +307,9 @@ public partial class top_review_msg : System.Web.UI.Page
             freecardflag = dt.Rows[0]["freecardflag"].ToString();
             freecardcontent = dt.Rows[0]["freecardcontent"].ToString();
 
+            cityflag = dt.Rows[0]["cityflag"].ToString();
+            citycontent = dt.Rows[0]["citycontent"].ToString();
+
             //增加默认值
             if (giftcontent.Length == 0)
             {
@@ -324,6 +330,10 @@ public partial class top_review_msg : System.Web.UI.Page
             if (freecardcontent.Length == 0)
             {
                 freecardcontent = "[shopname]:亲，感谢您的及时优质好评。现赠送您[freecard]一张，详情可联系卖家查看，期待您的再次光临。";
+            }
+            if (citycontent.Length == 0)
+            {
+                citycontent = "您购买的宝贝已到达亲所在的城市，请留意淘宝后台物流状态，可以及时本人签收哦，如满意请给5分好评，可以获赠优惠券哦，祝亲愉快每天~";
             }
             if (shopname.Length == 0)
             {

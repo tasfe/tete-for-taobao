@@ -23,7 +23,32 @@ public partial class top_review_testapi : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        GetTrade();
+        Fresh();
+    }
+
+    private void GetTradeWuliu()
+    {
+        string result = string.Empty;
+        string appkey = "12159997";
+        string secret = "614e40bfdb96e9063031d1a9e56fbed5";
+        string session = "610252327f50ae71952287d7d9743f91fd3ef1e6d930c29268451883";
+        string taobaonick = "三际数码专营店";
+
+        string sql = "SELECT TOP 100 * FROM TCS_Trade WHERE status = 'WAIT_BUYER_CONFIRM_GOODS'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            sql = "SELECT session FROM TCS_ShopSession WHERE nick = '" + dt.Rows[i]["nick"].ToString() + "'";
+            session = utils.ExecuteString(sql);
+
+            IDictionary<string, string> param = new Dictionary<string, string>();
+            param.Add("seller_nick", dt.Rows[i]["nick"].ToString());
+            param.Add("tid", dt.Rows[i]["orderid"].ToString());
+
+            result = Post("http://gw.api.taobao.com/router/rest", appkey, secret, "taobao.logistics.trace.search", session, param);
+            Response.Write(result + "\r\n\r\n");
+        }
     }
 
     private void GetUserCoupon()
