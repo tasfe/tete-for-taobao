@@ -46,9 +46,9 @@
             [freecard]　　= 包邮卡名称<br />
             [truename]　　= 收货人姓名<br />
             <br />
-            快递方式和快递单号只能在发货短信中使用，放在其他短信中会无法正常解析！<br />
+            <span style="font-weight:bold; color:Blue;">快递方式和快递单号只能在发货短信中使用，放在其他短信中会无法正常解析！</span><br />
             请大家尽量精简自己的短信内容，一条短信的内容不要超过64个字，否则您的短信内容将会被截取成64个字~ ：）<br />
-            新增到达城市短信提醒，友情建议 到达城市短信 和 物流签收短信 不要同时开启，否则买家可能在短时间内收到2条短信
+            <span style="font-weight:bold; color:Blue;">新增到达城市短信提醒，友情建议到达城市短信和物流签收短信不要同时开启，否则买家可能在短时间内收到2条短信</span>
         </div>
 
         <table width="750">
@@ -111,7 +111,7 @@
             </tr>
             <tr>
                 <td align="left">
-        过期未评价短信 <input id="reviewflag" name="reviewflag" type="checkbox" value="1" onclick="showArea3(this)" /> <br />
+        过期未评价短信提醒 <input id="reviewflag" name="reviewflag" type="checkbox" value="1" onclick="showArea3(this)" /> <br />
         <span style="color:red">【过期未评价短信】是指在您在基本设置中 最短评价时间的前一天提醒买家及时评价。 如果开启这条提醒，建议将基本设置时间加长些！</span>
                 </td>
             </tr>
