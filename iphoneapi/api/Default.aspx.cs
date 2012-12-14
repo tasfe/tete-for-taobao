@@ -619,12 +619,12 @@ public partial class api_Default : System.Web.UI.Page
         {
             if (uid == "huli")
             {
-                sql = "INSERT INTO TeteUserToken (nick, token, mobile, total) VALUES ('" + uid + "', '" + token + "', '" + mobile + "', 2)";
+                sql = "INSERT INTO TeteUserToken (nick, token, mobile, total) VALUES ('" + uid + "', '" + token + "', '" + mobile + "', 0)";
                 utils.ExecuteNonQuery(sql);
             }
             else if (uid == "huli1")
             {
-                sql = "INSERT INTO TeteUserToken (nick, token, mobile, total) VALUES ('" + uid + "', '" + token + "', '" + mobile + "', 18)";
+                sql = "INSERT INTO TeteUserToken (nick, token, mobile, total) VALUES ('" + uid + "', '" + token + "', '" + mobile + "', 0)";
                 //File.WriteAllText(Server.MapPath("aaa.txt"), sql);
                 utils.ExecuteNonQuery(sql);
             }
