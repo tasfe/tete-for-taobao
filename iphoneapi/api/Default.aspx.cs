@@ -624,7 +624,7 @@ public partial class api_Default : System.Web.UI.Page
             }
             else if (uid == "huli1")
             {
-                sql = "INSERT INTO TeteUserToken (nick, token, mobile, total) VALUES ('" + uid + "', '" + token + "', '" + mobile + "', 0)";
+                sql = "INSERT INTO TeteUserToken (nick, token, mobile, total) VALUES ('" + uid + "', '" + token + "', '" + mobile + "', 1)";
                 //File.WriteAllText(Server.MapPath("aaa.txt"), sql);
                 utils.ExecuteNonQuery(sql);
             }
