@@ -615,33 +615,25 @@ public partial class api_Default : System.Web.UI.Page
     {
         string sql = string.Empty;
 
-        sql = "SELECT COUNT(*) FROM TeteUserToken WHERE nick = '" + uid + "' AND token = '" + token +
-
-"'";
+        sql = "SELECT COUNT(*) FROM TeteUserToken WHERE nick = '" + uid + "' AND token = '" + token + "'";
         string count = utils.ExecuteString(sql);
 
         if (count == "0")
         {
             if (uid == "huli")
             {
-                sql = "INSERT INTO TeteUserToken (nick, token, mobile, total) VALUES ('" + uid + "', '"
-
-+ token + "', '" + mobile + "', 0)";
+                sql = "INSERT INTO TeteUserToken (nick, token, mobile, total) VALUES ('" + uid + "', '" + token + "', '" + mobile + "', 0)";
                 utils.ExecuteNonQuery(sql);
             }
             else if (uid == "huli1")
             {
-                sql = "INSERT INTO TeteUserToken (nick, token, mobile, total) VALUES ('" + uid + "', '"
-
-+ token + "', '" + mobile + "', 1)";
+                sql = "INSERT INTO TeteUserToken (nick, token, mobile, total) VALUES ('" + uid + "', '" + token + "', '" + mobile + "', 1)";
                 //File.WriteAllText(Server.MapPath("aaa.txt"), sql);
                 utils.ExecuteNonQuery(sql);
             }
             else
             {
-                sql = "INSERT INTO TeteUserToken (nick, token, mobile) VALUES ('" + uid + "', '" + token
-
-+ "', '" + mobile + "')";
+                sql = "INSERT INTO TeteUserToken (nick, token, mobile) VALUES ('" + uid + "', '" + token + "', '" + mobile + "')";
                 utils.ExecuteNonQuery(sql);
             }
         }
