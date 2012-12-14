@@ -14,7 +14,13 @@
 
     <asp:Button ID="Button3" runat="server" 
             onclick="Button3_Click" Text="评价短信赠送" />
+            <hr />
 
+            
+        <asp:TextBox ID="txtContent" runat="server" TextMode="MultiLine"></asp:TextBox>
+
+        <asp:Button ID="Button4" runat="server" 
+            onclick="Button4_Click" Text="发送推送" />
     <hr />
 
         <asp:Button ID="Button1" runat="server" 
