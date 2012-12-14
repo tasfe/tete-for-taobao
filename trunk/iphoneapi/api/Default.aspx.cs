@@ -12,6 +12,9 @@ using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Web.Security;
 
+using JdSoft.Apple.Apns.Notifications;
+using System.IO;
+
 public partial class api_Default : System.Web.UI.Page
 {
     private string act = string.Empty;
@@ -612,36 +615,95 @@ public partial class api_Default : System.Web.UI.Page
     {
         string sql = string.Empty;
 
-        sql = "SELECT COUNT(*) FROM TeteUserToken WHERE nick = '" + uid + "' AND token = '" + token + "'";
+        sql = "SELECT COUNT(*) FROM TeteUserToken WHERE nick = '" + uid + "' AND token = '" + token +
+
+"'";
         string count = utils.ExecuteString(sql);
 
         if (count == "0")
         {
             if (uid == "huli")
             {
-                sql = "INSERT INTO TeteUserToken (nick, token, mobile, total) VALUES ('" + uid + "', '" + token + "', '" + mobile + "', 0)";
+                sql = "INSERT INTO TeteUserToken (nick, token, mobile, total) VALUES ('" + uid + "', '"
+
++ token + "', '" + mobile + "', 0)";
                 utils.ExecuteNonQuery(sql);
             }
             else if (uid == "huli1")
             {
-                sql = "INSERT INTO TeteUserToken (nick, token, mobile, total) VALUES ('" + uid + "', '" + token + "', '" + mobile + "', 1)";
+                sql = "INSERT INTO TeteUserToken (nick, token, mobile, total) VALUES ('" + uid + "', '"
+
++ token + "', '" + mobile + "', 1)";
                 //File.WriteAllText(Server.MapPath("aaa.txt"), sql);
                 utils.ExecuteNonQuery(sql);
             }
             else
             {
-                sql = "INSERT INTO TeteUserToken (nick, token, mobile) VALUES ('" + uid + "', '" + token + "', '" + mobile + "')";
+                sql = "INSERT INTO TeteUserToken (nick, token, mobile) VALUES ('" + uid + "', '" + token
+
++ "', '" + mobile + "')";
                 utils.ExecuteNonQuery(sql);
             }
         }
         else
         {
-            sql = "UPDATE TeteUserToken SET mobile = '" + mobile + "',alerttoken='" + alerttoken + "',updatedate = GETDATE(),logintimes = logintimes + 1 WHERE token = '" + token + "'";
+            string verify = string.Empty;
+            if (token.Length > 0)
+            {
+                verify = token.Substring(0, 4);
+            }
+
+            sql = "UPDATE TeteUserToken SET mobile = '" + mobile + "',alerttoken='" + alerttoken + "',updatedate = GETDATE(),logintimes = logintimes + 1,verify='" + verify + "' WHERE token = '" + token + "' AND nick = '" + uid + "'";
             utils.ExecuteNonQuery(sql);
+
+            sql = "SELECT * FROM TeteUserToken WHERE token = '" + token + "' AND nick = '" + uid + "'";
+            DataTable dt = utils.ExecuteDataTable(sql);
+
+            string filePath = string.Empty;
+            string pass = "3561402";
+
+            if (uid == "huli")
+            {
+                filePath = Server.MapPath("../p12/sms_huli.p12");
+                SendAlert(dt, "亲，感谢您对定时短信的支持，为了回馈客户，现在您给我们5星好评即可获赠2条免费短信，评价时请带上您的标志【" + verify + "】！", filePath, pass);
+            }
+            else if (uid == "huli1")
+            {
+                filePath = Server.MapPath("../p12/sms_huli1.p12");
+                SendAlert(dt, "亲，感谢您对定时短信的支持，为了回馈客户，现在您给我们5星好评即可获赠20条免费短信，评价时请带上您的标志【" + verify + "】！", filePath, pass);
+            }
         }
         ////File.WriteAllText(Server.MapPath("aaa.txt"), Request.Url.ToString());
         string str = "{\"result\":\"ok\"}";
         Response.Write(str);
+    }
+
+
+    private void SendAlert(DataTable dt, string msg, string file, string pass)
+    {
+        bool sandbox = true;
+        string p12File = file;
+        string p12FilePassword = pass;
+
+        string p12Filename = file;
+
+        NotificationService service = new NotificationService(sandbox, p12Filename, p12FilePassword, 1);
+
+        service.SendRetries = 5; //5 retries before generating notificationfailed event
+        service.ReconnectDelay = 2000; //5 seconds
+
+        for (int i = 1; i < dt.Rows.Count + 1; i++)
+        {
+            //Create a new notification to send
+            Notification alertNotification = new Notification(dt.Rows[i - 1]["alerttoken"].ToString());
+            Response.Write(dt.Rows[i - 1]["alerttoken"].ToString());
+
+            alertNotification.Payload.Alert.Body = string.Format(msg, i);
+            alertNotification.Payload.Sound = "default";
+            alertNotification.Payload.Badge = 1;
+
+            service.QueueNotification(alertNotification);
+        }
     }
 
     private void ShowNearInfo()
