@@ -256,6 +256,7 @@
         msg = msg.replace("[gift]", "优惠券");
         msg = msg.replace("[buynick]", "买家0001");
         msg = msg.replace("[shiptyp]", "圆通快递");
+        msg = msg.replace("[city]", "杭州");
         msg = msg.replace("[shipnumber]", "1900209081740");
         msg = msg.replace("[freecard]", "包邮卡（仅限圆通）");
 
