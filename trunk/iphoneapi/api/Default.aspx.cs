@@ -616,6 +616,7 @@ public partial class api_Default : System.Web.UI.Page
         string sql = string.Empty;
 
         sql = "SELECT COUNT(*) FROM TeteUserToken WHERE nick = '" + uid + "' AND token = '" + token + "'";
+        //Response.Write(sql + "<br>");
         string count = utils.ExecuteString(sql);
 
         if (count == "0")
@@ -623,17 +624,19 @@ public partial class api_Default : System.Web.UI.Page
             if (uid == "huli")
             {
                 sql = "INSERT INTO TeteUserToken (nick, token, mobile, total) VALUES ('" + uid + "', '" + token + "', '" + mobile + "', 0)";
+                //Response.Write(sql + "<br>");
                 utils.ExecuteNonQuery(sql);
             }
             else if (uid == "huli1")
             {
                 sql = "INSERT INTO TeteUserToken (nick, token, mobile, total) VALUES ('" + uid + "', '" + token + "', '" + mobile + "', 1)";
-                //File.WriteAllText(Server.MapPath("aaa.txt"), sql);
+                //Response.Write(sql + "<br>");
                 utils.ExecuteNonQuery(sql);
             }
             else
             {
                 sql = "INSERT INTO TeteUserToken (nick, token, mobile) VALUES ('" + uid + "', '" + token + "', '" + mobile + "')";
+                //Response.Write(sql + "<br>");
                 utils.ExecuteNonQuery(sql);
             }
         }
@@ -646,9 +649,11 @@ public partial class api_Default : System.Web.UI.Page
             }
 
             sql = "UPDATE TeteUserToken SET mobile = '" + mobile + "',alerttoken='" + alerttoken + "',updatedate = GETDATE(),logintimes = logintimes + 1,verify='" + verify + "' WHERE token = '" + token + "' AND nick = '" + uid + "'";
+            //Response.Write(sql + "<br>");
             utils.ExecuteNonQuery(sql);
 
-            sql = "SELECT * FROM TeteUserToken WHERE token = '" + token + "' AND nick = '" + uid + "'";
+            sql = "SELECT * FROM TeteUserToken WHERE token = '" + token + "' AND nick = '" + uid + "' AND issend = 0";
+            //Response.Write(sql + "<br>");
             DataTable dt = utils.ExecuteDataTable(sql);
 
             string filePath = string.Empty;
@@ -673,7 +678,7 @@ public partial class api_Default : System.Web.UI.Page
 
     private void SendAlert(DataTable dt, string msg, string file, string pass)
     {
-        bool sandbox = true;
+        bool sandbox = false;
         string p12File = file;
         string p12FilePassword = pass;
 
@@ -688,7 +693,7 @@ public partial class api_Default : System.Web.UI.Page
         {
             //Create a new notification to send
             Notification alertNotification = new Notification(dt.Rows[i - 1]["alerttoken"].ToString());
-            Response.Write(dt.Rows[i - 1]["alerttoken"].ToString());
+            //Response.Write(dt.Rows[i - 1]["alerttoken"].ToString());
 
             alertNotification.Payload.Alert.Body = string.Format(msg, i);
             alertNotification.Payload.Sound = "default";
