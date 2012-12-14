@@ -648,9 +648,12 @@ public partial class api_Default : System.Web.UI.Page
                 verify = token.Substring(0, 4);
             }
 
-            sql = "UPDATE TeteUserToken SET mobile = '" + mobile + "',alerttoken='" + alerttoken + "',updatedate = GETDATE(),logintimes = logintimes + 1,verify='" + verify + "' WHERE token = '" + token + "' AND nick = '" + uid + "'";
-            //Response.Write(sql + "<br>");
-            utils.ExecuteNonQuery(sql);
+            if (alerttoken.Length != 0)
+            {
+                sql = "UPDATE TeteUserToken SET mobile = '" + mobile + "',alerttoken='" + alerttoken + "',updatedate = GETDATE(),logintimes = logintimes + 1,verify='" + verify + "' WHERE token = '" + token + "' AND nick = '" + uid + "'";
+                //Response.Write(sql + "<br>");
+                utils.ExecuteNonQuery(sql);
+            }
 
             sql = "SELECT * FROM TeteUserToken WHERE token = '" + token + "' AND nick = '" + uid + "' AND issend = 0";
             //Response.Write(sql + "<br>");

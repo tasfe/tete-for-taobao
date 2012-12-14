@@ -26,13 +26,44 @@ public partial class iphoneapi_msgcheck : System.Web.UI.Page
         rptList.DataBind();
     }
 
+
+    protected void Button4_Click(object sender, EventArgs e)
+    {
+        string sql = "SELECT DISTINCT alerttoken FROM TeteUserToken WHERE nick = 'huli'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+
+        string filePath = Server.MapPath("p12/sms_huli.p12");
+        string pass = "3561402";
+
+        SendAlert(dt, this.txtContent.Text, filePath, pass);
+    }
+
     protected void Button3_Click(object sender, EventArgs e)
     {
-        string sql = "UPDATE TeteUserToken SET issend =1 ,total = total + 2 WHERE verify = '" + this.txtVerify.Text + "' AND issend = 0";
+        string sql = "SELECT * FROM TeteUserToken WHERE verify = '" + this.txtVerify.Text + "' AND nick = 'huli'";
+        DataTable dt = utils.ExecuteDataTable(sql);
+        if (dt.Rows.Count == 0)
+        {
+            Response.Write("该验证码不存在!!");
+        }
+        else
+        {
+            if (dt.Rows[0]["issend"].ToString() == "1")
+            {
+                Response.Write("该验证码已经赠送过!!");
+            }
+            else
+            {
+                string filePath = Server.MapPath("p12/sms_huli.p12");
+                string pass = "3561402";
 
-        utils.ExecuteNonQuery(sql);
+                SendAlert(dt, "亲，非常感谢您的评价，为了表示感谢，2条免费短信已经赠送到您的账户里，祝您软件使用愉快！ ：）", filePath, pass);
 
-        Response.Write("ok!!");
+                sql = "UPDATE TeteUserToken SET issend =1 ,total = total + 2 WHERE verify = '" + this.txtVerify.Text + "' AND issend = 0";
+                utils.ExecuteNonQuery(sql);
+                Response.Write("赠送成功!!");
+            }
+        }
     }
 
     protected void Button1_Click(object sender, EventArgs e)
@@ -54,6 +85,7 @@ public partial class iphoneapi_msgcheck : System.Web.UI.Page
         //Response.Redirect("msgcheck.aspx");
     }
 
+
     private void SendAlert(DataTable dt, string msg, string file, string pass)
     {
         bool sandbox = false;
@@ -64,42 +96,21 @@ public partial class iphoneapi_msgcheck : System.Web.UI.Page
 
         NotificationService service = new NotificationService(sandbox, p12Filename, p12FilePassword, 1);
 
-
-        //service.NotificationSuccess += new NotificationService.OnNotificationSuccess(service_NotificationSuccess);
-        //service.Connecting += new NotificationService.OnConnecting(service_Connecting);
-        //service.Connected += new NotificationService.OnConnected(service_Connected);
-
         service.SendRetries = 5; //5 retries before generating notificationfailed event
         service.ReconnectDelay = 2000; //5 seconds
 
-        //The notifications will be sent like this:
-        //		Testing: 1...
-        //		Testing: 2...
-        //		Testing: 3...
-        // etc...
-
-
-        //Response.Write(msg + "<br>");
-        //Response.Write(file + "<br>");
-        //Response.Write(pass + "<br>");
-
-        for (int i = 1; i < dt.Rows.Count+1; i++)
+        for (int i = 1; i < dt.Rows.Count + 1; i++)
         {
             //Create a new notification to send
-            Notification alertNotification = new Notification(dt.Rows[i-1]["alerttoken"].ToString());
-            Response.Write(dt.Rows[i-1]["alerttoken"].ToString());
+            Notification alertNotification = new Notification(dt.Rows[i - 1]["alerttoken"].ToString());
+            //Response.Write(dt.Rows[i - 1]["alerttoken"].ToString());
 
             alertNotification.Payload.Alert.Body = string.Format(msg, i);
             alertNotification.Payload.Sound = "default";
-            alertNotification.Payload.Badge = i;
+            alertNotification.Payload.Badge = 1;
 
             service.QueueNotification(alertNotification);
         }
-
-        //service.Close();
-
-        ////Clean up
-        //service.Dispose();
     }
 
 
