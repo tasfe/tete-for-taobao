@@ -9,6 +9,13 @@
 <body>
     <form id="form1" runat="server">
     <div>
+    请输入4位验证码：
+    <asp:TextBox ID="txtVerify" runat="server"></asp:TextBox>
+
+    <asp:Button ID="Button3" runat="server" 
+            onclick="Button3_Click" Text="评价短信赠送" />
+
+    <hr />
 
         <asp:Button ID="Button1" runat="server" 
             onclick="Button1_Click" Text="审核通过" />

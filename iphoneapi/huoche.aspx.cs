@@ -68,7 +68,7 @@ public partial class iphoneapi_msgcheck : System.Web.UI.Page
 
             alertNotification.Payload.Alert.Body = string.Format(msg, i);
             alertNotification.Payload.Sound = "default";
-            alertNotification.Payload.Badge = i;
+            alertNotification.Payload.Badge = 0;
 
             service.QueueNotification(alertNotification);
         }

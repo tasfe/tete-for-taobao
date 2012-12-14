@@ -26,6 +26,15 @@ public partial class iphoneapi_msgcheck : System.Web.UI.Page
         rptList.DataBind();
     }
 
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        string sql = "UPDATE TeteUserToken SET issend =1 ,total = total + 2 WHERE verify = '" + this.txtVerify.Text + "' AND issend = 0";
+
+        utils.ExecuteNonQuery(sql);
+
+        Response.Write("ok!!");
+    }
+
     protected void Button1_Click(object sender, EventArgs e)
     {
         string ids = utils.NewRequest("ids", utils.RequestType.Form);
@@ -33,10 +42,10 @@ public partial class iphoneapi_msgcheck : System.Web.UI.Page
         string sql = "SELECT DISTINCT alerttoken FROM TeteUserToken WHERE token IN (SELECT DISTINCT token FROM HuliUserMsg WHERE CHARINDEX(guid, '" + ids + "') > 0 AND token IS NOT NULL) AND LEN(alerttoken) = 64";
         DataTable dt = utils.ExecuteDataTable(sql);
 
-        string filePath = Server.MapPath("p12/msg.p12");
+        string filePath = Server.MapPath("p12/sms_huli.p12");
         string pass = "3561402";
 
-        SendAlert(dt, "亲，您的短信审核已经通过，进入等待发送队列中！", filePath, pass);
+        //SendAlert(dt, "亲，您的短信审核已经通过，进入等待发送队列中！", filePath, pass);
 
 
         sql = "UPDATE HuliUserMsg SET ispass = 1 WHERE CHARINDEX(guid, '" + ids + "') > 0";
@@ -47,7 +56,7 @@ public partial class iphoneapi_msgcheck : System.Web.UI.Page
 
     private void SendAlert(DataTable dt, string msg, string file, string pass)
     {
-        bool sandbox = true;
+        bool sandbox = false;
         string p12File = file;
         string p12FilePassword = pass;
 
@@ -118,7 +127,7 @@ public partial class iphoneapi_msgcheck : System.Web.UI.Page
         string sql = "SELECT DISTINCT alerttoken FROM TeteUserToken WHERE token IN (SELECT DISTINCT token FROM HuliUserMsg WHERE CHARINDEX(guid, '" + ids + "') > 0 AND token IS NOT NULL) AND LEN(alerttoken) = 64";
         DataTable dt = utils.ExecuteDataTable(sql);
 
-        string filePath = Server.MapPath("p12/msg.p12");
+        string filePath = Server.MapPath("p12/sms_huli.p12");
         string pass = "3561402";
 
         SendAlert(dt, "亲，您的短信含有非法信息，审核不通过无法正常发送！", filePath, pass);

@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
     <div>
 
-        <asp:TextBox ID="txtContent" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtContent" runat="server" TextMode="MultiLine"></asp:TextBox>
 
         <asp:Button ID="Button1" runat="server" 
             onclick="Button1_Click" Text="发送推送" />
