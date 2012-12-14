@@ -317,7 +317,7 @@ public partial class top_review_msg : System.Web.UI.Page
             }
             if (shippingcontent.Length == 0)
             {
-                shippingcontent = "[shopname]:亲,您的宝贝已到达,满分好评+优质评价即可获赠[gift]";
+                shippingcontent = "[shopname]:亲,您的宝贝已显示签收,如非本人签收请问下是否亲友签收，有疑问请和我们联系！5分好评+优质评价即可获赠[gift]";
             }
             if (reviewcontent.Length == 0)
             {
@@ -333,7 +333,7 @@ public partial class top_review_msg : System.Web.UI.Page
             }
             if (citycontent.Length == 0)
             {
-                citycontent = "您购买的宝贝已到达亲所在的城市，请留意淘宝后台物流状态，可以及时本人签收哦，如满意请给5分好评，可以获赠优惠券哦，祝亲愉快每天~";
+                citycontent = "[shopname]:您购买的宝贝已到达亲所在的城市，请留意淘宝物流状态，便于本人签收。满意请5分好评，可获赠优惠券哦，祝亲愉快每天~";
             }
             if (shopname.Length == 0)
             {
@@ -772,6 +772,7 @@ public partial class top_review_msg : System.Web.UI.Page
         string shippingflag = utils.NewRequest("shippingflag", utils.RequestType.Form) == "1" ? "1" : "0";
         string reviewflag = utils.NewRequest("reviewflag", utils.RequestType.Form) == "1" ? "1" : "0";
         string fahuoflag = utils.NewRequest("fahuoflag", utils.RequestType.Form) == "1" ? "1" : "0";
+        string cityflag = utils.NewRequest("cityflag", utils.RequestType.Form) == "1" ? "1" : "0";
         string freecardflag = utils.NewRequest("freecardflag", utils.RequestType.Form) == "1" ? "1" : "0";
         string reviewtime = utils.NewRequest("reviewtime", utils.RequestType.Form);
 
@@ -822,6 +823,8 @@ public partial class top_review_msg : System.Web.UI.Page
         string sql = "UPDATE TCS_ShopConfig SET " +
             "giftflag = '" + giftflag + "', " +
             "giftcontent = '" + ReplaceStr(utils.NewRequest("giftcontent", utils.RequestType.Form)) + "', " +
+            "cityflag = '" + cityflag + "', " +
+            "citycontent = '" + ReplaceStr(utils.NewRequest("citycontent", utils.RequestType.Form)) + "', " +
             "shippingflag = '" + shippingflag + "', " +
             "shippingcontent = '" + ReplaceStr(utils.NewRequest("shippingcontent", utils.RequestType.Form)) + "', " +
             "reviewflag = '" + reviewflag + "', " +
