@@ -110,6 +110,9 @@ public partial class top_review_couponlist : System.Web.UI.Page
         string sql = "UPDATE TCS_Activity SET isdel = 1 WHERE guid = '" + id + "'";
         utils.ExecuteNonQuery(sql);
 
+        sql = "INSERT INTO TCS_ShopActLog (nick, typ, message) VALUES ('" + nick + "', 'act', '" + sql.Replace("'", "''") + "')";
+        utils.ExecuteNonQuery(sql);
+
         Response.Write("<script>alert('取消成功！');window.location.href='actlist.aspx';</script>");
     }
 
