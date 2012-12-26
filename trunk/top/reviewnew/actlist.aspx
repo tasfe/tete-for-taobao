@@ -38,10 +38,10 @@
 
     <table width="700" cellpadding="0" cellspacing="0">
         <tr>
-                <td width="90"><b>活动名称</b></td>
+                <td width="60"><b>活动名称</b></td>
                 <td width="80"><b>开始日期</b></td>
                 <td width="80"><b>结束日期</b></td>
-                <td width="80"><b>满足金额</b></td>
+                <td width="50"><b>满足金额</b></td>
                 <td width="80"><b>指定商品</b></td>
                 <td width="80"><b>优惠券</b> </td>
                 <td width="80"><b>支付宝红包</b> </td>
