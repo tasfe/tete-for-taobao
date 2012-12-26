@@ -93,7 +93,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
     /// <returns></returns>
     private string GetCouponHtml()
     {
-        
+        return "";
     }
 
     /// <summary>
@@ -162,7 +162,7 @@ public partial class top_review_kefulist : System.Web.UI.Page
                 //判断客户是否开启了内容自动判定
                 if (dt.Rows[0]["iskeyword"].ToString() == "1")
                 {
-                    StartPassCheck(dt.Rows[0]["keywordisbad"].ToString(), dt.Rows[0]["keyword"].ToString(), dt.Rows[0]["badkeyword"].ToString(), dt.Rows[0]["wordcount"].ToString());
+                    StartPassCheck(dt.Rows[0]["keywordisbad"].ToString(), dt.Rows[0]["keyword"].ToString(), dt.Rows[0]["badkeyword"].ToString(), dt.Rows[0]["wordcount"].ToString(), dt.Rows[0]["iscancelauto"].ToString(), dt.Rows[0]["cancel1"].ToString(), dt.Rows[0]["cancel2"].ToString(), ids);
                     Response.Write("<script>alert('过滤成功，不符合判定条件的评价已经被设置为不赠送！');window.location.href='kefulist.aspx';</script>");
                 }
                 else
@@ -173,10 +173,11 @@ public partial class top_review_kefulist : System.Web.UI.Page
         }
     }
 
-    private void StartPassCheck(string isbad, string goodkey, string badkey, string len)
+    private void StartPassCheck(string isbad, string goodkey, string badkey, string len, string iscancelauto, string cancel1, string cancel2, string ids)
     {
         string sql = string.Empty;
         string content = string.Empty;
+        //string[] adsArray = ids.Split(',');
 
         sql = "SELECT * FROM TCS_TradeRateCheck WHERE nick = '" + nick + "' AND ischeck = 0";
 
@@ -185,6 +186,18 @@ public partial class top_review_kefulist : System.Web.UI.Page
         {
             content = dt.Rows[i]["content"].ToString();
 
+            //判断是否为默认
+            if (iscancelauto == "1")
+            {
+                if ((content == "好评！" && cancel1 == "1") 
+                    || ((content == "评价方未及时做出评价,系统默认好评!" || content == "评价方未及时做出评价,系统默认好评！") && cancel2 == "1"))
+                {
+                    sql = "UPDATE TCS_TradeRateCheck SET issend = 2,ischeck = 1,checkdate = GETDATE() WHERE orderid = '" + dt.Rows[i]["orderid"].ToString() + "'";
+                    utils.ExecuteNonQuery(sql);
+                }
+            }
+
+            //内容判定
             if (CheckContent(isbad, goodkey, badkey, len, content))
             {
                 sql = "UPDATE TCS_TradeRateCheck SET issend = 2,ischeck = 1,checkdate = GETDATE() WHERE orderid = '" + dt.Rows[i]["orderid"].ToString() + "'";
