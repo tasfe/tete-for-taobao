@@ -41,9 +41,11 @@
                 <td width="90"><b>活动名称</b></td>
                 <td width="80"><b>开始日期</b></td>
                 <td width="80"><b>结束日期</b></td>
-                <td width="140"><b>满足金额</b></td>
-                <td width="100"><b>指定商品</b></td>
-                <td width="80"><b>赠送礼品</b> </td>
+                <td width="80"><b>满足金额</b></td>
+                <td width="80"><b>指定商品</b></td>
+                <td width="80"><b>优惠券</b> </td>
+                <td width="80"><b>支付宝红包</b> </td>
+                <td width="80"><b>包邮卡</b> </td>
                 <td width="60"><b>操作</b></td>
             </tr>
         <asp:Repeater ID="rptArticle" runat="server">
@@ -54,7 +56,11 @@
                 <td><%#Eval("enddate")%></td>
                 <td><%#Eval("condprice")%></td>
                 <td><%#Eval("conditemlist")%></td>
-                <td>礼品清单</td>
+
+                <td><%#Eval("couponid")%></td>
+                <td><%#Eval("alipayid")%></td>
+                <td><%#Eval("freeid")%></td>
+
                 <td><a href='actmodify.aspx?id=<%#Eval("guid")%>'>修改</a> | <a href='actlist.aspx?act=del&id=<%#Eval("guid")%>' onclick="return confirm('您确定要删除吗，该操作不可恢复？')">删除</a></td>
             </tr>
             </ItemTemplate>
