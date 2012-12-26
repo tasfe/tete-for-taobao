@@ -23,7 +23,7 @@ public partial class top_review_testapi : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Fresh();
+        GetTradeWuliu();
     }
 
     private void GetTradeWuliu()
@@ -34,7 +34,7 @@ public partial class top_review_testapi : System.Web.UI.Page
         string session = "610252327f50ae71952287d7d9743f91fd3ef1e6d930c29268451883";
         string taobaonick = "三际数码专营店";
 
-        string sql = "SELECT TOP 100 * FROM TCS_Trade WHERE status = 'WAIT_BUYER_CONFIRM_GOODS'";
+        string sql = "GetShippingShopTrade '怡茗生辉' ";
         DataTable dt = utils.ExecuteDataTable(sql);
 
         for (int i = 0; i < dt.Rows.Count; i++)

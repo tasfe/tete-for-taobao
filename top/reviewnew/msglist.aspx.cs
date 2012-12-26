@@ -298,6 +298,10 @@ public partial class top_review_msglist : System.Web.UI.Page
         {
             newstr = "<font color=#F7D729>买家定期回访</font>";
         }
+        else if (str == "city")
+        {
+            newstr = "<font color=green>城市到达提醒</font>";
+        }
         else if (str == "test")
         {
             newstr = "短信测试";
