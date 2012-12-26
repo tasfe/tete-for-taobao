@@ -32,7 +32,7 @@ public partial class top_reviewnew_actmodify : System.Web.UI.Page
     public string enddate = string.Empty;
 
     public string name = string.Empty;
-    public string conprice = string.Empty;
+    public string price = string.Empty;
 
 
     protected void Page_Load(object sender, EventArgs e)
@@ -89,23 +89,38 @@ public partial class top_reviewnew_actmodify : System.Web.UI.Page
         string condprice = utils.NewRequest("condprice", utils.RequestType.Form);
         string conditemlist = utils.NewRequest("productid", utils.RequestType.Form);
 
-        string sql = "UPDATE TCS_Activity SET" +
-                        "nick = '" + nick + "', " +
+        string couponid = utils.NewRequest("couponid", utils.RequestType.Form);
+        string iscoupon = couponid == "" ? "0" : "1";
+
+        string alipayid = utils.NewRequest("alipayid", utils.RequestType.Form);
+        string isalipay = alipayid == "" ? "0" : "1";
+
+        string freeid = utils.NewRequest("freeid", utils.RequestType.Form);
+        string isfree = freeid == "" ? "0" : "1";
+
+        string sql = "UPDATE TCS_Activity SET " +
                         "name = '" + name + "', " +
                         "startdate = '" + startdate + "', " +
                         "enddate = '" + enddate + "', " +
+
+                        "iscoupon = '" + iscoupon + "', " +
+                        "couponid = '" + couponid + "', " +
+                        "isfree = '" + isfree + "', " +
+                        "freeid = '" + freeid + "', " +
+                        "isalipay = '" + isalipay + "', " +
+                        "alipayid = '" + alipayid + "', " +
+
                         "condprice = '" + condprice + "', " +
-                        "conditemlist = '" + conditemlist + "' " +
-                    " ) VALUES ( " +
-                        " '" + nick + "', " +
-                        " '" + name + "', " +
-                        " '" + startdate + "', " +
-                        " '" + enddate + "', " +
-                        " '" + condprice + "', " +
-                        " '" + conditemlist + "' " +
-                    " WHERE id= '" + id + "' ";
+                        "conditemlist = '" + conditemlist + "'" +
+                    " WHERE guid= '" + id + "' AND nick = '" + nick + "'";
         utils.ExecuteNonQuery(sql);
 
+
+
+        sql = "INSERT INTO TCS_ShopActLog (nick, typ, message) VALUES ('" + nick + "', 'act', '" + sql.Replace("'", "''") + "')";
+        utils.ExecuteNonQuery(sql);
+
+        //Response.Write(sql);
         Response.Redirect("actlist.aspx");
     }
 
@@ -122,19 +137,15 @@ public partial class top_reviewnew_actmodify : System.Web.UI.Page
             couponid = dt.Rows[0]["couponid"].ToString();
             alipayid = dt.Rows[0]["alipayid"].ToString();
             freeid = dt.Rows[0]["freeid"].ToString();
-            itemlist = dt.Rows[0]["itemlist"].ToString();
+            itemlist = dt.Rows[0]["conditemlist"].ToString();
 
             name = dt.Rows[0]["name"].ToString();
-            conprice = dt.Rows[0]["conprice"].ToString();
-
-            couponid = dt.Rows[0]["couponid"].ToString();
-            freeid = dt.Rows[0]["freeid"].ToString();
-            alipayid = dt.Rows[0]["alipayid"].ToString();
+            price = dt.Rows[0]["condprice"].ToString();
         }
 
         //数据绑定
         DataTable dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_Coupon WHERE nick = '" + nick + "' AND isdel = 0");
-        couponstr = "<select name='couponid'><option value=''>-请选择-</option>";
+        couponstr = "<select name='couponid'><option value=''>-不赠送-</option>";
         for (int i = 0; i < dtCoupon.Rows.Count; i++)
         {
             if (dtCoupon.Rows[i]["guid"].ToString().Trim() == couponid.Trim())
@@ -151,7 +162,7 @@ public partial class top_reviewnew_actmodify : System.Web.UI.Page
 
 
         dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_Alipay WHERE nick = '" + nick + "' AND isdel = 0");
-        alipaystr = "<select name='alipayid'><option value=''>-请选择-</option>";
+        alipaystr = "<select name='alipayid'><option value=''>-不赠送-</option>";
         for (int i = 0; i < dtCoupon.Rows.Count; i++)
         {
             if (dtCoupon.Rows[i]["guid"].ToString().Trim() == alipayid.Trim())
@@ -166,7 +177,7 @@ public partial class top_reviewnew_actmodify : System.Web.UI.Page
         alipaystr += "</select>";
 
         dtCoupon = utils.ExecuteDataTable("SELECT * FROM TCS_FreeCardAction WHERE nick = '" + nick + "' AND isdel = 0");
-        freestr = "<select name='freeid'><option value=''>-请选择-</option>";
+        freestr = "<select name='freeid'><option value=''>-不赠送-</option>";
         for (int i = 0; i < dtCoupon.Rows.Count; i++)
         {
             if (dtCoupon.Rows[i]["guid"].ToString().Trim() == freeid.Trim())

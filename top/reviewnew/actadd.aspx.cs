@@ -122,6 +122,9 @@ public partial class top_reviewnew_actadd : System.Web.UI.Page
                     ") ";
         utils.ExecuteNonQuery(sql);
 
+        sql = "INSERT INTO TCS_ShopActLog (nick, typ, message) VALUES ('" + nick + "', 'act', '" + sql.Replace("'", "''") + "')";
+        utils.ExecuteNonQuery(sql);
+
         Response.Redirect("actlist.aspx");
     }
 

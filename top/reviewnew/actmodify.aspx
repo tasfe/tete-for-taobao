@@ -64,7 +64,7 @@
                 <td align="left" height="30">指定商品：</td>
                 <td>
                     <input type="button" value="选择商品" onclick="OpenDialogLable('dialogProduct.aspx',650,560);"/><br /><br />
-                    <div id="productArea" style="width:470px; height:300px; overflow:scroll"></div>
+                    <div id="productArea" style="width:470px; height:300px; overflow:scroll"><%=itemliststr%></div>
                 </td>
             </tr>
             <tr>
