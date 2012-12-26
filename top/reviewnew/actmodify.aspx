@@ -15,7 +15,7 @@
     <form id="form1" runat="server">
     <div class="navigation" style="height:600px;">
 
-  <div class="crumbs"><a href="default.aspx" class="nolink">好评有礼</a> 创建新活动 </div>
+  <div class="crumbs"><a href="default.aspx" class="nolink">好评有礼</a> 修改活动 </div>
   <div class="absright">
     <ul>
       <li>
@@ -39,25 +39,25 @@
             <tr>
                 <td align="left" height="30">活动名称：</td>
                 <td>
-                    <input id="alipayname" name="name" type="text" value="" />
+                    <input id="name" name="name" type="text" value="<%=name %>" />
                 </td>
             </tr>
             <tr>
                 <td align="left" height="30">开始日期：</td>
                 <td>
-                    <input id="Text1" name="startdate" type="text" value="<%=startdate %>" />
+                    <input id="startdate" name="startdate" type="text" value="<%=startdate %>" />
                 </td>
             </tr>
             <tr>
                 <td align="left" height="30">结束日期：</td>
                 <td>
-                    <input id="Text2" name="enddate" type="text" value="<%=enddate %>" />
+                    <input id="enddate" name="enddate" type="text" value="<%=enddate %>" />
                 </td>
             </tr>
             <tr>
                 <td align="left" height="30">满足金额：</td>
                 <td>
-                    <input id="Text3" name="condprice" type="text" value="0.00" />
+                    <input id="condprice" name="condprice" type="text" value="<%=price %>" />
                 </td>
             </tr>
             <tr>
@@ -86,7 +86,7 @@
             
             <tr>
                 <td align="left" height="30" colspan="2">
-                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="创建新活动" OnClientClick="return check()" />
+                    <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="修改活动" OnClientClick="return check()" />
                 </td>
             </tr>
         </table>
@@ -104,7 +104,25 @@
         }
 
         function check() {
+            if (document.getElementById("name").value == "") {
+                alert('请输入活动名称！');
+                return false;
+            }
 
+            if (document.getElementById("startdate").value == "") {
+                alert('请输入开始日期！');
+                return false;
+            }
+
+            if (document.getElementById("enddate").value == "") {
+                alert('请输入结束日期！');
+                return false;
+            }
+
+            if (document.getElementById("condprice").value == "") {
+                alert('请输入满足金额！');
+                return false;
+            }
         }
 
         function OpenDialogLable(url, w, h, editTxt) {

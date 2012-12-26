@@ -31,6 +31,9 @@ public partial class top_reviewnew_actmodify : System.Web.UI.Page
     public string startdate = string.Empty;
     public string enddate = string.Empty;
 
+    public string name = string.Empty;
+    public string conprice = string.Empty;
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -109,7 +112,7 @@ public partial class top_reviewnew_actmodify : System.Web.UI.Page
     private void BindData()
     {
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
-        string sql = "SELECT * FROM TCS_Activity WHERE id = '" + id + "'";
+        string sql = "SELECT * FROM TCS_Activity WHERE guid = '" + id + "'";
         DataTable dt = utils.ExecuteDataTable(sql);
 
         if (dt.Rows.Count != 0)
@@ -120,6 +123,13 @@ public partial class top_reviewnew_actmodify : System.Web.UI.Page
             alipayid = dt.Rows[0]["alipayid"].ToString();
             freeid = dt.Rows[0]["freeid"].ToString();
             itemlist = dt.Rows[0]["itemlist"].ToString();
+
+            name = dt.Rows[0]["name"].ToString();
+            conprice = dt.Rows[0]["conprice"].ToString();
+
+            couponid = dt.Rows[0]["couponid"].ToString();
+            freeid = dt.Rows[0]["freeid"].ToString();
+            alipayid = dt.Rows[0]["alipayid"].ToString();
         }
 
         //数据绑定
