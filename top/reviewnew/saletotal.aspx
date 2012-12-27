@@ -25,7 +25,7 @@
   </div>
     <div id="main-content" style="font-size:16px;">
         好评有礼送出的优惠券共为您带来了<%=totalcount %>个二次销售，实收总金额为<%=totalprice %>。<br />
-
+        <span style="font-size:12px;"><%=totalmonth %></span>
         <a href='salelist.aspx'>点击查看详细清单</a>
         <hr />
         

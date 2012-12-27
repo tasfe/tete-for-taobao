@@ -30,7 +30,22 @@
     
     请输入买家昵称：<asp:TextBox ID="search" runat="server"></asp:TextBox>
     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" Text="搜索" />
-    <input type="button" value="返回短信设置页面" onclick="window.location.href='msg.aspx'" />
+    <select name="typ">
+        <option value="">全部</option>
+        <option value="gift">赠送礼品</option>
+        <option value="shipping">物流签收</option>
+        <option value="review">过期未评价</option>
+        <option value="fahuo">发货通知</option>
+        <option value="alipay">支付宝红包</option>
+        <option value="cui">未付款催单</option>
+        <option value="act">新品活动营销</option>
+        <option value="back">买家定期回访</option>
+        <option value="city">城市到达提醒</option>
+        <option value="test">短信测试</option>
+    </select>
+    <input type="button" value="返回短信设置页面" onclick="window.location.href='msg.aspx'" /> <br />
+
+    短信发送总数【】条
     
     <hr />
         <table width="700" cellpadding="0" cellspacing="0">
