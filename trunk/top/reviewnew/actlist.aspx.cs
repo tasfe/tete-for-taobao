@@ -70,6 +70,12 @@ public partial class top_review_couponlist : System.Web.UI.Page
         BindData();
     }
 
+    public static string change(string str)
+    {
+        str = str.Replace(",", "<br>");
+
+        return "参加活动的宝贝id：<br>" + str;
+    }
 
     /// <summary>
     /// 判断该用户是否订购了该服务

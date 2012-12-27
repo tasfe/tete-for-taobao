@@ -16,6 +16,7 @@ public partial class top_review_msglist : System.Web.UI.Page
 {
     public string session = string.Empty;
     public string nick = string.Empty;
+    public string msgcount = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -222,14 +223,49 @@ public partial class top_review_msglist : System.Web.UI.Page
             Response.Redirect("msglist.aspx");
             return;
         }
+        string typ = utils.NewRequest("typ", utils.RequestType.Form);
+        string condition = string.Empty;
 
-        string sqlNew = "SELECT b.* FROM TCS_MsgSend b WITH (NOLOCK) WHERE b.nick = '" + nick + "' AND b.buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
+        //string sqlNew = "SELECT b.* FROM TCS_MsgSend b WITH (NOLOCK) WHERE b.nick = '" + nick + "' AND b.buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
+
+        condition = " AND b.buynick = '" + search.Text.Trim().Replace("'", "''") + "'";
+        if (typ != "")
+        {
+            condition += " AND b.typ = '" + typ + "'";
+        }
+
+        //DataTable dt = utils.ExecuteDataTable(sqlNew);
+
+        //rptArticle.DataSource = dt;
+        //rptArticle.DataBind();
+
+        //lbPage.Text = "";
+
+        string page = utils.NewRequest("page", utils.RequestType.QueryString);
+        int pageNow = 1;
+        if (page == "")
+        {
+            pageNow = 1;
+        }
+        else
+        {
+            pageNow = int.Parse(page);
+        }
+        int pageCount = 10;
+        int dataCount = (pageNow - 1) * pageCount;
+
+        string sqlNew = "SELECT TOP " + pageCount.ToString() + " * FROM (SELECT b.*,ROW_NUMBER() OVER (ORDER BY b.adddate DESC) AS rownumber FROM TCS_MsgSend b WITH (NOLOCK) WHERE b.nick = '" + nick + "' "+condition+") AS a WHERE a.rownumber > " + dataCount.ToString() + " ORDER BY adddate DESC";
         DataTable dt = utils.ExecuteDataTable(sqlNew);
 
         rptArticle.DataSource = dt;
         rptArticle.DataBind();
 
-        lbPage.Text = "";
+        //分页数据初始化
+        sqlNew = "SELECT COUNT(*) FROM TCS_MsgSend WITH (NOLOCK) WHERE nick = '" + nick + "'";
+        int totalCount = int.Parse(utils.ExecuteString(sqlNew));
+        msgcount = totalCount.ToString();
+
+        lbPage.Text = InitPageStr(totalCount, "msglist.aspx");
     }
 
     private void BindData()
@@ -256,6 +292,7 @@ public partial class top_review_msglist : System.Web.UI.Page
         //分页数据初始化
         sqlNew = "SELECT COUNT(*) FROM TCS_MsgSend WITH (NOLOCK) WHERE nick = '" + nick + "'";
         int totalCount = int.Parse(utils.ExecuteString(sqlNew));
+        msgcount = totalCount.ToString();
 
         lbPage.Text = InitPageStr(totalCount, "msglist.aspx");
     }

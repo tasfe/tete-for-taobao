@@ -22,6 +22,8 @@ public partial class top_reviewnew_saletotal : System.Web.UI.Page
     public string totalcount2 = string.Empty;
     public string totalprice2 = string.Empty;
 
+    public string totalmonth = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string id = utils.NewRequest("id", utils.RequestType.QueryString);
@@ -59,9 +61,21 @@ public partial class top_reviewnew_saletotal : System.Web.UI.Page
 
     private void BindData()
     {
+        string tempPrice = string.Empty;
         //优惠券带来的
         string sql = "SELECT COUNT(*) FROM TCS_Trade WHERE nick = '" + nick + "' AND iscoupon = 1 AND mobile <> ''";
         totalcount = utils.ExecuteString(sql);
+
+
+        //最近12个月带来的
+        for (int i = 11; i >= 0; i--)
+        {
+            sql = "SELECT SUM(Convert(decimal,totalprice)) FROM TCS_Trade WHERE nick = '" + nick + "' AND iscoupon = 1 AND mobile <> '' AND DATEDIFF(month, adddate, GETDATE()) = " + i.ToString();
+            tempPrice = utils.ExecuteString(sql);
+            if (tempPrice != "")
+                totalmonth += DateTime.Now.AddMonths(i * -1).Month + "月 实收金额￥" + tempPrice + "<br>";
+        }
+
 
         sql = "SELECT SUM(Convert(decimal,totalprice)) FROM TCS_Trade WHERE nick = '" + nick + "' AND iscoupon = 1 AND mobile <> ''";
         totalprice = utils.ExecuteString(sql);

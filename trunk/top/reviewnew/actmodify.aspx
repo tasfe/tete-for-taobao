@@ -28,7 +28,7 @@
     <div id="main-content">
 
 <div style="border:solid 1px #CCE2FF; padding:4px; background-color:#E8F2FF; margin:0 3px 6px 3px; color:Red; font-weight:bold">
-    活动里面的赠送礼品可以跟基本设置里面的条件同时生效，但是每种礼品每订单最多赠送一张。
+    活动里面的赠送礼品不可以跟基本设置里面的条件同时生效，如果要赠送支付包红包请先在基本设置里面关闭支付宝红包赠送。
 </div>
 
     <input type="button" value="返回列表" onclick="window.location.href='actlist.aspx'" />
