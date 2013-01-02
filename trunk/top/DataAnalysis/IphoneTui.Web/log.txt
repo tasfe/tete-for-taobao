@@ -1,0 +1,3 @@
+
+Log Entry : 2013/1/2 11:42:33 SELECT [name],[is_parent],[parent_cid] FROM [BangT_TaoBaoGoodsClass] WHERE [CId]=@cid 参数化查询 '(@cid nvarchar(4000))SELECT [name],[is_parent],[parent_cid] FROM' 需要参数 '@cid'，但未提供该参数。
+-------------------------------
