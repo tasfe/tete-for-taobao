@@ -66,17 +66,9 @@ public partial class containersale : System.Web.UI.Page
             Response.End();
             return;
         }
-
-        try
-        {
-            //判断跳转
-            GetVersion(nick);
-            GetData(nick);
-        }
-        catch (Exception ex)
-        {
-            Response.Write(ex.Message);
-        }
+        //判断跳转
+        GetVersion(nick);
+        GetData(nick);
     }
 
 
@@ -324,7 +316,7 @@ public partial class containersale : System.Web.UI.Page
         AddCookie(top_session);
 
         //CacheCollection.RemoveCacheByKey(CacheCollection.KEY_ALLBUYNINFO);
-        Response.Redirect("index.html");
+        Response.Redirect("~/index.html");
         //Response.Redirect("http://bang.7fshop.com/default.aspx?istongji=1&session=" + top_session + "&nick=" + HttpUtility.UrlEncode(oldNick));
     }
 
