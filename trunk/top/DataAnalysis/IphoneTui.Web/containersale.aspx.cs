@@ -22,53 +22,53 @@ public partial class containersale : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        Response.AddHeader("P3P", "CP=CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR");
+        string top_appkey = "12450498";
+
+        string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString).Replace(" ", "+");
+        top_session = utils.NewRequest("top_session", utils.RequestType.QueryString).Replace(" ", "+");
+        string app_secret = "38c892fcaa5a971aec7a9effd105c7ba";
+        string top_sign = utils.NewRequest("top_sign", utils.RequestType.QueryString).Replace(" ", "+");
+        string sign = utils.NewRequest("sign", utils.RequestType.QueryString).Replace(" ", "+");
+
+        versionNo = utils.NewRequest("versionNo", utils.RequestType.QueryString);
+        string leaseId = utils.NewRequest("leaseId", utils.RequestType.QueryString).Replace(" ", "+"); ;//可以从 QueryString 来获取,也可以固定 
+        string timestamp = utils.NewRequest("timestamp", utils.RequestType.QueryString).Replace(" ", "+"); ;//可以从 QueryString 来获取 
+
+        refreshToken = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["refresh_token"];
+
+        if (!Taobao.Top.Api.Util.TopUtils.VerifyTopResponse(top_parameters, top_session, top_sign, top_appkey, app_secret))
+        {
+            Response.Write("top签名验证不通过，请不要非法注入");
+            Response.End();
+            return;
+        }
+
+        //验证客户版本参数是否正确
+        if (versionNo != "")
+        {
+            if (!VersionVerify(app_secret, sign, top_appkey, leaseId, timestamp, versionNo))
+            {
+                //Response.Write("客户版本验证不通过，请不要自行修改参数");
+                //Response.End();
+                //return;
+            }
+        }
+        else
+        {
+            versionNo = "1";
+        }
+
+        nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["visitor_nick"];
+        if (nick == null || nick == "")
+        {
+            Response.Write("top签名验证不通过，请不要非法注入");
+            Response.End();
+            return;
+        }
+
         try
         {
-            Response.AddHeader("P3P", "CP=CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR");
-            string top_appkey = "12450498";
-
-            string top_parameters = utils.NewRequest("top_parameters", utils.RequestType.QueryString).Replace(" ", "+");
-            top_session = utils.NewRequest("top_session", utils.RequestType.QueryString).Replace(" ", "+");
-            string app_secret = "38c892fcaa5a971aec7a9effd105c7ba";
-            string top_sign = utils.NewRequest("top_sign", utils.RequestType.QueryString).Replace(" ", "+");
-            string sign = utils.NewRequest("sign", utils.RequestType.QueryString).Replace(" ", "+");
-
-            versionNo = utils.NewRequest("versionNo", utils.RequestType.QueryString);
-            string leaseId = utils.NewRequest("leaseId", utils.RequestType.QueryString).Replace(" ", "+"); ;//可以从 QueryString 来获取,也可以固定 
-            string timestamp = utils.NewRequest("timestamp", utils.RequestType.QueryString).Replace(" ", "+"); ;//可以从 QueryString 来获取 
-
-            refreshToken = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["refresh_token"];
-
-            if (!Taobao.Top.Api.Util.TopUtils.VerifyTopResponse(top_parameters, top_session, top_sign, top_appkey, app_secret))
-            {
-                Response.Write("top签名验证不通过，请不要非法注入");
-                Response.End();
-                return;
-            }
-
-            //验证客户版本参数是否正确
-            if (versionNo != "")
-            {
-                if (!VersionVerify(app_secret, sign, top_appkey, leaseId, timestamp, versionNo))
-                {
-                    //Response.Write("客户版本验证不通过，请不要自行修改参数");
-                    //Response.End();
-                    //return;
-                }
-            }
-            else
-            {
-                versionNo = "1";
-            }
-
-            nick = Taobao.Top.Api.Util.TopUtils.DecodeTopParams(top_parameters)["visitor_nick"];
-            if (nick == null || nick == "")
-            {
-                Response.Write("top签名验证不通过，请不要非法注入");
-                Response.End();
-                return;
-            }
-
             //判断跳转
             GetVersion(nick);
             GetData(nick);
