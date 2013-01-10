@@ -156,7 +156,7 @@ public partial class AddShopAds : System.Web.UI.Page
                             Page.RegisterStartupScript("通知", "<script>alert('请联系我们的客服人员为您添加广告');</script>");
                         }
                     }
-                    if (feeInfo.AdsType == 1)
+                    else
                     {
                         info.AddTime = DateTime.Now;
                         info.AdsId = new Guid(DDL_Position.SelectedValue);
