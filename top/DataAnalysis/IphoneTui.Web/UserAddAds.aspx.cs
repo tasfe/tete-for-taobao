@@ -220,7 +220,7 @@ public partial class UserAddAds : System.Web.UI.Page
                     {
                         //这里需要查询空闲的广告（或者说是可以用的广告位）
                         IList<UserAdsInfo> usedadsList = userAdsDal.SelectAllUsedAds();
-                        IList<SiteAdsInfo> allads = CacheCollection.GetAllSiteAdsInfo().Where(o => o.AdsId.ToString() == DDL_Position.SelectedValue).ToList();
+                        IList<SiteAdsInfo> allads = CacheCollection.GetAllSiteAdsInfo().Where(o => o.Id.ToString() == DDL_Position.SelectedValue).ToList();
                         if (allads.Count > 0 && allads[0].AdsCalCount > 0)
                         {
                             //可以放多少个
