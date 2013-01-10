@@ -244,7 +244,7 @@ public partial class UserAddAds : System.Web.UI.Page
                             Page.RegisterStartupScript("通知", "<script>alert('请联系我们的客服人员为您添加广告');</script>");
                         }
                     }
-                    if (feeInfo.AdsType == 1)
+                    else
                     {
                         //可以放多少个
                         for (int i = 0; i < canTou; i++)
