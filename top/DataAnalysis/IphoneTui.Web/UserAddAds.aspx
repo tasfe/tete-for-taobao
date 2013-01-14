@@ -2,7 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>特推广</title>
+    <title>手机推广魔盒</title>
     <link href="css/common.css" rel="stylesheet" />
 
     <script src="js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
@@ -24,7 +24,7 @@
     <form id="form1" runat="server">
     <div class="navigation" style="height: 600px;">
         <div class="crumbs">
-            <a href="#" class="nolink">特推广</a> 请选择您要推广宝贝
+            <a href="#" class="nolink">手机推广魔盒</a> 请选择您要推广宝贝
         </div>
         <div class="absright">
             <ul>
@@ -104,7 +104,7 @@
                             选择应用：
                         </td>
                         <td>
-                            <asp:DropDownList ID="DDL_App" runat="server" AutoPostBack="True" OnTextChanged="DDL_App_TextChanged"
+                            <asp:DropDownList ID="DDL_App" runat="server"
                                 AppendDataBoundItems="true">
                             </asp:DropDownList>
                             *广告在该应用上
@@ -115,7 +115,8 @@
                             选择广告类型：
                         </td>
                         <td>
-                            <asp:DropDownList ID="DDL_AdsType" runat="server">
+                            <asp:DropDownList ID="DDL_AdsType" runat="server" AutoPostBack="True" 
+                                ontextchanged="DDL_AdsType_TextChanged">
                             </asp:DropDownList>
                             *广告类型
                         </td>

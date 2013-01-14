@@ -44,6 +44,7 @@ public partial class UserAddAds : System.Web.UI.Page
             DDL_App.DataBind();
             DDL_App.Items.Insert(0, new ListItem("请选择", Guid.Empty.ToString()));
             DDL_AdsType.DataBind();
+            DDL_AdsType.Items.Insert(0, new ListItem("请选择", Guid.Empty.ToString()));
 
             IList<CateInfo> cateList = new CateService().SelectAllCateByNick(nick);
             DDL_GoodsClass.DataSource = cateList;
@@ -147,6 +148,11 @@ public partial class UserAddAds : System.Web.UI.Page
         else
             nick = Session["snick"].ToString();
 
+        if (DDL_AdsType.SelectedValue == Guid.Empty.ToString() || DDL_App.SelectedValue == Guid.Empty.ToString() || DDL_Position.SelectedValue == Guid.Empty.ToString())
+        {
+            Page.RegisterStartupScript("通知", "<script>alert('请选择投放的应用，类型以及位置，请按您购买的服务类型选择！');</script>");
+        }
+
         CateService cateDal = new CateService();
         IList<CateInfo> cateList = cateDal.SelectAllCateByNick(nick).ToList();
 
@@ -207,6 +213,11 @@ public partial class UserAddAds : System.Web.UI.Page
                 }
 
                 int canTou = calScore / needScore; //可以投放的个数
+
+                if (canTou > 0)
+                {
+                    canTou = canTou > list.Count ? list.Count : canTou;
+                }
 
                 //不能继续投放
                 if (canTou == 0)
@@ -350,11 +361,37 @@ public partial class UserAddAds : System.Web.UI.Page
         Response.Redirect("AddGoods.aspx");
     }
 
-    protected void DDL_App_TextChanged(object sender, EventArgs e)
+    protected void DDL_AdsType_TextChanged(object sender, EventArgs e)
     {
         if (DDL_App.SelectedValue == Guid.Empty.ToString())
             return;
-        DDL_Position.DataSource = CacheCollection.GetAllSiteAdsInfo().Where(o => o.SiteId.ToString() == DDL_App.SelectedValue).ToList();
+        if (DDL_AdsType.SelectedValue == Guid.Empty.ToString())
+            return;
+        if (DDL_AdsType.SelectedItem.Text == "瀑布流广告")
+        {
+            DDL_Position.DataSource = CacheCollection.GetAllSiteAdsInfo().Where(o => o.SiteId.ToString() == DDL_App.SelectedValue).Where(o => o.PositionCode == 6 || o.PositionCode == 7).ToList();
+        }
+
+        if (DDL_AdsType.SelectedItem.Text == "首页切换大广告")
+        {
+            DDL_Position.DataSource = CacheCollection.GetAllSiteAdsInfo().Where(o => o.SiteId.ToString() == DDL_App.SelectedValue).Where(o => o.PositionCode == 0 && o.AdsPosition == "首页头部").ToList();
+
+        }
+        if (DDL_AdsType.SelectedItem.Text == "首页大图")
+        {
+            DDL_Position.DataSource = CacheCollection.GetAllSiteAdsInfo().Where(o => o.SiteId.ToString() == DDL_App.SelectedValue).Where(o => o.PositionCode == 0 && o.AdsPosition == "首页中部").ToList();
+        }
+
+        if (DDL_AdsType.SelectedItem.Text == "分类页切换大广告")
+        {
+            DDL_Position.DataSource = CacheCollection.GetAllSiteAdsInfo().Where(o => o.SiteId.ToString() == DDL_App.SelectedValue).Where(o => o.PositionCode > 0 && o.PositionCode < 6 && o.AdsPosition.Contains("头部")).ToList();
+        }
+
+        if (DDL_AdsType.SelectedItem.Text == "分类页大图")
+        {
+            DDL_Position.DataSource = CacheCollection.GetAllSiteAdsInfo().Where(o => o.SiteId.ToString() == DDL_App.SelectedValue).Where(o => o.PositionCode > 0 && o.PositionCode < 6 && o.AdsPosition.Contains("中部")).ToList();
+        }
+
         DDL_Position.DataTextField = "AdsPosition";
         DDL_Position.DataValueField = "Id";
 
