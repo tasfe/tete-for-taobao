@@ -151,6 +151,7 @@ public partial class UserAddAds : System.Web.UI.Page
         if (DDL_AdsType.SelectedValue == Guid.Empty.ToString() || DDL_App.SelectedValue == Guid.Empty.ToString() || DDL_Position.SelectedValue == Guid.Empty.ToString())
         {
             Page.RegisterStartupScript("通知", "<script>alert('请选择投放的应用，类型以及位置，请按您购买的服务类型选择！');</script>");
+            return;
         }
 
         CateService cateDal = new CateService();
