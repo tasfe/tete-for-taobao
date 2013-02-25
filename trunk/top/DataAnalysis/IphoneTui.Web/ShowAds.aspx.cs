@@ -24,30 +24,15 @@ public partial class ShowAds : System.Web.UI.Page
                 if (list.Count > 0)
                 {
                     SiteAdsInfo info = list[0];
-                    ViewState["ImgUrl"] = info.AdsPic;
+                    
                     IList<SiteInfo> sitelist = CacheCollection.GetAllSiteList().Where(o => o.SiteId == info.SiteId).ToList();
 
-                    LB_SiteUrl1.Text = sitelist[0].SiteUrl;
-                
+                    Lbl_AppName.Text = sitelist[0].SiteName;
+                    Lbl_AdsPosition.Text = info.AdsPosition;
+
                     ViewState["SiteUrl"] = sitelist[0].SiteUrl;
                 }
             }
-        }
-    }
-
-    protected string ImgUrl
-    {
-        get
-        {
-            return ViewState["ImgUrl"] == null ? "" : ViewState["ImgUrl"].ToString();
-        }
-    }
-
-    protected string SiteUrl
-    {
-        get
-        {
-            return ViewState["SiteUrl"] == null ? "" : ViewState["SiteUrl"].ToString();
         }
     }
 }

@@ -43,16 +43,14 @@
             <input type="button" onclick="window.location.href='useradslist.aspx'" value="等待投放的广告" />
             <input type="button" onclick="window.location.href='UserAddAds.aspx'" value="投放新广告" />
             <hr />
-            <img src='<%=ImgUrl %>' height="450px" width="670px">
-            <br />
             <div style="font-size:20px">
-            1、点击：<a href='<%=SiteUrl %>'target="_blank"><asp:Label runat="server" ID="LB_SiteUrl1" /></a>
+            1、在苹果应用中找到<asp:Label ID="Lbl_AppName" runat="server"></asp:Label>安装到手机上
             <br />
-            2、在打开的网页中找到上图圈到的图片位置，点击
+            2、安装后打开应用:
+            <br />
+             在<asp:Label ID="Lbl_AdsPosition" runat="server"></asp:Label>
             <br />
            就能<a href="UserAdsList.aspx?istou=1">查看您的广告投放</a>
-            <br />
-            （亲情提醒：如果您想点击广告牌立即跳转到您的店铺或宝贝页面，请订购:<a href="/vip2.html">VIP广告</a>）
             </div>
         </div>
     </div>
