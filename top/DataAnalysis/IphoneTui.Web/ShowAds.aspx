@@ -44,11 +44,11 @@
             <input type="button" onclick="window.location.href='UserAddAds.aspx'" value="投放新广告" />
             <hr />
             <div style="font-size:20px">
-            1、在苹果应用中找到<asp:Label ID="Lbl_AppName" runat="server"></asp:Label>安装到手机上
+            1、在苹果应用中找到应用名为<asp:Label ID="Lbl_AppName" ForeColor="Red" runat="server"></asp:Label>安装到手机上
             <br />
             2、安装后打开应用:
             <br />
-             在<asp:Label ID="Lbl_AdsPosition" runat="server"></asp:Label>
+             <asp:Label ID="Lbl_show" runat="server"></asp:Label> <asp:Label ID="Lbl_AdsPosition" ForeColor="Red" runat="server"></asp:Label>
             <br />
            就能<a href="UserAdsList.aspx?istou=1">查看您的广告投放</a>
             </div>
