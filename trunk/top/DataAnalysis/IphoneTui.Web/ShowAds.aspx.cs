@@ -20,7 +20,7 @@ public partial class ShowAds : System.Web.UI.Page
         {
             if (!string.IsNullOrEmpty(Request.QueryString["adsid"]))
             {
-                IList<SiteAdsInfo> list = CacheCollection.GetAllSiteAdsInfo().Where(o => o.AdsId.ToString() == Request.QueryString["adsid"]).ToList();
+                IList<SiteAdsInfo> list = CacheCollection.GetAllSiteAdsInfo().Where(o => o.Id.ToString() == Request.QueryString["adsid"]).ToList();
                 if (list.Count > 0)
                 {
                     SiteAdsInfo info = list[0];
@@ -28,9 +28,11 @@ public partial class ShowAds : System.Web.UI.Page
                     IList<SiteInfo> sitelist = CacheCollection.GetAllSiteList().Where(o => o.SiteId == info.SiteId).ToList();
 
                     Lbl_AppName.Text = sitelist[0].SiteName;
+                    if (info.AdsPosition == "最新" || info.AdsPosition == "热卖")
+                        Lbl_show.Text = "点击";
+                    else
+                        Lbl_show.Text = "在";
                     Lbl_AdsPosition.Text = info.AdsPosition;
-
-                    ViewState["SiteUrl"] = sitelist[0].SiteUrl;
                 }
             }
         }
