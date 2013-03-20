@@ -1,0 +1,15 @@
+
+Log Entry : 2013/3/18 14:21:05 page 1
+-------------------------------
+
+Log Entry : 2013/3/18 14:21:06 page 1
+-------------------------------
+
+Log Entry : 2013/3/18 14:21:10 page 2
+-------------------------------
+
+Log Entry : 2013/3/18 14:21:15 page 3
+-------------------------------
+
+Log Entry : 2013/3/19 10:06:25 财付通充值日志 bank_type=BL&discount=0&fee_type=1&input_charset=UTF-8&notify_id=2snKgBzZncrGftQeY7_EzaXtewxlZVQsqeIl9KnkCnmHIDoFP88w_nuhWjSdmebKt2HV5aE6ehF99Wn53Wu2CK4TVO17iATt&out_trade_no=20130319100558&partner=1215707201&product_fee=1&sign_type=MD5&time_end=20130319100611&total_fee=1&trade_mode=1&trade_state=0&transaction_id=1215707201201303190241178092&transport_fee=0&key=25100032e38efab071567e1353debce7 => sign:e88a2e48583dfb08e4f9d97c72382384
+-------------------------------
